@@ -40,6 +40,7 @@ class AuthController extends Controller
             return redirect()->route('login')->with('warning', $auth['response']['message'])->withInput();
         }
         $request->session()->put('gjid', $request->username);
+        $request->session()->put('gjt', $request->token);
         return redirect()->route('home')->with('success', 'You successfully logged in with Gamejolt!');
     }
 

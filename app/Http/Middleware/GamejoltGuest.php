@@ -16,7 +16,7 @@ class GamejoltGuest
      */
     public function handle(Request $request, Closure $next)
     {
-        if ($request->session()->get('gjid')){
+        if ($request->session()->get('gju')){
             return redirect()->route('home');
         }
         return $next($request);

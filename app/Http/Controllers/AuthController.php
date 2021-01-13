@@ -51,6 +51,12 @@ class AuthController extends Controller
 
     public function logout(Request $request)
     {
+        
+        $username = $request->session()->get('gju');
+        $token = $request->session()->get('gjt');
+        $api = new GamejoltApi(new GamejoltConfig(env("GAMEJOLT_GAME_ID"), env("GAMEJOLT_GAME_PRIVATE_KEY")));
+        //Close the session for user
+        $api->sessions()->close($username, $token);
         $request->session()->flush();
         return redirect()->route('login')->with('success', 'You successfully logged out!');
     }

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Harrk\GameJoltApi\GamejoltApi;
+use Harrk\GameJoltApi\GamejoltConfig;
 
 class HomeController extends Controller
 {
@@ -16,9 +18,15 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('home');
+        $api = new GamejoltApi(new GamejoltConfig(env("GAMEJOLT_GAME_ID"), env("GAMEJOLT_GAME_PRIVATE_KEY")));
+        $auth = $api->users()->fetch($request->session()->get('gjid'), $request->session()->get('gjt'));
+        $user = null;
+        if(filter_var($auth['response']['success'], FILTER_VALIDATE_BOOLEAN) === true) {
+            $user = $auth['response']['users'][0];
+        }
+        return view('home')->with($user);
     }
 
     /**

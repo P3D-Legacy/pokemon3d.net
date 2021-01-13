@@ -9,7 +9,7 @@
         <input type="text" id="username" name="username" class="form-control" placeholder="Username" required="" autofocus="">
         <label for="token" class="visually-hidden">Token</label>
         <input type="password" id="token" name="token" class="form-control" placeholder="Token" required="">
-        <button class="w-100 btn btn-lg btn-primary" type="submit">Login</button>
+        <button class="w-100 btn btn-lg btn-success" type="submit"><i class="fas fa-sign-in-alt"></i> Login</button>
         @csrf
     </form>
 @endsection

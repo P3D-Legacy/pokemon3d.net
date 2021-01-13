@@ -16,7 +16,7 @@ class GamejoltAuth
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!env("GAMEJOLT_GAME_ID") || env("GAMEJOLT_GAME_PRIVATE_KEY")) {
+        if (!env("GAMEJOLT_GAME_ID") || !env("GAMEJOLT_GAME_PRIVATE_KEY")) {
             redirect()->route('login')->with('error', 'Gamejolt API keys is not set by an admin!');
         }
         // TODO: Check if user is logged in or not

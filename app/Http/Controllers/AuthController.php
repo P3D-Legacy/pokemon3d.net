@@ -33,14 +33,19 @@ class AuthController extends Controller
             'username' => ['required', 'string'],
             'token' => ['required', 'string']
         ]);
+        $username = $request->username;
+        $token = $request->token;
 
         $api = new GamejoltApi(new GamejoltConfig(env("GAMEJOLT_GAME_ID"), env("GAMEJOLT_GAME_PRIVATE_KEY")));
-        $auth = $api->users()->auth($request->username, $request->token);
+        $auth = $api->users()->auth($username, $token);
         if(filter_var($auth['response']['success'], FILTER_VALIDATE_BOOLEAN) === false) {
             return redirect()->route('login')->with('warning', $auth['response']['message'])->withInput();
         }
-        $request->session()->put('gjid', $request->username);
-        $request->session()->put('gjt', $request->token);
+        // Remember the user in the session
+        $request->session()->put('gju', $username);
+        $request->session()->put('gjt', $token);
+        // Open a session for the given user
+        $api->sessions()->open($username, $token);
         return redirect()->route('home')->with('success', 'You successfully logged in with Gamejolt!');
     }
 

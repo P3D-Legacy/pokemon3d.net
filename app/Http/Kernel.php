@@ -63,5 +63,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'gj.auth' => \App\Http\Middleware\GamejoltAuth::class,
+        'gj.guest' => \App\Http\Middleware\GamejoltGuest::class,
     ];
 }

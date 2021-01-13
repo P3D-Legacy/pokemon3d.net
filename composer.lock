@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2e4dd0e6102d0cc3b5f23aa0b9662a33",
+    "content-hash": "da6430e0fe32ab49987be0696ceb8725",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -891,6 +891,61 @@
                 "source": "https://github.com/guzzle/psr7/tree/1.7.0"
             },
             "time": "2020-09-30T07:37:11+00:00"
+        },
+        {
+            "name": "harrk/gamejolt-api",
+            "version": "v1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Harrk/gamejolt-api.git",
+                "reference": "4774b85d55d069312be08e3ac1247da966affcc8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Harrk/gamejolt-api/zipball/4774b85d55d069312be08e3ac1247da966affcc8",
+                "reference": "4774b85d55d069312be08e3ac1247da966affcc8",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^6.3|^7.0.1",
+                "php": "^7.1|^8.0"
+            },
+            "require-dev": {
+                "phpstan/phpstan": "^0.11.0",
+                "phpunit/phpunit": "^7.5|^9.3.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Harrk\\GameJoltApi\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Harry Kirkman",
+                    "homepage": "https://harrykirkman.co.uk"
+                }
+            ],
+            "description": "A PHP library for the Game Jolt API.",
+            "homepage": "https://github.com/Harrk/gamejolt-api",
+            "keywords": [
+                "Gamedev",
+                "Gamejolt",
+                "api",
+                "composer",
+                "game",
+                "jolt",
+                "php"
+            ],
+            "support": {
+                "issues": "https://github.com/Harrk/gamejolt-api/issues",
+                "source": "https://github.com/Harrk/gamejolt-api/tree/v1.1.0"
+            },
+            "time": "2021-01-13T20:23:41+00:00"
         },
         {
             "name": "laravel/framework",

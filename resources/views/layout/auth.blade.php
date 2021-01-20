@@ -8,8 +8,8 @@
 
         <link rel="shortcut icon" href="http://pokemon3d.net/files/images/favicon.png">
 
-        <script type="text/javascript" src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
-        <link href="{{ asset('bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+        <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
+        <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
         <link href="{{ asset('css/auth.css') }}" rel="stylesheet">

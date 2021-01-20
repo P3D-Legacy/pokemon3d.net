@@ -4,7 +4,7 @@
 @section('content')
     <form method="post" action="{{ route('login-post') }}">
         <img class="mb-5" src="{{ asset('img/TreeLogoSmall.png') }}" alt="">
-        <h1 class="h4 mb-3 fw-normal">Login with <img src="{{ asset('img/gamejolt-logo-light-1x.png') }}" alt=""></h1>
+        <h1 class="h4 mb-3 fw-normal">Login with <img src="{{ asset('img/gamejolt-logo-dark-1x.png') }}" alt=""></h1>
         <label for="username" class="visually-hidden">Username</label>
         <input type="text" id="username" name="username" class="form-control" placeholder="Username" required="" autofocus="">
         <label for="token" class="visually-hidden">Token</label>

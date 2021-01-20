@@ -23,6 +23,9 @@ class HomeController extends Controller
         $api = new GamejoltApi(new GamejoltConfig(env("GAMEJOLT_GAME_ID"), env("GAMEJOLT_GAME_PRIVATE_KEY")));
         $auth = $api->users()->fetch($request->session()->get('gju'), $request->session()->get('gjt'));
         $user = null;
+        if(filter_var($auth['response']['success'], FILTER_VALIDATE_BOOLEAN) === false) {
+            return view('home')->with('error', $auth['response']['message']);
+        }
         if(filter_var($auth['response']['success'], FILTER_VALIDATE_BOOLEAN) === true) {
             $user = $auth['response']['users'][0];
         }

@@ -63,7 +63,11 @@
         ],
         "post-update-cmd": [
             "rm -rf public/css/bootstrap",
-            "cp -R vendor/twbs/bootstrap/dist public/css/boostrap"
+            "rm -rf public/bootstrap",
+            "rm -rf public/css/bootstrap.min.css",
+            "rm -rf public/js/bootstrap.min.js",
+            "cp -R vendor/twbs/bootstrap/dist/css/bootstrap.min.css public/css/bootstrap.min.css",
+            "cp -R vendor/twbs/bootstrap/dist/js/bootstrap.min.js public/js/bootstrap.min.js"
         ]
     }
 }

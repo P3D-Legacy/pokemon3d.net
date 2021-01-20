@@ -9,6 +9,7 @@
         <input type="text" id="username" name="username" class="form-control" placeholder="Username" required="" autofocus="">
         <label for="token" class="visually-hidden">Token</label>
         <input type="password" id="token" name="token" class="form-control" placeholder="Token" required="">
+        <p class="text-start fs-6"><small><a href="https://gamejolt.com/help/tokens" class="link-secondary text-decoration-none"><i class="far fa-question-circle"></i> What is my token?</a></small></p>
         <button class="w-100 btn btn-success mt-2" type="submit"><i class="fas fa-sign-in-alt"></i> Login</button>
         @csrf
     </form>

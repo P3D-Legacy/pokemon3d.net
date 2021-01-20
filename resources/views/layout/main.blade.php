@@ -15,22 +15,25 @@
         <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
     </head>
 <body>
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">Navbar</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarDefault" aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-            </button>
-        
-            <div class="collapse navbar-collapse" id="navbarDefault">
-                <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                    <li class="nav-item active"><a class="nav-link" aria-current="page" href="{{ route('home') }}">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" aria-current="page" href="{{ route('logout') }}">logout</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
     <main class="container">
+
+        <nav class="navbar navbar-expand-md navbar-dark bg-success my-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="{{ route('home') }}">skin.pokemon3d.net</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarDefault" aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+            
+                <div class="collapse navbar-collapse" id="navbarDefault">
+                    <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                        {{-- <li class="nav-item active"><a class="nav-link" aria-current="page" href="{{ route('home') }}">Home</a></li> --}}
+                    </ul>
+                    <ul class="navbar-nav">
+                        <li class="nav-item"><a class="nav-link" aria-current="page" href="{{ route('logout') }}">Log out</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
 
         @if (session('error'))
             <div class="alert alert-danger">

@@ -5,8 +5,8 @@
 <div class="row">
     <div class="col-3">
         <div class="card">
+            <div class="card-header">Your Game Jolt Account</div>
             <div class="card-body">
-                <h5 class="card-title">Your Game Jolt Account</h5>
                 <p>id: {{ $id ?? '' }}</p>
                 <p>type: {{ $type ?? '' }}</p>
                 <p>signed_up: {{ $signed_up ?? '' }}</p>
@@ -18,8 +18,8 @@
     </div>
     <div class="col-3">
         <div class="card">
+            <div class="card-header">Your current skin</div>
             <div class="card-body">
-              <h4>Your current skin:</h4>
               {{ $skin_url ?? 'no skin' }}
             </div>
         </div>

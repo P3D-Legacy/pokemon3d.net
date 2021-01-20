@@ -61,9 +61,13 @@
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
         ],
+        "post-install-cmd": [
+            "rm -rf public/css/bootstrap.min.css",
+            "rm -rf public/js/bootstrap.min.js",
+            "cp -R vendor/twbs/bootstrap/dist/css/bootstrap.min.css public/css/bootstrap.min.css",
+            "cp -R vendor/twbs/bootstrap/dist/js/bootstrap.min.js public/js/bootstrap.min.js"
+        ],
         "post-update-cmd": [
-            "rm -rf public/css/bootstrap",
-            "rm -rf public/bootstrap",
             "rm -rf public/css/bootstrap.min.css",
             "rm -rf public/js/bootstrap.min.js",
             "cp -R vendor/twbs/bootstrap/dist/css/bootstrap.min.css public/css/bootstrap.min.css",

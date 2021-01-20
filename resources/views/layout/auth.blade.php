@@ -15,20 +15,6 @@
         <link href="{{ asset('css/auth.css') }}" rel="stylesheet">
         <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 
-        <style>
-            html,
-            body {
-                height: 100%;
-            }
-
-            body {
-                display: flex;
-                align-items: center;
-                padding-top: 40px;
-                padding-bottom: 40px;
-                background-color: #f5f5f5;
-            }
-        </style>
     </head>
 <body class="text-center">
     <main class="form-signin">

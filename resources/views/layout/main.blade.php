@@ -11,6 +11,8 @@
         <script type="text/javascript" src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
         <link href="{{ asset('bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+        <!-- Cookie Consent -->
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
 
         <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
     </head>
@@ -34,6 +36,10 @@
                 </div>
             </div>
         </nav>
+
+        <div class="alert alert-warning">
+            <i class="fas fa-exclamation mr-2" aria-hidden="true"></i> This is currently in &Beta;eta! Check out the <a href="https://github.com/P3D-Legacy/skin.pokemon3d.net"><i class="fab fa-github"></i> Github repo</a>
+        </div>
 
         @if (session('error'))
             <div class="alert alert-danger">
@@ -69,5 +75,28 @@
         @yield('content')
 
     </main>
+
+    @yield('javascript')
+
+    <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+    <script>
+        window.cookieconsent.initialise({
+          "palette": {
+            "popup": {
+              "background": "#237afc"
+            },
+            "button": {
+              "background": "#fff",
+              "text": "#237afc"
+            }
+          },
+          "theme": "classic",
+          "position": "bottom-right",
+          "content": {
+            "message": "This website uses cookies to ensure you have the best experience on our website.",
+            "dismiss": "Got it!",
+          }
+        });
+    </script>
 </body>
 </html>

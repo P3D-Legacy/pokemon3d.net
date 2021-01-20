@@ -25,7 +25,8 @@
         </div>
     </div>
     <div class="col-6">
-        <div class="card">
+        <div class="card bg-danger">
+            <div class="card-header">Not working at the moment!</div>
             <div class="card-body">
                 <h5 class="card-title">Upload skin</h5>
                 <h6 class="card-subtitle mb-2 text-muted">Want to make your own skin? <a href="{{ asset('img/template.png') }}">Download this template</a> to get started.</h6>

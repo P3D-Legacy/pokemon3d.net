@@ -38,8 +38,8 @@
             </div>
         </nav>
 
-        <div class="alert alert-warning">
-            <i class="fas fa-exclamation mr-2" aria-hidden="true"></i> This is currently in &Beta;eta! Check out the <a href="https://github.com/P3D-Legacy/skin.pokemon3d.net"><i class="fab fa-github"></i> Github repo</a>
+        <div class="alert alert-info">
+            <i class="fas fa-info-circle"></i> This is currently in <strong>&beta;eta</strong>! Check out the <a href="https://github.com/P3D-Legacy/skin.pokemon3d.net"><i class="fab fa-github"></i> Github repo</a> &hearts;
         </div>
 
         @if (session('error'))

@@ -21,7 +21,7 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         $api = new GamejoltApi(new GamejoltConfig(env("GAMEJOLT_GAME_ID"), env("GAMEJOLT_GAME_PRIVATE_KEY")));
-        $auth = $api->users()->fetch($request->session()->get('gjid'), $request->session()->get('gjt'));
+        $auth = $api->users()->fetch($request->session()->get('gju'), $request->session()->get('gjt'));
         $user = null;
         if(filter_var($auth['response']['success'], FILTER_VALIDATE_BOOLEAN) === true) {
             $user = $auth['response']['users'][0];

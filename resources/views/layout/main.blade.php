@@ -15,7 +15,7 @@
         <!-- Cookie Consent -->
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
 
-        <link href="{{ url('css/custom.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
     </head>
 <body>
     <main class="container">

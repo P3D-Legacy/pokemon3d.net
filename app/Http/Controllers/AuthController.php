@@ -41,9 +41,11 @@ class AuthController extends Controller
         if(filter_var($auth['response']['success'], FILTER_VALIDATE_BOOLEAN) === false) {
             return redirect()->route('login')->with('warning', $auth['response']['message'])->withInput();
         }
+        $user = $api->users()->fetch($username, $token);
         // Remember the user in the session
         $request->session()->put('gju', $username);
         $request->session()->put('gjt', $token);
+        $request->session()->put('gjid', $user['response']['users'][0]['id']);
         // Open a session for the given user
         $api->sessions()->open($username, $token);
         return redirect()->route('home')->with('success', 'You successfully logged in with Gamejolt!');

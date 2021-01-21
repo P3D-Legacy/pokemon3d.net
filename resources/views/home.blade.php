@@ -20,7 +20,12 @@
         <div class="card">
             <div class="card-header">Your current skin</div>
             <div class="card-body">
-              {{ $skin_url ?? 'no skin' }}
+                @if(File::exists(public_path('skins/'.$id.'.png')))
+                    <img src="{{ asset('skins/'.$id.'.png') }}">
+                @else
+                    <p>We could not find a skin for your account.</p>
+                    <p><a href="{{ route('import', $id) }}">Do you want to import the skin from the old site?</a></p>
+                @endif
             </div>
         </div>
     </div>

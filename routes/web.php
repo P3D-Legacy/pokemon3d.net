@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SkinController;
 use App\Http\Controllers\ImportController;
 
 /*
@@ -22,3 +23,5 @@ Route::post('/login', [AuthController::class, 'login'])->name('login-post');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/import/{id}', [ImportController::class, 'import'])->name('import');
+Route::post('/skin/create', [SkinController::class, 'store'])->name('skin-store');
+Route::get('/skin/delete', [SkinController::class, 'destroy'])->name('skin-destroy');

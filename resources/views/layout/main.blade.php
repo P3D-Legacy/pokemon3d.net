@@ -63,7 +63,7 @@
             </div>
         @endif
         @if ($errors->any())
-            <div class="alert alert-warning mt-5 mb-0" role="alert">
+            <div class="alert alert-warning my-3" role="alert">
                 <strong><i class="fas fa-exclamation-triangle mr-2" aria-hidden="true"></i> Input Warning</strong>
                 <ul class="m-0">
                     @foreach ($errors->all() as $error)

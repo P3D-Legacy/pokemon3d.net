@@ -72,6 +72,11 @@
                 </ul>
             </div>
         @endif
+        @if (env('APP_DEBUG'))
+            <div class="alert alert-danger">
+                <i class="fas fa-frown mr-2" aria-hidden="true"></i> <strong>IN DEBUG MODE!</strong>
+            </div>
+        @endif
 
         @yield('content')
 

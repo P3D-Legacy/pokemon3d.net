@@ -3,20 +3,8 @@
      
 @section('content')
 <div class="row">
-    <div class="col-3">
-        <div class="card">
-            <div class="card-header">Your Game Jolt Account</div>
-            <div class="card-body">
-                <p>ID: {{ $id ?? '' }}</p>
-                <p>Type: {{ $type ?? '' }}</p>
-                <p>Signed up: {{ $signed_up ?? '' }}</p>
-                <p>Last logged in: {{ $last_logged_in ?? '' }}</p>
-                <p><img src="{{ $avatar_url ?? '' }}"></p>
-            </div>
-        </div>
-    </div>
-    <div class="col-3">
-        <div class="card">
+    <div class="col-lg-3">
+        <div class="card my-2">
             <div class="card-header">Your current skin</div>
             <div class="card-body">
                 @if(File::exists(public_path('skins/'.$id.'.png')))
@@ -32,12 +20,21 @@
                 </div>
             @endif
         </div>
+        <div class="card my-2">
+            <div class="card-header">Your Game Jolt Account</div>
+            <div class="card-body">
+                <p>ID: {{ $id ?? '' }}</p>
+                <p>Type: {{ $type ?? '' }}</p>
+                <p>Signed up: {{ $signed_up ?? '' }}</p>
+                <p>Last logged in: {{ $last_logged_in ?? '' }}</p>
+                <p><img src="{{ $avatar_url ?? '' }}"></p>
+            </div>
+        </div>
     </div>
-    <div class="col-6">
-        <div class="card">
+    <div class="col-lg-6">
+        <div class="card my-2">
             <div class="card-header">Upload skin</div>
             <div class="card-body">
-                <h6 class="card-subtitle mb-2 text-muted">Want to make your own skin? <a href="{{ asset('img/template.png') }}">Download this template</a> to get started.</h6>
                 <form role="form" action="{{ route('skin-store') }}" method="post" enctype="multipart/form-data">
                     <div class="form-group mb-3">
                         <label for="formFile" class="form-label">Select your skin</label>
@@ -61,5 +58,21 @@
             </div>
         </div>
     </div>
+    <div class="col-lg-3">
+        <div class="card my-2">
+            <div class="card-header">Information</div>
+            <div class="card-body">
+                <p>Want to make your own skin? <a href="{{ asset('img/template.png') }}">Download this template</a> to get started.</p>
+                <h6>Rules</h6>
+                <ul>
+                    <li>Every part (for a 96x128 sprite, every 32x32 portion) of the skin has to contain at least one pixel that is not transparent.</li>
+                    <li>You have to own the rights to use the image you upload.</li>
+                    <li>The image must not contain any sexual or harassing content.</li>
+                    <li>If all of the above rules apply to your skin and you upload it, you transfer all rights to Kolben Games. We can alter and delete your skin as long as it stays on our servers.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
 </div>
+
 @endsection

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 
 class SkinController extends Controller
@@ -43,22 +42,13 @@ class SkinController extends Controller
     {
         $gjid = $request->session()->get('gjid');
 
-        //dd($request->file('image')->getMimeType());
-
         $request->validate([
             'image' => ['required', 'image', 'max:2000', 'mimes:png'], // 2MB
             'rules' => ['accepted'],
         ]);
+        $filename = $gjid.'.png';
+        $request->file('image')->storeAs(null, $filename, 'skins');
 
-        $image = $request->file('image');
-
-        $filename = $gjid . '.' . $image->getClientOriginalExtension();
-        $path = public_path('/skins/' . $filename);
-        try {
-            Image::make($image->getRealPath())->save($path);
-        } catch (\Exception $e) {
-            return redirect()->route('home')->with('error', $e->getMessage());
-        }
         return redirect()->route('home')->with('success', 'Skin was successfully uploaded! Not seeing it? Refresh the page again.');
     }
 

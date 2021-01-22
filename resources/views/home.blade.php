@@ -7,11 +7,10 @@
         <div class="card">
             <div class="card-header">Your Game Jolt Account</div>
             <div class="card-body">
-                <p>id: {{ $id ?? '' }}</p>
-                <p>type: {{ $type ?? '' }}</p>
-                <p>signed_up: {{ $signed_up ?? '' }}</p>
-                <p>last_logged_in: {{ $last_logged_in ?? '' }}</p>
-                <p>status: {{ $status ?? '' }}</p>
+                <p>ID: {{ $id ?? '' }}</p>
+                <p>Type: {{ $type ?? '' }}</p>
+                <p>Signed up: {{ $signed_up ?? '' }}</p>
+                <p>Last logged in: {{ $last_logged_in ?? '' }}</p>
                 <p><img src="{{ $avatar_url ?? '' }}"></p>
             </div>
         </div>

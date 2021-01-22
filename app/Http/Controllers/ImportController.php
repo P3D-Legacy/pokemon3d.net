@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -15,7 +16,7 @@ class ImportController extends Controller
         }
         $url = 'https://pokemon3d.net/skin/data/'.$id.'.png';
         $valid_types = ['image/png']; // Valid file types
-        $client = new \GuzzleHttp\Client();
+        $client = new Client();
         try {
             $response = $client->get($url);
             if (!empty($response->getHeaders()['Content-Type'][0]) && in_array($response->getHeaders()['Content-Type'][0], $valid_types, true)) {

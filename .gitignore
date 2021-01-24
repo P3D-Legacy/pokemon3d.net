@@ -13,3 +13,4 @@ npm-debug.log
 yarn-error.log
 public/css/bootstrap.min.css
 public/js/bootstrap.min.js
+composer.lock

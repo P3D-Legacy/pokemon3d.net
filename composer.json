@@ -1,12 +1,15 @@
 {
-    "name": "laravel/laravel",
+    "name": "P3D-Legacy/skin.pokemon3d.net",
     "type": "project",
-    "description": "The Laravel Framework.",
+    "description": "",
     "keywords": [
-        "framework",
+        "website",
+        "skin",
+        "gamejolt",
+        "pokemon3d",
         "laravel"
     ],
-    "license": "MIT",
+    "license": "gpl-3.0",
     "require": {
         "php": "^7.3|^8.0",
         "enlightn/enlightn": "^1.0",

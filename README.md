@@ -9,4 +9,4 @@
 
 ## About
 
-This site is a *work in progress* and has not been published yet. It is built with Laravel 8. More info to come.
+This site is a *work in progress* and but has been published. It is built with Laravel 8. More info to come.

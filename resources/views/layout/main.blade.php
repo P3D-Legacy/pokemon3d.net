@@ -87,7 +87,7 @@
                     <p><i class="fas fa-coffee"></i> {{ round((microtime(true) - LARAVEL_START), 3) }}s &middot; Made with <span class="text-danger">&#10084;</span> by a bunch of <a href="https://github.com/P3D-Legacy/skin.pokemon3d.net/graphs/contributors">contributors</a> for the community &middot; Check out the <a href="https://github.com/P3D-Legacy/skin.pokemon3d.net"><i class="fab fa-github"></i> Github repo</a></p>
                 </div>
                 <div class="col-4 text-end">
-                    {{-- ADD VERSION FROM TAG HERE --}}
+                    {{ setting('APP_VERSION') }}
                 </div>
             </div>
         </div>

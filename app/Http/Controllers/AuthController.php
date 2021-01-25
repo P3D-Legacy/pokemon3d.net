@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\GJUser;
 use Illuminate\Http\Request;
 use Harrk\GameJoltApi\GamejoltApi;
 use Harrk\GameJoltApi\GamejoltConfig;
@@ -42,10 +43,19 @@ class AuthController extends Controller
             return redirect()->route('login')->with('warning', $auth['response']['message'])->withInput();
         }
         $user = $api->users()->fetch($username, $token);
+        $id = $user['response']['users'][0]['id'];
+
         // Remember the user in the session
         $request->session()->put('gju', $username);
         $request->session()->put('gjt', $token);
-        $request->session()->put('gjid', $user['response']['users'][0]['id']);
+        $request->session()->put('gjid', $id);
+
+        // Let's store the user id and username in the database, we will not store the token!
+        GJUser::create([
+            'gjid' => $id,
+            'gju' => $username,
+        ]);
+
         // Open a session for the given user
         $api->sessions()->open($username, $token);
         return redirect()->route('home')->with('success', 'You successfully logged in with Gamejolt!');

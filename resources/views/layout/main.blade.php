@@ -33,6 +33,16 @@
                             {{-- <li class="nav-item active"><a class="nav-link" aria-current="page" href="{{ route('home') }}">Home</a></li> --}}
                         </ul>
                         <ul class="navbar-nav">
+                            @if(App\Models\GJUser::where('gjid', session()->get('gjid'))->first())
+                                @if(App\Models\GJUser::where('gjid', session()->get('gjid'))->first()->is_admin)
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Admin</a>
+                                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                            <li><a class="dropdown-item" href="{{ route('skins') }}"><i class="fas fa-user-circle"></i> Player Skins</a></li>
+                                        </ul>
+                                    </li>
+                                @endif
+                            @endif
                             @if(session()->get('gjid') == env("GAMEJOLT_USER_ID_SUPERADMIN"))
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Super Admin</a>

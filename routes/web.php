@@ -24,6 +24,7 @@ Route::post('/login', [AuthController::class, 'login'])->name('login-post');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/import/{id}', [ImportController::class, 'import'])->name('import');
+Route::get('/skins', [SkinController::class, 'index'])->name('skins');
 Route::post('/skin/create', [SkinController::class, 'store'])->name('skin-store');
 Route::get('/skin/delete', [SkinController::class, 'destroy'])->name('skin-destroy');
 

@@ -10,6 +10,7 @@ class SkinController extends Controller
     public function __construct()
     {
         $this->middleware(['gj.auth']);
+        $this->middleware(['gj.admin'])->only(['index']);
     }
 
     /**
@@ -19,7 +20,10 @@ class SkinController extends Controller
      */
     public function index()
     {
-        //
+        $playerskins = array_filter(Storage::disk('player')->files(),
+            function ($item) {return strpos($item, '.png');} // only png's
+        );
+        return view('skin.index')->with('playerskins', $playerskins);
     }
 
     /**

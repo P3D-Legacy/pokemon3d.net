@@ -12,6 +12,7 @@
     "license": "gpl-3.0",
     "require": {
         "php": "^7.3|^8.0",
+        "anlutro/l4-settings": "^1.0",
         "enlightn/enlightn": "^1.0",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",

@@ -66,7 +66,7 @@
                     <li>Every part (for a 96x128 sprite, every 32x32 portion) of the skin has to contain at least one pixel that is not transparent.</li>
                     <li>You have to own the rights to use the image you upload.</li>
                     <li>The image must not contain any sexual or harassing content.</li>
-                    <li>If all of the above rules apply to your skin and you upload it, you transfer all rights to Kolben Games. We can alter and delete your skin as long as it stays on our servers.</li>
+                    <li>If all of the above rules apply to your skin and you upload it, you transfer all rights to the P3D Team. We can alter and delete your skin as long as it stays on our servers.</li>
                 </ul>
             </div>
         </div>

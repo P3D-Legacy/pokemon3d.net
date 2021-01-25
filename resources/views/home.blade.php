@@ -57,8 +57,6 @@
               </form>
             </div>
         </div>
-    </div>
-    <div class="col-lg-3">
         <div class="card my-2">
             <div class="card-header">Information</div>
             <div class="card-body">
@@ -70,6 +68,14 @@
                     <li>The image must not contain any sexual or harassing content.</li>
                     <li>If all of the above rules apply to your skin and you upload it, you transfer all rights to Kolben Games. We can alter and delete your skin as long as it stays on our servers.</li>
                 </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="card my-2">
+            <div class="card-header">Game</div>
+            <div class="card-body">
+                The latest game release is <span class="badge bg-primary">{{ $game_version ?? 'N/A' }}</span> and was released <span class="badge bg-secondary">{{ \Carbon\Carbon::parse($game_release_date)->diffForHumans() ?? 'N/A' }}</span>. Download the game <a href="https://github.com/P3D-Legacy/P3D-Legacy">here</a>.
             </div>
         </div>
     </div>

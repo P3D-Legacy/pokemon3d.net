@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
+use anlutro\LaravelSettings\Facade as Setting;
 
 class Update extends Command
 {
@@ -45,11 +46,11 @@ class Update extends Command
         $this->info('Migrating...');
         Artisan::call('migrate --force');
         $this->info('Updating version...');
-        if (setting('APP_VERSION') != $ver) {
-            $this->info('Current version: '.setting('APP_VERSION'));
-            setting()->set('APP_VERSION', $ver);
-            $this->info('Updated version to: '.setting('APP_VERSION'));
-            setting()->save();
+        if (Setting::get('APP_VERSION') != $ver) {
+            $this->info('Current version: '.Setting::get('APP_VERSION'));
+            Setting::set('APP_VERSION', $ver);
+            $this->info('Updated version to: '.Setting::get('APP_VERSION'));
+            Setting::save();
         }
         $this->info('Done.');
     }

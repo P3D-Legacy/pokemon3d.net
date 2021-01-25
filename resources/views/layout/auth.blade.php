@@ -31,7 +31,7 @@
         @endif
         @if (session('info'))
             <div class="alert alert-info">
-                <i class="fas fa-info mr-2" aria-hidden="true"></i> {{ session('info') }}
+                <i class="fas fa-info-circle mr-2" aria-hidden="true"></i> {{ session('info') }}
             </div>
         @endif
         @if (session('warning'))

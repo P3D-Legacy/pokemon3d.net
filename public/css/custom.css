@@ -1,3 +1,7 @@
 .invalid-feedback {
     display:block;
 }
+
+.navbar {
+    border-radius: 3px;
+}

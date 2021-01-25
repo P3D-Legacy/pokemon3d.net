@@ -64,6 +64,7 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'gj.auth' => \App\Http\Middleware\GamejoltAuth::class,
         'gj.guest' => \App\Http\Middleware\GamejoltGuest::class,
+        'gj.admin' => \App\Http\Middleware\GamejoltAdmin::class,
         'gj.superadmin' => \App\Http\Middleware\GamejoltSuperAdmin::class,
     ];
 }

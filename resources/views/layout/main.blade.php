@@ -69,11 +69,6 @@
                     </ul>
                 </div>
             @endif
-            @if (env('APP_DEBUG'))
-                <div class="alert alert-danger">
-                    <i class="fas fa-frown mr-2" aria-hidden="true"></i> <strong>IN DEBUG MODE!</strong>
-                </div>
-            @endif
 
             @yield('content')
 
@@ -87,7 +82,7 @@
                     <p><i class="fas fa-coffee"></i> {{ round((microtime(true) - LARAVEL_START), 3) }}s &middot; Made with <span class="text-danger">&#10084;</span> by a bunch of <a href="https://github.com/P3D-Legacy/skin.pokemon3d.net/graphs/contributors">contributors</a> for the community &middot; Check out the <a href="https://github.com/P3D-Legacy/skin.pokemon3d.net"><i class="fab fa-github"></i> Github repo</a></p>
                 </div>
                 <div class="col-4 text-end">
-                    {{ setting('APP_VERSION') }}
+                    @if (env('APP_DEBUG')) <strong class="text-danger">DEBUG MODE ACTIVE!</strong> &middot; @endif{{ setting('APP_VERSION') }}
                 </div>
             </div>
         </div>

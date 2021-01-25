@@ -7,14 +7,14 @@
         <div class="card my-2">
             <div class="card-header">Your current skin</div>
             <div class="card-body">
-                @if(File::exists(public_path('skins/'.$id.'.png')))
-                    <img src="{{ asset('skins/'.$id.'.png') }}">
+                @if(File::exists(public_path('player/'.$id.'.png')))
+                    <img src="{{ asset('player/'.$id.'.png') }}">
                 @else
                     <p>We could not find a skin for your account.</p>
                     <p><a href="{{ route('import', $id) }}">Do you want to import the skin from the old site?</a></p>
                 @endif
             </div>
-            @if(File::exists(public_path('skins/'.$id.'.png')))
+            @if(File::exists(public_path('player/'.$id.'.png')))
                 <div class="card-footer">
                     <a class="btn btn-sm btn-outline-danger float-end" href="{{ route('skin-destroy') }}" role="button">Delete current skin</a>
                 </div>

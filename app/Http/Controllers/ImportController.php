@@ -25,7 +25,7 @@ class ImportController extends Controller
         try {
             $response = $client->get($url);
             if (!empty($response->getHeaders()['Content-Type'][0]) && in_array($response->getHeaders()['Content-Type'][0], $valid_types, true)) {
-                Storage::disk('skins')->put($id.'.png', $response->getBody()->getContents());
+                Storage::disk('player')->put($id.'.png', $response->getBody()->getContents());
             } else {
                 return redirect()->route('home')->with('error', 'Skin was not in a valid format!');
             }

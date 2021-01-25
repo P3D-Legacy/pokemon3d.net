@@ -47,7 +47,7 @@ class SkinController extends Controller
             'rules' => ['accepted'],
         ]);
         $filename = $gjid.'.png';
-        $request->file('image')->storeAs(null, $filename, 'skins');
+        $request->file('image')->storeAs(null, $filename, 'player');
 
         return redirect()->route('home')->with('success', 'Skin was successfully uploaded! Not seeing it? Refresh the page again.');
     }
@@ -96,10 +96,10 @@ class SkinController extends Controller
     {
         $gjid = $request->session()->get('gjid');
         $filename = $gjid.'.png';
-        if(!Storage::disk('skins')->exists($filename)) {
+        if(!Storage::disk('player')->exists($filename)) {
             return redirect()->route('home')->with('error', 'Skin was not found!');
         }
-        Storage::disk('skins')->delete($filename);
+        Storage::disk('player')->delete($filename);
         return redirect()->route('home')->with('success', 'Skin was successfully deleted!');
     }
 }

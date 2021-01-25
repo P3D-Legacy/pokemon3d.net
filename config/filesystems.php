@@ -42,9 +42,9 @@ return [
             'visibility' => 'public',
         ],
 
-        'skins' => [
+        'player' => [
             'driver' => 'local',
-            'root'   => public_path().'/skins',
+            'root'   => public_path().'/player',
         ],
 
         's3' => [

@@ -34,7 +34,12 @@
                         </ul>
                         <ul class="navbar-nav">
                             @if(session()->get('gjid') == env("GAMEJOLT_USER_ID_SUPERADMIN"))
-                                <li class="nav-item"><a class="nav-link" aria-current="page" href="{{ route('users') }}">Users</a></li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Super Admin</a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <li><a class="dropdown-item" href="{{ route('users') }}"><i class="fas fa-users"></i> Users</a></li>
+                                    </ul>
+                                </li>
                             @endif
                             <li class="nav-item"><a class="nav-link" aria-current="page" href="{{ route('logout') }}">Log out</a></li>
                         </ul>

@@ -54,7 +54,7 @@
                     </div>
                     @csrf
                     <button type="submit" class="btn btn-success"><i class="fas fa-upload"></i> Upload</button>
-              </form>
+                </form>
             </div>
         </div>
         <div class="card my-2">

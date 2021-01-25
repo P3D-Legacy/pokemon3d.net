@@ -6,7 +6,7 @@
 
         <title>@yield('title') - Pok&eacute;mon 3D: Skin</title>
 
-        <link rel="shortcut icon" href="http://pokemon3d.net/files/images/favicon.png">
+        <link rel="shortcut icon" href="https://pokemon3d.net/files/img/favicon.png">
 
         <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
         <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">

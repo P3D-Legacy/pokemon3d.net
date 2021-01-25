@@ -24,7 +24,7 @@
                         @enderror
                     </div>
                     @csrf
-                    <button type="submit" class="btn btn-success">Save</button>
+                    <button type="submit" class="btn btn-success"><i class="fas fa-save"></i> Save</button>
                 </form>
             </div>
         </div>

@@ -63,13 +63,19 @@
             <div class="card-header">Skin Information</div>
             <div class="card-body">
                 <p>Want to make your own skin? <a href="{{ asset('img/template.png') }}">Download this template</a> to get started.</p>
+                <h6>File Validation</h6>
+                <ul>
+                    <li>Less than 2MB</li>
+                    <li>Has to be a PNG-file</li>
+                    <li>Dimensions ratio of 3/4</li>
+                </ul>
                 <h6>Rules</h6>
                 <ul>
                     <li>Every part (for a 96x128 sprite, every 32x32 portion) of the skin has to contain at least one pixel that is not transparent.</li>
                     <li>You have to own the rights to use the image you upload.</li>
                     <li>The image must not contain any sexual or harassing content.</li>
-                    <li>If all of the above rules apply to your skin and you upload it, you transfer all rights to the P3D Team. We can alter and delete your skin as long as it stays on our servers.</li>
                 </ul>
+                <p>If all of the above rules apply to your skin and you upload it, you transfer all rights to the P3D Team. We can alter and delete your skin as long as it stays on our servers.</p>
             </div>
         </div>
     </div>

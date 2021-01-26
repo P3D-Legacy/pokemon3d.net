@@ -23,12 +23,12 @@
         <div class="card my-2">
             <div class="card-header">Skin Deletion Activity</div>
             <div class="card-body">
-                @if($activity)
+                @if($activity->count())
                     @foreach ($activity as $log)
                         <p class="m-0">{{ $log->created_at }}: {{ $log->properties['reason'] }}</p>
                     @endforeach
                 @else
-                    <p>Nothing found.</p>
+                    <p class="m-0">Nothing found.</p>
                 @endif
             </div>
         </div>

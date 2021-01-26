@@ -70,13 +70,15 @@
             "rm -rf public/css/bootstrap.min.css",
             "rm -rf public/js/bootstrap.min.js",
             "cp -R vendor/twbs/bootstrap/dist/css/bootstrap.min.css public/css/bootstrap.min.css",
-            "cp -R vendor/twbs/bootstrap/dist/js/bootstrap.min.js public/js/bootstrap.min.js"
+            "cp -R vendor/twbs/bootstrap/dist/js/bootstrap.min.js public/js/bootstrap.min.js",
+            "rm -rf public/skins"
         ],
         "post-update-cmd": [
             "rm -rf public/css/bootstrap.min.css",
             "rm -rf public/js/bootstrap.min.js",
             "cp -R vendor/twbs/bootstrap/dist/css/bootstrap.min.css public/css/bootstrap.min.css",
-            "cp -R vendor/twbs/bootstrap/dist/js/bootstrap.min.js public/js/bootstrap.min.js"
+            "cp -R vendor/twbs/bootstrap/dist/js/bootstrap.min.js public/js/bootstrap.min.js",
+            "rm -rf public/skins"
         ]
     }
 }

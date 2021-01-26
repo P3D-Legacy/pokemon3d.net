@@ -30,5 +30,5 @@ Route::get('/skin/delete', [SkinController::class, 'destroy'])->name('skin-destr
 Route::post('/skin/delete/{id}', [SkinController::class, 'destroyAsAdmin'])->name('skin-destroy-admin');
 
 Route::get('/users', [UserController::class, 'index'])->name('users');
-Route::get('/user/edit/{id}', [UserController::class, 'edit'])->name('user-edit');
-Route::post('/user/edit/{id}', [UserController::class, 'update'])->name('user-update');
+Route::get('/user/edit/{gjid}', [UserController::class, 'edit'])->name('user-edit');
+Route::post('/user/edit/{gjid}', [UserController::class, 'update'])->name('user-update');

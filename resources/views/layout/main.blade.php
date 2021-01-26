@@ -97,10 +97,18 @@
         <div class="container">
             <div class="row">
                 <div class="col-8">
-                    <p><i class="fas fa-coffee"></i> {{ round((microtime(true) - LARAVEL_START), 3) }}s &middot; Made with <span class="text-danger">&#10084;</span> by a bunch of <a href="https://github.com/P3D-Legacy/skin.pokemon3d.net/graphs/contributors">contributors</a> for the community &middot; Check out the <a href="https://github.com/P3D-Legacy/skin.pokemon3d.net"><i class="fab fa-github"></i> Github repo</a></p>
+                    <p>
+                        <small><i class="fas fa-coffee"></i> {{ round((microtime(true) - LARAVEL_START), 3) }}s &middot; </small>
+                        <small>&nbsp;<a href="https://github.com/P3D-Legacy/skin.pokemon3d.net"><i class="fab fa-github"></i> Github</a> &middot; </small>
+                        <a href="https://github.com/P3D-Legacy/skin.pokemon3d.net/graphs/contributors" target="_blank"><img src="https://img.shields.io/github/contributors/P3D-Legacy/skin.pokemon3d.net" alt="Contributors"></a>
+                        <a href="https://github.com/P3D-Legacy/skin.pokemon3d.net/issues" target="_blank"><img src="https://img.shields.io/github/issues/P3D-Legacy/skin.pokemon3d.net" alt="Issues"></a>
+                        <a href="https://discordapp.com/invite/EUhwdrq" target="_blank"><img src="https://img.shields.io/discord/299181628188524544" alt="Discord"></a>
+                    </p>
                 </div>
                 <div class="col-4 text-end">
+                    <small>
                     @if (env('APP_DEBUG')) <strong class="text-danger">DEBUG MODE ACTIVE!</strong> &middot; @endif <a class="text-secondary text-decoration-none" href="https://github.com/P3D-Legacy/skin.pokemon3d.net/blob/main/CHANGELOG.md">{{ setting('APP_VERSION') }}</a>
+                    </small>
                 </div>
             </div>
         </div>

@@ -36,6 +36,7 @@
 
 ### Added
 
+* Added ability to upload skin
 * Added game release details to home page
 * Added update command to save tag to project
 * Added a footer

@@ -43,7 +43,7 @@ class SkinController extends Controller
         $gjid = $request->session()->get('gjid');
 
         $request->validate([
-            'image' => ['required', 'image', 'max:2000', 'mimes:png'], // 2MB
+            'image' => ['required', 'image', 'max:2000', 'mimes:png', 'dimensions:ratio=3/4'], // 2MB
             'rules' => ['accepted'],
         ]);
         $filename = $gjid.'.png';

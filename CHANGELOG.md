@@ -1,3 +1,17 @@
+
+<a name="0.2.1"></a>
+## [0.2.1](https://github.com/P3D-Legacy/skin.pokemon3d.net/compare/0.2.0...0.2.1)
+
+> 2021-01-26
+
+### Updated
+
+* Updated skin information
+* Updated file validation for skin upload
+
+### Removed
+* Remove a old folder from 0.1.0 causing issues
+
 <a name="0.2.0"></a>
 ## [0.2.0](https://github.com/P3D-Legacy/skin.pokemon3d.net/compare/0.1.0...0.2.0)
 

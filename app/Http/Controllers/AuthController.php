@@ -51,10 +51,14 @@ class AuthController extends Controller
         $request->session()->put('gjid', $id);
 
         // Let's store the user id and username in the database, we will not store the token!
-        GJUser::create([
-            'gjid' => $id,
-            'gju' => $username,
-        ]);
+        $gjuser = GJUser::where('gjid', $id)->where('gju', $username)->first();
+        // If user is not already stored, create it
+        if(!$gjuser) {
+            GJUser::create([
+                'gjid' => $id,
+                'gju' => $username,
+            ]);
+        }
 
         // Open a session for the given user
         $api->sessions()->open($username, $token);

@@ -21,13 +21,15 @@
             @endif
         </div>
         <div class="card my-2">
-            <div class="card-header">Your Game Jolt Account</div>
+            <div class="card-header">Skin Deletion Activity</div>
             <div class="card-body">
-                <p>ID: {{ $id ?? '' }}</p>
-                <p>Type: {{ $type ?? '' }}</p>
-                <p>Signed up: {{ $signed_up ?? '' }}</p>
-                <p>Last logged in: {{ $last_logged_in ?? '' }}</p>
-                <p><img src="{{ $avatar_url ?? '' }}"></p>
+                @if($activity)
+                    @foreach ($activity as $log)
+                        <p class="m-0">{{ $log->created_at }}: {{ $log->properties['reason'] }}</p>
+                    @endforeach
+                @else
+                    <p>Nothing found.</p>
+                @endif
             </div>
         </div>
     </div>
@@ -58,7 +60,7 @@
             </div>
         </div>
         <div class="card my-2">
-            <div class="card-header">Information</div>
+            <div class="card-header">Skin Information</div>
             <div class="card-body">
                 <p>Want to make your own skin? <a href="{{ asset('img/template.png') }}">Download this template</a> to get started.</p>
                 <h6>Rules</h6>
@@ -71,9 +73,19 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-3">
+    <div class="col-lg-3">        
         <div class="card my-2">
-            <div class="card-header">Game</div>
+            <div class="card-header">Your Game Jolt Account</div>
+            <div class="card-body">
+                <p>ID: {{ $id ?? '' }}</p>
+                <p>Type: {{ $type ?? '' }}</p>
+                <p>Signed up: {{ $signed_up ?? '' }}</p>
+                <p>Last logged in: {{ $last_logged_in ?? '' }}</p>
+                <p><img src="{{ $avatar_url ?? '' }}"></p>
+            </div>
+        </div>
+        <div class="card my-2">
+            <div class="card-header">Game Information</div>
             <div class="card-body">
                 The latest game release is <span class="badge bg-primary">{{ $game_version ?? 'N/A' }}</span> and was released <span class="badge bg-secondary">{{ \Carbon\Carbon::parse($game_release_date)->diffForHumans() ?? 'N/A' }}</span>. Download the game <a href="https://github.com/P3D-Legacy/P3D-Legacy">here</a>.
             </div>

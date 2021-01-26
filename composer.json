@@ -16,6 +16,7 @@
         "enlightn/enlightn": "^1.0",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
+        "gabrielelana/byte-units": "^0.5.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "harrk/gamejolt-api": "^1.1",
         "intervention/image": "^2.5",

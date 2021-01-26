@@ -19,7 +19,7 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ $playerskin }}</h5>
                             <p class="card-text">
-                                <small class="text-muted">{{ Storage::disk('player')->size($playerskin) }} KB</small>
+                                <small class="text-muted">{{ \ByteUnits\Binary::bytes(Storage::disk('player')->size($playerskin))->format() }}</small>
                                 <br>
                                 <small class="text-muted">Owned by {{ App\Models\GJUser::where('gjid', str_replace('.png', '', $playerskin))->first()->gju ?? 'Game Jolt ID: '.str_replace('.png', '', $playerskin) }}</small>
                             </p>

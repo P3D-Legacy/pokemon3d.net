@@ -8,6 +8,7 @@
 
 * Updated skin information
 * Updated file validation for skin upload
+* Updated file size formatting for admins
 
 ### Removed
 * Remove a old folder from 0.1.0 causing issues

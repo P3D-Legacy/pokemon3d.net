@@ -18,7 +18,7 @@
         <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
     </head>
 <body class="d-flex flex-column h-100">
-    <main class="flex-shrink-0">
+    <main class="flex-shrink-0 mb-5">
         <div class="container">
 
             <nav class="navbar navbar-expand-md navbar-dark bg-success bg-gradient my-3">

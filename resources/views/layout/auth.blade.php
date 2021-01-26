@@ -31,7 +31,7 @@
         @endif
         @if (session('info'))
             <div class="alert alert-info">
-                <i class="fas fa-info mr-2" aria-hidden="true"></i> {{ session('info') }}
+                <i class="fas fa-info-circle mr-2" aria-hidden="true"></i> {{ session('info') }}
             </div>
         @endif
         @if (session('warning'))
@@ -51,6 +51,8 @@
         @endif
 
         @yield('content')
+
+        <p class="mt-2 mb-0"><a class="text-secondary" href="https://pokemon3d.net">Go back to pokemon3d.net</a></p>
 
     </main>
 </body>

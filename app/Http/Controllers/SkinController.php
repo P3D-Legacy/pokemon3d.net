@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\GJUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -10,6 +11,7 @@ class SkinController extends Controller
     public function __construct()
     {
         $this->middleware(['gj.auth']);
+        $this->middleware(['gj.admin'])->only(['index']);
     }
 
     /**
@@ -19,7 +21,10 @@ class SkinController extends Controller
      */
     public function index()
     {
-        //
+        $playerskins = array_filter(Storage::disk('player')->files(),
+            function ($item) {return strpos($item, '.png');} // only png's
+        );
+        return view('skin.index')->with('playerskins', $playerskins);
     }
 
     /**
@@ -101,5 +106,25 @@ class SkinController extends Controller
         }
         Storage::disk('player')->delete($filename);
         return redirect()->route('home')->with('success', 'Skin was successfully deleted!');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroyAsAdmin(Request $request, $gjid)
+    {
+        $request->validate([
+            'reason' => ['required', 'string'],
+        ]);
+        $filename = $gjid.'.png';
+        if(!Storage::disk('player')->exists($filename)) {
+            return redirect()->route('skins')->with('error', 'Skin was not found!');
+        }
+        activity()->causedBy(GJUser::where('gjid', session()->get('gjid'))->first())->withProperties(['filename' => $filename, 'reason' => $request->reason])->log('deleted');
+        Storage::disk('player')->delete($filename);
+        return redirect()->route('skins')->with('success', 'Skin was successfully deleted!');
     }
 }

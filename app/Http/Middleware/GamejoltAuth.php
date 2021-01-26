@@ -19,7 +19,6 @@ class GamejoltAuth
         if (!env("GAMEJOLT_GAME_ID") || !env("GAMEJOLT_GAME_PRIVATE_KEY")) {
             redirect()->route('login')->with('error', 'Gamejolt API keys is not set by the admin!');
         }
-        // TODO: Check if user is logged in or not
         if (!$request->session()->get('gju')){
             return redirect()->route('login');
         }

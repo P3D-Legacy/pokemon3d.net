@@ -3,9 +3,10 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use App\Models\GJUser;
 use Illuminate\Http\Request;
 
-class GamejoltGuest
+class GamejoltAdmin
 {
     /**
      * Handle an incoming request.
@@ -19,9 +20,12 @@ class GamejoltGuest
         if (!env("GAMEJOLT_GAME_ID") || !env("GAMEJOLT_GAME_PRIVATE_KEY")) {
             redirect()->route('login')->with('error', 'Gamejolt API keys is not set by the admin!');
         }
-        if ($request->session()->get('gju')){
-            return redirect()->route('home');
+        $user = GJUser::where('gjid', $request->session()->get('gjid'))->first();
+        if ($user) {
+            if ($user->is_admin) {
+                return $next($request);
+            }
         }
-        return $next($request);
+        return redirect()->route('home')->with('warning', 'You do not have access to this page!');
     }
 }

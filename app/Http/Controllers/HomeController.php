@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Harrk\GameJoltApi\GamejoltApi;
 use Harrk\GameJoltApi\GamejoltConfig;
+use Spatie\Activitylog\Models\Activity;
 
 class HomeController extends Controller
 {
@@ -54,7 +55,9 @@ class HomeController extends Controller
             ];
         }
 
-        return view('home')->with($user)->with($gameinfo);
+        $activity = Activity::where('description' , 'deleted')->where('properties', 'LIKE', '%'.$request->session()->get('gjid').'.png%')->get();
+
+        return view('home')->with($user)->with($gameinfo)->with('activity', $activity);
     }
 
     /**

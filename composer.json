@@ -21,6 +21,7 @@
         "intervention/image": "^2.5",
         "laravel/framework": "^8.12",
         "laravel/tinker": "^2.5",
+        "spatie/laravel-activitylog": "^3.16",
         "twbs/bootstrap": "5.0.0-beta1"
     },
     "require-dev": {

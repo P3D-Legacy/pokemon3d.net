@@ -6,7 +6,7 @@
 
         <title>@yield('title') - Pok&eacute;mon 3D: Skin</title>
 
-        <link rel="shortcut icon" href="http://pokemon3d.net/files/images/favicon.png">
+        <link rel="shortcut icon" href="{{ asset('img/favicon.png') }}">
 
         <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
         <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
@@ -21,9 +21,9 @@
     <main class="flex-shrink-0">
         <div class="container">
 
-            <nav class="navbar navbar-expand-md navbar-dark bg-success my-3">
+            <nav class="navbar navbar-expand-md navbar-dark bg-success bg-gradient my-3">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="{{ route('home') }}">skin.pokemon3d.net</a>
+                    <a class="navbar-brand" href="{{ route('home') }}"><img src="{{ asset('img/TreeLogoSmall.png') }}" alt="skin.pokemon3d.net" width="30" height="30" class="d-inline-block align-center"> skin.pokemon3d.net</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarDefault" aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                     </button>
@@ -33,6 +33,24 @@
                             {{-- <li class="nav-item active"><a class="nav-link" aria-current="page" href="{{ route('home') }}">Home</a></li> --}}
                         </ul>
                         <ul class="navbar-nav">
+                            @if(App\Models\GJUser::where('gjid', session()->get('gjid'))->first())
+                                @if(App\Models\GJUser::where('gjid', session()->get('gjid'))->first()->is_admin)
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Admin</a>
+                                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                            <li><a class="dropdown-item" href="{{ route('skins') }}"><i class="fas fa-user-circle"></i> Player Skins</a></li>
+                                        </ul>
+                                    </li>
+                                @endif
+                            @endif
+                            @if(session()->get('gjid') == env("GAMEJOLT_USER_ID_SUPERADMIN"))
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Super Admin</a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <li><a class="dropdown-item" href="{{ route('users') }}"><i class="fas fa-users"></i> Users</a></li>
+                                    </ul>
+                                </li>
+                            @endif
                             <li class="nav-item"><a class="nav-link" aria-current="page" href="{{ route('logout') }}">Log out</a></li>
                         </ul>
                     </div>
@@ -51,7 +69,7 @@
             @endif
             @if (session('info'))
                 <div class="alert alert-info">
-                    <i class="fas fa-info mr-2" aria-hidden="true"></i> {{ session('info') }}
+                    <i class="fas fa-info-circle mr-2" aria-hidden="true"></i> {{ session('info') }}
                 </div>
             @endif
             @if (session('warning'))
@@ -69,11 +87,6 @@
                     </ul>
                 </div>
             @endif
-            @if (env('APP_DEBUG'))
-                <div class="alert alert-danger">
-                    <i class="fas fa-frown mr-2" aria-hidden="true"></i> <strong>IN DEBUG MODE!</strong>
-                </div>
-            @endif
 
             @yield('content')
 
@@ -87,7 +100,7 @@
                     <p><i class="fas fa-coffee"></i> {{ round((microtime(true) - LARAVEL_START), 3) }}s &middot; Made with <span class="text-danger">&#10084;</span> by a bunch of <a href="https://github.com/P3D-Legacy/skin.pokemon3d.net/graphs/contributors">contributors</a> for the community &middot; Check out the <a href="https://github.com/P3D-Legacy/skin.pokemon3d.net"><i class="fab fa-github"></i> Github repo</a></p>
                 </div>
                 <div class="col-4 text-end">
-                    {{ setting('APP_VERSION') }}
+                    @if (env('APP_DEBUG')) <strong class="text-danger">DEBUG MODE ACTIVE!</strong> &middot; @endif{{ setting('APP_VERSION') }}
                 </div>
             </div>
         </div>

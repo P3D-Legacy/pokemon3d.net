@@ -36,7 +36,7 @@
     </div>
     <div class="col-lg-6">
         <div class="card my-2">
-            <div class="card-header">Upload skin</div>
+            <div class="card-header">Quick Upload a skin</div>
             <div class="card-body">
                 <form role="form" action="{{ route('player-skin-store') }}" method="post" enctype="multipart/form-data">
                     <div class="form-group mb-3">

@@ -81,7 +81,7 @@ class SkinController extends Controller
         $filename = $skin->uuid.'.png';
         $request->file('image')->storeAs(null, $filename, 'skin');
 
-        return redirect()->route('skins')->with('success', 'Skin was successfully uploaded! Not seeing it? Refresh the page again.');
+        return redirect()->route('skins-my')->with('success', 'Skin was successfully uploaded! Not seeing it? Refresh the page again.');
     }
 
     /**

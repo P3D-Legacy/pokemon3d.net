@@ -19,6 +19,16 @@ class GJUser extends Model
      */
     protected $table = 'gjuser';
 
+    // Lets use the gjid for primary key
+    protected $primaryKey = 'gjid';
+
+    /**
+     * Indicates if the model's ID is auto-incrementing.
+     *
+     * @var bool
+     */
+    public $incrementing = false;
+
     /**
      * The attributes that are mass assignable.
      *

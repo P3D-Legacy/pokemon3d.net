@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Skin;
 use App\Models\GJUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -11,7 +12,6 @@ class SkinController extends Controller
     public function __construct()
     {
         $this->middleware(['gj.auth']);
-        $this->middleware(['gj.admin'])->only(['index']);
     }
 
     /**
@@ -19,12 +19,24 @@ class SkinController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function publicskins()
     {
-        $playerskins = array_filter(Storage::disk('player')->files(),
-            function ($item) {return strpos($item, '.png');} // only png's
-        );
-        return view('skin.index')->with('playerskins', $playerskins);
+        $skins = Skin::public()->get();
+        return view('skin.public')->with('skins', $skins);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function myskins(Request $request)
+    {
+        $gjid = $request->session()->get('gjid');
+        $skins = GJUser::find($gjid)->skins()->get();
+        //$skins = Skin::where('owner_id', $gjid)->get();
+        return view('skin.my')->with('skins', $skins);
     }
 
     /**
@@ -34,7 +46,7 @@ class SkinController extends Controller
      */
     public function create()
     {
-        //
+        return view('skin.create');
     }
 
     /**
@@ -47,36 +59,61 @@ class SkinController extends Controller
     {
         $gjid = $request->session()->get('gjid');
 
+        $skincount = GJUser::find($gjid)->skins()->count();
+
+        if($skincount >= env('SKIN_MAX_UPLOAD')) {
+            return redirect()->route('skins')->with('warning', 'You have reached the maximum amount of skins you can upload.');
+        }
+
         $request->validate([
             'image' => ['required', 'image', 'max:2000', 'mimes:png', 'dimensions:ratio=3/4'], // 2MB
+            'name' => ['required', 'string'],
+            'public' => [''],
             'rules' => ['accepted'],
         ]);
-        $filename = $gjid.'.png';
-        $request->file('image')->storeAs(null, $filename, 'player');
+        
+        $skin = Skin::create([
+            'owner_id' => $gjid,
+            'public' => $request->boolean('public'),
+            'name' => $request->get('name'),
+        ]);
 
-        return redirect()->route('home')->with('success', 'Skin was successfully uploaded! Not seeing it? Refresh the page again.');
+        $filename = $skin->uuid.'.png';
+        $request->file('image')->storeAs(null, $filename, 'skin');
+
+        return redirect()->route('skins')->with('success', 'Skin was successfully uploaded! Not seeing it? Refresh the page again.');
     }
 
     /**
-     * Display the specified resource.
+     * Apply the specified resource.
      *
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function apply(Request $request, $uuid)
     {
-        //
+        $gjid = $request->session()->get('gjid');
+        $filename = $gjid.'.png';
+        $skin = Skin::find($uuid);
+        Storage::disk('player')->put($filename, Storage::disk('skin')->get($skin->path()));
+        return redirect()->route('home')->with('success', 'Skin was applied! Not seeing it? Refresh the page again.');
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request  $request
+     * @param  str  $uuid
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $uuid)
     {
-        //
+        $gjid = $request->session()->get('gjid');
+        $skin = Skin::find($uuid);
+        if($gjid != $skin->owner_id) {
+            return redirect()->route('skins')->with('error', 'You do not own this skin!');
+        }
+        return view('skin.edit')->with('skin', $skin);
     }
 
     /**
@@ -86,26 +123,25 @@ class SkinController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Request $request)
+    public function update(Request $request, $uuid)
     {
         $gjid = $request->session()->get('gjid');
-        $filename = $gjid.'.png';
-        if(!Storage::disk('player')->exists($filename)) {
-            return redirect()->route('home')->with('error', 'Skin was not found!');
+        $skin = Skin::find($uuid);
+        if($gjid != $skin->owner_id) {
+            return redirect()->route('skins')->with('error', 'You do not own this skin!');
         }
-        Storage::disk('player')->delete($filename);
-        return redirect()->route('home')->with('success', 'Skin was successfully deleted!');
+
+        $request->validate([
+            'name' => ['required', 'string'],
+            'public' => [''],
+        ]);
+        
+        $skin = Skin::find($uuid)->update([
+            'public' => $request->boolean('public'),
+            'name' => $request->get('name'),
+        ]);
+
+        return redirect()->route('skins-my')->with('success', 'Skin was updated!');
     }
 
     /**
@@ -114,17 +150,19 @@ class SkinController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroyAsAdmin(Request $request, $gjid)
+    public function destroy(Request $request, $uuid)
     {
-        $request->validate([
-            'reason' => ['required', 'string'],
-        ]);
-        $filename = $gjid.'.png';
-        if(!Storage::disk('player')->exists($filename)) {
+        $gjid = $request->session()->get('gjid');
+        $skin = Skin::find($uuid);
+        if($gjid != $skin->owner_id) {
+            return redirect()->route('skins')->with('error', 'You do not own this skin!');
+        }
+        $filename = $skin->uuid.'.png';
+        if(!Storage::disk('skin')->exists($filename)) {
             return redirect()->route('skins')->with('error', 'Skin was not found!');
         }
-        activity()->causedBy(GJUser::where('gjid', session()->get('gjid'))->first())->withProperties(['filename' => $filename, 'reason' => $request->reason])->log('deleted');
-        Storage::disk('player')->delete($filename);
-        return redirect()->route('skins')->with('success', 'Skin was successfully deleted!');
+        Storage::disk('skin')->delete($filename);
+        $skin->delete();
+        return redirect()->route('skins-my')->with('success', 'Skin was successfully deleted!');
     }
 }

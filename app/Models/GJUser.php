@@ -54,4 +54,12 @@ class GJUser extends Model
         $activity->causer_id = $this->where('gjid', session()->get('gjid'))->first()->id;
         $activity->causer_type = get_class($this);
     }
+
+    /**
+     * Get the skins that the user owns.
+     */
+    public function skins()
+    {
+        return $this->hasMany(Skin::class, 'owner_id', 'gjid');
+    }
 }

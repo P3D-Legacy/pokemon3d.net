@@ -30,7 +30,13 @@
                 
                     <div class="collapse navbar-collapse" id="navbarDefault">
                         <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                            {{-- <li class="nav-item active"><a class="nav-link" aria-current="page" href="{{ route('home') }}">Home</a></li> --}}
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Skins</a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="{{ route('skins-my') }}"><i class="fas fa-user-tie"></i> My Skins</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('skins') }}"><i class="fas fa-user-tag"></i> Public Skins</a></li>
+                                </ul>
+                            </li>
                         </ul>
                         <ul class="navbar-nav">
                             @if(App\Models\GJUser::where('gjid', session()->get('gjid'))->first())

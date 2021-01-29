@@ -28,13 +28,18 @@ Route::get('/import/{id}', [ImportController::class, 'import'])->name('import');
 
 Route::get('/player/skins', [PlayerSkinController::class, 'index'])->name('player-skins');
 Route::post('/player/skin/create', [PlayerSkinController::class, 'store'])->name('player-skin-store');
+Route::get('/player/skin/duplicate', [PlayerSkinController::class, 'duplicate'])->name('player-skin-duplicate');
 Route::post('/player/skin/delete/{id}', [PlayerSkinController::class, 'destroyAsAdmin'])->name('player-skin-destroy-admin');
 Route::get('/player/skin/delete', [PlayerSkinController::class, 'destroy'])->name('player-skin-destroy');
 
-Route::get('/skins', [SkinController::class, 'index'])->name('skins');
+Route::get('/skins/public', [SkinController::class, 'publicskins'])->name('skins');
+Route::get('/skins/my', [SkinController::class, 'myskins'])->name('skins-my');
+Route::get('/skin/create', [SkinController::class, 'create'])->name('skin-create');
 Route::post('/skin/create', [SkinController::class, 'store'])->name('skin-store');
-Route::get('/skin/delete', [SkinController::class, 'destroy'])->name('skin-destroy');
-Route::post('/skin/delete/{id}', [SkinController::class, 'destroyAsAdmin'])->name('skin-destroy-admin');
+Route::get('/skin/{uuid}/edit', [SkinController::class, 'edit'])->name('skin-edit');
+Route::post('/skin/{uuid}/edit', [SkinController::class, 'update'])->name('skin-update');
+Route::get('/skin/{uuid}/delete', [SkinController::class, 'destroy'])->name('skin-destroy');
+Route::get('/skin/{uuid}/apply', [SkinController::class, 'apply'])->name('skin-apply');
 
 Route::get('/users', [UserController::class, 'index'])->name('users');
 Route::get('/user/edit/{id}', [UserController::class, 'edit'])->name('user-edit');

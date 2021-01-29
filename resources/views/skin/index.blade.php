@@ -13,7 +13,7 @@
             <div class="card">
                 <div class="row g-0">
                     <div class="col-4 p-2">
-                        <img src="{{ asset('player/'.$playerskin) }}">
+                        <img src="{{ asset('player/'.$playerskin) }}" height="128" width="96">
                     </div>
                     <div class="col-8">
                         <div class="card-body">

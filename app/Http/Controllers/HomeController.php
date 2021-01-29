@@ -31,33 +31,9 @@ class HomeController extends Controller
             $user = $auth['response']['users'][0];
         }
 
-        try {
-            /*
-            * Author: https://github.com/AKaravas
-            */
-            $curl = curl_init();
-            curl_setopt_array($curl, [
-                CURLOPT_RETURNTRANSFER => 1,
-                CURLOPT_URL => 'https://api.github.com/repos/P3D-Legacy/P3D-Legacy/releases/latest',
-                CURLOPT_USERAGENT => 'Github API with CURL'
-            ]);
-            $response = curl_exec($curl);
-            curl_close($curl);
-            $decodedResponse = json_decode($response,true);
-            $gameinfo = [
-                'game_version' => $decodedResponse['tag_name'],
-                'game_release_date' => $decodedResponse['published_at'],
-            ];
-        } catch (\Exception $e) {
-            $gameinfo = [
-                'game_version' => null,
-                'game_release_date' => null,
-            ];
-        }
-
         $activity = Activity::where('description' , 'deleted')->where('properties', 'LIKE', '%'.$request->session()->get('gjid').'.png%')->get();
 
-        return view('home')->with($user)->with($gameinfo)->with('activity', $activity);
+        return view('home')->with($user)->with('activity', $activity);
     }
 
     /**

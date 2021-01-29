@@ -93,7 +93,7 @@
         <div class="card my-2">
             <div class="card-header">Game Information</div>
             <div class="card-body">
-                The latest game release is <span class="badge bg-primary">{{ $game_version ?? 'N/A' }}</span> and was released <span class="badge bg-secondary">{{ \Carbon\Carbon::parse($game_release_date)->diffForHumans() ?? 'N/A' }}</span>. Download the game <a href="https://github.com/P3D-Legacy/P3D-Legacy">here</a>.
+                The latest game release is <span class="badge bg-primary">{{ GitHubHelper::getVersion() }}</span> and was released <span class="badge bg-secondary">{{ \Carbon\Carbon::parse(GitHubHelper::getReleaseDate())->diffForHumans() }}</span>. Download this release <a href="{{ GitHubHelper::getDownloadUrl() }}">here</a>.
             </div>
         </div>
     </div>

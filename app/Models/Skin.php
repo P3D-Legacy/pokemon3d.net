@@ -66,8 +66,9 @@ class Skin extends Model
     // Since we are using sessions with gamejolt logins we have to tap the activity to log the causer
     public function tapActivity(Activity $activity)
     {
-        $activity->causer_id = $this->where('gjid', session()->get('gjid'))->first()->id;
-        $activity->causer_type = get_class($this);
+        $activity->subject_id = $this->id;
+        $activity->causer_id = session()->get('gjid');
+        $activity->causer_type = GJUser::class;
     }
 
     /**

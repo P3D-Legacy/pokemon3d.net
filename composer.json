@@ -23,7 +23,8 @@
         "laravel/framework": "^8.12",
         "laravel/tinker": "^2.5",
         "spatie/laravel-activitylog": "^3.16",
-        "twbs/bootstrap": "5.0.0-beta1"
+        "twbs/bootstrap": "5.0.0-beta1",
+        "webpatser/laravel-uuid": "^3.0"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

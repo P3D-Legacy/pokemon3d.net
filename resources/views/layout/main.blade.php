@@ -23,7 +23,7 @@
 
             <nav class="navbar navbar-expand-md navbar-dark bg-success bg-gradient my-3">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="{{ route('home') }}"><img src="{{ asset('img/TreeLogoSmall.png') }}" alt="skin.pokemon3d.net" width="30" height="30" class="d-inline-block align-center"> skin.pokemon3d.net</a>
+                    <a class="navbar-brand" href="{{ route('home') }}"><img src="{{ asset('img/TreeLogoSmall.png') }}" alt="skin.pokemon3d.net" width="30" height="30" class="d-inline-block align-center"> {{ env('APP_NAME') }}</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarDefault" aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                     </button>

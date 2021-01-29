@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Skin;
 use App\Models\GJUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -58,14 +59,23 @@ class PlayerSkinController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Store a newly created resource in storage.
      *
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function duplicate(Request $request)
     {
-        //
+        $gjid = $request->session()->get('gjid');
+        $old_filename = $gjid.'.png';
+        $skin = Skin::create([
+            'owner_id' => $gjid,
+            'name' => 'Import: '.$gjid,
+        ]);
+
+        $new_filename = $skin->uuid.'.png';
+        Storage::disk('skin')->put($new_filename, Storage::disk('player')->get($old_filename));
+        return redirect()->route('home')->with('success', 'Skin was applied! Not seeing it? Refresh the page again.');
     }
 
     /**

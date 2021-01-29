@@ -16,7 +16,8 @@
             </div>
             @if(File::exists(public_path('player/'.$id.'.png')))
                 <div class="card-footer">
-                    <a class="btn btn-sm btn-outline-danger float-end" href="{{ route('player-skin-destroy') }}" role="button">Delete current skin</a>
+                    <a class="btn btn-sm btn-outline-danger float-end ml-2" href="{{ route('player-skin-destroy') }}" role="button">Delete current skin</a>
+                    <a class="btn btn-sm btn-outline-info float-end ml-2" href="{{ route('player-skin-duplicate') }}" role="button">Save to your skins</a>
                 </div>
             @endif
         </div>

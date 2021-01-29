@@ -16,7 +16,7 @@
             </div>
             @if(File::exists(public_path('player/'.$id.'.png')))
                 <div class="card-footer">
-                    <a class="btn btn-sm btn-outline-danger float-end" href="{{ route('skin-destroy') }}" role="button">Delete current skin</a>
+                    <a class="btn btn-sm btn-outline-danger float-end" href="{{ route('player-skin-destroy') }}" role="button">Delete current skin</a>
                 </div>
             @endif
         </div>
@@ -37,7 +37,7 @@
         <div class="card my-2">
             <div class="card-header">Upload skin</div>
             <div class="card-body">
-                <form role="form" action="{{ route('skin-store') }}" method="post" enctype="multipart/form-data">
+                <form role="form" action="{{ route('player-skin-store') }}" method="post" enctype="multipart/form-data">
                     <div class="form-group mb-3">
                         <label for="formFile" class="form-label">Select your skin</label>
                         <input class="form-control" type="file" id="formFile" name="image">

@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SkinController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ImportController;
+use App\Http\Controllers\PlayerSkinController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +25,12 @@ Route::post('/login', [AuthController::class, 'login'])->name('login-post');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/import/{id}', [ImportController::class, 'import'])->name('import');
+
+Route::get('/player/skins', [PlayerSkinController::class, 'index'])->name('player-skins');
+Route::post('/player/skin/create', [PlayerSkinController::class, 'store'])->name('player-skin-store');
+Route::post('/player/skin/delete/{id}', [PlayerSkinController::class, 'destroyAsAdmin'])->name('player-skin-destroy-admin');
+Route::get('/player/skin/delete', [PlayerSkinController::class, 'destroy'])->name('player-skin-destroy');
+
 Route::get('/skins', [SkinController::class, 'index'])->name('skins');
 Route::post('/skin/create', [SkinController::class, 'store'])->name('skin-store');
 Route::get('/skin/delete', [SkinController::class, 'destroy'])->name('skin-destroy');

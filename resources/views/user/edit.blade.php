@@ -7,9 +7,6 @@
         <div class="card my-2">
             <div class="card-header">Edit user</div>
             <div class="card-body">
-
-                {{ $user }}
-
                 <form role="form" action="{{ route('user-update', $user->gjid) }}" method="post">
                     <div class="form-group mb-3">
                         <label for="gjid" class="form-label">Game Jolt ID</label>

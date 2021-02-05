@@ -40,8 +40,7 @@
             <div class="card-body">
                 <form role="form" action="{{ route('player-skin-store') }}" method="post" enctype="multipart/form-data">
                     <div class="form-group mb-3">
-                        <label for="formFile" class="form-label">Select your skin</label>
-                        <input class="form-control" type="file" id="formFile" name="image">
+                        <input class="form-control" type="file" name="image">
                         @error('image')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror

@@ -24,6 +24,7 @@
                                     Public: {{ ($skin->public) ? 'Yes' : 'No' }}<br>
                                     <small class="text-muted">Uploaded: {{ \Carbon\Carbon::parse($skin->created_at)->diffForHumans() }}</small><br>
                                     <small class="text-muted">{{ \ByteUnits\Binary::bytes(Storage::disk('skin')->size($skin->path()))->format() }}</small>
+                                    @if($skin->public)<br><small class="text-muted"><i class="far fa-heart"></i> {{ $skin->likers()->count() }} likes</small>@endif
                                 </p>
                                 <p>
                                     <a class="btn btn-sm btn-outline-primary" href="{{ route('skin-apply', $skin->uuid) }}">Apply</a>

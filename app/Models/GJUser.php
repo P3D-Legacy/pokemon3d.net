@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Overtrue\LaravelLike\Traits\Liker;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Models\Activity;
 use Spatie\Activitylog\Traits\LogsActivity;
@@ -10,7 +11,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class GJUser extends Model
 {
-    use HasFactory, SoftDeletes, LogsActivity;
+    use HasFactory, SoftDeletes, LogsActivity, Liker;
 
     /**
      * The table associated with the model.

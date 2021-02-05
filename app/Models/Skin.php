@@ -5,13 +5,14 @@ namespace App\Models;
 use Webpatser\Uuid\Uuid;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Models\Activity;
+use Overtrue\LaravelLike\Traits\Likeable;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Skin extends Model
 {
-    use HasFactory, SoftDeletes, LogsActivity;
+    use HasFactory, SoftDeletes, LogsActivity, Likeable;
 
     /**
      * The attributes that are mass assignable.
@@ -25,7 +26,7 @@ class Skin extends Model
     ];
 
     // Lets use the uuid for primary key
-    protected $primaryKey = 'uuid';
+    // protected $primaryKey = 'uuid';
 
     /**
      * Indicates if the model's ID is auto-incrementing.

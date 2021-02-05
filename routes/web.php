@@ -40,6 +40,7 @@ Route::get('/skin/{uuid}/edit', [SkinController::class, 'edit'])->name('skin-edi
 Route::post('/skin/{uuid}/edit', [SkinController::class, 'update'])->name('skin-update');
 Route::get('/skin/{uuid}/delete', [SkinController::class, 'destroy'])->name('skin-destroy');
 Route::get('/skin/{uuid}/apply', [SkinController::class, 'apply'])->name('skin-apply');
+Route::get('/skin/{uuid}/like', [SkinController::class, 'like'])->name('skin-like');
 
 Route::get('/users', [UserController::class, 'index'])->name('users');
 Route::get('/user/edit/{id}', [UserController::class, 'edit'])->name('user-edit');

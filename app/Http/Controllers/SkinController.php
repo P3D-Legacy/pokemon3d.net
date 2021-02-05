@@ -100,6 +100,24 @@ class SkinController extends Controller
     }
 
     /**
+     * Like the specified resource.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function like(Request $request, $uuid)
+    {
+        $gjid = $request->session()->get('gjid');
+        $user = GJUser::find($gjid);
+        $skin = Skin::where('uuid', $uuid)->first();
+        abort_unless($skin, 404);
+        if($user->gjid != $skin->owner_id) {
+            $user->toggleLike($skin);
+        }
+        return redirect()->route('skins');
+    }
+
+    /**
      * Show the form for editing the specified resource.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -109,7 +127,7 @@ class SkinController extends Controller
     public function edit(Request $request, $uuid)
     {
         $gjid = $request->session()->get('gjid');
-        $skin = Skin::find($uuid);
+        $skin = Skin::where('uuid', $uuid)->first();
         if($gjid != $skin->owner_id) {
             return redirect()->route('skins')->with('error', 'You do not own this skin!');
         }
@@ -126,7 +144,7 @@ class SkinController extends Controller
     public function update(Request $request, $uuid)
     {
         $gjid = $request->session()->get('gjid');
-        $skin = Skin::find($uuid);
+        $skin = Skin::where('uuid', $uuid)->first();
         if($gjid != $skin->owner_id) {
             return redirect()->route('skins')->with('error', 'You do not own this skin!');
         }
@@ -136,7 +154,7 @@ class SkinController extends Controller
             'public' => [''],
         ]);
         
-        $skin = Skin::find($uuid)->update([
+        $skin = Skin::where('uuid', $uuid)->first()->update([
             'public' => $request->boolean('public'),
             'name' => $request->get('name'),
         ]);
@@ -153,7 +171,7 @@ class SkinController extends Controller
     public function destroy(Request $request, $uuid)
     {
         $gjid = $request->session()->get('gjid');
-        $skin = Skin::find($uuid);
+        $skin = Skin::where('uuid', $uuid)->first();
         if($gjid != $skin->owner_id) {
             return redirect()->route('skins')->with('error', 'You do not own this skin!');
         }

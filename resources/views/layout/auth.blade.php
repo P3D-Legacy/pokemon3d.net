@@ -6,7 +6,7 @@
 
         <title>@yield('title') - {{ env('APP_NAME') }}</title>
 
-        <link rel="shortcut icon" href="http://pokemon3d.net/files/images/favicon.png">
+        <link rel="shortcut icon" href="{{ asset('img/favicon.png') }}">
 
         <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
         <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">

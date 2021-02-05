@@ -27,9 +27,9 @@
                                     @if($skin->public)<br><small class="text-muted"><i class="far fa-heart"></i> {{ $skin->likers()->count() }} likes</small>@endif
                                 </p>
                                 <p>
-                                    <a class="btn btn-sm btn-outline-primary" href="{{ route('skin-apply', $skin->uuid) }}">Apply</a>
-                                    <a class="btn btn-sm btn-outline-warning" href="{{ route('skin-edit', $skin->uuid) }}">Edit</a>
-                                    <a class="btn btn-sm btn-outline-danger" href="{{ route('skin-destroy', $skin->uuid) }}">Delete</a>
+                                    <a class="btn btn-sm btn-outline-primary" href="{{ route('skin-apply', $skin->uuid) }}"><i class="far fa-hand-paper"></i> Apply</a>
+                                    <a class="btn btn-sm btn-outline-warning" href="{{ route('skin-edit', $skin->uuid) }}"><i class="far fa-edit"></i> Edit</a>
+                                    <a class="btn btn-sm btn-outline-danger" href="{{ route('skin-destroy', $skin->uuid) }}"><i class="far fa-trash-alt"></i> Delete</a>
                                 </p>
                             </p>
                         </div>

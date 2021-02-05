@@ -31,9 +31,9 @@
                     <div class="collapse navbar-collapse" id="navbarDefault">
                         <ul class="navbar-nav me-auto mb-2 mb-md-0">
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Skins</a>
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-vest-patches"></i> Skins</a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="{{ route('skins-my') }}"><i class="fas fa-user-tie"></i> My Skins</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('skins-my') }}"><i class="fas fa-user-lock"></i> My Skins</a></li>
                                     <li><a class="dropdown-item" href="{{ route('skins') }}"><i class="fas fa-user-tag"></i> Public Skins</a></li>
                                 </ul>
                             </li>
@@ -42,7 +42,7 @@
                             @if(App\Models\GJUser::where('gjid', session()->get('gjid'))->first())
                                 @if(App\Models\GJUser::where('gjid', session()->get('gjid'))->first()->is_admin)
                                     <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Admin</a>
+                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user-tie"></i> Admin</a>
                                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                             <li><a class="dropdown-item" href="{{ route('player-skins') }}"><i class="fas fa-user-circle"></i> Player Skins</a></li>
                                         </ul>
@@ -51,13 +51,13 @@
                             @endif
                             @if(session()->get('gjid') == env("GAMEJOLT_USER_ID_SUPERADMIN"))
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Super Admin</a>
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user-secret"></i> Super Admin</a>
                                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                         <li><a class="dropdown-item" href="{{ route('users') }}"><i class="fas fa-users"></i> Users</a></li>
                                     </ul>
                                 </li>
                             @endif
-                            <li class="nav-item"><a class="nav-link" aria-current="page" href="{{ route('logout') }}">Log out</a></li>
+                            <li class="nav-item"><a class="nav-link" aria-current="page" href="{{ route('logout') }}"><i class="fas fa-sign-out-alt"></i> Log out</a></li>
                         </ul>
                     </div>
                 </div>

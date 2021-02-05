@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>@yield('title') - Pok&eacute;mon 3D: Skin</title>
+        <title>@yield('title') - {{ env('APP_NAME') }}</title>
 
         <link rel="shortcut icon" href="{{ asset('img/favicon.png') }}">
 

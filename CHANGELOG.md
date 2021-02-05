@@ -1,4 +1,14 @@
 
+<a name="0.2.2"></a>
+## [0.2.2](https://github.com/P3D-Legacy/skin.pokemon3d.net/compare/0.2.1...0.2.2)
+
+> 2021-01-26
+
+### Updated
+
+* Updated user editing for admins
+
+
 <a name="0.2.1"></a>
 ## [0.2.1](https://github.com/P3D-Legacy/skin.pokemon3d.net/compare/0.2.0...0.2.1)
 

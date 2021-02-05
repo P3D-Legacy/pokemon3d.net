@@ -60,7 +60,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($gjid)
     {
         $user = GJUser::withTrashed()->where('gjid', $id)->first();
         abort_unless($user, 404);
@@ -74,7 +74,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $gjid)
     {
         $request->validate([
             'is_admin' => ['required', 'boolean']

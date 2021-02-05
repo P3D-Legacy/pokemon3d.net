@@ -8,6 +8,9 @@
     </div>
 </div>
 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    @if(!$skins->count())
+        <p>None found.</p>
+    @endif
     @foreach($skins as $skin)
         <div class="col">
             <div class="card">

@@ -22,7 +22,7 @@
             @endif
         </div>
         <div class="card my-2">
-            <div class="card-header">Skin Deletion Activity</div>
+            <div class="card-header">Admin Skin Deletion Activity</div>
             <div class="card-body">
                 @if($activity->count())
                     @foreach ($activity as $log)

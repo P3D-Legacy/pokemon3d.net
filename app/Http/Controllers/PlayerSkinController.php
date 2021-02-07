@@ -115,7 +115,7 @@ class PlayerSkinController extends Controller
             return redirect()->route('home')->with('error', 'Skin was not found!');
         }
         Storage::disk('player')->delete($filename);
-        return redirect()->route('home')->with('success', 'Skin was successfully deleted!');
+        return redirect()->route('skins-my')->with('success', 'Skin was successfully deleted!');
     }
 
     /**
@@ -131,10 +131,10 @@ class PlayerSkinController extends Controller
         ]);
         $filename = $gjid.'.png';
         if(!Storage::disk('player')->exists($filename)) {
-            return redirect()->route('skins')->with('error', 'Skin was not found!');
+            return redirect()->route('player-skins')->with('error', 'Skin was not found!');
         }
         activity()->causedBy(GJUser::where('gjid', session()->get('gjid'))->first())->withProperties(['filename' => $filename, 'reason' => $request->reason])->log('deleted');
         Storage::disk('player')->delete($filename);
-        return redirect()->route('skins')->with('success', 'Skin was successfully deleted!');
+        return redirect()->route('player-skins')->with('success', 'Skin was successfully deleted!');
     }
 }

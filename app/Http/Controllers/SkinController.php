@@ -94,7 +94,7 @@ class SkinController extends Controller
     {
         $gjid = $request->session()->get('gjid');
         $filename = $gjid.'.png';
-        $skin = Skin::find($uuid);
+        $skin = Skin::where('uuid', $uuid)->first();
         Storage::disk('player')->put($filename, Storage::disk('skin')->get($skin->path()));
         return redirect()->route('home')->with('success', 'Skin was applied! Not seeing it? Refresh the page again.');
     }

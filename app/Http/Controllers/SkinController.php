@@ -19,6 +19,18 @@ class SkinController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function show($uuid)
+    {
+        $skin = Skin::where('uuid', $uuid)->first();
+        abort_unless($skin, 404);
+        return view('skin.show')->with('skin', $skin);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function publicskins()
     {
         $skins = Skin::public()->get();

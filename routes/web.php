@@ -33,6 +33,7 @@ Route::post('/player/skin/delete/{id}', [PlayerSkinController::class, 'destroyAs
 Route::get('/player/skin/delete', [PlayerSkinController::class, 'destroy'])->name('player-skin-destroy');
 
 Route::get('/skins/public', [SkinController::class, 'publicskins'])->name('skins');
+Route::get('/skins/public/{uuid}', [SkinController::class, 'show'])->name('skin-show');
 Route::get('/skins/my', [SkinController::class, 'myskins'])->name('skins-my');
 Route::get('/skin/create', [SkinController::class, 'create'])->name('skin-create');
 Route::post('/skin/create', [SkinController::class, 'store'])->name('skin-store');

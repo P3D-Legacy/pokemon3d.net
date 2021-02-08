@@ -62,7 +62,7 @@ class UserController extends Controller
      */
     public function edit($gjid)
     {
-        $user = GJUser::withTrashed()->where('gjid', $id)->first();
+        $user = GJUser::withTrashed()->where('gjid', $gjid)->first();
         abort_unless($user, 404);
         return view('user.edit')->with('user', $user);
     }
@@ -79,7 +79,7 @@ class UserController extends Controller
         $request->validate([
             'is_admin' => ['required', 'boolean']
         ]);
-        $user = GJUser::withTrashed()->where('gjid', $id)->first();
+        $user = GJUser::withTrashed()->where('gjid', $gjid)->first();
         abort_unless($user, 404);
         $user->is_admin = $request->is_admin;
         $user->save();

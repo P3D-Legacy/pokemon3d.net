@@ -35,7 +35,7 @@ class SkinController extends Controller
      */
     public function publicskins()
     {
-        $skins = Skin::isPublic()->get();
+        $skins = Skin::isPublic()->paginate(9);
         return view('skin.public')->with('skins', $skins);
     }
 

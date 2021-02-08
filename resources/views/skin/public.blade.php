@@ -51,5 +51,11 @@
         </div>
     @endforeach
 </div>
-
+@if($skins->count())
+    <div class="row">
+        <div class="col-12 mt-3">
+            {{ $skins->links() }}
+        </div>
+    </div>
+@endif
 @endsection

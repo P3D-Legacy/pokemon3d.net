@@ -20,7 +20,7 @@
                     </div>
                     <div class="col-8">
                         <div class="card-body">
-                            <h5 class="card-title">{{ $skin->name }}</h5>
+                            <h5 class="card-title"><a href="{{ route('skin-show', $skin->uuid) }}">{{ $skin->name }}</a></h5>
                             <p class="card-text">
                                 <p>
                                     <small class="text-muted">Owned by: {{ $skin->user->gju ?? $skin->owner_id }}</small><br>
@@ -29,6 +29,7 @@
                                     <small class="text-muted"><i class="far fa-heart"></i> {{ $skin->likers()->count() }} likes</small>
                                 </p>
                                 <p>
+                                    <a class="btn btn-sm btn-outline-primary" href="{{ route('skin-show', $skin->uuid) }}"><i class="far fa-eye"></i> Show</a>
                                     @if(session()->get('gjid') != $skin->owner_id)
                                         @if($skin->isLikedBy(\App\Models\GJUser::find(session()->get('gjid'))))
                                             <a class="btn btn-sm btn-danger" href="{{ route('skin-like', $skin->uuid) }}">

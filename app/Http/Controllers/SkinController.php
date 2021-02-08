@@ -36,10 +36,7 @@ class SkinController extends Controller
     public function publicskins()
     {
         $new_skins = Skin::isPublic()->orderBy('created_at', 'DESC')->get();
-        $popular_skins = Skin::isPublic()->get()->sortBy(function($skin)
-        {
-            return $skin->likers()->count();
-        });
+        $popular_skins = Skin::isPublic()->withCount('likers')->orderBy('likers_count', 'desc')->get();
         return view('skin.public')->with('new_skins', $new_skins)->with('popular_skins', $popular_skins);
     }
 

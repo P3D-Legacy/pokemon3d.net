@@ -44,11 +44,13 @@ class AuthController extends Controller
         }
         $user = $api->users()->fetch($username, $token);
         $id = $user['response']['users'][0]['id'];
+        $avatar_url = $user['response']['users'][0]['avatar_url'];
 
         // Remember the user in the session
         $request->session()->put('gju', $username);
         $request->session()->put('gjt', $token);
         $request->session()->put('gjid', $id);
+        $request->session()->put('gjau', $avatar_url); // Avatar url
 
         // Let's store the user id and username in the database, we will not store the token!
         $gjuser = GJUser::where('gjid', $id)->where('gju', $username)->first();

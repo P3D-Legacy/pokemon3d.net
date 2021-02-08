@@ -87,5 +87,9 @@ class Skin extends Model
     public function path() {
         return $this->uuid.'.png';
     }
+    
+    public function urlPath() {
+        return env('APP_URL').'/skin/'.$this->path();
+    }
 
 }

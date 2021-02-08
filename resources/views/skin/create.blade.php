@@ -35,6 +35,7 @@
                         <div class="form-check form-switch">
                             <input class="form-check-input" type="checkbox" id="checkRules" name="rules">
                             <label class="form-check-label" for="checkRules"><strong>I accept and understand the rules</strong> for uploading a custom skin</label>
+                            <p class="text-muted"><small>Read the rules on the <a href="{{ route('home') }}">home</a> page.</small></p>
                         </div> 
                         @error('rules')
                             <div class="invalid-feedback">{{ $message }}</div>

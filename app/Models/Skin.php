@@ -80,7 +80,7 @@ class Skin extends Model
         return $this->belongsTo(GJUser::class, 'owner_id', 'gjid');
     }
 
-    public function scopePublic($query) {
+    public function scopeIsPublic($query) {
         return $query->where('public', 1);
     }
 

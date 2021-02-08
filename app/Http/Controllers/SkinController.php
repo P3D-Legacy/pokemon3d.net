@@ -23,7 +23,7 @@ class SkinController extends Controller
      */
     public function show($uuid)
     {
-        $skin = Skin::where('uuid', $uuid)->first();
+        $skin = Skin::where('uuid', $uuid)->isPublic()->first();
         abort_unless($skin, 404);
         return view('skin.show')->with('skin', $skin);
     }
@@ -35,7 +35,7 @@ class SkinController extends Controller
      */
     public function publicskins()
     {
-        $skins = Skin::public()->get();
+        $skins = Skin::isPublic()->get();
         return view('skin.public')->with('skins', $skins);
     }
 

@@ -108,7 +108,7 @@ class SkinController extends Controller
         if (env('DISCORD_SKIN_UPLOAD_WEBHOOK') && $public) {
             $webhookurl = env('DISCORD_SKIN_UPLOAD_WEBHOOK');
             $json_data = json_encode([
-                "content" => "Someone uploaded a new skin for the public to use! Check it out here: ".route('skin-show', $skin->uuid), // Message
+                "content" => "Someone uploaded a new skin for the public to use! Check it out here: ".route('skin-show', $skin->uuid).' -  TEST URL: '.$skin->urlPath(), // Message
                 "username" => env('APP_NAME'), // Username (message posted as username)
                 "tts" => false, // Enable text-to-speech
                 // Embeds Array

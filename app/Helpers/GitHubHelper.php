@@ -13,7 +13,7 @@ class GitHubHelper
 
     public function __construct()
     {
-        $this->githubData = Cache::get("current_version", function () {
+        $this->githubData = Cache::get("github_current_version", function () {
                 $ApiUrl = env('API_GITHUB_REPO');
                 $response = Http::withHeaders([
                     'X-First' => 'foo',
@@ -33,7 +33,7 @@ class GitHubHelper
                         'profile' => $decodedResponse['author']['html_url']
                     ]
                 ];
-                Cache::put('current_version', $data, 60*60);
+                Cache::put('github_current_version', $data, 60*60);
                 return $data;
             });
     }

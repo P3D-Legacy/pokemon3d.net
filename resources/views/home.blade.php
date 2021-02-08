@@ -81,13 +81,14 @@
     </div>
     <div class="col-lg-3">        
         <div class="card my-2">
-            <div class="card-header">Your Game Jolt Account</div>
+            <div class="card-header"><img src="{{ asset('img/gamejolt-logo-light-1x.png') }}"> <strong>Account</strong></div>
             <div class="card-body">
-                <p>ID: {{ $id ?? '' }}</p>
-                <p>Type: {{ $type ?? '' }}</p>
-                <p>Signed up: {{ $signed_up ?? '' }}</p>
-                <p>Last logged in: {{ $last_logged_in ?? '' }}</p>
-                <p><img src="{{ $avatar_url ?? '' }}"></p>
+                <p class="m-0">
+                    <img src="{{ $avatar_url ?? '' }}"><br>
+                    Type: {{ $type ?? '' }}<br>
+                    Signed up: {{ $signed_up ?? '' }}<br>
+                    Last logged in: {{ $last_logged_in ?? '' }}
+                </p>
             </div>
         </div>
         <div class="card my-2">

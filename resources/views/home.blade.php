@@ -8,7 +8,7 @@
             <div class="card-header">Your current skin</div>
             <div class="card-body">
                 @if(File::exists(public_path('player/'.$id.'.png')))
-                    <img src="{{ asset('player/'.$id.'.png') }}">
+                    <img src="{{ asset('player/'.$id.'.png') }}?r={{ \Carbon\Carbon::now()->timestamp }}">
                 @else
                     <p>We could not find a skin for your account.</p>
                     <p><a href="{{ route('import', $id) }}">Do you want to import the skin from the old site?</a></p>

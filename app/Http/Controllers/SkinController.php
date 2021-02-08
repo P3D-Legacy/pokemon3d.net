@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Skin;
+use ByteUnits\Binary;
 use App\Models\GJUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -70,6 +72,8 @@ class SkinController extends Controller
     public function store(Request $request)
     {
         $gjid = $request->session()->get('gjid');
+        $gju = $request->session()->get('gju');
+        $gjau = $request->session()->get('gjau');
 
         $skincount = GJUser::find($gjid)->skins()->count();
 
@@ -83,15 +87,71 @@ class SkinController extends Controller
             'public' => [''],
             'rules' => ['accepted'],
         ]);
+
+        $public = $request->boolean('public');
+        $name = $request->get('name');
         
         $skin = Skin::create([
             'owner_id' => $gjid,
-            'public' => $request->boolean('public'),
-            'name' => $request->get('name'),
+            'public' => $public,
+            'name' => $name,
         ]);
 
         $filename = $skin->uuid.'.png';
         $request->file('image')->storeAs(null, $filename, 'skin');
+
+        /*
+        *
+        * DISCORD WEBHOOK
+        *
+        */
+        if (env('DISCORD_SKIN_UPLOAD_WEBHOOK') && $public) {
+            $webhookurl = env('DISCORD_SKIN_UPLOAD_WEBHOOK');
+            $json_data = json_encode([
+                "content" => "Someone uploaded a new skin for the public to use! Check it out here: ".route('skin-show', $skin->uuid), // Message
+                "username" => env('APP_NAME'), // Username (message posted as username)
+                "tts" => false, // Enable text-to-speech
+                // Embeds Array
+                "embeds" => [
+                    [
+                        "title" => $name, // Embed Title
+                        "type" => "rich", // Embed Type
+                        "description" => "File size: ".Binary::bytes(Storage::disk('skin')->size($skin->path()))->format(), // Embed Description
+                        "url" => route('skin-show', $skin->uuid), // URL of title link
+                        "timestamp" => Carbon::now()->toIso8601String(), // Timestamp of embed must be formatted as ISO8601
+                        "color" => hexdec("198754"), // Embed left border color in HEX
+                        // Footer
+                        "footer" => [
+                            "text" => $gju, // GJ Username
+                            "icon_url" => $gjau, // GJ Avatar
+                        ],
+                        // Skin URL
+                        "thumbnail" => [
+                            "url" => $skin->urlPath(),
+                        ],
+                        // Author
+                        "author" => [
+                            "name" => $gju.' uploaded a skin', // GJ Username
+                        ],
+                    ]
+                ]
+            
+            ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE );
+            $ch = curl_init( $webhookurl );
+            curl_setopt( $ch, CURLOPT_HTTPHEADER, array('Content-type: application/json'));
+            curl_setopt( $ch, CURLOPT_POST, 1);
+            curl_setopt( $ch, CURLOPT_POSTFIELDS, $json_data);
+            curl_setopt( $ch, CURLOPT_FOLLOWLOCATION, 1);
+            curl_setopt( $ch, CURLOPT_HEADER, 0);
+            curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1);
+            $response = curl_exec( $ch );
+            curl_close( $ch );
+        }
+        /*
+        *
+        * END DISCORD WEBHOOK
+        *
+        */
 
         return redirect()->route('skins-my')->with('success', 'Skin was successfully uploaded! Not seeing it? Refresh the page again.');
     }

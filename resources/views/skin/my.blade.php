@@ -1,10 +1,10 @@
 @extends('layout.main')
-@section('title', 'Skins')
+@section('title', 'My Skins')
      
 @section('content')
 <div class="row">
     <div class="col-12">
-        <h2>Skins <a class="btn btn-sm btn-primary" href="{{ route('skin-create') }}">Create</a></h2>
+        <h2>My Skins <a class="btn btn-sm btn-primary" href="{{ route('skin-create') }}">Create</a></h2>
         <p>Slots: {{ \App\Models\GJUser::find(session()->get('gjid'))->skins()->count() }} / {{ env('SKIN_MAX_UPLOAD') }}</p>
     </div>
 </div>

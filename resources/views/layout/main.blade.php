@@ -57,6 +57,16 @@
                                     </ul>
                                 </li>
                             @endif
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-gamepad"></i> Pok&eacute;mon 3D</a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="https://pokemon3d.net/">Homepage</a></li>
+                                    <li><a class="dropdown-item" href="https://pokemon3d.net/forum/">Forum</a></li>
+                                    <li><a class="dropdown-item" href="https://pokemon3d.net/wiki/">Wiki</a></li>
+                                    <li><a class="dropdown-item" href="https://github.com/P3D-Legacy/P3D-Legacy">Github</a></li>
+                                    <li><a class="dropdown-item" href="https://discordapp.com/invite/EUhwdrq">Discord</a></li>
+                                </ul>
+                            </li>
                             <li class="nav-item"><a class="nav-link" aria-current="page" href="{{ route('logout') }}"><i class="fas fa-sign-out-alt"></i> Log out</a></li>
                         </ul>
                     </div>

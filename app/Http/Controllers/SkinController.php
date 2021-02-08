@@ -114,7 +114,7 @@ class SkinController extends Controller
             $webhookurl = env('DISCORD_SKIN_UPLOAD_WEBHOOK');
             $json_data = json_encode([
                 "content" => $gju." uploaded a new skin for the public to use! Check it out here: ".route('skin-show', $skin->uuid), // Message
-                "username" => env('APP_NAME'), // Username (message posted as username)
+                // "username" => env('APP_NAME'), // Username (message posted as username) - NOTE: This should be set in the webhook with the avatar
                 "tts" => false, // Enable text-to-speech
                 // Embeds Array
                 "embeds" => [

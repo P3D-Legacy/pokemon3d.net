@@ -58,8 +58,13 @@ class SkinController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
+        $gjid = $request->session()->get('gjid');
+        $skincount = GJUser::find($gjid)->skins()->count();
+        if($skincount >= env('SKIN_MAX_UPLOAD')) {
+            return redirect()->route('skins-my')->with('warning', 'You have reached the maximum amount of skins you can upload.');
+        }
         return view('skin.create');
     }
 
@@ -78,7 +83,7 @@ class SkinController extends Controller
         $skincount = GJUser::find($gjid)->skins()->count();
 
         if($skincount >= env('SKIN_MAX_UPLOAD')) {
-            return redirect()->route('skins')->with('warning', 'You have reached the maximum amount of skins you can upload.');
+            return redirect()->route('skins-my')->with('warning', 'You have reached the maximum amount of skins you can upload.');
         }
 
         $request->validate([

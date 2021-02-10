@@ -4,7 +4,7 @@
 @section('content')
 <div class="row">
     <div class="col-lg-3">
-        <div class="card my-2">
+        <div class="card mb-3">
             <div class="card-header">Your Current Skin<a class="btn btn-sm btn-outline-danger float-end" href="{{ route('player-skin-destroy') }}" role="button"><i class="fas fa-user-slash"></i> Delete</a></div>
             <div class="card-body">
                 @if(File::exists(public_path('player/'.$id.'.png')))
@@ -21,7 +21,7 @@
                 </div>
             @endif
         </div>
-        <div class="card my-2">
+        <div class="card mb-3">
             <div class="card-header">Admin Skin Deletion Activity</div>
             <div class="card-body">
                 @if($activity->count())
@@ -35,7 +35,7 @@
         </div>
     </div>
     <div class="col-lg-6">
-        <div class="card my-2">
+        <div class="card mb-3">
             <div class="card-header">Skin Information</div>
             <div class="card-body">
                 <p>Want to make your own skin? <a href="{{ asset('img/template.png') }}">Download this template</a> to get started.</p>
@@ -56,7 +56,7 @@
         </div>
     </div>
     <div class="col-lg-3">        
-        <div class="card my-2">
+        <div class="card mb-3">
             <div class="card-header"><img src="{{ asset('img/gamejolt-logo-light-1x.png') }}"> <strong>Account</strong></div>
             <div class="card-body">
                 <p class="m-0">
@@ -67,7 +67,7 @@
                 </p>
             </div>
         </div>
-        <div class="card my-2">
+        <div class="card mb-3">
             <div class="card-header">Game Information</div>
             <div class="card-body">
                 The latest game release is <span class="badge bg-primary">{{ GitHubHelper::getVersion() }}</span> and was released <span class="badge bg-secondary">{{ \Carbon\Carbon::parse(GitHubHelper::getReleaseDate())->diffForHumans() }}</span>. Download this release <a href="{{ GitHubHelper::getDownloadUrl() }}">here</a>.

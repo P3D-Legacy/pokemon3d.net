@@ -32,7 +32,9 @@ Route::get('/player/skin/duplicate', [PlayerSkinController::class, 'duplicate'])
 Route::post('/player/skin/delete/{id}', [PlayerSkinController::class, 'destroyAsAdmin'])->name('player-skin-destroy-admin');
 Route::get('/player/skin/delete', [PlayerSkinController::class, 'destroy'])->name('player-skin-destroy');
 
-Route::get('/skins/public', [SkinController::class, 'publicskins'])->name('skins');
+Route::get('/skins/public', function(){ return redirect()->route('skins-newest');})->name('skins');
+Route::get('/skins/public/new', [SkinController::class, 'newestpublicskins'])->name('skins-newest');
+Route::get('/skins/public/popular', [SkinController::class, 'popularpublicskins'])->name('skins-popular');
 Route::get('/skins/public/{uuid}', [SkinController::class, 'show'])->name('skin-show');
 Route::get('/skins/my', [SkinController::class, 'myskins'])->name('skins-my');
 Route::get('/skin/create', [SkinController::class, 'create'])->name('skin-create');

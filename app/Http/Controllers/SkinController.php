@@ -33,11 +33,21 @@ class SkinController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function publicskins()
+    public function newestpublicskins()
     {
-        $new_skins = Skin::isPublic()->orderBy('created_at', 'DESC')->get();
-        $popular_skins = Skin::isPublic()->withCount('likers')->orderBy('likers_count', 'desc')->get();
-        return view('skin.public')->with('new_skins', $new_skins)->with('popular_skins', $popular_skins);
+        $skins = Skin::isPublic()->orderBy('created_at', 'DESC')->paginate(9);
+        return view('skin.public.newest')->with('skins', $skins);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function popularpublicskins()
+    {
+        $skins = Skin::isPublic()->withCount('likers')->orderBy('likers_count', 'desc')->paginate(9);
+        return view('skin.public.popular')->with('skins', $skins);
     }
 
     /**

@@ -36,30 +36,6 @@
     </div>
     <div class="col-lg-6">
         <div class="card my-2">
-            <div class="card-header">Quick Upload a skin</div>
-            <div class="card-body">
-                <form role="form" action="{{ route('player-skin-store') }}" method="post" enctype="multipart/form-data">
-                    <div class="form-group mb-3">
-                        <input class="form-control" type="file" name="image">
-                        @error('image')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
-                    <div class="form-group mb-3">
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" name="rules">
-                            <label class="form-check-label" for="flexSwitchCheckDefault"><strong>I accept and understand the rules</strong> for uploading a custom skin</label>
-                        </div> 
-                        @error('rules')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
-                    @csrf
-                    <button type="submit" class="btn btn-success"><i class="fas fa-upload"></i> Upload</button>
-                </form>
-            </div>
-        </div>
-        <div class="card my-2">
             <div class="card-header">Skin Information</div>
             <div class="card-body">
                 <p>Want to make your own skin? <a href="{{ asset('img/template.png') }}">Download this template</a> to get started.</p>

@@ -124,7 +124,7 @@
                 </div>
                 <div class="col-4 text-end">
                     <small>
-                    @if (env('APP_DEBUG')) <strong class="text-danger">DEBUG MODE ACTIVE!</strong> &middot; @endif <a class="text-secondary text-decoration-none" href="https://github.com/P3D-Legacy/skin.pokemon3d.net/blob/main/CHANGELOG.md">{{ setting('APP_VERSION') }}</a>
+                    @if (env('APP_DEBUG')) <strong class="text-danger">DEBUG MODE ACTIVE!</strong> &middot; @endif <a class="text-secondary text-decoration-none" href="https://github.com/P3D-Legacy/skin.pokemon3d.net/blob/main/CHANGELOG.md">{{ setting('APP_VERSION') ?? 'unknown' }}</a>
                     </small>
                 </div>
             </div>

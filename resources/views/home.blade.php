@@ -5,7 +5,7 @@
 <div class="row">
     <div class="col-lg-3">
         <div class="card my-2">
-            <div class="card-header">Your current skin</div>
+            <div class="card-header">Your Current Skin<a class="btn btn-sm btn-outline-danger float-end" href="{{ route('player-skin-destroy') }}" role="button"><i class="fas fa-user-slash"></i> Delete</a></div>
             <div class="card-body">
                 @if(File::exists(public_path('player/'.$id.'.png')))
                     <img src="{{ asset('player/'.$id.'.png') }}?r={{ \Carbon\Carbon::now()->timestamp }}">
@@ -16,8 +16,8 @@
             </div>
             @if(File::exists(public_path('player/'.$id.'.png')))
                 <div class="card-footer">
-                    <a class="btn btn-sm btn-outline-danger float-end ml-2" href="{{ route('player-skin-destroy') }}" role="button">Delete current skin</a>
-                    <a class="btn btn-sm btn-outline-info float-end ml-2" href="{{ route('player-skin-duplicate') }}" role="button">Save to your skins</a>
+                    <a class="btn btn-sm btn-outline-info" href="{{ route('player-skin-duplicate') }}" role="button"><i class="fas fa-file-download"></i> Save to "My skins"</a>
+                    
                 </div>
             @endif
         </div>

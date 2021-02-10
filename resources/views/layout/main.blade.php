@@ -37,6 +37,7 @@
                                     <li><a class="dropdown-item" href="{{ route('skins') }}"><i class="fas fa-user-tag"></i> Public Skins</a></li>
                                 </ul>
                             </li>
+                            <li class="nav-item"><a class="nav-link" aria-current="page" href="{{ route('skin-create') }}"><i class="fas fa-upload"></i> Upload</a></li>
                         </ul>
                         <ul class="navbar-nav">
                             @if(App\Models\GJUser::where('gjid', session()->get('gjid'))->first())

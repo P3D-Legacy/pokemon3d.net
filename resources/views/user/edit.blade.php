@@ -3,7 +3,7 @@
      
 @section('content')
 <div class="row">
-    <div class="col-4">
+    <div class="col-12 col-lg-4">
         <div class="card my-2">
             <div class="card-header">Edit user</div>
             <div class="card-body">

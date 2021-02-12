@@ -4,11 +4,11 @@
 @section('content')
 <div class="row">
     <div class="col-lg-3">
-        <div class="card my-2">
-            <div class="card-header">Your current skin</div>
+        <div class="card mb-3">
+            <div class="card-header">Your Current Skin<a class="btn btn-sm btn-outline-danger float-end" href="{{ route('player-skin-destroy') }}" role="button"><i class="fas fa-user-slash"></i> Delete</a></div>
             <div class="card-body">
                 @if(File::exists(public_path('player/'.$id.'.png')))
-                    <img src="{{ asset('player/'.$id.'.png') }}">
+                    <img src="{{ asset('player/'.$id.'.png') }}?r={{ \Carbon\Carbon::now()->timestamp }}">
                 @else
                     <p>We could not find a skin for your account.</p>
                     <p><a href="{{ route('import', $id) }}">Do you want to import the skin from the old site?</a></p>
@@ -16,12 +16,13 @@
             </div>
             @if(File::exists(public_path('player/'.$id.'.png')))
                 <div class="card-footer">
-                    <a class="btn btn-sm btn-outline-danger float-end" href="{{ route('skin-destroy') }}" role="button">Delete current skin</a>
+                    <a class="btn btn-sm btn-outline-info" href="{{ route('player-skin-duplicate') }}" role="button"><i class="fas fa-file-download"></i> Save to "My skins"</a>
+                    
                 </div>
             @endif
         </div>
-        <div class="card my-2">
-            <div class="card-header">Skin Deletion Activity</div>
+        <div class="card mb-3">
+            <div class="card-header">Admin Skin Deletion Activity</div>
             <div class="card-body">
                 @if($activity->count())
                     @foreach ($activity as $log)
@@ -34,32 +35,7 @@
         </div>
     </div>
     <div class="col-lg-6">
-        <div class="card my-2">
-            <div class="card-header">Upload skin</div>
-            <div class="card-body">
-                <form role="form" action="{{ route('skin-store') }}" method="post" enctype="multipart/form-data">
-                    <div class="form-group mb-3">
-                        <label for="formFile" class="form-label">Select your skin</label>
-                        <input class="form-control" type="file" id="formFile" name="image">
-                        @error('image')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
-                    <div class="form-group mb-3">
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" name="rules">
-                            <label class="form-check-label" for="flexSwitchCheckDefault"><strong>I accept and understand the rules</strong> for uploading a custom skin</label>
-                        </div> 
-                        @error('rules')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
-                    @csrf
-                    <button type="submit" class="btn btn-success"><i class="fas fa-upload"></i> Upload</button>
-                </form>
-            </div>
-        </div>
-        <div class="card my-2">
+        <div class="card mb-3">
             <div class="card-header">Skin Information</div>
             <div class="card-body">
                 <p>Want to make your own skin? <a href="{{ asset('img/template.png') }}">Download this template</a> to get started.</p>
@@ -80,20 +56,21 @@
         </div>
     </div>
     <div class="col-lg-3">        
-        <div class="card my-2">
-            <div class="card-header">Your Game Jolt Account</div>
+        <div class="card mb-3">
+            <div class="card-header"><img src="{{ asset('img/gamejolt-logo-light-1x.png') }}"> <strong>Account</strong></div>
             <div class="card-body">
-                <p>ID: {{ $id ?? '' }}</p>
-                <p>Type: {{ $type ?? '' }}</p>
-                <p>Signed up: {{ $signed_up ?? '' }}</p>
-                <p>Last logged in: {{ $last_logged_in ?? '' }}</p>
-                <p><img src="{{ $avatar_url ?? '' }}"></p>
+                <p class="m-0">
+                    <img src="{{ $avatar_url ?? '' }}"><br>
+                    Type: {{ $type ?? '' }}<br>
+                    Signed up: {{ $signed_up ?? '' }}<br>
+                    Last logged in: {{ $last_logged_in ?? '' }}
+                </p>
             </div>
         </div>
-        <div class="card my-2">
+        <div class="card mb-3">
             <div class="card-header">Game Information</div>
             <div class="card-body">
-                The latest game release is <span class="badge bg-primary">{{ $game_version ?? 'N/A' }}</span> and was released <span class="badge bg-secondary">{{ \Carbon\Carbon::parse($game_release_date)->diffForHumans() ?? 'N/A' }}</span>. Download the game <a href="https://github.com/P3D-Legacy/P3D-Legacy">here</a>.
+                The latest game release is <span class="badge bg-primary">{{ GitHubHelper::getVersion() }}</span> and was released <span class="badge bg-secondary">{{ \Carbon\Carbon::parse(GitHubHelper::getReleaseDate())->diffForHumans() }}</span>. Download this release <a href="{{ GitHubHelper::getDownloadUrl() }}">here</a>.
             </div>
         </div>
     </div>

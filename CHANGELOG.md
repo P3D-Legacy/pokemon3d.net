@@ -4,7 +4,7 @@
 
 ### Added
 
-* Added missing pagnitation links
+* Added missing pagnitation links [#11](https://github.com/P3D-Legacy/skin.pokemon3d.net/issues/11)
 
 <a name="0.3.0"></a>
 ## [0.3.0](https://github.com/P3D-Legacy/skin.pokemon3d.net/compare/0.3.0-beta...0.3.0) (2021-02-12)

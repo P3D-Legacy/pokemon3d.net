@@ -1,4 +1,11 @@
 
+<a name="0.3.1"></a>
+## [0.3.1](https://github.com/P3D-Legacy/skin.pokemon3d.net/compare/0.3.0...0.3.1) (2021-03-11)
+
+### Added
+
+* Added missing pagnitation links
+
 <a name="0.3.0"></a>
 ## [0.3.0](https://github.com/P3D-Legacy/skin.pokemon3d.net/compare/0.3.0-beta...0.3.0) (2021-02-12)
 

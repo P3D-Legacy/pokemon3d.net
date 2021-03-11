@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Overtrue\LaravelLike\Traits\Liker;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Models\Activity;
 use Spatie\Activitylog\Traits\LogsActivity;
@@ -10,7 +11,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class GJUser extends Model
 {
-    use HasFactory, SoftDeletes, LogsActivity;
+    use HasFactory, SoftDeletes, LogsActivity, Liker;
 
     /**
      * The table associated with the model.
@@ -18,6 +19,16 @@ class GJUser extends Model
      * @var string
      */
     protected $table = 'gjuser';
+
+    // Lets use the gjid for primary key
+    protected $primaryKey = 'gjid';
+
+    /**
+     * Indicates if the model's ID is auto-incrementing.
+     *
+     * @var bool
+     */
+    public $incrementing = false;
 
     /**
      * The attributes that are mass assignable.
@@ -43,5 +54,13 @@ class GJUser extends Model
     {
         $activity->causer_id = $this->where('gjid', session()->get('gjid'))->first()->id;
         $activity->causer_type = get_class($this);
+    }
+
+    /**
+     * Get the skins that the user owns.
+     */
+    public function skins()
+    {
+        return $this->hasMany(Skin::class, 'owner_id', 'gjid');
     }
 }

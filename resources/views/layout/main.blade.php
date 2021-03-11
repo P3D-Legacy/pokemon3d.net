@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>@yield('title') - Pok&eacute;mon 3D: Skin</title>
+        <title>@yield('title') - {{ env('APP_NAME') }}</title>
 
         <link rel="shortcut icon" href="{{ asset('img/favicon.png') }}">
 
@@ -18,40 +18,57 @@
         <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
     </head>
 <body class="d-flex flex-column h-100">
-    <main class="flex-shrink-0">
+    <main class="flex-shrink-0 mb-5">
         <div class="container">
 
             <nav class="navbar navbar-expand-md navbar-dark bg-success bg-gradient my-3">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="{{ route('home') }}"><img src="{{ asset('img/TreeLogoSmall.png') }}" alt="skin.pokemon3d.net" width="30" height="30" class="d-inline-block align-center"> skin.pokemon3d.net</a>
+                    <a class="navbar-brand" href="{{ route('home') }}"><img src="{{ asset('img/TreeLogoSmall.png') }}" alt="skin.pokemon3d.net" width="30" height="30" class="d-inline-block align-center"> {{ env('APP_NAME') }}</a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarDefault" aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                     </button>
                 
                     <div class="collapse navbar-collapse" id="navbarDefault">
                         <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                            {{-- <li class="nav-item active"><a class="nav-link" aria-current="page" href="{{ route('home') }}">Home</a></li> --}}
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-vest-patches"></i> Skins</a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="{{ route('skins-my') }}"><i class="fas fa-user-lock"></i> My Skins</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('skins') }}"><i class="fas fa-user-tag"></i> Public Skins</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item"><a class="nav-link" aria-current="page" href="{{ route('skin-create') }}"><i class="fas fa-upload"></i> Upload</a></li>
                         </ul>
                         <ul class="navbar-nav">
                             @if(App\Models\GJUser::where('gjid', session()->get('gjid'))->first())
                                 @if(App\Models\GJUser::where('gjid', session()->get('gjid'))->first()->is_admin)
                                     <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Admin</a>
+                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user-tie"></i> Admin</a>
                                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <li><a class="dropdown-item" href="{{ route('skins') }}"><i class="fas fa-user-circle"></i> Player Skins</a></li>
+                                            <li><a class="dropdown-item" href="{{ route('player-skins') }}"><i class="fas fa-user-circle"></i> Player Skins</a></li>
                                         </ul>
                                     </li>
                                 @endif
                             @endif
                             @if(session()->get('gjid') == env("GAMEJOLT_USER_ID_SUPERADMIN"))
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Super Admin</a>
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user-secret"></i> Super Admin</a>
                                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                         <li><a class="dropdown-item" href="{{ route('users') }}"><i class="fas fa-users"></i> Users</a></li>
                                     </ul>
                                 </li>
                             @endif
-                            <li class="nav-item"><a class="nav-link" aria-current="page" href="{{ route('logout') }}">Log out</a></li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-gamepad"></i> Pok&eacute;mon 3D</a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="https://pokemon3d.net/">Homepage</a></li>
+                                    <li><a class="dropdown-item" href="https://pokemon3d.net/forum/">Forum</a></li>
+                                    <li><a class="dropdown-item" href="https://pokemon3d.net/wiki/">Wiki</a></li>
+                                    <li><a class="dropdown-item" href="https://github.com/P3D-Legacy/P3D-Legacy">Github</a></li>
+                                    <li><a class="dropdown-item" href="https://discordapp.com/invite/EUhwdrq">Discord</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item"><a class="nav-link" aria-current="page" href="{{ route('logout') }}"><i class="fas fa-sign-out-alt"></i> Log out</a></li>
                         </ul>
                     </div>
                 </div>
@@ -97,10 +114,18 @@
         <div class="container">
             <div class="row">
                 <div class="col-8">
-                    <p><i class="fas fa-coffee"></i> {{ round((microtime(true) - LARAVEL_START), 3) }}s &middot; Made with <span class="text-danger">&#10084;</span> by a bunch of <a href="https://github.com/P3D-Legacy/skin.pokemon3d.net/graphs/contributors">contributors</a> for the community &middot; Check out the <a href="https://github.com/P3D-Legacy/skin.pokemon3d.net"><i class="fab fa-github"></i> Github repo</a></p>
+                    <p>
+                        <small><i class="fas fa-coffee"></i> {{ round((microtime(true) - LARAVEL_START), 3) }}s &middot; </small>
+                        <small>&nbsp;<a href="https://github.com/P3D-Legacy/skin.pokemon3d.net"><i class="fab fa-github"></i> Github</a> &middot; </small>
+                        <a href="https://github.com/P3D-Legacy/skin.pokemon3d.net/graphs/contributors" target="_blank"><img src="https://img.shields.io/github/contributors/P3D-Legacy/skin.pokemon3d.net" alt="Contributors"></a>
+                        <a href="https://github.com/P3D-Legacy/skin.pokemon3d.net/issues" target="_blank"><img src="https://img.shields.io/github/issues/P3D-Legacy/skin.pokemon3d.net" alt="Issues"></a>
+                        <a href="https://discordapp.com/invite/EUhwdrq" target="_blank"><img src="https://img.shields.io/discord/299181628188524544" alt="Discord"></a>
+                    </p>
                 </div>
                 <div class="col-4 text-end">
-                    @if (env('APP_DEBUG')) <strong class="text-danger">DEBUG MODE ACTIVE!</strong> &middot; @endif{{ setting('APP_VERSION') }}
+                    <small>
+                    @if (env('APP_DEBUG')) <strong class="text-danger">DEBUG MODE ACTIVE!</strong> &middot; @endif <a class="text-secondary text-decoration-none" href="https://github.com/P3D-Legacy/skin.pokemon3d.net/blob/main/CHANGELOG.md">{{ setting('APP_VERSION') ?? 'unknown' }}</a>
+                    </small>
                 </div>
             </div>
         </div>

@@ -4,17 +4,19 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>@yield('title') - Pok&eacute;mon 3D: Skin</title>
+        <title>@yield('title') - {{ env('APP_NAME') }}</title>
 
-        <link rel="shortcut icon" href="http://pokemon3d.net/files/images/favicon.png">
+        <link rel="shortcut icon" href="{{ asset('img/favicon.png') }}">
 
         <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
         <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
 
+        <!-- Cookie Consent -->
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+
         <link href="{{ asset('css/auth.css') }}" rel="stylesheet">
         <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
-
     </head>
 <body class="text-center">
     <main class="form-signin">
@@ -55,5 +57,28 @@
         <p class="mt-2 mb-0"><a class="text-secondary" href="https://pokemon3d.net">Go back to pokemon3d.net</a></p>
 
     </main>
+    
+    @yield('javascript')
+
+    <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+    <script>
+        window.cookieconsent.initialise({
+          "palette": {
+            "popup": {
+              "background": "#237afc"
+            },
+            "button": {
+              "background": "#fff",
+              "text": "#237afc"
+            }
+          },
+          "theme": "classic",
+          "position": "bottom-right",
+          "content": {
+            "message": "This website uses cookies to ensure you have the best experience on our website.",
+            "dismiss": "Got it!",
+          }
+        });
+    </script>
 </body>
 </html>

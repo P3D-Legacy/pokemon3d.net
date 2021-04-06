@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Harrk\GameJoltApi\GamejoltApi;
 use Harrk\GameJoltApi\GamejoltConfig;
 use Illuminate\Support\Facades\Session;
+use Harrk\GameJoltApi\Exceptions\TimeOutException;
 
 class AuthController extends Controller
 {
@@ -38,7 +39,13 @@ class AuthController extends Controller
         $token = $request->token;
 
         $api = new GamejoltApi(new GamejoltConfig(env("GAMEJOLT_GAME_ID"), env("GAMEJOLT_GAME_PRIVATE_KEY")));
-        $auth = $api->users()->auth($username, $token);
+        
+        try {
+            $auth = $api->users()->auth($username, $token);
+        } catch (TimeOutException $e) {
+           return redirect()->route('login')->with('error', $e->getMessage());
+        }
+        
         if(filter_var($auth['response']['success'], FILTER_VALIDATE_BOOLEAN) === false) {
             return redirect()->route('login')->with('warning', $auth['response']['message'])->withInput();
         }

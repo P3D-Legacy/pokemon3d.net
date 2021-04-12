@@ -1,4 +1,11 @@
 
+<a name="0.3.2"></a>
+## [0.3.2](https://github.com/P3D-Legacy/skin.pokemon3d.net/compare/0.3.1...0.3.2) (2021-04-12)
+
+### Updated
+
+* Updated gamejolt-api with TimeOutException
+
 <a name="0.3.1"></a>
 ## [0.3.1](https://github.com/P3D-Legacy/skin.pokemon3d.net/compare/0.3.0...0.3.1) (2021-03-11)
 

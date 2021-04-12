@@ -7,6 +7,7 @@ use App\Http\Controllers\SkinController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ImportController;
 use App\Http\Controllers\PlayerSkinController;
+use App\Http\Controllers\UploadedSkinController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,3 +49,6 @@ Route::get('/skin/{uuid}/like', [SkinController::class, 'like'])->name('skin-lik
 Route::get('/users', [UserController::class, 'index'])->name('users');
 Route::get('/user/edit/{gjid}', [UserController::class, 'edit'])->name('user-edit');
 Route::post('/user/edit/{gjid}', [UserController::class, 'update'])->name('user-update');
+
+Route::get('/uploaded/skins', [UploadedSkinController::class, 'index'])->name('uploaded-skins');
+Route::post('/uploaded/skin/delete/{id}', [UploadedSkinController::class, 'destroy'])->name('uploaded-skin-destroy');

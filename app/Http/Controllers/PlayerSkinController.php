@@ -133,7 +133,7 @@ class PlayerSkinController extends Controller
         if(!Storage::disk('player')->exists($filename)) {
             return redirect()->route('player-skins')->with('error', 'Skin was not found!');
         }
-        activity()->causedBy(GJUser::where('gjid', session()->get('gjid'))->first())->withProperties(['filename' => $filename, 'reason' => $request->reason])->log('deleted');
+        activity()->causedBy(GJUser::where('gjid', session()->get('gjid'))->first())->withProperties(['filename' => $filename, 'gjid' => $gjid, 'reason' => $request->reason])->log('deleted');
         Storage::disk('player')->delete($filename);
         return redirect()->route('player-skins')->with('success', 'Skin was successfully deleted!');
     }

@@ -95,7 +95,7 @@ class UploadedSkinController extends Controller
         if(!Storage::disk('skin')->exists($skin->path())) {
             return redirect()->route('uploaded-skins')->with('error', 'Skin was not found!');
         }
-        activity()->causedBy(GJUser::where('gjid', session()->get('gjid'))->first())->withProperties(['filename' => $skin->path(), 'reason' => $request->reason])->log('deleted');
+        activity()->causedBy(GJUser::where('gjid', session()->get('gjid'))->first())->withProperties(['filename' => $skin->path(), 'gjid' => $skin->user->gjid, 'reason' => $request->reason])->log('deleted');
         $skin->delete();
         Storage::disk('skin')->delete($skin->path());
         return redirect()->route('uploaded-skins')->with('success', 'Skin was successfully deleted!');

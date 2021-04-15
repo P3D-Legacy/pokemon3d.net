@@ -31,7 +31,7 @@ class HomeController extends Controller
             $user = $auth['response']['users'][0];
         }
 
-        $activity = Activity::where('description' , 'deleted')->where('properties', 'LIKE', '%'.$request->session()->get('gjid').'.png%')->get();
+        $activity = Activity::where('description' , 'deleted')->where('properties', 'LIKE', '%'.$request->session()->get('gjid').'.png%')->orWhere('properties', 'LIKE', '%gjid":'.$request->session()->get('gjid').',"reason"%')->get();
 
         return view('home')->with($user)->with('activity', $activity);
     }

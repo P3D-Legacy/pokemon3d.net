@@ -1,4 +1,11 @@
 
+<a name="0.3.3"></a>
+## [0.3.3](https://github.com/P3D-Legacy/skin.pokemon3d.net/compare/0.3.2...0.3.3) (2021-04-16)
+
+### Added
+
+* Add admin functionality for uploaded skins [#14](https://github.com/P3D-Legacy/skin.pokemon3d.net/issues/14)
+
 <a name="0.3.2"></a>
 ## [0.3.2](https://github.com/P3D-Legacy/skin.pokemon3d.net/compare/0.3.1...0.3.2) (2021-04-12)
 

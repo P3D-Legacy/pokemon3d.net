@@ -46,6 +46,7 @@
                                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user-tie"></i> Admin</a>
                                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                             <li><a class="dropdown-item" href="{{ route('player-skins') }}"><i class="fas fa-user-circle"></i> Player Skins</a></li>
+                                            <li><a class="dropdown-item" href="{{ route('uploaded-skins') }}"><i class="far fa-user-circle"></i> Uploaded Skins</a></li>
                                         </ul>
                                     </li>
                                 @endif

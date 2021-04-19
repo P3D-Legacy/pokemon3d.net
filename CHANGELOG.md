@@ -6,6 +6,7 @@
 
 * Add admin functionality for uploaded skins [#14](https://github.com/P3D-Legacy/skin.pokemon3d.net/issues/14)
 
+
 <a name="0.3.2"></a>
 ## [0.3.2](https://github.com/P3D-Legacy/skin.pokemon3d.net/compare/0.3.1...0.3.2) (2021-04-12)
 
@@ -13,12 +14,14 @@
 
 * Updated gamejolt-api with TimeOutException
 
+
 <a name="0.3.1"></a>
 ## [0.3.1](https://github.com/P3D-Legacy/skin.pokemon3d.net/compare/0.3.0...0.3.1) (2021-03-11)
 
 ### Added
 
 * Added missing pagnitation links [#11](https://github.com/P3D-Legacy/skin.pokemon3d.net/issues/11)
+
 
 <a name="0.3.0"></a>
 ## [0.3.0](https://github.com/P3D-Legacy/skin.pokemon3d.net/compare/0.3.0-beta...0.3.0) (2021-02-12)
@@ -62,6 +65,7 @@
 * Updated title of header
 * Updated user editing for admins
 
+
 <a name="0.3.0-beta"></a>
 ## [0.3.0-beta](https://github.com/P3D-Legacy/skin.pokemon3d.net/compare/0.2.2...0.3.0-beta) (2021-01-29)
 
@@ -88,9 +92,7 @@
 * Updated footer
 
 <a name="0.2.2"></a>
-## [0.2.2](https://github.com/P3D-Legacy/skin.pokemon3d.net/compare/0.2.1...0.2.2)
-
-> 2021-01-26
+## [0.2.2](https://github.com/P3D-Legacy/skin.pokemon3d.net/compare/0.2.1...0.2.2) (2021-01-26)
 
 ### Updated
 
@@ -98,9 +100,7 @@
 
 
 <a name="0.2.1"></a>
-## [0.2.1](https://github.com/P3D-Legacy/skin.pokemon3d.net/compare/0.2.0...0.2.1)
-
-> 2021-01-26
+## [0.2.1](https://github.com/P3D-Legacy/skin.pokemon3d.net/compare/0.2.0...0.2.1) (2021-01-26)
 
 ### Updated
 
@@ -111,10 +111,9 @@
 ### Removed
 * Remove a old folder from 0.1.0 causing issues
 
-<a name="0.2.0"></a>
-## [0.2.0](https://github.com/P3D-Legacy/skin.pokemon3d.net/compare/0.1.0...0.2.0)
 
-> 2021-01-26
+<a name="0.2.0"></a>
+## [0.2.0](https://github.com/P3D-Legacy/skin.pokemon3d.net/compare/0.1.0...0.2.0) (2021-01-26)
 
 ### Added
 
@@ -128,9 +127,7 @@
 
 
 <a name="0.1.0"></a>
-## [0.1.0](https://github.com/P3D-Legacy/skin.pokemon3d.net/compare/0.1.0-beta...0.1.0)
-
-> 2021-01-25
+## [0.1.0](https://github.com/P3D-Legacy/skin.pokemon3d.net/compare/0.1.0-beta...0.1.0) (2021-01-25)
 
 ### Added
 
@@ -145,9 +142,7 @@
 
 
 <a name="0.1.0-beta"></a>
-## 0.1.0-beta
-
-> 2021-01-24
+## 0.1.0-beta (2021-01-24)
 
 ### Initial release
 

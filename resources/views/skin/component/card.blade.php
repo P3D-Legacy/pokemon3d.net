@@ -2,7 +2,7 @@
     <div class="card">
         <div class="row g-0">
             <div class="col-4 p-2">
-                <img src="{{ asset('skin/'.$skin->path()) }}" height="128" width="96">
+                <img src="{{ Storage::disk('skin')->exists($skin->path()) ? asset('skin/'.$skin->path()) : asset('img/noskin.png') }}" height="128" width="96">
             </div>
             <div class="col-8">
                 <div class="card-body">
@@ -11,7 +11,7 @@
                         <p>
                             <small class="text-muted">Owned by: {{ $skin->user->gju ?? $skin->owner_id }}</small><br>
                             <small class="text-muted">Uploaded: {{ \Carbon\Carbon::parse($skin->created_at)->diffForHumans() }}</small><br>
-                            <small class="text-muted">File size: {{ \ByteUnits\Binary::bytes(Storage::disk('skin')->size($skin->path()))->format() }}</small><br>
+                            <small class="text-muted">File size: {{ Storage::disk('skin')->exists($skin->path()) ? \ByteUnits\Binary::bytes(Storage::disk('skin')->size($skin->path()))->format() : 'N/A' }}</small><br>
                             <small class="text-muted"><i class="far fa-heart"></i> {{ $skin->likers()->count() }} likes</small>
                         </p>
                         <p>

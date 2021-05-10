@@ -1,5 +1,5 @@
 @extends('layout.auth')
-@section('title', 'Maintenance')
+@section('title', 'Not Found')
 	 
 @section('content')
     <p class="fs-1">404</p>

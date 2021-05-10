@@ -1,4 +1,15 @@
 
+<a name="0.3.5"></a>
+## [0.3.5](https://github.com/P3D-Legacy/skin.pokemon3d.net/compare/0.3.4...0.3.5) (2021-05-10)
+
+### Fixed
+
+* Fixed view of missing files  [#23](https://github.com/P3D-Legacy/skin.pokemon3d.net/issues/23)
+
+### Added
+
+* Added a better server error page
+
 <a name="0.3.4"></a>
 ## [0.3.4](https://github.com/P3D-Legacy/skin.pokemon3d.net/compare/0.3.3...0.3.4) (2021-05-09)
 

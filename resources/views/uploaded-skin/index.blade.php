@@ -13,7 +13,7 @@
             <div class="card">
                 <div class="row g-0">
                     <div class="col-4 p-2">
-                        <img src="{{ asset('skin/'.$skin->path()) }}" height="128" width="96">
+                        <img src="{{ Storage::disk('skin')->exists($skin->path()) ? asset('skin/'.$skin->path()) : asset('img/noskin.png') }}" height="128" width="96">
                     </div>
                     <div class="col-8">
                         <div class="card-body">
@@ -21,7 +21,7 @@
                             <p class="card-text text-muted">
                                 <small>{{ $skin->uuid }}</small>
                                 <br>
-                                <small>{{ \ByteUnits\Binary::bytes(Storage::disk('skin')->size($skin->path()))->format() }}</small>
+                                <small>{{ Storage::disk('skin')->exists($skin->path()) ? \ByteUnits\Binary::bytes(Storage::disk('skin')->size($skin->path()))->format() : 'N/A' }}</small>
                                 <br>
                                 <small>Owned by {{ $skin->user->gju ?? 'Game Jolt ID: '.$skin->owner_id }}</small>
                             </p>

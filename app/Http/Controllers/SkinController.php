@@ -60,7 +60,6 @@ class SkinController extends Controller
     {
         $gjid = $request->session()->get('gjid');
         $skins = GJUser::find($gjid)->skins()->get();
-        //$skins = Skin::where('owner_id', $gjid)->get();
         return view('skin.my')->with('skins', $skins);
     }
 

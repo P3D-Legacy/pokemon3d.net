@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use Webpatser\Uuid\Uuid;
+use BinaryCabin\LaravelUUID\Traits\HasUUID;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Models\Activity;
 use Overtrue\LaravelLike\Traits\Likeable;
@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Skin extends Model
 {
-    use HasFactory, SoftDeletes, LogsActivity, Likeable;
+    use HasFactory, SoftDeletes, LogsActivity, Likeable, HasUUID;
 
     /**
      * The attributes that are mass assignable.
@@ -34,17 +34,6 @@ class Skin extends Model
      * @var bool
      */
     public $incrementing = false;
-
-    /**
-     *  Setup model event hooks
-     */
-    public static function boot()
-    {
-        parent::boot();
-        self::creating(function ($model) {
-            $model->uuid = (string) Uuid::generate(4);
-        });
-    }
 
     /**
      * Get the route key for the model.

@@ -13,6 +13,7 @@
     "require": {
         "php": "^7.3|^8.0",
         "anlutro/l4-settings": "^1.0",
+        "binarycabin/laravel-uuid": "^1.0",
         "enlightn/enlightn": "^1.0",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
@@ -25,8 +26,7 @@
         "overtrue/laravel-like": "^4.0",
         "sentry/sentry-laravel": "^2.5",
         "spatie/laravel-activitylog": "^3.16",
-        "twbs/bootstrap": "5.0.0-beta1",
-        "webpatser/laravel-uuid": "^3.0"
+        "twbs/bootstrap": "5.0.0-beta1"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.5",

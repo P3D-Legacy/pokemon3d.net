@@ -1,4 +1,16 @@
 
+<a name="0.3.6"></a>
+## [0.3.6](https://github.com/P3D-Legacy/skin.pokemon3d.net/compare/0.3.5...0.3.6) (2021-06-01)
+
+### Added
+
+* Added user profile [#17](https://github.com/P3D-Legacy/skin.pokemon3d.net/issues/17) & [#16](https://github.com/P3D-Legacy/skin.pokemon3d.net/issues/16)
+
+### Other
+* Swapped UUID package
+* Updated all other packages
+* Minor tweaks and improvments
+
 <a name="0.3.5"></a>
 ## [0.3.5](https://github.com/P3D-Legacy/skin.pokemon3d.net/compare/0.3.4...0.3.5) (2021-05-10)
 

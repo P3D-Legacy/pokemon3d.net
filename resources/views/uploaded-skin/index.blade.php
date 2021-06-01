@@ -23,7 +23,7 @@
                                 <br>
                                 <small>{{ Storage::disk('skin')->exists($skin->path()) ? \ByteUnits\Binary::bytes(Storage::disk('skin')->size($skin->path()))->format() : 'N/A' }}</small>
                                 <br>
-                                <small>Owned by {{ $skin->user->gju ?? 'Game Jolt ID: '.$skin->owner_id }}</small>
+                                <small>Owned by <a href="{{ route('user-show', $skin->owner_id) }}">{{ $skin->user->gju ?? 'Game Jolt ID: '.$skin->owner_id }}</a></small>
                             </p>
                             <form class="row row-cols-lg-auto g-3 align-items-center" method="post" action="{{ route('uploaded-skin-destroy', $skin->uuid) }}">
                                 <div class="col-12">

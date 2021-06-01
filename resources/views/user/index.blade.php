@@ -21,7 +21,10 @@
                         <td>{{ $user->gjid }}</td>
                         <td>{{ $user->gju }}</td>
                         <td>{{ ($user->is_admin) ? 'Yes' : 'No' }}</td>
-                        <td><a class="btn btn-warning" href="{{ route('user-edit', $user->gjid) }}"><i class="fas fa-edit"></i> Edit</a></td>
+                        <td>
+                            <a class="btn btn-info" href="{{ route('user-show', $user->gjid) }}"><i class="fas fa-user"></i> Show</a>
+                            <a class="btn btn-warning" href="{{ route('user-edit', $user->gjid) }}"><i class="fas fa-edit"></i> Edit</a>
+                        </td>
                     </tr>
                 @endforeach
             </tbody>

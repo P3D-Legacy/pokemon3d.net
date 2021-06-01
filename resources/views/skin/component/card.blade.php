@@ -9,7 +9,7 @@
                     <h5 class="card-title"><a href="{{ route('skin-show', $skin->uuid) }}">{{ $skin->name }}</a></h5>
                     <p class="card-text">
                         <p>
-                            <small class="text-muted">Owned by: {{ $skin->user->gju ?? $skin->owner_id }}</small><br>
+                            <small class="text-muted">Owned by: <a href="{{ route('user-show', $skin->owner_id) }}">{{ $skin->user->gju ?? $skin->owner_id }}</a></small><br>
                             <small class="text-muted">Uploaded: {{ \Carbon\Carbon::parse($skin->created_at)->diffForHumans() }}</small><br>
                             <small class="text-muted">File size: {{ Storage::disk('skin')->exists($skin->path()) ? \ByteUnits\Binary::bytes(Storage::disk('skin')->size($skin->path()))->format() : 'N/A' }}</small><br>
                             <small class="text-muted"><i class="far fa-heart"></i> {{ $skin->likers()->count() }} likes</small>

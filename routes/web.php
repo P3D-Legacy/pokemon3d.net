@@ -47,6 +47,7 @@ Route::get('/skin/{uuid}/apply', [SkinController::class, 'apply'])->name('skin-a
 Route::get('/skin/{uuid}/like', [SkinController::class, 'like'])->name('skin-like');
 
 Route::get('/users', [UserController::class, 'index'])->name('users');
+Route::get('/user/{gjid}', [UserController::class, 'show'])->name('user-show');
 Route::get('/user/edit/{gjid}', [UserController::class, 'edit'])->name('user-edit');
 Route::post('/user/edit/{gjid}', [UserController::class, 'update'])->name('user-update');
 

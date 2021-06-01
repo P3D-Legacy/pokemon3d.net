@@ -49,9 +49,11 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($gjid)
     {
-        //
+        $user = GJUser::where('gjid', $gjid)->first();
+        abort_unless($user, 404);
+        return view('user.show')->with('user', $user);
     }
 
     /**

@@ -1,4 +1,11 @@
 
+<a name="0.3.7"></a>
+## [0.3.7](https://github.com/P3D-Legacy/skin.pokemon3d.net/compare/0.3.6...0.3.7) (2021-06-02)
+
+### Fixed
+* Fixed where you could see private skins on profile
+* Fixed title for user profile
+
 <a name="0.3.6"></a>
 ## [0.3.6](https://github.com/P3D-Legacy/skin.pokemon3d.net/compare/0.3.5...0.3.6) (2021-06-01)
 

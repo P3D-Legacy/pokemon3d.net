@@ -12,7 +12,7 @@
     @if(!$user->skins->count())
         <p>None found.</p>
     @endif
-    @foreach($user->skins as $skin)
+    @foreach($user->publicSkins as $skin)
         @include('skin.component.card', ['skin' => $skin])
     @endforeach
 </div>

@@ -63,4 +63,12 @@ class GJUser extends Model
     {
         return $this->hasMany(Skin::class, 'owner_id', 'gjid');
     }
+
+    /**
+     * Get the skins that the user owns.
+     */
+    public function publicSkins()
+    {
+        return $this->hasMany(Skin::class, 'owner_id', 'gjid')->isPublic();
+    }
 }

@@ -1,5 +1,5 @@
 @extends('layout.main')
-@section('title', $user->username)
+@section('title', $user->gju)
      
 @section('content')
 <div class="row">

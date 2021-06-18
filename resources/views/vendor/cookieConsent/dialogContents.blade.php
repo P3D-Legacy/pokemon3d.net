@@ -1,4 +1,4 @@
-<div class="js-cookie-consent absolute left-0 bottom-0 w-64 bg-white rounded-lg shadow-2xl p-6 ml-8 mb-8 z-50">
+<div class="js-cookie-consent fixed left-0 bottom-0 w-64 bg-white rounded-lg shadow-2xl p-6 ml-8 mb-8 z-50">
     <div class="w-16 mx-auto relative -mt-12 mb-3">
         <img class="-mt-1" src="{{ asset('/img/cookie.svg') }}" alt="cookie"/>
     </div>

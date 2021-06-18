@@ -26,7 +26,6 @@
         "overtrue/laravel-like": "^4.0",
         "sentry/sentry-laravel": "^2.5",
         "spatie/laravel-activitylog": "^3.16",
-        "twbs/bootstrap": "5.0.0-beta1"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.5",
@@ -73,17 +72,9 @@
             "@php artisan key:generate --ansi"
         ],
         "post-install-cmd": [
-            "rm -rf public/css/bootstrap.min.css",
-            "rm -rf public/js/bootstrap.min.js",
-            "cp -R vendor/twbs/bootstrap/dist/css/bootstrap.min.css public/css/bootstrap.min.css",
-            "cp -R vendor/twbs/bootstrap/dist/js/bootstrap.min.js public/js/bootstrap.min.js",
             "rm -rf public/skins"
         ],
         "post-update-cmd": [
-            "rm -rf public/css/bootstrap.min.css",
-            "rm -rf public/js/bootstrap.min.js",
-            "cp -R vendor/twbs/bootstrap/dist/css/bootstrap.min.css public/css/bootstrap.min.css",
-            "cp -R vendor/twbs/bootstrap/dist/js/bootstrap.min.js public/js/bootstrap.min.js",
             "rm -rf public/skins"
         ]
     }

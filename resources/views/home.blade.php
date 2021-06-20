@@ -8,7 +8,7 @@
             <div class="card-header">Your Current Skin @if(File::exists(public_path('player/'.$id.'.png')))<a class="btn btn-sm btn-outline-danger float-end" href="{{ route('player-skin-destroy') }}" role="button"><i class="fas fa-user-slash"></i> Delete</a>@endif</div>
             <div class="card-body">
                 @if(File::exists(public_path('player/'.$id.'.png')))
-                    <img src="{{ asset('player/'.$id.'.png') }}?r={{ \Carbon\Carbon::now()->timestamp }}">
+                    <img src="{{ asset('player/'.$id.'.png') }}?r={{ now()->timestamp }}">
                 @else
                     <p>We could not find a skin for your account.</p>
                     <p><a href="{{ route('import', $id) }}">Do you want to import the skin from the old site?</a></p>

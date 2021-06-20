@@ -71,12 +71,6 @@
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
-        ],
-        "post-install-cmd": [
-            "rm -rf public/skins"
-        ],
-        "post-update-cmd": [
-            "rm -rf public/skins"
         ]
     }
 }

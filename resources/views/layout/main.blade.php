@@ -32,24 +32,48 @@
                                         <img class="h-8 w-8" src="{{ asset('img/TreeLogoSmall.png') }}" alt="{{ env('APP_NAME') }}"/>
                                     </a>
                                     <div class="block ml-6 flex items-baseline space-x-4">
-                                        <a class="text-gray-600  hover:text-gray-800 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium" href="{{ route('skins-my') }}">
+                                        <a class="text-gray-600 hover:text-gray-800 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium" href="{{ route('skins-my') }}">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
                                             </svg>
                                             My Skins
                                         </a>
-                                        <a class="text-gray-600  hover:text-gray-800 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium" href="{{ route('skins') }}">
+                                        <a class="text-gray-600 hover:text-gray-800 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium" href="{{ route('skins') }}">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
                                             </svg>
                                             Public Skins
                                         </a>
-                                        <a class="text-gray-600  hover:text-gray-800 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium" href="{{ route('skins') }}">
+                                        <a class="text-gray-600 hover:text-gray-800 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium" href="{{ route('skins') }}">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
                                             </svg>
                                             Upload Skin
                                         </a>
+                                        @if(App\Models\GJUser::where('gjid', session()->get('gjid'))->first())
+                                            @if(App\Models\GJUser::where('gjid', session()->get('gjid'))->first()->is_admin)
+                                                <a class="text-green-600 hover:text-gray-800 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium" href="{{ route('player-skins') }}">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                                                    </svg>
+                                                    Player Skins
+                                                </a>
+                                                <a class="text-green-600 hover:text-gray-800 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium" href="{{ route('uploaded-skins') }}">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2" />
+                                                    </svg>
+                                                    Uploaded Skins
+                                                </a>
+                                            @endif
+                                        @endif
+                                        @if(session()->get('gjid') == env("GAMEJOLT_USER_ID_SUPERADMIN"))
+                                            <a class="text-red-600 hover:text-gray-800 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium" href="{{ route('uploaded-skins') }}">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                                                </svg>
+                                                Users
+                                            </a>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="block">
@@ -60,14 +84,45 @@
                                     <div class="ml-4 flex items-center md:ml-6">
                                         <div class="ml-3 relative">
                                             <div x-data="{ open: false }"class="relative inline-block text-left" >
-                                                <button @click="open = !open" type="button" class="flex items-center justify-center w-full rounded-md px-2 py-2 text-sm font-medium text-gray-700 dark:text-gray-50 hover:bg-gray-50 dark:hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-gray-500" id="options-menu">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                                        </svg>
+                                                <button @click="open = !open" type="button" class="flex items-center justify-center align-middle w-full rounded-md px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-50 hover:bg-gray-50 dark:hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-gray-500" id="options-menu">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                    </svg>
+                                                    Pok&eacute;mon 3D
                                                 </button>
                                                 <div @click.away="open = false" x-show="open" class="origin-top-right absolute hidden right-0 mt-2 w-56 rounded-md shadow-lg bg-white dark:bg-gray-800 ring-1 ring-black ring-opacity-5">
                                                     <div class="py-1 " role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-                                                        <a href="#" class="block block px-4 py-2 text-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600" role="menuitem">
+                                                        <a href="#" class="block px-4 py-2 text-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600" role="menuitem">
+                                                            <span class="flex flex-col">
+                                                                <span>
+                                                                    Logout
+                                                                </span>
+                                                                <span>
+                                                                    Logout
+                                                                </span>
+                                                                <span>
+                                                                    Logout
+                                                                </span>
+                                                                <span>
+                                                                    Logout
+                                                                </span>
+                                                            </span>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="ml-3 relative">
+                                            <div x-data="{ open: false }"class="relative inline-block text-left" >
+                                                <button @click="open = !open" type="button" class="flex items-center justify-center align-middle w-full rounded-md px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-50 hover:bg-gray-50 dark:hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-gray-500" id="options-menu">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                    </svg>
+                                                    Username
+                                                </button>
+                                                <div @click.away="open = false" x-show="open" class="origin-top-right absolute hidden right-0 mt-2 w-56 rounded-md shadow-lg bg-white dark:bg-gray-800 ring-1 ring-black ring-opacity-5">
+                                                    <div class="py-1 " role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                                                        <a href="#" class="block px-4 py-2 text-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600" role="menuitem">
                                                             <span class="flex flex-col">
                                                                 <span>
                                                                     Logout
@@ -172,7 +227,7 @@
                 </div>
             @endif
 
-            {{--@yield('content')--}}
+            @yield('content')
 
         </div>
     </div>

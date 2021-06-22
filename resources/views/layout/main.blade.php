@@ -83,14 +83,14 @@
                                 <div class="block">
                                     <div class="ml-4 flex items-center md:ml-6">
                                         <div class="ml-3 relative">
-                                            <div x-data="{ open: false }"class="relative inline-block text-left" >
-                                                <button @click="open = !open" type="button" class="flex items-center justify-center align-middle w-full rounded-md px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-50 hover:bg-gray-50 dark:hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-gray-500" id="options-menu">
+                                            <div x-data="{ open: false }" class="relative inline-block text-left" >
+                                                <button @click="open = ! open" type="button" class="flex items-center justify-center align-middle w-full rounded-md px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-50 hover:bg-gray-50 dark:hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-gray-500" id="options-menu">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                                     </svg>
                                                     Pok&eacute;mon 3D
                                                 </button>
-                                                <div @click.away="open = false" x-show="open" class="origin-top-right absolute hidden right-0 mt-2 w-56 rounded-md shadow-lg bg-white dark:bg-gray-800 ring-1 ring-black ring-opacity-5">
+                                                <div x-show="open" @click.outside="open = false" class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white dark:bg-gray-800 ring-1 ring-black ring-opacity-5 border border-1 border-gray-300">
                                                     <div class="py-1 " role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
                                                         <a href="#" class="block px-4 py-2 text-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600" role="menuitem">
                                                             <span class="flex flex-col">
@@ -114,13 +114,13 @@
                                         </div>
                                         <div class="ml-3 relative">
                                             <div x-data="{ open: false }"class="relative inline-block text-left" >
-                                                <button @click="open = !open" type="button" class="flex items-center justify-center align-middle w-full rounded-md px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-50 hover:bg-gray-50 dark:hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-gray-500" id="options-menu">
+                                                <button @click="open = ! open" type="button" class="flex items-center justify-center align-middle w-full rounded-md px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-50 hover:bg-gray-50 dark:hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-gray-500" id="options-menu">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                                                     </svg>
                                                     Username
                                                 </button>
-                                                <div @click.away="open = false" x-show="open" class="origin-top-right absolute hidden right-0 mt-2 w-56 rounded-md shadow-lg bg-white dark:bg-gray-800 ring-1 ring-black ring-opacity-5">
+                                                <div x-show="open" @click.outside="open = false" class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white dark:bg-gray-800 ring-1 ring-black ring-opacity-5 border border-1 border-gray-300">
                                                     <div class="py-1 " role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
                                                         <a href="#" class="block px-4 py-2 text-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600" role="menuitem">
                                                             <span class="flex flex-col">

@@ -50,6 +50,8 @@
                     </ul>
                 </div>
             @endif
+
+            <button x-data @click="alert('I\'ve been clicked!')" class="text-white">Click Me</button>
         
             @yield('content')
         </div>

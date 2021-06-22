@@ -8,12 +8,12 @@
 
         <link rel="shortcut icon" href="{{ asset('img/favicon.png') }}">
 
-        <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+        <!-- Style -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
 
-        <!-- Cookie Consent -->
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+        <!-- Scripts -->
+        <script src="{{ mix('js/app.js') }}" defer></script>
 
     </head>
 <body class="font-sans antialiased bg-repeat bg-center bg-woods w-full h-screen">

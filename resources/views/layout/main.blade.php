@@ -20,7 +20,6 @@
 <body class="font-sans antialiased bg-repeat bg-center bg-woods w-full h-full">
     <div class="container flex flex-1 h-full mx-auto">
         <div class="w-full">
-            <button x-data @click="alert('I\'ve been clicked!')">Click Me</button>
 
             <header class="w-full shadow-lg bg-white dark:bg-gray-700 items-center h-16 rounded-2xl z-40 mt-4">
                 <div class="relative z-20 flex flex-col justify-center h-full px-3 mx-auto flex-center">

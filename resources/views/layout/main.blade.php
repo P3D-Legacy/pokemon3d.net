@@ -17,7 +17,7 @@
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}" defer></script>
 </head>
-<body class="font-sans antialiased bg-repeat bg-center bg-woods w-full h-full">
+<body class="font-sans antialiased bg-repeat bg-center bg-woods w-full h-full px-2 md:px-0">
     <div class="container flex flex-1 h-full mx-auto">
         <div class="w-full">
 
@@ -26,8 +26,8 @@
                     <div class="relative items-center pl-1 flex w-full lg:max-w-68 sm:pr-2 sm:ml-0">
                         <div class="container relative left-0 z-50 flex h-auto h-full">
                             <div class="flex items-center justify-between h-16 w-full">
-                                <div class="flex items-center">
-                                    <a class="flex-shrink-0" href="/">
+                                <div class="hidden lg:flex items-center">
+                                    <a class="flex flex-shrink-0 h-8 w-8" href="/">
                                         <img class="h-8 w-8" src="{{ asset('img/TreeLogoSmall.png') }}" alt="{{ env('APP_NAME') }}"/>
                                     </a>
                                     <div class="block ml-6 flex items-baseline space-x-4">
@@ -109,11 +109,43 @@
                                         @endif
                                     </div>
                                 </div>
-                                <div class="block">
+                                <!-- Mobile Menu -->
+                                <a class="flex lg:hidden flex-shrink-0 h-8 w-8" href="/">
+                                    <img class="h-8 w-8" src="{{ asset('img/TreeLogoSmall.png') }}" alt="{{ env('APP_NAME') }}"/>
+                                </a>
+                                <div x-data="{ open: false }" class="block lg:hidden items-center">
+                                    <div class="hidden lg:block">
+                                        <div class="ml-4 flex items-center md:ml-6">
+                                        </div>
+                                    </div>
+                                    <button @click="open = ! open"  class="flex items-center py-2 px-3 text-gray-500 rounded border border-gray-500">
+                                        <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <title>
+                                                Menu
+                                            </title>
+                                            <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z">
+                                            </path>
+                                        </svg>
+                                    </button>
+                                    <div x-show="open" @click.outside="open = false" class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white dark:bg-gray-800 ring-1 ring-black ring-opacity-5 border border-1 border-gray-300">
+                                        <div class="py-1 " role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                                            <a href="{{ route('users') }}" class="block px-4 py-2 text-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600" role="menuitem">
+                                                <span>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline-block mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                                                    </svg>
+                                                    Users
+                                                </span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Mobile Menu END -->
+                                <div class="hidden lg:block">
                                     <div class="ml-4 flex items-center md:ml-6">
                                     </div>
                                 </div>
-                                <div class="block">
+                                <div class="hidden lg:block">
                                     <div class="ml-4 flex items-center md:ml-6">
                                         <div class="ml-3 relative">
                                             <div x-data="{ open: false }" class="relative inline-block text-left" >

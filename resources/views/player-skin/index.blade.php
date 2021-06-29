@@ -6,7 +6,7 @@
     Player Skins
 </h2>
 
-<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+<div class="gap-4 grid grid-cols-1 grid-flow-row auto-rows-max sm:grid-cols-2 lg:grid-cols-3">
     @foreach($playerskins as $playerskin)
         <div class="flex max-w-md bg-white shadow-lg rounded-lg overflow-hidden">
             <div class="w-1/4 items-center justify-center pt-4 pl-4">

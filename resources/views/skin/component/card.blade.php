@@ -9,7 +9,7 @@
         </h1>
         <p class="mt-2 text-gray-600 text-xs">
             @if(session()->get('gjid') == $skin->owner_id)
-                Public: {{ ($skin->public) ? 'Yes' : 'No' }}
+                Public: {{ ($skin->public) ? 'Yes' : 'No' }}<br>
             @endif
             Owned by: <a class="text-green-800" href="{{ route('user-show', $skin->owner_id) }}">{{ $skin->user->gju ?? $skin->owner_id }}</a><br>
             Uploaded: {{ $skin->created_at->diffForHumans() }}<br>

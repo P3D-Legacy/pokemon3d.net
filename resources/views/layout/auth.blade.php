@@ -21,27 +21,27 @@
         <div class="w-full max-w-lg">
 
             @if (session('error'))
-                <div class="relative py-3 pl-4 pr-10 leading-normal text-red-700 bg-red-100 rounded-lg">
+                <div class="px-4 py-3 mb-4 leading-normal text-red-100 bg-red-700 rounded-lg">
                     <i class="fas fa-frown mr-2" aria-hidden="true"></i> {{ session('error') }}
                 </div>
             @endif
             @if (session('success'))
-                <div class="relative py-3 pl-4 pr-10 leading-normal text-green-700 bg-green-100 rounded-lg">
+                <div class="px-4 py-3 mb-4 leading-normal text-green-100 bg-green-700 rounded-lg">
                     <i class="fas fa-check-circle mr-2" aria-hidden="true"></i> {{ session('success') }}
                 </div>
             @endif
             @if (session('info'))
-                <div class="relative py-3 pl-4 pr-10 leading-normal text-blue-700 bg-blue-100 rounded-lg">
+                <div class="px-4 py-3 mb-4 leading-normal text-blue-100 bg-blue-700 rounded-lg">
                     <i class="fas fa-info-circle mr-2" aria-hidden="true"></i> {{ session('info') }}
                 </div>
             @endif
             @if (session('warning'))
-                <div class="relative py-3 pl-4 pr-10 leading-normal text-yellow-700 bg-yellow-100 rounded-lg">
+                <div class="px-4 py-3 leading-normal text-yellow-100 bg-yellow-700 rounded-lg">
                     <i class="fas fa-exclamation mr-2" aria-hidden="true"></i> {{ session('warning') }}
                 </div>
             @endif
             @if ($errors->any())
-                <div class="relative py-3 pl-4 pr-10 leading-normal text-yellow-700 bg-yellow-100 rounded-lg" role="alert">
+                <div class="px-4 py-3 mb-4 leading-normal text-yellow-100 bg-yellow-700 rounded-lg" role="alert">
                     <strong><i class="fas fa-exclamation-triangle mr-2" aria-hidden="true"></i> Input Warning</strong>
                     <ul class="m-0">
                         @foreach ($errors->all() as $error)

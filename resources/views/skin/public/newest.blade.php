@@ -11,7 +11,7 @@
     <a class="border-t border-b border-r text-base font-medium rounded-r-md hover:bg-gray-100 px-4 py-2 {{ request()->is('skins/public/popular*') ? 'text-green-800 bg-green-50' : 'text-gray-800 bg-white' }}" href="{{ route('skins-popular') }}">Most Popular</a>
 </div>
 
-<div class="gap-4 grid grid-flow-row auto-cols-auto md:grid-flow-col md:auto-cols-max">
+<div class="gap-4 grid grid-cols-1 grid-flow-row auto-rows-max sm:grid-cols-2 lg:grid-cols-3">
     @if(!$skins->count())
         <p class="text-white">None found.</p>
     @endif

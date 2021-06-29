@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import '@fortawesome/fontawesome-free';
+
+
+.svg-inline--fa {
+    margin-right: 0.25rem !important;
+}

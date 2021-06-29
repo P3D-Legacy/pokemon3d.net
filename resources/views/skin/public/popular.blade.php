@@ -2,36 +2,26 @@
 @section('title', 'Public Skins')
      
 @section('content')
-<div class="row">
-    <div class="col-12">
-        <h2>Public Skins</h2>
-    </div>
+<h2 class="text-3xl font-extrabold leading-9 border-b-2 border-gray-100 text-gray-50 mb-4 mt-4 pb-1">
+    Public Skins
+</h2>
+
+<div class="flex items-center mb-4">
+    <a class="border-l border-t border-b text-base font-medium rounded-l-md hover:bg-gray-100 px-4 py-2 {{ request()->is('skins/public/new*') ? 'text-green-800 bg-green-50' : 'text-gray-800' }} bg-white" href="{{ route('skins-newest') }}">Newest</a>
+    <a class="border-t border-b border-r text-base font-medium rounded-r-md hover:bg-gray-100 px-4 py-2 {{ request()->is('skins/public/popular*') ? 'text-green-800 bg-green-50' : 'text-gray-800 bg-white' }}" href="{{ route('skins-popular') }}">Most Popular</a>
 </div>
-<div class="row">
-    <div class="col-12">
-        <ul class="nav nav-tabs mb-3" id="myTab" role="tablist">
-            <li class="nav-item" role="presentation">
-                <a class="nav-link" href="{{ route('skins-newest') }}">Newest</a>
-            </li>
-            <li class="nav-item" role="presentation">
-                <a class="nav-link active" href="{{ route('skins-popular') }}">Most Popular</a>
-            </li>
-        </ul>
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-            @if(!$skins->count())
-                <p>None found.</p>
-            @endif
-            @foreach($skins as $skin)
-                @include('skin.component.card', ['skin' => $skin])
-            @endforeach
-        </div>
-        
-    </div>
+
+<div class="gap-4 grid grid-cols-1 grid-flow-row auto-rows-max sm:grid-cols-2 lg:grid-cols-3">
+    @if(!$skins->count())
+        <p class="text-white">None found.</p>
+    @endif
+    @foreach($skins as $skin)
+        @include('skin.component.card', ['skin' => $skin])
+    @endforeach
 </div>
-<div class="row mt-3">
-    <div class="col-12">
-        {{ $skins->links() }}
-    </div>
+
+<div class="mt-4">
+    {{ $skins->links() }}
 </div>
 
 @endsection

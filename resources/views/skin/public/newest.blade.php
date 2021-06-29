@@ -13,7 +13,7 @@
 
 <div class="gap-4 grid grid-flow-row auto-cols-auto md:grid-flow-col md:auto-cols-max">
     @if(!$skins->count())
-        <p>None found.</p>
+        <p class="text-white">None found.</p>
     @endif
     @foreach($skins as $skin)
         @include('skin.component.card', ['skin' => $skin])

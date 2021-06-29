@@ -43,7 +43,7 @@
                                             </svg>
                                             Public Skins
                                         </a>
-                                        <a class="flex items-center justify-center align-middle rounded-md px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-50 hover:bg-gray-50 dark:hover:bg-gray-500" href="{{ route('skins') }}">
+                                        <a class="flex items-center justify-center align-middle rounded-md px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-50 hover:bg-gray-50 dark:hover:bg-gray-500" href="{{ route('skin-create') }}">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline-block mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
                                             </svg>

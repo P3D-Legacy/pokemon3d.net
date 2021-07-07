@@ -17,7 +17,7 @@
                 <label for="token" class="block mb-1">Game Token</label>
                 <input type="password" id="token" name="token" class="w-full h-10 px-3 mb-2 text-base text-gray-700 placeholder-gray-600 border rounded-lg focus:shadow-outline" placeholder="Game Token" required="">
             </div>
-            <p class="text-xs mb-4"><a href="https://gamejolt.com/help/tokens" class="link-secondary text-decoration-none"><i class="far fa-question-circle"></i> What's my game token?</a></p>
+            <p class="text-xs mb-4"><a href="https://gamejolt.com/help/tokens" class="link-secondary text-decoration-none" target="_blank"><i class="far fa-question-circle"></i> What's my game token?</a></p>
             <div class="flex w-full">
                 <button class="py-2 px-4 bg-green-600 hover:bg-green-700 focus:ring-green-500 focus:ring-offset-purple-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg " type="submit">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor">

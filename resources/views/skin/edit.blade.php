@@ -9,7 +9,7 @@
             <form role="form" action="{{ route('skin-update', $skin->uuid) }}" method="post">
                 <div class="mb-3">
                     <label for="formName" class="text-gray-700">Name</label>
-                    <input class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" type="text" id="formName" name="name" value="{{ old('public') ? old('public') : $skin->name }}">
+                    <input class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" type="text" id="formName" name="name" value="{{ old('name') ? old('name') : $skin->name }}">
                     @error('name')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror

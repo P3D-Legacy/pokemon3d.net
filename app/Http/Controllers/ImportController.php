@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\GJUser;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -18,6 +19,10 @@ class ImportController extends Controller
         $gjid = $request->session()->get('gjid');
         if($id != $gjid) {
             return redirect()->route('home')->with('error', 'You cannot import this skin!');
+        }
+        $skincount = GJUser::find($gjid)->skins()->count();
+        if($skincount >= env('SKIN_MAX_UPLOAD')) {
+            return redirect()->route('skins-my')->with('warning', 'You have reached the maximum amount of skins you can upload.');
         }
         $url = 'https://pokemon3d.net/skin/data/'.$id.'.png';
         $valid_types = ['image/png']; // Valid file types

@@ -67,12 +67,15 @@ class PlayerSkinController extends Controller
     public function duplicate(Request $request)
     {
         $gjid = $request->session()->get('gjid');
+        $skincount = GJUser::find($gjid)->skins()->count();
+        if($skincount >= env('SKIN_MAX_UPLOAD')) {
+            return redirect()->route('skins-my')->with('warning', 'You have reached the maximum amount of skins you can upload.');
+        }
         $old_filename = $gjid.'.png';
         $skin = Skin::create([
             'owner_id' => $gjid,
             'name' => 'Import: '.$gjid,
         ]);
-
         $new_filename = $skin->uuid.'.png';
         Storage::disk('skin')->put($new_filename, Storage::disk('player')->get($old_filename));
         return redirect()->route('skins-my')->with('success', 'Skin was duplicated!');

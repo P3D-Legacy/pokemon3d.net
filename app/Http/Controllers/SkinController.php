@@ -8,6 +8,7 @@ use ByteUnits\Binary;
 use App\Models\GJUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use League\Flysystem\FileNotFoundException;
 
 class SkinController extends Controller
 {
@@ -182,7 +183,11 @@ class SkinController extends Controller
         $gjid = $request->session()->get('gjid');
         $filename = $gjid.'.png';
         $skin = Skin::where('uuid', $uuid)->first();
-        Storage::disk('player')->put($filename, Storage::disk('skin')->get($skin->path()));
+        try {
+            Storage::disk('player')->put($filename, Storage::disk('skin')->get($skin->path()));
+        } catch (FileNotFoundException $e) {
+            return redirect()->route('skins-my')->with('warning', 'Could not apply skin.');
+        }
         return redirect()->route('home')->with('success', 'Skin was applied! Not seeing it? Refresh the page again.');
     }
 

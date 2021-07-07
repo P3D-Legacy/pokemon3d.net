@@ -11,4 +11,4 @@
 
 ## About
 
-This site is a *work in progress* and but has been published. It is built with Laravel 8. This will be replacing the design from 2014.
+This site is a *work in progress* and but has been published under `skin.pokemon3d.net` until it is finished. It is built with Laravel and Tailwind CSS. This will be replacing the design from 2014.

@@ -98,7 +98,7 @@ class SkinController extends Controller
 
         $request->validate([
             'image' => ['required', 'image', 'max:2000', 'mimes:png', 'dimensions:ratio=3/4'], // 2MB
-            'name' => ['required', 'string'],
+            'name' => ['required', 'string', 'max:48'],
             'public' => [''],
             'rules' => ['accepted'],
         ]);
@@ -237,7 +237,7 @@ class SkinController extends Controller
         }
 
         $request->validate([
-            'name' => ['required', 'string'],
+            'name' => ['required', 'string', 'max:48'],
             'public' => [''],
         ]);
         

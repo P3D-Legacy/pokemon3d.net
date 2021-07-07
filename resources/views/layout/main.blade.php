@@ -17,7 +17,7 @@
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}" defer></script>
 </head>
-<body class="font-sans antialiased bg-repeat bg-center bg-top bg-woods w-full h-full px-2 md:px-0">
+<body class="font-sans antialiased bg-repeat bg-top bg-woods w-full h-full px-2 md:px-0">
     <div class="container flex flex-1 h-full mx-auto">
         <div class="w-full">
 

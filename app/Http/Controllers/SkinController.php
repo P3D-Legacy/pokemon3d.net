@@ -201,7 +201,7 @@ class SkinController extends Controller
         if($user->gjid != $skin->owner_id) {
             $user->toggleLike($skin);
         }
-        return redirect()->to(url()->current());
+        return redirect()->back();
     }
 
     /**

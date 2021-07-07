@@ -12,7 +12,7 @@
                         @if(File::exists(public_path('player/'.$id.'.png')))
                             <img src="{{ asset('player/'.$id.'.png') }}?r={{ now()->timestamp }}" class="mx-auto my-4">
                         @else
-                            <p>We could not find a skin for your account.</p>
+                            <p>No skins have been added to your account yet.</p>
                             <p class="text-sm mt-3"><a href="{{ route('import', $id) }}" class="text-green-600">Do you want to import the skin from the old site?</a></p>
                         @endif
                     </div>

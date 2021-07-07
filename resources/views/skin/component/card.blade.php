@@ -4,7 +4,7 @@
         <img class="mx-auto" src="{{ Storage::disk('skin')->exists($skin->path()) ? asset('skin/'.$skin->path()) : asset('img/noskin.png') }}" height="128" width="96">
     </div>
     <div class="w-3/4 p-4">
-        <h1 class="text-gray-900 font-bold text-2xl">
+        <h1 class="text-gray-900 font-bold text-2xl break-all">
             <a href="{{ route('skin-show', $skin->uuid) }}">{{ $skin->name }}</a>
         </h1>
         <p class="mt-2 text-gray-600 text-xs">

@@ -13,14 +13,20 @@
                             <img src="{{ asset('player/'.$id.'.png') }}?r={{ now()->timestamp }}" class="mx-auto my-4">
                         @else
                             <p>No skins have been added to your account yet.</p>
-                            <p class="text-sm mt-3">
-                                <a href="{{ route('import', $id) }}" class="w-full inline-block items-center py-2 px-4 mt-2 text-blue-900 transition-colors duration-150 bg-blue-200 rounded-lg focus:shadow-outline hover:bg-blue-300">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                                    </svg>
-                                    Check for skin to import from the old site
-                                </a>
-                            </p>
+                            @if(\App\Models\GJUser::find(session()->get('gjid'))->skins()->count() >= env('SKIN_MAX_UPLOAD'))
+                                <div class="px-4 py-3 mt-4 leading-normal text-blue-800 bg-blue-300 rounded-lg text-sm">
+                                    <i class="fas fa-info-circle mr-2" aria-hidden="true"></i> Your slots are full. You cannot import from the old site unless you delete one of the slots.
+                                </div>
+                            @else
+                                <p class="text-sm mt-3">
+                                    <a href="{{ route('import', $id) }}" class="w-full inline-block items-center py-2 px-4 mt-2 text-blue-900 transition-colors duration-150 bg-blue-200 rounded-lg focus:shadow-outline hover:bg-blue-300">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                        </svg>
+                                        Check for skin to import from the old site
+                                    </a>
+                                </p>
+                            @endif
                         @endif
                     </div>
                     @if(File::exists(public_path('player/'.$id.'.png')))

@@ -9,7 +9,8 @@ class UserController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['gj.auth', 'gj.superadmin']);
+        $this->middleware(['gj.auth']);
+        $this->middleware(['gj.superadmin'])->except('show');
     }
     /**
      * Display a listing of the resource.

@@ -16,7 +16,7 @@
 ### Other
 * Swapped UUID package
 * Updated all other packages
-* Minor tweaks and improvments
+* Minor tweaks and improvements
 
 <a name="0.3.5"></a>
 ## [0.3.5](https://github.com/P3D-Legacy/skin.pokemon3d.net/compare/0.3.4...0.3.5) (2021-05-10)

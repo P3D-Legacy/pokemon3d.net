@@ -53,3 +53,6 @@ Route::post('/user/edit/{gjid}', [UserController::class, 'update'])->name('user-
 
 Route::get('/uploaded/skins', [UploadedSkinController::class, 'index'])->name('uploaded-skins');
 Route::post('/uploaded/skin/delete/{id}', [UploadedSkinController::class, 'destroy'])->name('uploaded-skin-destroy');
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');

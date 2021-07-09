@@ -47,7 +47,12 @@ class AuthController extends Controller
         }
         
         if(filter_var($auth['response']['success'], FILTER_VALIDATE_BOOLEAN) === false) {
-            return redirect()->route('login')->with('warning', $auth['response']['message'])->withInput();
+            $error = $auth['response']['message'];
+            // Better description of username/token error
+            if($error == "No such user with the credentials passed in could be found.") {
+                $error = "Username and/or token is wrong.";
+            }
+            return redirect()->route('login')->with('warning', $error)->withInput();
         }
         $user = $api->users()->fetch($username, $token);
         $id = $user['response']['users'][0]['id'];

@@ -8,77 +8,57 @@
 
         <link rel="shortcut icon" href="{{ asset('img/favicon.png') }}">
 
-        <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
-        <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+        <!-- Style -->
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous">
 
-        <!-- Cookie Consent -->
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+        <!-- Scripts -->
+        <script src="{{ mix('js/app.js') }}" defer></script>
 
-        <link href="{{ asset('css/auth.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
     </head>
-<body class="text-center">
-    <main class="form-signin">
+<body class="font-sans antialiased bg-repeat bg-top bg-woods w-full h-screen">
+    <div class="container flex items-center justify-center flex-1 h-full mx-auto">
+        <div class="w-full max-w-lg">
 
-        @if (session('error'))
-            <div class="alert alert-danger">
-                <i class="fas fa-frown mr-2" aria-hidden="true"></i> {{ session('error') }}
-            </div>
-        @endif
-        @if (session('success'))
-            <div class="alert alert-success">
-                <i class="fas fa-check-circle mr-2" aria-hidden="true"></i> {{ session('success') }}
-            </div>
-        @endif
-        @if (session('info'))
-            <div class="alert alert-info">
-                <i class="fas fa-info-circle mr-2" aria-hidden="true"></i> {{ session('info') }}
-            </div>
-        @endif
-        @if (session('warning'))
-            <div class="alert alert-warning">
-                <i class="fas fa-exclamation mr-2" aria-hidden="true"></i> {{ session('warning') }}
-            </div>
-        @endif
-        @if ($errors->any())
-            <div class="alert alert-warning mt-5 mb-0" role="alert">
-                <strong><i class="fas fa-exclamation-triangle mr-2" aria-hidden="true"></i> Input Warning</strong>
-                <ul class="m-0">
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+            @if (session('error'))
+                <div class="px-4 py-3 mb-4 leading-normal text-red-100 bg-red-700 rounded-lg">
+                    <i class="fas fa-frown mr-2" aria-hidden="true"></i> {{ session('error') }}
+                </div>
+            @endif
+            @if (session('success'))
+                <div class="px-4 py-3 mb-4 leading-normal text-green-100 bg-green-700 rounded-lg">
+                    <i class="fas fa-check-circle mr-2" aria-hidden="true"></i> {{ session('success') }}
+                </div>
+            @endif
+            @if (session('info'))
+                <div class="px-4 py-3 mb-4 leading-normal text-blue-100 bg-blue-700 rounded-lg">
+                    <i class="fas fa-info-circle mr-2" aria-hidden="true"></i> {{ session('info') }}
+                </div>
+            @endif
+            @if (session('warning'))
+                <div class="px-4 py-3 leading-normal text-yellow-100 bg-yellow-700 rounded-lg">
+                    <i class="fas fa-exclamation mr-2" aria-hidden="true"></i> {{ session('warning') }}
+                </div>
+            @endif
+            @if ($errors->any())
+                <div class="px-4 py-3 mb-4 leading-normal text-yellow-100 bg-yellow-700 rounded-lg" role="alert">
+                    <strong><i class="fas fa-exclamation-triangle mr-2" aria-hidden="true"></i> Input Warning</strong>
+                    <ul class="m-0">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+        
+            @yield('content')
+        </div>
 
-        @yield('content')
-
-        <p class="mt-2 mb-0"><a class="text-secondary" href="https://pokemon3d.net">Go back to pokemon3d.net</a></p>
-
-    </main>
+    </div>
+    
+    @include('cookieConsent::index')
     
     @yield('javascript')
 
-    <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
-    <script>
-        window.cookieconsent.initialise({
-          "palette": {
-            "popup": {
-              "background": "#237afc"
-            },
-            "button": {
-              "background": "#fff",
-              "text": "#237afc"
-            }
-          },
-          "theme": "classic",
-          "position": "bottom-right",
-          "content": {
-            "message": "This website uses cookies to ensure you have the best experience on our website.",
-            "dismiss": "Got it!",
-          }
-        });
-    </script>
 </body>
 </html>

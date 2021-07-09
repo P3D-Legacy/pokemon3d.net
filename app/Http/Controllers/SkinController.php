@@ -8,6 +8,7 @@ use ByteUnits\Binary;
 use App\Models\GJUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use League\Flysystem\FileNotFoundException;
 
 class SkinController extends Controller
 {
@@ -98,7 +99,7 @@ class SkinController extends Controller
 
         $request->validate([
             'image' => ['required', 'image', 'max:2000', 'mimes:png', 'dimensions:ratio=3/4'], // 2MB
-            'name' => ['required', 'string'],
+            'name' => ['required', 'string', 'max:48'],
             'public' => [''],
             'rules' => ['accepted'],
         ]);
@@ -182,7 +183,11 @@ class SkinController extends Controller
         $gjid = $request->session()->get('gjid');
         $filename = $gjid.'.png';
         $skin = Skin::where('uuid', $uuid)->first();
-        Storage::disk('player')->put($filename, Storage::disk('skin')->get($skin->path()));
+        try {
+            Storage::disk('player')->put($filename, Storage::disk('skin')->get($skin->path()));
+        } catch (FileNotFoundException $e) {
+            return redirect()->route('skins-my')->with('warning', 'Could not apply skin.');
+        }
         return redirect()->route('home')->with('success', 'Skin was applied! Not seeing it? Refresh the page again.');
     }
 
@@ -201,7 +206,7 @@ class SkinController extends Controller
         if($user->gjid != $skin->owner_id) {
             $user->toggleLike($skin);
         }
-        return redirect()->route('skins');
+        return redirect()->back();
     }
 
     /**
@@ -237,7 +242,7 @@ class SkinController extends Controller
         }
 
         $request->validate([
-            'name' => ['required', 'string'],
+            'name' => ['required', 'string', 'max:48'],
             'public' => [''],
         ]);
         

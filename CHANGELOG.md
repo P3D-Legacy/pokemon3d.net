@@ -1,4 +1,21 @@
 
+<a name="0.4.0"></a>
+## [0.4.0](https://github.com/P3D-Legacy/skin.pokemon3d.net/compare/0.3.7...0.4.0) (2021-07-08)
+
+### Added
+* Added a new design with Tailwind CSS
+* Added maximum characters for names on skins
+* Added possibility for users to view other users skins on their profile
+* Added a better description of login error from the Game Jolt API
+
+### Fixed
+* Fixed old input not showing when failed validation when editing a skin
+* Fixed bug where you could import and dupe skins over the slot limit
+
+### Other
+* Updated all packages
+* Minor tweaks and improvements
+
 <a name="0.3.7"></a>
 ## [0.3.7](https://github.com/P3D-Legacy/skin.pokemon3d.net/compare/0.3.6...0.3.7) (2021-06-02)
 
@@ -16,7 +33,7 @@
 ### Other
 * Swapped UUID package
 * Updated all other packages
-* Minor tweaks and improvments
+* Minor tweaks and improvements
 
 <a name="0.3.5"></a>
 ## [0.3.5](https://github.com/P3D-Legacy/skin.pokemon3d.net/compare/0.3.4...0.3.5) (2021-05-10)

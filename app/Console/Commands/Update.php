@@ -13,7 +13,7 @@ class Update extends Command
      *
      * @var string
      */
-    protected $signature = 'sp3d:update';
+    protected $signature = 'p3d:update';
 
     /**
      * The console command description.

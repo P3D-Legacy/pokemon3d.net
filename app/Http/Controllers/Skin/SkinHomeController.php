@@ -8,7 +8,7 @@ use Harrk\GameJoltApi\GamejoltConfig;
 use Spatie\Activitylog\Models\Activity;
 use App\Http\Controllers\Controller;
 
-class HomeController extends Controller
+class SkinHomeController extends Controller
 {
     public function __construct()
     {

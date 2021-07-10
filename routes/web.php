@@ -1,11 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Skin\HomeController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Skin\SkinController;
 use App\Http\Controllers\Skin\UserController;
 use App\Http\Controllers\Skin\AuthGJController;
 use App\Http\Controllers\Skin\ImportController;
+use App\Http\Controllers\Skin\SkinHomeController;
 use App\Http\Controllers\Skin\PlayerSkinController;
 use App\Http\Controllers\Skin\UploadedSkinController;
 
@@ -20,8 +21,10 @@ use App\Http\Controllers\Skin\UploadedSkinController;
 |
 */
 
+Route::get('/', [HomeController::class, 'index'])->name('home');
+
 Route::domain('skin.'.str_replace(array('http://','https://'), '', env('APP_URL')))->group(function () {
-    Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::get('/', [SkinHomeController::class, 'index'])->name('skin-home');
     Route::get('/gj/login', [AuthGJController::class, 'index'])->name('gj-login');
     Route::post('/gj/login', [AuthGJController::class, 'login'])->name('gj-login-post');
     Route::get('/gj/logout', [AuthGJController::class, 'logout'])->name('gj-logout');

@@ -26,7 +26,7 @@ class SkinHomeController extends Controller
         $auth = $api->users()->fetch($request->session()->get('gju'), $request->session()->get('gjt'));
         $user = null;
         if(filter_var($auth['response']['success'], FILTER_VALIDATE_BOOLEAN) === false) {
-            return view('home')->with('error', $auth['response']['message']);
+            return view('skin-subdomain.home')->with('error', $auth['response']['message']);
         }
         if(filter_var($auth['response']['success'], FILTER_VALIDATE_BOOLEAN) === true) {
             $user = $auth['response']['users'][0];
@@ -34,7 +34,7 @@ class SkinHomeController extends Controller
 
         $activity = Activity::where('description' , 'deleted')->where('properties', 'LIKE', '%'.$request->session()->get('gjid').'.png%')->orWhere('properties', 'LIKE', '%gjid":'.$request->session()->get('gjid').',"reason"%')->get();
 
-        return view('home')->with($user)->with('activity', $activity);
+        return view('skin-subdomain.home')->with($user)->with('activity', $activity);
     }
 
 }

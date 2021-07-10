@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AuthGJController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SkinController;
 use App\Http\Controllers\UserController;
@@ -21,9 +21,9 @@ use App\Http\Controllers\UploadedSkinController;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/login', [AuthController::class, 'index'])->name('login');
-Route::post('/login', [AuthController::class, 'login'])->name('login-post');
-Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/gj/login', [AuthGJController::class, 'index'])->name('gj-login');
+Route::post('/gj/login', [AuthGJController::class, 'login'])->name('gj-login-post');
+Route::get('/gj/logout', [AuthGJController::class, 'logout'])->name('gj-logout');
 
 Route::get('/import/{id}', [ImportController::class, 'import'])->name('import');
 

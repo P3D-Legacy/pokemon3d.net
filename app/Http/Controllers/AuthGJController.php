@@ -9,12 +9,12 @@ use Harrk\GameJoltApi\GamejoltConfig;
 use Illuminate\Support\Facades\Session;
 use Harrk\GameJoltApi\Exceptions\TimeOutException;
 
-class AuthController extends Controller
+class AuthGJController extends Controller
 {
     public function __construct()
     {
         $this->middleware(['gj.guest'])->except('logout');
-        $this->middleware(['gj.auth'])->except(['login', 'index']);
+        $this->middleware(['gj.auth'])->except(['gj-login', 'index']);
     }
     /**
      * Display a listing of the resource.
@@ -23,13 +23,13 @@ class AuthController extends Controller
      */
     public function index()
     {
-        return view('login');
+        return view('gj-login');
     }
 
     public function login(Request $request)
     {
         if (!env("GAMEJOLT_GAME_ID") || !env("GAMEJOLT_GAME_PRIVATE_KEY")) {
-            redirect()->route('login')->with('error', 'Gamejolt API keys is not set by an admin!');
+            redirect()->route('gj-login')->with('error', 'Gamejolt API keys is not set by an admin!');
         }
         $request->validate([
             'username' => ['required', 'string'],
@@ -43,7 +43,7 @@ class AuthController extends Controller
         try {
             $auth = $api->users()->auth($username, $token);
         } catch (TimeOutException $e) {
-           return redirect()->route('login')->with('error', $e->getMessage());
+           return redirect()->route('gj-login')->with('error', $e->getMessage());
         }
         
         if(filter_var($auth['response']['success'], FILTER_VALIDATE_BOOLEAN) === false) {
@@ -52,7 +52,7 @@ class AuthController extends Controller
             if($error == "No such user with the credentials passed in could be found.") {
                 $error = "Username and/or token is wrong.";
             }
-            return redirect()->route('login')->with('warning', $error)->withInput();
+            return redirect()->route('gj-login')->with('warning', $error)->withInput();
         }
         $user = $api->users()->fetch($username, $token);
         $id = $user['response']['users'][0]['id'];
@@ -88,6 +88,6 @@ class AuthController extends Controller
         //Close the session for user
         $api->sessions()->close($username, $token);
         $request->session()->flush();
-        return redirect()->route('login')->with('success', 'You successfully logged out!');
+        return redirect()->route('gj-login')->with('success', 'You successfully logged out!');
     }
 }

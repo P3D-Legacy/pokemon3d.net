@@ -1,0 +1,7 @@
+- name: Codecov
+  # You may pin to the exact commit or the version.
+  # uses: codecov/codecov-action@29386c70ef20e286228c72b668a06fd0e8399192
+  uses: codecov/codecov-action@v1.5.2
+  with:
+    # Repository upload token - get it from codecov.io. Required only for private repositories
+    token: 'c8c4d21b-2475-4063-8b96-6cf53268b1a8'

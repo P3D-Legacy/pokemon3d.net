@@ -1,13 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthGJController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\SkinController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\ImportController;
-use App\Http\Controllers\PlayerSkinController;
-use App\Http\Controllers\UploadedSkinController;
+use App\Http\Controllers\Skin\HomeController;
+use App\Http\Controllers\Skin\SkinController;
+use App\Http\Controllers\Skin\UserController;
+use App\Http\Controllers\Skin\AuthGJController;
+use App\Http\Controllers\Skin\ImportController;
+use App\Http\Controllers\Skin\PlayerSkinController;
+use App\Http\Controllers\Skin\UploadedSkinController;
 
 /*
 |--------------------------------------------------------------------------

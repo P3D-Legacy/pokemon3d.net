@@ -1,17 +1,18 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Skin;
 
-use App\Models\Skin;
-use App\Models\GJUser;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
+use Harrk\GameJoltApi\GamejoltApi;
+use Harrk\GameJoltApi\GamejoltConfig;
+use Spatie\Activitylog\Models\Activity;
+use App\Http\Controllers\Controller;
 
-class UploadedSkinController extends Controller
+class HomeController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['gj.auth', 'gj.admin']);
+        $this->middleware(['gj.auth']);
     }
 
     /**
@@ -19,10 +20,21 @@ class UploadedSkinController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $skins = Skin::all();
-        return view('uploaded-skin.index')->with('skins', $skins);
+        $api = new GamejoltApi(new GamejoltConfig(env("GAMEJOLT_GAME_ID"), env("GAMEJOLT_GAME_PRIVATE_KEY")));
+        $auth = $api->users()->fetch($request->session()->get('gju'), $request->session()->get('gjt'));
+        $user = null;
+        if(filter_var($auth['response']['success'], FILTER_VALIDATE_BOOLEAN) === false) {
+            return view('home')->with('error', $auth['response']['message']);
+        }
+        if(filter_var($auth['response']['success'], FILTER_VALIDATE_BOOLEAN) === true) {
+            $user = $auth['response']['users'][0];
+        }
+
+        $activity = Activity::where('description' , 'deleted')->where('properties', 'LIKE', '%'.$request->session()->get('gjid').'.png%')->orWhere('properties', 'LIKE', '%gjid":'.$request->session()->get('gjid').',"reason"%')->get();
+
+        return view('home')->with($user)->with('activity', $activity);
     }
 
     /**
@@ -86,18 +98,8 @@ class UploadedSkinController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, $uuid)
+    public function destroy($id)
     {
-        $request->validate([
-            'reason' => ['required', 'string'],
-        ]);
-        $skin = Skin::where('uuid', $uuid)->first();
-        if(!Storage::disk('skin')->exists($skin->path())) {
-            return redirect()->route('uploaded-skins')->with('error', 'Skin was not found!');
-        }
-        activity()->causedBy(GJUser::where('gjid', session()->get('gjid'))->first())->withProperties(['filename' => $skin->path(), 'gjid' => $skin->user->gjid, 'reason' => $request->reason])->log('deleted');
-        $skin->delete();
-        Storage::disk('skin')->delete($skin->path());
-        return redirect()->route('uploaded-skins')->with('success', 'Skin was successfully deleted!');
+        //
     }
 }

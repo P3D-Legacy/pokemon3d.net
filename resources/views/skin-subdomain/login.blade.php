@@ -1,4 +1,4 @@
-@extends('layout.auth')
+@extends('skin-subdomain.layouts.auth')
 @section('title', 'Login')
 	 
 @section('content')
@@ -8,7 +8,7 @@
     </div>
     <div class="flex flex-col max-w-sm p-4 bg-gray-50 rounded-lg shadow-2xl dark:bg-gray-800 mx-auto">
         <h1 class="text-xl mb-4">Login with <img src="{{ asset('img/gamejolt-logo-light-1x.png') }}" alt="Gamejolt" class="inline-block"></h1>
-        <form method="post" action="{{ route('login-post') }}">
+        <form method="post" action="{{ route('gj-login-post') }}">
             <div class="text-gray-700">
                 <label for="username" class="block mb-1">Username</label>
                 <input type="text" id="username" name="username" class="w-full h-10 px-3 mb-2 text-base text-gray-700 placeholder-gray-600 border rounded-lg focus:shadow-outline" placeholder="Username" required="" autofocus="">

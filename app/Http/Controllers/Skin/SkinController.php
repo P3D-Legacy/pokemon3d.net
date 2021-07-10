@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Skin;
 
 use Carbon\Carbon;
 use App\Models\Skin;
 use ByteUnits\Binary;
 use App\Models\GJUser;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use League\Flysystem\FileNotFoundException;
 

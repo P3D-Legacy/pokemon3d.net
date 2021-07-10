@@ -1,17 +1,20 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Skin;
 
+use App\Models\Skin;
 use App\Models\GJUser;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
-class UserController extends Controller
+class UploadedSkinController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['gj.auth']);
-        $this->middleware(['gj.superadmin'])->except('show');
+        $this->middleware(['gj.auth', 'gj.admin']);
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -19,8 +22,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = GJUser::withTrashed()->get();
-        return view('user.index')->with('users', $users);
+        $skins = Skin::all();
+        return view('uploaded-skin.index')->with('skins', $skins);
     }
 
     /**
@@ -50,11 +53,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($gjid)
+    public function show($id)
     {
-        $user = GJUser::where('gjid', $gjid)->first();
-        abort_unless($user, 404);
-        return view('user.show')->with('user', $user);
+        //
     }
 
     /**
@@ -63,11 +64,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($gjid)
+    public function edit($id)
     {
-        $user = GJUser::withTrashed()->where('gjid', $gjid)->first();
-        abort_unless($user, 404);
-        return view('user.edit')->with('user', $user);
+        //
     }
 
     /**
@@ -77,16 +76,9 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $gjid)
+    public function update(Request $request, $id)
     {
-        $request->validate([
-            'is_admin' => ['required', 'boolean']
-        ]);
-        $user = GJUser::withTrashed()->where('gjid', $gjid)->first();
-        abort_unless($user, 404);
-        $user->is_admin = $request->is_admin;
-        $user->save();
-        return redirect()->route('users')->with('success', 'User saved.');
+        //
     }
 
     /**
@@ -95,8 +87,18 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $uuid)
     {
-        //
+        $request->validate([
+            'reason' => ['required', 'string'],
+        ]);
+        $skin = Skin::where('uuid', $uuid)->first();
+        if(!Storage::disk('skin')->exists($skin->path())) {
+            return redirect()->route('uploaded-skins')->with('error', 'Skin was not found!');
+        }
+        activity()->causedBy(GJUser::where('gjid', session()->get('gjid'))->first())->withProperties(['filename' => $skin->path(), 'gjid' => $skin->user->gjid, 'reason' => $request->reason])->log('deleted');
+        $skin->delete();
+        Storage::disk('skin')->delete($skin->path());
+        return redirect()->route('uploaded-skins')->with('success', 'Skin was successfully deleted!');
     }
 }

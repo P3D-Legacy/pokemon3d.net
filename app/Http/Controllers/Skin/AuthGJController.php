@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Skin;
 
 use App\Models\GJUser;
 use Illuminate\Http\Request;
 use Harrk\GameJoltApi\GamejoltApi;
+use App\Http\Controllers\Controller;
 use Harrk\GameJoltApi\GamejoltConfig;
 use Illuminate\Support\Facades\Session;
 use Harrk\GameJoltApi\Exceptions\TimeOutException;
@@ -23,7 +24,7 @@ class AuthGJController extends Controller
      */
     public function index()
     {
-        return view('gj-login');
+        return view('skin-subdomain.login');
     }
 
     public function login(Request $request)

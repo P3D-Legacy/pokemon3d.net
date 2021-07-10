@@ -1,4 +1,4 @@
-@extends('layout.main')
+@extends('skin-subdomain.layouts.main')
 @section('title', 'Admin')
      
 @section('content')

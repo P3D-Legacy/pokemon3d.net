@@ -47,4 +47,11 @@ jobs:
         env:
           DB_CONNECTION: sqlite
           DB_DATABASE: database/database.sqlite
-        run: vendor/bin/phpunit --coverage-text
+        run: vendor/bin/phpunit --coverage-clover clover.xml
+      - name: Codecov
+        uses: codecov/codecov-action@v1.5.2
+        with:
+          file: ./clover.xml
+          flags: unittests
+          name: codecov-umbrella
+          fail_ci_if_error: true

@@ -35,7 +35,7 @@ class Update extends Command
     /**
      * Execute the console command.
      *
-     * @return mixed
+     * @return string
      */
     public function handle()
     {
@@ -52,6 +52,7 @@ class Update extends Command
             $this->info('Updated version to: '.Setting::get('APP_VERSION'));
             Setting::save();
         }
-        $this->info('Done.');
+
+        return $ver;
     }
 }

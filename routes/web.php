@@ -20,39 +20,41 @@ use App\Http\Controllers\UploadedSkinController;
 |
 */
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/gj/login', [AuthGJController::class, 'index'])->name('gj-login');
-Route::post('/gj/login', [AuthGJController::class, 'login'])->name('gj-login-post');
-Route::get('/gj/logout', [AuthGJController::class, 'logout'])->name('gj-logout');
-
-Route::get('/import/{id}', [ImportController::class, 'import'])->name('import');
-
-Route::get('/player/skins', [PlayerSkinController::class, 'index'])->name('player-skins');
-Route::post('/player/skin/create', [PlayerSkinController::class, 'store'])->name('player-skin-store');
-Route::get('/player/skin/duplicate', [PlayerSkinController::class, 'duplicate'])->name('player-skin-duplicate');
-Route::post('/player/skin/delete/{id}', [PlayerSkinController::class, 'destroyAsAdmin'])->name('player-skin-destroy-admin');
-Route::get('/player/skin/delete', [PlayerSkinController::class, 'destroy'])->name('player-skin-destroy');
-
-Route::get('/skins/public', function(){ return redirect()->route('skins-newest');})->name('skins');
-Route::get('/skins/public/new', [SkinController::class, 'newestpublicskins'])->name('skins-newest');
-Route::get('/skins/public/popular', [SkinController::class, 'popularpublicskins'])->name('skins-popular');
-Route::get('/skins/public/{uuid}', [SkinController::class, 'show'])->name('skin-show');
-Route::get('/skins/my', [SkinController::class, 'myskins'])->name('skins-my');
-Route::get('/skin/create', [SkinController::class, 'create'])->name('skin-create');
-Route::post('/skin/create', [SkinController::class, 'store'])->name('skin-store');
-Route::get('/skin/{uuid}/edit', [SkinController::class, 'edit'])->name('skin-edit');
-Route::post('/skin/{uuid}/edit', [SkinController::class, 'update'])->name('skin-update');
-Route::get('/skin/{uuid}/delete', [SkinController::class, 'destroy'])->name('skin-destroy');
-Route::get('/skin/{uuid}/apply', [SkinController::class, 'apply'])->name('skin-apply');
-Route::get('/skin/{uuid}/like', [SkinController::class, 'like'])->name('skin-like');
-
-Route::get('/users', [UserController::class, 'index'])->name('users');
-Route::get('/user/{gjid}', [UserController::class, 'show'])->name('user-show');
-Route::get('/user/edit/{gjid}', [UserController::class, 'edit'])->name('user-edit');
-Route::post('/user/edit/{gjid}', [UserController::class, 'update'])->name('user-update');
-
-Route::get('/uploaded/skins', [UploadedSkinController::class, 'index'])->name('uploaded-skins');
-Route::post('/uploaded/skin/delete/{id}', [UploadedSkinController::class, 'destroy'])->name('uploaded-skin-destroy');
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+Route::domain('skin.'.str_replace(array('http://','https://'), '', env('APP_URL')))->group(function () {
+    Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::get('/gj/login', [AuthGJController::class, 'index'])->name('gj-login');
+    Route::post('/gj/login', [AuthGJController::class, 'login'])->name('gj-login-post');
+    Route::get('/gj/logout', [AuthGJController::class, 'logout'])->name('gj-logout');
+    
+    Route::get('/import/{id}', [ImportController::class, 'import'])->name('import');
+    
+    Route::get('/player/skins', [PlayerSkinController::class, 'index'])->name('player-skins');
+    Route::post('/player/skin/create', [PlayerSkinController::class, 'store'])->name('player-skin-store');
+    Route::get('/player/skin/duplicate', [PlayerSkinController::class, 'duplicate'])->name('player-skin-duplicate');
+    Route::post('/player/skin/delete/{id}', [PlayerSkinController::class, 'destroyAsAdmin'])->name('player-skin-destroy-admin');
+    Route::get('/player/skin/delete', [PlayerSkinController::class, 'destroy'])->name('player-skin-destroy');
+    
+    Route::get('/skins/public', function(){ return redirect()->route('skins-newest');})->name('skins');
+    Route::get('/skins/public/new', [SkinController::class, 'newestpublicskins'])->name('skins-newest');
+    Route::get('/skins/public/popular', [SkinController::class, 'popularpublicskins'])->name('skins-popular');
+    Route::get('/skins/public/{uuid}', [SkinController::class, 'show'])->name('skin-show');
+    Route::get('/skins/my', [SkinController::class, 'myskins'])->name('skins-my');
+    Route::get('/skin/create', [SkinController::class, 'create'])->name('skin-create');
+    Route::post('/skin/create', [SkinController::class, 'store'])->name('skin-store');
+    Route::get('/skin/{uuid}/edit', [SkinController::class, 'edit'])->name('skin-edit');
+    Route::post('/skin/{uuid}/edit', [SkinController::class, 'update'])->name('skin-update');
+    Route::get('/skin/{uuid}/delete', [SkinController::class, 'destroy'])->name('skin-destroy');
+    Route::get('/skin/{uuid}/apply', [SkinController::class, 'apply'])->name('skin-apply');
+    Route::get('/skin/{uuid}/like', [SkinController::class, 'like'])->name('skin-like');
+    
+    Route::get('/users', [UserController::class, 'index'])->name('users');
+    Route::get('/user/{gjid}', [UserController::class, 'show'])->name('user-show');
+    Route::get('/user/edit/{gjid}', [UserController::class, 'edit'])->name('user-edit');
+    Route::post('/user/edit/{gjid}', [UserController::class, 'update'])->name('user-update');
+    
+    Route::get('/uploaded/skins', [UploadedSkinController::class, 'index'])->name('uploaded-skins');
+    Route::post('/uploaded/skin/delete/{id}', [UploadedSkinController::class, 'destroy'])->name('uploaded-skin-destroy');
+    Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+});

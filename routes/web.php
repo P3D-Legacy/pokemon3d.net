@@ -21,8 +21,6 @@ use App\Http\Controllers\Skin\UploadedSkinController;
 |
 */
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
-
 Route::domain('skin.'.str_replace(array('http://','https://'), '', env('APP_URL')))->group(function () {
     Route::get('/', [SkinHomeController::class, 'index'])->name('skin-home');
     Route::get('/gj/login', [AuthGJController::class, 'index'])->name('gj-login');
@@ -57,7 +55,10 @@ Route::domain('skin.'.str_replace(array('http://','https://'), '', env('APP_URL'
     
     Route::get('/uploaded/skins', [UploadedSkinController::class, 'index'])->name('uploaded-skins');
     Route::post('/uploaded/skin/delete/{id}', [UploadedSkinController::class, 'destroy'])->name('uploaded-skin-destroy');
-    Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
 });
+
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
+

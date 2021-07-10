@@ -17,26 +17,29 @@ class UpdatePasswordTest extends TestCase
     {
         $this->actingAs($user = User::factory()->create());
 
+        $password = 'SuperSecret123!';
+        $new_password = 'SuperSecret123!2';
         Livewire::test(UpdatePasswordForm::class)
                 ->set('state', [
-                    'current_password' => 'password',
-                    'password' => 'new-password',
-                    'password_confirmation' => 'new-password',
+                    'current_password' => $password,
+                    'password' => $new_password,
+                    'password_confirmation' => $new_password,
                 ])
                 ->call('updatePassword');
 
-        $this->assertTrue(Hash::check('new-password', $user->fresh()->password));
+        $this->assertTrue(Hash::check($new_password, $user->fresh()->password));
     }
 
     public function test_current_password_must_be_correct()
     {
         $this->actingAs($user = User::factory()->create());
 
+        $new_password = 'SuperSecret123!2';
         Livewire::test(UpdatePasswordForm::class)
                 ->set('state', [
                     'current_password' => 'wrong-password',
-                    'password' => 'new-password',
-                    'password_confirmation' => 'new-password',
+                    'password' => $new_password,
+                    'password_confirmation' => $new_password,
                 ])
                 ->call('updatePassword')
                 ->assertHasErrors(['current_password']);
@@ -48,10 +51,12 @@ class UpdatePasswordTest extends TestCase
     {
         $this->actingAs($user = User::factory()->create());
 
+        $password = 'SuperSecret123!';
+        $new_password = 'SuperSecret123!2';
         Livewire::test(UpdatePasswordForm::class)
                 ->set('state', [
-                    'current_password' => 'password',
-                    'password' => 'new-password',
+                    'current_password' => $password,
+                    'password' => $new_password,
                     'password_confirmation' => 'wrong-password',
                 ])
                 ->call('updatePassword')

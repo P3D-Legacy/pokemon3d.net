@@ -40,11 +40,12 @@ class RegistrationTest extends TestCase
             return $this->markTestSkipped('Registration support is not enabled.');
         }
 
+        $password = 'SuperSecret123!';
         $response = $this->post('/register', [
             'name' => 'Test User',
             'email' => 'test@example.com',
-            'password' => 'password',
-            'password_confirmation' => 'password',
+            'password' => $password,
+            'password_confirmation' => $password,
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature(),
         ]);
 

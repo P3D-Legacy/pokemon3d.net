@@ -18,7 +18,7 @@ class UpdatePasswordTest extends TestCase
         $this->actingAs($user = User::factory()->create());
 
         $password = 'SuperSecret123!';
-        $new_password = 'SuperSecret123!2';
+        $new_password = 'NotSoSuperSecret123!';
         Livewire::test(UpdatePasswordForm::class)
                 ->set('state', [
                     'current_password' => $password,

@@ -29,7 +29,8 @@
         "overtrue/laravel-like": "^4.0",
         "sentry/sentry-laravel": "^2.5",
         "spatie/laravel-activitylog": "^3.16",
-        "spatie/laravel-cookie-consent": "^2.12"
+        "spatie/laravel-cookie-consent": "^2.12",
+        "spatie/laravel-permission": "^4.2"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.5",

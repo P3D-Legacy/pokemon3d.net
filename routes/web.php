@@ -2,8 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\Skin\SkinController;
-use App\Http\Controllers\Skin\UserController;
+use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\Skin\AuthGJController;
 use App\Http\Controllers\Skin\ImportController;
 use App\Http\Controllers\Skin\SkinHomeController;
@@ -48,17 +50,34 @@ Route::domain('skin.'.str_replace(array('http://','https://'), '', env('APP_URL'
     Route::get('/skin/{uuid}/apply', [SkinController::class, 'apply'])->name('skin-apply');
     Route::get('/skin/{uuid}/like', [SkinController::class, 'like'])->name('skin-like');
     
-    Route::get('/users', [UserController::class, 'index'])->name('users');
-    Route::get('/user/{gjid}', [UserController::class, 'show'])->name('user-show');
-    Route::get('/user/edit/{gjid}', [UserController::class, 'edit'])->name('user-edit');
-    Route::post('/user/edit/{gjid}', [UserController::class, 'update'])->name('user-update');
+    /*
+        Route::get('/users', [UserController::class, 'index'])->name('users');
+        Route::get('/user/{gjid}', [UserController::class, 'show'])->name('user-show');
+        Route::get('/user/edit/{gjid}', [UserController::class, 'edit'])->name('user-edit');
+        Route::post('/user/edit/{gjid}', [UserController::class, 'update'])->name('user-update');
+    */
     
     Route::get('/uploaded/skins', [UploadedSkinController::class, 'index'])->name('uploaded-skins');
     Route::post('/uploaded/skin/delete/{id}', [UploadedSkinController::class, 'destroy'])->name('uploaded-skin-destroy');
 });
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+
+Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
+
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+
+    Route::group(['middleware' => ['role:super-admin|admin']], function () {
+        // USERS
+        Route::resource('users', UserController::class);
+        // ROLES
+        Route::resource('roles', RoleController::class);
+        // PERMISSIONS
+        Route::resource('permissions', PermissionController::class);
+    });
+
+});
+
 

@@ -1,0 +1,1 @@
+<img class="h-12 w-12" src="{{ asset('img/TreeLogoSmall.png') }}" alt="{{ env('APP_NAME') }}"/>

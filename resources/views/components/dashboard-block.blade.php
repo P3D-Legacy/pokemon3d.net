@@ -1,9 +1,9 @@
 <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
     <div>
-        <x-logo-icon class="block h-24 w-auto" />
+        <x-logo-icon-large />
     </div>
 
-    <div class="mt-8 text-2xl">
+    <div class="mt-8 text-3xl font-bold tracking-tighter font-mono">
         Welcome to {{ config('app.name') }}!
     </div>
 
@@ -13,7 +13,7 @@
 
     <div class="flex">
         <a href="#" class="group mt-4">
-            <div class="w-full sm:w-auto inline-flex items-center justify-center text-green-50 group-hover:text-green-100 font-medium leading-none bg-green-800 rounded-lg shadow-sm group-hover:shadow-lg py-3 px-5 border border-transparent transform group-hover:-translate-y-0.5 transition-all duration-150">
+            <div class="w-full sm:w-auto inline-flex items-center justify-center text-green-50 group-hover:text-green-100 font-medium leading-none bg-green-700 hover:bg-green-800 rounded-lg shadow-sm group-hover:shadow-lg py-3 px-5 border border-transparent transform group-hover:-translate-y-0.5 transition-all duration-150">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 text-opacity-50 transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                   </svg>

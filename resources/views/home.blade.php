@@ -78,7 +78,7 @@
     <div class="container mx-auto min-h-screen h-auto text-white">
         <div class="text-center px-3 lg:px-0">
             <h1 class="my-4 text-2xl md:text-3xl lg:text-5xl font-black leading-tight">
-                Oldschool Pokémon in a 3D world!
+                Old school Pokémon in a 3D world!
             </h1>
             <p class="leading-normal text-gray-50 text-base md:text-xl lg:text-2xl mb-8">
                 Bringing the games from the early generation of Pokémon games to the modern era.

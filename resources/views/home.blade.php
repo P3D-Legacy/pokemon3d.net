@@ -249,7 +249,7 @@
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 text-opacity-50 transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                 </svg>
-            <span>Download 0.58.1<sup>&dagger;</sup></span>
+            <span>Download {{ GitHubHelper::getVersion() }}<sup>&dagger;</sup></span>
         </button>
         <a href="https://pokemon3d.net/wiki/index.php/Pok%C3%A9mon_3D#Requirements" class="block mx-auto hover:underline bg-transparent text-gray-100 font-extrabold my-1 md:my-3 py-2 lg:py-4 px-8 text-sm"><sup>&dagger;</sup> View Requirements</a>
     </section>

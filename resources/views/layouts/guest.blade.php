@@ -27,12 +27,11 @@
               position: absolute;
               content: "";
               top: -1.25em;
-              left: 1em;
+              right: 4em;
               width: 0.5em;
               height: 0.5em;
-              border-radius: 50%;
-              background-color: #f44;
-              box-shadow: 0 0 0 2px #f44, 1.5em 0 0 2px #9b3, 3em 0 0 2px #fb5;
+              background-color: #9b3;
+              box-shadow: 0 0 0 2px #9b3, 1.5em 0 0 2px #9b3, 3em 0 0 2px  #f44;
             }
             .browser-mockup > * {
               display: block;

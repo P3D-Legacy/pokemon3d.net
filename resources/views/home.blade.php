@@ -150,7 +150,7 @@
 
             <div class="flex flex-wrap">
                 <p class="mb-8">
-                    {{ config('app.name') }} is a video game originally created by <a href="https://github.com/nilllzz" class="text-green-50 hover:underline">Nilllzz</a>. It is heavily inspired by Minecraft, and the Pokémon series. {{ config('app.name') }} focused on the strong points of Pokémon Gold and Silver versions and their remakes, and gives players a taste as to how the once 2D world they knew was in 3D. They could even see through the eyes of their own trainer.
+                    {{ config('app.name') }} is a video game originally created by <a href="https://github.com/nilllzz" class="text-green-100 hover:underline hover:text-white">Nilllzz</a>. It is heavily inspired by Minecraft, and the Pokémon series. {{ config('app.name') }} focused on the strong points of Pokémon Gold and Silver versions and their remakes, and gives players a taste as to how the once 2D world they knew was in 3D. They could even see through the eyes of their own trainer.
                 </p>
             </div>
         </div>

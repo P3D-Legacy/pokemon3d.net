@@ -38,13 +38,13 @@
                 {{ config('app.name') }} has wonderful documentation covering every aspect of the game. Whether you're new to the game or have previous experience, we recommend reading all of the documentation from beginning to end.
             </div>
 
-            <a href="#">
+            <a href="https://pokemon3d.net/wiki/">
                 <div class="mt-3 flex items-center text-sm font-semibold text-green-700">
-                        <div>Explore the wiki</div>
+                    <div>Explore the wiki</div>
 
-                        <div class="ml-1 text-green-700">
-                            <svg viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                        </div>
+                    <div class="ml-1 text-green-700">
+                        <svg viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                    </div>
                 </div>
             </a>
         </div>
@@ -63,13 +63,13 @@
                 Our forum offers a lot of threads of discussions, bugs and other information. Check them out, see for yourself, and massively level up your knowledge skills in the process.
             </div>
 
-            <a href="#">
+            <a href="https://pokemon3d.net/forum/">
                 <div class="mt-3 flex items-center text-sm font-semibold text-green-700">
-                        <div>Start browsing</div>
+                    <div>Start browsing</div>
 
-                        <div class="ml-1 text-green-700">
-                            <svg viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                        </div>
+                    <div class="ml-1 text-green-700">
+                        <svg viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                    </div>
                 </div>
             </a>
         </div>
@@ -85,13 +85,13 @@
             <div class="mt-2 text-sm text-gray-500">
                 {{ config('app.name') }} has a built in feature where every player has the oppertunity to change their look for multiplayer sessions. You'll be amazed how easily you can change it, store other skin and browse what other have made just at your fingertips.
             </div>
-            <a href="#">
+            <a href="{{ route('skin-home') }}">
                 <div class="mt-3 flex items-center text-sm font-semibold text-green-700">
-                        <div>Get to customization</div>
+                    <div>Get to customization</div>
 
-                        <div class="ml-1 text-green-700">
-                            <svg viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                        </div>
+                    <div class="ml-1 text-green-700">
+                        <svg viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                    </div>
                 </div>
             </a>
         </div>
@@ -107,13 +107,13 @@
             <div class="mt-2 text-sm text-gray-500">
                 We've made it easy for you to update your profile and presence in the game. So, you're free to get started what matters most: changing your profile picture?
             </div>
-            <a href="#">
+            <a href="{{ route('profile.show') }}">
                 <div class="mt-3 flex items-center text-sm font-semibold text-green-700">
-                        <div>Update your profile</div>
+                    <div>Update your profile</div>
 
-                        <div class="ml-1 text-green-700">
-                            <svg viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                        </div>
+                    <div class="ml-1 text-green-700">
+                        <svg viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                    </div>
                 </div>
             </a>
         </div>

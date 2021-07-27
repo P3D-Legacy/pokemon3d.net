@@ -1,7 +1,4 @@
 <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
-    <div>
-        <x-logo-icon-large />
-    </div>
 
     <div class="mt-8 text-3xl font-bold tracking-tighter font-mono">
         Welcome to {{ config('app.name') }}!

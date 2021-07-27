@@ -8,15 +8,20 @@
         {{ config('app.name') }} is a video game originally created by Nilllzz. It is heavily inspired by Minecraft, and the Pokémon series. Pokémon 3D focused on the strong points of Pokémon Gold and Silver versions and their remakes, and gives players a taste as to how the once 2D world they knew was in 3D. They could even see through the eyes of their own trainer. We hope you love it.
     </div>
 
-    <div class="flex">
-        <a href="#" class="group mt-4">
-            <div class="w-full sm:w-auto inline-flex items-center justify-center text-green-50 group-hover:text-green-100 font-medium leading-none bg-green-700 hover:bg-green-800 rounded-lg shadow-sm group-hover:shadow-lg py-3 px-5 border border-transparent transform group-hover:-translate-y-0.5 transition-all duration-150">
+    <div class="inline-block mt-2 md:mt-6">
+        <a href="{{ GitHubHelper::getDownloadUrl() }}" class="group mt-4">
+            <div class="w-full sm:w-auto inline-flex items-center justify-center text-green-50 group-hover:text-green-100 font-medium leading-none bg-green-700 hover:bg-green-800 rounded-lg shadow-sm group-hover:shadow-lg py-3 px-5 border border-transparent transition transform hover:-translate-y-1 duration-150">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 text-opacity-50 transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                   </svg>
-                <span>Download latest release</span>
+                <span>Download {{ GitHubHelper::getVersion() }}<sup>&dagger;</sup></span>
             </div>
         </a>
+        <div class="text-xs mt-1 mb-2 text-gray-900">
+            <span>Released {{ \Carbon\Carbon::parse(GitHubHelper::getReleaseDate())->diffForHumans() }}</span>
+            <span class="px-2">&mdash;</span>
+            <span><a href="https://pokemon3d.net/wiki/index.php/Pok%C3%A9mon_3D#Requirements"><sup>&dagger;</sup> Requirements apply</a></span>
+        </div>
     </div>
     
 </div>

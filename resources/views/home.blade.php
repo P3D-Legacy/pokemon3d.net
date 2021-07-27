@@ -81,7 +81,7 @@
                 <div class="text-xs mt-1 mb-2 text-gray-100">
                     <span>Released {{ \Carbon\Carbon::parse(GitHubHelper::getReleaseDate())->diffForHumans() }}</span>
                     <span class="px-2">&mdash;</span>
-                    <span><a href="https://pokemon3d.net/wiki/index.php/Pok%C3%A9mon_3D#Requirements"><sup>&dagger;</sup> View Requirements</a></span>
+                    <span><a href="https://pokemon3d.net/wiki/index.php/Pok%C3%A9mon_3D#Requirements"><sup>&dagger;</sup> Requirements apply</a></span>
                 </div>
             </div>
         </div>

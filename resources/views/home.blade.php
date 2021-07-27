@@ -83,8 +83,10 @@
             <a href="https://pokemon3d.net/wiki/index.php/Pok%C3%A9mon_3D#Requirements" class="inline-block mx-auto lg:mx-0 hover:underline bg-transparent text-gray-100 font-extrabold my-2 md:my-6 py-2 lg:py-4 px-8"><sup>&dagger;</sup> View Requirements</a>
         </div>
 
-        <div class="flex items-center w-full mx-auto content-end">
-            <div class="browser-mockup flex flex-1 m-6 md:px-0 md:m-12 bg-white w-1/2 rounded shadow-xl"></div>
+        <div class="flex items-center mx-auto content-end z-auto overflow-hidden w-full">
+            <div class="browser-mockup flex flex-1 m-6 md:px-0 md:m-12 bg-white rounded-lg shadow-xl aspect-w-16 aspect-h-9">
+                <img src="{{ asset('img/daniel_ingame.png') }}" class="w-full h-full object-center object-cover lg:w-full lg:h-full" />
+            </div>
         </div>
     </div>
 

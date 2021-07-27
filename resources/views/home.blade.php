@@ -17,7 +17,7 @@
                 </button>
             </div>
 
-            <div class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden mt-2 lg:mt-0 text-black p-4 lg:p-0 z-20"
+            <div class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden mt-2 lg:mt-0 p-4 lg:p-0 z-20"
                 id="nav-content">
                 <ul class="list-reset lg:flex justify-end flex-1 items-center">
                    <x-home.nav-link title="Forum" url="#">

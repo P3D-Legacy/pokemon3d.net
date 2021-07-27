@@ -87,7 +87,7 @@
         </div>
 
         <div class="flex items-center mx-auto content-end z-auto overflow-hidden w-full">
-            <div class="browser-mockup flex flex-1 m-6 md:px-0 md:m-12 bg-white rounded-lg shadow-xl aspect-w-16 aspect-h-9">
+            <div class="browser-mockup flex flex-1 m-6 md:px-0 md:m-12 bg-white shadow-xl aspect-w-16 aspect-h-9 rounded-t rounded-b-lg">
                 <img src="{{ asset('img/daniel_ingame.png') }}" class="w-full h-full object-center object-cover lg:w-full lg:h-full rounded-b-lg" />
             </div>
         </div>

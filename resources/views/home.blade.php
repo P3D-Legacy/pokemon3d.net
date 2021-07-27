@@ -264,8 +264,8 @@
                 <div class="flex-1 px-3">
                     <p class="uppercase font-extrabold text-gray-500 md:mb-6">Legal</p>
                     <ul class="list-reset mb-6">
-                        <x-home.footer-link title="Terms" url="#" />
-                        <x-home.footer-link title="Privacy" url="#" />
+                        <x-home.footer-link title="Terms of service" url="{{ route('terms.show') }}" />
+                        <x-home.footer-link title="Privacy Policy" url="{{ route('policy.show') }}" />
                     </ul>
                 </div>
                 <div class="flex-1 px-3">

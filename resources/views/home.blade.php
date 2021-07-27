@@ -103,7 +103,7 @@
                 </div>
 
                 <div class="w-1/2 p-4 md:w-auto flex flex-col items-center">
-                    <div class="flex">0</div>
+                    <div class="flex">{{ App\Models\User::count() }}</div>
                     <div class="flex text-xl text-gray-600">Active Users</div>
                     {{-- ACTIVE USERS FROM THE WEBSITE --}}
                 </div>

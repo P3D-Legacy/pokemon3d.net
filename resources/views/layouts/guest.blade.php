@@ -16,15 +16,12 @@
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
         <style>
-
             /* Browser mockup code
             * Contribute: https://gist.github.com/jarthod/8719db9fef8deb937f4f
             */
-      
             .browser-mockup {
               border-top: 2em solid rgba(230, 230, 230, 0.7);
             }
-      
             .browser-mockup:before {
               display: block;
               position: absolute;
@@ -37,12 +34,9 @@
               background-color: #f44;
               box-shadow: 0 0 0 2px #f44, 1.5em 0 0 2px #9b3, 3em 0 0 2px #fb5;
             }
-      
             .browser-mockup > * {
               display: block;
             }
-      
-            /* Custom code for the demo */
           </style>
 
         <!-- Scripts -->

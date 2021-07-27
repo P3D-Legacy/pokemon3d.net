@@ -213,19 +213,19 @@
             </div>
 
             <div class="flex flex-1 flex-wrap max-w-4xl mx-auto items-center justify-between text-4xl text-gray-700 font-bold opacity-75">
-                <span class="w-1/2 p-4 md:w-auto flex items-center">
+                <span class="w-full p-4 sm:w-auto flex items-center">
                     Polygon
                 </span>
 
-                <span class="w-1/2 p-4 md:w-auto flex items-center">
+                <span class="w-full p-4 sm:w-auto flex items-center">
                     Kotaku
                 </span>
 
-                <span class="w-1/2 p-4 md:w-auto flex items-center">
+                <span class="w-full p-4 sm:w-auto flex items-center">
                     The Verge
                 </span>
 
-                <span class="w-1/2 p-4 md:w-auto flex items-center">
+                <span class="w-full p-4 sm:w-auto flex items-center">
                     PCMag
                 </span>
             </div>

@@ -58,7 +58,7 @@
         </div>
     </nav>
 
-    <div class="container mx-auto h-screen text-white">
+    <div class="container mx-auto min-h-screen h-auto text-white">
         <div class="text-center px-3 lg:px-0">
             <h1 class="my-4 text-2xl md:text-3xl lg:text-5xl font-black leading-tight">
                 Oldschool Pokémon in a 3D world!

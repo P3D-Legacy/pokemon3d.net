@@ -255,7 +255,11 @@
                 </svg>
             <span>Download {{ GitHubHelper::getVersion() }}<sup>&dagger;</sup></span>
         </button>
-        <a href="https://pokemon3d.net/wiki/index.php/Pok%C3%A9mon_3D#Requirements" class="block mx-auto hover:underline bg-transparent text-gray-100 font-extrabold my-1 md:my-3 py-2 lg:py-4 px-8 text-sm"><sup>&dagger;</sup> View Requirements</a>
+        <div class="text-xs mt-1 mb-2 text-gray-100">
+            <span>Released {{ \Carbon\Carbon::parse(GitHubHelper::getReleaseDate())->diffForHumans() }}</span>
+            <span class="px-2">&mdash;</span>
+            <span><a href="https://pokemon3d.net/wiki/index.php/Pok%C3%A9mon_3D#Requirements"><sup>&dagger;</sup> Requirements apply</a></span>
+        </div>
     </section>
 
     <!--Footer-->

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "692df8f99a5204589c26778f0188d661",
+    "content-hash": "5dea6c45ee4d591698a5ca260fe38245",
     "packages": [
         {
             "name": "anlutro/l4-settings",
@@ -3677,6 +3677,61 @@
                 "source": "https://github.com/opis/closure/tree/3.6.2"
             },
             "time": "2021-04-09T13:42:10+00:00"
+        },
+        {
+            "name": "origami/consent",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/papertank/origami-consent.git",
+                "reference": "e02ae040c417787e5188051c16e0381e5286a3d1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/papertank/origami-consent/zipball/e02ae040c417787e5188051c16e0381e5286a3d1",
+                "reference": "e02ae040c417787e5188051c16e0381e5286a3d1",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "^6.0|^7.0|^8.0",
+                "illuminate/database": "^6.0|^7.0|^8.0",
+                "illuminate/events": "^6.0|^7.0|^8.0",
+                "illuminate/support": "^6.0|^7.0|^8.0",
+                "php": "^7.2"
+            },
+            "require-dev": {
+                "orchestra/testbench": "3.8.*|4.*|5.*|6.*",
+                "phpunit/phpunit": "^7.0|^8.0|^9.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Origami\\Consent\\ConsentServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Origami\\Consent\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Papertank",
+                    "email": "david@papertank.co.uk"
+                }
+            ],
+            "description": "Helper interface for user consent in laravel projects",
+            "support": {
+                "issues": "https://github.com/papertank/origami-consent/issues",
+                "source": "https://github.com/papertank/origami-consent/tree/2.0.0"
+            },
+            "time": "2020-09-13T16:16:03+00:00"
         },
         {
             "name": "overtrue/laravel-like",

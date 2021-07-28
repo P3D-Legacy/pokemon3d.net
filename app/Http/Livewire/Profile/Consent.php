@@ -12,7 +12,12 @@ class Consent extends Component
     public function mount() {
         $this->consents = config('app.consents');
     }
-
+        
+    /**
+     * Display a view.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function render()
     {
         return view('livewire.profile.consent');

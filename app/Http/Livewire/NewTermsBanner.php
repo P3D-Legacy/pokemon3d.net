@@ -14,6 +14,12 @@ class NewTermsBanner extends Component
         ]);
         redirect()->route('profile.show');
     }
+    
+    /**
+     * Display a view.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function render()
     {
         return view('livewire.new-terms-banner');

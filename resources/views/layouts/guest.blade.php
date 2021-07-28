@@ -43,5 +43,7 @@
     </head>
     <body class="bg-repeat bg-center bg-spring leading-relaxed tracking-wide flex flex-col font-sans">
         {{ $slot }}
+
+        @include('cookieConsent::index')
     </body>
 </html>

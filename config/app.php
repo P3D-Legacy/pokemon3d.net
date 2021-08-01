@@ -27,7 +27,7 @@ return [
 
     'consents' => [
         'tos.1' => 'Terms of Service &mdash; updated 2021-07-28',
-        'email.notifications' => 'E-mail: Receive alert if you have unread alerts',
+        'email.notifications' => 'E-mail: Receive an e-mail if you have unread notifications',
     ],
 
     /*--------------------------------------------------------------------------

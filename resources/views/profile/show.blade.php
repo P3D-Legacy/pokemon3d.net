@@ -13,6 +13,9 @@
                 <x-jet-section-border />
             @endif
 
+            @livewire('profile.game-jolt-account')
+            <x-jet-section-border />
+
             @livewire('profile.consent')
             <x-jet-section-border />
 

@@ -11,6 +11,7 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use betterapp\LaravelDbEncrypter\Traits\EncryptableDbAttribute;
 
 class User extends Authenticatable implements MustVerifyEmail 
 {
@@ -21,6 +22,7 @@ class User extends Authenticatable implements MustVerifyEmail
     use TwoFactorAuthenticatable;
     use HasRoles;
     use GivesConsent;
+    use EncryptableDbAttribute;
 
     /**
      * The attributes that are mass assignable.
@@ -31,6 +33,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'name',
         'email',
         'password',
+        'gamejolt_username',
+        'gamejolt_token',
     ];
 
     /**
@@ -61,5 +65,14 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     protected $appends = [
         'profile_photo_url',
+    ];
+
+    /** 
+     * The attributes that should be encrypted/decrypted
+     * 
+     * @var array
+     */
+    protected $encryptable = [
+        'gamejolt_token',
     ];
 }

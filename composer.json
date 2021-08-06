@@ -13,6 +13,7 @@
     "require": {
         "php": "^7.3|^8.0",
         "anlutro/l4-settings": "^1.0",
+        "betterapp/laravel-db-encrypter": "^1.0",
         "binarycabin/laravel-uuid": "^1.0",
         "enlightn/enlightn": "^1.0",
         "fideloper/proxy": "^4.4",

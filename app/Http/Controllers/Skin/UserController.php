@@ -10,7 +10,7 @@ class UserController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['gj.auth']);
+        //$this->middleware(['gj.auth']);
         $this->middleware(['gj.superadmin'])->except('show');
     }
     /**

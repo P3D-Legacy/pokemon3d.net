@@ -35,6 +35,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'password',
         'gamejolt_username',
         'gamejolt_token',
+        'gamejolt_updated_at',
+        'gamejolt_verified_at',
     ];
 
     /**
@@ -56,6 +58,8 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'gamejolt_updated_at' => 'datetime',
+        'gamejolt_verified_at' => 'datetime',
     ];
 
     /**

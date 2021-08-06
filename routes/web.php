@@ -23,7 +23,7 @@ use App\Http\Controllers\Skin\UploadedSkinController;
 |
 */
 
-Route::domain('skin.'.str_replace(array('http://','https://'), '', env('APP_URL')))->group(function () {
+Route::prefix('skins')->middleware(['password.confirm', 'auth:sanctum', 'verified'])->group(function () {
     Route::get('/', [SkinHomeController::class, 'index'])->name('skin-home');
     
     /*

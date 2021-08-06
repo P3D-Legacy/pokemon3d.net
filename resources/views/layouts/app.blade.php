@@ -23,6 +23,10 @@
     <body class="font-sans antialiased">
         <x-jet-banner />
 
+        @if(Auth::user() && ! Auth::user()->hasGivenConsent(config('app.required_consent')))
+            <livewire:new-terms-banner />
+        @endif
+
         <div class="min-h-screen bg-gray-100">
             @livewire('navigation-menu')
 

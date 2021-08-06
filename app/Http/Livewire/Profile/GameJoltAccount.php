@@ -12,17 +12,17 @@ use Harrk\GameJoltApi\Exceptions\TimeOutException;
 
 class GameJoltAccount extends Component
 {
-    public $gamejolt_username;
-    public $gamejolt_token;
-    public $gamejolt_updated_at;
-    public $gamejolt_verified_at;
+    public $username;
+    public $token;
+    public $updated_at;
+    public $verified_at;
 
     public function mount() {
         $user = Auth::user();
-        $this->gamejolt_username = $user->gamejolt_username;
-        $this->gamejolt_token = $user->gamejolt_token;
-        $this->gamejolt_updated_at =  ($user->gamejolt_updated_at ? $user->gamejolt_updated_at->diffForHumans() : null);
-        $this->gamejolt_verified_at =  ($user->gamejolt_verified_at ? $user->gamejolt_verified_at->diffForHumans() : null);
+        $this->username = ($user->gamejolt ? $user->gamejolt->username : null);
+        $this->token = ($user->gamejolt ? $user->gamejolt->token : null);
+        $this->updated_at =  ($user->gamejolt ? $user->gamejolt->updated_at->diffForHumans() : null);
+        $this->verified_at =  ($user->gamejolt ? $user->gamejolt->verified_at->diffForHumans() : null);
     }
 
     /**
@@ -38,14 +38,14 @@ class GameJoltAccount extends Component
         $user = Auth::user();
 
         $this->validate([
-            'gamejolt_username' => [
+            'username' => [
                 'required',
                 'alpha_dash',
                 'max:30',
                 'min:4',
-                Rule::unique('users')->ignore($user->id),
+                Rule::unique('game_jolt_accounts')->ignore($user->id, 'user_id'),
             ],
-            'gamejolt_token' => [
+            'token' => [
                 'required',
                 'alpha_dash',
                 'max:30',
@@ -56,7 +56,7 @@ class GameJoltAccount extends Component
         $api = new GamejoltApi(new GamejoltConfig(env("GAMEJOLT_GAME_ID"), env("GAMEJOLT_GAME_PRIVATE_KEY")));
         
         try {
-            $auth = $api->users()->auth($this->gamejolt_username, $this->gamejolt_token);
+            $auth = $api->users()->auth($this->username, $this->token);
         } catch (TimeOutException $e) {
             $this->addError('error', $e->getMessage());
             return false; // Stop here
@@ -73,18 +73,17 @@ class GameJoltAccount extends Component
         }
         
         $data = [
-            'gamejolt_username' => $this->gamejolt_username,
-            'gamejolt_token' => $this->gamejolt_token,
-            'gamejolt_updated_at' => Carbon::now()->toDateTimeString(),
-            'gamejolt_verified_at' => Carbon::now()->toDateTimeString(),
+            'username' => $this->username,
+            'token' => $this->token,
+            'verified_at' => Carbon::now()->toDateTimeString(),
         ];
         
-        $user->update($data);
+        $user->gamejolt()->firstOrNew($data);
         
-        $this->gamejolt_username = $user->gamejolt_username;
-        $this->gamejolt_token = $user->gamejolt_token;
-        $this->gamejolt_updated_at = $user->gamejolt_updated_at->diffForHumans();
-        $this->gamejolt_verified_at = $user->gamejolt_verified_at->diffForHumans();
+        $this->username = $user->gamejolt->username;
+        $this->token = $user->gamejolt->token;
+        $this->updated_at = $user->gamejolt->updated_at->diffForHumans();
+        $this->verified_at = $user->gamejolt->verified_at->diffForHumans();
         
         $this->emit('saved');
     }

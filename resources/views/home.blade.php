@@ -144,9 +144,9 @@
 
     <section class="bg-gray-100 border-b py-12">
         <div class="container mx-auto flex flex-wrap items-center justify-between">
-            <div class="flex flex-1 flex-wrap max-w-4xl mx-auto items-center justify-between text-5xl text-gray-900 font-bold opacity-75">
+            <div class="flex flex-1 flex-wrap max-w-5xl mx-auto items-center justify-between text-5xl text-gray-900 font-bold opacity-75">
                 <div class="w-1/2 p-4 md:w-auto flex flex-col items-center">
-                    <div class="flex">0</div>
+                    <div class="flex">{{ \App\Helpers\StatsHelper::countPlayers() }}</div>
                     <div class="flex text-xl text-gray-600">Online Users</div>
                     {{-- ONLINE USERS FROM THE SERVER --}}
                 </div>
@@ -158,15 +158,21 @@
                 </div>
 
                 <div class="w-1/2 p-4 md:w-auto flex flex-col items-center">
-                    <div class="flex">0</div>
+                    <div class="flex">{{ \App\Helpers\StatsHelper::countDiscordMembers() }}</div>
                     <div class="flex text-xl text-gray-600">Discord Users</div>
                     {{-- TOTAL COUNT DISCORD USERS --}}
                 </div>
 
                 <div class="w-1/2 p-4 md:w-auto flex flex-col items-center">
-                    <div class="flex">0</div>
+                    <div class="flex">{{ \App\Helpers\StatsHelper::countForumMembers() }}</div>
                     <div class="flex text-xl text-gray-600">Forum Users</div>
                     {{-- ACTIVE USERS FROM THE FORUM --}}
+                </div>
+
+                <div class="w-1/2 p-4 md:w-auto flex flex-col items-center">
+                    <div class="flex">{{ ucfirst(\App\Helpers\StatsHelper::getInGameSeason()) }}</div>
+                    <div class="flex text-xl text-gray-600">In-Game Season</div>
+                    {{-- CURRENT IN-GAME SEASON --}}
                 </div>
             </div>
         </div>

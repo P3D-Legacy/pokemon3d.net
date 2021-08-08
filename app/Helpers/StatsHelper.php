@@ -41,8 +41,12 @@ class StatsHelper
     }
 
     public static function countPlayers(){
-        $data = self::sendRequest("/server/status");
-        return count($data['players']);
+        try {
+            $data = self::sendRequest("/server/status");
+            return count($data['players']);
+        } catch (\Exception $exception){
+            return 'N/A';
+        }
     }
 
     public static function getInGameSeason(){

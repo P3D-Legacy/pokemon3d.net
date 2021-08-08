@@ -142,7 +142,7 @@
         </div>
     </div>
 
-    <section class="bg-gray-100 border-b py-12 mt-24 sm:mt-16 xl:mt-0">
+    <section class="bg-gray-100 border-b py-12">
         <div class="container mx-auto flex flex-wrap items-center justify-between">
             <div class="flex flex-1 flex-wrap max-w-4xl mx-auto items-center justify-between text-5xl text-gray-900 font-bold opacity-75">
                 <div class="w-1/2 p-4 md:w-auto flex flex-col items-center">

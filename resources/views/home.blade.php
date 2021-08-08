@@ -269,26 +269,26 @@
             </div>
 
             <div class="flex flex-1 flex-wrap max-w-4xl mx-auto items-center justify-between text-4xl text-gray-700 font-bold opacity-75">
-                <span class="w-full p-4 sm:w-auto flex items-center">
+                <div class="w-full p-4 sm:w-auto flex items-center">
                     Polygon
-                </span>
+                </div>
 
-                <span class="w-full p-4 sm:w-auto flex items-center">
+                <div class="w-full p-4 sm:w-auto flex text-center">
                     Kotaku
-                </span>
+                </div>
 
-                <span class="w-full p-4 sm:w-auto flex items-center">
+                <div class="w-full p-4 sm:w-auto flex items-center">
                     The Verge
-                </span>
+                </div>
 
-                <span class="w-full p-4 sm:w-auto flex items-center">
+                <div class="w-full p-4 sm:w-auto flex items-center">
                     PCMag
-                </span>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="w-full mx-auto text-center py-12 text-white">
+    <section class="w-full mx-auto text-center py-12 text-white px-3">
         <h2 class="w-full my-2 text-3xl font-black leading-tight text-center uppercase">
             Miss your childhood?
         </h2>

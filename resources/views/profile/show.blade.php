@@ -13,6 +13,11 @@
                 <x-jet-section-border />
             @endif
 
+            @if(env("GAMEJOLT_GAME_ID") && env("GAMEJOLT_GAME_PRIVATE_KEY"))
+                @livewire('profile.game-jolt-account')
+                <x-jet-section-border />
+            @endif
+
             @livewire('profile.consent')
             <x-jet-section-border />
 

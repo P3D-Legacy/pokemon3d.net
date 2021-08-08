@@ -12,11 +12,14 @@ use Harrk\GameJoltApi\Exceptions\TimeOutException;
 
 class AuthGJController extends Controller
 {
+    /*
     public function __construct()
     {
         $this->middleware(['gj.guest'])->except('logout');
         $this->middleware(['gj.auth'])->except(['gj-login', 'index']);
     }
+    */
+    
     /**
      * Display a listing of the resource.
      *
@@ -27,6 +30,7 @@ class AuthGJController extends Controller
         return view('skin-subdomain.login');
     }
 
+    /*
     public function login(Request $request)
     {
         if (!env("GAMEJOLT_GAME_ID") || !env("GAMEJOLT_GAME_PRIVATE_KEY")) {
@@ -91,4 +95,5 @@ class AuthGJController extends Controller
         $request->session()->flush();
         return redirect()->route('gj-login')->with('success', 'You successfully logged out!');
     }
+    */
 }

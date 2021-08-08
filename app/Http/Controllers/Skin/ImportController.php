@@ -10,10 +10,12 @@ use Illuminate\Support\Facades\Storage;
 
 class ImportController extends Controller
 {
+    /*
     public function __construct()
     {
         $this->middleware(['gj.auth']);
-    }
+    }¨
+    */
     
     public function import(Request $request, $id)
     {

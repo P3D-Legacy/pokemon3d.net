@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5dea6c45ee4d591698a5ca260fe38245",
+    "content-hash": "f6a5d51488078415a444f52e5059b928",
     "packages": [
         {
             "name": "anlutro/l4-settings",
@@ -178,6 +178,71 @@
                 "source": "https://github.com/Bacon/BaconQrCode/tree/2.0.4"
             },
             "time": "2021-06-18T13:26:35+00:00"
+        },
+        {
+            "name": "betterapp/laravel-db-encrypter",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/betterapp/laravel-db-encrypter.git",
+                "reference": "46fda365c80afda988e0f0b0e30074db1b00c644"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/betterapp/laravel-db-encrypter/zipball/46fda365c80afda988e0f0b0e30074db1b00c644",
+                "reference": "46fda365c80afda988e0f0b0e30074db1b00c644",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "^6.0|^7.0|^8.0",
+                "php": ">=7.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "betterapp\\LaravelDbEncrypter\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Daniel Czestki",
+                    "email": "daniel@betterapp.net",
+                    "homepage": "https://github.com/betterapp",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Provides database model attribute encryption/decryption",
+            "keywords": [
+                "attribute",
+                "database",
+                "database encrypter",
+                "database encryption",
+                "decrypt",
+                "decrypted",
+                "decryption",
+                "eloquent",
+                "encrypt",
+                "encrypter",
+                "encryption",
+                "laravel",
+                "laravel attribute encrypter",
+                "laravel attribute encryption",
+                "laravel database encrypter",
+                "laravel database encryption",
+                "laravel db encrypter",
+                "laravel db encryption",
+                "laravel model encrypter",
+                "laravel model encryption"
+            ],
+            "support": {
+                "issues": "https://github.com/betterapp/laravel-db-encrypter/issues",
+                "source": "https://github.com/betterapp/laravel-db-encrypter/tree/v1.0.1"
+            },
+            "time": "2020-09-12T15:24:02+00:00"
         },
         {
             "name": "binarycabin/laravel-uuid",

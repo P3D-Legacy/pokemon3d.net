@@ -10,10 +10,12 @@ use App\Http\Controllers\Controller;
 
 class SkinHomeController extends Controller
 {
+    /*
     public function __construct()
     {
         $this->middleware(['gj.auth']);
     }
+    */
 
     /**
      * Display a listing of the resource.

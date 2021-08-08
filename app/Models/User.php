@@ -62,4 +62,12 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $appends = [
         'profile_photo_url',
     ];
+
+    /**
+     * Get the gamejolt account associated with the user.
+     */
+    public function gamejolt()
+    {
+        return $this->hasOne(GameJoltAccount::class);
+    }
 }

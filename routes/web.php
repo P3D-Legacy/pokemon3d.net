@@ -23,12 +23,15 @@ use App\Http\Controllers\Skin\UploadedSkinController;
 |
 */
 
-Route::domain('skin.'.str_replace(array('http://','https://'), '', env('APP_URL')))->group(function () {
+Route::prefix('skins')->middleware(['password.confirm', 'auth:sanctum', 'verified'])->group(function () {
     Route::get('/', [SkinHomeController::class, 'index'])->name('skin-home');
+    
+    /*
     Route::get('/gj/login', [AuthGJController::class, 'index'])->name('gj-login');
     Route::post('/gj/login', [AuthGJController::class, 'login'])->name('gj-login-post');
     Route::get('/gj/logout', [AuthGJController::class, 'logout'])->name('gj-logout');
-    
+    */
+
     Route::get('/import/{id}', [ImportController::class, 'import'])->name('import');
     
     Route::get('/player/skins', [PlayerSkinController::class, 'index'])->name('player-skins');

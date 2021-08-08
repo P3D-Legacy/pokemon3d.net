@@ -181,9 +181,22 @@
                 <div class="h-1 mx-auto bg-black w-64 opacity-25 my-0 py-0 rounded-t"></div>
             </div>
 
-            <x-home.article />
-            <x-home.article />
-            <x-home.article />
+            @forelse(\App\Helpers\XenforoHelper::getNewsItems()['threads'] as $item)
+                @if($loop->iteration > 3)
+                    @break
+                @endif
+                <x-home.article :item="$item" />
+            @empty
+                <div class="text-center w-full text-xs">
+                    <p class="text-red-900 mb-1">Failed to fetch news.</p>
+                    <a href="https://pokemon3d.net/forum/news/" class="text-green-500 hover:underline">
+                        Go to forum news
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                        </svg>
+                    </a>
+                </div>
+            @endforelse
 
         </div>
     </section>

@@ -6,14 +6,16 @@ use Illuminate\View\Component;
 
 class Article extends Component
 {
+    public $item;
+
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($item)
     {
-        //
+        $this->item = $item;
     }
 
     /**

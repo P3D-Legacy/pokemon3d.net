@@ -29,6 +29,7 @@
         "livewire/livewire": "^2.5",
         "origami/consent": "^2.0",
         "overtrue/laravel-like": "^4.0",
+        "restcord/restcord": "dev-develop",
         "sentry/sentry-laravel": "^2.5",
         "spatie/laravel-activitylog": "^3.16",
         "spatie/laravel-cookie-consent": "^2.12",

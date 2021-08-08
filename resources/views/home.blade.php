@@ -18,7 +18,7 @@
             </div>
 
             <!-- Responsive Navigation Menu -->
-            <div :class="{'flex': open, 'hidden': ! open}" class="hidden sm:hidden w-full pt-2">
+            <div :class="{'flex': open, 'hidden': ! open}" class="hidden w-full pt-2">
                 <ul class="list-reset lg:flex flex-1 place-items-end space-y-1 grid justify-items-end">
                     <x-home.responsive-nav-link title="Forum" url="https://pokemon3d.net/forum/">
                         <x-slot name="icon">

@@ -30,8 +30,8 @@
               right: 3.6em;
               width: 0.8em;
               height: 0.8em;
-              background-color: #9b3;
-              box-shadow: 0 0 0 2px #9b3, 1.5em 0 0 2px #9b3, 3em 0 0 2px  #f44;
+              background-color: rgb(184, 184, 184);
+              box-shadow: 0 0 0 2px rgb(184, 184, 184), 1.5em 0 0 2px rgb(184, 184, 184), 3em 0 0 2px  #f44;
             }
             .browser-mockup > * {
               display: block;

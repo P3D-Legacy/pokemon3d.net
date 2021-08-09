@@ -33,7 +33,7 @@ class StatsHelper
 
     public static function countForumMembers(){
         try {
-            $count = XenforoHelper::getUserCount();
+            $count = XenForoHelper::getUserCount();
             return $count;
         } catch (\Exception $exception){
             return 'N/A';

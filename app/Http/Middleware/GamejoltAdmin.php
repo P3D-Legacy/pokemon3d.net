@@ -26,6 +26,6 @@ class GamejoltAdmin
                 return $next($request);
             }
         }
-        return redirect()->route('home')->with('warning', 'You do not have access to this page!');
+        return redirect()->route('skin-home')->with('warning', 'You do not have access to this page!');
     }
 }

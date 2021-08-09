@@ -81,7 +81,7 @@ class AuthGJController extends Controller
 
         // Open a session for the given user
         $api->sessions()->open($username, $token);
-        return redirect()->route('home')->with('success', 'You successfully logged in with Gamejolt!');
+        return redirect()->route('skin-home')->with('success', 'You successfully logged in with Gamejolt!');
     }
 
     public function logout(Request $request)

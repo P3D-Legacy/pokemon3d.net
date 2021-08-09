@@ -20,7 +20,7 @@ class GamejoltSuperAdmin
             redirect()->route('gj-login')->with('error', 'Gamejolt API keys is not set by the admin!');
         }
         if(!env("GAMEJOLT_USER_ID_SUPERADMIN")) {
-            redirect()->route('home')->with('warning', 'Super Admin has not been set!');
+            redirect()->route('skin-home')->with('warning', 'Super Admin has not been set!');
         }
         if ($request->session()->get('gjid') != env("GAMEJOLT_USER_ID_SUPERADMIN")) {
             return redirect()->route('home')->with('warning', 'You do not have access to this page!');

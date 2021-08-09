@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
-use BinaryCabin\LaravelUUID\Traits\HasUUID;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Models\Activity;
 use Overtrue\LaravelLike\Traits\Likeable;
+use BinaryCabin\LaravelUUID\Traits\HasUUID;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -78,7 +79,7 @@ class Skin extends Model
     }
     
     public function urlPath() {
-        return env('APP_URL').'/skin/'.$this->path();
+        return env('APP_URL').'/img/skin/'.$this->path();
     }
 
 }

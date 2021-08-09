@@ -16,7 +16,7 @@
         <p class="text-white">None found.</p>
     @endif
     @foreach($skins as $skin)
-        @include('skin.component.card', ['skin' => $skin])
+        @include('skin-subdomain.skin.component.card', ['skin' => $skin])
     @endforeach
 </div>
 

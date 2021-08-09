@@ -7,7 +7,7 @@
 </h2>
 <div class="gap-4 grid grid-cols-1 grid-flow-row auto-rows-max sm:grid-cols-2 lg:grid-cols-3">
     @foreach($skins as $skin)
-        @include('skin.component.card', ['skin' => $skin])
+        @include('skin-subdomain.skin.component.card', ['skin' => $skin])
     @endforeach
 </div>
 

@@ -15,7 +15,7 @@ class AddIdToGameJoltAccounts extends Migration
     {
         Schema::table('game_jolt_accounts', function (Blueprint $table) {
             $table->dropColumn('id');
-            $table->bigInteger('aid')->unsigned()->primary()->unique()->first()->nullable()->comment('GameJolt Account ID');
+            $table->bigInteger('account_id')->unsigned()->primary()->unique()->first()->nullable()->comment('GameJolt Account ID');
         });
     }
 
@@ -27,7 +27,7 @@ class AddIdToGameJoltAccounts extends Migration
     public function down()
     {
         Schema::table('game_jolt_accounts', function (Blueprint $table) {
-            $table->dropColumn('aid');
+            //
         });
     }
 }

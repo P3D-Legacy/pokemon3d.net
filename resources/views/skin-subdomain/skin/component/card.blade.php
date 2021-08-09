@@ -11,7 +11,7 @@
             @if(Auth::user()->gamejolt->id == $skin->owner_id)
                 Public: {{ ($skin->public) ? 'Yes' : 'No' }}<br>
             @endif
-            Owned by: <a class="text-green-800" href="{{ route('user-show', $skin->owner_id) }}">{{ $skin->user->gju ?? $skin->owner_id }}</a><br>
+            Owned by: <a class="text-green-800" href="#{{-- route('user-show', $skin->owner_id) --}}">{{ $skin->user->username ?? $skin->owner_id }}</a><br>
             Uploaded: {{ $skin->created_at->diffForHumans() }}<br>
             File size: {{ Storage::disk('skin')->exists($skin->path()) ? \ByteUnits\Binary::bytes(Storage::disk('skin')->size($skin->path()))->format() : 'N/A' }}
         </p>

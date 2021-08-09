@@ -41,6 +41,10 @@
             <span class="mr-3 text-red-500">{{ $message }}</span>
         @enderror
 
+        @error('success')
+            <span class="mr-3 text-green-500">{{ $message }}</span>
+        @enderror
+
         <x-jet-button>
             {{ __('Save') }}
         </x-jet-button>

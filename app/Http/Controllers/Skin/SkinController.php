@@ -189,7 +189,7 @@ class SkinController extends Controller
         } catch (FileNotFoundException $e) {
             return redirect()->route('skins-my')->with('warning', 'Could not apply skin.');
         }
-        return redirect()->route('home')->with('success', 'Skin was applied! Not seeing it? Refresh the page again.');
+        return redirect()->route('skin-home')->with('success', 'Skin was applied! Not seeing it? Refresh the page again.');
     }
 
     /**

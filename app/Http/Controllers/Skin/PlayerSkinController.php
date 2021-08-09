@@ -116,7 +116,7 @@ class PlayerSkinController extends Controller
         $gjid = $request->session()->get('gjid');
         $filename = $gjid.'.png';
         if(!Storage::disk('player')->exists($filename)) {
-            return redirect()->route('home')->with('error', 'Skin was not found!');
+            return redirect()->route('skin-home')->with('error', 'Skin was not found!');
         }
         Storage::disk('player')->delete($filename);
         return redirect()->route('skins-my')->with('success', 'Skin was successfully deleted!');

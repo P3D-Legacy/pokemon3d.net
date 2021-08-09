@@ -33,11 +33,11 @@ class ImportController extends Controller
             if (!empty($response->getHeaders()['Content-Type'][0]) && in_array($response->getHeaders()['Content-Type'][0], $valid_types, true)) {
                 Storage::disk('player')->put($id.'.png', $response->getBody()->getContents());
             } else {
-                return redirect()->route('home')->with('error', 'Skin was not in a valid format!');
+                return redirect()->route('skin-home')->with('error', 'Skin was not in a valid format!');
             }
         } catch (\Exception $e) {
-            return redirect()->route('home')->with('error', 'Could not find a skin!');
+            return redirect()->route('skin-home')->with('error', 'Could not find a skin!');
         }
-        return redirect()->route('home')->with('success', 'Your old skin has been imported!');
+        return redirect()->route('skin-home')->with('success', 'Your old skin has been imported!');
     }
 }

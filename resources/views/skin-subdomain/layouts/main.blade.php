@@ -89,6 +89,7 @@
                                                 </div>
                                             @endif
                                         @endif
+                                        {{--
                                         @if(session()->get('gjid') == env("GAMEJOLT_USER_ID_SUPERADMIN"))
                                             <div class="block-inline">
                                                 <div x-data="{ open: false }" class="relative inline-block text-left" >
@@ -113,6 +114,7 @@
                                                 </div>
                                             </div>
                                         @endif
+                                        --}}
                                     </div>
                                 </div>
                                 <!-- Mobile Menu -->
@@ -135,14 +137,16 @@
                                     </button>
                                     <div x-show="open" @click.outside="open = false" class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white dark:bg-gray-800 ring-1 ring-black ring-opacity-5 border border-1 border-gray-300">
                                         <div class="py-1 " role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-                                            <a href="{{ route('users') }}" class="block px-4 py-2 text-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600" role="menuitem">
-                                                <span>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline-block mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-                                                    </svg>
-                                                    Users
-                                                </span>
-                                            </a>
+                                            {{--
+                                                <a href="{{ route('users') }}" class="block px-4 py-2 text-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600" role="menuitem">
+                                                    <span>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline-block mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                                                        </svg>
+                                                        Users
+                                                    </span>
+                                                </a>
+                                            --}}
                                         </div>
                                     </div>
                                 </div>

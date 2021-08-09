@@ -14,7 +14,7 @@ class ChangeIdInGameJoltAccounts extends Migration
     public function up()
     {
         Schema::table('game_jolt_accounts', function (Blueprint $table) {
-            $table->renameColumn('aid', 'id');
+            $table->renameColumn('account_id', 'id');
         });
     }
 

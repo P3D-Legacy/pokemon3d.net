@@ -100,10 +100,12 @@
                         <img src="{{ asset('img/gamejolt-logo-light-1x.png') }}" class="inline-block"> Account
                     </p>
                     <p class="text-gray-800 dark:text-gray-300 font-light text-md">
-                        <img src="{{ $avatar_url ?? '' }}" class="rounded-full h-16 w-16">
-                        Type: {{ $type ?? '' }}<br>
-                        Signed up: {{ $signed_up ?? '' }}<br>
-                        Last logged in: {{ $last_logged_in ?? '' }}
+                        {{--
+                            <img src="{{ $avatar_url ?? '' }}" class="rounded-full h-16 w-16">
+                            Type: {{ $type ?? '' }}<br>
+                            Signed up: {{ $signed_up ?? '' }}<br>
+                            Last logged in: {{ $last_logged_in ?? '' }}
+                        --}}
                     </p>
                 </div>
             </div>

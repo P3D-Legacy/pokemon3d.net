@@ -59,7 +59,7 @@ class GameJoltAccount extends Component
             $auth = $api->users()->auth($this->username, $this->token);
         } catch (TimeOutException $e) {
             $this->addError('error', $e->getMessage());
-            return false; // Stop here
+            return;
         }
         
         if(filter_var($auth['response']['success'], FILTER_VALIDATE_BOOLEAN) === false) {
@@ -69,7 +69,7 @@ class GameJoltAccount extends Component
                 $error = "Username and/or token is wrong.";
             }
             $this->addError('error', $error);
-            return false; // Stop here
+            return;
         }
 
         $gj_user = $api->users()->fetch($this->username, $this->token);

@@ -19,7 +19,6 @@ class GameJoltAccount extends Model
     protected $fillable = [
         'username',
         'token',
-        'updated_at',
         'verified_at',
     ];
 
@@ -29,7 +28,6 @@ class GameJoltAccount extends Model
      * @var array
      */
     protected $casts = [
-        'updated_at' => 'datetime',
         'verified_at' => 'datetime',
     ];
 

@@ -88,11 +88,11 @@ class SkinController extends Controller
      */
     public function store(Request $request)
     {
-        $gjid = $request->session()->get('gjid');
-        $gju = $request->session()->get('gju');
+        $gjid = Auth::user()->gamejolt->id;
+        $gju = Auth::user()->gamejolt->username;
         $gjau = $request->session()->get('gjau');
 
-        $skincount = GJUser::find($gjid)->skins()->count();
+        $skincount = Auth::user()->gamejolt->skins()->count();
 
         if($skincount >= env('SKIN_MAX_UPLOAD')) {
             return redirect()->route('skins-my')->with('warning', 'You have reached the maximum amount of skins you can upload.');
@@ -181,7 +181,7 @@ class SkinController extends Controller
      */
     public function apply(Request $request, $uuid)
     {
-        $gjid = $request->session()->get('gjid');
+        $gjid = Auth::user()->gamejolt->id;
         $filename = $gjid.'.png';
         $skin = Skin::where('uuid', $uuid)->first();
         try {
@@ -200,11 +200,10 @@ class SkinController extends Controller
      */
     public function like(Request $request, $uuid)
     {
-        $gjid = $request->session()->get('gjid');
-        $user = GJUser::find($gjid);
+        $user = Auth::user();
         $skin = Skin::where('uuid', $uuid)->first();
         abort_unless($skin, 404);
-        if($user->gjid != $skin->owner_id) {
+        if($user->gamejolt->id != $skin->owner_id) {
             $user->toggleLike($skin);
         }
         return redirect()->back();
@@ -219,7 +218,7 @@ class SkinController extends Controller
      */
     public function edit(Request $request, $uuid)
     {
-        $gjid = $request->session()->get('gjid');
+        $gjid = Auth::user()->gamejolt->id;
         $skin = Skin::where('uuid', $uuid)->first();
         if($gjid != $skin->owner_id) {
             return redirect()->route('skins')->with('error', 'You do not own this skin!');
@@ -236,7 +235,7 @@ class SkinController extends Controller
      */
     public function update(Request $request, $uuid)
     {
-        $gjid = $request->session()->get('gjid');
+        $gjid = Auth::user()->gamejolt->id;
         $skin = Skin::where('uuid', $uuid)->first();
         if($gjid != $skin->owner_id) {
             return redirect()->route('skins')->with('error', 'You do not own this skin!');
@@ -263,7 +262,7 @@ class SkinController extends Controller
      */
     public function destroy(Request $request, $uuid)
     {
-        $gjid = $request->session()->get('gjid');
+        $gjid = Auth::user()->gamejolt->id;
         $skin = Skin::where('uuid', $uuid)->first();
         if($gjid != $skin->owner_id) {
             return redirect()->route('skins')->with('error', 'You do not own this skin!');

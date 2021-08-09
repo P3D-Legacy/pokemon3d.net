@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class GamejoltSuperAdmin
 {
@@ -22,7 +23,7 @@ class GamejoltSuperAdmin
         if(!env("GAMEJOLT_USER_ID_SUPERADMIN")) {
             redirect()->route('skin-home')->with('warning', 'Super Admin has not been set!');
         }
-        if ($request->session()->get('gjid') != env("GAMEJOLT_USER_ID_SUPERADMIN")) {
+        if (Auth::user()->gamejolt->id != env("GAMEJOLT_USER_ID_SUPERADMIN")) {
             return redirect()->route('skin-home')->with('warning', 'You do not have access to this page!');
         }
         return $next($request);

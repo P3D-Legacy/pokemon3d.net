@@ -8,7 +8,7 @@
             <a href="{{ route('skin-show', $skin->uuid) }}">{{ $skin->name }}</a>
         </h1>
         <p class="mt-2 text-gray-600 text-xs">
-            @if(session()->get('gjid') == $skin->owner_id)
+            @if(Auth::user()->gamejolt->id == $skin->owner_id)
                 Public: {{ ($skin->public) ? 'Yes' : 'No' }}<br>
             @endif
             Owned by: <a class="text-green-800" href="{{ route('user-show', $skin->owner_id) }}">{{ $skin->user->gju ?? $skin->owner_id }}</a><br>
@@ -51,8 +51,8 @@
                         Show
                     </a>
                 @endif
-                @if(session()->get('gjid') != $skin->owner_id)
-                    @if($skin->isLikedBy(\App\Models\GJUser::find(session()->get('gjid'))))
+                @if(Auth::user()->gamejolt->id != $skin->owner_id)
+                    @if($skin->isLikedBy(Auth::user()))
                         <a class="px-2 py-1 bg-red-800 text-red-50 text-xs font-bold uppercase rounded" href="{{ route('skin-like', $skin->uuid) }}">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />

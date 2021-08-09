@@ -6,6 +6,7 @@ use App\Models\GJUser;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class ImportController extends Controller
@@ -17,11 +18,11 @@ class ImportController extends Controller
     
     public function import(Request $request, $id)
     {
-        $gjid = $request->session()->get('gjid');
+        $gjid = Auth::user()->gamejolt->id;
         if($id != $gjid) {
-            return redirect()->route('home')->with('error', 'You cannot import this skin!');
+            return redirect()->route('skin-home')->with('error', 'You cannot import this skin!');
         }
-        $skincount = GJUser::find($gjid)->skins()->count();
+        $skincount = Auth::user()->gamejolt->skins()->count();
         if($skincount >= env('SKIN_MAX_UPLOAD')) {
             return redirect()->route('skins-my')->with('warning', 'You have reached the maximum amount of skins you can upload.');
         }

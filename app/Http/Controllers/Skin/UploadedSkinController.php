@@ -6,6 +6,7 @@ use App\Models\Skin;
 use App\Models\GJUser;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class UploadedSkinController extends Controller
@@ -96,7 +97,7 @@ class UploadedSkinController extends Controller
         if(!Storage::disk('skin')->exists($skin->path())) {
             return redirect()->route('uploaded-skins')->with('error', 'Skin was not found!');
         }
-        activity()->causedBy(GJUser::where('gjid', session()->get('gjid'))->first())->withProperties(['filename' => $skin->path(), 'gjid' => $skin->user->gjid, 'reason' => $request->reason])->log('deleted');
+        activity()->causedBy(Auth::user()->gamejolt)->withProperties(['filename' => $skin->path(), 'gjid' => $skin->user->id, 'reason' => $request->reason])->log('deleted');
         $skin->delete();
         Storage::disk('skin')->delete($skin->path());
         return redirect()->route('uploaded-skins')->with('success', 'Skin was successfully deleted!');

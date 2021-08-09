@@ -6,6 +6,7 @@ use App\Models\Skin;
 use App\Models\GJUser;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class PlayerSkinController extends Controller
@@ -47,7 +48,7 @@ class PlayerSkinController extends Controller
      */
     public function store(Request $request)
     {
-        $gjid = $request->session()->get('gjid');
+        $gjid = Auth::user()->gamejolt->id;
 
         $request->validate([
             'image' => ['required', 'image', 'max:2000', 'mimes:png', 'dimensions:ratio=3/4'], // 2MB
@@ -67,8 +68,8 @@ class PlayerSkinController extends Controller
      */
     public function duplicate(Request $request)
     {
-        $gjid = $request->session()->get('gjid');
-        $skincount = GJUser::find($gjid)->skins()->count();
+        $gjid = Auth::user()->gamejolt->id;
+        $skincount = Auth::user()->gamejolt->skins()->count();
         if($skincount >= env('SKIN_MAX_UPLOAD')) {
             return redirect()->route('skins-my')->with('warning', 'You have reached the maximum amount of skins you can upload.');
         }
@@ -113,7 +114,7 @@ class PlayerSkinController extends Controller
      */
     public function destroy(Request $request)
     {
-        $gjid = $request->session()->get('gjid');
+        $gjid = Auth::user()->gamejolt>id;
         $filename = $gjid.'.png';
         if(!Storage::disk('player')->exists($filename)) {
             return redirect()->route('skin-home')->with('error', 'Skin was not found!');
@@ -137,7 +138,7 @@ class PlayerSkinController extends Controller
         if(!Storage::disk('player')->exists($filename)) {
             return redirect()->route('player-skins')->with('error', 'Skin was not found!');
         }
-        activity()->causedBy(GJUser::where('gjid', session()->get('gjid'))->first())->withProperties(['filename' => $filename, 'gjid' => $gjid, 'reason' => $request->reason])->log('deleted');
+        activity()->causedBy(Auth::user()->gamejolt)->withProperties(['filename' => $filename, 'gjid' => $gjid, 'reason' => $request->reason])->log('deleted');
         Storage::disk('player')->delete($filename);
         return redirect()->route('player-skins')->with('success', 'Skin was successfully deleted!');
     }

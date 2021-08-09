@@ -12,7 +12,7 @@ class PlayerSkinController extends Controller
 {
     public function __construct()
     {
-        //$this->middleware(['gj.auth']);
+        $this->middleware(['gj.account']);
         $this->middleware(['gj.admin'])->only(['index']);
     }
 

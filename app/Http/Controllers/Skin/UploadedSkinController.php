@@ -12,7 +12,7 @@ class UploadedSkinController extends Controller
 {
     public function __construct()
     {
-        $this->middleware([/*'gj.auth', */'gj.admin']);
+        $this->middleware(['gj.account', 'gj.admin']);
     }
 
     /**

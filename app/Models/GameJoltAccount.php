@@ -48,4 +48,20 @@ class GameJoltAccount extends Model
     {
         return $this->hasOne(User::class);
     }
+
+    /**
+     * Get the skins that the user owns.
+     */
+    public function skins()
+    {
+        return $this->hasMany(Skin::class, 'owner_id', 'id');
+    }
+
+    /**
+     * Get the skins that the user owns.
+     */
+    public function publicSkins()
+    {
+        return $this->hasMany(Skin::class, 'owner_id', 'id')->isPublic();
+    }
 }

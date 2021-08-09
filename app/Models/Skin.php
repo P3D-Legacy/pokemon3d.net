@@ -57,8 +57,8 @@ class Skin extends Model
     public function tapActivity(Activity $activity)
     {
         $activity->subject_id = $this->id;
-        $activity->causer_id = session()->get('gjid');
-        $activity->causer_type = GJUser::class;
+        $activity->causer_id = Auth::user()->id;
+        $activity->causer_type = User::class;
     }
 
     /**
@@ -66,7 +66,7 @@ class Skin extends Model
      */
     public function user()
     {
-        return $this->belongsTo(GJUser::class, 'owner_id', 'gjid');
+        return $this->belongsTo(GameJoltAccount::class, 'owner_id', 'id');
     }
 
     public function scopeIsPublic($query) {

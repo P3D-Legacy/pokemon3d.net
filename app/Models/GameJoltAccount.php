@@ -17,6 +17,7 @@ class GameJoltAccount extends Model
      * @var array
      */
     protected $fillable = [
+        'id',
         'username',
         'token',
         'verified_at',

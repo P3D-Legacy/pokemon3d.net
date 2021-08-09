@@ -71,19 +71,29 @@ class GameJoltAccount extends Component
             $this->addError('error', $error);
             return false; // Stop here
         }
+
+        $gj_user = $api->users()->fetch($this->username, $this->token);
+        $id = $gj_user['response']['users'][0]['id'];
+        // $avatar_url = $user['response']['users'][0]['avatar_url'];
         
         $data = [
+            'id' => $id,
             'username' => $this->username,
             'token' => $this->token,
             'verified_at' => Carbon::now()->toDateTimeString(),
         ];
-        
-        $user->gamejolt()->firstOrNew($data);
-        
-        $this->username = $user->gamejolt->username;
-        $this->token = $user->gamejolt->token;
-        $this->updated_at = $user->gamejolt->updated_at->diffForHumans();
-        $this->verified_at = $user->gamejolt->verified_at->diffForHumans();
+
+        if (!$user->gamejolt) {
+            $gamejolt = $user->gamejolt()->create($data);
+        } else {
+            $user->gamejolt->update($data);
+            $gamejolt = $user->gamejolt;
+        }
+
+        $this->username = $gamejolt->username;
+        $this->token = $gamejolt->token;
+        $this->updated_at = $gamejolt->updated_at->diffForHumans();
+        $this->verified_at = $gamejolt->verified_at->diffForHumans();
         
         $this->emit('saved');
     }

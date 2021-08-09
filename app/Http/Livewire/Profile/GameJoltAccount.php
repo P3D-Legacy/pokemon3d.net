@@ -39,19 +39,27 @@ class GameJoltAccount extends Component
 
         $this->validate([
             'username' => [
-                'required',
+                'nullable',
                 'alpha_dash',
                 'max:30',
                 'min:4',
                 Rule::unique('game_jolt_accounts')->ignore($user->id, 'user_id'),
             ],
             'token' => [
-                'required',
+                'nullable',
                 'alpha_dash',
                 'max:30',
                 'min:4',
             ],
         ]);
+
+        if (!$this->username && !$this->token) {
+            $this->errorBag->add('success', 'Your GameJolt account has now been unlinked.');
+            Auth::user()->gamejolt->delete();
+            $this->updated_at = null;
+            $this->verified_at = null;
+            return;
+        }
 
         $api = new GamejoltApi(new GamejoltConfig(env("GAMEJOLT_GAME_ID"), env("GAMEJOLT_GAME_PRIVATE_KEY")));
         

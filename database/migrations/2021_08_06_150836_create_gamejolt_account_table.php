@@ -15,10 +15,10 @@ class CreateGamejoltAccountTable extends Migration
     {
         Schema::create('game_jolt_accounts', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->text('username')->nullable();
-            $table->string('token')->nullable();
+            $table->text('username')->nullable()->comment('GameJolt Username');
+            $table->string('token')->nullable()->comment('GameJolt Token');
             $table->timestamp('verified_at')->nullable();
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
         });
     }

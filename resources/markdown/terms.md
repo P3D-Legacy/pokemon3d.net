@@ -41,7 +41,7 @@ Your Content must be your own and must not be invading any third-party’s right
 
 ## Your Privacy
 
-Please read [Privacy Policy](https://pokemon3d.net/privacy-policy) for information regarding your privacy.
+Please read [Privacy Policy](https://pokemon3d.net/privacy) for information regarding your privacy.
 
 ## No warranties
 

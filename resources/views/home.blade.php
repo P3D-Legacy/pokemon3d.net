@@ -136,8 +136,13 @@
         </div>
 
         <div class="flex items-center mx-auto content-end z-auto overflow-hidden w-full">
-            <div class="browser-mockup flex flex-1 m-6 md:px-0 md:m-12 bg-white shadow-xl aspect-w-16 aspect-h-9 rounded-t rounded-b-lg">
-                <img src="{{ asset('img/daniel_ingame.png') }}" class="w-full h-full object-center object-cover lg:w-full lg:h-full rounded-b-lg" />
+            <div class="browser-mockup with-url flex flex-1 m-6 md:m-12 bg-white shadow-xl rounded-t rounded-b-lg aspect-w-16 aspect-h-9">
+                {{-- <iframe class="w-full h-full object-center object-cover lg:w-full lg:h-full"  src="https://www.youtube.com/embed/hsnFgua89vQ?&autoplay=1" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+                <img src="{{ asset('img/daniel_ingame.png') }}" class="w-full h-full object-center object-cover lg:w-full lg:h-full rounded-b-lg" /> --}}
+                <video muted controls class="w-full h-full object-center object-cover lg:w-full lg:h-full rounded-b-lg">
+                    <source src="https://files.pokemon3d.net/video/trailer.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
             </div>
         </div>
     </div>

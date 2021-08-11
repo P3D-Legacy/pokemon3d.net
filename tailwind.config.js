@@ -9,6 +9,8 @@ module.exports = {
         './resources/views/**/*.blade.php',
     ],
 
+    darkMode: 'media',
+    
     theme: {
         extend: {
             fontFamily: {

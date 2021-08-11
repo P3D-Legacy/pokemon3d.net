@@ -292,23 +292,11 @@
             <div class="w-full mb-4">
                 <div class="h-1 mx-auto bg-black w-64 opacity-25 my-0 py-0 rounded-t"></div>
             </div>
-
-            <div class="flex flex-1 flex-wrap max-w-4xl mx-auto items-center justify-between text-4xl text-gray-700 font-bold opacity-75">
-                <div class="w-full p-4 sm:w-auto flex items-center">
-                    Polygon
-                </div>
-
-                <div class="w-full p-4 sm:w-auto flex text-center">
-                    Kotaku
-                </div>
-
-                <div class="w-full p-4 sm:w-auto flex items-center">
-                    The Verge
-                </div>
-
-                <div class="w-full p-4 sm:w-auto flex items-center">
-                    PCMag
-                </div>
+            
+            <div class="w-full flex flex-col md:flex-row gap-4 mb-8 md:mb-0 flex-between items-center p-8">
+                <x-home.media-article title="Pokemon 3D creator envisions a fully cooperative Pokemon campaign" url="https://www.polygon.com/2012/12/7/3740086/pokemon-3d-interview" author="Polygon" date="Dec 7, 2012, 4:40pm EST" />
+                <x-home.media-article title="This Fan-Made Pokémon Remake Is In 3D And First Person" url="https://www.kotaku.com.au/2012/12/this-fan-made-pokemon-remake-is-in-3d-and-first-person/" author="Kotaku" date="December 4, 2012 at 7:00 pm" />
+                <x-home.media-article title="'Pokemon' gets a virtual reality makeover for Oculus Rift" url="https://www.theverge.com/2014/2/25/5445930/pokemon-3d-oculus-rift" author="The Verge" date="Feb 25, 2014, 11:54am EST" />
             </div>
         </div>
     </section>

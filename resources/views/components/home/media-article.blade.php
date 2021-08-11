@@ -1,4 +1,4 @@
-<a class="bg-white dark:bg-gray-800 w-1/4 shadow-lg mx-auto rounded-xl p-4" href="{{ $url }}">
+<a class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-4 w-full sm:w-1/4 flex flex-col flex-grow flex-shrink" href="{{ $url }}">
     <p class="text-gray-600 dark:text-white">
         <span class="font-bold text-green-500 text-lg">
             “

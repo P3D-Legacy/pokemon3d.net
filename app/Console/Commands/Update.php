@@ -52,7 +52,6 @@ class Update extends Command
             $this->info('Updated version to: '.Setting::get('APP_VERSION'));
             Setting::save();
         }
-
-        return $ver;
+        $this->info('Done.');
     }
 }

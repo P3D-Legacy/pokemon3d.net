@@ -52,6 +52,8 @@ class Update extends Command
             $this->info('Updated version to: '.Setting::get('APP_VERSION'));
             Setting::save();
         }
+        $this->info('Giving SA...');
+        Artisan::call('p3d:givesa');
         $this->info('Done.');
     }
 }

@@ -19,11 +19,17 @@ class PermissionSeeder extends Seeder
         $r1 = Role::firstOrCreate(["name" => "super-admin"]);
         Role::firstOrCreate(["name" => "admin"]);
 
-        Permission::firstOrCreate(['name' => 'manage.users']);
-        Permission::firstOrCreate(['name' => 'api']);
+        $p1 = Permission::firstOrCreate(['name' => 'manage.users']);
+        $p2 = Permission::firstOrCreate(['name' => 'api']);
+        $p3 = Permission::firstOrCreate(['name' => 'blog-create']);
+        $p4 = Permission::firstOrCreate(['name' => 'blog-update']);
+        $p5 = Permission::firstOrCreate(['name' => 'blog-destroy']);
 
         $r1->givePermissionTo('manage.users');
         $r1->givePermissionTo('api');
+        $r1->givePermissionTo($p3->name);
+        $r1->givePermissionTo($p4->name);
+        $r1->givePermissionTo($p5->name);
 
         $user = User::first();
         $user->assignRole($r1);

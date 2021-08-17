@@ -44,8 +44,10 @@
                         {{ __('Forgot your password?') }}
                     </a>
                 @endif
+            </div>
 
-                <x-jet-button class="ml-4">
+            <div class="flex items-center justify-center mt-4">
+                <x-jet-button class="w-full flex items-center justify-center px-4 py-3 ">
                     {{ __('Log in') }}
                 </x-jet-button>
             </div>

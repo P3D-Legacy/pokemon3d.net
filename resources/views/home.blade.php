@@ -274,7 +274,7 @@
                         A New Experience
                     </h3>
                     <p class="text-gray-600 dark:text-gray-400 mb-8">
-                        {{ config('app.name') }} focused on the strong points of Pokémon Gold and Silver versions and their remakes, and gives players a taste as to how the once 2D world they knew was in 3D.
+                        {{ config('app.name') }} focuses on the strong points of Pokémon Gold and Silver versions and their remakes, and gives players a taste as to how the once 2D world they knew was in 3D.
                     </p>
                 </div>
                 <div class="w-full sm:w-1/2 p-6">

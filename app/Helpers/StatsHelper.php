@@ -17,11 +17,13 @@ class StatsHelper
         $this->discordClient = config('discord.token') && config('discord.server_id') ? new DiscordClient(['token' => config('discord.token')]) : null;
     }
 
-    public function getDiscordServer(){
+    public function getDiscordServer()
+    {
         return $this->discordClient->guild->getGuild(['guild.id' => config('discord.server_id'), 'with_counts' => true]);
     }
 
-    public static function countDiscordMembers(){
+    public static function countDiscordMembers()
+    {
         $that = new StatsHelper;
         try {
             return $that->getDiscordServer()->approximate_member_count;
@@ -31,7 +33,8 @@ class StatsHelper
         }
     }
 
-    public static function countForumMembers(){
+    public static function countForumMembers()
+    {
         try {
             $count = XenForoHelper::getUserCount();
             return $count;
@@ -40,7 +43,8 @@ class StatsHelper
         }
     }
 
-    public static function countPlayers(){
+    public static function countPlayers()
+    {
         try {
             $data = self::sendRequest("/server/status");
             return count($data['players']);
@@ -49,7 +53,8 @@ class StatsHelper
         }
     }
 
-    public static function getInGameSeason(){
+    public static function getInGameSeason()
+    {
         $season = date('W') % 4;
         $seasonName = "spring";
         #echo "Season (WOY % 4): " . $season;

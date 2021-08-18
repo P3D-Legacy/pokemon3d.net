@@ -26,7 +26,9 @@ class PermissionSeeder extends Seeder
         $r1->givePermissionTo('api');
 
         $user = User::first();
-        $user->assignRole($r1);
+        if($user) {
+            $user->assignRole($r1);
+        }
 
     }
 }

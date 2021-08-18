@@ -14,7 +14,7 @@ class StatsHelper
 
     public function __construct()
     {
-        $this->discordClient = config('discord.token') ? new DiscordClient(['token' => config('discord.token')]) : null;
+        $this->discordClient = config('discord.token') && config('discord.server_id') ? new DiscordClient(['token' => config('discord.token')]) : null;
     }
 
     public function getDiscordServer(){

@@ -1,1 +1,1 @@
-<img class="h-16 w-16" src="{{ asset('img/TreeLogoSmall.png') }}" alt="{{ env('APP_NAME') }}"/>
+<x-logo-small />

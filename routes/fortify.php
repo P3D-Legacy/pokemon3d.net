@@ -70,7 +70,7 @@ Route::group(['middleware' => config('fortify.middleware', ['web'])], function (
         }
 
         Route::post('/register', [RegisteredUserController::class, 'store'])
-            ->middleware(['guest:'.config('fortify.guard')])->name('register-store');
+            ->middleware(['guest:'.config('fortify.guard')]);
     }
 
     // Email Verification...

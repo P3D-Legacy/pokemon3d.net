@@ -30,7 +30,11 @@ class CreateNewUser implements CreatesNewUsers
         $messages = [
             'password.regex' => 'The password must contain at least one uppercase character, one number, and one special character.',
         ];
-        Validator::make($input, $rules, $messages)->validate();
+        $validator = Validator::make($input, $rules, $messages)->validate();
+
+        if ($validator->fails()) {
+            dd('validator failed');
+        }
 
         $user = User::create([
             'name' => $input['name'],

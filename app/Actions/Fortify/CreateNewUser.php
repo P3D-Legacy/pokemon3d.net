@@ -35,6 +35,9 @@ class CreateNewUser implements CreatesNewUsers
         if ($validator->fails()) {
             dd('validator failed');
         }
+        if ($validator->passes()) {
+            dd('validator passes');
+        }
 
         $user = User::create([
             'name' => $input['name'],

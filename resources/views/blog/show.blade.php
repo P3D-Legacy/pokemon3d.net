@@ -7,8 +7,8 @@
                 </a>
             </div>
 
-            <div
-                class="w-full sm:max-w-2xl mt-6 mb-10 p-6 pt-4 bg-white dark:bg-gray-800 shadow-md overflow-hidden sm:rounded-lg">
+            <div class="w-full sm:max-w-4xl mt-6 mb-10 p-6 pt-4 bg-white dark:bg-gray-800 shadow-md overflow-hidden sm:rounded-lg">
+                
                 <ul class="flex text-gray-500 text-sm lg:text-base mb-8">
                     <li class="inline-flex items-center">
                         <a href="{{ route('home') }}">Home</a>
@@ -27,11 +27,11 @@
                         </svg>
                     </li>
                     <li class="inline-flex items-center">
-                        <p class="text-gray-300">{{ $post->title }}</p>
+                        <p class="text-gray-300 truncate">{{ $post->title }}</p>
                     </li>
                 </ul>
 
-                <h1 class="text-5xl text-center text-gray-800 dark:text-gray-200">{{ $post->title }}</h1>
+                <h1 class="text-5xl text-center text-gray-800 dark:text-gray-200 break-all">{{ $post->title }}</h1>
                 <p class="text-sm text-center leading-5 text-gray-700 dark:text-gray-300 mt-3">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />

@@ -7,7 +7,7 @@
                 </a>
             </div>
 
-			<div class="w-full sm:max-w-4xl mt-6 mb-10 p-6 bg-gray-50 dark:bg-gray-800 shadow-md overflow-hidden sm:rounded-lg">
+			<div class="w-full sm:max-w-4xl mt-6 mb-10 p-6 pt-4 bg-gray-50 dark:bg-gray-800 shadow-md overflow-hidden sm:rounded-lg">
 
 				<ul class="flex text-gray-500 text-sm lg:text-base mb-8">
                     <li class="inline-flex items-center">
@@ -44,7 +44,7 @@
 									<p class="text-green-500 text-md font-medium">
 										{{ $post->created_at->diffForHumans() }}<span class="text-gray-300 dark:text-gray-500 text-sm"> &middot; {{ read_time($post->body)}}</span>
 									</p>
-									<a href="{{ route('blog.show', $post->uuid) }}" class="text-gray-800 dark:text-white text-xl font-medium mb-2">
+									<a href="{{ route('blog.show', $post->uuid) }}" class="text-gray-800 dark:text-white text-xl font-medium mb-2 truncate">
 										{{ $post->title }}
 									</a>
 									<div class="text-gray-400 dark:text-gray-300 font-light text-md leading-none pt-2">

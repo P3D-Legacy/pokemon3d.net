@@ -60,7 +60,7 @@ class Skin extends Model
     public function tapActivity(Activity $activity)
     {
         $activity->subject_id = $this->id;
-        $activity->causer_id = Auth::user()->id;
+        $activity->causer_id = Auth::user()->id ?? null;
         $activity->causer_type = User::class;
     }
 

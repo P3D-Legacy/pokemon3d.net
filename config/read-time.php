@@ -20,5 +20,5 @@ return [
     /*
      * The average words per minute reading time
      */
-    'words_per_minute' => 200,
+    'words_per_minute' => 100,
 ];

@@ -23,6 +23,7 @@ class Skin extends Model
     protected $fillable = [
         'name',
         'owner_id',
+        'user_id',
         'public',
     ];
 
@@ -49,6 +50,7 @@ class Skin extends Model
     protected static $logAttributes = [
         'name',
         'owner_id',
+        'user_id',
         'public',
     ];
     protected static $logOnlyDirty = true;
@@ -65,9 +67,17 @@ class Skin extends Model
     /**
      * Get the user that owns the skin.
      */
-    public function user()
+    public function gamejoltaccount()
     {
         return $this->belongsTo(GameJoltAccount::class, 'owner_id', 'id');
+    }
+
+    /**
+     * Get the user that owns the skin.
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
     public function scopeIsPublic($query) {

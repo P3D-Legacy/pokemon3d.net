@@ -34,7 +34,9 @@
 					</div>
 				</div>
 				<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-				
+					@empty($posts->count())
+						<p class="text-gray-400 dark:text-gray-600 font-light italic">Seems like there is nothing here. Did MissingNo. just appear?</p>
+					@endempty
 					@foreach ($posts as $post)
 						<div class="overflow-hidden shadow-lg rounded-lg h-90 w-full m-auto border border-gray-50 dark:border-gray-900">
 							<div class="w-full block h-full">

@@ -90,7 +90,12 @@
 
                             <x-slot name="content">
                                 <div class="w-60">
-                                    <!-- User Management -->
+                                    <div class="block px-4 py-2 text-xs text-gray-400">
+                                        {{ __('Content') }}
+                                    </div>
+                                    <x-jet-dropdown-link href="{{ route('posts.index') }}">
+                                        {{ __('Blog Posts') }}
+                                    </x-jet-dropdown-link>
                                     <div class="block px-4 py-2 text-xs text-gray-400">
                                         {{ __('User Management') }}
                                     </div>

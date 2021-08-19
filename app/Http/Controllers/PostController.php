@@ -23,7 +23,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::orderByDesc('updated_at')->where('active', true)->get();
+        $posts = Post::orderByDesc('updated_at')->paginate(10);
         return view('posts.index', ['posts' => $posts]);
     }
 

@@ -56,6 +56,8 @@ class Update extends Command
         Artisan::call('db:seed --class=PermissionSeeder');
         $this->info('Giving SA...');
         Artisan::call('p3d:givesa');
+        $this->info('Running SkinUserUpdate command...');
+        Artisan::call('p3d:skinuserupdate');
         $this->info('Done.');
     }
 }

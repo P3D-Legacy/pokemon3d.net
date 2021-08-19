@@ -39,8 +39,8 @@
 
         @if(env('APP_ENV') != 'production')
             <div class="fixed z-50 top-0 inset-x-0">
-                <div class="max-w-sm mx-auto px-2 sm:px-6 lg:px-8">
-                    <div class="p-0 sm:p-1 rounded-b-lg bg-yellow-600/80 shadow">
+                <div class="max-w-xs mx-auto p-0">
+                    <div class="p-0 rounded-b-lg bg-yellow-600/80 shadow">
                         <div class="flex items-center justify-between flex-wrap">
                             <div class="w-0 flex-1 flex items-center">
                                 <p class="font-bold text-white truncate w-full text-center text-sm">

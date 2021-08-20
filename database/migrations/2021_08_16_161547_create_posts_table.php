@@ -20,6 +20,7 @@ class CreatePostsTable extends Migration
             $table->string('slug')->index()->unique();
             $table->text('body');
             $table->boolean('active', 0);
+            $table->unsignedBigInteger('user_id');
             $table->softDeletes();
             $table->timestamps();
         });

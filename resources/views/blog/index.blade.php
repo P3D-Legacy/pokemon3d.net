@@ -56,7 +56,7 @@
 										</a>
 										<div class="flex flex-col justify-between ml-4 text-sm">
 											<p class="text-gray-800 dark:text-white">
-												John Doe
+												{{ $post->user->username }}
 											</p>
 											<p class="text-gray-400 dark:text-gray-300">
 												<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor">

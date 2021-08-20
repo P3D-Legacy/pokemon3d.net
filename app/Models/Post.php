@@ -10,6 +10,19 @@ class Post extends Model
 {
     use HasFactory;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'title',
+        'slug',
+        'body',
+        'active',
+        'user_id',
+    ];
+
     public static function boot()
     {
         parent::boot();
@@ -23,4 +36,13 @@ class Post extends Model
             }
         });
     }
+
+    /**
+     * Get the user that made this post.
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+    
 }

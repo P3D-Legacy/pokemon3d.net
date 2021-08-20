@@ -54,6 +54,7 @@ class PostController extends Controller
         $post->body = $request->body;
         $post->active = $request->active;
         $post->slug = Str::of($post->title)->slug('-');
+        $post->user_id = auth()->user()->id;
         $post->save();
 
         return redirect()->route('blog.index');

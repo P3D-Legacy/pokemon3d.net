@@ -53,7 +53,7 @@ class PostController extends Controller
         $post->title = $request->title;
         $post->body = $request->body;
         $post->active = $request->active;
-        $post->slug = Str::of($post->title)->slug('-') . '-' . $post->id;
+        $post->slug = Str::of($post->title)->slug('-');
         $post->save();
 
         return redirect()->route('blog.index');

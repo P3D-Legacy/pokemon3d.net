@@ -15,6 +15,7 @@
         "anlutro/l4-settings": "^1.0",
         "betterapp/laravel-db-encrypter": "^1.0",
         "binarycabin/laravel-uuid": "^1.0",
+        "cyrildewit/eloquent-viewable": "^6.0",
         "doctrine/dbal": "^3.1",
         "enlightn/enlightn": "^1.0",
         "fideloper/proxy": "^4.4",

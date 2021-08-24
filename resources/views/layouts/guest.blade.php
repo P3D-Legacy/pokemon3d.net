@@ -59,5 +59,7 @@
         {{ $slot }}
 
         @include('cookieConsent::index')
+
+        @livewireScripts
     </body>
 </html>

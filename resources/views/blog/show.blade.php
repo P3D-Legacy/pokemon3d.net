@@ -32,7 +32,8 @@
                 </ul>
 
                 <h1 class="text-5xl text-center text-gray-800 dark:text-gray-200 break-all">{{ $post->title }}</h1>
-                <p class="text-sm text-center leading-5 text-gray-700 dark:text-gray-300 mt-3">
+
+                <p class="text-sm text-center leading-5 text-gray-700 dark:text-gray-300 mt-3 pb-10 border-b border-gray-100 dark:border-gray-700">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg> <a href="#" class="hover:underline">{{ $post->user->username }}</a>
@@ -55,7 +56,7 @@
                     </svg> {{ views($post)->count() }}
                 </p>
 
-                <article class="prose dark:text-gray-100 border-t border-gray-100 dark:border-gray-700 mt-8 pt-8">
+                <article class="prose dark:text-gray-100 mt-8">
                     @markdown($post->body)
                 </article>
             </div>

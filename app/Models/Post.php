@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Webpatser\Uuid\Uuid;
 use Illuminate\Database\Eloquent\Model;
+use Overtrue\LaravelLike\Traits\Likeable;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -12,6 +13,7 @@ class Post extends Model implements Viewable
 {
     use HasFactory;
     use InteractsWithViews;
+    use Likeable;
 
     protected $removeViewsOnDelete = true;
 

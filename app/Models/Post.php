@@ -13,6 +13,8 @@ class Post extends Model implements Viewable
     use HasFactory;
     use InteractsWithViews;
 
+    protected $removeViewsOnDelete = true;
+
     /**
      * The attributes that are mass assignable.
      *

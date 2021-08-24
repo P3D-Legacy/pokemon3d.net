@@ -5,6 +5,7 @@ namespace App\Models;
 use Laravel\Sanctum\HasApiTokens;
 use Origami\Consent\GivesConsent;
 use Laravel\Jetstream\HasProfilePhoto;
+use Overtrue\LaravelLike\Traits\Liker;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
@@ -21,6 +22,7 @@ class User extends Authenticatable implements MustVerifyEmail
     use TwoFactorAuthenticatable;
     use HasRoles;
     use GivesConsent;
+    use Liker;
 
     /**
      * The attributes that are mass assignable.

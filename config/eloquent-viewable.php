@@ -75,7 +75,7 @@ return [
     | record views from visitors with the Do Not Track header.
     |
     */
-    'honor_dnt' => false,
+    'honor_dnt' => true,
 
     /*
     |--------------------------------------------------------------------------

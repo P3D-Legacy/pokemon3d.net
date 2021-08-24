@@ -30,6 +30,7 @@ class BlogController extends Controller
             ->orWhere('slug', $param)
             ->firstOrFail();
         abort_if(!$post->active, 404);
+        views($post)->cooldown(60)->record();
         return view('blog.show', ['post' => $post]);
     }
 }

@@ -28,8 +28,9 @@ class BlogController extends Controller
     {
         $post = Post::where('uuid', $param)
             ->orWhere('slug', $param)
+            ->where('active', true)
             ->firstOrFail();
-        abort_if(!$post->active, 404);
+        abort_if(!$post, 404);
         views($post)->cooldown(60)->record();
         return view('blog.show', ['post' => $post]);
     }

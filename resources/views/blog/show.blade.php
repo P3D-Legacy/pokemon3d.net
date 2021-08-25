@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <div class="pt-4">
+    <div class="p-4">
         <div class="min-h-screen flex flex-col items-center pt-6 sm:pt-0">
             <div>
                 <a href="{{ route('home') }}">
@@ -7,7 +7,7 @@
                 </a>
             </div>
 
-            <div class="w-full sm:max-w-4xl mt-6 mb-10 p-6 pt-4 bg-white dark:bg-gray-800 shadow-md overflow-hidden sm:rounded-lg">
+            <div class="w-full sm:max-w-3xl mt-6 mb-10 p-6 pt-4 bg-white dark:bg-gray-800 shadow-md overflow-hidden rounded">
                 
                 <ul class="flex text-gray-500 text-sm lg:text-base mb-8">
                     <li class="inline-flex items-center">
@@ -31,7 +31,7 @@
                     </li>
                 </ul>
 
-                <h1 class="text-5xl text-center text-gray-800 dark:text-gray-200 break-all">{{ $post->title }}</h1>
+                <h1 class="text-5xl text-center text-gray-800 dark:text-gray-200 break-word">{{ $post->title }}</h1>
 
                 <p class="text-sm text-center leading-5 text-gray-700 dark:text-gray-300 mt-3 pb-10 border-b border-gray-100 dark:border-gray-700">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor">

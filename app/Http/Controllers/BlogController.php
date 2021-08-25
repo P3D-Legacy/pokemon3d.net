@@ -14,7 +14,7 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $posts = Post::orderByDesc('updated_at')->where('active', true)->get();
+        $posts = Post::orderByDesc('updated_at')->where('active', true)->paginate(5);
         return view('blog.index', ['posts' => $posts]);
     }
 

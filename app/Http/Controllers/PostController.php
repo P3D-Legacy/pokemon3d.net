@@ -68,9 +68,9 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show($param)
+    public function show(Post $post)
     {
-        return redirect()->route('blog.show', $param);
+        //
     }
 
     /**

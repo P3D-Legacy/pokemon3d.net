@@ -1,48 +1,62 @@
 <x-app-layout>
-<section class="w-full">
+	<x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('New Post') }}
+        </h2>
+    </x-slot>
+	
+	<div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+			<div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
+				<div class="inline-block min-w-full shadow rounded-lg overflow-hidden bg-white p-6">
 
-	<h3 class="text-center text-3xl font-semibold">New Post</h3>
+					<form action="{{ route('posts.store') }}" method="post" enctype="multipart/form-data">
+						@csrf
+						<div class="flex flex-wrap mb-6">
+							<div class="w-full md:w-4/5 px-3 mb-6 md:mb-0">
+								<label for="title" class="block mb-1 text-gray-700">Title</label>
+								<input id="title" name="title" type="text" class="w-full h-10 px-3 mb-2 text-base text-gray-700 placeholder-gray-600 border rounded-lg focus:shadow-outline" value="{{ old('title') }}">
+								@error('title')
+                                    <span class="text-xs text-red-700">{{ $message }}</span>
+                                @enderror
+							</div>
+							<div class="w-full md:w-1/5 px-3 mb-6 md:mb-0">
+								<label for="active" class="block mb-1 text-gray-700">Published?</label>
+								<div class="relative inline-block w-full text-gray-700">
+									<select class="w-full h-10 pl-3 pr-6 text-base placeholder-gray-600 border rounded-lg appearance-none focus:shadow-outline" id="active" name="active">
+										<option value="0" {{ (old('active') == "0") ? 'selected' : '' }}>No</option>
+										<option value="1" {{ (old('active') == "1") ? 'selected' : '' }}>Yes</option>
+									</select>
+									<div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+										<svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" fill-rule="evenodd"></path></svg>
+									</div>
+								</div>
+								@error('active')
+                                    <span class="text-xs text-red-700">{{ $message }}</span>
+                                @enderror
+							</div>
+						</div>
+						<div class="flex flex-wrap mb-6">
+							<div class="w-full px-3">
+								<label for="grid-password" class="block mb-1 text-gray-700">Post body</label>
+								<textarea class="input " name="body" id="body">{{ old('body') }}</textarea>
+								@error('body')
+                                    <span class="text-xs text-red-700">{{ $message }}</span>
+                                @enderror
+							</div>
+						</div>
 
-	<form class="w-full px-6"  action="{{ route('posts.store') }}" method="post" enctype="multipart/form-data">
-		@csrf
-		<div class="flex flex-wrap -mx-3 mb-6">
-		<div class="w-full md:w-4/5 px-3 mb-6 md:mb-0">
-			<label class="label" for="title">
-			Title
-			</label>
-			<input class="input" id="title" name="title" type="text" >
-		</div>
-		<div class="w-full md:w-1/5 px-3 mb-6 md:mb-0">
-			<label class="label" for="active">
-			Active?
-			</label>
-			<div class="relative">
-			<select class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight " id="active" name="active">
-				<option value="0">No</option>
-				<option value="1">Yes</option>
-			</select>
-			<div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-				<svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+						<div class="flex items-center justify-end text-right px-3">
+                            <x-jet-button>
+                                {{ __('Save') }}
+                            </x-jet-button>
+                        </div>
+					</form>
+
+				</div>
 			</div>
-			</div>
 		</div>
-		</div>
-		<div class="flex flex-wrap -mx-3 mb-6">
-		<div class="w-full px-3">
-			<label class="label" for="grid-password">
-			Post body
-			</label>
-			<p class="text-gray-600 text-xs italic mb-2">This is actual post body</p>
-			<textarea class="input " name="body" id="body">{{ old('body') }}</textarea>
-		</div>
-		</div>
-
-		<div class="w-full text-right pa-3 mb-6">
-			<input class="btn btn-green my-4" type="submit" value="Save post">
-		</div>
-	</form>
-
-</section>
+	</div>
 
 {{-- Import CSS and JS for SimpleMDE editor --}}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">

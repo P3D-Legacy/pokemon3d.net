@@ -46,7 +46,9 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required',
+            'title' => ['required', 'string', 'max:255', 'unique:posts,title'],
+            'active' => ['required', 'integer'],
+            'body' => ['required', 'string', 'min:25'],
         ]);
 
         $post = new Post;
@@ -91,7 +93,20 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $request->validate([
+            'title' => ['required', 'string', 'max:255', 'unique:posts,title'],
+            'active' => ['required', 'integer'],
+            'body' => ['required', 'string', 'min:25'],
+        ]);
+
+        $post->title = $request->title;
+        $post->body = $request->body;
+        $post->active = $request->active;
+        $post->slug = Str::of($post->title)->slug('-');
+        $post->user_id = auth()->user()->id;
+        $post->save();
+
+        return redirect()->route('posts.index');
     }
 
     /**

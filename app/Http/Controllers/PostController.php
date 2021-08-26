@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class PostController extends Controller
 {
@@ -94,7 +95,7 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         $request->validate([
-            'title' => ['required', 'string', 'max:255', 'unique:posts,title'],
+            'title' => ['required', 'string', 'max:255', Rule::unique('posts')->ignore($post->id)],
             'active' => ['required', 'integer'],
             'body' => ['required', 'string', 'min:25'],
         ]);

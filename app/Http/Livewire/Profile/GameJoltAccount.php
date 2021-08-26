@@ -8,6 +8,7 @@ use Illuminate\Validation\Rule;
 use Harrk\GameJoltApi\GamejoltApi;
 use Illuminate\Support\Facades\Auth;
 use Harrk\GameJoltApi\GamejoltConfig;
+use Illuminate\Support\Facades\Artisan;
 use Harrk\GameJoltApi\Exceptions\TimeOutException;
 
 class GameJoltAccount extends Component
@@ -97,6 +98,9 @@ class GameJoltAccount extends Component
             $user->gamejolt->update($data);
             $gamejolt = $user->gamejolt;
         }
+
+        // Update the user's (and other user's) GameJolt Account skin link.
+        Artisan::call('p3d:skinuserupdate');
 
         $this->username = $gamejolt->username;
         $this->token = $gamejolt->token;

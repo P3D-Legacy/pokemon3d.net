@@ -23,6 +23,7 @@ class Skin extends Model
     protected $fillable = [
         'name',
         'owner_id',
+        'user_id',
         'public',
     ];
 
@@ -49,6 +50,7 @@ class Skin extends Model
     protected static $logAttributes = [
         'name',
         'owner_id',
+        'user_id',
         'public',
     ];
     protected static $logOnlyDirty = true;
@@ -58,8 +60,16 @@ class Skin extends Model
     public function tapActivity(Activity $activity)
     {
         $activity->subject_id = $this->id;
-        $activity->causer_id = Auth::user()->id;
+        $activity->causer_id = Auth::user()->id ?? null;
         $activity->causer_type = User::class;
+    }
+
+    /**
+     * Get the user that owns the skin.
+     */
+    public function gamejoltaccount()
+    {
+        return $this->belongsTo(GameJoltAccount::class, 'owner_id', 'id');
     }
 
     /**
@@ -67,7 +77,7 @@ class Skin extends Model
      */
     public function user()
     {
-        return $this->belongsTo(GameJoltAccount::class, 'owner_id', 'id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
     public function scopeIsPublic($query) {

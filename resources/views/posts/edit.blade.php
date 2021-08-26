@@ -9,9 +9,9 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 			<div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
 				<div class="inline-block min-w-full shadow rounded-lg overflow-hidden bg-white p-6">
-
-					<form action="{{ route('posts.update', $post) }}" method="PUT" enctype="multipart/form-data">
+					<form action="{{ route('posts.update', $post) }}" method="POST" enctype="multipart/form-data">
 						@csrf
+						@method("PUT")
 						<div class="flex flex-wrap mb-6">
 							<div class="w-full md:w-4/5 px-3 mb-6 md:mb-0">
 								<label for="title" class="block mb-1 text-gray-700">Title</label>

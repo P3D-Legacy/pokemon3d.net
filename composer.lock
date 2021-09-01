@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "33402d90e106537a0561863ca1e3c205",
+    "content-hash": "6653e034191665156f2a0ba5abe205b8",
     "packages": [
         {
             "name": "anlutro/l4-settings",
@@ -2075,16 +2075,16 @@
         },
         {
             "name": "graham-campbell/markdown",
-            "version": "v13.1.0",
+            "version": "v13.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/GrahamCampbell/Laravel-Markdown.git",
-                "reference": "bd95ce6bb31b9d9732e42907c983b9f8e31c8854"
+                "reference": "d25b873e5c5870edc4de7d980808f1a8e092a9c7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/GrahamCampbell/Laravel-Markdown/zipball/bd95ce6bb31b9d9732e42907c983b9f8e31c8854",
-                "reference": "bd95ce6bb31b9d9732e42907c983b9f8e31c8854",
+                "url": "https://api.github.com/repos/GrahamCampbell/Laravel-Markdown/zipball/d25b873e5c5870edc4de7d980808f1a8e092a9c7",
+                "reference": "d25b873e5c5870edc4de7d980808f1a8e092a9c7",
                 "shasum": ""
             },
             "require": {
@@ -2138,7 +2138,7 @@
             ],
             "support": {
                 "issues": "https://github.com/GrahamCampbell/Laravel-Markdown/issues",
-                "source": "https://github.com/GrahamCampbell/Laravel-Markdown/tree/13.1"
+                "source": "https://github.com/GrahamCampbell/Laravel-Markdown/tree/v13.1.1"
             },
             "funding": [
                 {
@@ -2150,7 +2150,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-08-14T18:55:51+00:00"
+            "time": "2020-08-22T14:18:21+00:00"
         },
         {
             "name": "graham-campbell/result-type",

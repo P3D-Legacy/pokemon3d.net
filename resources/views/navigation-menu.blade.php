@@ -74,6 +74,48 @@
                     </div>
                 @endif
 
+                @role('super-admin|admin')
+                    <div class="ml-3 relative">
+                        <x-jet-dropdown align="right" width="60">
+                            <x-slot name="trigger">
+                                <span class="inline-flex rounded-md">
+                                    <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:bg-gray-50 hover:text-gray-700 focus:outline-none focus:bg-gray-50 active:bg-gray-50 transition">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                        </svg>
+                                        {{ __('Admin') }}
+                                    </button>
+                                </span>
+                            </x-slot>
+
+                            <x-slot name="content">
+                                <div class="w-60">
+                                    <div class="block px-4 py-2 text-xs text-gray-400">
+                                        {{ __('Content') }}
+                                    </div>
+                                    <x-jet-dropdown-link href="{{ route('posts.index') }}">
+                                        {{ __('Blog Posts') }}
+                                    </x-jet-dropdown-link>
+                                    <div class="block px-4 py-2 text-xs text-gray-400">
+                                        {{ __('User Management') }}
+                                    </div>
+                                    <x-jet-dropdown-link href="{{ route('users.index') }}">
+                                        {{ __('Users') }}
+                                    </x-jet-dropdown-link>
+                                    <x-jet-dropdown-link href="{{ route('roles.index') }}">
+                                        {{ __('Roles') }}
+                                    </x-jet-dropdown-link>
+                                    @role('super-admin') 
+                                        <x-jet-dropdown-link href="{{ route('permissions.index') }}">
+                                            {{ __('Permissions') }}
+                                        </x-jet-dropdown-link>
+                                    @endrole
+                                </div>
+                            </x-slot>
+                        </x-jet-dropdown>
+                    </div>
+                @endrole
+
                 <!-- Settings Dropdown -->
                 <div class="ml-3 relative">
                     <x-jet-dropdown align="right" width="48">
@@ -110,23 +152,6 @@
                                     {{ __('API Tokens') }}
                                 </x-jet-dropdown-link>
                             @endif
-
-                            <div class="border-t border-gray-100"></div>
-
-                            @role('super-admin|admin') 
-                                <div class="block px-4 py-2 text-xs text-gray-400">Management</div>
-                                <x-jet-dropdown-link href="{{ route('users.index') }}">
-                                    {{ __('Users') }}
-                                </x-jet-dropdown-link>
-                                <x-jet-dropdown-link href="{{ route('roles.index') }}">
-                                    {{ __('Roles') }}
-                                </x-jet-dropdown-link>
-                                @role('super-admin') 
-                                    <x-jet-dropdown-link href="{{ route('permissions.index') }}">
-                                        {{ __('Permissions') }}
-                                    </x-jet-dropdown-link>
-                                @endrole
-                            @endrole
 
                             <div class="border-t border-gray-100"></div>
 

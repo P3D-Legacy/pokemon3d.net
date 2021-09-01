@@ -65,9 +65,11 @@
           catch(e){window.attachEvent("onload", $buo_f)}
         </script>
     </head>
-    <body class="bg-repeat bg-center bg-spring leading-relaxed tracking-wide flex flex-col font-sans">
+    <body class="bg-repeat bg-top bg-spring leading-relaxed tracking-wide flex flex-col font-sans">
         {{ $slot }}
 
         @include('cookieConsent::index')
+
+        @livewireScripts
     </body>
 </html>

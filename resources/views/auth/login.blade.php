@@ -6,6 +6,17 @@
             </a>
         </x-slot>
 
+        <div class="px-4 py-3 leading-normal text-blue-700 bg-blue-100 rounded-lg text-sm" role="alert">
+            <p>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                This new website has now a own authentication. Please <a class="font-bold hover:underline" href="{{ env('LOGIN_AUTH_BLOG_POST') ?? route('blog.index') }}">read the blog post</a> for more information!
+            </p>
+        </div>
+
+        <x-jet-section-border />
+
         <x-jet-validation-errors class="mb-4" />
 
         @if (session('status'))

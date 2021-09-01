@@ -2,8 +2,10 @@
 
 namespace App\Http\Livewire\Login;
 
-use App\Helpers\XenForoHelper;
 use Livewire\Component;
+use App\Models\ForumAccount;
+use App\Helpers\XenForoHelper;
+use Illuminate\Support\Facades\Auth;
 
 class Xenforo extends Component
 {
@@ -41,7 +43,28 @@ class Xenforo extends Component
             return;
         }
 
-        // TODO: Check if there is a user with the xenforo account and log the user in.
+        $forumaccount = ForumAccount::where('username', $this->username)->first();
+
+        if (!$forumaccount) {
+            $this->addError('error', 'There is no user associated with this Forum Account.');
+            return;
+        }
+
+        $user = $forumaccount->user()->first();
+
+        if (!$user) {
+            $this->addError('error', 'There is no user associated with this Forum Account.');
+            return;
+        }
+
+        if (!Auth::loginUsingId($user->id)) {
+            $this->addError('error', 'Login failed!');
+            return;
+        } else {
+            $forumaccount->touchVerify();
+            request()->session()->regenerate();
+            return redirect()->intended('dashboard');
+        }
         
         return;
     }

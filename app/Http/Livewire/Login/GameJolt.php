@@ -81,6 +81,7 @@ class GameJolt extends Component
             $this->addError('error', 'Login failed!');
             return;
         } else {
+            $gamejoltaccount->touchVerify();
             request()->session()->regenerate();
             return redirect()->intended('dashboard');
         }

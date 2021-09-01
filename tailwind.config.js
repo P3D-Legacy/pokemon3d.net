@@ -19,6 +19,9 @@ module.exports = {
             backgroundImage: theme => ({
                 'spring': "url('/img/spring.png')",
             }),
+            colors: {
+                'gamejolt-green': '#ccff00',
+            }
         },
     },
 

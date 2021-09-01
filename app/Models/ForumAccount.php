@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use betterapp\LaravelDbEncrypter\Traits\EncryptableDbAttribute;
 
-class GameJoltAccount extends Model
+class ForumAccount extends Model
 {
     use HasFactory;
     use EncryptableDbAttribute;
@@ -19,7 +19,7 @@ class GameJoltAccount extends Model
     protected $fillable = [
         'id',
         'username',
-        'token',
+        'password',
         'verified_at',
     ];
 
@@ -38,7 +38,7 @@ class GameJoltAccount extends Model
      * @var array
      */
     protected $encryptable = [
-        'token',
+        'password',
     ];
 
     public function touchVerify()
@@ -53,21 +53,5 @@ class GameJoltAccount extends Model
     public function user()
     {
         return $this->hasOne(User::class, 'id', 'user_id');
-    }
-
-    /**
-     * Get the skins that the user owns.
-     */
-    public function skins()
-    {
-        return $this->hasMany(Skin::class, 'owner_id', 'id');
-    }
-
-    /**
-     * Get the skins that the user owns.
-     */
-    public function publicSkins()
-    {
-        return $this->hasMany(Skin::class, 'owner_id', 'id')->isPublic();
     }
 }

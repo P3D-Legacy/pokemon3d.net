@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Skin\SkinController;
@@ -23,7 +25,7 @@ use App\Http\Controllers\Skin\UploadedSkinController;
 |
 */
 
-Route::prefix('skins')->middleware(['password.confirm', 'auth:sanctum', 'verified'])->group(function () {
+Route::prefix('skins')->middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/', [SkinHomeController::class, 'index'])->name('skin-home');
     
     /*
@@ -65,20 +67,19 @@ Route::prefix('skins')->middleware(['password.confirm', 'auth:sanctum', 'verifie
 });
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::resource('blog', BlogController::class);
 
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
-
+    
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
-
+    
     Route::group(['middleware' => ['role:super-admin|admin']], function () {
-        // USERS
         Route::resource('users', UserController::class);
-        // ROLES
         Route::resource('roles', RoleController::class);
-        // PERMISSIONS
         Route::resource('permissions', PermissionController::class);
+        Route::resource('posts', PostController::class);
     });
 
 });

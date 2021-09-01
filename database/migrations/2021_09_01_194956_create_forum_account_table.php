@@ -14,6 +14,7 @@ class CreateForumAccountTable extends Migration
     public function up()
     {
         Schema::create('forum_accounts', function (Blueprint $table) {
+            $table->id();
             $table->text('username')->nullable()->comment('Forum Username');
             $table->string('password')->nullable()->comment('Forum Password');
             $table->timestamp('verified_at')->nullable();
@@ -30,6 +31,6 @@ class CreateForumAccountTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('forum_account');
+        Schema::dropIfExists('forum_accounts');
     }
 }

@@ -41,6 +41,12 @@ class GameJoltAccount extends Model
         'token',
     ];
 
+    public function touchVerify()
+    {
+        $this->verified_at = $this->freshTimestamp();
+        return $this->save();
+    }
+
     /**
      * Get the user associated with the gamejolt account.
      */

@@ -74,16 +74,53 @@
 			<span class="w-14 border-b border-gray-300 dark:border-gray-500"></span>
 		</div>
 
-		<button class="w-full flex items-center justify-center px-4 py-3 bg-blue-500 border border-transparent rounded-md font-semibold text-sm text-white uppercase tracking-widest hover:bg-blue-600 active:bg-blue-400 focus:outline-none focus:border-blue-900 focus:ring focus:ring-blue-300 disabled:opacity-25 transition" type="button" onclick="toggleModal('xenforo-modal')">
+		<button class="w-full flex items-center justify-center px-4 py-3 bg-blue-500 border border-transparent rounded-md font-semibold text-sm text-white uppercase tracking-widest hover:bg-blue-600 active:bg-blue-400 focus:outline-none focus:border-blue-900 focus:ring focus:ring-blue-300 disabled:opacity-25 transition" type="button" onclick="toggleModal('xenforo')">
 			Forum Account
 		</button>
-		<button class="w-full flex items-center justify-center px-4 py-3 bg-gamejolt-green border border-transparent rounded-md font-semibold text-sm text-black uppercase tracking-widest hover:bg-opacity-70 focus:outline-none focus:border-green-200 focus:ring focus:ring-green-100 disabled:opacity-25 transition mt-2" type="button" onclick="toggleModal('gamejolt-modal')">
+		<button class="w-full flex items-center justify-center px-4 py-3 bg-gamejolt-green border border-transparent rounded-md font-semibold text-sm text-black uppercase tracking-widest hover:bg-opacity-70 focus:outline-none focus:border-green-200 focus:ring focus:ring-green-100 disabled:opacity-25 transition mt-2" type="button" onclick="toggleModal('gamejolt')">
 			<img src="{{ asset('img/gamejolt-logo-light-1x.png') }}">
 		</button>        
 	</x-jet-authentication-card>
 
-	@livewire('login.xenforo')
-	@livewire('login.game-jolt')
+	<div class="hidden overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center" id="xenforo">
+		<div class="relative w-full my-6 mx-auto max-w-2xl">
+			<!--content-->
+			<div class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white dark:bg-gray-800 outline-none focus:outline-none">
+				<!--header-->
+				<div class="flex items-start justify-between rounded-t">
+					<button class="p-3 ml-auto bg-transparent border-0 text-black dark:text-white opacity-50 float-right text-3xl leading-none font-semibold outline-none focus:outline-none" onclick="toggleModal('xenforo')">
+						<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 fill-current" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+						</svg>
+					</button>
+				</div>
+				<!--body-->
+				<div class="relative p-6 pt-0 flex-auto">
+					@livewire('login.xenforo')
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="hidden overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center" id="gamejolt">
+		<div class="relative w-full my-6 mx-auto max-w-2xl">
+			<!--content-->
+			<div class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white dark:bg-gray-800 outline-none focus:outline-none">
+				<!--header-->
+				<div class="flex items-start justify-between rounded-t">
+					<button class="p-3 ml-auto bg-transparent border-0 text-black dark:text-white opacity-50 float-right text-3xl leading-none font-semibold outline-none focus:outline-none" onclick="toggleModal('gamejolt')">
+						<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 fill-current" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+						</svg>
+					</button>
+				</div>
+				<!--body-->
+				<div class="relative p-6 pt-0 flex-auto">
+					@livewire('login.game-jolt')
+				</div>
+			</div>
+		</div>
+	</div>	
 	
 	<div class="hidden opacity-50 fixed inset-0 z-40 bg-black" id="modal-backdrop"></div>
 	<script type="text/javascript">

@@ -18,6 +18,11 @@
                 <x-jet-section-border />
             @endif
 
+            @if(config("xenforo.apikey") && config("xenforo.base_url"))
+                @livewire('profile.xenforo-account')
+                <x-jet-section-border />
+            @endif
+
             @livewire('profile.consent')
             <x-jet-section-border />
 

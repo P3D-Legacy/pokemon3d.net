@@ -73,4 +73,12 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasOne(GameJoltAccount::class);
     }
+
+    /**
+     * Get the forum account associated with the user.
+     */
+    public function forum()
+    {
+        return $this->hasOne(ForumAccount::class);
+    }
 }

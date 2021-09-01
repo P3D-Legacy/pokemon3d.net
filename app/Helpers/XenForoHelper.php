@@ -2,7 +2,9 @@
 
 namespace App\Helpers;
 
+use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Http;
+use GuzzleHttp\Exception\ClientException;
 
 class XenForoHelper
 {
@@ -44,5 +46,35 @@ class XenForoHelper
             throw new \Exception('CAN NOT COUNT USERS!');
         }
         return $data['pagination']['total'];
+    }
+
+    public static function postAuth($login, $password)
+    {
+        $credentials = [
+            'login' => $login,
+            'password' => $password
+        ];
+
+        $client = new Client([
+            'base_uri' => config('xenforo.base_url'),
+        ]);
+
+        try {
+            $response = $client->post('/forum/api/auth', [
+                'form_params' => $credentials,
+                'headers' => [
+                    'XF-Api-Key' => config('xenforo.apikey'),
+                    'Accept' => 'application/json'
+                ]
+            ]);
+        } catch (ClientException $e) {
+            $data = json_decode($e->getResponse()->getBody()->getContents(), true);
+            return ['error' => true, 'message' => $data['errors'][0]['message']];
+        }
+        
+        $data = $response->getBody();
+        $data = json_decode($data, true);
+        
+        return ['success' => true, 'user' => $data['user']];
     }
 }

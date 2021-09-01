@@ -74,16 +74,17 @@
 			<span class="w-14 border-b border-gray-300 dark:border-gray-500"></span>
 		</div>
 
-		<a href="#" class="w-full flex items-center justify-center px-4 py-3 bg-blue-500 border border-transparent rounded-md font-semibold text-sm text-white uppercase tracking-widest hover:bg-blue-600 active:bg-blue-400 focus:outline-none focus:border-blue-900 focus:ring focus:ring-blue-300 disabled:opacity-25 transition">
+		<button class="w-full flex items-center justify-center px-4 py-3 bg-blue-500 border border-transparent rounded-md font-semibold text-sm text-white uppercase tracking-widest hover:bg-blue-600 active:bg-blue-400 focus:outline-none focus:border-blue-900 focus:ring focus:ring-blue-300 disabled:opacity-25 transition" type="button" onclick="toggleModal('xenforo-modal')">
 			Forum Account
-		</a>        
-		<button href="#" class="w-full flex items-center justify-center px-4 py-3 bg-gamejolt-green border border-transparent rounded-md font-semibold text-sm text-black uppercase tracking-widest hover:bg-opacity-70 focus:outline-none focus:border-green-200 focus:ring focus:ring-green-100 disabled:opacity-25 transition mt-2" type="button" onclick="toggleModal('gamejolt-modal')">
+		</button>
+		<button class="w-full flex items-center justify-center px-4 py-3 bg-gamejolt-green border border-transparent rounded-md font-semibold text-sm text-black uppercase tracking-widest hover:bg-opacity-70 focus:outline-none focus:border-green-200 focus:ring focus:ring-green-100 disabled:opacity-25 transition mt-2" type="button" onclick="toggleModal('gamejolt-modal')">
 			<img src="{{ asset('img/gamejolt-logo-light-1x.png') }}">
 		</button>        
 	</x-jet-authentication-card>
-	
-	@livewire('login.game-jolt')
 
+	@livewire('login.xenforo')
+	@livewire('login.game-jolt')
+	
 	<div class="hidden opacity-50 fixed inset-0 z-40 bg-black" id="modal-backdrop"></div>
 	<script type="text/javascript">
 		function toggleModal(modalID){

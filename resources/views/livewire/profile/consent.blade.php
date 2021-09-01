@@ -9,7 +9,7 @@
 
     <x-slot name="content">
         @foreach($consents as $consent => $text)
-            <div class="my-2 flex items-center">
+            <div class="flex items-center my-2">
                 <button
                     @if($this->consentGiven($consent) && substr($consent, 0, 4) == 'tos.')
                         disabled
@@ -19,12 +19,7 @@
                     type="button"
                     class="
                     @if($this->consentGiven($consent))
-                        @if(substr($consent, 0, 4) == 'tos.')
-                            bg-green-100
-                            cursor-not-allowed
-                        @else
-                            bg-green-800
-                        @endif
+                        {{ (substr($consent, 0, 4) == 'tos.') ? 'bg-green-100 cursor-not-allowed' : 'bg-green-800' }}
                     @else
                         bg-gray-200
                     @endif
@@ -33,16 +28,7 @@
                     aria-labelledby="annual-billing-label"
                 >
                     <span class="sr-only">Use setting</span>
-                    <span
-                        aria-hidden="true"
-                        class="
-                        @if($this->consentGiven($consent))
-                            translate-x-5
-                        @else
-                            translate-x-0
-                        @endif
-                        pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200"
-                    ></span>
+                    <span aria-hidden="true" class="{{ ($this->consentGiven($consent)) ? 'translate-x-5' : 'translate-x-0' }} pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200"></span>
                 </button>
                 <span class="ml-3" id="annual-billing-label">
                     <span class="text-sm font-medium text-gray-900">{!! $text !!}</span>

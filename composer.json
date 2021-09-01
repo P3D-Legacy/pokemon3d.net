@@ -9,7 +9,7 @@
         "pokemon3d",
         "laravel"
     ],
-    "license": "gpl-3.0",
+    "license": "gpl-3.0-only",
     "require": {
         "php": "^7.3|^8.0",
         "anlutro/l4-settings": "^1.0",
@@ -21,7 +21,7 @@
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
         "gabrielelana/byte-units": "^0.5.0",
-        "graham-campbell/markdown": "13.1",
+        "graham-campbell/markdown": "^13.1",
         "guzzlehttp/guzzle": "^7.0.1",
         "guzzlehttp/psr7": "^1.8.2",
         "harrk/gamejolt-api": "^1.1",

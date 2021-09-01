@@ -126,8 +126,8 @@
 	<script type="text/javascript">
 		function toggleModal(modalID){
 			document.getElementById(modalID).classList.toggle("hidden");
-			document.getElementById("modal-backdrop").classList.toggle("hidden");
 			document.getElementById(modalID).classList.toggle("flex");
+			document.getElementById("modal-backdrop").classList.toggle("hidden");
 			document.getElementById("modal-backdrop").classList.toggle("flex");
 		}
 	</script>

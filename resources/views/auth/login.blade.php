@@ -15,7 +15,9 @@
             </p>
         </div>
 
-        <x-jet-section-border />
+        <div class="w-1/2 mx-auto">
+            <x-jet-section-border />
+        </div>
 
         <x-jet-validation-errors class="mb-4" />
 

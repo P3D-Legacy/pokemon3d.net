@@ -101,13 +101,13 @@
 			</div>
 		</div>
 	</div>
-	<div class="hidden opacity-50 fixed inset-0 z-40 bg-black" id="gamejolt-modal-backdrop" onclick="toggleModal('gamejolt-modal')"></div>
+	<div class="hidden opacity-50 fixed inset-0 z-40 bg-black" id="modal-backdrop"></div>
 	<script type="text/javascript">
 		function toggleModal(modalID){
 			document.getElementById(modalID).classList.toggle("hidden");
-			document.getElementById(modalID + "-backdrop").classList.toggle("hidden");
+			document.getElementById("modal-backdrop").classList.toggle("hidden");
 			document.getElementById(modalID).classList.toggle("flex");
-			document.getElementById(modalID + "-backdrop").classList.toggle("flex");
+			document.getElementById("modal-backdrop").classList.toggle("flex");
 		}
 	</script>
 </x-guest-layout>

@@ -54,9 +54,9 @@
         </form>
 
         <div class="flex items-center justify-center py-4 xl:py-6 text-sm text-gray-400">
-            <span class="w-14 border-b border-gray-300"></span>
+            <span class="w-14 border-b border-gray-300 dark:border-gray-500"></span>
             <span class="px-2">or log in with</span>
-            <span class="w-14 border-b border-gray-300"></span>
+            <span class="w-14 border-b border-gray-300 dark:border-gray-500"></span>
         </div>
 
         <a href="#" class="w-full flex items-center justify-center px-4 py-3 bg-blue-500 border border-transparent rounded-md font-semibold text-sm text-white uppercase tracking-widest hover:bg-blue-600 active:bg-blue-400 focus:outline-none focus:border-blue-900 focus:ring focus:ring-blue-300 disabled:opacity-25 transition">

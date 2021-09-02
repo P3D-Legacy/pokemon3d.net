@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class AddUuidToForumAccounts extends Migration
 {
@@ -27,6 +27,7 @@ class AddUuidToForumAccounts extends Migration
     public function down()
     {
         Schema::table('forum_accounts', function (Blueprint $table) {
+            $table->id();
             $table->dropColumn('uuid');
         });
     }

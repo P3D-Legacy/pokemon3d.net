@@ -83,9 +83,11 @@
 						</div>
 					</div>
 				@endforeach
-				<div class="bg-white dark:bg-gray-800 rounded p-4">
-					{!! $posts->links() !!}
-				</div>
+				@if($posts->hasPages())
+					<div class="p-4 bg-white rounded dark:bg-gray-800">
+						{!! $posts->links() !!}
+					</div>
+				@endif
 			</div>
 		</div>
 	</div>

@@ -1,6 +1,6 @@
 <x-jet-action-section>
     <x-slot name="title">
-        <span id="supersamler">{{ __('Consents') }}</span>
+        {{ __('Consents') }}
     </x-slot>
 
     <x-slot name="description">
@@ -19,9 +19,9 @@
                     type="button"
                     class="
                     @if($this->consentGiven($consent))
-                        {{ (substr($consent, 0, 4) == 'tos.') ? 'bg-green-100 cursor-not-allowed' : 'bg-green-800' }}
+                        {{ (substr($consent, 0, 4) == 'tos.') ? 'bg-green-100 dark:bg-green-200 cursor-not-allowed' : 'bg-green-800 dark:bg-green-600' }}
                     @else
-                        bg-gray-200
+                        bg-gray-200 dark:bg-gray-300
                     @endif
                     relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-800"
                     aria-pressed="false"

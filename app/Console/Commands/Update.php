@@ -45,6 +45,12 @@ class Update extends Command
         $branch = exec('git describe --tags --abbrev=0');
         $ver = $branch.' ('.$rev.')';
 
+        $forum_accounts = ForumAccount::where('uuid', null)->orWhere('uuid', '')->get();
+        foreach ($forum_accounts as $forum_account) {
+            $forum_account->update(['uuid' => Str::uuid()]);
+            $this->info('Updating ForumAccount with UUID: '.$forum_account->username);
+        }
+
         $this->info('Migrating...');
         Artisan::call('migrate --force');
         $this->info('Updating version...');
@@ -60,13 +66,6 @@ class Update extends Command
         Artisan::call('p3d:givesa');
         $this->info('Running SkinUserUpdate command...');
         Artisan::call('p3d:skinuserupdate');
-
-        $forum_accounts = ForumAccount::where('uuid', null)->orWhere('uuid', '')->get();
-        foreach ($forum_accounts as $forum_account) {
-            $forum_account->update(['uuid' => Str::uuid()]);
-            $this->info('Updating ForumAccount with UUID: '.$forum_account->username);
-        }
-
         $this->info('Done.');
     }
 }

@@ -14,7 +14,7 @@ class AddUuidToGameJoltAccounts extends Migration
     public function up()
     {
         Schema::table('game_jolt_accounts', function (Blueprint $table) {
-            $table->dropPrimary();
+            $table->dropPrimary('id');
             $table->uuid('uuid')->primary()->first();
         });
     }
@@ -27,6 +27,7 @@ class AddUuidToGameJoltAccounts extends Migration
     public function down()
     {
         Schema::table('game_jolt_accounts', function (Blueprint $table) {
+            $table->bigInteger('id')->primary()->change();
             $table->dropColumn('uuid');
         });
     }

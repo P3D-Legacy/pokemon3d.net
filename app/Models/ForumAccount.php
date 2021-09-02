@@ -44,7 +44,6 @@ class ForumAccount extends Model
      * @var array
      */
     protected $fillable = [
-        'uuid',
         'username',
         'password',
         'verified_at',

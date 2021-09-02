@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a6c36a3150199d060b948c3d7f4aa013",
+    "content-hash": "d968ae7f81b6821d4f87d1900337e966",
     "packages": [
         {
             "name": "anlutro/l4-settings",
@@ -2029,25 +2029,24 @@
         },
         {
             "name": "goldspecdigital/laravel-eloquent-uuid",
-            "version": "v8.0.0",
+            "version": "v8.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/goldspecdigital/laravel-eloquent-uuid.git",
-                "reference": "c203b3104e5c371b1ed94b0dbaf12de1d1ca7045"
+                "reference": "e98748113e3b9de5b408cdc306e9d93e18121988"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/goldspecdigital/laravel-eloquent-uuid/zipball/c203b3104e5c371b1ed94b0dbaf12de1d1ca7045",
-                "reference": "c203b3104e5c371b1ed94b0dbaf12de1d1ca7045",
+                "url": "https://api.github.com/repos/goldspecdigital/laravel-eloquent-uuid/zipball/e98748113e3b9de5b408cdc306e9d93e18121988",
+                "reference": "e98748113e3b9de5b408cdc306e9d93e18121988",
                 "shasum": ""
             },
             "require": {
                 "laravel/framework": "^8.0",
-                "php": "^7.3"
+                "php": "^7.3 || ^8.0"
             },
             "require-dev": {
                 "ext-pdo": "*",
-                "friendsofphp/php-cs-fixer": "^2.15",
                 "orchestra/testbench": "^6.0",
                 "phpunit/phpunit": "^8.4"
             },
@@ -2084,9 +2083,9 @@
             ],
             "support": {
                 "issues": "https://github.com/goldspecdigital/laravel-eloquent-uuid/issues",
-                "source": "https://github.com/goldspecdigital/laravel-eloquent-uuid/tree/v8.0.0"
+                "source": "https://github.com/goldspecdigital/laravel-eloquent-uuid/tree/v8.0.1"
             },
-            "time": "2020-09-09T20:26:47+00:00"
+            "time": "2020-12-23T10:10:54+00:00"
         },
         {
             "name": "graham-campbell/markdown",

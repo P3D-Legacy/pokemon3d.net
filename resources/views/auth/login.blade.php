@@ -7,9 +7,9 @@
 		</x-slot>
 
 		@if(\Carbon\Carbon::createFromFormat('Y-m-d', '2021-12-31')->isFuture())
-			<div class="px-4 py-3 leading-normal text-blue-700 bg-blue-100 rounded-lg text-sm" role="alert">
+			<div class="px-4 py-3 text-sm leading-normal text-blue-700 bg-blue-100 rounded-lg" role="alert">
 				<p>
-					<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+					<svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
 					</svg>
 					This new website has now a own authentication. Please <a class="font-bold hover:underline" href="{{ env('LOGIN_AUTH_BLOG_POST') ?? route('blog.index') }}">read the blog post</a> for more information!
@@ -24,7 +24,7 @@
 		<x-jet-validation-errors class="mb-4" />
 
 		@if (session('status'))
-			<div class="mb-4 font-medium text-sm text-green-600">
+			<div class="mb-4 text-sm font-medium text-green-600">
 				{{ session('status') }}
 			</div>
 		@endif
@@ -34,12 +34,12 @@
 
 			<div>
 				<x-jet-label for="username" value="{{ __('Email or Username') }}" />
-				<x-jet-input id="username" class="block mt-1 w-full" type="text" name="username" :value="old('username')" required autofocus />
+				<x-jet-input id="username" class="block w-full mt-1" type="text" name="username" :value="old('username')" required autofocus />
 			</div>
 
 			<div class="mt-4">
 				<x-jet-label for="password" value="{{ __('Password') }}" />
-				<x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
+				<x-jet-input id="password" class="block w-full mt-1" type="password" name="password" required autocomplete="current-password" />
 			</div>
 
 			<div class="block mt-4">
@@ -77,19 +77,19 @@
 		<button class="w-full flex items-center justify-center px-4 py-3 bg-blue-500 border border-transparent rounded-md font-semibold text-sm text-white uppercase tracking-widest hover:bg-blue-600 active:bg-blue-400 focus:outline-none focus:border-blue-900 focus:ring focus:ring-blue-300 disabled:opacity-25 transition" type="button" onclick="toggleModal('xenforo')">
 			Forum Account
 		</button>
-		<button class="w-full flex items-center justify-center px-4 py-3 bg-gamejolt-green border border-transparent rounded-md font-semibold text-sm text-black uppercase tracking-widest hover:bg-opacity-70 focus:outline-none focus:border-green-200 focus:ring focus:ring-green-100 disabled:opacity-25 transition mt-2" type="button" onclick="toggleModal('gamejolt')">
+		<button class="flex items-center justify-center w-full px-4 py-3 mt-2 text-sm font-semibold tracking-widest text-black uppercase transition border border-transparent rounded-md bg-gamejolt-green hover:bg-opacity-70 focus:outline-none focus:border-green-200 focus:ring focus:ring-green-100 disabled:opacity-25" type="button" onclick="toggleModal('gamejolt')">
 			<img src="{{ asset('img/gamejolt-logo-light-1x.png') }}">
 		</button>        
 	</x-jet-authentication-card>
 
-	<div class="hidden overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center" id="xenforo">
-		<div class="relative w-full my-6 mx-auto max-w-2xl">
+	<div class="fixed inset-0 z-50 items-center justify-center hidden overflow-x-hidden overflow-y-auto outline-none focus:outline-none" id="xenforo">
+		<div class="relative w-full max-w-2xl mx-auto my-6">
 			<!--content-->
-			<div class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white dark:bg-gray-800 outline-none focus:outline-none">
+			<div class="relative flex flex-col w-full bg-white border-0 rounded-lg shadow-lg outline-none dark:bg-gray-800 focus:outline-none">
 				<!--header-->
 				<div class="flex items-start justify-between rounded-t">
-					<button class="p-3 ml-auto bg-transparent border-0 text-black dark:text-white opacity-50 float-right text-3xl leading-none font-semibold outline-none focus:outline-none" onclick="toggleModal('xenforo')">
-						<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 fill-current" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+					<button class="float-right p-3 ml-auto text-3xl font-semibold leading-none text-black bg-transparent border-0 outline-none opacity-50 dark:text-white focus:outline-none" onclick="toggleModal('xenforo')">
+						<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 fill-current" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
 						</svg>
 					</button>
@@ -102,27 +102,27 @@
 		</div>
 	</div>
 
-	<div class="hidden overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center" id="gamejolt">
-		<div class="relative w-full my-6 mx-auto max-w-2xl">
+	<div class="fixed inset-0 z-50 items-center justify-center hidden overflow-x-hidden overflow-y-auto outline-none focus:outline-none" id="gamejolt">
+		<div class="relative w-full max-w-2xl mx-auto my-6">
 			<!--content-->
-			<div class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white dark:bg-gray-800 outline-none focus:outline-none">
+			<div class="relative flex flex-col w-full bg-white border-0 rounded-lg shadow-lg outline-none dark:bg-gray-800 focus:outline-none">
 				<!--header-->
 				<div class="flex items-start justify-between rounded-t">
-					<button class="p-3 ml-auto bg-transparent border-0 text-black dark:text-white opacity-50 float-right text-3xl leading-none font-semibold outline-none focus:outline-none" onclick="toggleModal('gamejolt')">
-						<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 fill-current" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+					<button class="float-right p-3 ml-auto text-3xl font-semibold leading-none text-black bg-transparent border-0 outline-none opacity-50 dark:text-white focus:outline-none" onclick="toggleModal('gamejolt')">
+						<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 fill-current" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
 						</svg>
 					</button>
 				</div>
 				<!--body-->
-				<div class="relative p-6 pt-0 flex-auto">
+				<div class="relative flex-auto p-6 pt-0">
 					@livewire('login.game-jolt')
 				</div>
 			</div>
 		</div>
 	</div>	
 	
-	<div class="hidden opacity-50 fixed inset-0 z-40 bg-black" id="modal-backdrop"></div>
+	<div class="fixed inset-0 z-40 hidden bg-black opacity-50" id="modal-backdrop"></div>
 	<script type="text/javascript">
 		function toggleModal(modalID){
 			document.getElementById(modalID).classList.toggle("hidden");

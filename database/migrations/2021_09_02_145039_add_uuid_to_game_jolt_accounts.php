@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class AddUuidToGameJoltAccounts extends Migration
 {
@@ -15,7 +16,7 @@ class AddUuidToGameJoltAccounts extends Migration
     {
         Schema::table('game_jolt_accounts', function (Blueprint $table) {
             $table->dropPrimary('id');
-            $table->uuid('uuid')->primary()->first();
+            $table->uuid('uuid')->primary()->default(DB::raw('(UUID())'))->first();
         });
     }
 

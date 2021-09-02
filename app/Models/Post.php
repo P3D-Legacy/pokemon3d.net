@@ -8,12 +8,14 @@ use Overtrue\LaravelLike\Traits\Likeable;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends Model implements Viewable
 {
     use HasFactory;
     use InteractsWithViews;
     use Likeable;
+    use SoftDeletes;
 
     protected $removeViewsOnDelete = true;
 

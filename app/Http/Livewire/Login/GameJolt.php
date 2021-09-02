@@ -66,14 +66,14 @@ class GameJolt extends Component
         $gamejoltaccount = GameJoltAccount::where('username', $this->username)->first();
 
         if (!$gamejoltaccount) {
-            $this->addError('error', 'There is no user associated with this Gamejolt Account.');
+            $this->addError('error', 'This Gamejolt Account is not associated with a account yet.');
             return;
         }
 
         $user = $gamejoltaccount->user()->first();
 
         if (!$user) {
-            $this->addError('error', 'There is no user associated with this Gamejolt Account.');
+            $this->addError('error', 'Could\'t find the user associated with this Gamejolt Account.');
             return;
         }
 

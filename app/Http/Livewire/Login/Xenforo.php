@@ -46,14 +46,14 @@ class Xenforo extends Component
         $forumaccount = ForumAccount::where('username', $this->username)->first();
 
         if (!$forumaccount) {
-            $this->addError('error', 'There is no user associated with this Forum Account.');
+            $this->addError('error', 'This Forum Account is not associated with a account yet.');
             return;
         }
 
         $user = $forumaccount->user()->first();
 
         if (!$user) {
-            $this->addError('error', 'There is no user associated with this Forum Account.');
+            $this->addError('error', 'Could\'t find the user associated with this Forum Account.');
             return;
         }
 

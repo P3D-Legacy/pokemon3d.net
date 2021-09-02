@@ -38,7 +38,13 @@
 
 			<div class="grid w-full grid-cols-1 gap-8 sm:max-w-3xl">
 				@empty($posts->count())
-					<p class="text-gray-400 dark:text-gray-600 font-light italic">Seems like there is nothing here.</p>
+					<div class="w-full m-auto overflow-hidden no-underline transition border rounded shadow-lg h-90 border-gray-50 dark:border-gray-900">
+						<div class="block w-full h-full">
+							<div class="w-full p-4 bg-white dark:bg-gray-800">
+								<p class="italic font-light text-gray-400 dark:text-gray-200">Seems like there is nothing here.</p>
+							</div>
+						</div>
+					</div>
 				@endempty
 				@foreach($posts as $post)
 					<div class="w-full m-auto overflow-hidden no-underline transition border rounded shadow-lg h-90 border-gray-50 dark:border-gray-900">

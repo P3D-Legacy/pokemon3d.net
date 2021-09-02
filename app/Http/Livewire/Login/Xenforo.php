@@ -46,7 +46,7 @@ class Xenforo extends Component
         $forumaccount = ForumAccount::where('username', $this->username)->first();
 
         if (!$forumaccount) {
-            $this->addError('error', 'This Forum Account is not associated with a account yet.');
+            $this->addError('error', 'This Forum Account is not associated with a P3D account yet.');
             return;
         }
 

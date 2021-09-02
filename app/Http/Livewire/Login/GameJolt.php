@@ -66,7 +66,7 @@ class GameJolt extends Component
         $gamejoltaccount = GameJoltAccount::where('username', $this->username)->first();
 
         if (!$gamejoltaccount) {
-            $this->addError('error', 'This Gamejolt Account is not associated with a account yet.');
+            $this->addError('error', 'This Gamejolt Account is not associated with a P3D account yet.');
             return;
         }
 

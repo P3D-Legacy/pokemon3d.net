@@ -58,6 +58,8 @@ class Update extends Command
         Artisan::call('p3d:givesa');
         $this->info('Running SkinUserUpdate command...');
         Artisan::call('p3d:skinuserupdate');
+        $this->info('Running storage:link command...');
+        Artisan::call('storage:link');
         $this->info('Done.');
     }
 }

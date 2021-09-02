@@ -19,7 +19,7 @@ class AddUuidToGameJoltAccounts extends Migration
         });
         // These needs to be run at two seperate times
         Schema::table('game_jolt_accounts', function (Blueprint $table) {
-            $table->uuid('uuid')->primary()->first();
+            $table->uuid('uuid')->nullable()->primary()->first();
         });
     }
 

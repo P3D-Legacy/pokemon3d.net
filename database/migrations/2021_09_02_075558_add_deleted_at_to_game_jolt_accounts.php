@@ -25,6 +25,8 @@ class AddDeletedAtToGameJoltAccounts extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('game_jolt_accounts', function (Blueprint $table) {
+            $table->dropSoftDeletes();
+        });
     }
 }

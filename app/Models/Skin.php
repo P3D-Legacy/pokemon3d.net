@@ -6,14 +6,41 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Models\Activity;
 use Overtrue\LaravelLike\Traits\Likeable;
-use BinaryCabin\LaravelUUID\Traits\HasUUID;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use GoldSpecDigital\LaravelEloquentUUID\Database\Eloquent\Uuid;
 
 class Skin extends Model
 {
-    use HasFactory, SoftDeletes, LogsActivity, Likeable, HasUUID;
+    use HasFactory;
+    use SoftDeletes;
+    use LogsActivity;
+    use Likeable;
+    use Uuid;
+
+    protected $primaryKey = 'uuid';
+
+    /**
+     * The "type" of the auto-incrementing ID.
+     *
+     * @var string
+     */
+    protected $keyType = 'string';
+
+    /**
+     * Indicates if the IDs are auto-incrementing.
+     *
+     * @var bool
+     */
+    public $incrementing = false;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $guarded = [];
 
     /**
      * The attributes that are mass assignable.
@@ -26,16 +53,6 @@ class Skin extends Model
         'user_id',
         'public',
     ];
-
-    // Lets use the uuid for primary key
-    // protected $primaryKey = 'uuid';
-
-    /**
-     * Indicates if the model's ID is auto-incrementing.
-     *
-     * @var bool
-     */
-    public $incrementing = false;
 
     /**
      * Get the route key for the model.

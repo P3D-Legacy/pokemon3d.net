@@ -2,6 +2,8 @@
 
 namespace App\Console\Commands;
 
+use Illuminate\Support\Str;
+use App\Models\ForumAccount;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
 use anlutro\LaravelSettings\Facade as Setting;
@@ -42,6 +44,12 @@ class Update extends Command
         $rev = exec('git rev-parse --short HEAD');
         $branch = exec('git describe --tags --abbrev=0');
         $ver = $branch.' ('.$rev.')';
+
+        $forum_accounts = ForumAccount::where('uuid', null)->orWhere('uuid', '')->get();
+        foreach ($forum_accounts as $forum_account) {
+            $forum_account->update(['uuid' => Str::uuid()]);
+            $this->info('Updating ForumAccount with UUID: '.$forum_account->username);
+        }
 
         $this->info('Migrating...');
         Artisan::call('migrate --force');

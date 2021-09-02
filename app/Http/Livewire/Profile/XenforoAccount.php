@@ -45,7 +45,7 @@ class XenforoAccount extends Component
             ],
         ]);
 
-        if (!$this->username && !$this->token) {
+        if (!$this->username && !$this->password) {
             $this->errorBag->add('success', 'Your forum account has now been unlinked.');
             Auth::user()->forum->delete();
             $this->updated_at = null;
@@ -74,7 +74,7 @@ class XenforoAccount extends Component
         }
 
         $this->username = $forum->username;
-        $this->token = $forum->password;
+        $this->password = $forum->password;
         $this->updated_at = $forum->updated_at->diffForHumans();
         $this->verified_at = $forum->verified_at->diffForHumans();
         

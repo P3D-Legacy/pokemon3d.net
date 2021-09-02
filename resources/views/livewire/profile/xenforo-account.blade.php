@@ -11,13 +11,13 @@
     <x-slot name="form">
         <div class="col-span-6 sm:col-span-4">
             <x-jet-label for="username" value="{{ __('Username') }}" />
-            <x-jet-input id="username" type="text" class="mt-1 block w-full" wire:model="username" />
+            <x-jet-input id="username" type="text" class="block w-full mt-1" wire:model="username" />
             <x-jet-input-error for="username" class="mt-2" />
         </div>
 
         <div class="col-span-6 sm:col-span-4">
             <x-jet-label for="password" value="{{ __('Password') }}" />
-            <x-jet-input id="password" type="password" class="mt-1 block w-full" wire:model="password" />
+            <x-jet-input id="password" type="password" class="block w-full mt-1" wire:model="password" />
             <x-jet-input-error for="password" class="mt-2" />
         </div>
 
@@ -27,7 +27,7 @@
     <x-slot name="actions">
         
         <x-jet-action-message class="mr-3 text-green-500" on="saved">
-            {{ __('Saved.') }}
+            {{ __('Verified and saved.') }}
         </x-jet-action-message>
 
         @error('error')

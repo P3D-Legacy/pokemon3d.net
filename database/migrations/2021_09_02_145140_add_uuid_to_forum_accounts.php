@@ -15,6 +15,9 @@ class AddUuidToForumAccounts extends Migration
     {
         Schema::table('forum_accounts', function (Blueprint $table) {
             $table->dropColumn('id');
+        });
+        // These needs to be run at two seperate times
+        Schema::table('forum_accounts', function (Blueprint $table) {
             $table->uuid('uuid')->primary()->first();
         });
     }

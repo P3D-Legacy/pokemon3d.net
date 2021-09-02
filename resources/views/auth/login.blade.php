@@ -21,6 +21,18 @@
 			</div>
 		@endif
 
+		<a href="{{ route('register') }}" class="flex items-center justify-center w-full px-4 py-3 text-sm font-semibold tracking-widest text-white uppercase transition bg-green-500 border border-transparent rounded-md hover:bg-green-600 active:bg-green-400 focus:outline-none focus:border-green-900 focus:ring focus:ring-green-300 disabled:opacity-25">
+			<svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-5 h-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+				<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+			</svg>{{ __('Register') }}
+		</a>
+
+		<div class="flex items-center justify-center py-4 text-sm text-gray-400 xl:py-6">
+			<span class="border-b border-gray-300 w-14 dark:border-gray-500"></span>
+			<span class="px-2">{{ __('or log in with your P3D account') }}</span>
+			<span class="border-b border-gray-300 w-14 dark:border-gray-500"></span>
+		</div>
+
 		<x-jet-validation-errors class="mb-4" />
 
 		@if (session('status'))
@@ -49,33 +61,34 @@
 				</label>
 			</div>
 
-			<div class="flex items-center justify-center mt-4">
-				<a class="underline text-sm text-green-700 hover:text-gray-900 dark:text-green-300 dark:hover:text-green-200 px-2" href="{{ route('register') }}">
-					{{ __('Need a account?') }}
-				</a>
-
+			<div class="flex items-center justify-end mt-4">
 				@if (Route::has('password.request'))
-					<a class="underline text-sm text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100 px-2" href="{{ route('password.request') }}">
-						{{ __('Forgot your password?') }}
-					</a>
+					<div class="w-2/3">
+						<a class="text-sm text-gray-600 underline hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100" href="{{ route('password.request') }}">
+							{{ __('Forgot your password?') }}
+						</a>
+					</div>
 				@endif
-			</div>
-
-			<div class="flex items-center justify-center mt-4">
-				<x-jet-button class="w-full flex items-center justify-center px-4 py-3 text-sm">
-					{{ __('Log in') }}
-				</x-jet-button>
+				<div class="w-1/3">
+					<x-jet-button class="flex items-center justify-center w-full px-4 py-3 text-sm">
+						<svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-5 h-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
+						</svg>{{ __('Log in') }}
+					</x-jet-button>
+				</div>
 			</div>
 		</form>
 
-		<div class="flex items-center justify-center py-4 xl:py-6 text-sm text-gray-400">
-			<span class="w-14 border-b border-gray-300 dark:border-gray-500"></span>
-			<span class="px-2">or log in with</span>
-			<span class="w-14 border-b border-gray-300 dark:border-gray-500"></span>
+		<div class="flex items-center justify-center py-4 text-sm text-gray-400 xl:py-6">
+			<span class="border-b border-gray-300 w-14 dark:border-gray-500"></span>
+			<span class="px-2">{{ __('or log in with') }}</span>
+			<span class="border-b border-gray-300 w-14 dark:border-gray-500"></span>
 		</div>
 
-		<button class="w-full flex items-center justify-center px-4 py-3 bg-blue-500 border border-transparent rounded-md font-semibold text-sm text-white uppercase tracking-widest hover:bg-blue-600 active:bg-blue-400 focus:outline-none focus:border-blue-900 focus:ring focus:ring-blue-300 disabled:opacity-25 transition" type="button" onclick="toggleModal('xenforo')">
-			Forum Account
+		<button class="flex items-center justify-center w-full px-4 py-3 text-sm font-semibold tracking-widest text-white uppercase transition bg-blue-500 border border-transparent rounded-md hover:bg-blue-600 active:bg-blue-400 focus:outline-none focus:border-blue-900 focus:ring focus:ring-blue-300 disabled:opacity-25" type="button" onclick="toggleModal('xenforo')">
+			<svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-5 h-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+				<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
+			</svg>{{ __('Forum Account') }}
 		</button>
 		<button class="flex items-center justify-center w-full px-4 py-3 mt-2 text-sm font-semibold tracking-widest text-black uppercase transition border border-transparent rounded-md bg-gamejolt-green hover:bg-opacity-70 focus:outline-none focus:border-green-200 focus:ring focus:ring-green-100 disabled:opacity-25" type="button" onclick="toggleModal('gamejolt')">
 			<img src="{{ asset('img/gamejolt-logo-light-1x.png') }}">
@@ -95,7 +108,7 @@
 					</button>
 				</div>
 				<!--body-->
-				<div class="relative p-6 pt-0 flex-auto">
+				<div class="relative flex-auto p-6 pt-0">
 					@livewire('login.xenforo')
 				</div>
 			</div>

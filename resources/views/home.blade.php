@@ -1,16 +1,16 @@
 <x-guest-layout>
     <!--Nav-->
-    <nav id="header" class="w-full z-30 top-0 text-white py-1 lg:py-6" x-data="{open:false}">
-        <div class="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 px-2 py-2 lg:py-6">
-            <div class="pl-4 flex items-center">
-                <a class="text-white no-underline hover:no-underline font-bold text-2xl lg:text-4xl font-mono" href="#">
+    <nav id="header" class="top-0 z-30 w-full py-1 text-white lg:py-6" x-data="{open:false}">
+        <div class="container flex flex-wrap items-center justify-between w-full px-2 py-2 mx-auto mt-0 lg:py-6">
+            <div class="flex items-center pl-4">
+                <a class="font-mono text-2xl font-bold text-white no-underline hover:no-underline lg:text-4xl" href="#">
                     <x-logo-small class="" />
                 </a>
             </div>
             
-            <div class="block lg:hidden pr-4">
-                <button @click="open = ! open" id="nav-toggle" class="flex items-center px-2 py-1 border rounded text-white border-white hover:text-gray-200 hover:border-gray-200 appearance-none focus:outline-none">
-                    <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+            <div class="block pr-4 lg:hidden">
+                <button @click="open = ! open" id="nav-toggle" class="flex items-center px-2 py-1 text-white border border-white rounded appearance-none hover:text-gray-200 hover:border-gray-200 focus:outline-none">
+                    <svg class="w-6 h-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                         <path :class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                         <path :class="{'hidden': ! open, 'inline-flex': open }" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                     </svg>
@@ -19,7 +19,7 @@
 
             <!-- Responsive Navigation Menu -->
             <div :class="{'flex': open, 'hidden': ! open}" class="hidden w-full pt-2">
-                <ul class="list-reset lg:flex flex-1 place-items-end space-y-1 grid justify-items-end">
+                <ul class="grid flex-1 space-y-1 list-reset lg:flex place-items-end justify-items-end">
                     <x-home.responsive-nav-link title="Blog" url="{{ route('blog.index') }}">
                         <x-slot name="icon">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -73,9 +73,9 @@
                 </ul>
             </div>
 
-            <div class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden mt-2 lg:mt-0 p-4 lg:p-0 z-20"
+            <div class="z-20 flex-grow hidden w-full p-4 mt-2 lg:flex lg:items-center lg:w-auto lg:mt-0 lg:p-0"
                 id="nav-content">
-                <ul class="list-reset lg:flex justify-end flex-1 items-center">
+                <ul class="items-center justify-end flex-1 list-reset lg:flex">
                     <x-home.nav-link title="Blog" url="{{ route('blog.index') }}">
                         <x-slot name="icon">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -138,22 +138,22 @@
         </div>
     </nav>
 
-    <div class="container mx-auto h-auto sm:min-h-screen text-white">
-        <div class="text-center px-3 lg:px-0">
-            <h1 class="my-4 text-2xl md:text-3xl lg:text-5xl font-black leading-tight">
+    <div class="container h-auto mx-auto text-white sm:min-h-screen">
+        <div class="px-3 text-center lg:px-0">
+            <h1 class="my-4 text-2xl font-black leading-tight md:text-3xl lg:text-5xl">
                 Old school Pokémon in a 3D world!
             </h1>
-            <p class="leading-normal text-gray-50 text-base md:text-xl lg:text-2xl mb-8">
+            <p class="mb-8 text-base leading-normal text-gray-50 md:text-xl lg:text-2xl">
                 Bringing the games from the early generation of Pokémon games to the modern era.
             </p>
             <x-download-button />
         </div>
 
-        <div class="flex items-center mx-auto content-end z-auto overflow-hidden w-full">
-            <div class="browser-mockup with-url flex flex-1 m-6 md:m-12 bg-white shadow-xl rounded-t rounded-b-lg aspect-w-16 aspect-h-9">
-                {{-- <iframe class="w-full h-full object-center object-cover lg:w-full lg:h-full"  src="https://www.youtube.com/embed/hsnFgua89vQ?&autoplay=1" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
-                <img src="{{ asset('img/daniel_ingame.png') }}" class="w-full h-full object-center object-cover lg:w-full lg:h-full rounded-b-lg" /> --}}
-                <video muted controls class="w-full h-full object-center object-cover lg:w-full lg:h-full rounded-b-lg">
+        <div class="z-auto flex items-center content-end w-full mx-auto overflow-hidden">
+            <div class="flex flex-1 m-6 bg-white rounded-t rounded-b-lg shadow-xl browser-mockup with-url md:m-12 aspect-w-16 aspect-h-9">
+                {{-- <iframe class="object-cover object-center w-full h-full lg:w-full lg:h-full"  src="https://www.youtube.com/embed/hsnFgua89vQ?&autoplay=1" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+                <img src="{{ asset('img/daniel_ingame.png') }}" class="object-cover object-center w-full h-full rounded-b-lg lg:w-full lg:h-full" /> --}}
+                <video muted controls class="object-cover object-center w-full h-full rounded-b-lg lg:w-full lg:h-full">
                     <source src="https://files.pokemon3d.net/video/trailer.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
@@ -161,34 +161,34 @@
         </div>
     </div>
 
-    <section class="bg-gray-100 dark:bg-gray-900 border-b py-12 dark:border-black">
-        <div class="container mx-auto flex flex-wrap items-center justify-between">
-            <div class="flex flex-1 flex-wrap max-w-5xl mx-auto items-center justify-between text-5xl text-gray-900 dark:text-gray-200 font-bold opacity-75">
-                <div class="w-1/2 p-4 md:w-auto flex flex-col items-center">
+    <section class="py-12 bg-gray-100 border-b dark:bg-gray-900 dark:border-black">
+        <div class="container flex flex-wrap items-center justify-between mx-auto">
+            <div class="flex flex-wrap items-center justify-between flex-1 max-w-5xl mx-auto text-5xl font-bold text-gray-900 opacity-75 dark:text-gray-200">
+                <div class="flex flex-col items-center w-1/2 p-4 md:w-auto">
                     <div class="flex">{{ \App\Helpers\StatsHelper::countPlayers() }}</div>
                     <div class="flex text-xl text-gray-600 dark:text-gray-400">Online Users</div>
                     {{-- ONLINE USERS FROM THE SERVER --}}
                 </div>
 
-                <div class="w-1/2 p-4 md:w-auto flex flex-col items-center">
+                <div class="flex flex-col items-center w-1/2 p-4 md:w-auto">
                     <div class="flex">{{ App\Models\User::count() }}</div>
                     <div class="flex text-xl text-gray-600 dark:text-gray-400">Active Users</div>
                     {{-- ACTIVE USERS FROM THE WEBSITE --}}
                 </div>
 
-                <div class="w-1/2 p-4 md:w-auto flex flex-col items-center">
+                <div class="flex flex-col items-center w-1/2 p-4 md:w-auto">
                     <div class="flex">{{ \App\Helpers\StatsHelper::countDiscordMembers() }}</div>
                     <div class="flex text-xl text-gray-600 dark:text-gray-400">Discord Users</div>
                     {{-- TOTAL COUNT DISCORD USERS --}}
                 </div>
 
-                <div class="w-1/2 p-4 md:w-auto flex flex-col items-center">
+                <div class="flex flex-col items-center w-1/2 p-4 md:w-auto">
                     <div class="flex">{{ \App\Helpers\StatsHelper::countForumMembers() }}</div>
                     <div class="flex text-xl text-gray-600 dark:text-gray-400">Forum Users</div>
                     {{-- ACTIVE USERS FROM THE FORUM --}}
                 </div>
 
-                <div class="w-1/2 p-4 md:w-auto flex flex-col items-center">
+                <div class="flex flex-col items-center w-1/2 p-4 md:w-auto">
                     <div class="flex">{{ ucfirst(\App\Helpers\StatsHelper::getInGameSeason()) }}</div>
                     <div class="flex text-xl text-gray-600 dark:text-gray-400">In-Game Season</div>
                     {{-- CURRENT IN-GAME SEASON --}}
@@ -197,13 +197,13 @@
         </div>
     </section>
 
-    <section class="bg-white dark:bg-gray-800 border-b py-8 dark:border-black">
-        <div class="container mx-auto flex flex-wrap pt-4 pb-12">
-            <h2 class="w-full my-2 text-3xl font-black leading-tight text-center text-gray-800 dark:text-gray-200 uppercase">
+    <section class="py-8 bg-white border-b dark:bg-gray-800 dark:border-black">
+        <div class="container flex flex-wrap pt-4 pb-12 mx-auto">
+            <h2 class="w-full my-2 text-3xl font-black leading-tight text-center text-gray-800 uppercase dark:text-gray-200">
                 Latest news
             </h2>
             <div class="w-full mb-4">
-                <div class="h-1 mx-auto bg-black dark:bg-white w-64 opacity-25 my-0 py-0 rounded-t"></div>
+                <div class="w-64 h-1 py-0 mx-auto my-0 bg-black rounded-t opacity-25 dark:bg-white"></div>
             </div>
 
             @forelse(\App\Helpers\XenforoHelper::getNewsItems()['threads'] as $item)
@@ -212,11 +212,11 @@
                 @endif
                 <x-home.article :item="$item" />
             @empty
-                <div class="text-center w-full text-xs">
-                    <p class="text-red-900 mb-1">Failed to fetch news.</p>
+                <div class="w-full text-xs text-center">
+                    <p class="mb-1 text-red-900">Failed to fetch news.</p>
                     <a href="https://pokemon3d.net/forum/news/" class="text-green-500 hover:underline">
                         Go to forum news
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
                         </svg>
                     </a>
@@ -226,13 +226,13 @@
         </div>
     </section>
 
-    <section class="border-b p-8 dark:border-black">
-        <div class="container max-w-5xl mx-auto m-8 text-white">
+    <section class="p-8 border-b dark:border-black bg-black/20">
+        <div class="container max-w-5xl m-8 mx-auto text-white">
             <h2 class="w-full my-2 text-3xl font-black leading-tight text-center uppercase">
                 History
             </h2>
             <div class="w-full mb-4">
-                <div class="h-1 mx-auto bg-white w-64 opacity-25 my-0 py-0 rounded-t"></div>
+                <div class="w-64 h-1 py-0 mx-auto my-0 bg-white rounded-t opacity-25"></div>
             </div>
 
             <div class="flex flex-wrap">
@@ -243,39 +243,39 @@
         </div>
     </section>
 
-    <section class="bg-white dark:bg-gray-800 border-b py-8 dark:border-black">
-        <div class="container max-w-5xl mx-auto m-8">
-            <h2 class="w-full my-2 text-3xl font-black leading-tight text-center text-gray-800 dark:text-gray-200 uppercase">
+    <section class="py-8 bg-white border-b dark:bg-gray-800 dark:border-black">
+        <div class="container max-w-5xl m-8 mx-auto">
+            <h2 class="w-full my-2 text-3xl font-black leading-tight text-center text-gray-800 uppercase dark:text-gray-200">
                 Features
             </h2>
             <div class="w-full mb-4">
-                <div class="h-1 mx-auto bg-black dark:bg-white w-64 opacity-25 my-0 py-0 rounded-t"></div>
+                <div class="w-64 h-1 py-0 mx-auto my-0 bg-black rounded-t opacity-25 dark:bg-white"></div>
             </div>
 
             <div class="flex flex-wrap">
-                <div class="w-5/6 sm:w-1/2 p-6">
-                    <h3 class="text-3xl text-gray-800 dark:text-gray-200 font-bold leading-none mb-3">
+                <div class="w-5/6 p-6 sm:w-1/2">
+                    <h3 class="mb-3 text-3xl font-bold leading-none text-gray-800 dark:text-gray-200">
                         Nostalgia
                     </h3>
-                    <p class="text-gray-600 dark:text-gray-400 mb-8">
+                    <p class="mb-8 text-gray-600 dark:text-gray-400">
                         Remember the old days when you where playing on a GameBoy? If so; you should try out this game and get the nostalgic feeling as well as visit your inner child.
                     </p>
                 </div>
-                <div class="w-full sm:w-1/2 p-6">
+                <div class="w-full p-6 sm:w-1/2">
                     <img src="{{ asset('img/pikachu.png') }}" />
                 </div>
             </div>
 
-            <div class="flex flex-wrap flex-col-reverse sm:flex-row">
-                <div class="w-full sm:w-1/2 p-6 mt-6 grid justify-items-end">
+            <div class="flex flex-col-reverse flex-wrap sm:flex-row">
+                <div class="grid w-full p-6 mt-6 sm:w-1/2 justify-items-end">
                     <img src="{{ asset('img/rhydon.png') }}" />
                 </div>
-                <div class="w-full sm:w-1/2 p-6 mt-6">
+                <div class="w-full p-6 mt-6 sm:w-1/2">
                     <div class="align-middle">
-                        <h3 class="text-3xl text-gray-800 dark:text-gray-200 font-bold leading-none mb-3">
+                        <h3 class="mb-3 text-3xl font-bold leading-none text-gray-800 dark:text-gray-200">
                             Most Generations and Regions
                         </h3>
-                        <p class="text-gray-600 dark:text-gray-400 mb-8">
+                        <p class="mb-8 text-gray-600 dark:text-gray-400">
                             {{ config('app.name') }} will in the future have support for all generations of pokémon. And all the regions will accessible in the game.
                         </p>
                     </div>
@@ -283,15 +283,15 @@
             </div>
 
             <div class="flex flex-wrap">
-                <div class="w-5/6 sm:w-1/2 p-6">
-                    <h3 class="text-3xl text-gray-800 dark:text-gray-200 font-bold leading-none mb-3">
+                <div class="w-5/6 p-6 sm:w-1/2">
+                    <h3 class="mb-3 text-3xl font-bold leading-none text-gray-800 dark:text-gray-200">
                         A New Experience
                     </h3>
-                    <p class="text-gray-600 dark:text-gray-400 mb-8">
+                    <p class="mb-8 text-gray-600 dark:text-gray-400">
                         {{ config('app.name') }} focuses on the strong points of Pokémon Gold and Silver versions and their remakes, and gives players a taste as to how the once 2D world they knew was in 3D.
                     </p>
                 </div>
-                <div class="w-full sm:w-1/2 p-6">
+                <div class="w-full p-6 sm:w-1/2">
                     <img src="{{ asset('img/scizor.png') }}" />
                 </div>
             </div>
@@ -299,15 +299,15 @@
     </section>
 
     <section class="py-12">
-        <div class="container mx-auto flex flex-wrap items-center justify-between pb-12 text-white">
-            <h2 class="w-full my-2 text-3xl font-black leading-tight text-center lg:mt-8 uppercase">
+        <div class="container flex flex-wrap items-center justify-between pb-12 mx-auto text-white">
+            <h2 class="w-full my-2 text-3xl font-black leading-tight text-center uppercase lg:mt-8">
                 Media
             </h2>
             <div class="w-full mb-4">
-                <div class="h-1 mx-auto bg-white w-64 opacity-25 my-0 py-0 rounded-t"></div>
+                <div class="w-64 h-1 py-0 mx-auto my-0 bg-white rounded-t opacity-25"></div>
             </div>
             
-            <div class="w-full flex flex-wrap gap-4 mb-8 md:mb-0 flex-between items-center p-8">
+            <div class="flex flex-wrap items-center w-full gap-4 p-8 mb-8 md:mb-0 flex-between">
                 <x-home.media-article title="Pokemon 3D creator envisions a fully cooperative Pokemon campaign" url="https://www.polygon.com/2012/12/7/3740086/pokemon-3d-interview" author="Polygon" date="Dec 7, 2012, 4:40pm EST" />
                 <x-home.media-article title="This Fan-Made Pokémon Remake Is In 3D And First Person" url="https://www.kotaku.com.au/2012/12/this-fan-made-pokemon-remake-is-in-3d-and-first-person/" author="Kotaku" date="December 4, 2012 at 7:00 pm" />
                 <x-home.media-article title="'Pokemon' gets a virtual reality makeover for Oculus Rift" url="https://www.theverge.com/2014/2/25/5445930/pokemon-3d-oculus-rift" author="The Verge" date="Feb 25, 2014, 11:54am EST" />
@@ -316,12 +316,12 @@
         </div>
     </section>
 
-    <section class="w-full mx-auto text-center py-12 text-white px-3">
+    <section class="w-full px-3 py-12 mx-auto text-center text-white bg-black/20">
         <h2 class="w-full my-2 text-3xl font-black leading-tight text-center uppercase">
             Miss your childhood?
         </h2>
         <div class="w-full mb-4">
-            <div class="h-1 mx-auto bg-white w-1/6 opacity-25 my-0 py-0 rounded-t"></div>
+            <div class="w-1/6 h-1 py-0 mx-auto my-0 bg-white rounded-t opacity-25"></div>
         </div>
 
         <h3 class="my-4 text-2xl font-extrabold text-gray-100">
@@ -333,52 +333,52 @@
 
     <!--Footer-->
     <footer class="bg-white dark:bg-gray-800">
-        <div class="container mx-auto mt-8 px-8">
-            <div class="w-full flex flex-col md:flex-row py-6">
-                <div class="flex-2 mb-6 px-3">
+        <div class="container px-8 mx-auto mt-8">
+            <div class="flex flex-col w-full py-6 md:flex-row">
+                <div class="px-3 mb-6 flex-2">
                     <a href="#">
                         <x-logo-large class="max-w-xs" />
                     </a>
-                    <p class="text-gray-600 dark:text-gray-200 text-sm mt-3">
+                    <p class="mt-3 text-sm text-gray-600 dark:text-gray-200">
                         {{ config('app.name') }} is not affiliated with Nintendo, Creatures Inc. or GAME FREAK Inc.
                     </p>
-                    <p class="text-gray-500 dark:text-gray-300 text-sm mt-3">
-                        pokemon3d.net is owned and operated by <a href="https://infihex.com/" class="no-underline hover:underline text-green-600">Infihex</a>
+                    <p class="mt-3 text-sm text-gray-500 dark:text-gray-300">
+                        pokemon3d.net is owned and operated by <a href="https://infihex.com/" class="text-green-600 no-underline hover:underline">Infihex</a>
                     </p>
-                    <p class="text-gray-400 dark:text-gray-400 text-sm mt-3">
-                        This website is open-source on <a href="https://github.com/P3D-Legacy/pokemon3d.net" class="hover:underline"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="h-4 w-4 inline-block" viewBox="0 0 1792 1792"><path d="M896 128q209 0 385.5 103t279.5 279.5 103 385.5q0 251-146.5 451.5t-378.5 277.5q-27 5-40-7t-13-30q0-3 .5-76.5t.5-134.5q0-97-52-142 57-6 102.5-18t94-39 81-66.5 53-105 20.5-150.5q0-119-79-206 37-91-8-204-28-9-81 11t-92 44l-38 24q-93-26-192-26t-192 26q-16-11-42.5-27t-83.5-38.5-85-13.5q-45 113-8 204-79 87-79 206 0 85 20.5 150t52.5 105 80.5 67 94 39 102.5 18q-39 36-49 103-21 10-45 15t-57 5-65.5-21.5-55.5-62.5q-19-32-48.5-52t-49.5-24l-20-3q-21 0-29 4.5t-5 11.5 9 14 13 12l7 5q22 10 43.5 38t31.5 51l10 23q13 38 44 61.5t67 30 69.5 7 55.5-3.5l23-4q0 38 .5 88.5t.5 54.5q0 18-13 30t-40 7q-232-77-378.5-277.5t-146.5-451.5q0-209 103-385.5t279.5-279.5 385.5-103zm-477 1103q3-7-7-12-10-3-13 2-3 7 7 12 9 6 13-2zm31 34q7-5-2-16-10-9-16-3-7 5 2 16 10 10 16 3zm30 45q9-7 0-19-8-13-17-6-9 5 0 18t17 7zm42 42q8-8-4-19-12-12-20-3-9 8 4 19 12 12 20 3zm57 25q3-11-13-16-15-4-19 7t13 15q15 6 19-6zm63 5q0-13-17-11-16 0-16 11 0 13 17 11 16 0 16-11zm58-10q-2-11-18-9-16 3-14 15t18 8 14-14z"></path></svg> Github</a>, thanks to our contributors! &hearts;
+                    <p class="mt-3 text-sm text-gray-400 dark:text-gray-400">
+                        This website is open-source on <a href="https://github.com/P3D-Legacy/pokemon3d.net" class="hover:underline"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="inline-block w-4 h-4" viewBox="0 0 1792 1792"><path d="M896 128q209 0 385.5 103t279.5 279.5 103 385.5q0 251-146.5 451.5t-378.5 277.5q-27 5-40-7t-13-30q0-3 .5-76.5t.5-134.5q0-97-52-142 57-6 102.5-18t94-39 81-66.5 53-105 20.5-150.5q0-119-79-206 37-91-8-204-28-9-81 11t-92 44l-38 24q-93-26-192-26t-192 26q-16-11-42.5-27t-83.5-38.5-85-13.5q-45 113-8 204-79 87-79 206 0 85 20.5 150t52.5 105 80.5 67 94 39 102.5 18q-39 36-49 103-21 10-45 15t-57 5-65.5-21.5-55.5-62.5q-19-32-48.5-52t-49.5-24l-20-3q-21 0-29 4.5t-5 11.5 9 14 13 12l7 5q22 10 43.5 38t31.5 51l10 23q13 38 44 61.5t67 30 69.5 7 55.5-3.5l23-4q0 38 .5 88.5t.5 54.5q0 18-13 30t-40 7q-232-77-378.5-277.5t-146.5-451.5q0-209 103-385.5t279.5-279.5 385.5-103zm-477 1103q3-7-7-12-10-3-13 2-3 7 7 12 9 6 13-2zm31 34q7-5-2-16-10-9-16-3-7 5 2 16 10 10 16 3zm30 45q9-7 0-19-8-13-17-6-9 5 0 18t17 7zm42 42q8-8-4-19-12-12-20-3-9 8 4 19 12 12 20 3zm57 25q3-11-13-16-15-4-19 7t13 15q15 6 19-6zm63 5q0-13-17-11-16 0-16 11 0 13 17 11 16 0 16-11zm58-10q-2-11-18-9-16 3-14 15t18 8 14-14z"></path></svg> Github</a>, thanks to our contributors! &hearts;
                     </p>
-                    <p class="text-gray-300 dark:text-gray-500 text-xs mt-3"><a class="hover:underline" href="https://github.com/P3D-Legacy/skin.pokemon3d.net/blob/main/CHANGELOG.md">{{ setting('APP_VERSION') ?? 'N/A' }}</a></p>
+                    <p class="mt-3 text-xs text-gray-300 dark:text-gray-500"><a class="hover:underline" href="https://github.com/P3D-Legacy/skin.pokemon3d.net/blob/main/CHANGELOG.md">{{ setting('APP_VERSION') ?? 'N/A' }}</a></p>
                 </div>
 
                 <div class="flex-1 px-3">
-                    <p class="uppercase font-extrabold text-gray-500 dark:text-gray-200 md:mb-6">Information</p>
-                    <ul class="list-reset mb-6">
+                    <p class="font-extrabold text-gray-500 uppercase dark:text-gray-200 md:mb-6">Information</p>
+                    <ul class="mb-6 list-reset">
                         <x-home.footer-link title="FAQ" url="#" />
                         <x-home.footer-link title="Help" url="#" />
                         <x-home.footer-link title="Support" url="#" />
                     </ul>
                 </div>
                 <div class="flex-1 px-3">
-                    <p class="uppercase font-extrabold text-gray-500 dark:text-gray-200 md:mb-6">Legal</p>
-                    <ul class="list-reset mb-6">
+                    <p class="font-extrabold text-gray-500 uppercase dark:text-gray-200 md:mb-6">Legal</p>
+                    <ul class="mb-6 list-reset">
                         <x-home.footer-link title="Terms of service" url="{{ route('terms.show') }}" />
                         <x-home.footer-link title="Privacy Policy" url="{{ route('policy.show') }}" />
                     </ul>
                 </div>
                 <div class="flex-1 px-3">
-                    <p class="uppercase font-extrabold text-gray-500 dark:text-gray-200 md:mb-6">Social</p>
-                    <ul class="list-reset mb-6">
+                    <p class="font-extrabold text-gray-500 uppercase dark:text-gray-200 md:mb-6">Social</p>
+                    <ul class="mb-6 list-reset">
                         <x-home.footer-link title="Facebook" url="#" />
                         <x-home.footer-link title="Discord" url="#" />
                         <x-home.footer-link title="Github" url="#" />
                     </ul>
                 </div>
                 <div class="flex-1 px-3">
-                    <p class="uppercase font-extrabold text-gray-500 dark:text-gray-200 md:mb-6">
+                    <p class="font-extrabold text-gray-500 uppercase dark:text-gray-200 md:mb-6">
                         {{ config('app.name') }}
                     </p>
-                    <ul class="list-reset mb-6">
+                    <ul class="mb-6 list-reset">
                         <x-home.footer-link title="Official Blog" url="{{ route('blog.index') }}" />
                         <x-home.footer-link title="About Us" url="#" />
                         <x-home.footer-link title="Contact" url="#" />

@@ -66,12 +66,11 @@ class XenforoAccount extends Component
             'verified_at' => Carbon::now()->toDateTimeString(),
         ];
 
-        if (!$user->forum) {
-            $forum = $user->forum()->create($data);
-        } else {
-            $user->forum->update($data);
-            $forum = $user->forum;
+        $forum = \App\Models\ForumAccount::where('user_id', $user->id)->withTrashed()->first();
+        if ($forum !== null) {
+            $forum->restore();
         }
+        $forum->update($data);
 
         $this->username = $forum->username;
         $this->password = $forum->password;

@@ -83,7 +83,6 @@ class GameJoltAccount extends Component
 
         $gj_user = $api->users()->fetch($this->username, $this->token);
         $id = $gj_user['response']['users'][0]['id'];
-        // $avatar_url = $user['response']['users'][0]['avatar_url'];
         
         $data = [
             'id' => $id,

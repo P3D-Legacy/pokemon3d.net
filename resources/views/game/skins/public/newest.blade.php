@@ -1,8 +1,8 @@
-@extends('skin-subdomain.layouts.main')
+@extends('layouts.main')
 @section('title', 'Public Skins')
      
 @section('content')
-<h2 class="text-3xl font-extrabold leading-9 border-b-2 border-gray-100 text-gray-50 mb-4 mt-4 pb-1">
+<h2 class="pb-1 mt-4 mb-4 text-3xl font-extrabold leading-9 border-b-2 border-gray-100 text-gray-50">
     Public Skins
 </h2>
 
@@ -11,7 +11,7 @@
     <a class="border-t border-b border-r text-base font-medium rounded-r-md hover:bg-gray-100 px-4 py-2 {{ request()->is('skins/public/popular*') ? 'text-green-800 bg-green-50' : 'text-gray-800 bg-white' }}" href="{{ route('skins-popular') }}">Most Popular</a>
 </div>
 
-<div class="gap-4 grid grid-cols-1 grid-flow-row auto-rows-max sm:grid-cols-2 lg:grid-cols-3">
+<div class="grid grid-flow-row grid-cols-1 gap-4 auto-rows-max sm:grid-cols-2 lg:grid-cols-3">
     @if(!$skins->count())
         <p class="text-white">None found.</p>
     @endif

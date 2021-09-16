@@ -1,4 +1,4 @@
-@extends('skin-subdomain.layouts.main')
+@extends('layouts.main')
 @section('title', 'Public Skins: '.$skin->name)
      
 @section('content')

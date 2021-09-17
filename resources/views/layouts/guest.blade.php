@@ -22,6 +22,9 @@
 				.browser-mockup {
 					border-top: 2em solid rgba(230, 230, 230, 0.8);
 				}
+				.dark .browser-mockup {
+					border-top: 2em solid rgba(0, 0, 0, 0.9);
+				}
 				.browser-mockup:before {
 					display: block;
 					position: absolute;

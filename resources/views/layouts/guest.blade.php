@@ -15,33 +15,6 @@
 		<!-- Styles -->
 		<link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
-		<style>
-				/* Browser mockup code
-				* Contribute: https://gist.github.com/jarthod/8719db9fef8deb937f4f
-				*/
-				.browser-mockup {
-					border-top: 2em solid rgba(230, 230, 230, 0.8);
-				}
-				.dark .browser-mockup {
-					border-top: 2em solid rgba(0, 0, 0, 0.9);
-				}
-				.browser-mockup:before {
-					display: block;
-					position: absolute;
-					content: "";
-					top: -1.4em;
-					right: 3.6em;
-					width: 0.8em;
-					height: 0.8em;
-					background-color: rgb(184, 184, 184);
-					box-shadow: 0 0 0 2px rgb(184, 184, 184), 1.5em 0 0 2px rgb(184, 184, 184), 3em 0 0 2px  #f44;
-					z-index: 100;
-				}
-				.browser-mockup > * {
-					display: block;
-				}
-			</style>
-
 		<!-- Scripts -->
 		<script src="{{ mix('js/app.js') }}" defer></script>
 		<script> 

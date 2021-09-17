@@ -17,19 +17,41 @@ class PermissionSeeder extends Seeder
     public function run()
     {
         $r1 = Role::firstOrCreate(["name" => "super-admin"]);
-        Role::firstOrCreate(["name" => "admin"]);
+        $r2 = Role::firstOrCreate(["name" => "admin"]);
 
         $p1 = Permission::firstOrCreate(['name' => 'manage.users']);
-        $p2 = Permission::firstOrCreate(['name' => 'api']);
-        $p3 = Permission::firstOrCreate(['name' => 'blog-create']);
-        $p4 = Permission::firstOrCreate(['name' => 'blog-update']);
-        $p5 = Permission::firstOrCreate(['name' => 'blog-destroy']);
+        $p2 = Permission::firstOrCreate(['name' => 'manage.roles']);
+        $p3 = Permission::firstOrCreate(['name' => 'manage.permissions']);
 
-        $r1->givePermissionTo('manage.users');
-        $r1->givePermissionTo('api');
+        $p4 = Permission::firstOrCreate(['name' => 'api']);
+
+        $p5 = Permission::firstOrCreate(['name' => 'blog-create']);
+        $p6 = Permission::firstOrCreate(['name' => 'blog-update']);
+        $p7 = Permission::firstOrCreate(['name' => 'blog-destroy']);
+
+        $p8 = Permission::firstOrCreate(['name' => 'tag-create']);
+        $p9 = Permission::firstOrCreate(['name' => 'tag-update']);
+        $p10 = Permission::firstOrCreate(['name' => 'tag-destroy']);
+
+        // Super Admin permissions
+        $r1->givePermissionTo($p1->name);
+        $r1->givePermissionTo($p2->name);
         $r1->givePermissionTo($p3->name);
         $r1->givePermissionTo($p4->name);
         $r1->givePermissionTo($p5->name);
+        $r1->givePermissionTo($p6->name);
+        $r1->givePermissionTo($p7->name);
+        $r1->givePermissionTo($p8->name);
+        $r1->givePermissionTo($p9->name);
+        $r1->givePermissionTo($p10->name);
+
+        // Admin permissions
+        $r2->givePermissionTo($p5->name);
+        $r2->givePermissionTo($p6->name);
+        $r2->givePermissionTo($p7->name);
+        $r2->givePermissionTo($p8->name);
+        $r2->givePermissionTo($p9->name);
+        $r2->givePermissionTo($p10->name);
 
         $user = User::first();
         if($user) {

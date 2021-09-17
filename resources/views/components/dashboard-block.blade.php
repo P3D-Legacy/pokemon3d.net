@@ -17,7 +17,7 @@
                 <span>Download {{ GitHubHelper::getVersion() }}<sup>&dagger;</sup></span>
             </div>
         </a>
-        <div class="mt-1 mb-2 text-xs text-gray-900">
+        <div class="mt-1 mb-2 text-xs text-gray-900 dark:text-gray-400">
             <span>Released {{ \Carbon\Carbon::parse(GitHubHelper::getReleaseDate())->diffForHumans() }}</span>
             <span class="px-2">&mdash;</span>
             <span><a href="https://pokemon3d.net/wiki/index.php/Pok%C3%A9mon_3D#Requirements"><sup>&dagger;</sup> Requirements apply</a></span>

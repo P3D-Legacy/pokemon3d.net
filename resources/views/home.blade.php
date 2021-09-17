@@ -178,7 +178,7 @@
             <div class="flex flex-wrap items-center justify-between flex-1 max-w-5xl mx-auto text-5xl font-bold text-gray-900 opacity-75 dark:text-gray-200">
                 <div class="flex flex-col items-center w-1/2 p-4 md:w-auto">
                     <div class="flex">{{ \App\Helpers\StatsHelper::countPlayers() }}</div>
-                    <div class="flex text-xl text-gray-600 dark:text-gray-400">Online Users</div>
+                    <div class="flex text-xl text-gray-600 dark:text-gray-400">Online Players</div>
                     {{-- ONLINE USERS FROM THE SERVER --}}
                 </div>
 

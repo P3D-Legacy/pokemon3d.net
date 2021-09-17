@@ -20,22 +20,6 @@ class Post extends Model implements Viewable
 
     protected $removeViewsOnDelete = true;
 
-    protected $primaryKey = 'uuid';
-
-    /**
-     * The "type" of the auto-incrementing ID.
-     *
-     * @var string
-     */
-    protected $keyType = 'string';
-
-    /**
-     * Indicates if the IDs are auto-incrementing.
-     *
-     * @var bool
-     */
-    public $incrementing = false;
-
     /**
      * Get the route key for the model.
      *

@@ -38,7 +38,7 @@
             }
         </script>
     </head>
-    <body class="font-sans antialiased">
+    <body class="font-sans antialiased {{ env('APP_DEBUG') ? 'debug-screens' : '' }}">
         <x-jet-banner />
 
         @if(Auth::user() && ! Auth::user()->hasGivenConsent(config('app.required_consent')))

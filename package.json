@@ -19,7 +19,8 @@
         "lodash": "^4.17.19",
         "postcss": "^8.3.5",
         "postcss-import": "^14.0.1",
-        "tailwindcss": "^2.2.2"
+        "tailwindcss": "^2.2.2",
+        "tailwindcss-debug-screens": "^2.1.0"
     },
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.15.3",

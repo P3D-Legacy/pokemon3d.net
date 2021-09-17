@@ -83,7 +83,7 @@
 
         <div class="ml-12">
             <div class="mt-2 text-sm text-gray-500 dark:text-gray-300">
-                {{ config('app.name') }} has a built in feature where every player has the oppertunity to change their look for multiplayer sessions. You'll be amazed how easily you can change it, store other skin and browse what other have made just at your fingertips.
+                {{ config('app.name') }} has a built in feature where every player has the opportunity to change their look for multiplayer sessions. You'll be amazed how easily you can change it, store other skin and browse what other have made just at your fingertips.
             </div>
             <a href="{{ route('skin-home') }}">
                 <div class="flex items-center mt-3 text-sm font-semibold text-green-700 dark:text-green-500">

@@ -28,9 +28,9 @@
 		</a>
 
 		<div class="flex items-center justify-center py-4 text-sm text-gray-400 xl:py-6">
-			<span class="border-b border-gray-300 w-14 dark:border-gray-500"></span>
+			<span class="w-1/12 border-b border-gray-300 sm:w-14 dark:border-gray-500"></span>
 			<span class="px-2">{{ __('or log in with your P3D account') }}</span>
-			<span class="border-b border-gray-300 w-14 dark:border-gray-500"></span>
+			<span class="w-1/12 border-b border-gray-300 sm:w-14 dark:border-gray-500"></span>
 		</div>
 
 		<x-jet-validation-errors class="mb-4" />

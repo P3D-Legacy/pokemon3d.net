@@ -12,10 +12,10 @@ class PostController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['permission:blog-create|blog-update|blog-destroy'])->only(['index']);
-        $this->middleware(['permission:blog-create'])->only(['create', 'store']);
-        $this->middleware(['permission:blog-update'])->only(['update', 'edit']);
-        $this->middleware(['permission:blog-destroy'])->only(['destroy']);
+        $this->middleware(['permission:posts.create|posts.update|posts.destroy'])->only(['index']);
+        $this->middleware(['permission:posts.create'])->only(['create', 'store']);
+        $this->middleware(['permission:posts.update'])->only(['update', 'edit']);
+        $this->middleware(['permission:posts.destroy'])->only(['destroy']);
     }
 
     /**

@@ -7,7 +7,7 @@
                 </a>
             </div>
 
-			<div class="w-full p-6 pt-4 mt-6 mb-10 overflow-hidden rounded shadow-md sm:max-w-3xl bg-gray-50 dark:bg-gray-800">
+			<div class="w-full p-6 pt-4 mt-6 mb-10 overflow-hidden rounded-lg shadow-md sm:max-w-3xl bg-gray-50 dark:bg-gray-800">
 
 				<ul class="flex mb-8 text-sm text-gray-500 lg:text-base">
                     <li class="inline-flex items-center">
@@ -38,7 +38,7 @@
 
 			<div class="grid w-full grid-cols-1 gap-8 sm:max-w-3xl">
 				@empty($posts->count())
-					<div class="w-full m-auto overflow-hidden no-underline transition border rounded shadow-lg h-90 border-gray-50 dark:border-gray-900">
+					<div class="w-full m-auto overflow-hidden no-underline transition border rounded-lg shadow-lg h-90 border-gray-50 dark:border-gray-900">
 						<div class="block w-full h-full">
 							<div class="w-full p-4 bg-white dark:bg-gray-800">
 								<p class="italic font-light text-gray-400 dark:text-gray-200">Seems like there is nothing here.</p>
@@ -47,7 +47,7 @@
 					</div>
 				@endempty
 				@foreach($posts as $post)
-					<div class="w-full m-auto overflow-hidden no-underline transition border rounded shadow-lg h-90 border-gray-50 dark:border-gray-900">
+					<div class="w-full m-auto overflow-hidden no-underline transition border rounded-lg shadow-lg h-90 border-gray-50 dark:border-gray-900">
 						<div class="block w-full h-full">
 							<div class="w-full p-4 bg-white dark:bg-gray-800">
 								<p class="font-medium text-green-500 text-md">
@@ -84,7 +84,7 @@
 					</div>
 				@endforeach
 				@if($posts->hasPages())
-					<div class="p-4 bg-white rounded dark:bg-gray-800">
+					<div class="p-4 bg-white rounded-lg dark:bg-gray-800">
 						{!! $posts->links() !!}
 					</div>
 				@endif

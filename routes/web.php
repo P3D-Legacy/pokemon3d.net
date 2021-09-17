@@ -76,7 +76,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
         return view('dashboard');
     })->name('dashboard');
     
-    Route::group(['middleware' => ['role:super-admin|admin']], function () {
+    Route::prefix('admin')->middleware(['role:super-admin|admin'])->group(function () {
         Route::resource('users', UserController::class);
         Route::resource('roles', RoleController::class);
         Route::resource('permissions', PermissionController::class);

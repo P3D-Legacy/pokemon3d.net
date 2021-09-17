@@ -223,20 +223,20 @@
                     <div class="block px-4 py-2 text-xs text-gray-400">
                         {{ __('Content') }}
                     </div>
-                    <x-jet-responsive-nav-link href="{{ route('posts.index') }}">
+                    <x-jet-responsive-nav-link href="{{ route('posts.index') }}" :active="request()->routeIs('posts.index')">
                         {{ __('Blog Posts') }}
                     </x-jet-responsive-nav-link>
                     <div class="block px-4 py-2 text-xs text-gray-400">
                         {{ __('User Management') }}
                     </div>
-                    <x-jet-responsive-nav-link href="{{ route('users.index') }}">
+                    <x-jet-responsive-nav-link href="{{ route('users.index') }}" :active="request()->routeIs('users.index')">
                         {{ __('Users') }}
                     </x-jet-responsive-nav-link>
-                    <x-jet-responsive-nav-link href="{{ route('roles.index') }}">
+                    <x-jet-responsive-nav-link href="{{ route('roles.index') }}" :active="request()->routeIs('roles.index')">
                         {{ __('Roles') }}
                     </x-jet-responsive-nav-link>
                     @role('super-admin') 
-                        <x-jet-responsive-nav-link href="{{ route('permissions.index') }}">
+                        <x-jet-responsive-nav-link href="{{ route('permissions.index') }}" :active="request()->routeIs('permissions.index')">
                             {{ __('Permissions') }}
                         </x-jet-responsive-nav-link>
                     @endrole

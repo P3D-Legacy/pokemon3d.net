@@ -16,8 +16,8 @@
 				</p>
 			</div>
 
-			<div class="w-1/2 mx-auto">
-				<x-jet-section-border />
+			<div class="flex items-center justify-center py-4 text-sm text-gray-400 xl:py-6">
+				<span class="w-1/2 border-b border-gray-300 dark:border-gray-500"></span>
 			</div>
 		@endif
 

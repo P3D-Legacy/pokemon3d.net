@@ -53,7 +53,7 @@ class Update extends Command
             Setting::save();
         }
         $this->info('Seeding permissions...');
-        Artisan::call('db:seed --class=PermissionSeeder');
+        Artisan::call('db:seed --class=PermissionSeeder --force');
         $this->info('Giving SA...');
         Artisan::call('p3d:givesa');
         $this->info('Running SkinUserUpdate command...');

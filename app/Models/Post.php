@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Spatie\Tags\HasTags;
 use Illuminate\Database\Eloquent\Model;
 use Overtrue\LaravelLike\Traits\Likeable;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -17,6 +18,7 @@ class Post extends Model implements Viewable
     use Likeable;
     use SoftDeletes;
     use Uuid;
+    use HasTags;
 
     protected $removeViewsOnDelete = true;
 

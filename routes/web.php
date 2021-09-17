@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TagController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
@@ -80,6 +81,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
         Route::resource('roles', RoleController::class);
         Route::resource('permissions', PermissionController::class);
         Route::resource('posts', PostController::class);
+        Route::resource('tags', TagController::class);
     });
 
 });

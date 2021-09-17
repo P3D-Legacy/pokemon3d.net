@@ -33,7 +33,7 @@
 
                 <h1 class="text-5xl text-center text-gray-800 dark:text-gray-200 break-word">{{ $post->title }}</h1>
 
-                <p class="pb-10 mt-3 text-sm leading-5 text-center text-gray-700 border-b border-gray-100 dark:text-gray-300 dark:border-gray-700">
+                <p class="my-3 text-sm leading-5 text-center text-gray-700 dark:text-gray-300 ">
                     <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg> <a href="#" class="hover:underline">{{ $post->user->username }}</a>
@@ -52,6 +52,12 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                     </svg> {{ App\Helpers\NumberHelper::nearestK(views($post)->count()) }}
+                </p>
+
+                <p class="pb-8 mt-4 text-sm leading-5 text-center border-b border-gray-100 dark:border-gray-700">
+                    @foreach ($post->tags as $tag)
+                        <span class="inline-flex items-center justify-center px-2 py-1 mr-1 text-xs font-bold leading-none uppercase bg-gray-400 rounded text-gray-50 dark:text-gray-800 dark:bg-gray-300">{{ $tag->name }}</span>
+                    @endforeach
                 </p>
 
                 <article class="mt-8 prose dark:text-gray-100">

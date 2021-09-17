@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use Spatie\Tags\Tag;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -35,7 +36,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        $tags = Tag::all();
+        return view('posts.create', compact('tags'));
     }
 
     /**
@@ -59,6 +61,7 @@ class PostController extends Controller
         $post->slug = Str::of($post->title)->slug('-');
         $post->user_id = auth()->user()->id;
         $post->save();
+        $post->attachTags($request->tags);
 
         return redirect()->route('posts.index');
     }
@@ -82,7 +85,8 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('posts.edit', ['post' => $post]);
+        $tags = Tag::all();
+        return view('posts.edit', compact('post', 'tags'));
     }
 
     /**
@@ -106,6 +110,7 @@ class PostController extends Controller
         $post->slug = Str::of($post->title)->slug('-');
         $post->user_id = auth()->user()->id;
         $post->save();
+        $post->syncTags($request->tags);
 
         return redirect()->route('posts.index');
     }

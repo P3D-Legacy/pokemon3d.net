@@ -37,19 +37,6 @@
 					box-shadow: 0 0 0 2px rgb(184, 184, 184), 1.5em 0 0 2px rgb(184, 184, 184), 3em 0 0 2px  #f44;
 					z-index: 100;
 				}
-				.browser-mockup.with-url:after {
-					display: block;
-					position: absolute;
-					content: 'Pokémon 3D';
-					top: -1.8em;
-					left: 0.5em;
-					width: calc(100% - 6em);
-					height: 1.0em;
-					border-radius: 2px;
-					text-align: center;
-					color:#CCC;
-					font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-				}
 				.browser-mockup > * {
 					display: block;
 				}

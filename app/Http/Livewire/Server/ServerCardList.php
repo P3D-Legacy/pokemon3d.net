@@ -10,9 +10,7 @@ class ServerCardList extends Component
     public $servers;
 
     protected $listeners = [
-        'serverAdded' => '$refresh',
         'serverUpdated' => '$refresh',
-        'serverRemoved' => '$refresh',
     ];
 
     public function mount() {

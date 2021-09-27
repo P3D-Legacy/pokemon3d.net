@@ -23,7 +23,7 @@ class ServerCard extends Component
 
     public function destroy() {
         $this->server->delete();
-        $this->emit('serverRemoved');
+        $this->emit('serverUpdated');
     }
 
     public function render()

@@ -47,15 +47,14 @@ class ServerCreateForm extends Component
             ],
         ]);
 
-        $server = Server::create([
+        Server::create([
             'name' => $this->name,
             'host' => $this->host,
             'port' => $this->port,
             'description' => $this->description,
             'user_id' => auth()->user()->id,
         ]);
-        $this->emit('serverAdded');
-        //return redirect()->route('server.index');
+        $this->emit('serverUpdated');
         
     }
 

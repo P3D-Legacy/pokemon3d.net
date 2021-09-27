@@ -15,10 +15,11 @@
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-jet-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('skin-home') }}">
                         {{ __('Skin') }}
+                    </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('server.index') }}" :active="request()->routeIs('server.*')">
+                        {{ __('Servers') }}
                     </x-jet-nav-link>
                 </div>
             </div>
@@ -218,6 +219,9 @@
             </x-jet-responsive-nav-link>
             <x-jet-responsive-nav-link href="{{ route('skin-home') }}" :active="request()->routeIs('skin-home')">
                 {{ __('Skin') }}
+            </x-jet-responsive-nav-link>
+            <x-jet-responsive-nav-link href="{{ route('server.index') }}" :active="request()->routeIs('server.*')">
+                {{ __('Servers') }}
             </x-jet-responsive-nav-link>
         </div>
 

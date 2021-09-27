@@ -1,0 +1,66 @@
+<?php
+
+namespace App\Http\Livewire\Server;
+
+use App\Models\Server;
+use Livewire\Component;
+use App\Rules\StrNotContain;
+use App\Rules\IPHostnameARecord;
+use Illuminate\Support\Facades\Artisan;
+
+class ServerCreateForm extends Component
+{
+    public $name;
+    public $host;
+    public $port;
+    public $description;
+
+    /**
+     * Update the user's GameJolt Account credentials.
+     *
+     * @return void
+     */
+    public function save()
+    {
+        $this->resetErrorBag();
+        $this->resetValidation();
+
+        $this->validate([
+            'name' => [
+                'required',
+                'string',
+                new StrNotContain('official'),
+            ],
+            'host' => [
+                'required',
+                new IPHostnameARecord,
+            ],
+            'port' => [
+                'required',
+                'integer',
+                'min:10',
+                'max:99999',
+            ],
+            'description' => [
+                'nullable',
+                'string',
+            ],
+        ]);
+
+        $server = Server::create([
+            'name' => $this->name,
+            'host' => $this->host,
+            'port' => $this->port,
+            'description' => $this->description,
+            'user_id' => auth()->user()->id,
+        ]);
+        $this->emit('serverAdded');
+        //return redirect()->route('server.index');
+        
+    }
+
+    public function render()
+    {
+        return view('livewire.server.server-create-form');
+    }
+}

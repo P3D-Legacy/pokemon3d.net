@@ -33,6 +33,7 @@ class ServerCreateForm extends Component
             ],
             'host' => [
                 'required',
+                new StrNotContain('pokemon3d.net'),
                 new IPHostnameARecord,
             ],
             'port' => [

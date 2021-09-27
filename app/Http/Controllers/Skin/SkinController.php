@@ -29,7 +29,7 @@ class SkinController extends Controller
     {
         $skin = Skin::where('uuid', $uuid)->isPublic()->first();
         abort_unless($skin, 404);
-        return view('skin-subdomain.skin.show')->with('skin', $skin);
+        return view('game.skin.show')->with('skin', $skin);
     }
 
     /**
@@ -40,7 +40,7 @@ class SkinController extends Controller
     public function newestpublicskins()
     {
         $skins = Skin::isPublic()->orderBy('created_at', 'DESC')->paginate(9);
-        return view('skin-subdomain.skin.public.newest')->with('skins', $skins);
+        return view('game.skin.public.newest')->with('skins', $skins);
     }
 
     /**
@@ -51,7 +51,7 @@ class SkinController extends Controller
     public function popularpublicskins()
     {
         $skins = Skin::isPublic()->withCount('likers')->orderBy('likers_count', 'desc')->paginate(9);
-        return view('skin-subdomain.skin.public.popular')->with('skins', $skins);
+        return view('game.skin.public.popular')->with('skins', $skins);
     }
 
     /**
@@ -63,7 +63,7 @@ class SkinController extends Controller
     public function myskins(Request $request)
     {
         $skins = Auth::user()->gamejolt->skins()->get();
-        return view('skin-subdomain.skin.my')->with('skins', $skins);
+        return view('game.skin.my')->with('skins', $skins);
     }
 
     /**
@@ -77,7 +77,7 @@ class SkinController extends Controller
         if($skincount >= env('SKIN_MAX_UPLOAD')) {
             return redirect()->route('skins-my')->with('warning', 'You have reached the maximum amount of skins you can upload.');
         }
-        return view('skin-subdomain.skin.create');
+        return view('game.skin.create');
     }
 
     /**
@@ -223,7 +223,7 @@ class SkinController extends Controller
         if($gjid != $skin->owner_id) {
             return redirect()->route('skins')->with('error', 'You do not own this skin!');
         }
-        return view('skin-subdomain.skin.edit')->with('skin', $skin);
+        return view('game.skin.edit')->with('skin', $skin);
     }
 
     /**

@@ -14,7 +14,7 @@ class ServerCardList extends Component
     ];
 
     public function mount() {
-        $this->servers = Server::orderBy('official', 'desc')->orderBy('last_online_at', 'desc')->get();
+        $this->servers = Server::orderBy('official', 'desc')->orderBy('last_online_at', 'desc')->orderBy('ping', 'asc')->get();
     }
 
     public function render()

@@ -43,3 +43,5 @@
 .dark .browser-mockup.with-url:after {
     color:#777;
 }
+
+[x-cloak] { display: none !important; }

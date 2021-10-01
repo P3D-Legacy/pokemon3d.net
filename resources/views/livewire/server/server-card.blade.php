@@ -33,7 +33,10 @@
                 </div>
             @endif
             <div class="relative inline-block">
-                <span class="absolute top-0 left-0 inline-block w-3 h-3 {{ ($this->server->ping && $this->server->last_check_at > now()->subHours(1)) ? 'bg-green-600' : 'bg-red-600' }} border-2 border-white rounded-full dark:border-gray-600"></span>
+                <span class="absolute top-0 left-0 w-3 h-3">
+                    <span class="animate-ping absolute mt-1 inline-flex h-full w-full rounded-full opacity-75 {{ ($this->server->ping && $this->server->last_check_at > now()->subHours(1)) ? 'bg-green-600' : 'bg-red-600' }}"></span>
+                    <span class="relative inline-flex rounded-full h-3 w-3 border border-white border-opacity-75 {{ ($this->server->ping && $this->server->last_check_at > now()->subHours(1)) ? 'bg-green-600' : 'bg-red-600' }}"></span>
+                </span>
                 <h2 class="pl-2 mb-2 text-2xl font-bold text-gray-800 dark:text-gray-200">{{ $this->server->name }}</h2>
                 @if($this->server->official)
                     <div x-data="{ tooltip: false }" class="relative z-30 inline-flex">

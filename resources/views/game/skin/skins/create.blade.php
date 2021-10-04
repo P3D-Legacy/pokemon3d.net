@@ -1,11 +1,12 @@
-@extends('layouts.main')
-@section('title', 'Create Skin')
-     
-@section('content')
-<div class="container max-w-md mx-auto">
-    <div class="mt-4 overflow-hidden bg-white shadow-lg rounded-xl md:mt-8 md:mb-4">
-        <div class="px-6 py-4">
-            <h4 class="mb-3 text-xl font-semibold tracking-tight text-gray-800">Create Skin</h4>
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="text-xl font-semibold leading-tight text-gray-800">
+            {{'Create Skin'}}
+        </h2>
+    </x-slot>
+
+    <div class="py-12">
+        <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
             <form role="form" action="{{ route('skin-store') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="mb-3">
@@ -32,7 +33,7 @@
                 <div class="mb-3">
                     <input class="text-green-600 border-gray-300 rounded shadow-sm focus:border-green-300 focus:ring focus:ring-offset-0 focus:ring-green-200 focus:ring-opacity-50" type="checkbox" id="checkRules" name="rules">
                     <label class="text-gray-700" for="checkRules"><strong>I accept and understand the rules</strong> for uploading a custom skin</label>
-                    <p class="my-4 text-sm text-center text-gray-500">Read the rules on the <a href="{{ route('home') }}" class="text-green-500">home page</a>.</p>
+                    <p class="my-4 text-sm text-center text-gray-500">Read the rules on the <a href="{{ route('skin-home') }}" class="text-green-500">skin home page</a>.</p>
                     @error('rules')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -46,5 +47,4 @@
             </form>
         </div>
     </div>
-</div>
-@endsection
+</x-app-layout>

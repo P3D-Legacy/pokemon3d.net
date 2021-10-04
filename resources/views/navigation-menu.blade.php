@@ -17,9 +17,28 @@
                     </x-jet-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('skin-home') }}" :active="request()->routeIs('skin-home')">
-                        {{ __('Skin') }}
-                    </x-jet-nav-link>
+                    <x-nav-dropdown :active="request()->routeIs('skin*')">
+                        <x-slot name="trigger">
+                            {{ __('Skin') }}
+                        </x-slot>
+                        <x-slot name="content">
+                            <x-jet-dropdown-link href="{{ route('skin-home') }}">
+                                {{ __('Home') }}
+                            </x-jet-dropdown-link>
+                            <x-jet-dropdown-link href="{{ route('skins-my') }}">
+                                {{ __('My Skins') }}
+                            </x-jet-dropdown-link>
+                            <div class="block px-4 py-2 text-xs text-gray-400">
+                                {{ __('Public') }}
+                            </div>
+                            <x-jet-dropdown-link href="{{ route('skins-popular') }}">
+                                {{ __('Most Popular') }}
+                            </x-jet-dropdown-link>
+                            <x-jet-dropdown-link href="{{ route('skins-newest') }}">
+                                {{ __('Newest') }}
+                            </x-jet-dropdown-link>
+                        </x-slot>
+                    </x-nav-dropdown>
                 </div>
             </div>
 

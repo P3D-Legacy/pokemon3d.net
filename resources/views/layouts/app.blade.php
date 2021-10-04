@@ -46,7 +46,7 @@
         @endif
 
         @if(env('APP_ENV') != 'production')
-            <div class="fixed inset-x-0 top-0 z-50">
+            <div class="fixed inset-x-0 top-0 z-50 pointer-events-none">
                 <div class="max-w-xs p-0 mx-auto">
                     <div class="p-0 rounded-b-lg shadow bg-yellow-600/80">
                         <div class="flex flex-wrap items-center justify-between">

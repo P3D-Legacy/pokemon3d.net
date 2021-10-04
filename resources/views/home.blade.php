@@ -177,25 +177,25 @@
         <div class="container flex flex-wrap items-center justify-between mx-auto">
             <div class="flex flex-wrap items-center justify-between flex-1 max-w-5xl mx-auto text-5xl font-bold text-gray-900 opacity-75 dark:text-gray-200">
                 <div class="flex flex-col items-center w-1/2 p-4 md:w-auto">
-                    <div class="flex">{{ \App\Helpers\StatsHelper::countPlayers() }}</div>
+                    <div class="flex">{{  App\Helpers\NumberHelper::nearestK(\App\Helpers\StatsHelper::countPlayers()) }}</div>
                     <div class="flex text-xl text-gray-600 dark:text-gray-400">Online Players</div>
                     {{-- ONLINE USERS FROM THE SERVER --}}
                 </div>
 
                 <div class="flex flex-col items-center w-1/2 p-4 md:w-auto">
-                    <div class="flex">{{ App\Models\User::count() }}</div>
+                    <div class="flex">{{  App\Helpers\NumberHelper::nearestK(App\Models\User::count()) }}</div>
                     <div class="flex text-xl text-gray-600 dark:text-gray-400">Active Users</div>
                     {{-- ACTIVE USERS FROM THE WEBSITE --}}
                 </div>
 
                 <div class="flex flex-col items-center w-1/2 p-4 md:w-auto">
-                    <div class="flex">{{ \App\Helpers\StatsHelper::countDiscordMembers() }}</div>
+                    <div class="flex">{{  App\Helpers\NumberHelper::nearestK(\App\Helpers\StatsHelper::countDiscordMembers()) }}</div>
                     <div class="flex text-xl text-gray-600 dark:text-gray-400">Discord Users</div>
                     {{-- TOTAL COUNT DISCORD USERS --}}
                 </div>
 
                 <div class="flex flex-col items-center w-1/2 p-4 md:w-auto">
-                    <div class="flex">{{ \App\Helpers\StatsHelper::countForumMembers() }}</div>
+                    <div class="flex">{{  App\Helpers\NumberHelper::nearestK(\App\Helpers\StatsHelper::countForumMembers()) }}</div>
                     <div class="flex text-xl text-gray-600 dark:text-gray-400">Forum Users</div>
                     {{-- ACTIVE USERS FROM THE FORUM --}}
                 </div>

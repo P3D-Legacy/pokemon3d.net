@@ -13,7 +13,7 @@ class UploadedSkinController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['gj.account', 'gj.admin']);
+        $this->middleware(['permission:skin-player-destroy']);
     }
 
     /**
@@ -24,7 +24,7 @@ class UploadedSkinController extends Controller
     public function index()
     {
         $skins = Skin::all();
-        return view('uploaded-skin.index')->with('skins', $skins);
+        return view('game.skin.uploaded.index')->with('skins', $skins);
     }
 
     /**

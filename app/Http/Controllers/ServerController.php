@@ -35,24 +35,7 @@ class ServerController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'name' => [
-                'string',
-                'required',
-            ],
-            'host' => [
-                'regex:[^\:]+:[0-9]{5}',
-                'required',
-            ],
-            'description' => [
-                'string',
-                'required',
-            ],
-        ]);
-        Server::create($validatedData);
-        session()->flash('flash.banner', 'Created Server!');
-        session()->flash('flash.bannerStyle', 'success');
-        return redirect()->route('server.index');
+        //
     }
 
     /**
@@ -63,7 +46,7 @@ class ServerController extends Controller
      */
     public function show($id)
     {
-        return redirect()->route('server.index');
+        //return redirect()->route('server.index');
     }
 
     /**
@@ -97,12 +80,6 @@ class ServerController extends Controller
      */
     public function destroy($id)
     {
-        $server = Server::findOrFail($id);
-        if($server) {
-            $server->delete();
-            session()->flash('flash.banner', 'Deleted Server!');
-            session()->flash('flash.bannerStyle', 'success');
-        }
-        return redirect()->route('server.index');
+        //
     }
 }

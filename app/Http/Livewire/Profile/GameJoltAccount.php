@@ -89,13 +89,16 @@ class GameJoltAccount extends Component
             'username' => $this->username,
             'token' => $this->token,
             'verified_at' => Carbon::now()->toDateTimeString(),
+            'user_id' => $user->id,
         ];
 
         $gamejolt = \App\Models\GameJoltAccount::where('user_id', $user->id)->withTrashed()->first();
         if ($gamejolt !== null) {
             $gamejolt->restore();
+            $gamejolt->update($data);
+        } else {
+            $gamejolt = \App\Models\GameJoltAccount::firstOrCreate($data);
         }
-        $gamejolt->update($data);
 
         // Update the user's (and other user's) GameJolt Account skin link.
         Artisan::call('p3d:skinuserupdate');

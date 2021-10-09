@@ -47,6 +47,7 @@ class ForumAccount extends Model
         'username',
         'password',
         'verified_at',
+        'user_id',
     ];
 
     /**

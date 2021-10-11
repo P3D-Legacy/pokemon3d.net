@@ -10,10 +10,14 @@ class ServerCardList extends Component
     public $servers;
 
     protected $listeners = [
-        'serverUpdated' => '$refresh',
+        'serverUpdated' => 'update',
     ];
 
     public function mount() {
+        $this->servers = Server::orderBy('official', 'desc')->orderBy('last_online_at', 'desc')->orderBy('ping', 'asc')->get();
+    }
+
+    public function update() {
         $this->servers = Server::orderBy('official', 'desc')->orderBy('last_online_at', 'desc')->orderBy('ping', 'asc')->get();
     }
 

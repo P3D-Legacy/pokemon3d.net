@@ -39,7 +39,8 @@
         "spatie/laravel-activitylog": "^3.16",
         "spatie/laravel-cookie-consent": "^2.12",
         "spatie/laravel-permission": "^4.2",
-        "spatie/laravel-tags": "^3.1"
+        "spatie/laravel-tags": "^3.1",
+        "wulfheart/pretty_routes": "^0.3.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.5",

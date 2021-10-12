@@ -241,7 +241,7 @@ return [
          * Any extra authentication-related info for your users. For instance, you can describe how to find or generate their auth credentials.
          * Markdown and HTML are supported.
          */
-        'extra_info' => 'You can retrieve your token by logging in normally and then click your profile top-right, in the menu you should see <b>API token</b> (if you have access).',
+        'extra_info' => 'You can retrieve your token by logging in normally and then click your profile top-right, in the menu you should see <b>API Tokens</b> (if you have access).',
     ],
 
     /*

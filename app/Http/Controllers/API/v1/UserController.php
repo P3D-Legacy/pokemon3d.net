@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\API\v1;
 
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\UserResource;
+use App\Http\Resources\v1\UserResource;
 
 class UserController extends Controller
 {
@@ -42,7 +42,7 @@ class UserController extends Controller
      */
     public function show(Request $request, $id)
     {
-        $user = User::with(['roles.permissions'])->findOrFail($id);
+        $user = User::with(['roles.permissions', 'gamejolt', 'forum'])->findOrFail($id);
         if (!$request->user()->tokenCan('read')) {
             return response()->json([
                 'error' => 'Token does not have access!',

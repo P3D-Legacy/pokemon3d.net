@@ -69,6 +69,16 @@ class GameJoltAccount extends Model
         'token',
     ];
 
+    /** 
+     * The attributes that should be hidden
+     * 
+     * @var array
+     */
+    protected $hidden = [
+        'token',
+        'aid',
+    ];
+
     public function touchVerify()
     {
         $this->verified_at = $this->freshTimestamp();

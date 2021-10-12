@@ -68,6 +68,16 @@ class ForumAccount extends Model
         'password',
     ];
 
+    /** 
+     * The attributes that should be hidden
+     * 
+     * @var array
+     */
+    protected $hidden = [
+        'password',
+        'aid',
+    ];
+
     public function touchVerify()
     {
         $this->verified_at = $this->freshTimestamp();

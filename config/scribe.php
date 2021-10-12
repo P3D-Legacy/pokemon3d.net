@@ -190,7 +190,7 @@ return [
         /**
          * Fetch a CSRF token before each request, and add it as an X-XSRF-TOKEN header. Needed if you're using Laravel Sanctum.
          */
-        'use_csrf' => false,
+        'use_csrf' => true,
 
         /**
          * The URL to fetch the CSRF token from (if `use_csrf` is true).
@@ -262,10 +262,10 @@ INTRO
      *
      */
     'example_languages' => [
-        'bash',
-        'javascript',
         'php',
         'python',
+        'javascript',
+        'bash',
     ],
 
     /*

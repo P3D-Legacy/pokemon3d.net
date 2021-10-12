@@ -14,3 +14,4 @@ yarn-error.log
 public/css/bootstrap.min.css
 public/js/bootstrap.min.js
 public/skin/*.png
+!scribe/

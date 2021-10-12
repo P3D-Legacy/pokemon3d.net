@@ -71,7 +71,7 @@ You can switch the language used with the tabs at the top right (or from the nav
 <pre><code class="language-yaml">http://p3d.io</code></pre>
 
         <h1>Authenticating requests</h1>
-<p>Authenticate requests to this API's endpoints by sending an <strong><code>Authorization</code></strong> header with the value <strong><code>"Bearer {YOUR_TOKEN}"</code></strong>.</p>
+<p>To authenticate requests, include an <strong><code>Authorization</code></strong> header with the value <strong><code>"Bearer {YOUR_TOKEN}"</code></strong>.</p>
 <p>All authenticated endpoints are marked with a <code>requires authentication</code> badge in the documentation below.</p>
 <p>You can retrieve your token by logging in normally and then click your profile top-right, in the menu you should see <b>API token</b> (if you have access).</p>
 
@@ -92,13 +92,13 @@ You can switch the language used with the tabs at the top right (or from the nav
 
 
 <pre><code class="language-bash">curl --request GET \
-    --get "http://p3d.io/api/v1/user/2" \
+    --get "http://p3d.io/api/v1/user/4" \
     --header "Authorization: Bearer {YOUR_TOKEN}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre>
 
 <pre><code class="language-javascript">const url = new URL(
-    "http://p3d.io/api/v1/user/2"
+    "http://p3d.io/api/v1/user/4"
 );
 
 const headers = {
@@ -114,7 +114,7 @@ fetch(url, {
 
 <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;get(
-    'http://p3d.io/api/v1/user/2',
+    'http://p3d.io/api/v1/user/4',
     [
         'headers' =&gt; [
             'Authorization' =&gt; 'Bearer {YOUR_TOKEN}',
@@ -128,7 +128,7 @@ print_r(json_decode((string) $body));</code></pre>
 <pre><code class="language-python">import requests
 import json
 
-url = 'http://p3d.io/api/v1/user/2'
+url = 'http://p3d.io/api/v1/user/4'
 headers = {
   'Authorization': 'Bearer {YOUR_TOKEN}',
   'Content-Type': 'application/json',
@@ -214,6 +214,143 @@ access-control-allow-origin: *
                data-component="url" required  hidden>
     <br>
 <p>The ID of the user.</p>            </p>
+                    </form>
+
+            <h2 id="endpoints-GETapi-v1-gamejoltaccount--id-">Display the specified resource.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-v1-gamejoltaccount--id-">
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">curl --request GET \
+    --get "http://p3d.io/api/v1/gamejoltaccount/delectus" \
+    --header "Authorization: Bearer {YOUR_TOKEN}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "http://p3d.io/api/v1/gamejoltaccount/delectus"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_TOKEN}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+
+<pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://p3d.io/api/v1/gamejoltaccount/delectus',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_TOKEN}',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre>
+
+<pre><code class="language-python">import requests
+import json
+
+url = 'http://p3d.io/api/v1/gamejoltaccount/delectus'
+headers = {
+  'Authorization': 'Bearer {YOUR_TOKEN}',
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('GET', url, headers=headers)
+response.json()</code></pre>
+</span>
+
+<span id="example-responses-GETapi-v1-gamejoltaccount--id-">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-v1-gamejoltaccount--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-v1-gamejoltaccount--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-v1-gamejoltaccount--id-"></code></pre>
+</span>
+<span id="execution-error-GETapi-v1-gamejoltaccount--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-v1-gamejoltaccount--id-"></code></pre>
+</span>
+<form id="form-GETapi-v1-gamejoltaccount--id-" data-method="GET"
+      data-path="api/v1/gamejoltaccount/{id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Authorization":"Bearer {YOUR_TOKEN}","Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-v1-gamejoltaccount--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-v1-gamejoltaccount--id-"
+                    onclick="tryItOut('GETapi-v1-gamejoltaccount--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-v1-gamejoltaccount--id-"
+                    onclick="cancelTryOut('GETapi-v1-gamejoltaccount--id-');" hidden>Cancel
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-v1-gamejoltaccount--id-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/v1/gamejoltaccount/{id}</code></b>
+        </p>
+                <p>
+            <label id="auth-GETapi-v1-gamejoltaccount--id-" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-v1-gamejoltaccount--id-"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="id"
+               data-endpoint="GETapi-v1-gamejoltaccount--id-"
+               data-component="url" required  hidden>
+    <br>
+<p>The ID of the gamejoltaccount.</p>            </p>
                     </form>
 
     

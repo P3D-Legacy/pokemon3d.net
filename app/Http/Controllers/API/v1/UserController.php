@@ -11,7 +11,7 @@ class UserController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['permission:api']);
+        //$this->middleware(['permission:api']);
     }
 
     /**

@@ -14,7 +14,7 @@ use App\Http\Controllers\API\v1\GamejoltAccountController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::prefix('v1')->group(function () {
+Route::prefix('v1')->middleware(['api', 'api.json', 'permission:api'])->group(function () {
     Route::apiResource('user', UserController::class);
     Route::apiResource('gamejoltaccount', GamejoltAccountController::class);
 });

@@ -1,17 +1,17 @@
-<div class="flex max-w-md overflow-hidden bg-white rounded-lg shadow-lg">
+<div class="flex max-w-md overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-900">
     <div class="items-center justify-center w-1/4 pt-4 pl-4">
         <img class="mx-auto" src="{{ Storage::disk('skin')->exists($skin->path()) ? asset('img/skin/'.$skin->path()) : asset('img/noskin.png') }}" height="128" width="96">
     </div>
     <div class="w-3/4 p-4">
-        <h1 class="text-2xl font-bold text-gray-900 break-all">
+        <h1 class="text-2xl font-bold text-gray-900 break-all dark:text-gray-100">
             <a href="{{ route('skin-show', $skin->uuid) }}">{{ $skin->name }}</a>
         </h1>
-        <p class="mt-2 text-xs text-gray-600">
+        <p class="mt-2 text-xs text-gray-600 dark:text-gray-200">
             @if(Auth::user()->gamejolt->id == $skin->owner_id)
                 Public: {{ ($skin->public) ? 'Yes' : 'No' }}<br>
             @endif
             @if($skin->user)
-                Owned by: <a class="text-green-800" href="#{{-- route('user-show', $skin->user->id) --}}">{{ $skin->user->username }}</a><br>
+                Owned by: <a class="text-green-800 hover:text-green-600 dark:text-green-500 dark:hover:text-green-300" href="#{{-- route('user-show', $skin->user->id) --}}">{{ $skin->user->username }}</a><br>
             @else
                 Owned by: {{ $skin->owner_id }}<br>
             @endif

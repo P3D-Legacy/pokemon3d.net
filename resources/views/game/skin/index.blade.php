@@ -8,7 +8,7 @@
     <div class="py-12">
         <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
             <div class="grid grid-flow-col grid-cols-3 gap-4">
-                <div class="">
+                <div>
                     <div class="w-full m-auto overflow-hidden rounded-lg shadow-lg h-90">
                         <div class="block w-full h-full">
                             <div class="w-full p-4 bg-white dark:bg-gray-900">
@@ -71,8 +71,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-span-2">
                     <div class="w-full m-auto overflow-hidden rounded-lg shadow-lg h-90">
                         <div class="block w-full h-full">
                             <div class="w-full p-4 bg-white dark:bg-gray-900">
@@ -95,6 +93,16 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <div class="col-span-2">
+                    <h1 class="pb-1 mb-4 text-xl font-semibold leading-tight text-gray-800 border-b dark:text-white dark:border-gray-600">
+                        My Skins &mdash; {{ Auth::user()->gamejolt->skins()->count() }} / {{ env('SKIN_MAX_UPLOAD') }}
+                    </h1>
+                    <div class="grid grid-flow-row grid-cols-1 gap-4 auto-rows-max sm:grid-cols-2">
+                        @foreach($skins as $skin)
+                            @include('game.skin.component.card', ['skin' => $skin])
+                        @endforeach
                     </div>
                 </div>
             </div>

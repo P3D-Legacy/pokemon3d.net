@@ -23,9 +23,6 @@
                         </x-slot>
                         <x-slot name="content">
                             <x-jet-dropdown-link href="{{ route('skin-home') }}">
-                                {{ __('Home') }}
-                            </x-jet-dropdown-link>
-                            <x-jet-dropdown-link href="{{ route('skins-my') }}">
                                 {{ __('My Skins') }}
                             </x-jet-dropdown-link>
                             <div class="block px-4 py-2 text-xs text-gray-400">

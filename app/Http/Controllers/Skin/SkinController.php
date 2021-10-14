@@ -55,18 +55,6 @@ class SkinController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
-     *
-     * * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function myskins(Request $request)
-    {
-        $skins = Auth::user()->gamejolt->skins()->get();
-        return view('game.skin.skins.my')->with('skins', $skins);
-    }
-
-    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response

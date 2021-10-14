@@ -97,7 +97,7 @@
                 </div>
                 <div class="col-span-2">
                     <h1 class="pb-1 mb-4 text-xl font-semibold leading-tight text-gray-800 border-b dark:text-white dark:border-gray-600">
-                        My Skins &mdash; {{ Auth::user()->gamejolt->skins()->count() }} / {{ env('SKIN_MAX_UPLOAD') }}
+                        {{ __('Slots') }}: {{ Auth::user()->gamejolt->skins()->count() }} / {{ env('SKIN_MAX_UPLOAD') }}
                     </h1>
                     <div class="grid grid-flow-row grid-cols-1 gap-4 auto-rows-max sm:grid-cols-2">
                         @foreach($skins as $skin)

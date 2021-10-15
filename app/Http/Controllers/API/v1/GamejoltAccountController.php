@@ -27,11 +27,6 @@ class GamejoltAccountController extends Controller
                 'error' => 'Token does not have access!',
             ]);
         }
-        if ($request->user()->id !== $gja->user->id) {
-            return response()->json([
-                'error' => 'You are not allowed to view this user!',
-            ]);
-        }
         return new GamejoltAccountResource($gja);
     }
 }

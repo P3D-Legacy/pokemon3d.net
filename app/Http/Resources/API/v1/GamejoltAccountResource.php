@@ -24,7 +24,7 @@ class GamejoltAccountResource extends JsonResource
                 'verified_at' => $this->verified_at,
                 'created_at' => $this->created_at,
                 'updated_at' => $this->updated_at,
-                'user' => $this->user,
+                'user' => new UserResource($this->user),
             ];
         }
         if ($request->user()->can('api.minimal')) {

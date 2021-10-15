@@ -14,7 +14,7 @@ class UserResource extends JsonResource
      */
     public function toArray($request)
     {
-        if ($request->user()->can('api.all')) {
+        if ($request->user()->can('api.full')) {
             return parent::toArray($request);
         }
         if ($request->user()->can('api.moderate')) {

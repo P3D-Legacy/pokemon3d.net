@@ -27,7 +27,7 @@ class PermissionSeeder extends Seeder
         $p4 = Permission::firstOrCreate(['name' => 'api']);
         $p5 = Permission::firstOrCreate(['name' => 'api.minimal']);
         $p6 = Permission::firstOrCreate(['name' => 'api.moderate']);
-        $p7 = Permission::firstOrCreate(['name' => 'api.all']);
+        $p7 = Permission::firstOrCreate(['name' => 'api.full']);
 
         $p8 = Permission::firstOrCreate(['name' => 'posts.create']);
         $p9 = Permission::firstOrCreate(['name' => 'posts.update']);

@@ -16,7 +16,7 @@ class PermissionSeeder extends Seeder
      */
     public function run()
     {
-        $r1 = Role::firstOrCreate(["name" => "system-admin"]);
+        $r1 = Role::firstOrCreate(["name" => "super-admin"]);
         $r2 = Role::firstOrCreate(["name" => "admin"]);
         $r3 = Role::firstOrCreate(["name" => "moderator"]);
 
@@ -26,7 +26,7 @@ class PermissionSeeder extends Seeder
 
         $p4 = Permission::firstOrCreate(['name' => 'api']);
         $p5 = Permission::firstOrCreate(['name' => 'api.minimal']);
-        $p6 = Permission::firstOrCreate(['name' => 'api.medium']);
+        $p6 = Permission::firstOrCreate(['name' => 'api.moderate']);
         $p7 = Permission::firstOrCreate(['name' => 'api.all']);
 
         $p8 = Permission::firstOrCreate(['name' => 'posts.create']);

@@ -17,7 +17,7 @@
                                         {{ $role->name }}
                                     </div>
                                     <div>
-                                        {{ $role->getPermissionNames()->join(", ") }}
+                                        {{ $role->getPermissionNames()->count().' '.Str::plural('permission', $role->getPermissionNames()->count()) }}
                                     </div>
                                     <div class="flex items-center">
                                         <button class="cursor-pointer ml-6 text-sm text-blue-500 focus:outline-none">

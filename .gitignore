@@ -15,4 +15,5 @@ public/css/bootstrap.min.css
 public/js/bootstrap.min.js
 public/skin/*.png
 .scribe/
-resources/views/scribe/index.blade.php
+resources/views/scribe/
+public/vendor/scribe/

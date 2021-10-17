@@ -7,7 +7,7 @@
                     <x-logo-small class="" />
                 </a>
             </div>
-            
+
             <div class="block pr-4 lg:hidden">
                 <button @click="open = ! open" id="nav-toggle" class="flex items-center px-2 py-1 text-white border border-white rounded appearance-none hover:text-gray-200 hover:border-gray-200 focus:outline-none">
                     <svg class="w-6 h-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
@@ -177,7 +177,7 @@
         <div class="container flex flex-wrap items-center justify-between mx-auto">
             <div class="flex flex-wrap items-center justify-between flex-1 max-w-5xl mx-auto text-5xl font-bold text-gray-900 opacity-75 dark:text-gray-200">
                 <div class="flex flex-col items-center w-1/2 p-4 md:w-auto">
-                    <div class="flex">{{  App\Helpers\NumberHelper::nearestK(\App\Helpers\StatsHelper::countPlayers()) }}</div>
+                    <div class="flex">{{  is_numeric(\App\Helpers\StatsHelper::countPlayers()) ?  App\Helpers\NumberHelper::nearestK(\App\Helpers\StatsHelper::countPlayers()) : \App\Helpers\StatsHelper::countPlayers() }}</div>
                     <div class="flex text-xl text-gray-600 dark:text-gray-400">Online Players</div>
                     {{-- ONLINE USERS FROM THE SERVER --}}
                 </div>
@@ -189,13 +189,13 @@
                 </div>
 
                 <div class="flex flex-col items-center w-1/2 p-4 md:w-auto">
-                    <div class="flex">{{  App\Helpers\NumberHelper::nearestK(\App\Helpers\StatsHelper::countDiscordMembers()) }}</div>
+                    <div class="flex">{{ is_numeric(\App\Helpers\StatsHelper::countDiscordMembers()) ?  App\Helpers\NumberHelper::nearestK(\App\Helpers\StatsHelper::countDiscordMembers()) : \App\Helpers\StatsHelper::countDiscordMembers() }}</div>
                     <div class="flex text-xl text-gray-600 dark:text-gray-400">Discord Users</div>
                     {{-- TOTAL COUNT DISCORD USERS --}}
                 </div>
 
                 <div class="flex flex-col items-center w-1/2 p-4 md:w-auto">
-                    <div class="flex">{{  App\Helpers\NumberHelper::nearestK(\App\Helpers\StatsHelper::countForumMembers()) }}</div>
+                    <div class="flex">{{ is_numeric(\App\Helpers\StatsHelper::countForumMembers()) ?  App\Helpers\NumberHelper::nearestK(\App\Helpers\StatsHelper::countForumMembers()) : \App\Helpers\StatsHelper::countForumMembers() }}</div>
                     <div class="flex text-xl text-gray-600 dark:text-gray-400">Forum Users</div>
                     {{-- ACTIVE USERS FROM THE FORUM --}}
                 </div>
@@ -318,7 +318,7 @@
             <div class="w-full mb-4">
                 <div class="w-64 h-1 py-0 mx-auto my-0 bg-white rounded-t opacity-25"></div>
             </div>
-            
+
             <div class="flex flex-wrap items-center w-full gap-4 p-8 mb-8 md:mb-0 flex-between">
                 <x-home.media-article title="Pokemon 3D creator envisions a fully cooperative Pokemon campaign" url="https://www.polygon.com/2012/12/7/3740086/pokemon-3d-interview" author="Polygon" date="Dec 7, 2012, 4:40pm EST" />
                 <x-home.media-article title="This Fan-Made Pokémon Remake Is In 3D And First Person" url="https://www.kotaku.com.au/2012/12/this-fan-made-pokemon-remake-is-in-3d-and-first-person/" author="Kotaku" date="December 4, 2012 at 7:00 pm" />

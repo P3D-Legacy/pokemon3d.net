@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
-use Webpatser\Uuid\Uuid;
+use Spatie\Tags\HasTags;
 use Illuminate\Database\Eloquent\Model;
 use Overtrue\LaravelLike\Traits\Likeable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\SoftDeletes;
+use GoldSpecDigital\LaravelEloquentUUID\Database\Eloquent\Uuid;
 
 class Post extends Model implements Viewable
 {
@@ -16,8 +17,20 @@ class Post extends Model implements Viewable
     use InteractsWithViews;
     use Likeable;
     use SoftDeletes;
+    use Uuid;
+    use HasTags;
 
     protected $removeViewsOnDelete = true;
+
+    /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'uuid';
+    }
 
     /**
      * The attributes that are mass assignable.
@@ -31,20 +44,6 @@ class Post extends Model implements Viewable
         'active',
         'user_id',
     ];
-
-    public static function boot()
-    {
-        parent::boot();
-
-        self::creating(function ($model) {
-            $model->uuid = (string) Uuid::generate(4);
-        });
-        self::updating(function ($model) {
-            if (!$model->uuid) {
-                $model->uuid = (string) Uuid::generate(4);
-            }
-        });
-    }
 
     /**
      * Get the user that made this post.

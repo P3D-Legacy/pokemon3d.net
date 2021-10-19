@@ -47,6 +47,7 @@ class ForumAccount extends Model
         'username',
         'password',
         'verified_at',
+        'user_id',
     ];
 
     /**
@@ -65,6 +66,16 @@ class ForumAccount extends Model
      */
     protected $encryptable = [
         'password',
+    ];
+
+    /** 
+     * The attributes that should be hidden
+     * 
+     * @var array
+     */
+    protected $hidden = [
+        'password',
+        'aid',
     ];
 
     public function touchVerify()

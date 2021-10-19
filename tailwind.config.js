@@ -23,17 +23,15 @@ module.exports = {
                 'gamejolt-green': '#ccff00',
             }
         },
-    },
-
-    variants: {
-        extend: {
-            opacity: ['disabled'],
+        debugScreens: {
+            position: ['top', 'left'],
         },
     },
 
     plugins: [
         require('@tailwindcss/forms'),
         require('@tailwindcss/typography'),
-        require('@tailwindcss/aspect-ratio')
+        require('@tailwindcss/aspect-ratio'),
+        require('tailwindcss-debug-screens'),
     ],
 };

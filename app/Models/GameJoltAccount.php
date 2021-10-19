@@ -48,6 +48,7 @@ class GameJoltAccount extends Model
         'username',
         'token',
         'verified_at',
+        'user_id',
     ];
 
     /**
@@ -66,6 +67,16 @@ class GameJoltAccount extends Model
      */
     protected $encryptable = [
         'token',
+    ];
+
+    /** 
+     * The attributes that should be hidden
+     * 
+     * @var array
+     */
+    protected $hidden = [
+        'token',
+        'aid',
     ];
 
     public function touchVerify()

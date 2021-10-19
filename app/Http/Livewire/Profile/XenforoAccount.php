@@ -64,13 +64,16 @@ class XenforoAccount extends Component
             'username' => $this->username,
             'password' => $this->password,
             'verified_at' => Carbon::now()->toDateTimeString(),
+            'user_id' => $user->id,
         ];
 
         $forum = \App\Models\ForumAccount::where('user_id', $user->id)->withTrashed()->first();
         if ($forum !== null) {
             $forum->restore();
+            $forum->update($data);
+        } else {
+            $forum = \App\Models\ForumAccount::firstOrCreate($data);
         }
-        $forum->update($data);
 
         $this->username = $forum->username;
         $this->password = $forum->password;

@@ -29,7 +29,7 @@ class SkinController extends Controller
     {
         $skin = Skin::where('uuid', $uuid)->isPublic()->first();
         abort_unless($skin, 404);
-        return view('skin.skins.show')->with('skin', $skin);
+        return view('skin.show')->with('skin', $skin);
     }
 
     /**
@@ -40,7 +40,7 @@ class SkinController extends Controller
     public function newestpublicskins()
     {
         $skins = Skin::isPublic()->orderBy('created_at', 'DESC')->paginate(9);
-        return view('skin.skins.public.newest')->with('skins', $skins);
+        return view('skin.public.newest')->with('skins', $skins);
     }
 
     /**
@@ -51,7 +51,7 @@ class SkinController extends Controller
     public function popularpublicskins()
     {
         $skins = Skin::isPublic()->withCount('likers')->orderBy('likers_count', 'desc')->paginate(9);
-        return view('skin.skins.public.popular')->with('skins', $skins);
+        return view('skin.public.popular')->with('skins', $skins);
     }
 
     /**
@@ -65,7 +65,7 @@ class SkinController extends Controller
         if($skincount >= env('SKIN_MAX_UPLOAD')) {
             return redirect()->route('skins-my')->with('warning', 'You have reached the maximum amount of skins you can upload.');
         }
-        return view('skin.skins.create');
+        return view('skin.create');
     }
 
     /**
@@ -211,7 +211,7 @@ class SkinController extends Controller
         if($gjid != $skin->owner_id) {
             return redirect()->route('skins')->with('error', 'You do not own this skin!');
         }
-        return view('skin.skins.edit')->with('skin', $skin);
+        return view('skin.edit')->with('skin', $skin);
     }
 
     /**

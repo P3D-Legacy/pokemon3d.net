@@ -17,7 +17,7 @@
                     <p class="text-black dark:text-white">None found.</p>
                 @endif
                 @foreach($skins as $skin)
-                    @include('game.skin.component.card', ['skin' => $skin])
+                    @include('skin.component.card', ['skin' => $skin])
                 @endforeach
             </div>
 

@@ -101,7 +101,7 @@
                     </h1>
                     <div class="grid grid-flow-row grid-cols-1 gap-4 auto-rows-max sm:grid-cols-2">
                         @foreach($skins as $skin)
-                            @include('game.skin.component.card', ['skin' => $skin])
+                            @include('skin.component.card', ['skin' => $skin])
                         @endforeach
                     </div>
                 </div>

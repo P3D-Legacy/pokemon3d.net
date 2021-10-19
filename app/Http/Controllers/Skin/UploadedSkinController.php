@@ -24,7 +24,7 @@ class UploadedSkinController extends Controller
     public function index()
     {
         $skins = Skin::all();
-        return view('game.skin.uploaded.index')->with('skins', $skins);
+        return view('skin.uploaded.index')->with('skins', $skins);
     }
 
     /**

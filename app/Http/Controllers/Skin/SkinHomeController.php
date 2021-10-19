@@ -37,7 +37,7 @@ class SkinHomeController extends Controller
         $activity = Activity::where('description' , 'deleted')->where('properties', 'LIKE', '%'.Auth::user()->gamejolt->id.'.png%')->orWhere('properties', 'LIKE', '%gjid":'.Auth::user()->gamejolt->id.',"reason"%')->get();
         $skins = Auth::user()->gamejolt->skins()->get();
 
-        return view('game.skin.index')->with('activity', $activity)->with('skins', $skins);
+        return view('skin.index')->with('activity', $activity)->with('skins', $skins);
     }
 
 }

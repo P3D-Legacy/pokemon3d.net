@@ -14,7 +14,7 @@
 
             <div class="grid grid-flow-row grid-cols-1 gap-4 auto-rows-max sm:grid-cols-2 lg:grid-cols-3">
                 @if(!$skins->count())
-                    <p class="text-white">None found.</p>
+                    <p class="text-black dark:text-white">None found.</p>
                 @endif
                 @foreach($skins as $skin)
                     @include('game.skin.component.card', ['skin' => $skin])

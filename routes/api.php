@@ -2,7 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\v1\UserController;
+use App\Http\Controllers\API\v1\BanReasonController;
 use App\Http\Controllers\API\v1\GamejoltAccountController;
+use App\Http\Controllers\API\v1\GamejoltAccountBanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,4 +19,6 @@ use App\Http\Controllers\API\v1\GamejoltAccountController;
 Route::prefix('v1')->group(function () {
     Route::apiResource('user', UserController::class);
     Route::apiResource('gamejoltaccount', GamejoltAccountController::class);
+    Route::apiResource('gamejoltaccountban', GamejoltAccountBanController::class);
+    Route::apiResource('banreason', BanReasonController::class);
 });

@@ -21,7 +21,7 @@ class GamejoltAccountController extends Controller
      */
     public function show(Request $request, $id)
     {
-        $gja = GameJoltAccount::with(['user.roles.permissions'])->where('id', $id)->firstOrFail();
+        $gja = GameJoltAccount::with(['user.roles.permissions', 'bans'])->where('id', $id)->firstOrFail();
         if (!$request->user()->tokenCan('read')) {
             return response()->json([
                 'error' => 'Token does not have access!',

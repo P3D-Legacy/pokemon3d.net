@@ -108,4 +108,12 @@ class GameJoltAccount extends Model
     {
         return $this->hasMany(Skin::class, 'owner_id', 'id')->isPublic();
     }
+
+    /**
+     * Get the bans that the user has.
+     */
+    public function bans()
+    {
+        return $this->hasMany(GamejoltAccountBan::class, 'user_id', 'id');
+    }
 }

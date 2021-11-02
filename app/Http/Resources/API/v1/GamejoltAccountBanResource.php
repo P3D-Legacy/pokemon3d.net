@@ -2,10 +2,10 @@
 
 namespace App\Http\Resources\API\v1;
 
+use App\Http\Resources\API\v1\UserResource;
 use Illuminate\Http\Resources\Json\JsonResource;
-use App\Http\Resources\API\v1\GamejoltAccountBanResource;
 
-class GamejoltAccountResource extends JsonResource
+class GamejoltAccountBanResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -20,25 +20,23 @@ class GamejoltAccountResource extends JsonResource
         }
         if ($request->user()->can('api.moderate')) {
             return [
-                'id' => $this->id,
-                'username' => $this->username,
-                'verified_at' => $this->verified_at,
-                'created_at' => $this->created_at,
+                'gamejoltaccount' => new GamejoltAccountResource($this->gamejoltaccount),
+                'reason' => new BanReasonResource($this->reason),
+                'banned_by' => new UserResource($this->banned_by),
                 'updated_at' => $this->updated_at,
-                'user' => new UserResource($this->user),
-                'bans' => new GamejoltAccountBanResource($this->bans),
+                'expire_at' => $this->expire_at,
             ];
         }
         if ($request->user()->can('api.minimal')) {
             return [
-                'id' => $this->id,
-                'username' => $this->username,
-                'verified_at' => $this->verified_at,
+                'gamejoltaccount' => new GamejoltAccountResource($this->gamejoltaccount),
+                'reason' => new BanReasonResource($this->reason),
+                'expire_at' => $this->expire_at,
             ];
         }
         return [
-            'id' => $this->id,
-            'username' => $this->username
+            'gamejoltaccount' => new GamejoltAccountResource($this->gamejoltaccount),
+            'reason' => new BanReasonResource($this->reason),
         ];
     }
 }

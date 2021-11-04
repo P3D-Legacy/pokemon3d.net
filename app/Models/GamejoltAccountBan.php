@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\GamejoltAccount;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -63,7 +62,7 @@ class GamejoltAccountBan extends Model
      */
     public function gamejoltaccount()
     {
-        return $this->hasOne(GamejoltAccount::class, 'id', 'gamejoltaccount_id');
+        return $this->hasOne(GameJoltAccount::class, 'id', 'gamejoltaccount_id');
     }
 
     /**

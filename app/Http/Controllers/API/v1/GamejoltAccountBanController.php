@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\GamejoltAccountBan;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\API\v1\GamejoltAccountBanResource;
+use App\Models\GameJoltAccount;
 
 /**
  * @group Ban Gamejolt Account
@@ -40,6 +41,8 @@ class GamejoltAccountBanController extends Controller
      *
      * @bodyParam gamejoltaccount_id int required The ID of the Gamejolt Account. Example: 123456
      * @bodyParam reason_id int required The ID of the Ban Reason. Example: 3
+     * @bodyParam banned_by_id int optional The ID of the Gamejolt Account, default will be owner of token. Cannot be used with banned_by_gamejoltaccount_id. Example: 123456
+     * @bodyParam banned_by_gamejoltaccount_id int optional The ID of the Gamejolt Account. Cannot be used with banned_by_id. Example: 123456
      * @bodyParam expires_at string optional The expiry of the ban. Example: 2020-01-01
      * 
      * @response 201 {
@@ -64,13 +67,30 @@ class GamejoltAccountBanController extends Controller
         $request->validate([
             'gamejoltaccount_id' => 'required|integer',
             'reason_id' => 'required|integer',
+            'banned_by_id' => 'nullable|integer',
+            'banned_by_gamejoltaccount_id' => 'nullable|integer',
             'expire_at' => 'nullable|date',
         ]);
-        $data = $request->all();
-        $data = array_merge($data, [
-            'banned_by_id' => $request->user()->id,
-        ]);
-        $resource = GamejoltAccountBan::create($data);
+        $banned_by_id = $request->user()->id;
+        if(isset($request->banned_by_id) && isset($request->banned_by_gamejoltaccount_id)) {
+            return response()->json([
+                'error' => 'banned_by_id and banned_by_gamejoltaccount_id cannot be used together!',
+            ]);
+        } else if(!isset($request->banned_by_id) && isset($request->banned_by_gamejoltaccount_id)) {
+            $gja = GameJoltAccount::findOrFail($request->banned_by_gamejoltaccount_id);
+            if($gja) {
+                $banned_by_id = $gja->id;
+            }
+        } else if(isset($request->banned_by_id) && !isset($request->banned_by_gamejoltaccount_id)) {
+            $banned_by_id = $request->banned_by_id;
+        }
+        $new_data = array(
+            'gamejoltaccount_id' => $request->gamejoltaccount_id,
+            'reason_id' => $request->reason_id,
+            'banned_by_id' => $banned_by_id,
+            'expire_at' => $request->expire_at,
+        );
+        $resource = GamejoltAccountBan::create($new_data);
         return new GamejoltAccountBanResource($resource);
     }
 

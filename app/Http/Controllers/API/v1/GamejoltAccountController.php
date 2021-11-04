@@ -7,6 +7,11 @@ use App\Models\GameJoltAccount;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\API\v1\GamejoltAccountResource;
 
+/**
+ * @group Gamejolt Account
+ *
+ * APIs for getting Gamejolt Accounts.
+ */
 class GamejoltAccountController extends Controller
 {
     public function __construct()

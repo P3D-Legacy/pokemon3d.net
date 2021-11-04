@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\API\v1\BanReasonResource;
 
+/**
+ * @group Ban Reason
+ *
+ * APIs for getting ban reasons.
+ */
 class BanReasonController extends Controller
 {
     public function __construct()

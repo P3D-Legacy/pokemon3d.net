@@ -38,7 +38,7 @@ class BanReasonController extends Controller
     /**
      * Display the specified resource.
      *
-     * @urlParam id int required The UUID of the ban reason.
+     * @urlParam id string required The UUID of the ban reason.
      * 
      * @response {
      *    "data": [

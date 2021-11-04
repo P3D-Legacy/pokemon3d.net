@@ -43,7 +43,6 @@ class BanReasonController extends Controller
      * @response {
      *    "data": [
      *        {
-     *            "id": 1,
      *            "uuid": "1830ef92-b58b-4671-9096-2b7741c0b0d8",
      *            "name": "Abusing in-game glitches",
      *            "user_id": 1,

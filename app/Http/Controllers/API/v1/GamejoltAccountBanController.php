@@ -21,12 +21,12 @@ class GamejoltAccountBanController extends Controller
      */
     public function index(Request $request)
     {
-        $resources = GamejoltAccountBan::with(['reason', 'gamejoltaccount'])->get();
         if (!$request->user()->tokenCan('read')) {
             return response()->json([
                 'error' => 'Token does not have access!',
             ]);
         }
+        $resources = GamejoltAccountBan::with(['reason', 'gamejoltaccount'])->get();
         return GamejoltAccountBanResource::collection($resources);
     }
 
@@ -38,12 +38,13 @@ class GamejoltAccountBanController extends Controller
      */
     public function show(Request $request, $id)
     {
-        $resource = GamejoltAccountBan::where('gamejoltaccount_id', $id)->get();
         if (!$request->user()->tokenCan('read')) {
             return response()->json([
                 'error' => 'Token does not have access!',
             ]);
         }
+        $resource = GamejoltAccountBan::where('gamejoltaccount_id', $id)->get();
+        abort_unless($resource, 404);
         return new GamejoltAccountBanResource($resource);
     }
 }

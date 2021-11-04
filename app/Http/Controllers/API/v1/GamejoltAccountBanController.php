@@ -62,7 +62,7 @@ class GamejoltAccountBanController extends Controller
     */
     public function destroy(Request $request, $uuid)
     {
-        if (!$request->user()->tokenCan('read')) {
+        if (!$request->user()->tokenCan('delete')) {
             return response()->json([
                 'error' => 'Token does not have access!',
             ]);

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f811d4e3aa080fe54b2053f561320674",
+    "content-hash": "4e4116627d12938d7d02f85b3868589b",
     "packages": [
         {
             "name": "andreaselia/laravel-api-to-postman",
@@ -4651,6 +4651,61 @@
                 }
             ],
             "time": "2021-09-25T22:50:47+00:00"
+        },
+        {
+            "name": "martinbean/socialite-discord-provider",
+            "version": "1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/martinbean/socialite-discord-provider.git",
+                "reference": "c59e39ad5e992a15547498765fb8509d2a32264e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/martinbean/socialite-discord-provider/zipball/c59e39ad5e992a15547498765fb8509d2a32264e",
+                "reference": "c59e39ad5e992a15547498765fb8509d2a32264e",
+                "shasum": ""
+            },
+            "require": {
+                "facade/ignition-contracts": "^1.0",
+                "laravel/socialite": "^4.0|^5.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "MartinBean\\Laravel\\Socialite\\DiscordServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "MartinBean\\Laravel\\Socialite\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Martin Bean",
+                    "email": "martin@martinbean.co.uk",
+                    "homepage": "https://martinbean.co.uk"
+                }
+            ],
+            "description": "A Discord provider for Laravel Socialite.",
+            "keywords": [
+                "discord",
+                "laravel",
+                "oauth",
+                "socialite"
+            ],
+            "support": {
+                "issues": "https://github.com/martinbean/socialite-discord-provider/issues",
+                "source": "https://github.com/martinbean/socialite-discord-provider"
+            },
+            "time": "2020-10-03T12:55:47+00:00"
         },
         {
             "name": "mobiledetect/mobiledetectlib",

@@ -38,14 +38,14 @@ class GamejoltAccountBanController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @bodyParam gamejolt_account_id int required The ID of the Gamejolt Account.
-     * @bodyParam reason_id int required The ID of the Ban Reason.
-     * @bodyParam expires_at date optional The expiry of the ban.
+     * @bodyParam gamejoltaccount_id int required The ID of the Gamejolt Account. Example: 123456
+     * @bodyParam reason_id int required The ID of the Ban Reason. Example: 3
+     * @bodyParam expires_at string optional The expiry of the ban. Example: 2020-01-01
      * 
      * @response 201 {
      *       "data": {
      *           "gamejoltaccount_id": 12345,
-     *           "reason_id": 1,
+     *           "reason_id": 3,
      *           "expires_at": "2021-02-01T00:00:00.000000Z",
      *           "banned_by_id": 1,
      *           "uuid": "1830ef92-b58b-4671-9096-2b7741c0b0d8",
@@ -78,6 +78,22 @@ class GamejoltAccountBanController extends Controller
      * Display the specified resource.
      *
      * @urlParam id int required The ID of the Gamejolt Account.
+     * 
+     * @response {
+     *    "data": [
+     *        {
+     *            "id": 1,
+     *            "uuid": "1830ef92-b58b-4671-9096-2b7741c0b0d8",
+     *            "gamejoltaccount_id": 12345,
+     *            "banned_by_id": 1,
+     *            "reason_id": 1,
+     *            "expire_at": null,
+     *            "created_at": "2021-01-01T17:57:10.000000Z",
+     *            "updated_at": "2021-01-01T17:57:10.000000Z",
+     *            "deleted_at": null
+     *        },
+     *    ]
+     * }
      */
     public function show(Request $request, $id)
     {

@@ -32,18 +32,17 @@ class BanReasonController extends Controller
             ]);
         }
         $resources = BanReason::all();
-        return new BanReasonResource($resources);
+        return BanReasonResource::collection($resources);
     }
 
     /**
      * Display the specified resource.
      *
-     * @urlParam id int required The UUID of the ban reason.
+     * @urlParam id string required The UUID of the ban reason.
      * 
      * @response {
      *    "data": [
      *        {
-     *            "id": 1,
      *            "uuid": "1830ef92-b58b-4671-9096-2b7741c0b0d8",
      *            "name": "Abusing in-game glitches",
      *            "user_id": 1,

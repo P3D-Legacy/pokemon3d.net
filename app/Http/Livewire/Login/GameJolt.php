@@ -3,7 +3,7 @@
 namespace App\Http\Livewire\Login;
 
 use Livewire\Component;
-use App\Models\GameJoltAccount;
+use App\Models\GamejoltAccount;
 use Harrk\GameJoltApi\GamejoltApi;
 use Illuminate\Support\Facades\Auth;
 use Harrk\GameJoltApi\GamejoltConfig;
@@ -63,7 +63,7 @@ class GameJolt extends Component
             return;
         }
 
-        $gamejoltaccount = GameJoltAccount::where('username', $this->username)->first();
+        $gamejoltaccount = GamejoltAccount::where('username', $this->username)->first();
 
         if (!$gamejoltaccount) {
             $this->addError('error', 'This Gamejolt Account is not associated with a P3D account yet.');

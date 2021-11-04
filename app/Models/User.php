@@ -71,7 +71,7 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     public function gamejolt()
     {
-        return $this->hasOne(GameJoltAccount::class);
+        return $this->hasOne(GamejoltAccount::class);
     }
 
     /**

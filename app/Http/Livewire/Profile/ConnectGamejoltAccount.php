@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Profile;
 
 use Carbon\Carbon;
 use Livewire\Component;
+use App\Models\GamejoltAccount;
 use Illuminate\Validation\Rule;
 use Harrk\GameJoltApi\GamejoltApi;
 use Illuminate\Support\Facades\Auth;
@@ -11,7 +12,7 @@ use Harrk\GameJoltApi\GamejoltConfig;
 use Illuminate\Support\Facades\Artisan;
 use Harrk\GameJoltApi\Exceptions\TimeOutException;
 
-class GameJoltAccount extends Component
+class ConnectGamejoltAccount extends Component
 {
     public $username;
     public $token;
@@ -92,12 +93,12 @@ class GameJoltAccount extends Component
             'user_id' => $user->id,
         ];
 
-        $gamejolt = \App\Models\GameJoltAccount::where('user_id', $user->id)->withTrashed()->first();
+        $gamejolt = GamejoltAccount::where('user_id', $user->id)->withTrashed()->first();
         if ($gamejolt !== null) {
             $gamejolt->restore();
             $gamejolt->update($data);
         } else {
-            $gamejolt = \App\Models\GameJoltAccount::firstOrCreate($data);
+            $gamejolt = GamejoltAccount::firstOrCreate($data);
         }
 
         // Update the user's (and other user's) GameJolt Account skin link.
@@ -118,6 +119,6 @@ class GameJoltAccount extends Component
      */
     public function render()
     {
-        return view('livewire.profile.game-jolt-account');
+        return view('livewire.profile.connect-gamejolt-account');
     }
 }

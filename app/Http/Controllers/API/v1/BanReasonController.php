@@ -21,12 +21,12 @@ class BanReasonController extends Controller
      */
     public function index(Request $request)
     {
-        $resource = BanReason::all();
         if (!$request->user()->tokenCan('read')) {
             return response()->json([
                 'error' => 'Token does not have access!',
             ]);
         }
-        return new BanReasonResource($resource);
+        $resources = BanReason::all();
+        return new BanReasonResource($resources);
     }
 }

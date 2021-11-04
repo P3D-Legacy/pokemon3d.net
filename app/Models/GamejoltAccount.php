@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use betterapp\LaravelDbEncrypter\Traits\EncryptableDbAttribute;
 use GoldSpecDigital\LaravelEloquentUUID\Database\Eloquent\Uuid;
 
-class GamejjoltAccount extends Model
+class GamejoltAccount extends Model
 {
     use HasFactory;
     use EncryptableDbAttribute;
@@ -16,6 +16,13 @@ class GamejjoltAccount extends Model
     use Uuid;
 
     protected $primaryKey = 'uuid';
+
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'game_jolt_accounts';
 
     /**
      * The "type" of the auto-incrementing ID.

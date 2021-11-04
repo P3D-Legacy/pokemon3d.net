@@ -12,7 +12,7 @@ use Harrk\GameJoltApi\GamejoltConfig;
 use Illuminate\Support\Facades\Artisan;
 use Harrk\GameJoltApi\Exceptions\TimeOutException;
 
-class GameJoltAccount extends Component
+class ConnectGamejoltAccount extends Component
 {
     public $username;
     public $token;
@@ -119,6 +119,6 @@ class GameJoltAccount extends Component
      */
     public function render()
     {
-        return view('livewire.profile.game-jolt-account');
+        return view('livewire.profile.connect-gamejolt-account');
     }
 }

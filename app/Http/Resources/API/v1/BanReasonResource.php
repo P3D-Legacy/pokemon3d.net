@@ -19,7 +19,6 @@ class BanReasonResource extends JsonResource
         }
         if ($request->user()->can('api.moderate')) {
             return [
-                'id' => $this->id,
                 'name' => $this->name,
                 'created_at' => $this->created_at,
                 'updated_at' => $this->updated_at,
@@ -27,12 +26,10 @@ class BanReasonResource extends JsonResource
         }
         if ($request->user()->can('api.minimal')) {
             return [
-                'id' => $this->id,
                 'name' => $this->name,
             ];
         }
         return [
-            'id' => $this->id,
             'name' => $this->name
         ];
     }

@@ -7,7 +7,7 @@ use App\Models\Skin;
 use ByteUnits\Binary;
 use App\Models\GJUser;
 use Illuminate\Http\Request;
-use App\Models\GameJoltAccount;
+use App\Models\GamejoltAccount;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;

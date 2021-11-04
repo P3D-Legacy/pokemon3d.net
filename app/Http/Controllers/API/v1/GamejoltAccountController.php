@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\API\v1;
 
 use Illuminate\Http\Request;
-use App\Models\GameJoltAccount;
+use App\Models\GamejoltAccount;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\API\v1\GamejoltAccountResource;
 
@@ -31,7 +31,7 @@ class GamejoltAccountController extends Controller
                 'error' => 'Token does not have access!',
             ]);
         }
-        $gja = GameJoltAccount::with(['user.roles.permissions', 'bans'])->where('id', $id)->firstOrFail();
+        $gja = GamejoltAccount::with(['user.roles.permissions', 'bans'])->where('id', $id)->firstOrFail();
         return new GamejoltAccountResource($gja);
     }
 }

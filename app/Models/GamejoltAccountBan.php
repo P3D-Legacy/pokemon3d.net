@@ -62,7 +62,7 @@ class GamejoltAccountBan extends Model
      */
     public function gamejoltaccount()
     {
-        return $this->hasOne(GameJoltAccount::class, 'id', 'gamejoltaccount_id');
+        return $this->hasOne(GamejoltAccount::class, 'id', 'gamejoltaccount_id');
     }
 
     /**

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\API\v1;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use App\Models\GameJoltAccount;
+use App\Models\GamejoltAccount;
 use App\Models\GamejoltAccountBan;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\API\v1\GamejoltAccountBanResource;
@@ -78,7 +78,7 @@ class GamejoltAccountBanController extends Controller
                 'error' => 'banned_by_id and banned_by_gamejoltaccount_id cannot be used together!',
             ]);
         } else if(!isset($request->banned_by_id) && isset($request->banned_by_gamejoltaccount_id)) {
-            $gja = GameJoltAccount::where('id', $request->banned_by_gamejoltaccount_id)->first();
+            $gja = GamejoltAccount::where('id', $request->banned_by_gamejoltaccount_id)->first();
             if(!$gja) {
                 return response()->json([
                     'error' => 'Gamejolt Account not found with banned_by_gamejoltaccount_id!',

@@ -114,6 +114,6 @@ class GameJoltAccount extends Model
      */
     public function bans()
     {
-        return $this->hasMany(GamejoltAccountBan::class, 'user_id', 'id');
+        return $this->hasMany(GamejoltAccountBan::class, 'gamejoltaccount_id', 'id');
     }
 }

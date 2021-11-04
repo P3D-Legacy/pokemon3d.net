@@ -75,7 +75,7 @@ class GamejoltAccountBan extends Model
     }
 
     /**
-     * Get the user associated with the gamejolt account.
+     * Get the user associated with the gamejolt account ban.
      */
     public function banned_by()
     {

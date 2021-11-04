@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use betterapp\LaravelDbEncrypter\Traits\EncryptableDbAttribute;
 use GoldSpecDigital\LaravelEloquentUUID\Database\Eloquent\Uuid;
 
-class GamejoltAccount extends Model
+class GamejjoltAccount extends Model
 {
     use HasFactory;
     use EncryptableDbAttribute;

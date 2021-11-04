@@ -26,7 +26,7 @@ class GamejoltAccountResource extends JsonResource
                 'created_at' => $this->created_at,
                 'updated_at' => $this->updated_at,
                 'user' => new UserResource($this->user),
-                'bans' => new GamejoltAccountBanResource($this->bans),
+                'bans' => GamejoltAccountBanResource::collection($this->whenLoaded('bans')),
             ];
         }
         if ($request->user()->can('api.minimal')) {

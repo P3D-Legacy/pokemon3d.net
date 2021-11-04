@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\API\v1;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\GameJoltAccount;
 use App\Models\GamejoltAccountBan;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\API\v1\GamejoltAccountBanResource;
-use App\Models\GameJoltAccount;
 
 /**
  * @group Ban Gamejolt Account
@@ -77,12 +78,21 @@ class GamejoltAccountBanController extends Controller
                 'error' => 'banned_by_id and banned_by_gamejoltaccount_id cannot be used together!',
             ]);
         } else if(!isset($request->banned_by_id) && isset($request->banned_by_gamejoltaccount_id)) {
-            $gja = GameJoltAccount::findOrFail($request->banned_by_gamejoltaccount_id);
-            if($gja) {
-                $banned_by_id = $gja->id;
+            $gja = GameJoltAccount::where('id', $request->banned_by_gamejoltaccount_id)->first();
+            if(!$gja) {
+                return response()->json([
+                    'error' => 'Gamejolt Account not found with banned_by_gamejoltaccount_id!',
+                ]);
             }
+            $banned_by_id = $gja->user->id;
         } else if(isset($request->banned_by_id) && !isset($request->banned_by_gamejoltaccount_id)) {
-            $banned_by_id = $request->banned_by_id;
+            $user = User::find($request->banned_by_id);
+            if(!$user) {
+                return response()->json([
+                    'error' => 'User not found with banned_by_id!',
+                ]);
+            }
+            $banned_by_id = $user->id;
         }
         $new_data = array(
             'gamejoltaccount_id' => $request->gamejoltaccount_id,

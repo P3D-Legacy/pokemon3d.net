@@ -51,4 +51,26 @@ class GamejoltAccountBanController extends Controller
         abort_unless($resource, 404);
         return new GamejoltAccountBanResource($resource);
     }
+
+    /**
+     * Remove the specified resource.
+     *
+     * @urlParam id string required The UUID of the ban.
+     * @response 202 {
+     *  "success": 'Ban was removed!',
+     * }
+    */
+    public function destroy(Request $request, $uuid)
+    {
+        if (!$request->user()->tokenCan('read')) {
+            return response()->json([
+                'error' => 'Token does not have access!',
+            ]);
+        }
+        $resource = GamejoltAccountBan::where('uuid', $uuid)->findOrFail();
+        $resource->delete();
+        return response()->json([
+            'success' => 'Ban was removed!',
+        ])->setStatusCode(202);
+    }
 }

@@ -32,7 +32,7 @@ class BanReasonController extends Controller
             ]);
         }
         $resources = BanReason::all();
-        return new BanReasonResource($resources);
+        return BanReasonResource::collection($resources);
     }
 
     /**

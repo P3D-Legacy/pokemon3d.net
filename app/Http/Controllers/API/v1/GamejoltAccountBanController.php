@@ -133,8 +133,7 @@ class GamejoltAccountBanController extends Controller
             ]);
         }
         $resources = GamejoltAccountBan::with(['reason', 'gamejoltaccount'])->where('gamejoltaccount_id', $id)->get();
-        abort_unless($resources, 404);
-        return new GamejoltAccountBanResource($resources);
+        return GamejoltAccountBanResource::collection($resources);
     }
 
     /**

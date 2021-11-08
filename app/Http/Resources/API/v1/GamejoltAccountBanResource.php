@@ -20,6 +20,7 @@ class GamejoltAccountBanResource extends JsonResource
         }
         if ($request->user()->can('api.moderate')) {
             return [
+                'id' => $this->id,
                 'gamejoltaccount' => new GamejoltAccountResource($this->gamejoltaccount),
                 'reason' => new BanReasonResource($this->reason),
                 'banned_by' => new UserResource($this->banned_by),

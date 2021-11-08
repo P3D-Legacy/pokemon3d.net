@@ -151,7 +151,7 @@ class GamejoltAccountBanController extends Controller
                 'error' => 'Token does not have access!',
             ]);
         }
-        $resource = GamejoltAccountBan::where('uuid', $uuid)->findOrFail();
+        $resource = GamejoltAccountBan::where('uuid', $uuid)->firstOrFail();
         $resource->delete();
         return response()->json([
             'success' => 'Ban was removed!',

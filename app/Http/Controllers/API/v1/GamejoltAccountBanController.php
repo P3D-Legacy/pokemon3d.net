@@ -139,7 +139,7 @@ class GamejoltAccountBanController extends Controller
     /**
      * Remove the specified resource.
      *
-     * @urlParam id string required The UUID of the ban.
+     * @urlParam id string required The UUID of the _ban_ you would like to remove.
      * @response 202 {
      *  "success": 'Ban was removed!',
      * }

@@ -132,7 +132,7 @@ class GamejoltAccountBanController extends Controller
                 'error' => 'Token does not have access!',
             ]);
         }
-        $resources = GamejoltAccountBan::with(['reason', 'gamejoltaccount'])->where('gamejoltaccount_id', $id)->get();
+        $resources = GamejoltAccountBan::with(['reason', 'gamejoltaccount', 'banned_by'])->where('gamejoltaccount_id', $id)->get();
         return GamejoltAccountBanResource::collection($resources);
     }
 

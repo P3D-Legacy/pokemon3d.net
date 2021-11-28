@@ -5,7 +5,7 @@
 
     <x-slot name="description">
         <span class="inline-block">{{ __('Link your account with the forum account.') }}</span>
-        <span class="inline-block mt-1">{{ __('Last Updated:') }} {{ $updated_at ?? 'Never.' }} &middot; {{ __('Last Verified:') }} {{ $verified_at ?? 'Never.' }}</span>
+        <span class="inline-block mt-2">{{ __('Last Updated:') }} {{ $updated_at ?? 'Never.' }} &middot; {{ __('Last Verified:') }} {{ $verified_at ?? 'Never.' }}</span>
     </x-slot>
 
     <x-slot name="form">

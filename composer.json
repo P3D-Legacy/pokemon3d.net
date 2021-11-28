@@ -11,8 +11,7 @@
     ],
     "license": "gpl-3.0-only",
     "require": {
-        "php": "^7.3|^8.0",
-        "andreaselia/laravel-api-to-postman": "^1.7",
+        "php": "^8.0",
         "anlutro/l4-settings": "^1.0",
         "betterapp/laravel-db-encrypter": "^1.0",
         "cyrildewit/eloquent-viewable": "^6.0",

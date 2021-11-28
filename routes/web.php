@@ -11,6 +11,7 @@ use App\Http\Controllers\Skin\SkinController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\Skin\AuthGJController;
 use App\Http\Controllers\Skin\ImportController;
+use App\Http\Controllers\Auth\DiscordController;
 use App\Http\Controllers\Skin\SkinHomeController;
 use App\Http\Controllers\Skin\PlayerSkinController;
 use App\Http\Controllers\Skin\UploadedSkinController;
@@ -69,6 +70,11 @@ Route::prefix('skins')->middleware(['auth:sanctum', 'verified'])->group(function
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::resource('blog', BlogController::class);
+
+Route::group(['prefix' => 'login'], function () {
+    Route::get('/discord', [DiscordController::class, 'redirectToProvider'])->name('discord.login')->middleware('guest');
+    Route::get('/discord/callback', [DiscordController::class, 'handleProviderCallback']);
+});
 
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     

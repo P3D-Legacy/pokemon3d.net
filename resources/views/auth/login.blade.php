@@ -6,7 +6,7 @@
 			</a>
 		</x-slot>
 
-		@if(\Carbon\Carbon::createFromFormat('Y-m-d', '2021-12-31')->isFuture())
+		@if(\Carbon\Carbon::createFromFormat('Y-m-d', '2022-02-01')->isFuture())
 			<div class="px-4 py-3 text-sm leading-normal text-blue-700 bg-blue-100 rounded-lg" role="alert">
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">

@@ -17,6 +17,11 @@
                 @livewire('profile.connect-gamejolt-account')
                 <x-jet-section-border />
             @endif
+            
+            @if(config("services.discord.client_id") && config("services.discord.client_secret"))
+                @livewire('profile.discord-account')
+                <x-jet-section-border />
+            @endif
 
             @if(config("xenforo.apikey") && config("xenforo.base_url"))
                 @livewire('profile.xenforo-account')

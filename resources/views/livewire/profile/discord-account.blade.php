@@ -18,13 +18,17 @@
                 </svg> Login with Discord
             </a>
         @else
-            <div class="max-w-xl text-sm text-gray-600 dark:text-gray-400">
-                {{ $username }}<br>
-                {{ $discriminator }}<br>
-                {{ $avatar }}<br>
+            <div class="flex mb-5 text-gray-600 bg-white rounded shadow dark:text-gray-200 dark:bg-black w-max">
+                <div class="self-center p-2 pr-1">
+                    <img data="picture" class="w-12 h-12 rounded-full" src="{{ $avatar }}" alt="{{ $username }}" />
+                </div>
+                <div class="self-center w-64 p-2">
+                    {{ $username }}
+                    <div class="-mt-1 text-sm text-gray-400">#{{ $discriminator }}</div>
+                </div>
             </div>
 
-            <div class="mt-5">
+            <div class="mt-4">
                 <x-jet-danger-button wire:click="remove" wire:loading.attr="disabled">
                     {{ __('Remove Association') }}
                 </x-jet-danger-button>

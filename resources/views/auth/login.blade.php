@@ -6,6 +6,12 @@
 			</a>
 		</x-slot>
 
+		@if(Session::has('error'))
+			<div class="relative px-4 py-3 mb-2 leading-normal text-red-700 bg-red-100 rounded-lg" role="alert">
+				{{ Session::get('error') }}
+			</div>
+		@endif
+
 		@if(\Carbon\Carbon::createFromFormat('Y-m-d', '2022-02-01')->isFuture())
 			<div class="px-4 py-3 text-sm leading-normal text-blue-700 bg-blue-100 rounded-lg" role="alert">
 				<p>

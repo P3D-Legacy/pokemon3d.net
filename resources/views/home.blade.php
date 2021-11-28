@@ -217,24 +217,19 @@
             <div class="w-full mb-4">
                 <div class="w-64 h-1 py-0 mx-auto my-0 bg-black rounded-t opacity-25 dark:bg-white"></div>
             </div>
-
-            @forelse(\App\Helpers\XenforoHelper::getNewsItems()['threads'] as $item)
-                @if($loop->iteration > 3)
-                    @break
-                @endif
-                <x-home.article :item="$item" />
+            @forelse ($posts as $post)
+                <x-home.article :post="$post" />
             @empty
                 <div class="w-full text-xs text-center">
-                    <p class="mb-1 text-red-900">Failed to fetch news.</p>
-                    <a href="https://pokemon3d.net/forum/news/" class="text-green-500 hover:underline">
-                        Go to forum news
+                    <p class="mb-1 dark:text-gray-400">There is nothing to show...</p>
+                    <a href="{{ route('blog.index') }}" class="text-green-500 hover:underline">
+                        Go to blog
                         <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
                         </svg>
                     </a>
                 </div>
             @endforelse
-
         </div>
     </section>
 

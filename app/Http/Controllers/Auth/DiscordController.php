@@ -48,6 +48,10 @@ class DiscordController extends Controller
 
             // Check if user exists with email
             $discordAccount = DiscordAccount::where('id', $discordUser->id)->first();
+            if (!$discordAccount) {
+                return redirect()->route('login')->withError('Discord account association not found with any P3D account.');
+            }
+
             $user = $discordAccount ? $discordAccount->user : null;
             if ($user) {
                 Auth::login($user);

@@ -46,7 +46,7 @@ class DiscordController extends Controller
             ];
 
             // Check if user exists with email
-            $discordAccount = DiscordAccount::where('did', $userProfile['id'])->first();
+            $discordAccount = DiscordAccount::where('id', $discordUser->id)->first();
             $user = $discordAccount ? $discordAccount->user : null;
             if ($user) {
                 Auth::login($user);

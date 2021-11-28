@@ -42,7 +42,7 @@ class DiscordAccount extends Model
      * @var array
      */
     protected $fillable = [
-        'did',
+        'id',
         'username',
         'email',
         'avatar',

@@ -16,7 +16,7 @@ class CreateDiscordAccountsTable extends Migration
         Schema::create('discord_accounts', function (Blueprint $table) {
             $table->increments('aid');
             $table->uuid('uuid')->unique();
-            $table->integer('did')->comment('Discord ID');
+            $table->bigInteger('id')->comment('Discord ID');
             $table->text('username')->comment('Discord Username');
             $table->text('email')->comment('Discord Email');
             $table->text('avatar')->comment('Discord Avatar URL');

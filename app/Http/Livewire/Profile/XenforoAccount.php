@@ -84,6 +84,7 @@ class XenforoAccount extends Component
         
         return;
     }
+    
     public function render()
     {
         return view('livewire.profile.xenforo-account');

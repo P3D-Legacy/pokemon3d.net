@@ -132,15 +132,14 @@ class GamejoltAccountBanController extends Controller
                 'error' => 'Token does not have access!',
             ]);
         }
-        $resources = GamejoltAccountBan::with(['reason', 'gamejoltaccount'])->where('gamejoltaccount_id', $id)->get();
-        abort_unless($resources, 404);
-        return new GamejoltAccountBanResource($resources);
+        $resources = GamejoltAccountBan::with(['reason', 'gamejoltaccount', 'banned_by'])->where('gamejoltaccount_id', $id)->get();
+        return GamejoltAccountBanResource::collection($resources);
     }
 
     /**
      * Remove the specified resource.
      *
-     * @urlParam id string required The UUID of the ban.
+     * @urlParam id string required The UUID of the _ban_ you would like to remove.
      * @response 202 {
      *  "success": 'Ban was removed!',
      * }
@@ -152,7 +151,7 @@ class GamejoltAccountBanController extends Controller
                 'error' => 'Token does not have access!',
             ]);
         }
-        $resource = GamejoltAccountBan::where('uuid', $uuid)->findOrFail();
+        $resource = GamejoltAccountBan::where('uuid', $uuid)->firstOrFail();
         $resource->delete();
         return response()->json([
             'success' => 'Ban was removed!',

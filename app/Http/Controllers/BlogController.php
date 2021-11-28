@@ -27,6 +27,7 @@ class BlogController extends Controller
     public function show($param)
     {
         $post = Post::where('uuid', $param)
+            ->where('active', true)
             ->orWhere('slug', $param)
             ->where('active', true)
             ->firstOrFail();

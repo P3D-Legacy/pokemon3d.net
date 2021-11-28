@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -13,6 +14,7 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        return view('home');
+        $posts = Post::orderBy('created_at', 'desc')->where('active')->withAnyTags(['Website', 'Game'])->take(3)->get();
+        return view('home')->with('posts', $posts);
     }
 }

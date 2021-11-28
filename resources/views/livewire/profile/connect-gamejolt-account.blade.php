@@ -5,7 +5,7 @@
 
     <x-slot name="description">
         <span class="inline-block">{{ __('Link your account with GameJolt to be able to edit your skins for in-game use, and more features to come.') }}</span>
-        <span class="inline-block mt-1">{{ __('Last Updated:') }} {{ $updated_at ?? 'Never.' }} &middot; {{ __('Last Verified:') }} {{ $verified_at ?? 'Never.' }}</span>
+        <span class="inline-block mt-2">{{ __('Last Updated:') }} {{ $updated_at ?? 'Never.' }} &middot; {{ __('Last Verified:') }} {{ $verified_at ?? 'Never.' }}</span>
         <span class="inline-block mt-4 font-semibold">
             <a href="https://gamejolt.com/help/tokens" target="_blank" class="hover:text-green-700 hover:underline">
                 <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-4 h-4 mr-1" viewBox="0 0 20 20" fill="currentColor">

@@ -14,7 +14,7 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        $posts = Post::orderBy('created_at', 'desc')->where('active')->withAnyTags(['Website', 'Game'])->take(3)->get();
+        $posts = Post::orderBy('created_at', 'desc')->where('active', true)->withAnyTags(['Website', 'Game'])->take(3)->get();
         return view('home')->with('posts', $posts);
     }
 }

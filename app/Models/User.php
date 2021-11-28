@@ -75,6 +75,14 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     /**
+     * Get the discord account associated with the user.
+     */
+    public function discord()
+    {
+        return $this->hasOne(DiscordAccount::class);
+    }
+
+    /**
      * Get the forum account associated with the user.
      */
     public function forum()

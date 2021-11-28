@@ -72,7 +72,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::resource('blog', BlogController::class);
 
 Route::group(['prefix' => 'login'], function () {
-    Route::get('/discord', [DiscordController::class, 'redirectToProvider'])->name('discord.login')->middleware('guest');
+    Route::get('/discord', [DiscordController::class, 'redirectToProvider'])->name('discord.login');
     Route::get('/discord/callback', [DiscordController::class, 'handleProviderCallback']);
 });
 

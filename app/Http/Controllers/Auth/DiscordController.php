@@ -31,6 +31,7 @@ class DiscordController extends Controller
     public function handleProviderCallback()
     {
         try {
+
             $discordUser = Socialite::driver('discord')->user();
             
             if (!$discordUser->user['verified']) {
@@ -51,10 +52,19 @@ class DiscordController extends Controller
             if ($user) {
                 Auth::login($user);
                 return redirect()->route('dashboard');
-            } else {
-                // User not found
-                return redirect()->route('login')->withError('Discord account association not found.');
             }
+
+            if (auth()->guest() && !$user) {
+                return redirect()->route('login')->withError('You are not logged in and user was not found.');
+            }
+
+            // Create new discord account
+            $user = auth()->user();
+            $userProfile['user_id'] = $user->id;
+            $userProfile['verified_at'] = now();
+            DiscordAccount::create($userProfile);
+            return redirect()->route('profile.show');
+
         } catch (InvalidStateException $e) {
             return redirect()->route('home')->withError('Something went wrong with Discord login. Please try again.');
         } catch (ClientException $e) {

@@ -29,7 +29,7 @@ class StatsHelper
             return $that->getDiscordServer()->approximate_member_count;
         }
         catch(\Exception $exception) {
-            return 'N/A';
+            return 0;
         }
     }
 
@@ -39,7 +39,7 @@ class StatsHelper
             $count = XenForoHelper::getUserCount();
             return $count;
         } catch (\Exception $exception){
-            return 'N/A';
+            return 0;
         }
     }
 
@@ -49,7 +49,7 @@ class StatsHelper
             $data = self::sendRequest("/server/status");
             return count($data['players']);
         } catch (\Exception $exception){
-            return 'N/A';
+            return 0;
         }
     }
 

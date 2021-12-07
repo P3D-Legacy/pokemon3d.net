@@ -7,6 +7,8 @@ module.exports = {
         './vendor/laravel/jetstream/**/*.blade.php',
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php',
+        './vendor/power-components/livewire-powergrid/resources/views/**/*.blade.php',
+        './vendor/power-components/livewire-powergrid/src/Themes/Tailwind.php',
     ],
 
     darkMode: 'class',
@@ -29,7 +31,9 @@ module.exports = {
     },
 
     plugins: [
-        require('@tailwindcss/forms'),
+        require("@tailwindcss/forms")({
+            strategy: 'class',
+        }),
         require('@tailwindcss/typography'),
         require('@tailwindcss/aspect-ratio'),
         require('tailwindcss-debug-screens'),

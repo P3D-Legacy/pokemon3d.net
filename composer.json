@@ -1,5 +1,5 @@
 {
-    "name": "p3d-legacy/skin.pokemon3d.net",
+    "name": "p3d-legacy/pokemon3d.net",
     "type": "project",
     "description": "",
     "keywords": [
@@ -11,8 +11,7 @@
     ],
     "license": "gpl-3.0-only",
     "require": {
-        "php": "^7.3|^8.0",
-        "andreaselia/laravel-api-to-postman": "^1.7",
+        "php": "^8.0",
         "anlutro/l4-settings": "^1.0",
         "betterapp/laravel-db-encrypter": "^1.0",
         "cyrildewit/eloquent-viewable": "^6.0",
@@ -31,11 +30,14 @@
         "laravel/framework": "^8.54",
         "laravel/jetstream": "^2.3",
         "laravel/sanctum": "^2.11",
+        "laravel/socialite": "^5.2",
         "laravel/tinker": "^2.5",
         "livewire/livewire": "^2.5",
+        "martinbean/socialite-discord-provider": "^1.2",
         "mtownsend/read-time": "^2.0",
         "origami/consent": "^2.0",
         "overtrue/laravel-like": "^4.0",
+        "power-components/livewire-powergrid": "^1.5",
         "restcord/restcord": "dev-develop",
         "sentry/sentry-laravel": "^2.5",
         "spatie/laravel-activitylog": "^3.16",

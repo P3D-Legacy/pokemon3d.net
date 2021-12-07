@@ -3,9 +3,8 @@
 namespace App\Http\Resources\API\v1;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use App\Http\Resources\API\v1\GamejoltAccountBanResource;
 
-class GamejoltAccountResource extends JsonResource
+class BanReasonResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -20,25 +19,18 @@ class GamejoltAccountResource extends JsonResource
         }
         if ($request->user()->can('api.moderate')) {
             return [
-                'id' => $this->id,
-                'username' => $this->username,
-                'verified_at' => $this->verified_at,
+                'name' => $this->name,
                 'created_at' => $this->created_at,
                 'updated_at' => $this->updated_at,
-                'user' => new UserResource($this->user),
-                'bans' => GamejoltAccountBanResource::collection($this->whenLoaded('bans')),
             ];
         }
         if ($request->user()->can('api.minimal')) {
             return [
-                'id' => $this->id,
-                'username' => $this->username,
-                'verified_at' => $this->verified_at,
+                'name' => $this->name,
             ];
         }
         return [
-            'id' => $this->id,
-            'username' => $this->username
+            'name' => $this->name
         ];
     }
 }

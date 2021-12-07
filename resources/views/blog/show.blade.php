@@ -46,19 +46,26 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                     </svg> {{ read_time($post->body)}}
                     &nbsp;
-                    @livewire('blog.like-button', ['post' => $post])
-                    &nbsp;
                     <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                     </svg> {{ App\Helpers\NumberHelper::nearestK(views($post)->count()) }}
                 </p>
 
-                <p class="pb-8 mt-4 text-sm leading-5 text-center border-b border-gray-100 dark:border-gray-700">
+                <div class="flex items-center justify-center pb-8 mt-4 text-xs leading-5 text-center border-b border-gray-100 dark:border-gray-700">
+                    @livewire('blog.like-button', ['post' => $post])
+                    @if($post->sticky)
+                        <span class="inline-flex items-center justify-center px-2 py-1 mr-1 font-bold leading-none uppercase bg-gray-500 rounded text-gray-50 dark:text-gray-800 dark:bg-gray-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-3 h-3 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M3 6a3 3 0 013-3h10a1 1 0 01.8 1.6L14.25 8l2.55 3.4A1 1 0 0116 13H6a1 1 0 00-1 1v3a1 1 0 11-2 0V6z" clip-rule="evenodd" />
+                            </svg>
+                            {{ __('Sticky') }}
+                        </span>
+                    @endif
                     @foreach ($post->tags as $tag)
-                        <span class="inline-flex items-center justify-center px-2 py-1 mr-1 text-xs font-bold leading-none uppercase bg-gray-400 rounded text-gray-50 dark:text-gray-800 dark:bg-gray-300">{{ $tag->name }}</span>
+                        <span class="inline-flex items-center justify-center px-2 py-1 mr-1 font-bold leading-none uppercase bg-gray-500 rounded text-gray-50 dark:text-gray-800 dark:bg-gray-300">{{ $tag->name }}</span>
                     @endforeach
-                </p>
+                </div>
 
                 <article class="mt-8 prose dark:text-gray-100">
                     @markdown($post->body)

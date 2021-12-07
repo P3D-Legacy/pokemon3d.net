@@ -16,6 +16,7 @@
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
         @livewireStyles
+        @powerGridStyles
 
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
@@ -87,6 +88,7 @@
         @include('cookieConsent::index')
 
         @livewireScripts
+        @powerGridScripts
 
         <script>
             document.getElementById('switchTheme').addEventListener('click', function() {

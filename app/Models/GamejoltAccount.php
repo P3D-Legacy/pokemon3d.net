@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use betterapp\LaravelDbEncrypter\Traits\EncryptableDbAttribute;
 use GoldSpecDigital\LaravelEloquentUUID\Database\Eloquent\Uuid;
 
-class GameJoltAccount extends Model
+class GamejoltAccount extends Model
 {
     use HasFactory;
     use EncryptableDbAttribute;
@@ -16,6 +16,13 @@ class GameJoltAccount extends Model
     use Uuid;
 
     protected $primaryKey = 'uuid';
+
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'game_jolt_accounts';
 
     /**
      * The "type" of the auto-incrementing ID.
@@ -107,5 +114,13 @@ class GameJoltAccount extends Model
     public function publicSkins()
     {
         return $this->hasMany(Skin::class, 'owner_id', 'id')->isPublic();
+    }
+
+    /**
+     * Get the bans that the user has.
+     */
+    public function bans()
+    {
+        return $this->hasMany(GamejoltAccountBan::class, 'gamejoltaccount_id', 'id');
     }
 }

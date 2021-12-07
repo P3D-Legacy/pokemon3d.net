@@ -71,7 +71,15 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     public function gamejolt()
     {
-        return $this->hasOne(GameJoltAccount::class);
+        return $this->hasOne(GamejoltAccount::class);
+    }
+
+    /**
+     * Get the discord account associated with the user.
+     */
+    public function discord()
+    {
+        return $this->hasOne(DiscordAccount::class);
     }
 
     /**

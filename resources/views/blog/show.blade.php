@@ -54,6 +54,14 @@
 
                 <div class="flex items-center justify-center pb-8 mt-4 text-xs leading-5 text-center border-b border-gray-100 dark:border-gray-700">
                     @livewire('blog.like-button', ['post' => $post])
+                    @if($post->sticky)
+                        <span class="inline-flex items-center justify-center px-2 py-1 mr-1 font-bold leading-none uppercase bg-gray-500 rounded text-gray-50 dark:text-gray-800 dark:bg-gray-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-3 h-3 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M3 6a3 3 0 013-3h10a1 1 0 01.8 1.6L14.25 8l2.55 3.4A1 1 0 0116 13H6a1 1 0 00-1 1v3a1 1 0 11-2 0V6z" clip-rule="evenodd" />
+                            </svg>
+                            {{ __('Sticky') }}
+                        </span>
+                    @endif
                     @foreach ($post->tags as $tag)
                         <span class="inline-flex items-center justify-center px-2 py-1 mr-1 font-bold leading-none uppercase bg-gray-500 rounded text-gray-50 dark:text-gray-800 dark:bg-gray-300">{{ $tag->name }}</span>
                     @endforeach

@@ -56,7 +56,7 @@
 
                 <p class="pb-8 mt-4 text-sm leading-5 text-center border-b border-gray-100 dark:border-gray-700">
                     @foreach ($post->tags as $tag)
-                        <span class="inline-flex items-center justify-center px-2 py-1 mr-1 text-xs font-bold leading-none uppercase bg-gray-400 rounded text-gray-50 dark:text-gray-800 dark:bg-gray-300">{{ $tag->name }}</span>
+                        <span class="inline-flex items-center justify-center px-2 py-1 mr-1 text-xs font-bold leading-none uppercase bg-gray-500 rounded text-gray-50 dark:text-gray-800 dark:bg-gray-300">{{ $tag->name }}</span>
                     @endforeach
                 </p>
 

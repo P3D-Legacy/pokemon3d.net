@@ -19,7 +19,7 @@
     </div>
     <div class="flex-none px-6 mt-auto overflow-hidden bg-white border-t rounded-t-none rounded-b shadow dark:bg-gray-900 dark:border-black">
         <div class="flex items-center justify-start">
-            <a class="px-3 py-2 mx-auto my-3 text-sm font-extrabold bg-green-800 rounded-lg shadow-lg lg:mx-0 text-green-50" href="{{ route('blog.show', $post) }}">
+            <a class="px-3 py-2 mx-auto my-3 text-sm font-extrabold bg-green-800 rounded-lg shadow-lg lg:mx-0 text-green-50" href="{{ route('blog.show', $post->uuid) }}">
                 {{ __('Read more') }}
                 <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />

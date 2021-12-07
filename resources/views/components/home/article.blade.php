@@ -5,6 +5,11 @@
                 <span class="text-green-700 dark:text-green-200">{{ $post->tags->first()->name }}</span> &mdash; {{ $post->created_at->format('F j, Y') }}
             </p>
             <div class="w-full px-6 mb-3 text-2xl font-bold text-gray-800 truncate dark:text-gray-200">
+                @if($post->sticky)
+                    <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-6 h-6 mr-1 text-red-500" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M3 6a3 3 0 013-3h10a1 1 0 01.8 1.6L14.25 8l2.55 3.4A1 1 0 0116 13H6a1 1 0 00-1 1v3a1 1 0 11-2 0V6z" clip-rule="evenodd" />
+                    </svg>
+                @endif
                 {{ $post->title }}
             </div>
             <p class="px-6 mb-5 text-sm text-gray-600">

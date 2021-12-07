@@ -51,6 +51,7 @@ class PostController extends Controller
         $request->validate([
             'title' => ['required', 'string', 'max:255', 'unique:posts,title'],
             'active' => ['required', 'integer'],
+            'sticky' => ['required', 'integer'],
             'body' => ['required', 'string', 'min:25'],
         ]);
 
@@ -58,6 +59,7 @@ class PostController extends Controller
         $post->title = $request->title;
         $post->body = $request->body;
         $post->active = $request->active;
+        $post->sticky = $request->sticky;
         $post->slug = Str::of($post->title)->slug('-');
         $post->user_id = auth()->user()->id;
         $post->save();
@@ -101,12 +103,14 @@ class PostController extends Controller
         $request->validate([
             'title' => ['required', 'string', 'max:255', Rule::unique('posts')->ignore($post->id)],
             'active' => ['required', 'integer'],
+            'sticky' => ['required', 'integer'],
             'body' => ['required', 'string', 'min:25'],
         ]);
 
         $post->title = $request->title;
         $post->body = $request->body;
         $post->active = $request->active;
+        $post->sticky = $request->sticky;
         $post->slug = Str::of($post->title)->slug('-');
         $post->user_id = auth()->user()->id;
         $post->save();

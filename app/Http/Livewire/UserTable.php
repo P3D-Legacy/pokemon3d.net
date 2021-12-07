@@ -76,7 +76,8 @@ final class UserTable extends PowerGridComponent
         return PowerGrid::eloquent()
             ->addColumn('id')
             ->addColumn('name')
-            ->addColumn('username');
+            ->addColumn('username')
+            ->addColumn('email');
     }
 
     /*
@@ -111,6 +112,13 @@ final class UserTable extends PowerGridComponent
             Column::add()
                 ->title('USERNAME')
                 ->field('username')
+                ->sortable()
+                ->searchable()
+                ->makeInputText(),
+            
+            Column::add()
+                ->title('EMAIL')
+                ->field('email')
                 ->sortable()
                 ->searchable()
                 ->makeInputText(),

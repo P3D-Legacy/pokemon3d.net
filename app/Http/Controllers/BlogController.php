@@ -14,7 +14,7 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $posts = Post::orderBy('sticky', 'desc')->orderByDesc('created_at')->where('active', true)->paginate(5);
+        $posts = Post::where('published_at', '<=', now())->where('active', true)->orderBy('sticky', 'desc')->orderByDesc('published_at')->paginate(5);
         return view('blog.index', ['posts' => $posts]);
     }
 

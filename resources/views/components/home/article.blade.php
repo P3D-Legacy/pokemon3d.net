@@ -1,4 +1,4 @@
-<div class="flex flex-col flex-grow flex-shrink w-full p-6 md:w-1/3">
+<div class="flex flex-col flex-grow flex-shrink w-full p-6 md:w-1/2 xl:w-1/4">
     <div class="flex-1 overflow-hidden bg-white rounded-t rounded-b-none shadow dark:bg-gray-900">
         <a href="#" class="flex flex-wrap no-underline hover:no-underline">
             <p class="w-full px-6 mt-6 text-xs text-gray-600 uppercase dark:text-gray-400 md:text-sm">

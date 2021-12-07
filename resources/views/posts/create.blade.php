@@ -13,7 +13,7 @@
 					<form action="{{ route('posts.store') }}" method="post" enctype="multipart/form-data">
 						@csrf
 						<div class="flex flex-wrap mb-6">
-							<div class="w-full px-3 mb-6 md:w-4/5 md:mb-0">
+							<div class="w-full px-3 mb-6 md:w-3/5 md:mb-0">
 								<label for="title" class="block mb-1 text-gray-700">Title</label>
 								<input id="title" name="title" type="text" class="w-full h-10 px-3 mb-2 text-base text-gray-700 placeholder-gray-600 border rounded-lg focus:shadow-outline" value="{{ old('title') }}">
 								@error('title')

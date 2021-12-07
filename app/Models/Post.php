@@ -47,6 +47,7 @@ class Post extends Model implements Viewable
         'slug',
         'body',
         'active',
+        'sticky',
         'published_at',
         'user_id',
     ];

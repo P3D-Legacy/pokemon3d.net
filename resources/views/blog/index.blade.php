@@ -57,6 +57,11 @@
 									@endforeach
 								</p>
 								<a href="{{ route('blog.show', $post->uuid) }}" class="mb-2 text-2xl font-medium text-gray-800 dark:text-white break-word hover:text-gray-500 dark:hover:text-gray-300">
+									@if($post->sticky)
+										<svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-6 h-6 mr-1 text-red-500" viewBox="0 0 20 20" fill="currentColor">
+											<path fill-rule="evenodd" d="M3 6a3 3 0 013-3h10a1 1 0 01.8 1.6L14.25 8l2.55 3.4A1 1 0 0116 13H6a1 1 0 00-1 1v3a1 1 0 11-2 0V6z" clip-rule="evenodd" />
+										</svg>
+									@endif
 									{{ $post->title }}
 								</a>
 								<div class="pt-2 font-light leading-6 text-gray-500 dark:text-gray-300 text-md">

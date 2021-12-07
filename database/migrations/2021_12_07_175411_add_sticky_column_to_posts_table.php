@@ -14,7 +14,7 @@ class AddStickyColumnToPostsTable extends Migration
     public function up()
     {
         Schema::table('posts', function (Blueprint $table) {
-            $table->boolean('sticky', 0)->after('active');
+            $table->boolean('sticky')->default(0)->after('active');
         });
     }
 
@@ -26,7 +26,7 @@ class AddStickyColumnToPostsTable extends Migration
     public function down()
     {
         Schema::table('posts', function (Blueprint $table) {
-            //
+            $table->dropColumn('sticky');
         });
     }
 }

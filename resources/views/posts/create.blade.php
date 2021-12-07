@@ -13,10 +13,17 @@
 					<form action="{{ route('posts.store') }}" method="post" enctype="multipart/form-data">
 						@csrf
 						<div class="flex flex-wrap mb-6">
-							<div class="w-full px-3 mb-6 md:w-3/5 md:mb-0">
+							<div class="w-full px-3 mb-6 md:w-2/5 md:mb-0">
 								<label for="title" class="block mb-1 text-gray-700">Title</label>
 								<input id="title" name="title" type="text" class="w-full h-10 px-3 mb-2 text-base text-gray-700 placeholder-gray-600 border rounded-lg focus:shadow-outline" value="{{ old('title') }}">
 								@error('title')
+                                    <span class="text-xs text-red-700">{{ $message }}</span>
+                                @enderror
+							</div>
+							<div class="w-full px-3 mb-6 md:w-1/5 md:mb-0">
+								<label for="published_at" class="block mb-1 text-gray-700">Published At</label>
+								<input id="published_at" name="published_at" type="text" class="w-full h-10 px-3 mb-2 text-base text-gray-700 placeholder-gray-600 border rounded-lg focus:shadow-outline flatpickrSelector" value="{{ old('published_at') }}">
+								@error('published_at')
                                     <span class="text-xs text-red-700">{{ $message }}</span>
                                 @enderror
 							</div>

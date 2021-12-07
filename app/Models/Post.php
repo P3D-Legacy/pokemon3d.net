@@ -47,7 +47,17 @@ class Post extends Model implements Viewable
         'slug',
         'body',
         'active',
+        'published_at',
         'user_id',
+    ];
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'published_at' => 'datetime',
     ];
 
     /**

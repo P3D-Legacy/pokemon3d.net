@@ -11,9 +11,9 @@
                 Public: {{ ($skin->public) ? 'Yes' : 'No' }}<br>
             @endif
             @if($skin->user)
-                Owned by: <a class="text-green-800 hover:text-green-600 dark:text-green-500 dark:hover:text-green-300" href="{{ route('member.show', $skin->user) }}">{{ $skin->user->username }}</a><br>
+                Published by: <a class="text-green-800 hover:text-green-600 dark:text-green-500 dark:hover:text-green-300" href="{{ route('member.show', $skin->user) }}">{{ $skin->user->username }}</a><br>
             @else
-                Owned by: {{ $skin->owner_id }}<br>
+                Gamejolt user ID: {{ $skin->owner_id }}<br>
             @endif
             Uploaded: {{ $skin->created_at->diffForHumans() }}<br>
             File size: {{ Storage::disk('skin')->exists($skin->path()) ? \ByteUnits\Binary::bytes(Storage::disk('skin')->size($skin->path()))->format() : 'N/A' }}

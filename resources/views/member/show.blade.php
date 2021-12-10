@@ -24,6 +24,9 @@
                             --}}
                         </div>
                     </div>
+                    @foreach($user->unlockedAchievements() as $achievement)
+                        <x-achievement :achievement="$achievement" />
+                    @endforeach
                     {{--
                         <div class="flex gap-8 pt-8">
                             <div class="flex flex-col">

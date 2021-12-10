@@ -191,7 +191,7 @@
                                 {{ __('Manage Account') }}
                             </div>
 
-                            <x-jet-dropdown-link href="{{ route('profile.edit') }}">
+                            <x-jet-dropdown-link href="{{ route('profile.show') }}">
                                 {{ __('Edit Profile') }}
                             </x-jet-dropdown-link>
 
@@ -317,7 +317,7 @@
                 </x-jet-responsive-nav-link>
 
                 <!-- Account Management -->
-                <x-jet-responsive-nav-link href="{{ route('profile.edit') }}" :active="request()->routeIs('profile.edit')">
+                <x-jet-responsive-nav-link href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')">
                     {{ __('Edit Profile') }}
                 </x-jet-responsive-nav-link>
 

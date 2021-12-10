@@ -18,7 +18,7 @@
                         </div>
                         <div class="mb-3">
                             <x-jet-label for="image" value="{{ __('Select image file') }}" />
-                            <input class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 file:mr-4 file:py-1 file:px-2 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-green-500 file:text-green-50 hover:file:bg-green-800" type="file" id="formFile" name="image">
+                            <input class="block w-full mt-1 text-black border-gray-300 rounded-md shadow-sm dark:text-white focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 file:mr-4 file:py-1 file:px-2 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-green-500 file:text-green-50 hover:file:bg-green-800" type="file" id="formFile" name="image">
                             <x-jet-input-error for="image" class="mt-2" />
                         </div>
                         <div class="mt-6 mb-3">

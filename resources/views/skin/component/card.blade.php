@@ -11,14 +11,14 @@
                 Public: {{ ($skin->public) ? 'Yes' : 'No' }}<br>
             @endif
             @if($skin->user)
-                Owned by: <a class="text-green-800 hover:text-green-600 dark:text-green-500 dark:hover:text-green-300" href="#{{-- route('user-show', $skin->user->id) --}}">{{ $skin->user->username }}</a><br>
+                Owned by: <a class="text-green-800 hover:text-green-600 dark:text-green-500 dark:hover:text-green-300" href="{{ route('member.show', $skin->user) }}">{{ $skin->user->username }}</a><br>
             @else
                 Owned by: {{ $skin->owner_id }}<br>
             @endif
             Uploaded: {{ $skin->created_at->diffForHumans() }}<br>
             File size: {{ Storage::disk('skin')->exists($skin->path()) ? \ByteUnits\Binary::bytes(Storage::disk('skin')->size($skin->path()))->format() : 'N/A' }}
         </p>
-        <div class="flex mt-2 text-sm item-center text-black dark:text-white">
+        <div class="flex mt-2 text-sm text-black item-center dark:text-white">
             <p>
                 <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />

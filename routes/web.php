@@ -41,9 +41,9 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
-
-    Route::get('/user/{user}', [ProfileController::class, 'show'])->name('profile.show');
-
+    
+    Route::get('/member/{user}', [ProfileController::class, 'show'])->name('profile.show');
+    
     Route::prefix('skin')->group(function () {
         Route::get('/', [SkinHomeController::class, 'index'])->name('skin-home');
         Route::get('/my', function() {

@@ -3,12 +3,13 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
+use App\Models\DiscordAccount;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Actions\Fortify\CreateNewUser;
-use App\Models\DiscordAccount;
 use Laravel\Socialite\Facades\Socialite;
 use GuzzleHttp\Exception\ClientException;
+use App\Achievements\User\AssociatedDiscord;
 use Laravel\Socialite\Two\InvalidStateException;
 
 class DiscordController extends Controller
@@ -67,6 +68,7 @@ class DiscordController extends Controller
             $userProfile['user_id'] = $user->id;
             $userProfile['verified_at'] = now();
             DiscordAccount::create($userProfile);
+            $user->unlock(new AssociatedDiscord());
             return redirect()->route('profile.show');
 
         } catch (InvalidStateException $e) {

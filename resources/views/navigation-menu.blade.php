@@ -235,6 +235,12 @@
             <x-jet-responsive-nav-link href="{{ route('skin-home') }}" :active="request()->routeIs('skin-home')">
                 {{ __('Skin') }}
             </x-jet-responsive-nav-link>
+            <x-jet-responsive-nav-link href="{{ route('skins-popular') }}" :active="request()->routeIs('skins-popular')">
+                {{ __('Most Popular') }} {{ __('Skin') }}
+            </x-jet-responsive-nav-link>
+            <x-jet-responsive-nav-link href="{{ route('skins-newest') }}" :active="request()->routeIs('skins-newest')">
+                {{ __('Newest') }} {{ __('Skin') }}
+            </x-jet-responsive-nav-link>
         </div>
 
         <!-- Mobile admin menu -->

@@ -375,10 +375,6 @@
                     </p>
                     <ul class="mb-6 list-reset">
                         <x-home.footer-link title="Official Blog" url="{{ route('blog.index') }}" />
-                        {{--
-                            <x-home.footer-link title="About Us" url="#" />
-                            <x-home.footer-link title="Contact" url="#" />
-                        --}}
                     </ul>
                 </div>
             </div>

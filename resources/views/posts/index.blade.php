@@ -22,6 +22,9 @@
 									Title
 								</th>
 								<th scope="col" class="px-5 py-3 text-sm font-normal text-left text-gray-800 uppercase bg-white border-b border-gray-200">
+									Published
+								</th>
+								<th scope="col" class="px-5 py-3 text-sm font-normal text-left text-gray-800 uppercase bg-white border-b border-gray-200">
 									Created
 								</th>
 								<th scope="col" class="px-5 py-3 text-sm font-normal text-left text-gray-800 uppercase bg-white border-b border-gray-200">
@@ -44,6 +47,11 @@
 									</td>
 									<td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
 										<p class="text-gray-900 whitespace-no-wrap">
+											{{ $post->published_at ? $post->published_at->diffForHumans() : 'Not published' }}
+										</p>
+									</td>
+									<td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
+										<p class="text-gray-900 whitespace-no-wrap">
 											{{ $post->created_at->diffForHumans() }}
 										</p>
 									</td>
@@ -58,7 +66,7 @@
 												<svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 													<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
 													<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-												  </svg>Published
+												  </svg>Visible
 											</span>
 										@else
 											<span class="inline-flex items-center justify-center px-2 py-1 text-xs leading-none text-gray-900 capitalize bg-gray-200 rounded-full">

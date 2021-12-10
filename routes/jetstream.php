@@ -19,7 +19,7 @@ Route::group(['middleware' => config('jetstream.middleware', ['web'])], function
     Route::group(['middleware' => ['auth', 'verified']], function () {
         // User & Profile...
         Route::get('/user/edit/profile', function() {
-            return view('profile.show', [
+            return view('profile.edit', [
                 'request' => request(),
                 'user' => request()->user(),
             ]);

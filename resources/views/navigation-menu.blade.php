@@ -182,7 +182,7 @@
                         </x-slot>
 
                         <x-slot name="content">
-                            <x-jet-dropdown-link href="{{ route('profile.show', auth()->user()) }}">
+                            <x-jet-dropdown-link href="{{ route('member.show', auth()->user()) }}">
                                 {{ __('Show Profile') }}
                             </x-jet-dropdown-link>
 
@@ -191,7 +191,7 @@
                                 {{ __('Manage Account') }}
                             </div>
 
-                            <x-jet-dropdown-link href="{{ route('profile.edit') }}">
+                            <x-jet-dropdown-link href="{{ route('profile.show') }}">
                                 {{ __('Edit Profile') }}
                             </x-jet-dropdown-link>
 
@@ -318,12 +318,12 @@
             </div>
             
             <div class="mt-3 space-y-1">
-                <x-jet-responsive-nav-link href="{{ route('profile.show', auth()->user()) }}">
+                <x-jet-responsive-nav-link href="{{ route('member.show', auth()->user()) }}">
                     {{ __('Show Profile') }}
                 </x-jet-responsive-nav-link>
 
                 <!-- Account Management -->
-                <x-jet-responsive-nav-link href="{{ route('profile.edit') }}" :active="request()->routeIs('profile.edit')">
+                <x-jet-responsive-nav-link href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')">
                     {{ __('Edit Profile') }}
                 </x-jet-responsive-nav-link>
 

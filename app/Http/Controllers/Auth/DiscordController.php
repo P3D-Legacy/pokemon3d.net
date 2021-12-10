@@ -67,7 +67,7 @@ class DiscordController extends Controller
             $userProfile['user_id'] = $user->id;
             $userProfile['verified_at'] = now();
             DiscordAccount::create($userProfile);
-            return redirect()->route('profile.edit');
+            return redirect()->route('profile.show');
 
         } catch (InvalidStateException $e) {
             return redirect()->route('home')->withError('Something went wrong with Discord login. Please try again.');

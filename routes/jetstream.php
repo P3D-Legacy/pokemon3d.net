@@ -19,11 +19,11 @@ Route::group(['middleware' => config('jetstream.middleware', ['web'])], function
     Route::group(['middleware' => ['auth', 'verified']], function () {
         // User & Profile...
         Route::get('/user/edit/profile', function() {
-            return view('profile.edit', [
+            return view('profile.show', [
                 'request' => request(),
                 'user' => request()->user(),
             ]);
-        })->name('profile.edit');
+        })->name('profile.show');
 
         // API...
         if (Jetstream::hasApiFeatures()) {

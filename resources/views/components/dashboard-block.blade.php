@@ -107,7 +107,7 @@
             <div class="mt-2 text-sm text-gray-500 dark:text-gray-300">
                 We've made it easy for you to update your profile and presence in the game. So, you're free to get started what matters most: changing your profile picture?
             </div>
-            <a href="{{ route('profile.show') }}">
+            <a href="{{ route('profile.edit') }}">
                 <div class="flex items-center mt-3 text-sm font-semibold text-green-700 dark:text-green-500">
                     <div>Update your profile</div>
 

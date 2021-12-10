@@ -7,9 +7,9 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Skin\SkinController;
 use App\Http\Controllers\PermissionController;
-use App\Http\Controllers\Skin\AuthGJController;
 use App\Http\Controllers\Skin\ImportController;
 use App\Http\Controllers\Auth\DiscordController;
 use App\Http\Controllers\Skin\SkinHomeController;
@@ -41,7 +41,9 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
-
+    
+    Route::get('/member/{user}', [ProfileController::class, 'show'])->name('profile.show');
+    
     Route::prefix('skin')->group(function () {
         Route::get('/', [SkinHomeController::class, 'index'])->name('skin-home');
         Route::get('/my', function() {

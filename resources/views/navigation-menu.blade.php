@@ -182,13 +182,17 @@
                         </x-slot>
 
                         <x-slot name="content">
+                            <x-jet-dropdown-link href="{{ route('profile.show', auth()->user()) }}">
+                                {{ __('Show Profile') }}
+                            </x-jet-dropdown-link>
+
                             <!-- Account Management -->
                             <div class="block px-4 py-2 text-xs text-gray-400">
                                 {{ __('Manage Account') }}
                             </div>
 
-                            <x-jet-dropdown-link href="{{ route('profile.show') }}">
-                                {{ __('Profile') }}
+                            <x-jet-dropdown-link href="{{ route('profile.edit') }}">
+                                {{ __('Edit Profile') }}
                             </x-jet-dropdown-link>
 
                             @if (Laravel\Jetstream\Jetstream::hasApiFeatures() && auth()->user()->can('api'))
@@ -314,9 +318,13 @@
             </div>
             
             <div class="mt-3 space-y-1">
+                <x-jet-responsive-nav-link href="{{ route('profile.show', auth()->user()) }}">
+                    {{ __('Show Profile') }}
+                </x-jet-responsive-nav-link>
+
                 <!-- Account Management -->
-                <x-jet-responsive-nav-link href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')">
-                    {{ __('Profile') }}
+                <x-jet-responsive-nav-link href="{{ route('profile.edit') }}" :active="request()->routeIs('profile.edit')">
+                    {{ __('Edit Profile') }}
                 </x-jet-responsive-nav-link>
 
                 @if (Laravel\Jetstream\Jetstream::hasApiFeatures())

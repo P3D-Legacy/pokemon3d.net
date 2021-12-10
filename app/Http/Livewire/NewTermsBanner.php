@@ -12,7 +12,7 @@ class NewTermsBanner extends Component
         Auth::user()->giveConsentTo(config('app.required_consent'), [
             'text' => config('app.consents')[config('app.required_consent')],
         ]);
-        redirect()->route('profile.show');
+        redirect()->route('profile.edit');
     }
     
     /**

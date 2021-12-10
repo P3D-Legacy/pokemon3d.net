@@ -18,8 +18,10 @@
                     <div class="mt-2 text-sm text-gray-400">
                         <div class="flex flex-row items-center ml-auto space-x-2">
                             <div>{{ __('Member since') }}: {{ $user->created_at->diffForHumans() }}</div>
-                            <div class="w-1 h-1 bg-gray-300 rounded-full"></div>
-                            <div>{{ __('Last online') }}: {{ $user->created_at->diffForHumans() }}</div>
+                            {{--
+                                <div class="w-1 h-1 bg-gray-300 rounded-full"></div>
+                                <div>{{ __('Last online') }}: {{ $user->created_at->diffForHumans() }}</div>
+                            --}}
                         </div>
                     </div>
                     {{--

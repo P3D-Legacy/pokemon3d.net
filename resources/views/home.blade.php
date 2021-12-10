@@ -343,9 +343,7 @@
         <div class="container px-8 mx-auto mt-8">
             <div class="flex flex-col w-full py-6 md:flex-row">
                 <div class="px-3 mb-6 flex-2">
-                    <a href="#">
-                        <x-logo-large class="max-w-xs" />
-                    </a>
+                    <x-logo-large class="max-w-xs" />
                     <p class="mt-3 text-sm text-gray-600 dark:text-gray-200">
                         {{ config('app.name') }} is not affiliated with Nintendo, Creatures Inc. or GAME FREAK Inc.
                     </p>

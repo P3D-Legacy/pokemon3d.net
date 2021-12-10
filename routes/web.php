@@ -35,6 +35,14 @@ Route::get('/redirect/forum', function () {
     return redirect('https://pokemon3d.net/forum/');
 })->name('forum');
 
+Route::get('/redirect/github', function () {
+    return redirect('https://github.com/P3D-Legacy');
+})->name('github');
+
+Route::get('/redirect/discord', function () {
+    return redirect(config('discord.invite_url'));
+})->name('discord');
+
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::resource('blog', BlogController::class);

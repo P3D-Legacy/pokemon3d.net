@@ -162,7 +162,7 @@
         </div>
 
         <div class="z-auto flex items-center content-end w-full mx-auto overflow-hidden">
-            <div class="flex flex-1 m-6 bg-white rounded-t rounded-b-lg shadow-xl browser-mockup with-url md:m-12 aspect-w-16 aspect-h-9">
+            <div class="flex flex-1 m-6 bg-white rounded-t rounded-b-lg shadow-xl browser-mockup with-url md:m-12 aspect-w-16 aspect-h-9 shadow-black/50">
                 {{-- <iframe class="object-cover object-center w-full h-full lg:w-full lg:h-full"  src="https://www.youtube.com/embed/hsnFgua89vQ?&autoplay=1" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
                 <img src="{{ asset('img/daniel_ingame.png') }}" class="object-cover object-center w-full h-full rounded-b-lg lg:w-full lg:h-full" /> --}}
                 <video muted controls class="object-cover object-center w-full h-full rounded-b-lg lg:w-full lg:h-full">

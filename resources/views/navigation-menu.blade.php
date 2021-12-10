@@ -182,7 +182,7 @@
                         </x-slot>
 
                         <x-slot name="content">
-                            <x-jet-dropdown-link href="{{ route('profile.show', auth()->user()) }}">
+                            <x-jet-dropdown-link href="{{ route('member.show', auth()->user()) }}">
                                 {{ __('Show Profile') }}
                             </x-jet-dropdown-link>
 
@@ -312,7 +312,7 @@
             </div>
             
             <div class="mt-3 space-y-1">
-                <x-jet-responsive-nav-link href="{{ route('profile.show', auth()->user()) }}">
+                <x-jet-responsive-nav-link href="{{ route('member.show', auth()->user()) }}">
                     {{ __('Show Profile') }}
                 </x-jet-responsive-nav-link>
 

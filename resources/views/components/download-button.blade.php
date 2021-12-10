@@ -1,5 +1,5 @@
 <div class="inline-block mt-2 md:mt-6">
-    <a href="{{ GitHubHelper::getDownloadUrl() }}" class="mx-auto lg:mx-0 font-extrabold rounded-lg py-4 px-8 shadow-xl w-76 inline-flex items-center justify-center  text-green-50 group-hover:text-green-100 bg-green-500 hover:bg-green-600 border border-green-400 transition transform hover:-translate-y-1 duration-150">
+    <a href="{{ GitHubHelper::getDownloadUrl() }}" class="mx-auto lg:mx-0 font-extrabold rounded-lg py-4 px-8 shadow-2xl w-76 inline-flex items-center justify-center  text-green-50 group-hover:text-green-100 bg-green-500 hover:bg-green-600 border border-green-400 transition hover:-translate-y-1 duration-150 shadow-black/50">
         {{--
             WINDOWS ICON
             

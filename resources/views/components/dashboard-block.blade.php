@@ -10,7 +10,7 @@
 
     <div class="inline-block mt-2 md:mt-6">
         <a href="{{ GitHubHelper::getDownloadUrl() }}" class="mt-4 group">
-            <div class="inline-flex items-center justify-center w-full px-5 py-3 font-medium leading-none transition duration-150 transform bg-green-700 border border-transparent rounded-lg shadow-sm sm:w-auto text-green-50 group-hover:text-green-100 hover:bg-green-800 group-hover:shadow-lg hover:-translate-y-1">
+            <div class="inline-flex items-center justify-center w-full px-5 py-3 font-medium leading-none transition duration-150 bg-green-700 border border-transparent rounded-lg shadow-sm sm:w-auto text-green-50 group-hover:text-green-100 hover:bg-green-800 group-hover:shadow-lg hover:-translate-y-1">
                 <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mr-3 text-opacity-50 transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                   </svg>

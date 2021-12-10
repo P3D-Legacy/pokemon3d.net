@@ -24,7 +24,7 @@
                 {{ config('app.name') }} has wonderful documentation covering every aspect of the game. Whether you're new to the game or have previous experience, we recommend reading all of the documentation from beginning to end.
             </div>
 
-            <a href="https://pokemon3d.net/wiki/">
+            <a href="{{ route('wiki') }}">
                 <div class="flex items-center mt-3 text-sm font-semibold text-green-700 dark:text-green-500">
                     <div>Explore the wiki</div>
 
@@ -49,7 +49,7 @@
                 Our forum offers a lot of threads of discussions, bugs and other information. Check them out, see for yourself, and massively level up your knowledge skills in the process.
             </div>
 
-            <a href="https://pokemon3d.net/forum/">
+            <a href="{{ route('forum') }}">
                 <div class="flex items-center mt-3 text-sm font-semibold text-green-700 dark:text-green-500">
                     <div>Start browsing</div>
 

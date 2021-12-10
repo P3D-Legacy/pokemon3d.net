@@ -27,6 +27,14 @@ use App\Http\Controllers\Skin\UploadedSkinController;
 |
 */
 
+Route::get('/redirect/wiki', function () {
+    return redirect('https://pokemon3d.net/wiki/');
+})->name('wiki');
+
+Route::get('/redirect/forum', function () {
+    return redirect('https://pokemon3d.net/forum/');
+})->name('forum');
+
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::resource('blog', BlogController::class);

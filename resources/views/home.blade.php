@@ -355,28 +355,18 @@
                     </p>
                     <p class="mt-3 text-xs text-gray-300 dark:text-gray-500"><a class="hover:underline" href="https://github.com/P3D-Legacy/pokemon3d.net/blob/main/CHANGELOG.md">{{ setting('APP_VERSION') ?? 'N/A' }}</a></p>
                 </div>
-
-                <div class="flex-1 px-3">
-                    <p class="font-extrabold text-gray-500 uppercase dark:text-gray-200 md:mb-6">Information</p>
-                    <ul class="mb-6 list-reset">
-                        <x-home.footer-link title="FAQ" url="#" />
-                        <x-home.footer-link title="Help" url="#" />
-                        <x-home.footer-link title="Support" url="#" />
-                    </ul>
-                </div>
                 <div class="flex-1 px-3">
                     <p class="font-extrabold text-gray-500 uppercase dark:text-gray-200 md:mb-6">Legal</p>
                     <ul class="mb-6 list-reset">
-                        <x-home.footer-link title="Terms of service" url="{{ route('terms.show') }}" />
+                        <x-home.footer-link title="Terms and Conditions" url="{{ route('terms.show') }}" />
                         <x-home.footer-link title="Privacy Policy" url="{{ route('policy.show') }}" />
                     </ul>
                 </div>
                 <div class="flex-1 px-3">
                     <p class="font-extrabold text-gray-500 uppercase dark:text-gray-200 md:mb-6">Social</p>
                     <ul class="mb-6 list-reset">
-                        <x-home.footer-link title="Facebook" url="#" />
-                        <x-home.footer-link title="Discord" url="#" />
-                        <x-home.footer-link title="Github" url="#" />
+                        <x-home.footer-link title="Discord" url="{{ route('discord') }}" />
+                        <x-home.footer-link title="Github" url="{{ route('github') }}" />
                     </ul>
                 </div>
                 <div class="flex-1 px-3">
@@ -385,8 +375,10 @@
                     </p>
                     <ul class="mb-6 list-reset">
                         <x-home.footer-link title="Official Blog" url="{{ route('blog.index') }}" />
-                        <x-home.footer-link title="About Us" url="#" />
-                        <x-home.footer-link title="Contact" url="#" />
+                        {{--
+                            <x-home.footer-link title="About Us" url="#" />
+                            <x-home.footer-link title="Contact" url="#" />
+                        --}}
                     </ul>
                 </div>
             </div>

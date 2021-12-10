@@ -9,7 +9,6 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Skin\SkinController;
 use App\Http\Controllers\PermissionController;
-use App\Http\Controllers\Skin\AuthGJController;
 use App\Http\Controllers\Skin\ImportController;
 use App\Http\Controllers\Auth\DiscordController;
 use App\Http\Controllers\Skin\SkinHomeController;

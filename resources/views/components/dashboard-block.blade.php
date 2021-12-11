@@ -1,10 +1,10 @@
-<div class="p-6 bg-white border-b border-gray-200 sm:px-20 dark:border-gray-700 dark:bg-gray-900">
+<div class="p-6 border-b border-gray-200 bg-spring sm:px-20 dark:border-gray-700 dark:bg-gray-900">
 
-    <div class="mt-8 font-mono text-3xl font-bold tracking-tighter dark:text-gray-50">
+    <div class="mt-8 font-mono text-3xl font-bold tracking-tighter text-gray-50">
         Welcome to {{ config('app.name') }}!
     </div>
 
-    <div class="mt-6 text-gray-500 dark:text-gray-300">
+    <div class="mt-6 text-gray-100">
         {{ config('app.name') }} is a video game originally created by Nilllzz. It is heavily inspired by Minecraft, and the Pokémon series. Pokémon 3D focused on the strong points of Pokémon Gold and Silver versions and their remakes, and gives players a taste as to how the once 2D world they knew was in 3D. They could even see through the eyes of their own trainer. We hope you love it.
     </div>
 

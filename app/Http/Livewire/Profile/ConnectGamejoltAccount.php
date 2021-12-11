@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Profile;
 
+use App\Achievements\User\AssociatedGamejolt;
 use Carbon\Carbon;
 use Livewire\Component;
 use App\Models\GamejoltAccount;
@@ -103,6 +104,9 @@ class ConnectGamejoltAccount extends Component
 
         // Update the user's (and other user's) GameJolt Account skin link.
         Artisan::call('p3d:skinuserupdate');
+
+        // Unlock achievement
+        $user->unlock(new AssociatedGamejolt());
 
         $this->username = $gamejolt->username;
         $this->token = $gamejolt->token;

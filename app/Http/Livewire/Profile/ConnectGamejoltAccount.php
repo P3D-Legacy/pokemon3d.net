@@ -58,7 +58,7 @@ class ConnectGamejoltAccount extends Component
 
         if (!$this->username && !$this->token) {
             $this->errorBag->add('success', 'Your GameJolt account has now been unlinked.');
-            Auth::user()->gamejolt->delete();
+            $user->gamejolt->delete();
             $this->updated_at = null;
             $this->verified_at = null;
             return;

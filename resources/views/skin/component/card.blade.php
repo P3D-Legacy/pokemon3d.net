@@ -4,7 +4,11 @@
     </div>
     <div class="w-3/4 p-4">
         <h1 class="text-2xl font-bold text-gray-900 break-all dark:text-gray-100">
-            <a href="{{ route('skin-show', $skin->uuid) }}">{{ $skin->name }}</a>
+            @if($skin->public)
+                <a href="{{ route('skin-show', $skin->uuid) }}">{{ $skin->name }}</a>
+            @else
+                {{ $skin->name }}
+            @endif
         </h1>
         <p class="mt-2 text-xs text-gray-600 dark:text-gray-200">
             @if(Auth::user()->gamejolt->id == $skin->owner_id)

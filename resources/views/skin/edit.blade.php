@@ -17,7 +17,7 @@
                             <x-jet-input-error for="name" class="mt-2" />
                         </div>
                         <div class="mt-6 mb-3">
-                            <<input class="text-green-600 border-gray-300 rounded shadow-sm focus:border-green-300 focus:ring focus:ring-offset-0 focus:ring-green-200 focus:ring-opacity-50" type="checkbox" id="checkPublic" name="public" @if (old('public') ?? $skin->public) {{'checked'}} @endif>
+                            <input class="text-green-600 border-gray-300 rounded shadow-sm focus:border-green-300 focus:ring focus:ring-offset-0 focus:ring-green-200 focus:ring-opacity-50" type="checkbox" id="checkPublic" name="public" @if (old('public') ?? $skin->public) {{'checked'}} @endif>
                             <label class="text-gray-700" for="checkPublic">Public <span class="ml-2 text-sm text-gray-500">Other users will be able to see this skin</span></label>
                             <x-jet-input-error for="public" class="mt-2" />
                         </div>

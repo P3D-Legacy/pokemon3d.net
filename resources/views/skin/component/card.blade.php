@@ -4,7 +4,11 @@
     </div>
     <div class="w-3/4 p-4">
         <h1 class="text-2xl font-bold text-gray-900 break-all dark:text-gray-100">
-            <a href="{{ route('skin-show', $skin->uuid) }}">{{ $skin->name }}</a>
+            @if($skin->public)
+                <a href="{{ route('skin-show', $skin->uuid) }}">{{ $skin->name }}</a>
+            @else
+                {{ $skin->name }}
+            @endif
         </h1>
         <p class="mt-2 text-xs text-gray-600 dark:text-gray-200">
             @if(Auth::user()->gamejolt->id == $skin->owner_id)
@@ -45,7 +49,7 @@
                     </button>
                 </form>
             @else
-                @if(!request()->is('skins/public/*'))
+                @if(!request()->is('skins/public/*') && $skin->public)
                     <a class="px-2 py-1 text-xs font-bold uppercase bg-blue-800 rounded text-blue-50" href="{{ route('skin-show', $skin->uuid) }}">
                         <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />

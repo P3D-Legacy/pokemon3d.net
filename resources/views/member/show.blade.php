@@ -24,6 +24,11 @@
                             --}}
                         </div>
                     </div>
+                    <div class="flex gap-2 mt-3">
+                        @foreach($user->unlockedAchievements() as $achievement)
+                            <x-achievement :achievement="$achievement" />
+                        @endforeach
+                    </div>
                     {{--
                         <div class="flex gap-8 pt-8">
                             <div class="flex flex-col">

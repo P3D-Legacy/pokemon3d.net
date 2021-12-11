@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Assada\Achievements\Achiever;
 use Laravel\Sanctum\HasApiTokens;
 use Origami\Consent\GivesConsent;
 use Laravel\Jetstream\HasProfilePhoto;
@@ -23,6 +24,7 @@ class User extends Authenticatable implements MustVerifyEmail
     use HasRoles;
     use GivesConsent;
     use Liker;
+    use Achiever;
 
     /**
      * The attributes that are mass assignable.

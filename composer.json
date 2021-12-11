@@ -13,6 +13,7 @@
     "require": {
         "php": "^8.0",
         "anlutro/l4-settings": "^1.0",
+        "assada/laravel-achievements": "^2.3",
         "betterapp/laravel-db-encrypter": "^1.0",
         "cyrildewit/eloquent-viewable": "^6.0",
         "doctrine/dbal": "^3.1",

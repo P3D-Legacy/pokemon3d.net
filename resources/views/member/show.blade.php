@@ -31,6 +31,7 @@
                     </div>
                     <div x-data="{ activeTab:2, tabs: [
                         { id: 2, label: 'Connected Accounts' },
+                        { id: 3, label: 'In-Game Trophies' },
                     ]}">
                         <ul class="flex items-center w-full my-4">
                             <template x-for="(tab, tab.id) in tabs" :key="tab.id">
@@ -78,6 +79,33 @@
                                             </div>
                                         </div>
                                     </div>
+                                @endif
+                            </div>
+                            <div x-show="activeTab===3">
+                                @if($user->gamejolt)
+                                    @if($user->gamejolt->trophies)
+                                        <div class="w-full mb-2 text-gray-800 dark:text-slate-200">Completed {{ $user->gamejolt->trophies->where('achieved', true)->count() }} of {{ $user->gamejolt->trophies->count() }} trophies</div>
+                                        <div class="grid grid-cols-2 gap-4">
+                                            @foreach ($user->gamejolt->trophies as $trophy)
+                                                <div class="flex flex-col items-center justify-center p-5 rounded-md shadow bg-gray-50 shrink dark:bg-black">
+                                                    <img src="{{ $trophy->image_url }}" alt="img" title="img" class="object-cover w-20 h-20 border-2 rounded-md {{ $trophy->difficulty=='Bronze' ? 'border-yellow-800' : '' }}{{ $trophy->difficulty=='Silver' ? 'border-slate-400' : '' }}{{ $trophy->difficulty=='Gold' ? 'border-yellow-500' : '' }}{{ $trophy->difficulty=='Platinum' ? 'border-slate-600' : '' }}">
+                                                    <h4 class="my-2 font-bold underline decoration-2 underline-offset-4 {{ $trophy->difficulty=='Bronze' ? 'text-yellow-800' : '' }}{{ $trophy->difficulty=='Silver' ? 'text-slate-400' : '' }}{{ $trophy->difficulty=='Gold' ? 'text-yellow-500' : '' }}{{ $trophy->difficulty=='Platinum' ? 'text-slate-600' : '' }}">
+                                                        @if($trophy->achieved)
+                                                            <span class="tooltip">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-5 h-5 text-green-500 dark:text-green-600" viewBox="0 0 20 20" fill="currentColor">
+                                                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                                                </svg>
+                                                                <span class="p-3 -mt-4 -ml-3 text-sm text-gray-900 bg-green-200 rounded tooltip-text">{{ __('Achieved') }}</span>
+                                                            </span>
+                                                        @endif{{ $trophy->title }}
+                                                    </h4>
+                                                    <div class="text-sm text-center">{{ $trophy->description }}</div>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    @else
+                                        {{ __('No Trophies') }}
+                                    @endif
                                 @endif
                             </div>
                         </div>

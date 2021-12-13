@@ -83,7 +83,7 @@
                             </div>
                             <div x-show="activeTab===3">
                                 @if($user->gamejolt)
-                                    @if($user->gamejolt->trophies)
+                                    @if($user->gamejolt->trophies->count() > 0)
                                         <div class="w-full mb-2 text-gray-800 dark:text-slate-200">Completed {{ $user->gamejolt->trophies->where('achieved', true)->count() }} of {{ $user->gamejolt->trophies->count() }} trophies</div>
                                         <div class="grid grid-cols-2 gap-4">
                                             @foreach ($user->gamejolt->trophies as $trophy)

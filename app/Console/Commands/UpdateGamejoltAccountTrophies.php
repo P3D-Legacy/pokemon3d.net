@@ -47,6 +47,9 @@ class UpdateGamejoltAccountTrophies extends Command
         foreach ($accounts as $account) {
             try {
                 $trophies = $api->trophies()->fetch($account->username, $account->token);
+                if ($trophies['response'] != 'success') {
+                    return;
+                }
                 $trophies = $trophies['response']['trophies'];
                 foreach ($trophies as $trophy) {
                     $account->trophies()->updateOrCreate(
@@ -65,6 +68,8 @@ class UpdateGamejoltAccountTrophies extends Command
                 }
             } catch (TimeOutException $e) {
                 $this->error("Timeout for {$account->username}");
+            } catch (\Exception $e) {
+                $this->error("Unknown Error: {$e->getMessage()}");
             }
         }
         return Command::SUCCESS;

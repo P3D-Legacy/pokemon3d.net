@@ -8370,16 +8370,16 @@
         },
         {
             "name": "spatie/laravel-health",
-            "version": "1.3.1",
+            "version": "1.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-health.git",
-                "reference": "ab630c1af9f4d7c200b2d2827d77d7176605ac49"
+                "reference": "0bb8b7c767aee34798c10139abf7e488089e4427"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-health/zipball/ab630c1af9f4d7c200b2d2827d77d7176605ac49",
-                "reference": "ab630c1af9f4d7c200b2d2827d77d7176605ac49",
+                "url": "https://api.github.com/repos/spatie/laravel-health/zipball/0bb8b7c767aee34798c10139abf7e488089e4427",
+                "reference": "0bb8b7c767aee34798c10139abf7e488089e4427",
                 "shasum": ""
             },
             "require": {
@@ -8451,7 +8451,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/laravel-health/issues",
-                "source": "https://github.com/spatie/laravel-health/tree/1.3.1"
+                "source": "https://github.com/spatie/laravel-health/tree/1.3.2"
             },
             "funding": [
                 {
@@ -8459,7 +8459,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-12-13T17:20:12+00:00"
+            "time": "2021-12-13T20:01:15+00:00"
         },
         {
             "name": "spatie/laravel-package-tools",

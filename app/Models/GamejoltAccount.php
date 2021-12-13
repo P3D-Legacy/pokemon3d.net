@@ -123,4 +123,12 @@ class GamejoltAccount extends Model
     {
         return $this->hasMany(GamejoltAccountBan::class, 'gamejoltaccount_id', 'id');
     }
+
+    /**
+     * Get the trophies that the user has.
+     */
+    public function trophies()
+    {
+        return $this->hasMany(GamejoltAccountTrophy::class, 'gamejolt_account_id', 'id')->orderBy('title', 'asc');
+    }
 }

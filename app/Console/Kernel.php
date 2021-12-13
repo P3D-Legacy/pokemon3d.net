@@ -27,6 +27,7 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('activitylog:clean')->daily();
         $schedule->command('p3d:skinuserupdate')->hourly();
+        $schedule->command('gj:update-trophies')->hourly();
         $schedule->command(RunHealthChecksCommand::class)->everyMinute();
     }
 

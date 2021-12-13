@@ -2,8 +2,15 @@
 
 namespace App\Providers;
 
+use Spatie\Health\Facades\Health;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
+use Spatie\CpuLoadHealthCheck\CpuLoadCheck;
+use Spatie\Health\Checks\Checks\DatabaseCheck;
+use Spatie\Health\Checks\Checks\ScheduleCheck;
+use Spatie\Health\Checks\Checks\DebugModeCheck;
+use Spatie\Health\Checks\Checks\EnvironmentCheck;
+use Spatie\Health\Checks\Checks\UsedDiskSpaceCheck;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -25,5 +32,17 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Paginator::useTailwind();
+
+        Health::checks([
+            DebugModeCheck::new(),
+            EnvironmentCheck::new(),
+            UsedDiskSpaceCheck::new(),
+            DatabaseCheck::new(),
+            ScheduleCheck::new(),
+            CpuLoadCheck::new()
+                ->failWhenLoadIsHigherInTheLast5Minutes(2.0)
+                ->failWhenLoadIsHigherInTheLast15Minutes(1.5),
+        ]);
+        
     }
 }

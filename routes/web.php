@@ -15,6 +15,7 @@ use App\Http\Controllers\Auth\DiscordController;
 use App\Http\Controllers\Skin\SkinHomeController;
 use App\Http\Controllers\Skin\PlayerSkinController;
 use App\Http\Controllers\Skin\UploadedSkinController;
+use Spatie\Health\Http\Controllers\HealthCheckResultsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -91,6 +92,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     });
 
     Route::prefix('admin')->middleware(['role:super-admin|admin'])->group(function () {
+        Route::get('health', HealthCheckResultsController::class);
         Route::resource('users', UserController::class);
         Route::resource('roles', RoleController::class);
         Route::resource('permissions', PermissionController::class);

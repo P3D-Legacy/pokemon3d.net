@@ -47,10 +47,13 @@ class UpdateGamejoltAccountTrophies extends Command
         foreach ($accounts as $account) {
             try {
                 $trophies = $api->trophies()->fetch($account->username, $account->token);
-                if ($trophies['response'] != 'success') {
+                if (filter_var($trophies['response']['success'], FILTER_VALIDATE_BOOLEAN) === false) {
+                    $this->error("No success for {$account->username}");
                     return;
                 }
                 $trophies = $trophies['response']['trophies'];
+                $trophy_count = count($trophies);
+                $this->info("Found {$trophy_count} for {$account->username}");
                 foreach ($trophies as $trophy) {
                     $account->trophies()->updateOrCreate(
                         [
@@ -66,12 +69,14 @@ class UpdateGamejoltAccountTrophies extends Command
                         ]
                     );
                 }
+                $this->info("Sync done for {$account->username}");
             } catch (TimeOutException $e) {
                 $this->error("Timeout for {$account->username}");
             } catch (\Exception $e) {
                 $this->error("Unknown Error: {$e->getMessage()}");
             }
         }
+        $this->info("Done.");
         return Command::SUCCESS;
     }
 }

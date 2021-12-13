@@ -29,30 +29,6 @@
                             <x-achievement :achievement="$achievement" />
                         @endforeach
                     </div>
-                    {{--
-                        <div class="flex gap-8 pt-8">
-                            <div class="flex flex-col">
-                                <div class="w-20 h-5 mb-1 bg-gray-200 border border-gray-300"></div>
-                                <div class="w-20 h-5 mb-1 bg-gray-200 border border-gray-300"></div>
-                            </div>
-                            <div class="flex flex-col">
-                                <div class="w-20 h-5 mb-1 bg-gray-200 border border-gray-300"></div>
-                                <div class="w-20 h-5 mb-1 bg-gray-200 border border-gray-300"></div>
-                            </div>
-                            <div class="flex flex-col">
-                                <div class="w-20 h-5 mb-1 bg-gray-200 border border-gray-300"></div>
-                                <div class="w-20 h-5 mb-1 bg-gray-200 border border-gray-300"></div>
-                            </div>
-                            <div class="flex flex-col">
-                                <div class="w-20 h-5 mb-1 bg-gray-200 border border-gray-300"></div>
-                                <div class="w-20 h-5 mb-1 bg-gray-200 border border-gray-300"></div>
-                            </div>
-                        </div>
-                        <div class="py-5 break-all">
-                            <div class="h-5 mb-1 bg-gray-200 border border-gray-300 w-44"></div>
-                            <div class="w-full h-40 mb-1 bg-gray-200 border border-gray-300"></div>
-                        </div>
-                    --}}
                     <div x-data="{ activeTab:2, tabs: [
                         { id: 2, label: 'Connected Accounts' },
                     ]}">

@@ -36,9 +36,10 @@ class AppServiceProvider extends ServiceProvider
         Health::checks([
             DebugModeCheck::new(),
             EnvironmentCheck::new(),
-            UsedDiskSpaceCheck::new(),
             DatabaseCheck::new(),
-            ScheduleCheck::new(),
+            UsedDiskSpaceCheck::new()
+                ->warnWhenUsedSpaceIsAbovePercentage(60)
+                ->failWhenUsedSpaceIsAbovePercentage(80),
             CpuLoadCheck::new()
                 ->failWhenLoadIsHigherInTheLast5Minutes(2.0)
                 ->failWhenLoadIsHigherInTheLast15Minutes(1.5),

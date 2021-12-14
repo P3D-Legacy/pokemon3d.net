@@ -28,12 +28,12 @@
 
                 <!-- Current Profile Photo -->
                 <div class="mt-2" x-show="! photoPreview">
-                    <img src="{{ $this->user->profile_photo_url }}" alt="{{ $this->user->name }}" class="rounded-full h-20 w-20 object-cover">
+                    <img src="{{ $this->user->profile_photo_url }}" alt="{{ $this->user->name }}" class="object-cover w-20 h-20 rounded-full">
                 </div>
 
                 <!-- New Profile Photo Preview -->
                 <div class="mt-2" x-show="photoPreview">
-                    <span class="block rounded-full w-20 h-20"
+                    <span class="block w-20 h-20 rounded-full"
                           x-bind:style="'background-size: cover; background-repeat: no-repeat; background-position: center center; background-image: url(\'' + photoPreview + '\');'">
                     </span>
                 </div>
@@ -52,25 +52,45 @@
             </div>
         @endif
 
-        <!-- Name -->
         <div class="col-span-6 sm:col-span-4">
             <x-jet-label for="name" value="{{ __('Name') }}" />
-            <x-jet-input id="name" type="text" class="mt-1 block w-full" wire:model.defer="state.name" autocomplete="name" />
+            <x-jet-input id="name" type="text" class="block w-full mt-1" wire:model.defer="state.name" autocomplete="name" />
             <x-jet-input-error for="name" class="mt-2" />
         </div>
 
-        <!-- Username -->
         <div class="col-span-6 sm:col-span-4">
             <x-jet-label for="username" value="{{ __('Username') }}" />
-            <x-jet-input id="username" type="text" class="mt-1 block w-full bg-gray-200" wire:model.defer="state.username" disabled />
+            <x-jet-input id="username" type="text" class="block w-full mt-1 bg-gray-200" wire:model.defer="state.username" disabled />
             <x-jet-input-error for="username" class="mt-2" />
         </div>
 
-        <!-- Email -->
         <div class="col-span-6 sm:col-span-4">
             <x-jet-label for="email" value="{{ __('Email') }}" />
-            <x-jet-input id="email" type="email" class="mt-1 block w-full" wire:model.defer="state.email" />
+            <x-jet-input id="email" type="email" class="block w-full mt-1" wire:model.defer="state.email" />
             <x-jet-input-error for="email" class="mt-2" />
+        </div>
+
+        <div class="col-span-6 sm:col-span-4">
+            <x-jet-label for="gender" value="{{ __('Gender') }}" />
+            <select id="gender" class="form-select appearance-none block w-full px-3 py-1.5 border-gray-300 focus:border-green-300 focus:ring focus:ring-green-200 focus:ring-opacity-50 rounded-md shadow-sm disabled:opacity-50 disabled:cursor-not-allowed dark:bg-black dark:text-white dark:border-gray-900" wire:model.defer="state.gender">
+                <option value="0" {{ $this->user->gender == 0 ? 'selected' : '' }}>No selection</option>
+                <option value="1" {{ $this->user->gender == 1 ? 'selected' : '' }}>Male</option>
+                <option value="2" {{ $this->user->gender == 2 ? 'selected' : '' }}>Female</option>
+                <option value="3" {{ $this->user->gender == 3 ? 'selected' : '' }}>Genderless</option>
+            </select>
+            <x-jet-input-error for="gender" class="mt-2" />
+        </div>
+
+        <div class="col-span-6 sm:col-span-4">
+            <x-jet-label for="location" value="{{ __('Location') }}" />
+            <x-jet-input id="location" type="text" class="block w-full mt-1" wire:model.defer="state.location" />
+            <x-jet-input-error for="location" class="mt-2" />
+        </div>
+
+        <div class="col-span-6 sm:col-span-4">
+            <x-jet-label for="about" value="{{ __('About') }}" />
+            <x-text-area id="about" class="block w-full mt-1" wire:model.defer="state.about" />
+            <x-jet-input-error for="about" class="mt-2" />
         </div>
     </x-slot>
 

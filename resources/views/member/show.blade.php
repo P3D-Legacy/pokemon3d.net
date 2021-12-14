@@ -46,6 +46,22 @@
                                 @if($user->gender)
                                     <div class="mb-2 font-medium underline decoration underline-offset-4">Gender</div>
                                     {{ $user->gender }}
+                                    @switch($user->gender)
+                                        @case(0)
+                                            <span>No selection</span>
+                                            @break
+                                        @case(1)
+                                            <span>Male</span>
+                                            @break
+                                        @case(2)
+                                            <span>Female</span>
+                                            @break
+                                        @case(3)
+                                            <span>Genderless</span>
+                                            @break
+                                        @default
+                                            <span>Unknown</span>
+                                    @endswitch
                                 @endif
                                 @if($user->location)
                                     <div class="mb-2 font-medium underline decoration underline-offset-4">Location</div>

@@ -18,9 +18,12 @@ module.exports = {
             fontFamily: {
                 sans: ['Nunito', ...defaultTheme.fontFamily.sans],
             },
-            backgroundImage: theme => ({
+            backgroundImage: {
                 'spring': "url('/img/spring.png')",
-            }),
+                'summer': "url('/img/summer.png')",
+                'fall': "url('/img/fall.png')",
+                'winter': "url('/img/winter.png')",
+            },
             colors: {
                 'gamejolt-green': '#ccff00',
             }

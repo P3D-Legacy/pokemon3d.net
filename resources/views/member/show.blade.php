@@ -40,12 +40,11 @@
                         <div class="flex w-full dark:text-slate-50">
                             <div x-show="activeTab===1">
                                 @if($user->about)
-                                    <div class="mb-2 font-medium underline decoration underline-offset-4">About</div>
+                                    <div class="mt-2 mb-1 font-medium underline decoration underline-offset-4">About</div>
                                     {{ $user->about }}
                                 @endif
                                 @if($user->gender)
-                                    <div class="mb-2 font-medium underline decoration underline-offset-4">Gender</div>
-                                    {{ $user->gender }}
+                                    <div class="mt-2 mb-1 font-medium underline decoration underline-offset-4">Gender</div>
                                     @switch($user->gender)
                                         @case(0)
                                             <span>No selection</span>
@@ -64,7 +63,7 @@
                                     @endswitch
                                 @endif
                                 @if($user->location)
-                                    <div class="mb-2 font-medium underline decoration underline-offset-4">Location</div>
+                                    <div class="mt-2 mb-1 font-medium underline decoration underline-offset-4">Location</div>
                                     {{ $user->location }}
                                 @endif
                                 @if($user->birthdate && $user->settings()->get('birthdate') || $user->birthdate && $user->settings()->get('age'))

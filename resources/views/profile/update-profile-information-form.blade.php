@@ -71,6 +71,12 @@
         </div>
 
         <div class="col-span-6 sm:col-span-4">
+            <x-jet-label for="birthdate" value="{{ __('Birthdate') }}" />
+            <x-jet-input id="birthdate" type="text" class="block w-full mt-1 flatpickrBirtdate" wire:model.defer="state.birthdate" />
+            <x-jet-input-error for="birthdate" class="mt-2" />
+        </div>
+
+        <div class="col-span-6 sm:col-span-4">
             <x-jet-label for="gender" value="{{ __('Gender') }}" />
             <select id="gender" class="form-select appearance-none block w-full px-3 py-1.5 border-gray-300 focus:border-green-300 focus:ring focus:ring-green-200 focus:ring-opacity-50 rounded-md shadow-sm disabled:opacity-50 disabled:cursor-not-allowed dark:bg-black dark:text-white dark:border-gray-900" wire:model.defer="state.gender">
                 <option value="0" {{ $this->user->gender == 0 ? 'selected' : '' }}>No selection</option>

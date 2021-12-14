@@ -2,9 +2,11 @@
 
 namespace App\Actions\Fortify;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Support\Facades\Validator;
+use App\Rules\OlderThan;
+use App\Rules\YoungerThan;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Laravel\Fortify\Contracts\UpdatesUserProfileInformation;
 
 class UpdateUserProfileInformation implements UpdatesUserProfileInformation
@@ -25,6 +27,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             'gender' => ['required', 'numeric'],
             'location' => ['nullable',  'max:255'],
             'about' => ['nullable',  'max:255'],
+            'birthdate' => ['required', 'date_format:Y-m-d', new OlderThan, new YoungerThan],
             'photo' => ['nullable', 'mimes:jpg,jpeg,png', 'max:1024'],
         ])->validateWithBag('updateProfileInformation');
 
@@ -42,6 +45,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
                 'gender' => $input['gender'],
                 'location' => $input['location'],
                 'about' => $input['about'],
+                'birthdate' => $input['birthdate'],
                 'email' => $input['email'],
             ])->save();
         }
@@ -62,6 +66,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             'gender' => $input['gender'],
             'location' => $input['location'],
             'about' => $input['about'],
+            'birthdate' => $input['birthdate'],
             'email' => $input['email'],
             'email_verified_at' => null,
         ])->save();

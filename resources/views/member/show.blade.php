@@ -17,7 +17,7 @@
                     <div class="text-2xl text-gray-800 dark:text-slate-200">{{ $user->name }}</div>
                     <div class="mt-2 text-sm text-gray-400">
                         <div class="flex flex-row items-center ml-auto space-x-2">
-                            <div>{{ __('Member since') }}: {{ $user->created_at->diffForHumans() }}</div>
+                            <div>{{ __('Joined') }}: {{ $user->created_at->diffForHumans() }}</div>
                             {{--
                                 <div class="w-1 h-1 bg-gray-300 rounded-full"></div>
                                 <div>{{ __('Last online') }}: {{ $user->created_at->diffForHumans() }}</div>
@@ -46,7 +46,7 @@
                                 @if($user->gamejolt)
                                     <div class="pt-2 mt-2 border-t border-slate-200 dark:border-slate-700">
                                         <img src="{{ asset('img/gamejolt-logo-light-1x.png') }}" class="inline-block">
-                                        <p>Username: {{ $user->gamejolt->username }}</p>
+                                        <p>Username: <a class="hover:underline hover:text-slate-300" href="https://gamejolt.com/{{ '@'.$user->gamejolt->username }}" target="_blank">{{ $user->gamejolt->username }}</a></p>
                                     </div>
                                 @endif
                                 @if($user->discord)

@@ -78,7 +78,7 @@
 
         <div class="col-span-6 sm:col-span-4">
             <x-jet-label for="gender" value="{{ __('Gender') }}" />
-            <select id="gender" class="form-select appearance-none block w-full px-3 py-1.5 border-gray-300 focus:border-green-300 focus:ring focus:ring-green-200 focus:ring-opacity-50 rounded-md shadow-sm disabled:opacity-50 disabled:cursor-not-allowed dark:bg-black dark:text-white dark:border-gray-900" wire:model.defer="state.gender">
+            <select id="gender" class="form-select appearance-none block w-full px-3 py-1.5 border-gray-300 focus:border-green-300 focus:ring focus:ring-green-200 focus:ring-opacity-50 rounded-md shadow-sm disabled:opacity-50 disabled:cursor-not-allowed dark:bg-black dark:text-white dark:border-gray-900 mt-1" wire:model.defer="state.gender">
                 <option value="0" {{ $this->user->gender == 0 ? 'selected' : '' }}>No selection</option>
                 <option value="1" {{ $this->user->gender == 1 ? 'selected' : '' }}>Male</option>
                 <option value="2" {{ $this->user->gender == 2 ? 'selected' : '' }}>Female</option>

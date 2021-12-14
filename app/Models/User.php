@@ -11,6 +11,7 @@ use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Glorand\Model\Settings\Traits\HasSettingsTable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -25,6 +26,7 @@ class User extends Authenticatable implements MustVerifyEmail
     use GivesConsent;
     use Liker;
     use Achiever;
+    use HasSettingsTable;
 
     /**
      * The attributes that are mass assignable.
@@ -72,6 +74,12 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     protected $appends = [
         'profile_photo_url',
+    ];
+
+    public $defaultSettings = [
+        'name' => true,
+        'birthdate' => false,
+        'age' => false,
     ];
 
     /**

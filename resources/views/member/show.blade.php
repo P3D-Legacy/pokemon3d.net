@@ -27,7 +27,8 @@
                             <x-achievement :achievement="$achievement" />
                         @endforeach
                     </div>
-                    <div x-data="{ activeTab:2, tabs: [
+                    <div x-data="{ activeTab:1, tabs: [
+                        { id: 1, label: 'About' },
                         { id: 2, label: 'Connected Accounts' },
                         { id: 3, label: 'In-Game Trophies' },
                     ]}">
@@ -38,7 +39,38 @@
                         </ul>
                         <div class="flex w-full dark:text-slate-50">
                             <div x-show="activeTab===1">
-                                {{ $user->about }}
+                                @if($user->about)
+                                    <div class="mb-2 font-medium underline decoration underline-offset-4">About</div>
+                                    {{ $user->about }}
+                                @endif
+                                @if($user->gender)
+                                    <div class="mb-2 font-medium underline decoration underline-offset-4">Gender</div>
+                                    {{ $user->gender }}
+                                    @switch($user->gender)
+                                        @case(0)
+                                            <span>No selection</span>
+                                            @break
+                                        @case(1)
+                                            <span>Male</span>
+                                            @break
+                                        @case(2)
+                                            <span>Female</span>
+                                            @break
+                                        @case(3)
+                                            <span>Genderless</span>
+                                            @break
+                                        @default
+                                            <span>Unknown</span>
+                                    @endswitch
+                                @endif
+                                @if($user->location)
+                                    <div class="mb-2 font-medium underline decoration underline-offset-4">Location</div>
+                                    {{ $user->location }}
+                                @endif
+                                @if($user->birthdate)
+                                    <div class="mb-2 font-medium underline decoration underline-offset-4">Birthdate</div>
+                                    {{ $user->birthdate }}
+                                @endif
                             </div>
                             <div x-show="activeTab===2">
                                 @if($user->gamejolt)

@@ -14,7 +14,7 @@
 
                 <div class="flex flex-col p-5 pt-20 bg-white border rounded-b-lg dark:bg-slate-900 border-slate-300 dark:border-slate-800">
                     <div class="text-4xl font-semibold text-gray-800 dark:text-slate-200">{{ $user->username }}</div>
-                    <div class="text-2xl text-gray-800 dark:text-slate-200">{{ $user->name }}</div>
+                    @if($user->settings()->get('name'))<div class="text-2xl text-gray-800 dark:text-slate-200">{{ $user->name }}</div>@endif
                     <div class="mt-2 text-sm text-gray-400">
                         <div class="flex flex-row items-center ml-auto space-x-2">
                             <div>{{ __('Joined') }}: {{ $user->created_at->diffForHumans() }}</div>
@@ -40,12 +40,11 @@
                         <div class="flex w-full dark:text-slate-50">
                             <div x-show="activeTab===1">
                                 @if($user->about)
-                                    <div class="mb-2 font-medium underline decoration underline-offset-4">About</div>
+                                    <div class="mt-2 mb-1 font-medium underline decoration underline-offset-4">About</div>
                                     {{ $user->about }}
                                 @endif
                                 @if($user->gender)
-                                    <div class="mb-2 font-medium underline decoration underline-offset-4">Gender</div>
-                                    {{ $user->gender }}
+                                    <div class="mt-2 mb-1 font-medium underline decoration underline-offset-4">Gender</div>
                                     @switch($user->gender)
                                         @case(0)
                                             <span>No selection</span>
@@ -64,12 +63,13 @@
                                     @endswitch
                                 @endif
                                 @if($user->location)
-                                    <div class="mb-2 font-medium underline decoration underline-offset-4">Location</div>
+                                    <div class="mt-2 mb-1 font-medium underline decoration underline-offset-4">Location</div>
                                     {{ $user->location }}
                                 @endif
-                                @if($user->birthdate)
-                                    <div class="mb-2 font-medium underline decoration underline-offset-4">Birthdate</div>
-                                    {{ $user->birthdate }}
+                                @if($user->birthdate && $user->settings()->get('birthdate') || $user->birthdate && $user->settings()->get('age'))
+                                    <div class="mt-2 mb-1 font-medium underline decoration underline-offset-4">Birthday</div>
+                                    <div>{{ $user->settings()->get('birthdate') ? $user->birthdate->format('d M Y') :'' }}</div>
+                                    <div>{{ $user->settings()->get('age') ? $user->birthdate->age.' years old' : '' }}</div>
                                 @endif
                             </div>
                             <div x-show="activeTab===2">

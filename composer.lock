@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "eaa1fe7d68f97405585276cd759a6e64",
+    "content-hash": "ecd405b91581ce69304bd7db1344209f",
     "packages": [
         {
             "name": "anlutro/l4-settings",
@@ -2470,6 +2470,76 @@
                 "source": "https://github.com/gabrielelana/byte-units/tree/master"
             },
             "time": "2018-01-11T10:40:03+00:00"
+        },
+        {
+            "name": "glorand/laravel-model-settings",
+            "version": "4.4.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/glorand/laravel-model-settings.git",
+                "reference": "da46f689dd8120b9f2c92706cbbf0ef3a74525c1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/glorand/laravel-model-settings/zipball/da46f689dd8120b9f2c92706cbbf0ef3a74525c1",
+                "reference": "da46f689dd8120b9f2c92706cbbf0ef3a74525c1",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "illuminate/cache": "^7.0|^8.0",
+                "illuminate/config": "^7.0|^8.0",
+                "illuminate/console": "^7.0|^8.0",
+                "illuminate/database": "^7.0|^8.0",
+                "illuminate/filesystem": "^7.0|^8.0",
+                "illuminate/support": "^7.0|^8.0",
+                "php": ">=7.3"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.16@dev",
+                "josiasmontag/laravel-redis-mock": "^1.2",
+                "orchestra/testbench": "^5.0|^6.0",
+                "phpunit/phpunit": "^8.0|^9.0"
+            },
+            "suggest": {
+                "predis/predis": "Required to use settings with Redis"
+            },
+            "type": "laravel-package",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Glorand\\Model\\Settings\\ModelSettingsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Glorand\\Model\\Settings\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Lorand Gombos",
+                    "email": "gombos.lorand@gmail.com"
+                }
+            ],
+            "description": "Model Settings for your Laravel app",
+            "keywords": [
+                "Settings",
+                "glorand",
+                "laravel",
+                "laravel-model-settings",
+                "laravel-settings"
+            ],
+            "support": {
+                "issues": "https://github.com/glorand/laravel-model-settings/issues",
+                "source": "https://github.com/glorand/laravel-model-settings/tree/4.4.1"
+            },
+            "time": "2021-11-12T22:41:02+00:00"
         },
         {
             "name": "goldspecdigital/laravel-eloquent-uuid",

@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 <a name="0.4.0"></a>
 
+## 0.4.2 - 2021-12-29
+
+## What's Changed
+
+- Bump Dependencies by @DanielRTRD in https://github.com/P3D-Legacy/pokemon3d.net/pull/91
+
+**Full Changelog**: https://github.com/P3D-Legacy/pokemon3d.net/compare/0.4.1...0.4.2
+
 ## 0.4.1 - 2021-12-29
 
 ## What's Changed

@@ -1,3 +1,6 @@
+# Changelog
+
+All notable changes to this project will be documented in this file.
 
 <a name="0.4.0"></a>
 ## [0.4.0](https://github.com/P3D-Legacy/skin.pokemon3d.net/compare/0.3.7...0.4.0) (2021-07-08)

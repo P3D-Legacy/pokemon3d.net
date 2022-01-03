@@ -114,4 +114,12 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasOne(TwitterAccount::class);
     }
+
+    /**
+     * Get the facebook account associated with the user.
+     */
+    public function facebook()
+    {
+        return $this->hasOne(FacebookAccount::class);
+    }
 }

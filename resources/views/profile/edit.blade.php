@@ -33,6 +33,11 @@
                 <x-jet-section-border />
             @endif
 
+            @if(config("services.facebook.client_id") && config("services.facebook.client_secret"))
+                @livewire('profile.facebook-account')
+                <x-jet-section-border />
+            @endif
+
             @livewire('profile.preference')
             <x-jet-section-border />
 

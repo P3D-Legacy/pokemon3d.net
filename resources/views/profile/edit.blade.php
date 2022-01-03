@@ -28,6 +28,11 @@
                 <x-jet-section-border />
             @endif
 
+            @if(config("services.twitter.client_id") && config("services.twitter.client_secret"))
+                @livewire('profile.twitter-account')
+                <x-jet-section-border />
+            @endif
+
             @livewire('profile.preference')
             <x-jet-section-border />
 

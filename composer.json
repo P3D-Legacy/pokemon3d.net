@@ -42,6 +42,7 @@
         "power-components/livewire-powergrid": "^1.5",
         "restcord/restcord": "dev-develop",
         "sentry/sentry-laravel": "^2.5",
+        "socialiteproviders/twitter": "^4.1",
         "spatie/cpu-load-health-check": "^1.0",
         "spatie/laravel-activitylog": "^3.16",
         "spatie/laravel-cookie-consent": "^2.12",

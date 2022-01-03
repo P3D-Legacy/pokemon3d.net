@@ -106,4 +106,12 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasOne(ForumAccount::class);
     }
+
+    /**
+     * Get the twitter account associated with the user.
+     */
+    public function twitter()
+    {
+        return $this->hasOne(TwitterAccount::class);
+    }
 }

@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Models\User;
 use App\Models\DiscordAccount;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use App\Actions\Fortify\CreateNewUser;
 use Laravel\Socialite\Facades\Socialite;
 use GuzzleHttp\Exception\ClientException;
 use App\Achievements\User\AssociatedDiscord;

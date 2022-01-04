@@ -21,7 +21,7 @@
 					<svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
 					</svg>
-					This new website has now a own authentication. Please <a class="font-bold hover:underline" href="{{ env('LOGIN_AUTH_BLOG_POST') ?? route('blog.index') }}">read the blog post</a> for more information!
+					This new website has now a own authentication. Please <a class="font-bold hover:underline" href="{{ env('LOGIN_AUTH_BLOG_POST') ?? route('blog.index') }}">read this blog post</a> for more information!
 				</p>
 			</div>
 
@@ -129,7 +129,7 @@
 				</svg>
 			</a>
 		</div>
-		<p class="p-0 mx-8 mt-3 text-xs text-center text-gray-400 dark:text-gray-600">These login method requires you to have a P3D account with a association to the accounts above.</p>
+		<p class="p-0 mx-8 mt-3 text-xs text-center text-gray-400 dark:text-gray-600">These login method requires you to have a P3D account with a association with the social account.</p>
 	</x-jet-authentication-card>
 
 	<div class="fixed inset-0 z-50 items-center justify-center hidden overflow-x-hidden overflow-y-auto outline-none focus:outline-none" id="xenforo">

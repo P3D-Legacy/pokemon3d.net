@@ -129,7 +129,7 @@
 				</svg>
 			</a>
 		</div>
-		<p class="p-0 mx-8 mt-3 text-xs text-center text-gray-400 dark:text-gray-600">These login method requires you to have a P3D account with a association with the social account.</p>
+		<p class="p-0 mx-8 mt-3 text-xs text-center text-gray-400 dark:text-gray-600">These login methods requires you to have a P3D account with a association to the social account.</p>
 	</x-jet-authentication-card>
 
 	<div class="fixed inset-0 z-50 items-center justify-center hidden overflow-x-hidden overflow-y-auto outline-none focus:outline-none" id="xenforo">

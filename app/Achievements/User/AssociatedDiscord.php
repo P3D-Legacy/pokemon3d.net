@@ -20,7 +20,7 @@ class AssociatedDiscord extends Achievement
     /*
      * A small description for the achievement
      */
-    public $description = 'User associated their account with a Discord';
+    public $description = 'User associated their account with Discord';
 
     /*
      * The amount of "points" this user need to obtain in order to complete this achievement

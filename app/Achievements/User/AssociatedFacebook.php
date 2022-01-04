@@ -20,5 +20,10 @@ class AssociatedFacebook extends Achievement
     /*
      * A small description for the achievement
      */
-    public $description = '';
+    public $description = 'User associated their account with Facebook.';
+
+    /*
+     * The amount of "points" this user need to obtain in order to complete this achievement
+     */
+    public $points = 1;
 }

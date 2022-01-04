@@ -146,6 +146,21 @@
                                         </div>
                                     </div>
                                 @endif
+                                @if($user->twitch)
+                                    <div class="pt-2 mt-2 border-t border-slate-200 dark:border-slate-700">
+                                        <svg class="inline-block w-auto h-10 mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                                            <path d="M5.7 0L1.4 10.985V55.88h15.284V64h8.597l8.12-8.12h12.418l16.716-16.716V0H5.7zm51.104 36.3L47.25 45.85H31.967l-8.12 8.12v-8.12H10.952V5.73h45.85V36.3zM47.25 16.716v16.716h-5.73V16.716h5.73zm-15.284 0v16.716h-5.73V16.716h5.73z" fill="currentColor" fill-rule="evenodd"/>
+                                        </svg> Twitch
+                                        <div class="flex mb-5 text-gray-600 bg-white rounded shadow dark:text-gray-200 dark:bg-black w-max">
+                                            <div class="self-center p-2 pr-1">
+                                                <img data="picture" class="w-12 h-12 rounded-full" src="{{ $user->twitch->avatar }}" alt="{{ $user->twitch->name }}" />
+                                            </div>
+                                            <div class="self-center w-64 p-2">
+                                                <a class="hover:underline" href="https://twitch.tv/{{ $user->twitch->username }}">{{ $user->twitch->name }}</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endif
                             </div>
                             <div x-show="activeTab===3">
                                 @if($user->gamejolt)

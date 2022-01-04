@@ -43,6 +43,7 @@
         "restcord/restcord": "dev-develop",
         "sentry/sentry-laravel": "^2.5",
         "socialiteproviders/facebook": "^4.1",
+        "socialiteproviders/twitch": "^5.3",
         "socialiteproviders/twitter": "^4.1",
         "spatie/cpu-load-health-check": "^1.0",
         "spatie/laravel-activitylog": "^3.16",

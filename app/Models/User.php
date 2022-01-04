@@ -122,4 +122,12 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasOne(FacebookAccount::class);
     }
+
+    /**
+     * Get the facebook account associated with the user.
+     */
+    public function twitch()
+    {
+        return $this->hasOne(TwitchAccount::class);
+    }
 }

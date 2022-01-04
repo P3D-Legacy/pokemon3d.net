@@ -123,6 +123,11 @@
 					</g>
 				</svg>
 			</a>
+			<a href="{{ route('twitch.login') }}" class="flex items-center justify-center w-full px-4 py-2 mt-2 text-sm font-semibold tracking-widest text-white transition border border-transparent rounded-md bg-violet-600 hover:bg-violet-700 active:bg-violet-400 focus:outline-none focus:border-violet-900 focus:ring focus:ring-violet-300 disabled:opacity-25">
+				<svg class="inline-block w-auto h-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+					<path d="M5.7 0L1.4 10.985V55.88h15.284V64h8.597l8.12-8.12h12.418l16.716-16.716V0H5.7zm51.104 36.3L47.25 45.85H31.967l-8.12 8.12v-8.12H10.952V5.73h45.85V36.3zM47.25 16.716v16.716h-5.73V16.716h5.73zm-15.284 0v16.716h-5.73V16.716h5.73z" fill="currentColor" fill-rule="evenodd"/>
+				</svg>
+			</a>
 		</div>
 		<p class="p-0 mx-8 mt-3 text-xs text-center text-gray-400 dark:text-gray-600">These login method requires you to have a P3D account with a association to the accounts above.</p>
 	</x-jet-authentication-card>

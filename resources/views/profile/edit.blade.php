@@ -38,6 +38,11 @@
                 <x-jet-section-border />
             @endif
 
+            @if(config("services.twitch.client_id") && config("services.twitch.client_secret"))
+                @livewire('profile.twitch-account')
+                <x-jet-section-border />
+            @endif
+
             @livewire('profile.preference')
             <x-jet-section-border />
 

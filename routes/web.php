@@ -10,6 +10,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\Skin\SkinController;
 use App\Http\Controllers\PermissionController;
+use App\Http\Controllers\Auth\TwitchController;
 use App\Http\Controllers\Skin\ImportController;
 use App\Http\Controllers\Auth\DiscordController;
 use App\Http\Controllers\Auth\TwitterController;
@@ -57,6 +58,8 @@ Route::group(['prefix' => 'login'], function () {
     Route::get('/twitter/callback', [TwitterController::class, 'handleProviderCallback']);
     Route::get('/facebook', [FacebookController::class, 'redirectToProvider'])->name('facebook.login');
     Route::get('/facebook/callback', [FacebookController::class, 'handleProviderCallback']);
+    Route::get('/twitch', [TwitchController::class, 'redirectToProvider'])->name('twitch.login');
+    Route::get('/twitch/callback', [TwitchController::class, 'handleProviderCallback']);
 });
 
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {

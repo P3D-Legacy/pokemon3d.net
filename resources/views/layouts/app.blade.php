@@ -88,7 +88,6 @@
         @include('cookieConsent::index')
 
         @livewireScripts
-        @powerGridScripts
 
         <script>
             document.getElementById('switchTheme').addEventListener('click', function() {

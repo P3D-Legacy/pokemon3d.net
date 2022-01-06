@@ -128,7 +128,7 @@
                 </div>
             @else
                 <div class="flex items-center mt-2">
-                    <a href="#" class="flex">
+                    <a href="{{ route('member.show', $this->server->user) }}" class="flex">
                         <div class="relative inline-block">
                             <img alt="{{ $this->server->user->name }}" src="{{ $this->server->user->profile_photo_url ?? asset('img/TreeLogoSmall.png') }}" class="object-cover w-5 h-5 mx-auto rounded-full "/>
                         </div>

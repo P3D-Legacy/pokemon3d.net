@@ -12,7 +12,7 @@ class PingServer extends Command
      *
      * @var string
      */
-    protected $signature = 'ping:server {uuid} {reactivate=false}';
+    protected $signature = 'server:ping {uuid} {reactivate=false}';
 
     /**
      * The console command description.
@@ -49,7 +49,7 @@ class PingServer extends Command
 
         $starttime = microtime(true);
         // supress error messages with @
-        $connection = @fsockopen($server->host, $server->port, $timeout=2);
+        $connection = @fsockopen($server->host, $server->port, $errno, $errstr, 2);
         $stoptime = microtime(true);
         $ping = 0;
 

@@ -16,7 +16,7 @@ class ServerCreateForm extends Component
     public $description;
 
     /**
-     * Update the user's GameJolt Account credentials.
+     * Create a server.
      *
      * @return void
      */

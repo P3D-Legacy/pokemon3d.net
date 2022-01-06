@@ -55,9 +55,11 @@ class ServerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Server $server)
     {
-        //
+        abort_if(!$server, 404);
+        abort_if(!$server->user_id == auth()->user()->id, 403);
+        return view('server.edit', compact('server'));
     }
 
     /**

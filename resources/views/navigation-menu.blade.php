@@ -134,6 +134,11 @@
                                             {{ __('Tags') }}
                                         </x-jet-dropdown-link>
                                     @endcanany
+                                    @canany(['stats'])
+                                        <x-jet-dropdown-link href="{{ route('stats.index') }}">
+                                            {{ __('Stats') }}
+                                        </x-jet-dropdown-link>
+                                    @endcanany
                                     @canany(['manage.users','manage.roles','manage.permissions']) 
                                         <div class="block px-4 py-2 text-xs text-gray-400">
                                             {{ __('User Management') }}

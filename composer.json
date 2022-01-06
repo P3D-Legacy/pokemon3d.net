@@ -50,6 +50,7 @@
         "spatie/laravel-cookie-consent": "^2.12",
         "spatie/laravel-health": "^1.3",
         "spatie/laravel-permission": "^4.2",
+        "spatie/laravel-stats": "^1.0",
         "spatie/laravel-tags": "^3.1",
         "wulfheart/pretty_routes": "^0.3.0"
     },

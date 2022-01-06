@@ -26,7 +26,8 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('activitylog:clean')->daily();
-        $schedule->command('p3d:skinuserupdate')->hourly();
+        $schedule->command('p3d:skinuserupdate')->hourlyAt(10);
+        $schedule->command('server:pingall')->hourly();
         $schedule->command('gj:update-trophies')->hourly();
         $schedule->command(RunHealthChecksCommand::class)->everyMinute();
     }

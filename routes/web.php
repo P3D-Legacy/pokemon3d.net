@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ServerController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\Skin\SkinController;
 use App\Http\Controllers\PermissionController;
@@ -67,6 +68,8 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
+    Route::resource('server', ServerController::class);
     
     Route::get('/member/{user}', [MemberController::class, 'show'])->name('member.show');
     

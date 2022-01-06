@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Spatie\Tags\HasTags;
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 use Overtrue\LaravelLike\Traits\Likeable;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -17,19 +18,23 @@ class Post extends Model implements Viewable
     use InteractsWithViews;
     use Likeable;
     use SoftDeletes;
-    use Uuid;
     use HasTags;
 
     protected $removeViewsOnDelete = true;
 
-    /**
-     * Get the route key for the model.
-     *
-     * @return string
-     */
-    public function getRouteKeyName()
+    public static function boot()
     {
-        return 'uuid';
+        parent::boot();
+
+        self::creating(function ($model) {
+            $model->uuid = Str::uuid()->toString();
+        });
+
+        self::updating(function ($model) {
+            if (!$model->uuid) {
+                $model->uuid = Str::uuid()->toString();
+            }
+        });
     }
 
     /**
@@ -42,7 +47,18 @@ class Post extends Model implements Viewable
         'slug',
         'body',
         'active',
+        'sticky',
+        'published_at',
         'user_id',
+    ];
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'published_at' => 'datetime',
     ];
 
     /**

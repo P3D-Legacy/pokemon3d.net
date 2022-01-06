@@ -3,7 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\Skin;
-use App\Models\GameJoltAccount;
+use App\Models\GamejoltAccount;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 
@@ -42,7 +42,7 @@ class SkinUserUpdate extends Command
     {
         $skins = Skin::where('user_id', null)->get();
         foreach ($skins as $skin) {
-            $gja = GameJoltAccount::where('id', $skin->owner_id)->first();
+            $gja = GamejoltAccount::where('id', $skin->owner_id)->first();
             if ($gja) {
                 $skin->update(['user_id' => $gja->user_id]);
                 $this->info('Skin #' . $skin->id . ' updated.');

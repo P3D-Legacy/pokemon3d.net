@@ -13,7 +13,7 @@
 						@csrf
 						@method("PUT")
 						<div class="flex flex-wrap mb-6">
-							<div class="w-full px-3 mb-6 md:w-4/5 md:mb-0">
+							<div class="w-full px-3 mb-6 md:w-2/5 md:mb-0">
 								<label for="title" class="block mb-1 text-gray-700">Title</label>
 								<input id="title" name="title" type="text" class="w-full h-10 px-3 mb-2 text-base text-gray-700 placeholder-gray-600 border rounded-lg focus:shadow-outline" value="{{ old('title') ? old('title') : $post->title }}">
                                 @error('title')
@@ -21,17 +21,39 @@
                                 @enderror
 							</div>
 							<div class="w-full px-3 mb-6 md:w-1/5 md:mb-0">
-								<label for="active" class="block mb-1 text-gray-700">Published?</label>
+								<label for="published_at" class="block mb-1 text-gray-700">Published At</label>
+								<input id="published_at" name="published_at" type="text" class="w-full h-10 px-3 mb-2 text-base text-gray-700 placeholder-gray-600 border rounded-lg focus:shadow-outline flatpickrSelector" value="{{ old('published_at') ? old('published_at') : $post->published_at }}">
+								@error('published_at')
+                                    <span class="text-xs text-red-700">{{ $message }}</span>
+                                @enderror
+							</div>
+							<div class="w-full px-3 mb-6 md:w-1/5 md:mb-0">
+								<label for="active" class="block mb-1 text-gray-700">Draft?</label>
 								<div class="relative inline-block w-full text-gray-700">
 									<select class="w-full h-10 pl-3 pr-6 text-base placeholder-gray-600 border rounded-lg appearance-none focus:shadow-outline" id="active" name="active">
-										<option value="0" {{ !$post->active ? 'selected' : '' }}>No</option>
-										<option value="1" {{ $post->active ? 'selected' : '' }}>Yes</option>
+										<option value="0" {{ !$post->active ? 'selected' : '' }}>Yes</option>
+										<option value="1" {{ $post->active ? 'selected' : '' }}>No</option>
 									</select>
 									<div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
 										<svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" fill-rule="evenodd"></path></svg>
 									</div>
 								</div>
                                 @error('active')
+                                    <span class="text-xs text-red-700">{{ $message }}</span>
+                                @enderror
+							</div>
+							<div class="w-full px-3 mb-6 md:w-1/5 md:mb-0">
+								<label for="sticky" class="block mb-1 text-gray-700">Sticky?</label>
+								<div class="relative inline-block w-full text-gray-700">
+									<select class="w-full h-10 pl-3 pr-6 text-base placeholder-gray-600 border rounded-lg appearance-none focus:shadow-outline" id="sticky" name="sticky">
+										<option value="0" {{ !$post->sticky ? 'selected' : '' }}>No</option>
+										<option value="1" {{ $post->sticky ? 'selected' : '' }}>Yes</option>
+									</select>
+									<div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+										<svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" fill-rule="evenodd"></path></svg>
+									</div>
+								</div>
+                                @error('sticky')
                                     <span class="text-xs text-red-700">{{ $message }}</span>
                                 @enderror
 							</div>

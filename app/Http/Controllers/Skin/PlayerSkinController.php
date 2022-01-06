@@ -76,6 +76,7 @@ class PlayerSkinController extends Controller
         $old_filename = $gjid.'.png';
         $skin = Skin::create([
             'owner_id' => $gjid,
+            'user_id' => auth()->user()->id,
             'name' => 'Import: '.$gjid,
         ]);
         $new_filename = $skin->uuid.'.png';

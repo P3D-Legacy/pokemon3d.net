@@ -2,11 +2,13 @@ const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
     mode: 'jit',
-    purge: [
+    content: [
         './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
         './vendor/laravel/jetstream/**/*.blade.php',
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php',
+        './vendor/power-components/livewire-powergrid/resources/views/**/*.blade.php',
+        './vendor/power-components/livewire-powergrid/src/Themes/Tailwind.php',
     ],
 
     darkMode: 'class',
@@ -16,9 +18,12 @@ module.exports = {
             fontFamily: {
                 sans: ['Nunito', ...defaultTheme.fontFamily.sans],
             },
-            backgroundImage: theme => ({
+            backgroundImage: {
                 'spring': "url('/img/spring.png')",
-            }),
+                'summer': "url('/img/summer.png')",
+                'fall': "url('/img/fall.png')",
+                'winter': "url('/img/winter.png')",
+            },
             colors: {
                 'gamejolt-green': '#ccff00',
             }
@@ -29,7 +34,9 @@ module.exports = {
     },
 
     plugins: [
-        require('@tailwindcss/forms'),
+        require("@tailwindcss/forms")({
+            strategy: 'class',
+        }),
         require('@tailwindcss/typography'),
         require('@tailwindcss/aspect-ratio'),
         require('tailwindcss-debug-screens'),

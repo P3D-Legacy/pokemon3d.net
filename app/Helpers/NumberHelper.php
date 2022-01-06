@@ -4,7 +4,6 @@ namespace App\Helpers;
 
 class NumberHelper
 {
-    private $githubData;
 
     public function __construct()
     {

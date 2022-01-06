@@ -15,12 +15,30 @@
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('skin-home') }}">
-                        {{ __('Skin') }}
-                    </x-jet-nav-link>
                     <x-jet-nav-link href="{{ route('server.index') }}" :active="request()->routeIs('server.*')">
                         {{ __('Servers') }}
                     </x-jet-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-dropdown :active="request()->routeIs('skin*')">
+                        <x-slot name="trigger">
+                            {{ __('Skin') }}
+                        </x-slot>
+                        <x-slot name="content">
+                            <x-jet-dropdown-link href="{{ route('skin-home') }}">
+                                {{ __('My Skins') }}
+                            </x-jet-dropdown-link>
+                            <div class="block px-4 py-2 text-xs text-gray-400">
+                                {{ __('Public') }}
+                            </div>
+                            <x-jet-dropdown-link href="{{ route('skins-popular') }}">
+                                {{ __('Most Popular') }}
+                            </x-jet-dropdown-link>
+                            <x-jet-dropdown-link href="{{ route('skins-newest') }}">
+                                {{ __('Newest') }}
+                            </x-jet-dropdown-link>
+                        </x-slot>
+                    </x-nav-dropdown>
                 </div>
             </div>
 
@@ -167,13 +185,17 @@
                         </x-slot>
 
                         <x-slot name="content">
+                            <x-jet-dropdown-link href="{{ route('member.show', auth()->user()) }}">
+                                {{ __('Show Profile') }}
+                            </x-jet-dropdown-link>
+
                             <!-- Account Management -->
                             <div class="block px-4 py-2 text-xs text-gray-400">
                                 {{ __('Manage Account') }}
                             </div>
 
                             <x-jet-dropdown-link href="{{ route('profile.show') }}">
-                                {{ __('Profile') }}
+                                {{ __('Edit Profile') }}
                             </x-jet-dropdown-link>
 
                             @if (Laravel\Jetstream\Jetstream::hasApiFeatures() && auth()->user()->can('api'))
@@ -217,11 +239,17 @@
             <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-jet-responsive-nav-link>
+            <x-jet-responsive-nav-link href="{{ route('server.index') }}" :active="request()->routeIs('server.*')">
+                {{ __('Servers') }}
+            </x-jet-responsive-nav-link>
             <x-jet-responsive-nav-link href="{{ route('skin-home') }}" :active="request()->routeIs('skin-home')">
                 {{ __('Skin') }}
             </x-jet-responsive-nav-link>
-            <x-jet-responsive-nav-link href="{{ route('server.index') }}" :active="request()->routeIs('server.*')">
-                {{ __('Servers') }}
+            <x-jet-responsive-nav-link href="{{ route('skins-popular') }}" :active="request()->routeIs('skins-popular')">
+                {{ __('Most Popular') }} {{ __('Skin') }}
+            </x-jet-responsive-nav-link>
+            <x-jet-responsive-nav-link href="{{ route('skins-newest') }}" :active="request()->routeIs('skins-newest')">
+                {{ __('Newest') }} {{ __('Skin') }}
             </x-jet-responsive-nav-link>
         </div>
 
@@ -296,9 +324,13 @@
             </div>
             
             <div class="mt-3 space-y-1">
+                <x-jet-responsive-nav-link href="{{ route('member.show', auth()->user()) }}">
+                    {{ __('Show Profile') }}
+                </x-jet-responsive-nav-link>
+
                 <!-- Account Management -->
                 <x-jet-responsive-nav-link href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')">
-                    {{ __('Profile') }}
+                    {{ __('Edit Profile') }}
                 </x-jet-responsive-nav-link>
 
                 @if (Laravel\Jetstream\Jetstream::hasApiFeatures())

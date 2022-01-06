@@ -25,7 +25,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::orderByDesc('updated_at')->paginate(10);
+        $posts = Post::orderByDesc('created_at')->paginate(10);
         return view('posts.index', ['posts' => $posts]);
     }
 
@@ -51,6 +51,8 @@ class PostController extends Controller
         $request->validate([
             'title' => ['required', 'string', 'max:255', 'unique:posts,title'],
             'active' => ['required', 'integer'],
+            'sticky' => ['required', 'integer'],
+            'published_at' => ['required', 'date_format:Y-m-d H:i:s'],
             'body' => ['required', 'string', 'min:25'],
         ]);
 
@@ -58,6 +60,8 @@ class PostController extends Controller
         $post->title = $request->title;
         $post->body = $request->body;
         $post->active = $request->active;
+        $post->sticky = $request->sticky;
+        $post->published_at = $request->published_at;
         $post->slug = Str::of($post->title)->slug('-');
         $post->user_id = auth()->user()->id;
         $post->save();
@@ -101,12 +105,16 @@ class PostController extends Controller
         $request->validate([
             'title' => ['required', 'string', 'max:255', Rule::unique('posts')->ignore($post->id)],
             'active' => ['required', 'integer'],
+            'sticky' => ['required', 'integer'],
+            'published_at' => ['required', 'date_format:Y-m-d H:i:s'],
             'body' => ['required', 'string', 'min:25'],
         ]);
 
         $post->title = $request->title;
         $post->body = $request->body;
         $post->active = $request->active;
+        $post->sticky = $request->sticky;
+        $post->published_at = $request->published_at;
         $post->slug = Str::of($post->title)->slug('-');
         $post->user_id = auth()->user()->id;
         $post->save();

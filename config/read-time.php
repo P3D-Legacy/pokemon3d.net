@@ -20,5 +20,5 @@ return [
     /*
      * The average words per minute reading time
      */
-    'words_per_minute' => 100,
+    'words_per_minute' => 180, // WPM for reading subtitles in movies
 ];

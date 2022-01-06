@@ -5,9 +5,7 @@ namespace App\Http\Controllers\Skin;
 use Carbon\Carbon;
 use App\Models\Skin;
 use ByteUnits\Binary;
-use App\Models\GJUser;
 use Illuminate\Http\Request;
-use App\Models\GameJoltAccount;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -29,7 +27,7 @@ class SkinController extends Controller
     {
         $skin = Skin::where('uuid', $uuid)->isPublic()->first();
         abort_unless($skin, 404);
-        return view('skin-subdomain.skin.show')->with('skin', $skin);
+        return view('skin.show')->with('skin', $skin);
     }
 
     /**
@@ -40,7 +38,7 @@ class SkinController extends Controller
     public function newestpublicskins()
     {
         $skins = Skin::isPublic()->orderBy('created_at', 'DESC')->paginate(9);
-        return view('skin-subdomain.skin.public.newest')->with('skins', $skins);
+        return view('skin.public.newest')->with('skins', $skins);
     }
 
     /**
@@ -51,19 +49,7 @@ class SkinController extends Controller
     public function popularpublicskins()
     {
         $skins = Skin::isPublic()->withCount('likers')->orderBy('likers_count', 'desc')->paginate(9);
-        return view('skin-subdomain.skin.public.popular')->with('skins', $skins);
-    }
-
-    /**
-     * Display a listing of the resource.
-     *
-     * * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function myskins(Request $request)
-    {
-        $skins = Auth::user()->gamejolt->skins()->get();
-        return view('skin-subdomain.skin.my')->with('skins', $skins);
+        return view('skin.public.popular')->with('skins', $skins);
     }
 
     /**
@@ -77,7 +63,7 @@ class SkinController extends Controller
         if($skincount >= env('SKIN_MAX_UPLOAD')) {
             return redirect()->route('skins-my')->with('warning', 'You have reached the maximum amount of skins you can upload.');
         }
-        return view('skin-subdomain.skin.create');
+        return view('skin.create');
     }
 
     /**
@@ -223,7 +209,7 @@ class SkinController extends Controller
         if($gjid != $skin->owner_id) {
             return redirect()->route('skins')->with('error', 'You do not own this skin!');
         }
-        return view('skin-subdomain.skin.edit')->with('skin', $skin);
+        return view('skin.edit')->with('skin', $skin);
     }
 
     /**

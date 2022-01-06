@@ -21,4 +21,4 @@
         </div>
     </div>
 </div>
-<div class="fixed top-0 left-0 h-full w-full bg-black/80 z-40 backdrop-filter backdrop-blur-sm"></div>
+<div class="fixed top-0 left-0 h-full w-full bg-black/80 z-40 backdrop-blur-sm"></div>

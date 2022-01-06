@@ -86,7 +86,7 @@ class Skin extends Model
      */
     public function gamejoltaccount()
     {
-        return $this->belongsTo(GameJoltAccount::class, 'owner_id', 'id');
+        return $this->belongsTo(GamejoltAccount::class, 'owner_id', 'id');
     }
 
     /**

@@ -1,6 +1,6 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 
 /* Browser mockup code
@@ -43,5 +43,15 @@
 .dark .browser-mockup.with-url:after {
     color:#777;
 }
+/** END BROWSER MOCKUP **/
 
-[x-cloak] { display: none !important; }
+.tooltip .tooltip-text {
+    visibility: hidden;
+    text-align: center;
+    padding: 2px 6px;
+    position: absolute;
+    z-index: 100;
+}
+.tooltip:hover .tooltip-text {
+    visibility: visible;
+}

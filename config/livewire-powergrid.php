@@ -86,7 +86,6 @@ return [
     */
 
     'js_framework' => null,
-    //'js_framework' => null, // If you already have Alpine included in your project
 
     /*
     |--------------------------------------------------------------------------
@@ -97,10 +96,7 @@ return [
     |
     */
 
-    'js_framework_cdn' => [
-        'alpinejs' => 'https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js',
-        //'alpinejs' => 'https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js' //Alpine 2.8
-    ],
+    'alpinejs_cdn' => 'https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js',
 
     /*
     |--------------------------------------------------------------------------
@@ -114,6 +110,6 @@ return [
     |
     */
 
-    'check_version' => false,
+    'check_version' => true,
 
 ];

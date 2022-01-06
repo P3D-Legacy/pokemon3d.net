@@ -39,7 +39,7 @@
         "mtownsend/read-time": "^2.0",
         "origami/consent": "^2.0",
         "overtrue/laravel-like": "^4.0",
-        "power-components/livewire-powergrid": "^1.5",
+        "power-components/livewire-powergrid": "^v2.0.0",
         "restcord/restcord": "dev-develop",
         "sentry/sentry-laravel": "^2.5",
         "socialiteproviders/facebook": "^4.1",

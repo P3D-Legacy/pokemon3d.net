@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f01ba0ab27753113e96d0e219eaa6ca0",
+    "content-hash": "aa5d7f6ad2c51064639ffe0bb8515d2c",
     "packages": [
         {
             "name": "anlutro/l4-settings",
@@ -6605,16 +6605,16 @@
         },
         {
             "name": "power-components/livewire-powergrid",
-            "version": "v1.5.1",
+            "version": "v2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Power-Components/livewire-powergrid.git",
-                "reference": "2fc4279f4464039452bb0d1ba2d478a530933306"
+                "reference": "76cd14f5d577f22215280a6b622bd8909e9be220"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Power-Components/livewire-powergrid/zipball/2fc4279f4464039452bb0d1ba2d478a530933306",
-                "reference": "2fc4279f4464039452bb0d1ba2d478a530933306",
+                "url": "https://api.github.com/repos/Power-Components/livewire-powergrid/zipball/76cd14f5d577f22215280a6b622bd8909e9be220",
+                "reference": "76cd14f5d577f22215280a6b622bd8909e9be220",
                 "shasum": ""
             },
             "require": {
@@ -6664,9 +6664,9 @@
             "homepage": "https://github.com/power-components/livewire-powergrid",
             "support": {
                 "issues": "https://github.com/Power-Components/livewire-powergrid/issues",
-                "source": "https://github.com/Power-Components/livewire-powergrid/tree/v1.5.1"
+                "source": "https://github.com/Power-Components/livewire-powergrid/tree/v2.0.0"
             },
-            "time": "2021-12-04T19:33:16+00:00"
+            "time": "2022-01-01T21:43:22+00:00"
         },
         {
             "name": "pragmarx/google2fa",

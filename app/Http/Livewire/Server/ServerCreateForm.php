@@ -56,7 +56,7 @@ class ServerCreateForm extends Component
             'user_id' => auth()->user()->id,
         ]);
         $this->emit('serverUpdated');
-        //return redirect()->route('server.index');
+        return redirect()->route('server.index');
         
     }
 

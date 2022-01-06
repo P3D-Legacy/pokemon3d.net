@@ -69,7 +69,7 @@
                         <span x-on:mouseover="tooltip = true" x-on:mouseleave="tooltip = false" class="inline-flex items-center justify-center px-2 py-1 text-sm font-bold leading-none text-gray-100 uppercase bg-gray-600 rounded"><svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-4 h-4 mr-1" viewBox="0 0 20 20" fill="currentColor"><path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z" /></svg>{{ $this->server->ping }}</span>
                         <div class="relative" x-cloak x-show.transition.origin.bottom="tooltip">
                             <div class="absolute top-0 z-10 w-16 p-2 -mt-1 text-xs leading-tight text-white transform -translate-x-1/2 -translate-y-full bg-gray-600 rounded shadow-lg min-w-max">
-                                {{ __('The ping relative to the server of this website') }}
+                                {{ __('The ping relative to the server from this website') }}
                             </div>
                             <svg class="absolute z-10 w-6 h-6 text-gray-600 transform -translate-x-12 -translate-y-3 fill-current stroke-current" width="8" height="8">
                                 <rect x="12" y="-10" width="8" height="8" transform="rotate(45)" />

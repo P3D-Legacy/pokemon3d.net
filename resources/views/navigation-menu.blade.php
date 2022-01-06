@@ -277,6 +277,11 @@
                             {{ __('Tags') }}
                         </x-jet-responsive-nav-link>
                     @endcanany
+                    @canany(['stats']) 
+                        <x-jet-responsive-nav-link href="{{ route('stats.index') }}" :active="request()->routeIs('stats.index')">
+                            {{ __('Stats') }}
+                        </x-jet-responsive-nav-link>
+                    @endcanany
                     @canany(['manage.users','manage.roles','manage.permissions']) 
                         <div class="block px-4 py-2 text-xs text-gray-400">
                             {{ __('User Management') }}

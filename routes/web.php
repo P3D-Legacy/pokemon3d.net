@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\StatsController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\Skin\SkinController;
 use App\Http\Controllers\PermissionController;
@@ -107,6 +108,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
         Route::resource('permissions', PermissionController::class);
         Route::resource('posts', PostController::class);
         Route::resource('tags', TagController::class);
+        Route::resource('stats', StatsController::class);
     });
     
 });

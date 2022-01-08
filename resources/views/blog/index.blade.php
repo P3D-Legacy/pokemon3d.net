@@ -68,8 +68,8 @@
 									<p>{!! strip_tags(Str::of(Str::limit($post->body, 300))->markdown()) !!}</p>
 								</div>
 								<div class="flex items-center mt-4">
-									<a href="#" class="relative block">
-										<img alt="profil" src="{{ asset('img/TreeLogoSmall.png') }}" class="object-cover w-10 h-10 mx-auto rounded-full "/>
+									<a href="{{ route('member.show', $post->user) }}" class="relative block">
+										<img alt="{{ $post->username }}" src="{{ $post->user->profile_photo_url ?? asset('img/TreeLogoSmall.png') }}" class="object-cover w-10 h-10 mx-auto rounded-full "/>
 									</a>
 									<div class="flex flex-col justify-between ml-4 text-sm">
 										<p class="text-gray-800 dark:text-white">

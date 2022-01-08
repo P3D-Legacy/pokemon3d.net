@@ -26,3 +26,5 @@ flatpickr(".flatpickrBirtdate", {
     minDate: date_min,
     maxDate: date_max
 });
+
+import 'tw-elements';

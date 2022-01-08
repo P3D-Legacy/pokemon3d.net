@@ -40,5 +40,6 @@ module.exports = {
         require('@tailwindcss/typography'),
         require('@tailwindcss/aspect-ratio'),
         require('tailwindcss-debug-screens'),
+        require('tw-elements/dist/plugin'),
     ],
 };

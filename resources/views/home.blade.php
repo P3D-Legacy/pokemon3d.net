@@ -233,6 +233,40 @@
         </div>
     </section>
 
+    <section class="p-8">
+        <div class="container max-w-5xl m-8 mx-auto text-white">
+            <h2 class="w-full my-2 text-3xl font-black leading-tight text-center uppercase">
+                Screenshots
+            </h2>
+            <div class="w-full mb-4">
+                <div class="w-64 h-1 py-0 mx-auto my-0 bg-white rounded-t opacity-25"></div>
+            </div>
+        
+            <div id="carousel" class="relative carousel slide carousel-fade" data-bs-ride="carousel">
+                <div class="relative w-full overflow-hidden shadow-xl rounded-xl shadow-black/50 carousel-inner">
+                    <div class="relative float-left w-full carousel-item active">
+                        <img src="{{ asset('img/carousel/Elms_Lab.png') }}" class="block w-full" alt="" />
+                    </div>
+                    <div class="relative float-left w-full carousel-item">
+                        <img src="{{ asset('img/carousel/Player_House_Bedroom.png') }}" class="block w-full" alt="" />
+                    </div>
+                    <div class="relative float-left w-full carousel-item">
+                        <img src="{{ asset('img/carousel/Player_House_Bedroom2.png') }}" class="block w-full" alt="" />
+                    </div>
+                </div>
+                <button  class="absolute top-0 bottom-0 left-0 flex items-center justify-center p-0 text-center border-0 carousel-control-prev hover:outline-none hover:no-underline focus:outline-none focus:no-underline" type="button" data-bs-target="#carousel" data-bs-slide="prev">
+                    <span class="inline-block w-12 h-12 bg-no-repeat carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="absolute top-0 bottom-0 right-0 flex items-center justify-center p-0 text-center border-0 carousel-control-next hover:outline-none hover:no-underline focus:outline-none focus:no-underline" type="button" data-bs-target="#carousel" data-bs-slide="next">
+                    <span class="inline-block w-12 h-12 bg-no-repeat carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+
+        </div>
+    </section>
+
     <section class="p-8 border-b dark:border-black bg-black/20">
         <div class="container max-w-5xl m-8 mx-auto text-white">
             <h2 class="w-full my-2 text-3xl font-black leading-tight text-center uppercase">

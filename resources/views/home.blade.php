@@ -189,7 +189,7 @@
                 </div>
 
                 <div class="flex flex-col items-center w-1/2 p-4 md:w-auto">
-                    <div class="flex">{{  App\Helpers\NumberHelper::nearestK(\App\Helpers\StatsHelper::countDiscordMembers()) }}</div>
+                    <div class="flex">{{  App\Helpers\NumberHelper::nearestK(\App\Helpers\DiscordHelper::countMembers()) }}</div>
                     <div class="flex text-xl text-gray-600 dark:text-gray-400">Discord Users</div>
                     {{-- TOTAL COUNT DISCORD USERS --}}
                 </div>

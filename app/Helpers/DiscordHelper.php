@@ -21,9 +21,9 @@ class DiscordHelper
 
     public static function countMembers()
     {
-        $that = new DiscordHelper;
+        $client = new DiscordHelper;
         try {
-            return $that->getServer()->approximate_member_count;
+            return $client->getServer()->approximate_member_count;
         }
         catch(\Exception $exception) {
             return 0;

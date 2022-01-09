@@ -7,8 +7,9 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\ServerController;
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\ServerController;
+use App\Http\Controllers\ResourceController;
 use App\Http\Controllers\Skin\SkinController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\Auth\TwitchController;
@@ -70,6 +71,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     })->name('dashboard');
 
     Route::resource('server', ServerController::class);
+    Route::resource('resource', ResourceController::class);
     
     Route::get('/member/{user}', [MemberController::class, 'show'])->name('member.show');
     

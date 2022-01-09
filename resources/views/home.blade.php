@@ -242,7 +242,7 @@
                 <div class="w-64 h-1 py-0 mx-auto my-0 bg-white rounded-t opacity-25"></div>
             </div>
         
-            <div id="carousel" class="relative carousel slide carousel-fade" data-bs-ride="carousel">
+            <div id="carousel" class="relative carousel slide carousel-fade dark:carousel-dark" data-bs-ride="carousel">
                 <div class="relative w-full overflow-hidden shadow-xl rounded-xl shadow-black/50 carousel-inner">
                     <div class="relative float-left w-full carousel-item active">
                         <img src="{{ asset('img/carousel/Elms_Lab.png') }}" class="block w-full" alt="" />

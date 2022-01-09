@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Resource;
+use App\Rules\StrNotContain;
 use Illuminate\Http\Request;
 
 class ResourceController extends Controller
@@ -27,5 +28,45 @@ class ResourceController extends Controller
     public function create()
     {
         return view("resources.create");
+    }
+    
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => [
+                'required',
+                'string',
+                new StrNotContain('official'),
+            ],
+            'description' => [
+                'string',
+            ],
+        ]);
+
+        $resource = Resource::create([
+            'name' => $request->name,
+            'description' => $request->description,
+            'user_id' => auth()->user()->id,
+        ]);
+        return redirect()->route('resource.show', ['resource' => $resource]);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Resource  $resource
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Resource $resource)
+    {
+        return view("resources.show", [
+            "resource" => $resource,
+        ]);
     }
 }

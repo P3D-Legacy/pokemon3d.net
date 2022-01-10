@@ -7,7 +7,11 @@
 
     <div>
         <div class="px-4 py-10 mx-auto max-w-7xl sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 gap-4 sm:p-10 sm:grid-cols-3 md:grid-cols-4 grid-flow-cols">
+            @component('components.breadcrumb', ['breadcrumbs' => [
+                ['url' => null, 'label' => 'Resources'],
+            ]])
+            @endcomponent
+            <div class="grid grid-cols-1 gap-4 sm:grid-cols-3 md:grid-cols-4 grid-flow-cols">
                 <div class="bg-red-100">
                     Category
                 </div>

@@ -6,7 +6,15 @@
     </x-slot>
 
     <div>
-        <div class="max-w-5xl py-10 mx-auto sm:px-6 lg:px-8">
+        <div class="py-10 mx-auto max-w-7xl sm:px-6 lg:px-8">
+            
+            @component('components.breadcrumb', ['breadcrumbs' => [
+                ['url' => route('resource.index'), 'label' => 'Resources'],
+                ['url' => null, 'label' => 'CategoryNameGoesHere'],
+                ['url' => null, 'label' => $resource->name],
+            ]])
+            @endcomponent
+
             <div class="grid grid-flow-col grid-cols-3 gap-4 mb-4">
                 <div class="col-span-2 text-2xl dark:text-white">
                     {{ $resource->name }} <span class="text-gray-400 dark:text-gray-500">1.2.3</span>

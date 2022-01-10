@@ -47,36 +47,38 @@
                 </div>
             </div>
             <div class="w-full p-4 bg-white rounded-lg shadow-lg dark:bg-gray-900 dark:shadow-gray-700">
-                <div class="grid grid-flow-col grid-cols-4 gap-4">
+                <div class="grid grid-cols-4 gap-4">
                     <div class="col-span-3">
                         <div class="prose dark:prose-invert">
                             {!! Str::of($resource->description)->markdown() !!}
                         </div>
                     </div>
-                    <div class="flex flex-col justify-center p-4 text-xs text-gray-500 bg-gray-100 rounded dark:bg-gray-800 dark:text-gray-300 items-left">
-                        <div class="flex flex-row justify-between">
-                            <span>Author:</span>
-                            <span>{{ $resource->user->username }}</span>
-                        </div>
-                        <div class="flex flex-row justify-between">
-                            <span>Rating:</span>
-                            <span>4.2/5</span>
-                        </div>
-                        <div class="flex flex-row justify-between">
-                            <span>Donwloads:</span>
-                            <span>404</span>
-                        </div>
-                        <div class="flex flex-row justify-between">
-                            <span>Views:</span>
-                            <span>{{ App\Helpers\NumberHelper::nearestK(views($resource)->count()) }}</span>
-                        </div>
-                        <div class="flex flex-row justify-between">
-                            <span>Created:</span>
-                            <span>{{ $resource->created_at->diffForHumans() }}</span>
-                        </div>
-                        <div class="flex flex-row justify-between">
-                            <span>Updated:</span>
-                            <span>{{ $resource->updated_at->diffForHumans() }}</span>
+                    <div class="flex-col justify-center text-xs text-gray-500 dark:text-gray-300 items-left">
+                        <div class="p-4 bg-gray-100 rounded dark:bg-gray-800">
+                            <div class="flex flex-row justify-between">
+                                <span>Author:</span>
+                                <span>{{ $resource->user->username }}</span>
+                            </div>
+                            <div class="flex flex-row justify-between">
+                                <span>Rating:</span>
+                                <span>4.2/5</span>
+                            </div>
+                            <div class="flex flex-row justify-between">
+                                <span>Donwloads:</span>
+                                <span>404</span>
+                            </div>
+                            <div class="flex flex-row justify-between">
+                                <span>Views:</span>
+                                <span>{{ App\Helpers\NumberHelper::nearestK(views($resource)->count()) }}</span>
+                            </div>
+                            <div class="flex flex-row justify-between">
+                                <span>Created:</span>
+                                <span>{{ $resource->created_at->diffForHumans() }}</span>
+                            </div>
+                            <div class="flex flex-row justify-between">
+                                <span>Updated:</span>
+                                <span>{{ $resource->updated_at->diffForHumans() }}</span>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -14,7 +14,7 @@ class CreateResourcesTable extends Migration
     public function up()
     {
         Schema::create('resources', function (Blueprint $table) {
-            $table->increments('aid');
+            $table->id();
             $table->uuid('uuid')->unique();
             $table->string('name');
             $table->string('breif');

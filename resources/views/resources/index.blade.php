@@ -43,8 +43,8 @@
                                                 <span>4.2/5</span>
                                             </div>
                                             <div class="flex flex-row justify-between">
-                                                <span>Views:</span>
-                                                <span>4213</span>
+                                                <span>Likes:</span>
+                                                <span>10</span>
                                             </div>
                                             <div class="flex flex-row justify-between">
                                                 <span>Donwloads:</span>

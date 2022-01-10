@@ -3,12 +3,13 @@
 namespace App\Models;
 
 use Spatie\Tags\HasTags;
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 use Overtrue\LaravelLike\Traits\Likeable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use GoldSpecDigital\LaravelEloquentUUID\Database\Eloquent\Uuid;
+use Touhidurabir\MultiKyeRouteBinding\HasMultipleRouteBindingKeys;
 
 class Resource extends Model
 {
@@ -17,23 +18,31 @@ class Resource extends Model
     use Likeable;
     use SoftDeletes;
     use HasTags;
-    use Uuid;
+    use HasMultipleRouteBindingKeys;
 
-    protected $primaryKey = 'uuid';
+    public static function boot()
+    {
+        parent::boot();
+
+        self::creating(function ($model) {
+            $model->uuid = Str::uuid()->toString();
+        });
+
+        self::updating(function ($model) {
+            if (!$model->uuid) {
+                $model->uuid = Str::uuid()->toString();
+            }
+        });
+    }
 
     /**
-     * The "type" of the auto-incrementing ID.
+     * The attributes that will be used for multiple key binding on route models
      *
-     * @var string
+     * @var array
      */
-    protected $keyType = 'string';
-
-    /**
-     * Indicates if the IDs are auto-incrementing.
-     *
-     * @var bool
-     */
-    public $incrementing = false;
+    protected $routeBindingKeys = [
+        'uuid',
+    ];
 
     /**
      * The attributes that are mass assignable.
@@ -41,22 +50,12 @@ class Resource extends Model
      * @var array
      */
     protected $fillable = [
-        'id',
         'name',
         'breif',
         'description',
         'user_id',
     ];
-
-    /** 
-     * The attributes that should be hidden
-     * 
-     * @var array
-     */
-    protected $hidden = [
-        'aid',
-    ];
-
+    
     /**
      * Get the user that made this post.
      */

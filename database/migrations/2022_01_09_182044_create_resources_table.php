@@ -17,7 +17,8 @@ class CreateResourcesTable extends Migration
             $table->increments('aid');
             $table->uuid('uuid')->unique();
             $table->string('name');
-            $table->text('description')->nullable();
+            $table->string('breif');
+            $table->text('description');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
             $table->softDeletes();

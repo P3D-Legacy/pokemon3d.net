@@ -44,13 +44,19 @@ class ResourceController extends Controller
                 'string',
                 new StrNotContain('official'),
             ],
+            'breif' => [
+                'required',
+                'string',
+            ],
             'description' => [
+                'required',
                 'string',
             ],
         ]);
 
         $resource = Resource::create([
             'name' => $request->name,
+            'breif' => $request->breif,
             'description' => $request->description,
             'user_id' => auth()->user()->id,
         ]);

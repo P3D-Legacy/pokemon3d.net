@@ -43,6 +43,7 @@ class Resource extends Model
     protected $fillable = [
         'id',
         'name',
+        'breif',
         'description',
         'user_id',
     ];

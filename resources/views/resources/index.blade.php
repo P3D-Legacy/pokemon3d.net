@@ -21,32 +21,42 @@
                         </div>
                         <div class="flex flex-col w-full divide-y divide dark:divide-gray-700">
                             @foreach ($resources as $resource)
-                                <div class="flex flex-row hover:bg-green-400/10">
-                                    <div class="flex items-center flex-1 p-4 cursor-pointer select-none">
+                                <a href="{{ route('resource.show', $resource) }}" class="flex hover:bg-green-400/10">
+                                    <div class="flex items-center w-full p-4 cursor-pointer select-none">
                                         <div class="flex flex-col items-center justify-center w-10 h-10 mr-4">
-                                            <a href="#" class="relative block">
-                                                <img alt="{{ $resource->user->name }}" src="{{ $resource->user->profile_photo_url ?? asset('img/TreeLogoSmall.png') }}" class="object-cover w-10 h-10 mx-auto rounded-full "/>
-                                            </a>
+                                            <img alt="{{ $resource->user->name }}" src="{{ $resource->user->profile_photo_url ?? asset('img/TreeLogoSmall.png') }}" class="object-cover w-10 h-10 mx-auto rounded-full "/>
                                         </div>
                                         <div class="flex-1 pl-1 mr-16">
                                             <div class="font-medium dark:text-white">
-                                                {{ $resource->name }}
+                                                {{ $resource->name }} <span class="text-gray-400 dark:text-gray-500">1.2.3</span>
                                             </div>
-                                            <div class="text-sm text-gray-600 dark:text-gray-200">
-                                                {{ Str::limit($resource->description, 300) }}
+                                            <div class="text-sm text-gray-400 dark:text-gray-200">
+                                                {{ $resource->user->username }} &middot; {{ $resource->created_at->diffForHumans() }} &middot; CategoryName
+                                            </div>
+                                            <div class="text-xs text-gray-500 truncate dark:text-gray-300">
+                                                {{ $resource->breif }}
                                             </div>
                                         </div>
-                                        <div class="text-xs text-gray-600 dark:text-gray-200">
-                                            some cool text here
+                                        <div class="flex flex-col justify-center text-xs text-gray-400 basis-1/5 items-left">
+                                            <div class="flex flex-row justify-between">
+                                                <span>Rating:</span>
+                                                <span>4.2/5</span>
+                                            </div>
+                                            <div class="flex flex-row justify-between">
+                                                <span>Views:</span>
+                                                <span>4213</span>
+                                            </div>
+                                            <div class="flex flex-row justify-between">
+                                                <span>Donwloads:</span>
+                                                <span>404</span>
+                                            </div>
+                                            <div class="flex flex-row justify-between">
+                                                <span>Updated:</span>
+                                                <span>{{ $resource->updated_at->diffForHumans() }}</span>
+                                            </div>
                                         </div>
-                                        <a href="{{ route('resource.show', $resource) }}" class="flex justify-end w-24 text-right">
-                                            <svg width="20" fill="currentColor" height="20" class="text-gray-500 hover:text-gray-800 dark:hover:text-white dark:text-gray-200" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M1363 877l-742 742q-19 19-45 19t-45-19l-166-166q-19-19-19-45t19-45l531-531-531-531q-19-19-19-45t19-45l166-166q19-19 45-19t45 19l742 742q19 19 19 45t-19 45z">
-                                                </path>
-                                            </svg>
-                                        </a>
                                     </div>
-                                </div>
+                                </a>
                             @endforeach
                         </div>
                     </div>

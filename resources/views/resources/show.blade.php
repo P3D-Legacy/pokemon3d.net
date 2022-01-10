@@ -11,7 +11,7 @@
                 <div class="col-span-2 text-2xl dark:text-white">
                     {{ $resource->name }} <span class="text-gray-400 dark:text-gray-500">1.2.3</span>
                 </div>
-                <div class="justify-end gap-1 text-sm">
+                <div class="flex justify-end gap-1">
                     @livewire('resource.resource-like', ['resource' => $resource])
                     <button class="px-2 py-1 transition-colors duration-150 rounded-md text-sky-100 bg-sky-600 focus:shadow-outline hover:bg-sky-700">
                         <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -19,12 +19,14 @@
                         </svg>
                         Leave a rating
                     </button>
-                    <button class="px-2 py-1 text-green-100 transition-colors duration-150 bg-green-600 rounded-md focus:shadow-outline hover:bg-green-700">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                        </svg>
-                        Download
-                    </button>
+                    {{--
+                        <button class="px-2 py-1 text-green-100 transition-colors duration-150 bg-green-600 rounded-md focus:shadow-outline hover:bg-green-700">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                            </svg>
+                            Download
+                        </button>
+                    --}}
                     <button class="px-2 py-1 text-gray-100 transition-colors duration-150 bg-gray-600 rounded-md focus:shadow-outline hover:bg-gray-700">
                         <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
@@ -47,10 +49,6 @@
                         <div class="flex flex-row justify-between">
                             <span>Rating:</span>
                             <span>4.2/5</span>
-                        </div>
-                        <div class="flex flex-row justify-between">
-                            <span>Likes:</span>
-                            <span>10</span>
                         </div>
                         <div class="flex flex-row justify-between">
                             <span>Donwloads:</span>

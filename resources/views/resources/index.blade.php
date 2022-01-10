@@ -44,7 +44,7 @@
                                             </div>
                                             <div class="flex flex-row justify-between">
                                                 <span>Likes:</span>
-                                                <span>10</span>
+                                                <span>{{ $resource->likers()->count() }}</span>
                                             </div>
                                             <div class="flex flex-row justify-between">
                                                 <span>Donwloads:</span>

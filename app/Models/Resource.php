@@ -7,11 +7,12 @@ use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 use Overtrue\LaravelLike\Traits\Likeable;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Touhidurabir\MultiKyeRouteBinding\HasMultipleRouteBindingKeys;
 
-class Resource extends Model
+class Resource extends Model implements Viewable
 {
     use HasFactory;
     use InteractsWithViews;

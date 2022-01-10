@@ -71,6 +71,7 @@ class ResourceController extends Controller
      */
     public function show(Resource $resource)
     {
+        views($resource)->cooldown(60)->record();
         return view("resources.show", [
             "resource" => $resource,
         ]);

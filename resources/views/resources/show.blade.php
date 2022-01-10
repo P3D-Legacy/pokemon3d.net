@@ -55,6 +55,10 @@
                             <span>404</span>
                         </div>
                         <div class="flex flex-row justify-between">
+                            <span>Views:</span>
+                            <span>{{ App\Helpers\NumberHelper::nearestK(views($resource)->count()) }}</span>
+                        </div>
+                        <div class="flex flex-row justify-between">
                             <span>Created:</span>
                             <span>{{ $resource->created_at->diffForHumans() }}</span>
                         </div>

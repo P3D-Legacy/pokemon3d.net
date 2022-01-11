@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 use Overtrue\LaravelLike\Traits\Likeable;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use AliBayat\LaravelCategorizable\Categorizable;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -20,6 +21,7 @@ class Resource extends Model implements Viewable
     use SoftDeletes;
     use HasTags;
     use HasMultipleRouteBindingKeys;
+    use Categorizable;
 
     public static function boot()
     {

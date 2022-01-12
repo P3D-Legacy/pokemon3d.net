@@ -53,6 +53,7 @@
         "spatie/laravel-permission": "^4.2",
         "spatie/laravel-tags": "^3.1",
         "touhidurabir/laravel-multi-key-route-binding": "^1.0",
+        "wire-elements/modal": "^1.0",
         "wulfheart/pretty_routes": "^0.3.0"
     },
     "require-dev": {

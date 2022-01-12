@@ -88,6 +88,7 @@
         @include('cookieConsent::index')
 
         @livewireScripts
+        @livewire('livewire-ui-modal')
 
         <script>
             var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');

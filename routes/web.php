@@ -112,6 +112,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
         Route::resource('permissions', PermissionController::class);
         Route::resource('posts', PostController::class);
         Route::resource('tags', TagController::class);
+        Route::view('categories', 'category.index')->name('categories.index');
     });
     
 });

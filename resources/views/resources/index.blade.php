@@ -32,7 +32,7 @@
                         </div>
                         <div class="flex flex-col w-full divide-y divide dark:divide-gray-700">
                             @foreach ($resources as $resource)
-                                <a href="{{ route('resource.show', $resource) }}" class="flex hover:bg-green-400/10">
+                                <a href="{{ route('resource.show', $resource->uuid) }}" class="flex hover:bg-green-400/10">
                                     <div class="flex items-center w-full p-4 cursor-pointer select-none">
                                         <div class="flex flex-col items-center justify-center w-10 h-10 mr-4">
                                             <img alt="{{ $resource->user->name }}" src="{{ $resource->user->profile_photo_url ?? asset('img/TreeLogoSmall.png') }}" class="object-cover w-10 h-10 mx-auto rounded-full "/>

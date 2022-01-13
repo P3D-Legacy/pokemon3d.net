@@ -9,6 +9,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\ServerController;
+use AliBayat\LaravelCategorizable\Category;
 use App\Http\Controllers\ResourceController;
 use App\Http\Controllers\Skin\SkinController;
 use App\Http\Controllers\PermissionController;
@@ -72,6 +73,12 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
 
     Route::resource('server', ServerController::class);
     Route::resource('resource', ResourceController::class);
+    Route::get('/resource/category/{name}', function ($name) {
+        $resources = Category::findByName($name)->entries(\App\Models\Resource::class)->paginate(10);
+        return view("resources.index", [
+            "resources" => $resources
+        ]);
+    })->name('resource.category');
     
     Route::get('/member/{user}', [MemberController::class, 'show'])->name('member.show');
     

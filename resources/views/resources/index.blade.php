@@ -7,9 +7,16 @@
 
     <div>
         <div class="px-4 py-10 mx-auto max-w-7xl sm:px-6 lg:px-8">
-            @component('components.breadcrumb', ['breadcrumbs' => [
-                ['url' => null, 'label' => 'Resources'],
-            ]])
+            @if(Request::is('resource/category/*'))
+                @component('components.breadcrumb', ['breadcrumbs' => [
+                    ['url' => route('resource.index'), 'label' => 'Resources'],
+                    ['url' => null, 'label' => Str::ucfirst(Request::segment(3))],
+                ]])
+            @else
+                @component('components.breadcrumb', ['breadcrumbs' => [
+                    ['url' => null, 'label' => 'Resources'],
+                ]])
+            @endif
             @endcomponent
             <div class="grid grid-cols-1 gap-4 sm:grid-cols-3 md:grid-cols-4 grid-flow-cols">
                 <div class="bg-red-100">

@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Category;
 
 use Livewire\Component;
 use AliBayat\LaravelCategorizable\Category;
 
-class IndexCategory extends Component
+class CategoryList extends Component
 {
     public $categories;
 
@@ -17,9 +17,8 @@ class IndexCategory extends Component
     {
         $this->categories = Category::all();
     }
-
     public function render()
     {
-        return view('livewire.index-category');
+        return view('livewire.category.category-list');
     }
 }

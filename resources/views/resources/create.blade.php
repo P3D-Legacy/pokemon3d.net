@@ -29,6 +29,21 @@
                                     <x-jet-input id="breif" type="text" name="breif" class="block w-full mt-1" placeholder="A breif one-line description for My Resource Pack" autofocus value="{{ old('breif') ?? '' }}" />
                                     <x-jet-input-error for="breif" class="mt-2" />
                                 </div>
+                                <div class="col-span-6">
+                                    <x-jet-label for="category" value="{{ __('Category') }}" />
+                                    <div class="relative inline-block w-full">
+                                        <select class="w-full h-10 pl-3 pr-6 text-base text-gray-800 placeholder-gray-600 border rounded-lg appearance-none focus:shadow-outline" id="category" name="category">
+                                            <option value="">Select a category</option>
+                                            @foreach ($categories as $category)
+                                                <option value="{{ $category->id }}" {{ (old('category') == $category->id ) ? 'selected' : '' }}>{{ $category->name }}</option>
+                                            @endforeach
+                                        </select>
+                                        <div class="absolute inset-y-0 right-0 flex items-center px-2 text-gray-800 pointer-events-none">
+                                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" fill-rule="evenodd"></path></svg>
+                                        </div>
+                                    </div>
+                                    <x-jet-input-error for="category" class="mt-2" />
+                                </div>
                     
                                 <div class="col-span-6">
                                     <x-jet-label for="description" value="{{ __('Description') }}" />

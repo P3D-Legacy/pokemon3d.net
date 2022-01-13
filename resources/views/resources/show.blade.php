@@ -10,7 +10,7 @@
             
             @component('components.breadcrumb', ['breadcrumbs' => [
                 ['url' => route('resource.index'), 'label' => 'Resources'],
-                ['url' => null, 'label' => 'CategoryNameGoesHere'],
+                ['url' => null, 'label' => $resource->categories()->first()->name],
                 ['url' => null, 'label' => $resource->name],
             ]])
             @endcomponent

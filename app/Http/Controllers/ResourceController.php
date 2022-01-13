@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use AliBayat\LaravelCategorizable\Category;
 use App\Models\Resource;
 use App\Rules\StrNotContain;
 use Illuminate\Http\Request;
@@ -27,7 +28,10 @@ class ResourceController extends Controller
      */
     public function create()
     {
-        return view("resources.create");
+        $categories = Category::all();
+        return view("resources.create", [
+            "categories" => $categories
+        ]);
     }
     
     /**
@@ -48,6 +52,10 @@ class ResourceController extends Controller
                 'required',
                 'string',
             ],
+            'category' => [
+                'required',
+                'integer',
+            ],
             'description' => [
                 'required',
                 'string',
@@ -60,6 +68,8 @@ class ResourceController extends Controller
             'description' => $request->description,
             'user_id' => auth()->user()->id,
         ]);
+        $category = Category::find($request->category);
+        $resource->attachCategory($category);
         return redirect()->route('resource.show', ['resource' => $resource]);
     }
 

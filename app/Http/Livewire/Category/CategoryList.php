@@ -17,6 +17,7 @@ class CategoryList extends Component
     {
         $this->categories = Category::all();
     }
+    
     public function render()
     {
         return view('livewire.category.category-list');

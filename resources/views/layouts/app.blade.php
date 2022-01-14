@@ -17,6 +17,7 @@
 
         @livewireStyles
         @powerGridStyles
+        @bukStyles
 
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
@@ -89,6 +90,7 @@
 
         @livewireScripts
         @livewire('livewire-ui-modal')
+        @bukScripts
 
         <script>
             var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');

@@ -3,6 +3,7 @@
 <div class="text-gray-900 bg-white dark:text-gray-100 dark:bg-gray-800">
     @if($formAction)
         <form wire:submit.prevent="{{ $formAction }}">
+        @csrf
     @endif
         <div class="p-4 border-b border-gray-100 dark:border-gray-700 sm:px-6 sm:py-4">
             @if(isset($title))

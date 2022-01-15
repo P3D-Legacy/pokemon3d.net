@@ -21,7 +21,6 @@ class ResourceEdit extends ModalComponent
     {
         $this->resource_id = $resource_id;
         $this->resource = Resource::find($this->resource_id)->firstOrFail();
-        dd($this->resource);
         $this->categories = Category::all();
         $this->name = $this->resource->name;
         $this->breif = $this->resource->breif;

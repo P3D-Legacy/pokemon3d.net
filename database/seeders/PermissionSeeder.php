@@ -38,19 +38,7 @@ class PermissionSeeder extends Seeder
         $p13 = Permission::firstOrCreate(['name' => 'tags.destroy']);
 
         // Super Admin permissions
-        $r1->givePermissionTo($p1->name);
-        $r1->givePermissionTo($p2->name);
-        $r1->givePermissionTo($p3->name);
-        $r1->givePermissionTo($p4->name);
-        $r1->givePermissionTo($p5->name);
-        $r1->givePermissionTo($p6->name);
-        $r1->givePermissionTo($p7->name);
-        $r1->givePermissionTo($p8->name);
-        $r1->givePermissionTo($p9->name);
-        $r1->givePermissionTo($p10->name);
-        $r1->givePermissionTo($p11->name);
-        $r1->givePermissionTo($p12->name);
-        $r1->givePermissionTo($p13->name);
+        $r1->givePermissionTo(Permission::all());
 
         // Admin permissions
         $r2->givePermissionTo($p2->name);

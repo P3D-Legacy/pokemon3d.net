@@ -17,6 +17,7 @@
         "assada/laravel-achievements": "^2.3",
         "betterapp/laravel-db-encrypter": "^1.0",
         "blade-ui-kit/blade-ui-kit": "^0.3.2",
+        "codebyray/laravel-review-rateable": "^1.4",
         "cyrildewit/eloquent-viewable": "^6.0",
         "doctrine/dbal": "^3.1",
         "enlightn/enlightn": "^1.0",

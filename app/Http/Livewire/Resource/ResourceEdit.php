@@ -9,23 +9,22 @@ use AliBayat\LaravelCategorizable\Category;
 
 class ResourceEdit extends ModalComponent
 {
-    public Resource $resource;
-    public int $resource_id;
+    public  int|Resource $resource;
     public $categories;
     public $name;
     public $breif;
     public $description;
     public $category;
 
-    public function mount($resource_id)
+    public function mount(Resource $resource)
     {
-        $this->resource_id = $resource_id;
-        $this->resource = Resource::find($this->resource_id)->firstOrFail();
-        $this->categories = Category::all();
+        $this->resource = $resource;
         $this->name = $this->resource->name;
         $this->breif = $this->resource->breif;
         $this->description = $this->resource->description;
-        $this->category = $this->resource->category_id;
+        $this->category = $this->resource->categories->first()->id;
+        $this->category_id = $this->resource->categories->first()->id;
+        $this->categories = Category::all();
     }
 
     public function save() {

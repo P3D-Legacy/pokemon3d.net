@@ -55,6 +55,8 @@ class ResourceEdit extends ModalComponent
         ]);
         $category = Category::find($this->category);
         $this->resource->syncCategories($category);
+
+        $this->emit('resourceUpdated', $this->resource->id);
         
         $this->closeModal();
     }

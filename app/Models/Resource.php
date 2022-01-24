@@ -10,10 +10,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use AliBayat\LaravelCategorizable\Categorizable;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
+use Codebyray\ReviewRateable\Traits\ReviewRateable as ReviewRateableTrait;
+use Codebyray\ReviewRateable\Contracts\ReviewRateable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Touhidurabir\MultiKyeRouteBinding\HasMultipleRouteBindingKeys;
 
-class Resource extends Model implements Viewable
+class Resource extends Model implements Viewable, ReviewRateable
 {
     use HasFactory;
     use InteractsWithViews;
@@ -22,6 +24,7 @@ class Resource extends Model implements Viewable
     use HasTags;
     use HasMultipleRouteBindingKeys;
     use Categorizable;
+    use ReviewRateableTrait;
 
     public static function boot()
     {

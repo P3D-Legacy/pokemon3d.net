@@ -14,10 +14,10 @@
 
         <x-jet-label for="category" value="{{ __('Category') }}" />
         <div class="relative inline-block w-full">
-            <select class="w-full h-10 pl-3 pr-6 text-base text-gray-800 placeholder-gray-600 border rounded-lg appearance-none focus:shadow-outline" id="category" name="category" wire:model.defer="category">
+            <select class="w-full h-10 pl-3 pr-6 text-base text-gray-800 placeholder-gray-600 border rounded-lg appearance-none focus:shadow-outline" id="category" name="category" wire:change.defer="category">
                 <option value="">Select a category</option>
                 @foreach ($categories as $category)
-                    <option value="{{ $category->id }}" wire:key="{{ $category->id }}">{{ $category->name }}</option>
+                    <option value="{{ $category->id }}" {{ $category->id == $category_id ? 'selected="selected"' : '' }}>{{ $category->name }}</option>
                 @endforeach
             </select>
             <div class="absolute inset-y-0 right-0 flex items-center px-2 text-gray-800 pointer-events-none">

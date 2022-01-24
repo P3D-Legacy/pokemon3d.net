@@ -8,11 +8,11 @@
         <x-jet-input id="name" type="text" class="block w-full mt-1" wire:model.defer="name" autocomplete="name" />
         <x-jet-input-error for="name" class="mt-2" />
 
-        <x-jet-label for="breif" value="{{ __('Breif') }}" />
+        <x-jet-label for="breif" class="mt-4" value="{{ __('Breif') }}" />
         <x-jet-input id="breif" type="text" name="breif" class="block w-full mt-1" placeholder="A breif one-line description for My Resource Pack" autofocus wire:model.defer="breif" />
         <x-jet-input-error for="breif" class="mt-2" />
 
-        <x-jet-label for="category" value="{{ __('Category') }}" />
+        <x-jet-label for="category" class="mt-4" value="{{ __('Category') }}" />
         <div class="relative inline-block w-full">
             <select class="w-full h-10 pl-3 pr-6 text-base text-gray-800 placeholder-gray-600 border rounded-lg appearance-none focus:shadow-outline" id="category" name="category" wire:model.defer="category">
                 <option value="">Select a category</option>
@@ -26,7 +26,7 @@
         </div>
         <x-jet-input-error for="category" class="mt-2" />
 
-        <x-jet-label for="description" value="{{ __('Description') }}" />
+        <x-jet-label for="description" class="mt-4" value="{{ __('Description') }}" />
         <x-easy-mde name="description" wire:model.defer="description" :options="['hideIcons' => ['side-by-side','fullscreen',]]"></x-easy-mde>
         <x-jet-input-error for="description" class="mt-2" />
         

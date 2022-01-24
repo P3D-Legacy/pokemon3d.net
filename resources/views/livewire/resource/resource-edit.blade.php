@@ -28,7 +28,7 @@
 
         <x-jet-label for="description" value="{{ __('Description') }}" />
         <x-easy-mde name="description" wire:model.defer="description" :options="['hideIcons' => ['side-by-side','fullscreen',]]"></x-easy-mde>
-        <x-jet-input-error for="description" class="mt-2" wire.model.defer="description"/>
+        <x-jet-input-error for="description" class="mt-2" />
         
     </x-slot>
 

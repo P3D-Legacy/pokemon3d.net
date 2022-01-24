@@ -59,7 +59,7 @@
                                             </div>
                                             <div class="flex flex-row justify-between">
                                                 <span>Donwloads:</span>
-                                                <span>404</span>
+                                                <span>0</span>
                                             </div>
                                             <div class="flex flex-row justify-between">
                                                 <span>Updated:</span>

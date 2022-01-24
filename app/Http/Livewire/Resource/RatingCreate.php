@@ -26,6 +26,8 @@ class RatingCreate extends ModalComponent
             'body' => [
                 'required',
                 'string',
+                'min:10',
+                'max:255',
             ],
         ]);
 

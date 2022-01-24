@@ -87,6 +87,31 @@
     <div class="flex flex-col items-center justify-center w-full mx-auto mt-10 overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-900 dark:shadow-gray-700">
         <div class="w-full px-4 py-5 border-b sm:px-6 dark:border-gray-700">
             <h3 class="text-lg font-medium leading-6 text-gray-900 dark:text-white">
+                Reviews
+            </h3>
+        </div>
+        <div class="flex flex-col w-full divide-y divide dark:divide-gray-700">
+            @foreach ($resource->getAllRatings($resource->id) as $rating)
+                <div class="flex items-center justify-between w-full p-4 dark:text-white">
+                    <div class="flex">
+                        {{ $rating->author->username }}
+                    </div>
+                    <div class="flex">
+                        {{ $rating->rating }}/5
+                    </div>
+                    <div class="flex">
+                        {{ $rating->created_at->diffForHumans() }}
+                    </div>
+                    <div class="flex">
+                        {{ $rating->body }}
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
+    <div class="flex flex-col items-center justify-center w-full mx-auto mt-10 overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-900 dark:shadow-gray-700">
+        <div class="w-full px-4 py-5 border-b sm:px-6 dark:border-gray-700">
+            <h3 class="text-lg font-medium leading-6 text-gray-900 dark:text-white">
                 Files
             </h3>
         </div>

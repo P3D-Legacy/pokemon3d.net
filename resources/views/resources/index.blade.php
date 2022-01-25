@@ -51,7 +51,7 @@
                                         <div class="flex flex-col justify-center text-xs text-gray-400 basis-1/5 items-left">
                                             <div class="flex flex-row justify-between">
                                                 <span>Rating:</span>
-                                                <span>{{ $resource->averageRating(1) ?? 0 }}/5 ({{ $resource->countRating() }})</span>
+                                                <span>{{ $resource->hasReview() ? $resource->averageRating(1) : 0 }}/5 ({{ $resource->numberOfReviews() }})</span>
                                             </div>
                                             <div class="flex flex-row justify-between">
                                                 <span>Likes:</span>

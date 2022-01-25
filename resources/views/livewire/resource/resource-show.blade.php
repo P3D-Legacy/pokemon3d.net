@@ -91,7 +91,7 @@
             </h3>
         </div>
         <div class="flex flex-col w-full divide-y divide dark:divide-gray-700">
-            @foreach ($resource->getAllRatings($resource->id) as $rating)
+            @foreach ($resource->reviews() as $rating)
                 <div class="flex items-center justify-between w-full p-4 dark:text-white">
                     <div class="flex">
                         {{ $rating->author->username }}

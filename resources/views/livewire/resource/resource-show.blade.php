@@ -87,31 +87,6 @@
     <div class="flex flex-col items-center justify-center w-full mx-auto mt-10 overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-900 dark:shadow-gray-700">
         <div class="w-full px-4 py-5 border-b sm:px-6 dark:border-gray-700">
             <h3 class="text-lg font-medium leading-6 text-gray-900 dark:text-white">
-                Latest reviews
-            </h3>
-        </div>
-        <div class="flex flex-col w-full divide-y divide dark:divide-gray-700">
-            @foreach ($resource->reviews() as $rating)
-                <div class="flex items-center justify-between w-full p-4 dark:text-white">
-                    <div class="flex">
-                        {{ $rating->author->username }}
-                    </div>
-                    <div class="flex">
-                        {{ $rating->rating }}/5
-                    </div>
-                    <div class="flex">
-                        {{ $rating->created_at->diffForHumans() }}
-                    </div>
-                    <div class="flex">
-                        {{ $rating->body }}
-                    </div>
-                </div>
-            @endforeach
-        </div>
-    </div>
-    <div class="flex flex-col items-center justify-center w-full mx-auto mt-10 overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-900 dark:shadow-gray-700">
-        <div class="w-full px-4 py-5 border-b sm:px-6 dark:border-gray-700">
-            <h3 class="text-lg font-medium leading-6 text-gray-900 dark:text-white">
                 Files
             </h3>
         </div>
@@ -134,6 +109,33 @@
                             </svg>
                             Download
                         </button>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
+    <div class="flex flex-col items-center justify-center w-full mx-auto mt-10 overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-900 dark:shadow-gray-700">
+        <div class="w-full px-4 py-5 border-b sm:px-6 dark:border-gray-700">
+            <h3 class="text-lg font-medium leading-6 text-gray-900 dark:text-white">
+                Latest reviews
+            </h3>
+        </div>
+        <div class="flex flex-col w-full divide-y divide dark:divide-gray-700">
+            @foreach ($resource->reviews as $review)
+                <div class="flex items-center w-full p-4">
+                    <div class="flex flex-col items-center justify-center w-10 h-10 mr-4">
+                        <img alt="{{ $review->author->username }}" src="{{ $review->author->profile_photo_url ?? asset('img/TreeLogoSmall.png') }}" class="object-cover w-10 h-10 mx-auto rounded-full "/>
+                    </div>
+                    <div class="flex-1 pl-1 mr-16">
+                        <div class="text-sm text-gray-400 dark:text-gray-200">
+                            {{ $review->author->username }} &middot; {{ $review->rating }}/5 &middot; {{ $review->created_at->diffForHumans() }}
+                        </div>
+                        <div class="text-xs text-gray-500 truncate dark:text-gray-300">
+                            
+                        </div>
+                        <div class="py-1 font-medium dark:text-white">
+                            {{ $review->review }}
+                        </div>
                     </div>
                 </div>
             @endforeach

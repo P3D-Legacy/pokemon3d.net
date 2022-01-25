@@ -32,18 +32,8 @@ class RatingCreate extends ModalComponent
         ]);
 
         $resource = Resource::find($this->resource);
-        
-        $resource->rating([
-            'title' => $this->user->username,
-            'body' => $this->body,
-            'customer_service_rating' => $this->rating,
-            'quality_rating' => $this->rating,
-            'friendly_rating' => $this->rating,
-            'pricing_rating' => $this->rating,
-            'rating' => $this->rating,
-            'recommend' => 'Yes',
-            'approved' => true, // This is optional and defaults to false
-        ], $this->user);
+
+        $resource->review($this->body, $this->user, $this->rating);
 
         $this->emit('resourceUpdated', $resource->id);
         

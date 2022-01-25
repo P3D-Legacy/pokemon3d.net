@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "99059a4054b8ab5422133a63bbf05618",
+    "content-hash": "b89c3175d15b1b574d345c67562822f5",
     "packages": [
         {
             "name": "alibayat/laravel-categorizable",
@@ -643,66 +643,6 @@
                 }
             ],
             "time": "2020-10-02T12:38:20+00:00"
-        },
-        {
-            "name": "codebyray/laravel-review-rateable",
-            "version": "v1.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/codebyray/laravel-review-rateable.git",
-                "reference": "235c1480046863d8e90e4c3d0d9667ed5a3f50dc"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/codebyray/laravel-review-rateable/zipball/235c1480046863d8e90e4c3d0d9667ed5a3f50dc",
-                "reference": "235c1480046863d8e90e4c3d0d9667ed5a3f50dc",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/database": "~5.5.0|~5.6.0|~5.7.0|~5.8.0|^6.0|^7.0|^8.0",
-                "illuminate/support": "~5.5.0|~5.6.0|~5.7.0|~5.8.0|^6.0|^7.0|^8.0",
-                "php": "^7.3|^8.0"
-            },
-            "require-dev": {
-                "orchestra/testbench": "~3.5.0|~3.6.0|^4.0",
-                "phpunit/phpunit": "^6.3|^7.0|^8.0|^9.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Codebyray\\ReviewRateable\\ReviewRateableServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Codebyray\\ReviewRateable\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "CodebyRay",
-                    "email": "dev@codebyray.com"
-                }
-            ],
-            "description": "Review & Rating system for Laravel 7 & 8",
-            "keywords": [
-                "Ratable",
-                "Rating",
-                "Review-Rateable",
-                "laravel",
-                "reviewable"
-            ],
-            "support": {
-                "issues": "https://github.com/codebyray/laravel-review-rateable/issues",
-                "source": "https://github.com/codebyray/laravel-review-rateable/tree/v1.4"
-            },
-            "time": "2021-12-21T21:45:57+00:00"
         },
         {
             "name": "composer/ca-bundle",

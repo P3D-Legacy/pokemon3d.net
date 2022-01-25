@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use AliBayat\LaravelCategorizable\Categorizable;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
+use Digikraaft\ReviewRating\Traits\HasReviewRating;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Touhidurabir\MultiKyeRouteBinding\HasMultipleRouteBindingKeys;
 
@@ -22,6 +23,7 @@ class Resource extends Model implements Viewable
     use HasTags;
     use HasMultipleRouteBindingKeys;
     use Categorizable;
+    use HasReviewRating;
 
     public static function boot()
     {

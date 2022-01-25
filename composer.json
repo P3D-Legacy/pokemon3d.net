@@ -18,6 +18,7 @@
         "betterapp/laravel-db-encrypter": "^1.0",
         "blade-ui-kit/blade-ui-kit": "^0.3.2",
         "cyrildewit/eloquent-viewable": "^6.0",
+        "digikraaft/laravel-review-rating": "^2.1",
         "doctrine/dbal": "^3.1",
         "enlightn/enlightn": "^1.0",
         "fideloper/proxy": "^4.4",

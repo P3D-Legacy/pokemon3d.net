@@ -17,6 +17,7 @@ class ResourceController extends Controller
     public function index()
     {
         return view("resources.index", [
+            "categories" => Category::all(),
             "resources" => Resource::orderBy('name')->paginate(10)
         ]);
     }

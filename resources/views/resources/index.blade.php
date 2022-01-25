@@ -19,8 +19,20 @@
             @endif
             @endcomponent
             <div class="grid grid-cols-1 gap-4 sm:grid-cols-3 md:grid-cols-4 grid-flow-cols">
-                <div class="bg-red-100">
-                    Category
+                <div>
+                    <div class="flex flex-col items-center justify-center w-full mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-900 dark:shadow-gray-700">
+                        <div class="w-full px-4 py-3 border-b dark:border-gray-700">
+                            <h3 class="font-medium leading-6 text-gray-900 dark:text-white">
+                                Categories
+                            </h3>
+                        </div>
+                        <div class="flex flex-col w-full text-gray-900 divide-y divide dark:divide-gray-700 dark:text-white">
+                            <a href="{{ route('resource.index') }}" class="px-4 py-3 text-xs hover:bg-black/10 dark:hover:bg-white/10">{{ __('All categories') }}</a>
+                            @foreach ($categories as $category)
+                                <a href="{{ route('resource.category', Str::lower($category->name)) }}" class="px-4 py-3 text-xs hover:bg-black/10 dark:hover:bg-white/10">{{ $category->name }}</a>
+                            @endforeach
+                        </div>
+                    </div>
                 </div>
                 <div class="sm:col-span-2 md:col-span-3">
             

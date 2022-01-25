@@ -91,7 +91,7 @@
             </h3>
         </div>
         <div class="flex flex-col w-full divide-y divide dark:divide-gray-700">
-            @foreach ([1,2,3] as $file)
+            @forelse ([1,2,3] as $file)
                 <div class="flex items-center justify-between w-full p-4 dark:text-white">
                     <div class="flex">
                         1.2.3
@@ -111,7 +111,13 @@
                         </button>
                     </div>
                 </div>
-            @endforeach
+            @empty
+                <div class="flex items-center justify-center w-full p-4">
+                    <div class="text-center dark:text-gray-400">
+                        {{ __('No files found.') }}
+                    </div>
+                </div>
+            @endforelse
         </div>
     </div>
     <div class="flex flex-col items-center justify-center w-full mx-auto mt-10 overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-900 dark:shadow-gray-700">

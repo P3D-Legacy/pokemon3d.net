@@ -1385,21 +1385,21 @@
         },
         {
             "name": "digikraaft/laravel-review-rating",
-            "version": "v2.1.0",
+            "version": "v2.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/digikraaft/laravel-review-rating.git",
-                "reference": "fc5ed2743c93377054a901d78b400d7f09766c15"
+                "reference": "ae7c5c7fe3c4d99f71a291cf39df315c327f5970"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/digikraaft/laravel-review-rating/zipball/fc5ed2743c93377054a901d78b400d7f09766c15",
-                "reference": "fc5ed2743c93377054a901d78b400d7f09766c15",
+                "url": "https://api.github.com/repos/digikraaft/laravel-review-rating/zipball/ae7c5c7fe3c4d99f71a291cf39df315c327f5970",
+                "reference": "ae7c5c7fe3c4d99f71a291cf39df315c327f5970",
                 "shasum": ""
             },
             "require": {
                 "laravel/framework": "^8.0",
-                "php": "^7.4|8.0.*"
+                "php": "^7.4|^8.0"
             },
             "require-dev": {
                 "orchestra/testbench": "^6.0",
@@ -1431,7 +1431,7 @@
                     "role": "Developer"
                 }
             ],
-            "description": "Review & Rating system for Laravel 5.8, 6.*, 7.*",
+            "description": "Review & Rating system for Laravel",
             "homepage": "https://github.com/digikraaft/laravel-review-rating",
             "keywords": [
                 "digikraaft",
@@ -1441,9 +1441,9 @@
             ],
             "support": {
                 "issues": "https://github.com/digikraaft/laravel-review-rating/issues",
-                "source": "https://github.com/digikraaft/laravel-review-rating/tree/v2.1.0"
+                "source": "https://github.com/digikraaft/laravel-review-rating/tree/v2.2.0"
             },
-            "time": "2021-11-02T09:25:51+00:00"
+            "time": "2022-01-25T14:53:03+00:00"
         },
         {
             "name": "doctrine/cache",

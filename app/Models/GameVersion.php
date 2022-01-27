@@ -14,7 +14,7 @@ class GameVersion extends Model
         'title',
         'release_date',
         'page_url',
-        'downloadable_url',
+        'download_url',
     ];
 
     protected $dates = [

@@ -19,7 +19,7 @@ class CreateGameVersionsTable extends Migration
             $table->string('title');
             $table->date('release_date');
             $table->string('page_url');
-            $table->string('downloadable_url');
+            $table->string('download_url');
             $table->softDeletes();
             $table->timestamps();
         });

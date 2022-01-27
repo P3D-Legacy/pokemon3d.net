@@ -8,4 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class GameVersion extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'version',
+        'title',
+        'release_date',
+        'page_url',
+        'downloadable_url',
+    ];
+
+    protected $dates = [
+        'release_date',
+    ];
+
 }

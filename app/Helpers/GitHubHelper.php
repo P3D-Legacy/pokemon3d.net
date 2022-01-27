@@ -12,7 +12,7 @@ class GitHubHelper
     public function __construct()
     {
         $this->githubData = Cache::get("github_current_version", function () {
-                $ApiUrl = env('GITHUB_API_REPO');
+                $ApiUrl = env('GITHUB_API_REPO').'/releases/latest';
                 $response = Http::withHeaders([
                     'X-First' => 'foo',
                     'X-Second' => 'bar'

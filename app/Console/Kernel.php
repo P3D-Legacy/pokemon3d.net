@@ -29,6 +29,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('p3d:skinuserupdate')->hourlyAt(10);
         $schedule->command('server:pingall')->hourly();
         $schedule->command('gj:update-trophies')->hourly();
+        $schedule->command('github:syncrelease')->daily();
         $schedule->command(RunHealthChecksCommand::class)->everyMinute();
     }
 

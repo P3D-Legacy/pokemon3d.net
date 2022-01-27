@@ -21,4 +21,9 @@ class GameVersion extends Model
         'release_date',
     ];
 
+    public function latest()
+    {
+        return $this->orderBy('release_date', 'desc')->first();
+    }
+
 }

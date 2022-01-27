@@ -56,7 +56,7 @@ class SyncGameVersion extends Command
                 'page_url' => $release['html_url'],
                 'download_url' => $release['assets'][0]['browser_download_url'],
             ];
-            $version = GameVersion::updateOrCreate($data);
+            $version = GameVersion::updateOrCreate(['version' => $release['tag_name']], $data);
             $this->info("Updated or created release: ".$version->version);
         }
         $this->info('Done.');

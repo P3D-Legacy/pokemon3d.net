@@ -14,7 +14,9 @@
 
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
-
+        @production
+            <script defer data-domain="{{ request()->getHost() }}" src="https://plausible.io/js/plausible.js"></script>
+        @endproduction
     </head>
 <body class="font-sans antialiased bg-repeat bg-top bg-woods w-full h-screen">
     <div class="container flex items-center justify-center flex-1 h-full mx-auto">

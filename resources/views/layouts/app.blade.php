@@ -38,6 +38,9 @@
                 document.querySelector('html').classList.add('dark')
             }
         </script>
+        @production
+            <script defer data-domain="{{ request()->getHost() }}" src="https://plausible.io/js/plausible.js"></script>
+        @endproduction
     </head>
     <body class="font-sans antialiased {{ env('APP_DEBUG') ? 'debug-screens' : '' }}">
         <x-jet-banner />

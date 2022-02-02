@@ -11,6 +11,29 @@
         <x-jet-label for="description" class="mt-4" value="{{ __('Description') }}" />
         <x-easy-mde name="description" wire:model.defer="description" :options="['hideIcons' => ['side-by-side','fullscreen',]]"></x-easy-mde>
         <x-jet-input-error for="description" class="mt-2" />
+
+        <div wire:ignore
+             x-data
+             x-init="() => {
+                FilePond.setOptions({
+                    server: {
+                        process:(fieldName, file, metadata, load, error, progress, abort, transfer, options) => {
+                            @this.upload('file', file, load, error, progress)
+                        },
+                        revert: (filename, load) => {
+                            @this.removeUpload('file', filename, load)
+                        }
+                    },
+                    allowFileTypeValidation: true
+                });
+                FilePond.registerPlugin(FilePondPluginFileValidateType);
+                FilePond.create($refs.input, {
+                    acceptedFileTypes: ['application/zip', 'application/x-zip-compressed', 'multipart/x-zip']
+                });
+            }">
+            <input type="file" x-ref="input">
+        </div>
+        <x-jet-input-error for="file" class="mt-2" />
     </x-slot>
 
     <x-slot name="buttons">

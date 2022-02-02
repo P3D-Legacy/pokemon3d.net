@@ -4,7 +4,13 @@
     </x-slot>
 
     <x-slot name="content">
-        
+        <x-jet-label for="version" value="{{ __('Version') }}" />
+        <x-jet-input id="version" type="text" class="block w-full mt-1" wire:model.defer="version" autocomplete="version" placeholder="1.2.3" />
+        <x-jet-input-error for="version" class="mt-2" />
+
+        <x-jet-label for="description" class="mt-4" value="{{ __('Description') }}" />
+        <x-easy-mde name="description" wire:model.defer="description" :options="['hideIcons' => ['side-by-side','fullscreen',]]"></x-easy-mde>
+        <x-jet-input-error for="description" class="mt-2" />
     </x-slot>
 
     <x-slot name="buttons">

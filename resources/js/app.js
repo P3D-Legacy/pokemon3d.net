@@ -1,8 +1,8 @@
-require('./bootstrap');
+require("./bootstrap");
 
-import Alpine from 'alpinejs';
+import Alpine from "alpinejs";
 window.Alpine = Alpine;
-import './../../vendor/power-components/livewire-powergrid/dist/powergrid';
+import "./../../vendor/power-components/livewire-powergrid/dist/powergrid";
 Alpine.start();
 
 import flatpickr from "flatpickr";
@@ -24,7 +24,7 @@ flatpickr(".flatpickrBirtdate", {
     enableTime: false,
     dateFormat: "Y-m-d",
     minDate: date_min,
-    maxDate: date_max
+    maxDate: date_max,
 });
 
-import 'tw-elements';
+import "tw-elements";

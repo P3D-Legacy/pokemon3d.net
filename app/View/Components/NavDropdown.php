@@ -4,7 +4,7 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class nav-dropdown extends Component
+class NavDropdown extends Component
 {
     /**
      * Create a new component instance.

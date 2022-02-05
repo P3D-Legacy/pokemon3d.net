@@ -1,8 +1,9 @@
-vendor
-storage
-node_modules
-.github
+/vendor
+/storage
+/node_modules
+/.github
+/public
 README.md
 CHANGELOG.md
 LICENSE
-public
+phpunit.xml

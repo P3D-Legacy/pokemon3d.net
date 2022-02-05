@@ -19,9 +19,9 @@ return [
     | Please note that changing this before migrating will also change preemptively
     | the name of the created tables on the database.
     */
-    'table_names' => [
-        'details' => 'achievement_details',
-        'progress' => 'achievement_progress'
+    "table_names" => [
+        "details" => "achievement_details",
+        "progress" => "achievement_progress",
     ],
 
     /*
@@ -49,7 +49,7 @@ return [
     | query from achievements().
     |
     */
-    'locked_sync' => true,
+    "locked_sync" => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -63,5 +63,5 @@ return [
     | This will keep your database in sync, but may also increase the amount
     | of database calls.
     */
-    'auto_sync' => false
+    "auto_sync" => false,
 ];

@@ -14,27 +14,27 @@ class PermissionResource extends JsonResource
      */
     public function toArray($request)
     {
-        if ($request->user()->can('api.full')) {
+        if ($request->user()->can("api.full")) {
             return parent::toArray($request);
         }
-        if ($request->user()->can('api.moderate')) {
+        if ($request->user()->can("api.moderate")) {
             return [
-                'id' => $this->id,
-                'name' => $this->name,
-                'created_at' => $this->created_at,
-                'updated_at' => $this->updated_at,
+                "id" => $this->id,
+                "name" => $this->name,
+                "created_at" => $this->created_at,
+                "updated_at" => $this->updated_at,
             ];
         }
-        if ($request->user()->can('api.minimal')) {
+        if ($request->user()->can("api.minimal")) {
             return [
-                'id' => $this->id,
-                'name' => $this->name,
-                'created_at' => $this->created_at,
+                "id" => $this->id,
+                "name" => $this->name,
+                "created_at" => $this->created_at,
             ];
         }
         return [
-            'id' => $this->id,
-            'name' => $this->name
+            "id" => $this->id,
+            "name" => $this->name,
         ];
     }
 }

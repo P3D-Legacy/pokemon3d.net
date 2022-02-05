@@ -19,7 +19,7 @@ class TwitchController extends Controller
      */
     public function redirectToProvider()
     {
-        return Socialite::driver('twitch')->redirect();
+        return Socialite::driver("twitch")->redirect();
     }
 
     /**
@@ -30,48 +30,64 @@ class TwitchController extends Controller
     public function handleProviderCallback()
     {
         try {
-
-            $twitchUser = Socialite::driver('twitch')->user();
+            $twitchUser = Socialite::driver("twitch")->user();
 
             $userProfile = [
-                'id' => $twitchUser->id,
-                'name' => $twitchUser->name,
-                'username' => $twitchUser->nickname,
-                'email' => $twitchUser->email,
-                'avatar' => $twitchUser->avatar,
+                "id" => $twitchUser->id,
+                "name" => $twitchUser->name,
+                "username" => $twitchUser->nickname,
+                "email" => $twitchUser->email,
+                "avatar" => $twitchUser->avatar,
             ];
 
             // Check if user exists with email
-            $twitchAccount = TwitchAccount::where('id', $twitchUser->id)->first();
+            $twitchAccount = TwitchAccount::where(
+                "id",
+                $twitchUser->id
+            )->first();
             if (!$twitchAccount && auth()->guest()) {
-                return redirect()->route('login')->withError('Twitch account association not found with any P3D account.');
+                return redirect()
+                    ->route("login")
+                    ->withError(
+                        "Twitch account association not found with any P3D account."
+                    );
             }
 
             $user = $twitchAccount ? $twitchAccount->user : null;
             if ($user) {
                 Auth::login($user);
-                return redirect()->route('dashboard');
+                return redirect()->route("dashboard");
             }
 
             if (auth()->guest() && !$user) {
-                return redirect()->route('login')->withError('You are not logged in and user was not found.');
+                return redirect()
+                    ->route("login")
+                    ->withError(
+                        "You are not logged in and user was not found."
+                    );
             }
 
             // Create new twitch account
             $user = auth()->user();
-            $userProfile['user_id'] = $user->id;
-            $userProfile['verified_at'] = now();
+            $userProfile["user_id"] = $user->id;
+            $userProfile["verified_at"] = now();
             TwitchAccount::create($userProfile);
             $user->unlock(new AssociatedTwitch());
-            return redirect()->route('profile.show');
-
+            return redirect()->route("profile.show");
         } catch (InvalidStateException $e) {
-            return redirect()->route('home')->withError('Something went wrong with Twitch login. Please try again.');
+            return redirect()
+                ->route("home")
+                ->withError(
+                    "Something went wrong with Twitch login. Please try again."
+                );
         } catch (ClientException $e) {
-            return redirect()->route('home')->withError('Something went wrong with Twitch login. Please try again.');
+            return redirect()
+                ->route("home")
+                ->withError(
+                    "Something went wrong with Twitch login. Please try again."
+                );
         }
 
-
-        return redirect()->route('dashboard');
+        return redirect()->route("dashboard");
     }
 }

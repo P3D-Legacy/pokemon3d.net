@@ -27,6 +27,6 @@ class FooterLink extends Component
      */
     public function render()
     {
-        return view('components.home.footer-link');
+        return view("components.home.footer-link");
     }
 }

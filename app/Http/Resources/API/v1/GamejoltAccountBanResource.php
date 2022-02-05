@@ -15,31 +15,37 @@ class GamejoltAccountBanResource extends JsonResource
      */
     public function toArray($request)
     {
-        if ($request->user()->can('api.full')) {
+        if ($request->user()->can("api.full")) {
             return parent::toArray($request);
         }
-        if ($request->user()->can('api.moderate')) {
+        if ($request->user()->can("api.moderate")) {
             return [
-                'id' => $this->id,
-                'uuid' => $this->uuid,
-                'gamejoltaccount' => new GamejoltAccountResource($this->gamejoltaccount),
-                'reason' => new BanReasonResource($this->reason),
-                'banned_by' => new UserResource($this->banned_by),
-                'updated_at' => $this->updated_at,
-                'expire_at' => $this->expire_at,
+                "id" => $this->id,
+                "uuid" => $this->uuid,
+                "gamejoltaccount" => new GamejoltAccountResource(
+                    $this->gamejoltaccount
+                ),
+                "reason" => new BanReasonResource($this->reason),
+                "banned_by" => new UserResource($this->banned_by),
+                "updated_at" => $this->updated_at,
+                "expire_at" => $this->expire_at,
             ];
         }
-        if ($request->user()->can('api.minimal')) {
+        if ($request->user()->can("api.minimal")) {
             return [
-                'uuid' => $this->uuid,
-                'gamejoltaccount' => new GamejoltAccountResource($this->gamejoltaccount),
-                'reason' => new BanReasonResource($this->reason),
-                'expire_at' => $this->expire_at,
+                "uuid" => $this->uuid,
+                "gamejoltaccount" => new GamejoltAccountResource(
+                    $this->gamejoltaccount
+                ),
+                "reason" => new BanReasonResource($this->reason),
+                "expire_at" => $this->expire_at,
             ];
         }
         return [
-            'gamejoltaccount' => new GamejoltAccountResource($this->gamejoltaccount),
-            'reason' => new BanReasonResource($this->reason),
+            "gamejoltaccount" => new GamejoltAccountResource(
+                $this->gamejoltaccount
+            ),
+            "reason" => new BanReasonResource($this->reason),
         ];
     }
 }

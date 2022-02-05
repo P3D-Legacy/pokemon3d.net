@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 
 class GamejoltAuth
-{    
+{
     /**
      * Handle an incoming request.
      *
@@ -17,10 +17,12 @@ class GamejoltAuth
     public function handle(Request $request, Closure $next)
     {
         if (!env("GAMEJOLT_GAME_ID") || !env("GAMEJOLT_GAME_PRIVATE_KEY")) {
-            redirect()->route('gj-login')->with('error', 'Gamejolt API keys is not set by the admin!');
+            redirect()
+                ->route("gj-login")
+                ->with("error", "Gamejolt API keys is not set by the admin!");
         }
-        if (!$request->session()->get('gju')){
-            return redirect()->route('gj-login');
+        if (!$request->session()->get("gju")) {
+            return redirect()->route("gj-login");
         }
         return $next($request);
     }

@@ -28,7 +28,7 @@ class IPHostnameARecord implements Rule
         $ipValid = filter_var($value, FILTER_VALIDATE_IP) !== false;
         $domainValid = filter_var($value, FILTER_VALIDATE_DOMAIN) !== false;
         $aRecord = checkdnsrr($value, "A");
-        return ($ipValid || $domainValid && $aRecord) ? true : false;
+        return $ipValid || ($domainValid && $aRecord) ? true : false;
     }
 
     /**
@@ -38,6 +38,6 @@ class IPHostnameARecord implements Rule
      */
     public function message()
     {
-        return ':Attribute does not have a valid hostname/ip format or does not return an A record.';
+        return ":Attribute does not have a valid hostname/ip format or does not return an A record.";
     }
 }

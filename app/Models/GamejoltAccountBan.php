@@ -13,14 +13,14 @@ class GamejoltAccountBan extends Model
     use SoftDeletes;
     use Uuid;
 
-    protected $primaryKey = 'uuid';
+    protected $primaryKey = "uuid";
 
     /**
      * The "type" of the auto-incrementing ID.
      *
      * @var string
      */
-    protected $keyType = 'string';
+    protected $keyType = "string";
 
     /**
      * Indicates if the IDs are auto-incrementing.
@@ -42,19 +42,19 @@ class GamejoltAccountBan extends Model
      * @var array
      */
     protected $fillable = [
-        'gamejoltaccount_id',
-        'banned_by_id',
-        'reason_id',
-        'expire_at',
+        "gamejoltaccount_id",
+        "banned_by_id",
+        "reason_id",
+        "expire_at",
     ];
-    
+
     /**
      * The attributes that should be cast to native types.
      *
      * @var array
      */
     protected $casts = [
-        'expire_at' => 'datetime',
+        "expire_at" => "datetime",
     ];
 
     /**
@@ -62,7 +62,11 @@ class GamejoltAccountBan extends Model
      */
     public function gamejoltaccount()
     {
-        return $this->hasOne(GamejoltAccount::class, 'id', 'gamejoltaccount_id');
+        return $this->hasOne(
+            GamejoltAccount::class,
+            "id",
+            "gamejoltaccount_id"
+        );
     }
 
     /**
@@ -70,7 +74,7 @@ class GamejoltAccountBan extends Model
      */
     public function reason()
     {
-        return $this->hasOne(BanReason::class, 'id', 'reason_id');
+        return $this->hasOne(BanReason::class, "id", "reason_id");
     }
 
     /**
@@ -78,6 +82,6 @@ class GamejoltAccountBan extends Model
      */
     public function banned_by()
     {
-        return $this->hasOne(User::class, 'id', 'banned_by_id');
+        return $this->hasOne(User::class, "id", "banned_by_id");
     }
 }

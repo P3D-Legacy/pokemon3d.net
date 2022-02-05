@@ -15,7 +15,8 @@ class ServerEditForm extends Component
     public $port;
     public $description;
 
-    public function mount() {
+    public function mount()
+    {
         $this->name = $this->server->name;
         $this->host = $this->server->host;
         $this->port = $this->server->port;
@@ -33,42 +34,29 @@ class ServerEditForm extends Component
         $this->resetValidation();
 
         $this->validate([
-            'name' => [
-                'required',
-                'string',
-                new StrNotContain('official'),
+            "name" => ["required", "string", new StrNotContain("official")],
+            "host" => [
+                "required",
+                new StrNotContain("pokemon3d.net"),
+                new IPHostnameARecord(),
             ],
-            'host' => [
-                'required',
-                new StrNotContain('pokemon3d.net'),
-                new IPHostnameARecord,
-            ],
-            'port' => [
-                'required',
-                'integer',
-                'min:10',
-                'max:99999',
-            ],
-            'description' => [
-                'nullable',
-                'string',
-            ],
+            "port" => ["required", "integer", "min:10", "max:99999"],
+            "description" => ["nullable", "string"],
         ]);
 
         Server::find($this->server->uuid)->update([
-            'name' => $this->name,
-            'host' => $this->host,
-            'port' => $this->port,
-            'description' => $this->description,
-            'user_id' => auth()->user()->id,
+            "name" => $this->name,
+            "host" => $this->host,
+            "port" => $this->port,
+            "description" => $this->description,
+            "user_id" => auth()->user()->id,
         ]);
-        $this->emit('serverUpdated');
-        return redirect()->route('server.index');
-        
+        $this->emit("serverUpdated");
+        return redirect()->route("server.index");
     }
 
     public function render()
     {
-        return view('livewire.server.server-edit-form');
+        return view("livewire.server.server-edit-form");
     }
 }

@@ -23,6 +23,6 @@ class LogoSmall extends Component
      */
     public function render()
     {
-        return view('components.logo-small');
+        return view("components.logo-small");
     }
 }

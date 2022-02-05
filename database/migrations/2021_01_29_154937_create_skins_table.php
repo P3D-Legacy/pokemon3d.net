@@ -13,12 +13,12 @@ class CreateSkinsTable extends Migration
      */
     public function up()
     {
-        Schema::create('skins', function (Blueprint $table) {
+        Schema::create("skins", function (Blueprint $table) {
             $table->id();
-            $table->uuid('uuid');
-            $table->string('name');
-            $table->integer('owner_id');
-            $table->boolean('public')->default(false);
+            $table->uuid("uuid");
+            $table->string("name");
+            $table->integer("owner_id");
+            $table->boolean("public")->default(false);
             $table->softDeletes();
             $table->timestamps();
         });
@@ -31,6 +31,6 @@ class CreateSkinsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('skins');
+        Schema::dropIfExists("skins");
     }
 }

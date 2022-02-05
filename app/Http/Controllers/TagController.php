@@ -9,10 +9,15 @@ class TagController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['permission:tags.create|tags.update|tags.destroy'])->only(['index']);
-        $this->middleware(['permission:tags.create'])->only(['create', 'store']);
-        $this->middleware(['permission:tags.update'])->only(['update', 'edit']);
-        $this->middleware(['permission:tags.destroy'])->only(['destroy']);
+        $this->middleware([
+            "permission:tags.create|tags.update|tags.destroy",
+        ])->only(["index"]);
+        $this->middleware(["permission:tags.create"])->only([
+            "create",
+            "store",
+        ]);
+        $this->middleware(["permission:tags.update"])->only(["update", "edit"]);
+        $this->middleware(["permission:tags.destroy"])->only(["destroy"]);
     }
 
     /**
@@ -22,8 +27,8 @@ class TagController extends Controller
      */
     public function index()
     {
-        $tags = Tag::orderBy('created_at', 'desc')->paginate(10);
-        return view('tag.index', compact('tags'));
+        $tags = Tag::orderBy("created_at", "desc")->paginate(10);
+        return view("tag.index", compact("tags"));
     }
 
     /**
@@ -33,7 +38,7 @@ class TagController extends Controller
      */
     public function create()
     {
-        return view('tag.create');
+        return view("tag.create");
     }
 
     /**
@@ -45,15 +50,12 @@ class TagController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'name' => [
-                'string',
-                'required',
-            ],
+            "name" => ["string", "required"],
         ]);
         Tag::create($validatedData);
-        session()->flash('flash.banner', 'Created Tag!');
-        session()->flash('flash.bannerStyle', 'success');
-        return redirect()->route('tags.index');
+        session()->flash("flash.banner", "Created Tag!");
+        session()->flash("flash.bannerStyle", "success");
+        return redirect()->route("tags.index");
     }
 
     /**
@@ -64,7 +66,7 @@ class TagController extends Controller
      */
     public function show(Tag $tag)
     {
-        return view('tag.show', compact('tag'));
+        return view("tag.show", compact("tag"));
     }
 
     /**
@@ -75,7 +77,7 @@ class TagController extends Controller
      */
     public function edit(Tag $tag)
     {
-        return view('tag.edit', compact('tag'));
+        return view("tag.edit", compact("tag"));
     }
 
     /**
@@ -88,15 +90,12 @@ class TagController extends Controller
     public function update(Request $request, Tag $tag)
     {
         $validatedData = $request->validate([
-            'name' => [
-                'string',
-                'required',
-            ],
+            "name" => ["string", "required"],
         ]);
         $tag->update($validatedData);
-        session()->flash('flash.banner', 'Updated Tag!');
-        session()->flash('flash.bannerStyle', 'success');
-        return redirect()->route('tags.index');
+        session()->flash("flash.banner", "Updated Tag!");
+        session()->flash("flash.bannerStyle", "success");
+        return redirect()->route("tags.index");
     }
 
     /**
@@ -108,8 +107,8 @@ class TagController extends Controller
     public function destroy(Tag $tag)
     {
         $tag->delete();
-        session()->flash('flash.banner', 'Deleted Tag!');
-        session()->flash('flash.bannerStyle', 'success');
-        return redirect()->route('tags.index');
+        session()->flash("flash.banner", "Deleted Tag!");
+        session()->flash("flash.bannerStyle", "success");
+        return redirect()->route("tags.index");
     }
 }

@@ -23,6 +23,6 @@ class LogoIconLarge extends Component
      */
     public function render()
     {
-        return view('components.logo-icon-large');
+        return view("components.logo-icon-large");
     }
 }

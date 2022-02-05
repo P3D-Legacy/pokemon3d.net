@@ -17,23 +17,25 @@ class LikeButton extends Component
         $this->post = $post;
         $this->user = auth()->user();
         $this->count = $this->post->likers()->count();
-        $this->liked = $this->user ? $this->post->isLikedBy($this->user) : false;
+        $this->liked = $this->user
+            ? $this->post->isLikedBy($this->user)
+            : false;
     }
 
     public function like()
     {
         // Redirect guest to login page
         if (auth()->guest()) {
-            return redirect()->route('login');
+            return redirect()->route("login");
         }
         // else if user; like
         $this->user->toggleLike($this->post);
         $this->count = $this->post->likers()->count();
         $this->liked = $this->post->isLikedBy($this->user);
     }
-    
+
     public function render()
     {
-        return view('livewire.blog.like-button');
+        return view("livewire.blog.like-button");
     }
 }

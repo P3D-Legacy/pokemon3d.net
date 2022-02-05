@@ -12,28 +12,29 @@ class GitHubHelper
     public function __construct()
     {
         $this->githubData = Cache::get("github_current_version", function () {
-                $ApiUrl = env('GITHUB_API_REPO').'/releases/latest';
-                $response = Http::withHeaders([
-                    'X-First' => 'foo',
-                    'X-Second' => 'bar'
-                ])->get($ApiUrl);
-                $decodedResponse = json_decode($response, true);
-                $date = new \DateTime($decodedResponse['published_at']);
-                $data = [
-                    'version' => $decodedResponse['tag_name'],
-                    'version_title' => $decodedResponse['name'],
-                    'release_date' => $date,
-                    'release_page' => $decodedResponse['html_url'],
-                    'downloadable_url' => $decodedResponse['assets'][0]['browser_download_url'],
-                    'author' => [
-                        'name' => $decodedResponse['author']['login'],
-                        'avatar' => $decodedResponse['author']['avatar_url'],
-                        'profile' => $decodedResponse['author']['html_url']
-                    ]
-                ];
-                Cache::put('github_current_version', $data, 60*60);
-                return $data;
-            });
+            $ApiUrl = env("GITHUB_API_REPO") . "/releases/latest";
+            $response = Http::withHeaders([
+                "X-First" => "foo",
+                "X-Second" => "bar",
+            ])->get($ApiUrl);
+            $decodedResponse = json_decode($response, true);
+            $date = new \DateTime($decodedResponse["published_at"]);
+            $data = [
+                "version" => $decodedResponse["tag_name"],
+                "version_title" => $decodedResponse["name"],
+                "release_date" => $date,
+                "release_page" => $decodedResponse["html_url"],
+                "downloadable_url" =>
+                    $decodedResponse["assets"][0]["browser_download_url"],
+                "author" => [
+                    "name" => $decodedResponse["author"]["login"],
+                    "avatar" => $decodedResponse["author"]["avatar_url"],
+                    "profile" => $decodedResponse["author"]["html_url"],
+                ],
+            ];
+            Cache::put("github_current_version", $data, 60 * 60);
+            return $data;
+        });
     }
 
     public function getAll()

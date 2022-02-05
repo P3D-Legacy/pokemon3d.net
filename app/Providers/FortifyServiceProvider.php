@@ -36,23 +36,28 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::ignoreRoutes();
 
         Fortify::createUsersUsing(CreateNewUser::class);
-        Fortify::updateUserProfileInformationUsing(UpdateUserProfileInformation::class);
+        Fortify::updateUserProfileInformationUsing(
+            UpdateUserProfileInformation::class
+        );
         Fortify::updateUserPasswordsUsing(UpdateUserPassword::class);
         Fortify::resetUserPasswordsUsing(ResetUserPassword::class);
 
-        RateLimiter::for('login', function (Request $request) {
-            return Limit::perMinute(5)->by($request->username.$request->ip());
+        RateLimiter::for("login", function (Request $request) {
+            return Limit::perMinute(5)->by($request->username . $request->ip());
         });
 
-        RateLimiter::for('two-factor', function (Request $request) {
-            return Limit::perMinute(5)->by($request->session()->get('login.id'));
+        RateLimiter::for("two-factor", function (Request $request) {
+            return Limit::perMinute(5)->by(
+                $request->session()->get("login.id")
+            );
         });
 
         Fortify::authenticateUsing(function (Request $request) {
-            $user = User::where('email', $request->username)->orWhere('username', $request->username)->first();
-    
-            if ($user &&
-                Hash::check($request->password, $user->password)) {
+            $user = User::where("email", $request->username)
+                ->orWhere("username", $request->username)
+                ->first();
+
+            if ($user && Hash::check($request->password, $user->password)) {
                 return $user;
             }
         });

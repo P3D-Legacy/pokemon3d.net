@@ -27,6 +27,6 @@ class NavLink extends Component
      */
     public function render()
     {
-        return view('components.home.nav-link');
+        return view("components.home.nav-link");
     }
 }

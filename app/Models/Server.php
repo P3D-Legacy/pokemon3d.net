@@ -16,14 +16,14 @@ class Server extends Model
     use SoftDeletes;
     use Uuid;
 
-    protected $primaryKey = 'uuid';
+    protected $primaryKey = "uuid";
 
     /**
      * The "type" of the auto-incrementing ID.
      *
      * @var string
      */
-    protected $keyType = 'string';
+    protected $keyType = "string";
 
     /**
      * Indicates if the IDs are auto-incrementing.
@@ -46,7 +46,7 @@ class Server extends Model
      */
     public function getRouteKeyName()
     {
-        return 'uuid';
+        return "uuid";
     }
 
     /**
@@ -55,13 +55,13 @@ class Server extends Model
      * @var array
      */
     protected $fillable = [
-        'name',
-        'description',
-        'host',
-        'port',
-        'active',
-        'last_check_at',
-        'user_id',
+        "name",
+        "description",
+        "host",
+        "port",
+        "active",
+        "last_check_at",
+        "user_id",
     ];
 
     /**
@@ -70,10 +70,10 @@ class Server extends Model
      * @var array
      */
     protected $casts = [
-        'last_check_at' => 'datetime',
+        "last_check_at" => "datetime",
     ];
 
-     /**
+    /**
      * The boot method of the model.
      *
      * @return void
@@ -87,8 +87,9 @@ class Server extends Model
         });
     }
 
-    public function scopeIsActive($query) {
-        return $query->where('active', 1);
+    public function scopeIsActive($query)
+    {
+        return $query->where("active", 1);
     }
 
     /**

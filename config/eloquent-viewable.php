@@ -1,24 +1,19 @@
 <?php
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Eloquent Models
     |--------------------------------------------------------------------------
     */
-    'models' => [
-
+    "models" => [
         /*
          * Here you can configure the default `View` model.
          */
-        'view' => [
-
-            'table_name' => 'views',
-            'connection' => env('DB_CONNECTION', 'mysql'),
-
+        "view" => [
+            "table_name" => "views",
+            "connection" => env("DB_CONNECTION", "mysql"),
         ],
-
     ],
 
     /*
@@ -26,18 +21,16 @@ return [
     | Cache Configuration
     |--------------------------------------------------------------------------
     */
-    'cache' => [
-
+    "cache" => [
         /*
          * Everthing will be stored under the following key.
          */
-        'key' => 'cyrildewit.eloquent-viewable.cache',
+        "key" => "cyrildewit.eloquent-viewable.cache",
 
         /*
          * Here you may define the cache store that should be used.
          */
-        'store' => env('CACHE_DRIVER', 'file'),
-
+        "store" => env("CACHE_DRIVER", "file"),
     ],
 
     /*
@@ -45,13 +38,11 @@ return [
     | Cooldown Configuration
     |--------------------------------------------------------------------------
     */
-    'cooldown' => [
-
+    "cooldown" => [
         /*
          * Everthing will be stored under the following key in the session.
          */
-        'key' => 'cyrildewit.eloquent-viewable.cooldowns',
-
+        "key" => "cyrildewit.eloquent-viewable.cooldowns",
     ],
 
     /*
@@ -64,7 +55,7 @@ return [
     | by JayBizzle called CrawlerDetect.
     |
     */
-    'ignore_bots' => true,
+    "ignore_bots" => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -75,7 +66,7 @@ return [
     | record views from visitors with the Do Not Track header.
     |
     */
-    'honor_dnt' => true,
+    "honor_dnt" => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -87,7 +78,7 @@ return [
     |
     */
 
-    'visitor_cookie_key' => 'eloquent_viewable',
+    "visitor_cookie_key" => "eloquent_viewable",
 
     /*
     |--------------------------------------------------------------------------
@@ -98,10 +89,7 @@ return [
     |
     */
 
-    'ignored_ip_addresses' => [
-
+    "ignored_ip_addresses" => [
         // '127.0.0.1',
-
     ],
-
 ];

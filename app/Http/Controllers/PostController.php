@@ -12,10 +12,18 @@ class PostController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['permission:posts.create|posts.update|posts.destroy'])->only(['index']);
-        $this->middleware(['permission:posts.create'])->only(['create', 'store']);
-        $this->middleware(['permission:posts.update'])->only(['update', 'edit']);
-        $this->middleware(['permission:posts.destroy'])->only(['destroy']);
+        $this->middleware([
+            "permission:posts.create|posts.update|posts.destroy",
+        ])->only(["index"]);
+        $this->middleware(["permission:posts.create"])->only([
+            "create",
+            "store",
+        ]);
+        $this->middleware(["permission:posts.update"])->only([
+            "update",
+            "edit",
+        ]);
+        $this->middleware(["permission:posts.destroy"])->only(["destroy"]);
     }
 
     /**
@@ -25,8 +33,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::orderByDesc('created_at')->paginate(10);
-        return view('posts.index', ['posts' => $posts]);
+        $posts = Post::orderByDesc("created_at")->paginate(10);
+        return view("posts.index", ["posts" => $posts]);
     }
 
     /**
@@ -37,7 +45,7 @@ class PostController extends Controller
     public function create()
     {
         $tags = Tag::all();
-        return view('posts.create', compact('tags'));
+        return view("posts.create", compact("tags"));
     }
 
     /**
@@ -49,25 +57,25 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => ['required', 'string', 'max:255', 'unique:posts,title'],
-            'active' => ['required', 'integer'],
-            'sticky' => ['required', 'integer'],
-            'published_at' => ['required', 'date_format:Y-m-d H:i:s'],
-            'body' => ['required', 'string', 'min:25'],
+            "title" => ["required", "string", "max:255", "unique:posts,title"],
+            "active" => ["required", "integer"],
+            "sticky" => ["required", "integer"],
+            "published_at" => ["required", "date_format:Y-m-d H:i:s"],
+            "body" => ["required", "string", "min:25"],
         ]);
 
-        $post = new Post;
+        $post = new Post();
         $post->title = $request->title;
         $post->body = $request->body;
         $post->active = $request->active;
         $post->sticky = $request->sticky;
         $post->published_at = $request->published_at;
-        $post->slug = Str::of($post->title)->slug('-');
+        $post->slug = Str::of($post->title)->slug("-");
         $post->user_id = auth()->user()->id;
         $post->save();
         $post->attachTags($request->tags);
 
-        return redirect()->route('posts.index');
+        return redirect()->route("posts.index");
     }
 
     /**
@@ -90,7 +98,7 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         $tags = Tag::all();
-        return view('posts.edit', compact('post', 'tags'));
+        return view("posts.edit", compact("post", "tags"));
     }
 
     /**
@@ -103,11 +111,16 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         $request->validate([
-            'title' => ['required', 'string', 'max:255', Rule::unique('posts')->ignore($post->id)],
-            'active' => ['required', 'integer'],
-            'sticky' => ['required', 'integer'],
-            'published_at' => ['required', 'date_format:Y-m-d H:i:s'],
-            'body' => ['required', 'string', 'min:25'],
+            "title" => [
+                "required",
+                "string",
+                "max:255",
+                Rule::unique("posts")->ignore($post->id),
+            ],
+            "active" => ["required", "integer"],
+            "sticky" => ["required", "integer"],
+            "published_at" => ["required", "date_format:Y-m-d H:i:s"],
+            "body" => ["required", "string", "min:25"],
         ]);
 
         $post->title = $request->title;
@@ -115,12 +128,12 @@ class PostController extends Controller
         $post->active = $request->active;
         $post->sticky = $request->sticky;
         $post->published_at = $request->published_at;
-        $post->slug = Str::of($post->title)->slug('-');
+        $post->slug = Str::of($post->title)->slug("-");
         $post->user_id = auth()->user()->id;
         $post->save();
         $post->syncTags($request->tags);
 
-        return redirect()->route('posts.index');
+        return redirect()->route("posts.index");
     }
 
     /**

@@ -7,7 +7,6 @@ use App\Models\DiscordAccount;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\API\v1\DiscordAccountResource;
 
-
 /**
  * @group Discord Account
  *
@@ -19,7 +18,7 @@ class DiscordAccountController extends Controller
      * Display the specified resource.
      *
      * @urlParam id int required The ID of the Discord Account.
-     * 
+     *
      * @response {
      *    "data": [
      *        {
@@ -38,12 +37,14 @@ class DiscordAccountController extends Controller
      */
     public function show(Request $request, $id)
     {
-        if (!$request->user()->tokenCan('read')) {
+        if (!$request->user()->tokenCan("read")) {
             return response()->json([
-                'error' => 'Token does not have access!',
+                "error" => "Token does not have access!",
             ]);
         }
-        $gja = DiscordAccount::with(['user.roles.permissions'])->where('id', $id)->firstOrFail();
+        $gja = DiscordAccount::with(["user.roles.permissions"])
+            ->where("id", $id)
+            ->firstOrFail();
         return new DiscordAccountResource($gja);
     }
 }

@@ -21,22 +21,36 @@ class CreateNewUser implements CreatesNewUsers
     public function create(array $input)
     {
         Validator::make($input, [
-            'name' => ['required', 'string', 'max:255'],
-            'username' => ['required', 'string', 'max:255', 'different:email', 'unique:users'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => $this->passwordRules(),
-            'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['required', 'accepted'] : '',
+            "name" => ["required", "string", "max:255"],
+            "username" => [
+                "required",
+                "string",
+                "max:255",
+                "different:email",
+                "unique:users",
+            ],
+            "email" => [
+                "required",
+                "string",
+                "email",
+                "max:255",
+                "unique:users",
+            ],
+            "password" => $this->passwordRules(),
+            "terms" => Jetstream::hasTermsAndPrivacyPolicyFeature()
+                ? ["required", "accepted"]
+                : "",
         ])->validate();
 
         $user = User::create([
-            'name' => $input['name'],
-            'username' => $input['username'],
-            'email' => $input['email'],
-            'password' => Hash::make($input['password']),
+            "name" => $input["name"],
+            "username" => $input["username"],
+            "email" => $input["email"],
+            "password" => Hash::make($input["password"]),
         ]);
 
-        $user->giveConsentTo(config('app.required_consent'), [
-            'text' => config('app.consents')[config('app.required_consent')],
+        $user->giveConsentTo(config("app.required_consent"), [
+            "text" => config("app.consents")[config("app.required_consent")],
         ]);
 
         return $user;

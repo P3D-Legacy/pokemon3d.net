@@ -23,6 +23,6 @@ class DownloadButton extends Component
      */
     public function render()
     {
-        return view('components.download-button');
+        return view("components.download-button");
     }
 }

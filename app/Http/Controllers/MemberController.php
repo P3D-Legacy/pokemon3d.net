@@ -14,6 +14,6 @@ class MemberController extends Controller
      */
     public function show(User $user)
     {
-        return view('member.show', compact('user'));
+        return view("member.show", compact("user"));
     }
 }

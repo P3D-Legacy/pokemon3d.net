@@ -23,6 +23,6 @@ class LogoLarge extends Component
      */
     public function render()
     {
-        return view('components.logo-large');
+        return view("components.logo-large");
     }
 }

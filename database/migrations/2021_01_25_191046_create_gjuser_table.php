@@ -13,11 +13,11 @@ class CreateGjuserTable extends Migration
      */
     public function up()
     {
-        Schema::create('gjuser', function (Blueprint $table) {
+        Schema::create("gjuser", function (Blueprint $table) {
             $table->id();
-            $table->integer('gjid');
-            $table->string('gju');
-            $table->boolean('is_admin')->default(false);
+            $table->integer("gjid");
+            $table->string("gju");
+            $table->boolean("is_admin")->default(false);
             $table->softDeletes();
             $table->timestamps();
         });
@@ -30,6 +30,6 @@ class CreateGjuserTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('gjuser');
+        Schema::dropIfExists("gjuser");
     }
 }

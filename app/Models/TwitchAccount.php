@@ -13,14 +13,14 @@ class TwitchAccount extends Model
     use SoftDeletes;
     use Uuid;
 
-    protected $primaryKey = 'uuid';
+    protected $primaryKey = "uuid";
 
     /**
      * The "type" of the auto-incrementing ID.
      *
      * @var string
      */
-    protected $keyType = 'string';
+    protected $keyType = "string";
 
     /**
      * Indicates if the IDs are auto-incrementing.
@@ -42,13 +42,13 @@ class TwitchAccount extends Model
      * @var array
      */
     protected $fillable = [
-        'id',
-        'username',
-        'name',
-        'email',
-        'avatar',
-        'verified_at',
-        'user_id',
+        "id",
+        "username",
+        "name",
+        "email",
+        "avatar",
+        "verified_at",
+        "user_id",
     ];
 
     /**
@@ -57,17 +57,15 @@ class TwitchAccount extends Model
      * @var array
      */
     protected $casts = [
-        'verified_at' => 'datetime',
+        "verified_at" => "datetime",
     ];
 
-    /** 
+    /**
      * The attributes that should be hidden
-     * 
+     *
      * @var array
      */
-    protected $hidden = [
-        'aid',
-    ];
+    protected $hidden = ["aid"];
 
     public function touchVerify()
     {
@@ -80,6 +78,6 @@ class TwitchAccount extends Model
      */
     public function user()
     {
-        return $this->hasOne(User::class, 'id', 'user_id');
+        return $this->hasOne(User::class, "id", "user_id");
     }
 }

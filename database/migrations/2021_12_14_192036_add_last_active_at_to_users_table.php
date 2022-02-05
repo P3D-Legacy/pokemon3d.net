@@ -13,8 +13,8 @@ class AddLastActiveAtToUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->timestamp('last_active_at')->nullable();
+        Schema::table("users", function (Blueprint $table) {
+            $table->timestamp("last_active_at")->nullable();
         });
     }
 
@@ -25,8 +25,8 @@ class AddLastActiveAtToUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('last_active_at');
+        Schema::table("users", function (Blueprint $table) {
+            $table->dropColumn("last_active_at");
         });
     }
 }

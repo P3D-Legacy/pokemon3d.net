@@ -28,7 +28,9 @@ class YoungerThan implements Rule
     public function passes($attribute, $value)
     {
         try {
-            return Carbon::now()->diff(Carbon::createFromFormat('Y-m-d', $value))->y < $this->maxAge;
+            return Carbon::now()->diff(
+                Carbon::createFromFormat("Y-m-d", $value)
+            )->y < $this->maxAge;
         } catch (InvalidArgumentException $e) {
             return false;
         }
@@ -41,6 +43,6 @@ class YoungerThan implements Rule
      */
     public function message()
     {
-        return __('validation.YoungerThan', ['age' => $this->maxAge]);
+        return __("validation.YoungerThan", ["age" => $this->maxAge]);
     }
 }

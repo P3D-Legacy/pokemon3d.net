@@ -9,12 +9,12 @@ class NewTermsBanner extends Component
 {
     public function agree()
     {
-        Auth::user()->giveConsentTo(config('app.required_consent'), [
-            'text' => config('app.consents')[config('app.required_consent')],
+        Auth::user()->giveConsentTo(config("app.required_consent"), [
+            "text" => config("app.consents")[config("app.required_consent")],
         ]);
-        redirect()->route('profile.show');
+        redirect()->route("profile.show");
     }
-    
+
     /**
      * Display a view.
      *
@@ -22,6 +22,6 @@ class NewTermsBanner extends Component
      */
     public function render()
     {
-        return view('livewire.new-terms-banner');
+        return view("livewire.new-terms-banner");
     }
 }

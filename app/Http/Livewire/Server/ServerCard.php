@@ -10,24 +10,27 @@ class ServerCard extends Component
 {
     public Server $server;
 
-    public function mount(Server $server) {
+    public function mount(Server $server)
+    {
         $this->server = $server;
     }
 
-    public function reactivate() {
-        Artisan::call('ping:server '.$this->server->uuid.' true');
+    public function reactivate()
+    {
+        Artisan::call("ping:server " . $this->server->uuid . " true");
         $this->server->active = true;
         $this->server->save();
-        $this->emit('serverUpdated');
+        $this->emit("serverUpdated");
     }
 
-    public function destroy() {
+    public function destroy()
+    {
         $this->server->delete();
-        $this->emit('serverUpdated');
+        $this->emit("serverUpdated");
     }
 
     public function render()
     {
-        return view('livewire.server.server-card');
+        return view("livewire.server.server-card");
     }
 }

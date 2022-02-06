@@ -26,7 +26,11 @@ class UpdateCreate extends ModalComponent
             'required',
             'string',
         ],
-        'file' => ['required', 'file', 'mimes:zip']
+        'file' => [
+            'required',
+            'file',
+            'mimes:zip'
+        ],
     ];
 
     public function mount(int|Resource $resource)

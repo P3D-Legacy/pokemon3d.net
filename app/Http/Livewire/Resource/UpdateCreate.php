@@ -18,6 +18,14 @@ class UpdateCreate extends ModalComponent
     public $description;
 
     protected array $rules = [
+        'version' => [
+            'required',
+            'string',
+        ],
+        'description' => [
+            'required',
+            'string',
+        ],
         'file' => ['required', 'file', 'mimes:zip']
     ];
 

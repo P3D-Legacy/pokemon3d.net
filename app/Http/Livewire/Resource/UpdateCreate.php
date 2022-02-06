@@ -34,7 +34,7 @@ class UpdateCreate extends ModalComponent
 
         $this->resourceUpdate = ResourceUpdate::create([
             'title' => $this->version,
-            'body' => $this->description,
+            'description' => $this->description,
             'resource_id' => $this->resource,
             'game_version_id' => 1,
         ]);

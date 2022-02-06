@@ -16,7 +16,7 @@ class CreateResourceUpdatesTable extends Migration
         Schema::create('resource_updates', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->text('body');
+            $table->text('description');
             $table->unsignedBigInteger('resource_id');
             $table->unsignedBigInteger('game_version_id');
             $table->softDeletes();

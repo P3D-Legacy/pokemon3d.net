@@ -60,12 +60,20 @@ class Resource extends Model implements Viewable
         'description',
         'user_id',
     ];
-    
+
     /**
      * Get the user that made this post.
      */
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Get the updates related to this resource.
+     */
+    public function updates()
+    {
+        return $this->hasMany(ResourceUpdate::class);
     }
 }

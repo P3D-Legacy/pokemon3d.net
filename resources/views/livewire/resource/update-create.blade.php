@@ -9,7 +9,15 @@
         <x-jet-input-error for="version" class="mt-2" />
 
         <x-jet-label for="description" class="mt-4" value="{{ __('Description') }}" />
-        <x-easy-mde name="description" wire:model.defer="description" :options="['hideIcons' => ['side-by-side','fullscreen',]]"></x-easy-mde>
+        <div wire:ignore>
+            <x-easy-mde-editor name="description" :options="['hideIcons' => ['side-by-side','fullscreen',]]">
+                <x-slot name="script">
+                    easyMDE.codemirror.on('change', function () {
+                      @this.set('description', easyMDE.value())
+                    });
+                </x-slot>
+            </x-easy-mde-editor>
+        </div>
         <x-jet-input-error for="description" class="mt-2" />
 
         <div wire:ignore

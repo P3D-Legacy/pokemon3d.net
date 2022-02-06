@@ -97,16 +97,16 @@
             </h3>
         </div>
         <div class="flex flex-col w-full divide-y divide dark:divide-gray-700">
-            @forelse ([1,2,3] as $file)
+            @forelse ($resource->updates as $update)
                 <div class="flex items-center justify-between w-full p-4 dark:text-white">
                     <div class="flex">
-                        1.2.3
+                        {{ $update->title }}
                     </div>
                     <div class="flex">
-                        1. Jan 1970
+                        {{ $update->created_at->diffForHumans() }}
                     </div>
                     <div class="flex">
-                        13245 downloads
+                        0 downloads
                     </div>
                     <div class="flex">
                         <button class="px-2 py-1 text-sm text-green-100 transition-colors duration-150 bg-green-600 rounded-md focus:shadow-outline hover:bg-green-700">

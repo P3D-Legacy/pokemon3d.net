@@ -36,8 +36,6 @@ class UpdateCreate extends ModalComponent
     public function mount(int|Resource $resource)
     {
         $this->resource = $resource;
-        $this->version = "";
-        $this->description = "";
     }
 
     public function save()

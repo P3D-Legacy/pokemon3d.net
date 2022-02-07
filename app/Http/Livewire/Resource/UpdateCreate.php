@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Resource;
 
+use App\Models\GameVersion;
 use App\Models\Resource;
 use Livewire\WithFileUploads;
 use App\Models\ResourceUpdate;
@@ -16,6 +17,8 @@ class UpdateCreate extends ModalComponent
     public $file;
     public $version;
     public $description;
+    public $gameversion;
+    public $gameversions;
 
     protected array $rules = [
         'version' => [
@@ -31,11 +34,15 @@ class UpdateCreate extends ModalComponent
             'file',
             'mimes:zip'
         ],
+        'gameversion' => [
+            'required',
+        ],
     ];
 
     public function mount(int|Resource $resource)
     {
         $this->resource = $resource;
+        $this->gameversions = GameVersion::all();
     }
 
     public function save()
@@ -46,7 +53,7 @@ class UpdateCreate extends ModalComponent
             'title' => $this->version,
             'description' => $this->description,
             'resource_id' => $this->resource,
-            'game_version_id' => 1,
+            'game_version_id' => $this->gameversion,
         ]);
 
         $this->resourceUpdate->clearMediaCollection('resource_update_file');

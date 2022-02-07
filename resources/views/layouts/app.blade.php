@@ -18,15 +18,16 @@
         @livewireStyles
         @powerGridStyles
         @bukStyles
+        <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
 
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
         <script> 
             var $buoop = {required:{e:-6,f:-6,o:-6,s:-3,c:-6},insecure:true,unsupported:true,api:2021.08 }; 
             function $buo_f(){ 
-             var e = document.createElement("script"); 
-             e.src = "//browser-update.org/update.min.js"; 
-             document.body.appendChild(e);
+                var e = document.createElement("script"); 
+                e.src = "//browser-update.org/update.min.js"; 
+                document.body.appendChild(e);
             };
             try {document.addEventListener("DOMContentLoaded", $buo_f,false)}
             catch(e){window.attachEvent("onload", $buo_f)}
@@ -91,6 +92,8 @@
         @livewireScripts
         @livewire('livewire-ui-modal')
         @bukScripts
+        <script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.js"></script>
+        <script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
 
         <script>
             var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');

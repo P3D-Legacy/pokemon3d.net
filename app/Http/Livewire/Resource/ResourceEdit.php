@@ -27,7 +27,8 @@ class ResourceEdit extends ModalComponent
         $this->categories = Category::all();
     }
 
-    public function save() {
+    public function save()
+    {
         $this->validate([
             'name' => [
                 'required',
@@ -57,7 +58,7 @@ class ResourceEdit extends ModalComponent
         $this->resource->syncCategories($category);
 
         $this->emit('resourceUpdated', $this->resource->id);
-        
+
         $this->closeModal();
     }
 

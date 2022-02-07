@@ -41,6 +41,12 @@
                             </svg>
                             Edit
                         </button>
+                        <button onclick="Livewire.emit('openModal', 'resource.update-create', {{ json_encode(['resource' => $resource->id]) }})" class="block w-full px-4 py-2 text-sm text-left text-gray-700 dark:text-gray-300 hover:bg-green-700 hover:text-white">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                            </svg>
+                            Post a update
+                        </button>
                     </div>
                 </div>
             @endif
@@ -49,7 +55,7 @@
     <div class="w-full p-4 bg-white rounded-lg shadow-lg dark:bg-gray-900 dark:shadow-gray-700">
         <div class="grid grid-cols-4 gap-4">
             <div class="col-span-3">
-                <div class="mb-4 text-xs text-gray-500 dark:text-gray-300">{{ $resource->breif }}</div>
+                <div class="mb-4 text-xs text-gray-400">{{ $resource->breif }}</div>
                 <div class="prose dark:prose-invert">
                     {!! Str::of($resource->description)->markdown() !!}
                 </div>
@@ -91,16 +97,16 @@
             </h3>
         </div>
         <div class="flex flex-col w-full divide-y divide dark:divide-gray-700">
-            @forelse ([1,2,3] as $file)
+            @forelse ($resource->updates as $update)
                 <div class="flex items-center justify-between w-full p-4 dark:text-white">
                     <div class="flex">
-                        1.2.3
+                        {{ $update->title }}
                     </div>
                     <div class="flex">
-                        1. Jan 1970
+                        {{ $update->created_at->diffForHumans() }}
                     </div>
                     <div class="flex">
-                        13245 downloads
+                        0 downloads
                     </div>
                     <div class="flex">
                         <button class="px-2 py-1 text-sm text-green-100 transition-colors duration-150 bg-green-600 rounded-md focus:shadow-outline hover:bg-green-700">

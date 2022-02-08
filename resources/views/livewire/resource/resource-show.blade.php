@@ -144,8 +144,8 @@
                         <img alt="{{ $review->author->username }}" src="{{ $review->author->profile_photo_url ?? asset('img/TreeLogoSmall.png') }}" class="object-cover w-10 h-10 mx-auto rounded-full "/>
                     </div>
                     <div class="flex-1 pl-1 mr-16">
-                        <div class="text-sm text-gray-400 dark:text-gray-200">
-                            {{ $review->author->username }} &middot; {{ $review->rating }}/5 &middot; {{ $review->created_at->diffForHumans() }}
+                        <div class="text-sm text-gray-400 dark:text-gray-200 flex items-center">
+                            {{ $review->author->username }} &middot; <x-review-stars :stars="$review->rating" /> &middot; {{ $review->created_at->diffForHumans() }}
                         </div>
                         <div class="text-xs text-gray-500 truncate dark:text-gray-300">
                             

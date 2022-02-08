@@ -28,3 +28,8 @@ flatpickr('.flatpickrBirtdate', {
 });
 
 import 'tw-elements';
+
+import EasyMDE from 'easyMDE';
+const easyMDE = new EasyMDE({ 
+    element: document.getElementById("easyMDE"),
+}); 

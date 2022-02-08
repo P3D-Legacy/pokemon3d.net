@@ -19,14 +19,14 @@
                 </svg>
                 Leave a rating
             </button>
-            {{--
-                <button class="px-2 py-1 text-green-100 transition-colors duration-150 bg-green-600 rounded-md focus:shadow-outline hover:bg-green-700">
+            @if($resource->updates->first())
+                <button wire:click="download" class="px-2 py-1 text-green-100 transition-colors duration-150 bg-green-600 rounded-md focus:shadow-outline hover:bg-green-700">
                     <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                     </svg>
                     Download
                 </button>
-            --}}
+            @endif
             @if(auth()->user()->id == $resource->user_id)
                 <div x-data="{ dropdownOpen: false }" class="" x-cloak>
                     <button @click="dropdownOpen = !dropdownOpen" class="px-2 py-1 text-gray-100 transition-colors duration-150 bg-gray-600 rounded-md focus:shadow-outline hover:bg-gray-700">
@@ -72,7 +72,7 @@
                     </div>
                     <div class="flex flex-row justify-between">
                         <span>Donwloads:</span>
-                        <span>0</span>
+                        <span>{{ $resource->downloads }}</span>
                     </div>
                     <div class="flex flex-row justify-between">
                         <span>Views:</span>
@@ -109,7 +109,7 @@
                         {{ $update->created_at->diffForHumans() }}
                     </div>
                     <div class="flex text-sm">
-                        0 downloads
+                        {{ $update->downloads }} downloads
                     </div>
                     {{--
                     <div class="flex">

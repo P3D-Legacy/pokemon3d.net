@@ -34,57 +34,57 @@ use Spatie\Health\Http\Controllers\HealthCheckResultsController;
 |
 */
 
-Route::get("/redirect/wiki", function () {
-    return redirect("https://pokemon3d.net/wiki/");
-})->name("wiki");
+Route::get('/redirect/wiki', function () {
+    return redirect('https://pokemon3d.net/wiki/');
+})->name('wiki');
 
-Route::get("/redirect/forum", function () {
-    return redirect("https://pokemon3d.net/forum/");
-})->name("forum");
+Route::get('/redirect/forum', function () {
+    return redirect('https://pokemon3d.net/forum/');
+})->name('forum');
 
-Route::get("/redirect/github", function () {
-    return redirect("https://github.com/P3D-Legacy");
-})->name("github");
+Route::get('/redirect/github', function () {
+    return redirect('https://github.com/P3D-Legacy');
+})->name('github');
 
-Route::get("/redirect/discord", function () {
-    return redirect(config("discord.invite_url"));
-})->name("discord");
+Route::get('/redirect/discord', function () {
+    return redirect(config('discord.invite_url'));
+})->name('discord');
 
-Route::get("/", [HomeController::class, "index"])->name("home");
-Route::resource("blog", BlogController::class);
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::resource('blog', BlogController::class);
 
-Route::group(["prefix" => "login"], function () {
-    Route::get("/discord", [
+Route::group(['prefix' => 'login'], function () {
+    Route::get('/discord', [
         DiscordController::class,
-        "redirectToProvider",
-    ])->name("discord.login");
-    Route::get("/discord/callback", [
+        'redirectToProvider',
+    ])->name('discord.login');
+    Route::get('/discord/callback', [
         DiscordController::class,
-        "handleProviderCallback",
+        'handleProviderCallback',
     ]);
-    Route::get("/twitter", [
+    Route::get('/twitter', [
         TwitterController::class,
-        "redirectToProvider",
-    ])->name("twitter.login");
-    Route::get("/twitter/callback", [
+        'redirectToProvider',
+    ])->name('twitter.login');
+    Route::get('/twitter/callback', [
         TwitterController::class,
-        "handleProviderCallback",
+        'handleProviderCallback',
     ]);
-    Route::get("/facebook", [
+    Route::get('/facebook', [
         FacebookController::class,
-        "redirectToProvider",
-    ])->name("facebook.login");
-    Route::get("/facebook/callback", [
+        'redirectToProvider',
+    ])->name('facebook.login');
+    Route::get('/facebook/callback', [
         FacebookController::class,
-        "handleProviderCallback",
+        'handleProviderCallback',
     ]);
-    Route::get("/twitch", [
+    Route::get('/twitch', [
         TwitchController::class,
-        "redirectToProvider",
-    ])->name("twitch.login");
-    Route::get("/twitch/callback", [
+        'redirectToProvider',
+    ])->name('twitch.login');
+    Route::get('/twitch/callback', [
         TwitchController::class,
-        "handleProviderCallback",
+        'handleProviderCallback',
     ]);
 });
 

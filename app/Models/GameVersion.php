@@ -10,20 +10,19 @@ class GameVersion extends Model
     use HasFactory;
 
     protected $fillable = [
-        'version',
-        'title',
-        'release_date',
-        'page_url',
-        'download_url',
+        "version",
+        "title",
+        "release_date",
+        "page_url",
+        "download_url",
     ];
 
-    protected $dates = [
-        'release_date',
-    ];
+    protected $dates = ["release_date"];
 
     public static function latest()
     {
-        return self::query()->orderBy('release_date', 'desc')->first();
+        return self::query()
+            ->orderBy("release_date", "desc")
+            ->first();
     }
-
 }

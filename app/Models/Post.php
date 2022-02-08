@@ -41,9 +41,7 @@ class Post extends Model implements Viewable
      *
      * @var array
      */
-    protected $routeBindingKeys = [
-        'uuid',
-    ];
+    protected $routeBindingKeys = ["uuid"];
 
     /**
      * The attributes that are mass assignable.

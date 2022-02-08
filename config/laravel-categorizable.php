@@ -7,23 +7,19 @@ declare(strict_types=1);
  */
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Eloquent Models
     |--------------------------------------------------------------------------
     */
 
-    'models' => [
-
+    "models" => [
         /*
         |--------------------------------------------------------------------------
         | Package's Category Model
         |--------------------------------------------------------------------------
         */
 
-        'category' => \AliBayat\LaravelCategorizable\Category::class,
-
+        "category" => \AliBayat\LaravelCategorizable\Category::class,
     ],
-
 ];

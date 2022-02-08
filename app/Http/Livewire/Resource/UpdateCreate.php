@@ -21,22 +21,10 @@ class UpdateCreate extends ModalComponent
     public $gameversions;
 
     protected array $rules = [
-        'version' => [
-            'required',
-            'string',
-        ],
-        'description' => [
-            'required',
-            'string',
-        ],
-        'file' => [
-            'required',
-            'file',
-            'mimes:zip'
-        ],
-        'gameversion' => [
-            'required',
-        ],
+        "version" => ["required", "string"],
+        "description" => ["required", "string"],
+        "file" => ["required", "file", "mimes:zip"],
+        "gameversion" => ["required"],
     ];
 
     public function mount(int|Resource $resource)
@@ -50,21 +38,23 @@ class UpdateCreate extends ModalComponent
         $this->validate();
 
         $this->resourceUpdate = ResourceUpdate::create([
-            'title' => $this->version,
-            'description' => $this->description,
-            'resource_id' => $this->resource,
-            'game_version_id' => $this->gameversion,
+            "title" => $this->version,
+            "description" => $this->description,
+            "resource_id" => $this->resource,
+            "game_version_id" => $this->gameversion,
         ]);
 
-        $this->resourceUpdate->clearMediaCollection('resource_update_file');
-        $this->resourceUpdate->addMedia($this->file->getRealPath())->toMediaCollection('resource_update_file');
+        $this->resourceUpdate->clearMediaCollection("resource_update_file");
+        $this->resourceUpdate
+            ->addMedia($this->file->getRealPath())
+            ->toMediaCollection("resource_update_file");
 
-        $this->emit('resourceUpdated', $this->resource->id);
+        $this->emit("resourceUpdated", $this->resource->id);
         $this->closeModal();
     }
 
     public function render()
     {
-        return view('livewire.resource.update-create');
+        return view("livewire.resource.update-create");
     }
 }

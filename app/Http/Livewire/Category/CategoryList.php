@@ -10,16 +10,16 @@ class CategoryList extends Component
     public $categories;
 
     protected $listeners = [
-        'categoryAdded' => 'mount',
+        "categoryAdded" => "mount",
     ];
 
     public function mount()
     {
         $this->categories = Category::all();
     }
-    
+
     public function render()
     {
-        return view('livewire.category.category-list');
+        return view("livewire.category.category-list");
     }
 }

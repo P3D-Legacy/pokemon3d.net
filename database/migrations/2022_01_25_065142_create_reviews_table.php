@@ -13,13 +13,13 @@ class CreateReviewsTable extends Migration
      */
     public function up()
     {
-        Schema::create('reviews', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('title')->nullable();
-            $table->text('review');
-            $table->integer('rating')->nullable();
-            $table->morphs('model');
-            $table->morphs('author');
+        Schema::create("reviews", function (Blueprint $table) {
+            $table->increments("id");
+            $table->string("title")->nullable();
+            $table->text("review");
+            $table->integer("rating")->nullable();
+            $table->morphs("model");
+            $table->morphs("author");
             $table->timestamps();
             $table->softDeletes();
         });
@@ -32,6 +32,6 @@ class CreateReviewsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('reviews');
+        Schema::dropIfExists("reviews");
     }
 }

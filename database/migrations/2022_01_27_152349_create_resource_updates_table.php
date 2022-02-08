@@ -13,13 +13,13 @@ class CreateResourceUpdatesTable extends Migration
      */
     public function up()
     {
-        Schema::create('resource_updates', function (Blueprint $table) {
+        Schema::create("resource_updates", function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->text('description');
-            $table->unsignedBigInteger('resource_id');
-            $table->unsignedBigInteger('game_version_id');
-            $table->unsignedInteger('downloads');
+            $table->string("title");
+            $table->text("description");
+            $table->unsignedBigInteger("resource_id");
+            $table->unsignedBigInteger("game_version_id");
+            $table->unsignedInteger("downloads");
             $table->softDeletes();
             $table->timestamps();
         });
@@ -32,6 +32,6 @@ class CreateResourceUpdatesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('resource_updates');
+        Schema::dropIfExists("resource_updates");
     }
 }

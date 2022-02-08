@@ -27,8 +27,4 @@ flatpickr(".flatpickrBirtdate", {
     maxDate: date_max,
 });
 
-<<<<<<< HEAD
-import 'tw-elements';
-=======
 import "tw-elements";
->>>>>>> develop

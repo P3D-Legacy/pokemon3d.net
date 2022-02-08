@@ -16,7 +16,7 @@ class ApiJsonMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        $request->headers->add(["accept" => "application/json"]);
+        $request->headers->add(['accept' => 'application/json']);
         return $next($request);
     }
 }

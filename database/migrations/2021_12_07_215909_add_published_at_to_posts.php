@@ -13,8 +13,8 @@ class AddPublishedAtToPosts extends Migration
      */
     public function up()
     {
-        Schema::table("posts", function (Blueprint $table) {
-            $table->timestamp("published_at")->nullable();
+        Schema::table('posts', function (Blueprint $table) {
+            $table->timestamp('published_at')->nullable();
         });
     }
 
@@ -25,8 +25,8 @@ class AddPublishedAtToPosts extends Migration
      */
     public function down()
     {
-        Schema::table("posts", function (Blueprint $table) {
-            $table->dropColumn("published_at");
+        Schema::table('posts', function (Blueprint $table) {
+            $table->dropColumn('published_at');
         });
     }
 }

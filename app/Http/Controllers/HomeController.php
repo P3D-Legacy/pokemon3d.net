@@ -14,13 +14,13 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        $posts = Post::where("published_at", "<=", now())
-            ->where("active", true)
-            ->orderBy("sticky", "desc")
-            ->orderBy("published_at", "desc")
-            ->withAnyTags(["Website", "Game"])
+        $posts = Post::where('published_at', '<=', now())
+            ->where('active', true)
+            ->orderBy('sticky', 'desc')
+            ->orderBy('published_at', 'desc')
+            ->withAnyTags(['Website', 'Game'])
             ->take(4)
             ->get();
-        return view("home")->with("posts", $posts);
+        return view('home')->with('posts', $posts);
     }
 }

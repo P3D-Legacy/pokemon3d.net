@@ -1,3 +1,5 @@
+@import 'easymde/dist/easymde.min.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -55,3 +57,17 @@
 .tooltip:hover .tooltip-text {
     visibility: visible;
 }
+
+.editor-toolbar {
+    background-color: #fff;
+}
+
+.dark .editor-toolbar {
+    background-color: #000;
+    border-color: #333;
+}
+
+.dark .editor-toolbar button.active, .dark .editor-toolbar button:hover {
+    background: #222;
+    border-color: #444;
+  }

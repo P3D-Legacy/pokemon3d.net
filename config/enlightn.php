@@ -11,10 +11,10 @@ return [
     | various methods such as static analysis. Feel free to customize it.
     |
     */
-    "analyzers" => ["*"],
+    'analyzers' => ['*'],
 
     // If you wish to skip running some analyzers, list the classes in the array below.
-    "exclude_analyzers" => [],
+    'exclude_analyzers' => [],
 
     /*
     |--------------------------------------------------------------------------
@@ -27,12 +27,12 @@ return [
     | key is the base namespace to resolve the class name.
     |
     */
-    "analyzer_paths" => [
-        "Enlightn\\Enlightn\\Analyzers" => base_path(
-            "vendor/enlightn/enlightn/src/Analyzers"
+    'analyzer_paths' => [
+        'Enlightn\\Enlightn\\Analyzers' => base_path(
+            'vendor/enlightn/enlightn/src/Analyzers'
         ),
-        "Enlightn\\EnlightnPro\\Analyzers" => base_path(
-            "vendor/enlightn/enlightnpro/src/Analyzers"
+        'Enlightn\\EnlightnPro\\Analyzers' => base_path(
+            'vendor/enlightn/enlightnpro/src/Analyzers'
         ),
     ],
 
@@ -46,10 +46,10 @@ return [
     | folder, migrations folder and the seeders folder.
     |
     */
-    "base_path" => [
+    'base_path' => [
         app_path(),
-        database_path("migrations"),
-        database_path("seeders"),
+        database_path('migrations'),
+        database_path('seeders'),
     ],
 
     /*
@@ -62,7 +62,7 @@ return [
     | analyzers if the environment does not match.
     |
     */
-    "skip_env_specific" => env("ENLIGHTN_SKIP_ENVIRONMENT_SPECIFIC", false),
+    'skip_env_specific' => env('ENLIGHTN_SKIP_ENVIRONMENT_SPECIFIC', false),
 
     /*
     |--------------------------------------------------------------------------
@@ -74,7 +74,7 @@ return [
     | Example: '/login'.
     |
     */
-    "guest_url" => null,
+    'guest_url' => null,
 
     /*
     |--------------------------------------------------------------------------
@@ -86,41 +86,41 @@ return [
     | on your application needs.
     |
     */
-    "license_whitelist" => [
-        "Apache-2.0",
-        "Apache2",
-        "BSD-2-Clause",
-        "BSD-3-Clause",
-        "LGPL-2.1-only",
-        "LGPL-2.1",
-        "LGPL-2.1-or-later",
-        "LGPL-3.0",
-        "LGPL-3.0-only",
-        "LGPL-3.0-or-later",
-        "MIT",
-        "ISC",
+    'license_whitelist' => [
+        'Apache-2.0',
+        'Apache2',
+        'BSD-2-Clause',
+        'BSD-3-Clause',
+        'LGPL-2.1-only',
+        'LGPL-2.1',
+        'LGPL-2.1-or-later',
+        'LGPL-3.0',
+        'LGPL-3.0-only',
+        'LGPL-3.0-or-later',
+        'MIT',
+        'ISC',
     ],
 
     // List your commercial packages (licensed by you) below, so that they are not
     // flagged by the License Analyzer.
-    "commercial_packages" => ["enlightn/enlightnpro"],
+    'commercial_packages' => ['enlightn/enlightnpro'],
 
-    "allowed_permissions" => [
-        base_path() => "775",
-        app_path() => "775",
-        resource_path() => "775",
-        storage_path() => "775",
-        public_path() => "775",
-        config_path() => "775",
-        database_path() => "775",
-        base_path("routes") => "775",
-        app()->bootstrapPath() => "775",
-        app()->bootstrapPath("cache") => "775",
-        app()->bootstrapPath("app.php") => "664",
-        base_path("artisan") => "775",
-        public_path("index.php") => "664",
-        public_path("server.php") => "664",
+    'allowed_permissions' => [
+        base_path() => '775',
+        app_path() => '775',
+        resource_path() => '775',
+        storage_path() => '775',
+        public_path() => '775',
+        config_path() => '775',
+        database_path() => '775',
+        base_path('routes') => '775',
+        app()->bootstrapPath() => '775',
+        app()->bootstrapPath('cache') => '775',
+        app()->bootstrapPath('app.php') => '664',
+        base_path('artisan') => '775',
+        public_path('index.php') => '664',
+        public_path('server.php') => '664',
     ],
 
-    "writable_directories" => [storage_path(), app()->bootstrapPath("cache")],
+    'writable_directories' => [storage_path(), app()->bootstrapPath('cache')],
 ];

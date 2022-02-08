@@ -43,13 +43,13 @@ class FacebookAccount extends Component
             $this->verified_at = null;
         }
 
-        $this->emit("refresh");
+        $this->emit('refresh');
 
         return;
     }
 
     public function render()
     {
-        return view("livewire.profile.facebook-account");
+        return view('livewire.profile.facebook-account');
     }
 }

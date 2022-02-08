@@ -12,14 +12,14 @@ class PingServer extends Command
      *
      * @var string
      */
-    protected $signature = "server:ping {uuid} {reactivate=false}";
+    protected $signature = 'server:ping {uuid} {reactivate=false}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = "Ping selected server and save response to model.";
+    protected $description = 'Ping selected server and save response to model.';
 
     /**
      * Create a new command instance.
@@ -38,12 +38,12 @@ class PingServer extends Command
      */
     public function handle()
     {
-        $server_uuid = $this->argument("uuid");
-        $reactivate = $this->argument("reactivate");
+        $server_uuid = $this->argument('uuid');
+        $reactivate = $this->argument('reactivate');
 
         $server = Server::find($server_uuid);
         if (!$server) {
-            $this->error("Server not found.");
+            $this->error('Server not found.');
             return;
         }
 
@@ -81,7 +81,7 @@ class PingServer extends Command
             $server->active = false;
         }
         $server->save();
-        $this->info("Name: " . $server->name . " - Ping: " . $ping . "ms");
+        $this->info('Name: ' . $server->name . ' - Ping: ' . $ping . 'ms');
         return $ping;
     }
 }

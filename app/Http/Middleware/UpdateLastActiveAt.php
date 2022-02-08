@@ -25,7 +25,7 @@ class UpdateLastActiveAt
             $request->user()->last_active_at->isPast()
         ) {
             $request->user()->update([
-                "last_active_at" => now(),
+                'last_active_at' => now(),
             ]);
         }
 

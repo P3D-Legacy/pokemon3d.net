@@ -13,13 +13,13 @@ class CreateGamejoltAccountBansTable extends Migration
      */
     public function up()
     {
-        Schema::create("gamejolt_account_bans", function (Blueprint $table) {
+        Schema::create('gamejolt_account_bans', function (Blueprint $table) {
             $table->id();
-            $table->uuid("uuid")->unique();
-            $table->unsignedBigInteger("gamejoltaccount_id");
-            $table->unsignedBigInteger("banned_by_id");
-            $table->unsignedBigInteger("reason_id");
-            $table->timestamp("expire_at")->nullable();
+            $table->uuid('uuid')->unique();
+            $table->unsignedBigInteger('gamejoltaccount_id');
+            $table->unsignedBigInteger('banned_by_id');
+            $table->unsignedBigInteger('reason_id');
+            $table->timestamp('expire_at')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -32,6 +32,6 @@ class CreateGamejoltAccountBansTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists("gamejolt_account_bans");
+        Schema::dropIfExists('gamejolt_account_bans');
     }
 }

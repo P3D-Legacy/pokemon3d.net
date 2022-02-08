@@ -18,7 +18,7 @@ class Preference extends Component
 
     public function render()
     {
-        return view("livewire.profile.preference");
+        return view('livewire.profile.preference');
     }
 
     public function toggle($setting)

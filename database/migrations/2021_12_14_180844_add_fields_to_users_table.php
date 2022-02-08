@@ -13,23 +13,23 @@ class AddFieldsToUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table("users", function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             $table
-                ->text("about")
+                ->text('about')
                 ->nullable()
-                ->after("username");
+                ->after('username');
             $table
-                ->tinyInteger("gender")
+                ->tinyInteger('gender')
                 ->default(0)
-                ->after("about");
+                ->after('about');
             $table
-                ->string("location")
+                ->string('location')
                 ->nullable()
-                ->after("gender");
+                ->after('gender');
             $table
-                ->timestamp("birthdate")
+                ->timestamp('birthdate')
                 ->nullable()
-                ->after("location");
+                ->after('location');
         });
     }
 
@@ -40,11 +40,11 @@ class AddFieldsToUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table("users", function (Blueprint $table) {
-            $table->dropColumn("about");
-            $table->dropColumn("gender");
-            $table->dropColumn("location");
-            $table->dropColumn("birthdate");
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('about');
+            $table->dropColumn('gender');
+            $table->dropColumn('location');
+            $table->dropColumn('birthdate');
         });
     }
 }

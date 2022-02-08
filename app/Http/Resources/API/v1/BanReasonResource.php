@@ -14,23 +14,23 @@ class BanReasonResource extends JsonResource
      */
     public function toArray($request)
     {
-        if ($request->user()->can("api.full")) {
+        if ($request->user()->can('api.full')) {
             return parent::toArray($request);
         }
-        if ($request->user()->can("api.moderate")) {
+        if ($request->user()->can('api.moderate')) {
             return [
-                "name" => $this->name,
-                "created_at" => $this->created_at,
-                "updated_at" => $this->updated_at,
+                'name' => $this->name,
+                'created_at' => $this->created_at,
+                'updated_at' => $this->updated_at,
             ];
         }
-        if ($request->user()->can("api.minimal")) {
+        if ($request->user()->can('api.minimal')) {
             return [
-                "name" => $this->name,
+                'name' => $this->name,
             ];
         }
         return [
-            "name" => $this->name,
+            'name' => $this->name,
         ];
     }
 }

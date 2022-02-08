@@ -17,7 +17,7 @@ class ApiTokenPermissionsTest extends TestCase
     public function test_api_token_permissions_can_be_updated()
     {
         if (!Features::hasApiFeatures()) {
-            return $this->markTestSkipped("API support is not enabled.");
+            return $this->markTestSkipped('API support is not enabled.');
         }
 
         if (Features::hasTeamFeatures()) {
@@ -31,37 +31,37 @@ class ApiTokenPermissionsTest extends TestCase
         }
 
         $token = $user->tokens()->create([
-            "name" => "Test Token",
-            "token" => Str::random(40),
-            "abilities" => ["create", "read"],
+            'name' => 'Test Token',
+            'token' => Str::random(40),
+            'abilities' => ['create', 'read'],
         ]);
 
         Livewire::test(ApiTokenManager::class)
-            ->set(["managingPermissionsFor" => $token])
+            ->set(['managingPermissionsFor' => $token])
             ->set([
-                "updateApiTokenForm" => [
-                    "permissions" => ["delete", "missing-permission"],
+                'updateApiTokenForm' => [
+                    'permissions' => ['delete', 'missing-permission'],
                 ],
             ])
-            ->call("updateApiToken");
+            ->call('updateApiToken');
 
         $this->assertTrue(
             $user
                 ->fresh()
                 ->tokens->first()
-                ->can("delete")
+                ->can('delete')
         );
         $this->assertFalse(
             $user
                 ->fresh()
                 ->tokens->first()
-                ->can("read")
+                ->can('read')
         );
         $this->assertFalse(
             $user
                 ->fresh()
                 ->tokens->first()
-                ->can("missing-permission")
+                ->can('missing-permission')
         );
     }
 }

@@ -19,7 +19,7 @@ class TwitterController extends Controller
      */
     public function redirectToProvider()
     {
-        return Socialite::driver("twitter")->redirect();
+        return Socialite::driver('twitter')->redirect();
     }
 
     /**
@@ -30,70 +30,70 @@ class TwitterController extends Controller
     public function handleProviderCallback()
     {
         try {
-            $twitterUser = Socialite::driver("twitter")->user();
+            $twitterUser = Socialite::driver('twitter')->user();
 
-            if ($twitterUser->user["suspended"]) {
+            if ($twitterUser->user['suspended']) {
                 return redirect()
-                    ->route("login")
-                    ->withError("Twitter user is suspended.");
+                    ->route('login')
+                    ->withError('Twitter user is suspended.');
             }
 
             $userProfile = [
-                "id" => $twitterUser->id,
-                "username" => $twitterUser->nickname,
-                "name" => $twitterUser->name,
-                "email" => $twitterUser->email,
-                "avatar" => $twitterUser->avatar,
+                'id' => $twitterUser->id,
+                'username' => $twitterUser->nickname,
+                'name' => $twitterUser->name,
+                'email' => $twitterUser->email,
+                'avatar' => $twitterUser->avatar,
             ];
 
             // Check if user exists with email
             $twitterAccount = TwitterAccount::where(
-                "id",
+                'id',
                 $twitterUser->id
             )->first();
             if (!$twitterAccount && auth()->guest()) {
                 return redirect()
-                    ->route("login")
+                    ->route('login')
                     ->withError(
-                        "Twitter account association not found with any P3D account."
+                        'Twitter account association not found with any P3D account.'
                     );
             }
 
             $user = $twitterAccount ? $twitterAccount->user : null;
             if ($user) {
                 Auth::login($user);
-                return redirect()->route("dashboard");
+                return redirect()->route('dashboard');
             }
 
             if (auth()->guest() && !$user) {
                 return redirect()
-                    ->route("login")
+                    ->route('login')
                     ->withError(
-                        "You are not logged in and user was not found."
+                        'You are not logged in and user was not found.'
                     );
             }
 
             // Create new twitter account
             $user = auth()->user();
-            $userProfile["user_id"] = $user->id;
-            $userProfile["verified_at"] = now();
+            $userProfile['user_id'] = $user->id;
+            $userProfile['verified_at'] = now();
             TwitterAccount::create($userProfile);
             $user->unlock(new AssociatedTwitter());
-            return redirect()->route("profile.show");
+            return redirect()->route('profile.show');
         } catch (InvalidStateException $e) {
             return redirect()
-                ->route("home")
+                ->route('home')
                 ->withError(
-                    "Something went wrong with Twitter login. Please try again."
+                    'Something went wrong with Twitter login. Please try again.'
                 );
         } catch (ClientException $e) {
             return redirect()
-                ->route("home")
+                ->route('home')
                 ->withError(
-                    "Something went wrong with Twitter login. Please try again."
+                    'Something went wrong with Twitter login. Please try again.'
                 );
         }
 
-        return redirect()->route("dashboard");
+        return redirect()->route('dashboard');
     }
 }

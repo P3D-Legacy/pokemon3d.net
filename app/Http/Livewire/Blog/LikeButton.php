@@ -26,7 +26,7 @@ class LikeButton extends Component
     {
         // Redirect guest to login page
         if (auth()->guest()) {
-            return redirect()->route("login");
+            return redirect()->route('login');
         }
         // else if user; like
         $this->user->toggleLike($this->post);
@@ -36,6 +36,6 @@ class LikeButton extends Component
 
     public function render()
     {
-        return view("livewire.blog.like-button");
+        return view('livewire.blog.like-button');
     }
 }

@@ -36,6 +36,6 @@ class StrNotContain implements Rule
      */
     public function message()
     {
-        return "The :attribute cannot contain " . $this->str . ".";
+        return 'The :attribute cannot contain ' . $this->str . '.';
     }
 }

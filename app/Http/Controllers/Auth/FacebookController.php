@@ -19,7 +19,7 @@ class FacebookController extends Controller
      */
     public function redirectToProvider()
     {
-        return Socialite::driver("facebook")->redirect();
+        return Socialite::driver('facebook')->redirect();
     }
 
     /**
@@ -30,63 +30,63 @@ class FacebookController extends Controller
     public function handleProviderCallback()
     {
         try {
-            $facebookUser = Socialite::driver("facebook")->user();
+            $facebookUser = Socialite::driver('facebook')->user();
 
             $userProfile = [
-                "id" => $facebookUser->id,
-                "name" => $facebookUser->name,
-                "email" => $facebookUser->email,
-                "avatar" => $facebookUser->avatar,
+                'id' => $facebookUser->id,
+                'name' => $facebookUser->name,
+                'email' => $facebookUser->email,
+                'avatar' => $facebookUser->avatar,
             ];
 
             // Check if user exists with email
             $facebookAccount = FacebookAccount::where(
-                "id",
+                'id',
                 $facebookUser->id
             )->first();
             if (!$facebookAccount && auth()->guest()) {
                 return redirect()
-                    ->route("login")
+                    ->route('login')
                     ->withError(
-                        "Facebook account association not found with any P3D account."
+                        'Facebook account association not found with any P3D account.'
                     );
             }
 
             $user = $facebookAccount ? $facebookAccount->user : null;
             if ($user) {
                 Auth::login($user);
-                return redirect()->route("dashboard");
+                return redirect()->route('dashboard');
             }
 
             if (auth()->guest() && !$user) {
                 return redirect()
-                    ->route("login")
+                    ->route('login')
                     ->withError(
-                        "You are not logged in and user was not found."
+                        'You are not logged in and user was not found.'
                     );
             }
 
             // Create new facebook account
             $user = auth()->user();
-            $userProfile["user_id"] = $user->id;
-            $userProfile["verified_at"] = now();
+            $userProfile['user_id'] = $user->id;
+            $userProfile['verified_at'] = now();
             FacebookAccount::create($userProfile);
             $user->unlock(new AssociatedFacebook());
-            return redirect()->route("profile.show");
+            return redirect()->route('profile.show');
         } catch (InvalidStateException $e) {
             return redirect()
-                ->route("home")
+                ->route('home')
                 ->withError(
-                    "Something went wrong with Facebook login. Please try again."
+                    'Something went wrong with Facebook login. Please try again.'
                 );
         } catch (ClientException $e) {
             return redirect()
-                ->route("home")
+                ->route('home')
                 ->withError(
-                    "Something went wrong with Facebook login. Please try again."
+                    'Something went wrong with Facebook login. Please try again.'
                 );
         }
 
-        return redirect()->route("dashboard");
+        return redirect()->route('dashboard');
     }
 }

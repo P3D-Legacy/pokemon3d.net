@@ -13,15 +13,15 @@ class CreateFacebookAccountsTable extends Migration
      */
     public function up()
     {
-        Schema::create("facebook_accounts", function (Blueprint $table) {
-            $table->increments("aid");
-            $table->uuid("uuid")->unique();
-            $table->bigInteger("id")->comment("Facebook ID");
-            $table->text("name")->comment("Facebook Name");
-            $table->text("email")->comment("Facebook Email");
-            $table->text("avatar")->comment("Facebook Avatar URL");
-            $table->timestamp("verified_at")->nullable();
-            $table->unsignedBigInteger("user_id");
+        Schema::create('facebook_accounts', function (Blueprint $table) {
+            $table->increments('aid');
+            $table->uuid('uuid')->unique();
+            $table->bigInteger('id')->comment('Facebook ID');
+            $table->text('name')->comment('Facebook Name');
+            $table->text('email')->comment('Facebook Email');
+            $table->text('avatar')->comment('Facebook Avatar URL');
+            $table->timestamp('verified_at')->nullable();
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -34,6 +34,6 @@ class CreateFacebookAccountsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists("facebook_accounts");
+        Schema::dropIfExists('facebook_accounts');
     }
 }

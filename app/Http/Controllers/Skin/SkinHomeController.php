@@ -13,7 +13,7 @@ class SkinHomeController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(["gj.account"]);
+        $this->middleware(['gj.account']);
     }
 
     /**
@@ -34,15 +34,15 @@ class SkinHomeController extends Controller
             $user = $auth['response']['users'][0];
         }
         */
-        $activity = Activity::where("description", "deleted")
+        $activity = Activity::where('description', 'deleted')
             ->where(
-                "properties",
-                "LIKE",
-                "%" . Auth::user()->gamejolt->id . ".png%"
+                'properties',
+                'LIKE',
+                '%' . Auth::user()->gamejolt->id . '.png%'
             )
             ->orWhere(
-                "properties",
-                "LIKE",
+                'properties',
+                'LIKE',
                 '%gjid":' . Auth::user()->gamejolt->id . ',"reason"%'
             )
             ->get();
@@ -50,8 +50,8 @@ class SkinHomeController extends Controller
             ->gamejolt->skins()
             ->get();
 
-        return view("skin.index")
-            ->with("activity", $activity)
-            ->with("skins", $skins);
+        return view('skin.index')
+            ->with('activity', $activity)
+            ->with('skins', $skins);
     }
 }

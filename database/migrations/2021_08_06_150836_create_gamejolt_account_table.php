@@ -13,18 +13,18 @@ class CreateGamejoltAccountTable extends Migration
      */
     public function up()
     {
-        Schema::create("game_jolt_accounts", function (Blueprint $table) {
-            $table->increments("aid");
-            $table->uuid("uuid")->unique();
+        Schema::create('game_jolt_accounts', function (Blueprint $table) {
+            $table->increments('aid');
+            $table->uuid('uuid')->unique();
             $table
-                ->bigInteger("id")
+                ->bigInteger('id')
                 ->unsigned()
                 ->unique()
-                ->comment("GameJolt Account ID");
-            $table->text("username")->comment("GameJolt Username");
-            $table->string("token")->comment("GameJolt Token");
-            $table->timestamp("verified_at")->nullable();
-            $table->unsignedBigInteger("user_id");
+                ->comment('GameJolt Account ID');
+            $table->text('username')->comment('GameJolt Username');
+            $table->string('token')->comment('GameJolt Token');
+            $table->timestamp('verified_at')->nullable();
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -37,6 +37,6 @@ class CreateGamejoltAccountTable extends Migration
      */
     public function down()
     {
-        Schema::drop("game_jolt_accounts");
+        Schema::drop('game_jolt_accounts');
     }
 }

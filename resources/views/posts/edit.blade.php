@@ -61,7 +61,7 @@
 						<div class="flex flex-wrap">
 							<div class="w-full px-3">
 								<label for="grid-password" class="block mb-1 text-gray-700">Post body</label>
-								<textarea class="input " name="body" id="body">{{ old('body') ? old('body') : $post->body }}</textarea>
+								<textarea name="body" id="easyMDE">{{ old('body') ? old('body') : $post->body }}</textarea>
                                 @error('body')
                                     <span class="text-xs text-red-700">{{ $message }}</span>
                                 @enderror
@@ -92,14 +92,4 @@
 			</div>
 		</div>
 	</div>
-
-{{-- Import CSS and JS for SimpleMDE editor --}}
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
-<script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
-
-<script>
-	// Initialise editors
-	var bodyEditor = new SimpleMDE({ element: document.getElementById("body") });
-</script>
-
 </x-app-layout>

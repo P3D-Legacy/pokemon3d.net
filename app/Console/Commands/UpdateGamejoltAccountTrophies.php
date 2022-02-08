@@ -16,14 +16,14 @@ class UpdateGamejoltAccountTrophies extends Command
      *
      * @var string
      */
-    protected $signature = "gj:update-trophies";
+    protected $signature = 'gj:update-trophies';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = "Update the trophies for all users";
+    protected $description = 'Update the trophies for all users';
 
     /**
      * Create a new command instance.
@@ -44,8 +44,8 @@ class UpdateGamejoltAccountTrophies extends Command
     {
         $api = new GamejoltApi(
             new GamejoltConfig(
-                env("GAMEJOLT_GAME_ID"),
-                env("GAMEJOLT_GAME_PRIVATE_KEY")
+                env('GAMEJOLT_GAME_ID'),
+                env('GAMEJOLT_GAME_PRIVATE_KEY')
             )
         );
         $accounts = GamejoltAccount::all();
@@ -56,29 +56,29 @@ class UpdateGamejoltAccountTrophies extends Command
                     ->fetch($account->username, $account->token);
                 if (
                     filter_var(
-                        $trophies["response"]["success"],
+                        $trophies['response']['success'],
                         FILTER_VALIDATE_BOOLEAN
                     ) === false
                 ) {
                     $this->error("No success for {$account->username}");
                     return;
                 }
-                $trophies = $trophies["response"]["trophies"];
+                $trophies = $trophies['response']['trophies'];
                 $trophy_count = count($trophies);
                 $this->info("Found {$trophy_count} for {$account->username}");
                 foreach ($trophies as $trophy) {
                     $account->trophies()->updateOrCreate(
                         [
-                            "gamejolt_account_id" => $account->id,
-                            "id" => $trophy["id"],
+                            'gamejolt_account_id' => $account->id,
+                            'id' => $trophy['id'],
                         ],
                         [
-                            "title" => $trophy["title"],
-                            "difficulty" => $trophy["difficulty"],
-                            "description" => $trophy["description"],
-                            "image_url" => $trophy["image_url"],
-                            "achieved" => filter_var(
-                                $trophy["achieved"],
+                            'title' => $trophy['title'],
+                            'difficulty' => $trophy['difficulty'],
+                            'description' => $trophy['description'],
+                            'image_url' => $trophy['image_url'],
+                            'achieved' => filter_var(
+                                $trophy['achieved'],
                                 FILTER_VALIDATE_BOOLEAN
                             ),
                         ]
@@ -91,7 +91,7 @@ class UpdateGamejoltAccountTrophies extends Command
                 $this->error("Unknown Error: {$e->getMessage()}");
             }
         }
-        $this->info("Done.");
+        $this->info('Done.');
         return Command::SUCCESS;
     }
 }

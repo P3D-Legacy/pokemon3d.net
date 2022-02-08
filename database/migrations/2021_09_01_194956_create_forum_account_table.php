@@ -13,13 +13,13 @@ class CreateForumAccountTable extends Migration
      */
     public function up()
     {
-        Schema::create("forum_accounts", function (Blueprint $table) {
-            $table->increments("aid");
-            $table->uuid("uuid")->unique();
-            $table->text("username")->comment("Forum Username");
-            $table->string("password")->comment("Forum Password");
-            $table->timestamp("verified_at")->nullable();
-            $table->unsignedBigInteger("user_id");
+        Schema::create('forum_accounts', function (Blueprint $table) {
+            $table->increments('aid');
+            $table->uuid('uuid')->unique();
+            $table->text('username')->comment('Forum Username');
+            $table->string('password')->comment('Forum Password');
+            $table->timestamp('verified_at')->nullable();
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -32,6 +32,6 @@ class CreateForumAccountTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists("forum_accounts");
+        Schema::dropIfExists('forum_accounts');
     }
 }

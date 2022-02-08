@@ -19,14 +19,14 @@ class Skin extends Model
     use Likeable;
     use Uuid;
 
-    protected $primaryKey = "uuid";
+    protected $primaryKey = 'uuid';
 
     /**
      * The "type" of the auto-incrementing ID.
      *
      * @var string
      */
-    protected $keyType = "string";
+    protected $keyType = 'string';
 
     /**
      * Indicates if the IDs are auto-incrementing.
@@ -47,7 +47,7 @@ class Skin extends Model
      *
      * @var array
      */
-    protected $fillable = ["name", "owner_id", "user_id", "public"];
+    protected $fillable = ['name', 'owner_id', 'user_id', 'public'];
 
     /**
      * Get the route key for the model.
@@ -56,10 +56,10 @@ class Skin extends Model
      */
     public function getRouteKeyName()
     {
-        return "uuid";
+        return 'uuid';
     }
 
-    protected static $logAttributes = ["name", "owner_id", "user_id", "public"];
+    protected static $logAttributes = ['name', 'owner_id', 'user_id', 'public'];
     protected static $logOnlyDirty = true;
     protected static $submitEmptyLogs = false;
 
@@ -76,7 +76,7 @@ class Skin extends Model
      */
     public function gamejoltaccount()
     {
-        return $this->belongsTo(GamejoltAccount::class, "owner_id", "id");
+        return $this->belongsTo(GamejoltAccount::class, 'owner_id', 'id');
     }
 
     /**
@@ -84,21 +84,21 @@ class Skin extends Model
      */
     public function user()
     {
-        return $this->belongsTo(User::class, "user_id", "id");
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
     public function scopeIsPublic($query)
     {
-        return $query->where("public", 1);
+        return $query->where('public', 1);
     }
 
     public function path()
     {
-        return $this->uuid . ".png";
+        return $this->uuid . '.png';
     }
 
     public function urlPath()
     {
-        return env("APP_URL") . "/img/skin/" . $this->path();
+        return env('APP_URL') . '/img/skin/' . $this->path();
     }
 }

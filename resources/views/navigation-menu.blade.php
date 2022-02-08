@@ -18,6 +18,9 @@
                     <x-jet-nav-link href="{{ route('server.index') }}" :active="request()->routeIs('server.*')">
                         {{ __('Servers') }}
                     </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('resource.index') }}" :active="request()->routeIs('resource.*')">
+                        {{ __('Resources') }}
+                    </x-jet-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-dropdown :active="request()->routeIs('skin*')">
@@ -140,6 +143,11 @@
                                             {{ __('Tags') }}
                                         </x-jet-dropdown-link>
                                     @endcanany
+                                    @canany(['categories.create','categories.update','categories.destroy']) 
+                                        <x-jet-dropdown-link href="{{ route('categories.index') }}">
+                                            {{ __('Categories') }}
+                                        </x-jet-dropdown-link>
+                                    @endcanany
                                     @canany(['manage.users','manage.roles','manage.permissions']) 
                                         <div class="block px-4 py-2 text-xs text-gray-400">
                                             {{ __('User Management') }}
@@ -245,6 +253,9 @@
             <x-jet-responsive-nav-link href="{{ route('server.index') }}" :active="request()->routeIs('server.*')">
                 {{ __('Servers') }}
             </x-jet-responsive-nav-link>
+            <x-jet-responsive-nav-link href="{{ route('resource.index') }}" :active="request()->routeIs('resource.*')">
+                {{ __('Resources') }}
+            </x-jet-responsive-nav-link>
             <x-jet-responsive-nav-link href="{{ route('skin-home') }}" :active="request()->routeIs('skin-home')">
                 {{ __('Skin') }}
             </x-jet-responsive-nav-link>
@@ -274,6 +285,11 @@
                     @canany(['posts.create','posts.update','posts.destroy']) 
                         <x-jet-responsive-nav-link href="{{ route('posts.index') }}" :active="request()->routeIs('posts.index')">
                             {{ __('Blog Posts') }}
+                        </x-jet-responsive-nav-link>
+                    @endcanany
+                    @canany(['categories.create','categories.update','categories.destroy']) 
+                        <x-jet-responsive-nav-link href="{{ route('categories.index') }}" :active="request()->routeIs('categories.index')">
+                            {{ __('Categories') }}
                         </x-jet-responsive-nav-link>
                     @endcanany
                     @canany(['tags.create','tags.update','tags.destroy']) 

@@ -13,16 +13,16 @@ class CreateTwitchAccountsTable extends Migration
      */
     public function up()
     {
-        Schema::create("twitch_accounts", function (Blueprint $table) {
-            $table->increments("aid");
-            $table->uuid("uuid")->unique();
-            $table->bigInteger("id")->comment("Twitch ID");
-            $table->text("name")->comment("Twitch Name");
-            $table->text("username")->comment("Twitch Username");
-            $table->text("email")->comment("Twitch Email");
-            $table->text("avatar")->comment("Twitch Avatar URL");
-            $table->timestamp("verified_at")->nullable();
-            $table->unsignedBigInteger("user_id");
+        Schema::create('twitch_accounts', function (Blueprint $table) {
+            $table->increments('aid');
+            $table->uuid('uuid')->unique();
+            $table->bigInteger('id')->comment('Twitch ID');
+            $table->text('name')->comment('Twitch Name');
+            $table->text('username')->comment('Twitch Username');
+            $table->text('email')->comment('Twitch Email');
+            $table->text('avatar')->comment('Twitch Avatar URL');
+            $table->timestamp('verified_at')->nullable();
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -35,6 +35,6 @@ class CreateTwitchAccountsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists("twitch_accounts");
+        Schema::dropIfExists('twitch_accounts');
     }
 }

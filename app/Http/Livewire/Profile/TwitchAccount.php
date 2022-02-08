@@ -46,13 +46,13 @@ class TwitchAccount extends Component
             $this->verified_at = null;
         }
 
-        $this->emit("refresh");
+        $this->emit('refresh');
 
         return;
     }
 
     public function render()
     {
-        return view("livewire.profile.twitch-account");
+        return view('livewire.profile.twitch-account');
     }
 }

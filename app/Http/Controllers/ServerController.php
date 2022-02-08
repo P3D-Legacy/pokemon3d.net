@@ -14,7 +14,7 @@ class ServerController extends Controller
      */
     public function index()
     {
-        return view("server.index");
+        return view('server.index');
     }
 
     /**
@@ -24,7 +24,7 @@ class ServerController extends Controller
      */
     public function create()
     {
-        return view("server.create");
+        return view('server.create');
     }
 
     /**
@@ -59,7 +59,7 @@ class ServerController extends Controller
     {
         abort_if(!$server, 404);
         abort_if(!$server->user_id == auth()->user()->id, 403);
-        return view("server.edit", compact("server"));
+        return view('server.edit', compact('server'));
     }
 
     /**

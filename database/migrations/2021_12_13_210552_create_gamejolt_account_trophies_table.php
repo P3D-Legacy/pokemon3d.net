@@ -13,25 +13,25 @@ class CreateGamejoltAccountTrophiesTable extends Migration
      */
     public function up()
     {
-        Schema::create("gamejolt_account_trophies", function (
+        Schema::create('gamejolt_account_trophies', function (
             Blueprint $table
         ) {
-            $table->increments("aid");
-            $table->uuid("uuid")->unique();
-            $table->unsignedBigInteger("id")->comment("Gamejolt Trophy ID");
-            $table->string("title")->comment("Gamejolt Trophy Title");
-            $table->string("difficulty")->comment("Gamejolt Trophy Difficulty");
+            $table->increments('aid');
+            $table->uuid('uuid')->unique();
+            $table->unsignedBigInteger('id')->comment('Gamejolt Trophy ID');
+            $table->string('title')->comment('Gamejolt Trophy Title');
+            $table->string('difficulty')->comment('Gamejolt Trophy Difficulty');
             $table
-                ->string("description")
-                ->comment("GameJolt Trophy Description");
-            $table->text("image_url")->comment("GameJolt Trophy Image URL");
+                ->string('description')
+                ->comment('GameJolt Trophy Description');
+            $table->text('image_url')->comment('GameJolt Trophy Image URL');
             $table
-                ->boolean("achieved")
+                ->boolean('achieved')
                 ->default(false)
-                ->comment("GameJolt Trophy Achieved By User");
+                ->comment('GameJolt Trophy Achieved By User');
             $table
-                ->unsignedBigInteger("gamejolt_account_id")
-                ->comment("GameJolt Account ID");
+                ->unsignedBigInteger('gamejolt_account_id')
+                ->comment('GameJolt Account ID');
             $table->timestamps();
         });
     }
@@ -43,6 +43,6 @@ class CreateGamejoltAccountTrophiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists("gamejolt_account_trophies");
+        Schema::dropIfExists('gamejolt_account_trophies');
     }
 }

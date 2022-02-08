@@ -11,7 +11,7 @@ class PermissionController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(["permission:manage.permissions"]);
+        $this->middleware(['permission:manage.permissions']);
     }
 
     /**
@@ -21,8 +21,8 @@ class PermissionController extends Controller
      */
     public function index()
     {
-        return view("permissions.index", [
-            "permissions" => Permission::orderBy("name")->paginate(10),
+        return view('permissions.index', [
+            'permissions' => Permission::orderBy('name')->paginate(10),
         ]);
     }
 
@@ -33,7 +33,7 @@ class PermissionController extends Controller
      */
     public function create()
     {
-        return view("permissions.create");
+        return view('permissions.create');
     }
 
     /**
@@ -45,10 +45,10 @@ class PermissionController extends Controller
     public function store(Request $request)
     {
         Permission::create([
-            "name" => request("name"),
-            "guard_name" => "web",
+            'name' => request('name'),
+            'guard_name' => 'web',
         ]);
-        return redirect()->route("permissions.index");
+        return redirect()->route('permissions.index');
     }
 
     /**
@@ -59,8 +59,8 @@ class PermissionController extends Controller
      */
     public function show(Permission $permission)
     {
-        return view("permissions.show", [
-            "permission" => $permission,
+        return view('permissions.show', [
+            'permission' => $permission,
         ]);
     }
 
@@ -72,9 +72,9 @@ class PermissionController extends Controller
      */
     public function edit(Permission $permission)
     {
-        return view("permissions.edit", [
-            "permission" => $permission,
-            "roles" => Role::all(),
+        return view('permissions.edit', [
+            'permission' => $permission,
+            'roles' => Role::all(),
         ]);
     }
 
@@ -88,7 +88,7 @@ class PermissionController extends Controller
     public function update(Request $request, Permission $permission)
     {
         $permission->update($request->all());
-        return redirect()->route("permissions.index");
+        return redirect()->route('permissions.index');
     }
 
     /**
@@ -100,6 +100,6 @@ class PermissionController extends Controller
     public function destroy(Permission $permission)
     {
         $permission->delete();
-        return redirect()->route("permissions.index");
+        return redirect()->route('permissions.index');
     }
 }

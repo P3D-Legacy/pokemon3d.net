@@ -13,17 +13,17 @@ class CreateConsentTable extends Migration
      */
     public function up()
     {
-        $tableName = config("consent.table");
+        $tableName = config('consent.table');
 
         Schema::create($tableName, function (Blueprint $table) {
-            $table->increments("id");
-            $table->string("name")->index();
-            $table->morphs("model");
-            $table->boolean("given")->default(0);
-            $table->text("text")->nullable();
-            $table->mediumText("meta")->nullable();
+            $table->increments('id');
+            $table->string('name')->index();
+            $table->morphs('model');
+            $table->boolean('given')->default(0);
+            $table->text('text')->nullable();
+            $table->mediumText('meta')->nullable();
             $table->timestamps();
-            $table->index(["model_id", "model_type", "name"]);
+            $table->index(['model_id', 'model_type', 'name']);
         });
     }
 
@@ -34,7 +34,7 @@ class CreateConsentTable extends Migration
      */
     public function down()
     {
-        $tableName = config("consent.table");
+        $tableName = config('consent.table');
 
         Schema::drop($tableName);
     }

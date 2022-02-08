@@ -15,14 +15,14 @@ class ForumAccount extends Model
     use SoftDeletes;
     use Uuid;
 
-    protected $primaryKey = "uuid";
+    protected $primaryKey = 'uuid';
 
     /**
      * The "type" of the auto-incrementing ID.
      *
      * @var string
      */
-    protected $keyType = "string";
+    protected $keyType = 'string';
 
     /**
      * Indicates if the IDs are auto-incrementing.
@@ -43,7 +43,7 @@ class ForumAccount extends Model
      *
      * @var array
      */
-    protected $fillable = ["username", "password", "verified_at", "user_id"];
+    protected $fillable = ['username', 'password', 'verified_at', 'user_id'];
 
     /**
      * The attributes that should be cast to native types.
@@ -51,7 +51,7 @@ class ForumAccount extends Model
      * @var array
      */
     protected $casts = [
-        "verified_at" => "datetime",
+        'verified_at' => 'datetime',
     ];
 
     /**
@@ -59,14 +59,14 @@ class ForumAccount extends Model
      *
      * @var array
      */
-    protected $encryptable = ["password"];
+    protected $encryptable = ['password'];
 
     /**
      * The attributes that should be hidden
      *
      * @var array
      */
-    protected $hidden = ["password", "aid"];
+    protected $hidden = ['password', 'aid'];
 
     public function touchVerify()
     {
@@ -79,6 +79,6 @@ class ForumAccount extends Model
      */
     public function user()
     {
-        return $this->hasOne(User::class, "id", "user_id");
+        return $this->hasOne(User::class, 'id', 'user_id');
     }
 }

@@ -18,14 +18,21 @@ class GamejoltAdmin
     public function handle(Request $request, Closure $next)
     {
         if (!env("GAMEJOLT_GAME_ID") || !env("GAMEJOLT_GAME_PRIVATE_KEY")) {
-            redirect()->route('gj-login')->with('error', 'Gamejolt API keys is not set by the admin!');
+            redirect()
+                ->route("gj-login")
+                ->with("error", "Gamejolt API keys is not set by the admin!");
         }
-        $user = GJUser::where('gjid', $request->session()->get('gjid'))->first();
+        $user = GJUser::where(
+            "gjid",
+            $request->session()->get("gjid")
+        )->first();
         if ($user) {
             if ($user->is_admin) {
                 return $next($request);
             }
         }
-        return redirect()->route('skin-home')->with('warning', 'You do not have access to this page!');
+        return redirect()
+            ->route("skin-home")
+            ->with("warning", "You do not have access to this page!");
     }
 }

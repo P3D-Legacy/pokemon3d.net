@@ -35,6 +35,10 @@
 				document.querySelector('html').classList.add('dark')
 			}
 		</script>
+
+		@if(env('APP_ENV') != 'local')
+			<script defer data-domain="{{ request()->getHost() }}" src="https://plausible.io/js/plausible.js"></script>
+		@endif
 	</head>
 	<body class="flex flex-col font-sans leading-relaxed tracking-wide bg-top bg-repeat bg-spring {{ env('APP_DEBUG') ? 'debug-screens' : '' }}">
 		{{ $slot }}

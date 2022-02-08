@@ -12,7 +12,7 @@ class UserController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['permission:manage.users']);
+        $this->middleware(["permission:manage.users"]);
     }
 
     /**
@@ -22,8 +22,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('users.index', [
-            'users' => User::orderBy('name')->paginate(10)
+        return view("users.index", [
+            "users" => User::orderBy("name")->paginate(10),
         ]);
     }
 
@@ -34,8 +34,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('users.create', [
-            'roles' => Role::all(),
+        return view("users.create", [
+            "roles" => Role::all(),
         ]);
     }
 
@@ -48,20 +48,26 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            "name" => ["required", "string", "max:255"],
+            "email" => [
+                "required",
+                "string",
+                "email",
+                "max:255",
+                "unique:users",
+            ],
+            "password" => ["required", "string", "min:8", "confirmed"],
         ]);
         $data = [
-            'name' => $validatedData['name'],
-            'email' => $validatedData['email'],
-            'password' => Hash::make($validatedData['password']),
+            "name" => $validatedData["name"],
+            "email" => $validatedData["email"],
+            "password" => Hash::make($validatedData["password"]),
         ];
 
         $user = User::create($data);
-        $user->syncRoles(request('roles'));
+        $user->syncRoles(request("roles"));
 
-        return redirect(route('users.index'));
+        return redirect(route("users.index"));
     }
 
     /**
@@ -72,9 +78,9 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return view('users.show', [
-            'menu' => $menu,
-            'users' => $menu->users
+        return view("users.show", [
+            "menu" => $menu,
+            "users" => $menu->users,
         ]);
     }
 
@@ -86,10 +92,10 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('users.edit', [
-            'user' => $user,
-            'roles' => Role::all(),
-            'custom_fields' => config('custom_fields')
+        return view("users.edit", [
+            "user" => $user,
+            "roles" => Role::all(),
+            "custom_fields" => config("custom_fields"),
         ]);
     }
 
@@ -104,26 +110,38 @@ class UserController extends Controller
     {
         $rules = [];
 
-        if ($request->has('name')) {
-            $rules['name'] = ['required', 'string', 'max:255'];
+        if ($request->has("name")) {
+            $rules["name"] = ["required", "string", "max:255"];
         }
 
-        if ($request->has('email')) {
-            $rules['email'] = ['required', 'string', 'email', 'max:255', 'unique:users,email,'.$user->id];
+        if ($request->has("email")) {
+            $rules["email"] = [
+                "required",
+                "string",
+                "email",
+                "max:255",
+                "unique:users,email," . $user->id,
+            ];
         }
 
-        if ($request->filled('password')) {
-            $rules['password'] = ['sometimes', 'required', 'string', 'min:8', 'confirmed'];
+        if ($request->filled("password")) {
+            $rules["password"] = [
+                "sometimes",
+                "required",
+                "string",
+                "min:8",
+                "confirmed",
+            ];
         }
 
         $validatedData = $request->validate($rules);
-        if ($request->filled('password')) {
-            $validatedData['password'] = Hash::make($validatedData['password']);
+        if ($request->filled("password")) {
+            $validatedData["password"] = Hash::make($validatedData["password"]);
         }
 
         $user->update($validatedData);
-        $user->syncRoles(request('roles'));
-        return redirect()->route('users.index');
+        $user->syncRoles(request("roles"));
+        return redirect()->route("users.index");
     }
 
     /**
@@ -135,6 +153,6 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
-        return redirect()->route('users.index');
+        return redirect()->route("users.index");
     }
 }

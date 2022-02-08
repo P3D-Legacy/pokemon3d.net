@@ -31,6 +31,6 @@ class MediaArticle extends Component
      */
     public function render()
     {
-        return view('components.home.media-article');
+        return view("components.home.media-article");
     }
 }

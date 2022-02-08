@@ -16,14 +16,14 @@ class UpdateGamejoltAccountTrophies extends Command
      *
      * @var string
      */
-    protected $signature = 'gj:update-trophies';
+    protected $signature = "gj:update-trophies";
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Update the trophies for all users';
+    protected $description = "Update the trophies for all users";
 
     /**
      * Create a new command instance.
@@ -42,30 +42,45 @@ class UpdateGamejoltAccountTrophies extends Command
      */
     public function handle()
     {
-        $api = new GamejoltApi(new GamejoltConfig(env("GAMEJOLT_GAME_ID"), env("GAMEJOLT_GAME_PRIVATE_KEY")));
+        $api = new GamejoltApi(
+            new GamejoltConfig(
+                env("GAMEJOLT_GAME_ID"),
+                env("GAMEJOLT_GAME_PRIVATE_KEY")
+            )
+        );
         $accounts = GamejoltAccount::all();
         foreach ($accounts as $account) {
             try {
-                $trophies = $api->trophies()->fetch($account->username, $account->token);
-                if (filter_var($trophies['response']['success'], FILTER_VALIDATE_BOOLEAN) === false) {
+                $trophies = $api
+                    ->trophies()
+                    ->fetch($account->username, $account->token);
+                if (
+                    filter_var(
+                        $trophies["response"]["success"],
+                        FILTER_VALIDATE_BOOLEAN
+                    ) === false
+                ) {
                     $this->error("No success for {$account->username}");
                     return;
                 }
-                $trophies = $trophies['response']['trophies'];
+                $trophies = $trophies["response"]["trophies"];
                 $trophy_count = count($trophies);
                 $this->info("Found {$trophy_count} for {$account->username}");
                 foreach ($trophies as $trophy) {
                     $account->trophies()->updateOrCreate(
                         [
-                            'gamejolt_account_id' => $account->id,
-                            'id' => $trophy['id'],
+                            "gamejolt_account_id" => $account->id,
+                            "id" => $trophy["id"],
                         ],
                         [
-                            'title' => $trophy['title'],
-                            'difficulty' => $trophy['difficulty'],
-                            'description' => $trophy['description'],
-                            'image_url' => $trophy['image_url'],
-                            'achieved' => filter_var($trophy['achieved'], FILTER_VALIDATE_BOOLEAN),
+                            "title" => $trophy["title"],
+                            "difficulty" => $trophy["difficulty"],
+                            "description" => $trophy["description"],
+                            "image_url" => $trophy["image_url"],
+                            "achieved" => filter_var(
+                                $trophy["achieved"],
+                                FILTER_VALIDATE_BOOLEAN
+                            ),
                         ]
                     );
                 }

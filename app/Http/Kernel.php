@@ -29,7 +29,7 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $middlewareGroups = [
-        'web' => [
+        "web" => [
             \App\Http\Middleware\EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
             \Illuminate\Session\Middleware\StartSession::class,
@@ -40,13 +40,13 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\UpdateLastActiveAt::class,
         ],
 
-        'api' => [
-            'api.json',
+        "api" => [
+            "api.json",
             //\Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
-            'throttle:api',
+            "throttle:api",
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
-            'auth:sanctum',
-            'permission:api',
+            "auth:sanctum",
+            "permission:api",
         ],
     ];
 
@@ -58,23 +58,27 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $routeMiddleware = [
-        'auth' => \App\Http\Middleware\Authenticate::class,
-        'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
-        'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
-        'can' => \Illuminate\Auth\Middleware\Authorize::class,
-        'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
-        'password.confirm' => \Illuminate\Auth\Middleware\RequirePassword::class,
-        'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
-        'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-        'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
-        'gj.auth' => \App\Http\Middleware\GamejoltAuth::class,
-        'gj.guest' => \App\Http\Middleware\GamejoltGuest::class,
-        'gj.admin' => \App\Http\Middleware\GamejoltAdmin::class,
-        'gj.superadmin' => \App\Http\Middleware\GamejoltSuperAdmin::class,
-        'gj.account' => \App\Http\Middleware\GamejoltAccount::class,
-        'role' => \Spatie\Permission\Middlewares\RoleMiddleware::class,
-        'permission' => \Spatie\Permission\Middlewares\PermissionMiddleware::class,
-        'role_or_permission' => \Spatie\Permission\Middlewares\RoleOrPermissionMiddleware::class,
-        'api.json' => \App\Http\Middleware\ApiJsonMiddleware::class,
+        "auth" => \App\Http\Middleware\Authenticate::class,
+        "auth.basic" =>
+            \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
+        "cache.headers" => \Illuminate\Http\Middleware\SetCacheHeaders::class,
+        "can" => \Illuminate\Auth\Middleware\Authorize::class,
+        "guest" => \App\Http\Middleware\RedirectIfAuthenticated::class,
+        "password.confirm" =>
+            \Illuminate\Auth\Middleware\RequirePassword::class,
+        "signed" => \Illuminate\Routing\Middleware\ValidateSignature::class,
+        "throttle" => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        "verified" => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        "gj.auth" => \App\Http\Middleware\GamejoltAuth::class,
+        "gj.guest" => \App\Http\Middleware\GamejoltGuest::class,
+        "gj.admin" => \App\Http\Middleware\GamejoltAdmin::class,
+        "gj.superadmin" => \App\Http\Middleware\GamejoltSuperAdmin::class,
+        "gj.account" => \App\Http\Middleware\GamejoltAccount::class,
+        "role" => \Spatie\Permission\Middlewares\RoleMiddleware::class,
+        "permission" =>
+            \Spatie\Permission\Middlewares\PermissionMiddleware::class,
+        "role_or_permission" =>
+            \Spatie\Permission\Middlewares\RoleOrPermissionMiddleware::class,
+        "api.json" => \App\Http\Middleware\ApiJsonMiddleware::class,
     ];
 }

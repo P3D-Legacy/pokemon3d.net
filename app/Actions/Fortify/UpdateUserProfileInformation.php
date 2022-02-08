@@ -21,33 +21,52 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
     public function update($user, array $input)
     {
         Validator::make($input, [
-            'name' => ['required', 'string', 'max:255'],
-            'username' => ['required', 'string', 'max:255', Rule::unique('users')->ignore($user->id)],
-            'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
-            'gender' => ['required', 'numeric'],
-            'location' => ['nullable',  'max:255'],
-            'about' => ['nullable',  'max:255'],
-            'birthdate' => ['required', 'date_format:Y-m-d', new OlderThan, new YoungerThan],
-            'photo' => ['nullable', 'mimes:jpg,jpeg,png', 'max:1024'],
-        ])->validateWithBag('updateProfileInformation');
+            "name" => ["required", "string", "max:255"],
+            "username" => [
+                "required",
+                "string",
+                "max:255",
+                Rule::unique("users")->ignore($user->id),
+            ],
+            "email" => [
+                "required",
+                "email",
+                "max:255",
+                Rule::unique("users")->ignore($user->id),
+            ],
+            "gender" => ["required", "numeric"],
+            "location" => ["nullable", "max:255"],
+            "about" => ["nullable", "max:255"],
+            "birthdate" => [
+                "required",
+                "date_format:Y-m-d",
+                new OlderThan(),
+                new YoungerThan(),
+            ],
+            "photo" => ["nullable", "mimes:jpg,jpeg,png", "max:1024"],
+        ])->validateWithBag("updateProfileInformation");
 
-        if (isset($input['photo'])) {
-            $user->updateProfilePhoto($input['photo']);
+        if (isset($input["photo"])) {
+            $user->updateProfilePhoto($input["photo"]);
         }
 
-        if ($input['email'] !== $user->email &&
-            $user instanceof MustVerifyEmail) {
+        if (
+            $input["email"] !== $user->email &&
+            $user instanceof MustVerifyEmail
+        ) {
             $this->updateVerifiedUser($user, $input);
         } else {
-            $user->forceFill([
-                'name' => $input['name'],
-                //'username' => $input['username'],
-                'gender' => $input['gender'],
-                'location' => $input['location'],
-                'about' => $input['about'],
-                'birthdate' => $input['birthdate'],
-                'email' => $input['email'],
-            ])->save();
+            $user
+                ->forceFill([
+                    "name" => $input["name"],
+                    //'username' => $input['username'],
+                    "gender" => $input["gender"],
+                    "location" => $input["location"],
+                    "about" => $input["about"],
+                    "birthdate" => $input["birthdate"],
+                    "email" => $input["email"],
+                ])
+                ->save();
         }
     }
 
@@ -60,16 +79,18 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
      */
     protected function updateVerifiedUser($user, array $input)
     {
-        $user->forceFill([
-            'name' => $input['name'],
-            'username' => $input['username'],
-            'gender' => $input['gender'],
-            'location' => $input['location'],
-            'about' => $input['about'],
-            'birthdate' => $input['birthdate'],
-            'email' => $input['email'],
-            'email_verified_at' => null,
-        ])->save();
+        $user
+            ->forceFill([
+                "name" => $input["name"],
+                "username" => $input["username"],
+                "gender" => $input["gender"],
+                "location" => $input["location"],
+                "about" => $input["about"],
+                "birthdate" => $input["birthdate"],
+                "email" => $input["email"],
+                "email_verified_at" => null,
+            ])
+            ->save();
 
         $user->sendEmailVerificationNotification();
     }

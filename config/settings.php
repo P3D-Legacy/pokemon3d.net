@@ -1,7 +1,7 @@
 <?php
 
 return [
-	/*
+    /*
 	|--------------------------------------------------------------------------
 	| Default Settings Store
 	|--------------------------------------------------------------------------
@@ -12,9 +12,9 @@ return [
 	| Supported: "json", "database"
 	|
 	*/
-	'store' => 'database',
+    "store" => "database",
 
-	/*
+    /*
 	|--------------------------------------------------------------------------
 	| JSON Store
 	|--------------------------------------------------------------------------
@@ -23,9 +23,9 @@ return [
 	| file path in JSON format. Use full path to file.
 	|
 	*/
-	'path' => storage_path().'/settings.json',
+    "path" => storage_path() . "/settings.json",
 
-	/*
+    /*
 	|--------------------------------------------------------------------------
 	| Database Store
 	|--------------------------------------------------------------------------
@@ -34,14 +34,14 @@ return [
 	| Use full path to JSON file.
 	|
 	*/
-	// If set to null, the default connection will be used.
-	'connection' => null,
-	// Name of the table used.
-	'table' => 'settings',
-	// If you want to use custom column names in database store you could
-	// set them in this configuration
-	'keyColumn' => 'key',
-	'valueColumn' => 'value',
+    // If set to null, the default connection will be used.
+    "connection" => null,
+    // Name of the table used.
+    "table" => "settings",
+    // If you want to use custom column names in database store you could
+    // set them in this configuration
+    "keyColumn" => "key",
+    "valueColumn" => "value",
 
     /*
     |--------------------------------------------------------------------------
@@ -51,12 +51,12 @@ return [
     | If you want all setting calls to go through Laravel's cache system.
     |
     */
-	'enableCache' => false,
-	// Whether to reset the cache when changing a setting.
-	'forgetCacheByWrite' => true,
-	// TTL in seconds.
-	'cacheTtl' => 15,
-    
+    "enableCache" => false,
+    // Whether to reset the cache when changing a setting.
+    "forgetCacheByWrite" => true,
+    // TTL in seconds.
+    "cacheTtl" => 15,
+
     /*
     |--------------------------------------------------------------------------
     | Default Settings
@@ -67,7 +67,7 @@ return [
     | hardcoding the same defaults in all 'Settings::get()' calls
     |
     */
-    'defaults' => [
-        'foo' => 'bar',
-    ]
+    "defaults" => [
+        "foo" => "bar",
+    ],
 ];

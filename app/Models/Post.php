@@ -51,13 +51,13 @@ class Post extends Model implements Viewable
      * @var array
      */
     protected $fillable = [
-        'title',
-        'slug',
-        'body',
-        'active',
-        'sticky',
-        'published_at',
-        'user_id',
+        "title",
+        "slug",
+        "body",
+        "active",
+        "sticky",
+        "published_at",
+        "user_id",
     ];
 
     /**
@@ -66,7 +66,7 @@ class Post extends Model implements Viewable
      * @var array
      */
     protected $casts = [
-        'published_at' => 'datetime',
+        "published_at" => "datetime",
     ];
 
     /**
@@ -76,5 +76,4 @@ class Post extends Model implements Viewable
     {
         return $this->belongsTo(User::class);
     }
-    
 }

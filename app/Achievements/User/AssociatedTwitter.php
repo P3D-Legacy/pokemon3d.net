@@ -15,12 +15,12 @@ class AssociatedTwitter extends Achievement
     /*
      * The achievement name
      */
-    public $name = 'AssociatedTwitter';
+    public $name = "AssociatedTwitter";
 
     /*
      * A small description for the achievement
      */
-    public $description = 'User associated their account with Twitter.';
+    public $description = "User associated their account with Twitter.";
 
     /*
      * The amount of "points" this user need to obtain in order to complete this achievement

@@ -12,14 +12,14 @@ class GiveSuperAdmin extends Command
      *
      * @var string
      */
-    protected $signature = 'p3d:givesa';
+    protected $signature = "p3d:givesa";
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Gives Super-Admin rights to the user specifed in the env file.';
+    protected $description = "Gives Super-Admin rights to the user specifed in the env file.";
 
     /**
      * Create a new command instance.
@@ -38,10 +38,10 @@ class GiveSuperAdmin extends Command
      */
     public function handle()
     {
-        $user = User::where('email', getenv('SUPER_ADMIN_EMAIL'))->first();
-        if($user) {
-            $user->assignRole('super-admin');
-            $this->info('Super-Admin rights granted to ' . $user->email);
+        $user = User::where("email", getenv("SUPER_ADMIN_EMAIL"))->first();
+        if ($user) {
+            $user->assignRole("super-admin");
+            $this->info("Super-Admin rights granted to " . $user->email);
         }
     }
 }

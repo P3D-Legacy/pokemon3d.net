@@ -29,8 +29,7 @@ final class UserTable extends PowerGridComponent
     */
     public function setUp(): void
     {
-        $this->showPerPage()
-            ->showSearchInput();
+        $this->showPerPage()->showSearchInput();
     }
 
     /*
@@ -74,10 +73,10 @@ final class UserTable extends PowerGridComponent
     public function addColumns(): ?PowerGridEloquent
     {
         return PowerGrid::eloquent()
-            ->addColumn('id')
-            ->addColumn('name')
-            ->addColumn('username')
-            ->addColumn('email');
+            ->addColumn("id")
+            ->addColumn("name")
+            ->addColumn("username")
+            ->addColumn("email");
     }
 
     /*
@@ -89,7 +88,7 @@ final class UserTable extends PowerGridComponent
     |
     */
 
-     /**
+    /**
      * PowerGrid Columns.
      *
      * @return array<int, Column>
@@ -98,33 +97,31 @@ final class UserTable extends PowerGridComponent
     {
         return [
             Column::add()
-                ->title('ID')
-                ->field('id')
+                ->title("ID")
+                ->field("id")
                 ->makeInputRange(),
 
             Column::add()
-                ->title('NAME')
-                ->field('name')
+                ->title("NAME")
+                ->field("name")
                 ->sortable()
                 ->searchable()
                 ->makeInputText(),
 
             Column::add()
-                ->title('USERNAME')
-                ->field('username')
-                ->sortable()
-                ->searchable()
-                ->makeInputText(),
-            
-            Column::add()
-                ->title('EMAIL')
-                ->field('email')
+                ->title("USERNAME")
+                ->field("username")
                 ->sortable()
                 ->searchable()
                 ->makeInputText(),
 
-        ]
-;
+            Column::add()
+                ->title("EMAIL")
+                ->field("email")
+                ->sortable()
+                ->searchable()
+                ->makeInputText(),
+        ];
     }
 
     /*
@@ -135,22 +132,27 @@ final class UserTable extends PowerGridComponent
     |
     */
 
-     /**
+    /**
      * PowerGrid User action buttons.
      *
      * @return array<int, \PowerComponents\LivewirePowerGrid\Button>
      */
 
-    
     public function actions(): array
     {
-       return [
-            Button::add('edit')
-               ->caption('Edit')
-               ->class('bg-red-400 cursor-pointer text-white px-2 py-1 m-1 rounded text-sm')
-               ->route('users.edit', ['user' => 'id'])
-               ->target('_self')
-               ->can(auth()->user()->can('manage.users')),
+        return [
+            Button::add("edit")
+                ->caption("Edit")
+                ->class(
+                    "bg-red-400 cursor-pointer text-white px-2 py-1 m-1 rounded text-sm"
+                )
+                ->route("users.edit", ["user" => "id"])
+                ->target("_self")
+                ->can(
+                    auth()
+                        ->user()
+                        ->can("manage.users")
+                ),
 
             /*
             Button::add('destroy')
@@ -163,7 +165,6 @@ final class UserTable extends PowerGridComponent
             */
         ];
     }
-    
 
     /*
     |--------------------------------------------------------------------------
@@ -174,7 +175,7 @@ final class UserTable extends PowerGridComponent
     |
     */
 
-     /**
+    /**
      * PowerGrid User Update.
      *
      * @param array<string,string> $data

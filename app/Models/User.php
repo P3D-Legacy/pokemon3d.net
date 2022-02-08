@@ -15,7 +15,7 @@ use Glorand\Model\Settings\Traits\HasSettingsTable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable implements MustVerifyEmail 
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens;
     use HasFactory;
@@ -34,15 +34,15 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name',
-        'username',
-        'email',
-        'password',
-        'gender',
-        'location',
-        'about',
-        'birtdate',
-        'last_active_at',
+        "name",
+        "username",
+        "email",
+        "password",
+        "gender",
+        "location",
+        "about",
+        "birtdate",
+        "last_active_at",
     ];
 
     /**
@@ -51,10 +51,10 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $hidden = [
-        'password',
-        'remember_token',
-        'two_factor_recovery_codes',
-        'two_factor_secret',
+        "password",
+        "remember_token",
+        "two_factor_recovery_codes",
+        "two_factor_secret",
     ];
 
     /**
@@ -63,9 +63,9 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
-        'last_active_at' => 'datetime',
-        'birthdate' => 'date:d-m-Y',
+        "email_verified_at" => "datetime",
+        "last_active_at" => "datetime",
+        "birthdate" => "date:d-m-Y",
     ];
 
     /**
@@ -73,14 +73,12 @@ class User extends Authenticatable implements MustVerifyEmail
      *
      * @var array
      */
-    protected $appends = [
-        'profile_photo_url',
-    ];
+    protected $appends = ["profile_photo_url"];
 
     public $defaultSettings = [
-        'name' => true,
-        'birthdate' => false,
-        'age' => false,
+        "name" => true,
+        "birthdate" => false,
+        "age" => false,
     ];
 
     /**

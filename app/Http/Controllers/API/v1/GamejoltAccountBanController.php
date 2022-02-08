@@ -28,12 +28,15 @@ class GamejoltAccountBanController extends Controller
      */
     public function index(Request $request)
     {
-        if (!$request->user()->tokenCan('read')) {
+        if (!$request->user()->tokenCan("read")) {
             return response()->json([
-                'error' => 'Token does not have access!',
+                "error" => "Token does not have access!",
             ]);
         }
-        $resources = GamejoltAccountBan::with(['reason', 'gamejoltaccount'])->get();
+        $resources = GamejoltAccountBan::with([
+            "reason",
+            "gamejoltaccount",
+        ])->get();
         return GamejoltAccountBanResource::collection($resources);
     }
 
@@ -45,7 +48,7 @@ class GamejoltAccountBanController extends Controller
      * @bodyParam banned_by_id int optional The ID of the Gamejolt Account, default will be owner of token. Cannot be used with banned_by_gamejoltaccount_id. Example: 123456
      * @bodyParam banned_by_gamejoltaccount_id int optional The ID of the Gamejolt Account. Cannot be used with banned_by_id. Example: 123456
      * @bodyParam expires_at string optional The expiry of the ban. Example: 2020-01-01
-     * 
+     *
      * @response 201 {
      *       "data": {
      *           "gamejoltaccount_id": 12345,
@@ -60,46 +63,60 @@ class GamejoltAccountBanController extends Controller
      */
     public function store(Request $request)
     {
-        if (!$request->user()->tokenCan('create')) {
+        if (!$request->user()->tokenCan("create")) {
             return response()->json([
-                'error' => 'Token does not have access!',
+                "error" => "Token does not have access!",
             ]);
         }
         $request->validate([
-            'gamejoltaccount_id' => 'required|integer',
-            'reason_id' => 'required|integer',
-            'banned_by_id' => 'nullable|integer',
-            'banned_by_gamejoltaccount_id' => 'nullable|integer',
-            'expire_at' => 'nullable|date',
+            "gamejoltaccount_id" => "required|integer",
+            "reason_id" => "required|integer",
+            "banned_by_id" => "nullable|integer",
+            "banned_by_gamejoltaccount_id" => "nullable|integer",
+            "expire_at" => "nullable|date",
         ]);
         $banned_by_id = $request->user()->id;
-        if(isset($request->banned_by_id) && isset($request->banned_by_gamejoltaccount_id)) {
+        if (
+            isset($request->banned_by_id) &&
+            isset($request->banned_by_gamejoltaccount_id)
+        ) {
             return response()->json([
-                'error' => 'banned_by_id and banned_by_gamejoltaccount_id cannot be used together!',
+                "error" =>
+                    "banned_by_id and banned_by_gamejoltaccount_id cannot be used together!",
             ]);
-        } else if(!isset($request->banned_by_id) && isset($request->banned_by_gamejoltaccount_id)) {
-            $gja = GamejoltAccount::where('id', $request->banned_by_gamejoltaccount_id)->first();
-            if(!$gja) {
+        } elseif (
+            !isset($request->banned_by_id) &&
+            isset($request->banned_by_gamejoltaccount_id)
+        ) {
+            $gja = GamejoltAccount::where(
+                "id",
+                $request->banned_by_gamejoltaccount_id
+            )->first();
+            if (!$gja) {
                 return response()->json([
-                    'error' => 'Gamejolt Account not found with banned_by_gamejoltaccount_id!',
+                    "error" =>
+                        "Gamejolt Account not found with banned_by_gamejoltaccount_id!",
                 ]);
             }
             $banned_by_id = $gja->user->id;
-        } else if(isset($request->banned_by_id) && !isset($request->banned_by_gamejoltaccount_id)) {
+        } elseif (
+            isset($request->banned_by_id) &&
+            !isset($request->banned_by_gamejoltaccount_id)
+        ) {
             $user = User::find($request->banned_by_id);
-            if(!$user) {
+            if (!$user) {
                 return response()->json([
-                    'error' => 'User not found with banned_by_id!',
+                    "error" => "User not found with banned_by_id!",
                 ]);
             }
             $banned_by_id = $user->id;
         }
-        $new_data = array(
-            'gamejoltaccount_id' => $request->gamejoltaccount_id,
-            'reason_id' => $request->reason_id,
-            'banned_by_id' => $banned_by_id,
-            'expire_at' => $request->expire_at,
-        );
+        $new_data = [
+            "gamejoltaccount_id" => $request->gamejoltaccount_id,
+            "reason_id" => $request->reason_id,
+            "banned_by_id" => $banned_by_id,
+            "expire_at" => $request->expire_at,
+        ];
         $resource = GamejoltAccountBan::create($new_data);
         return new GamejoltAccountBanResource($resource);
     }
@@ -108,7 +125,7 @@ class GamejoltAccountBanController extends Controller
      * Display the specified resource.
      *
      * @urlParam id int required The ID of the Gamejolt Account.
-     * 
+     *
      * @response {
      *    "data": [
      *        {
@@ -127,12 +144,18 @@ class GamejoltAccountBanController extends Controller
      */
     public function show(Request $request, $id)
     {
-        if (!$request->user()->tokenCan('read')) {
+        if (!$request->user()->tokenCan("read")) {
             return response()->json([
-                'error' => 'Token does not have access!',
+                "error" => "Token does not have access!",
             ]);
         }
-        $resources = GamejoltAccountBan::with(['reason', 'gamejoltaccount', 'banned_by'])->where('gamejoltaccount_id', $id)->get();
+        $resources = GamejoltAccountBan::with([
+            "reason",
+            "gamejoltaccount",
+            "banned_by",
+        ])
+            ->where("gamejoltaccount_id", $id)
+            ->get();
         return GamejoltAccountBanResource::collection($resources);
     }
 
@@ -143,18 +166,20 @@ class GamejoltAccountBanController extends Controller
      * @response 202 {
      *  "success": 'Ban was removed!',
      * }
-    */
+     */
     public function destroy(Request $request, $uuid)
     {
-        if (!$request->user()->tokenCan('delete')) {
+        if (!$request->user()->tokenCan("delete")) {
             return response()->json([
-                'error' => 'Token does not have access!',
+                "error" => "Token does not have access!",
             ]);
         }
-        $resource = GamejoltAccountBan::where('uuid', $uuid)->firstOrFail();
+        $resource = GamejoltAccountBan::where("uuid", $uuid)->firstOrFail();
         $resource->delete();
-        return response()->json([
-            'success' => 'Ban was removed!',
-        ])->setStatusCode(202);
+        return response()
+            ->json([
+                "success" => "Ban was removed!",
+            ])
+            ->setStatusCode(202);
     }
 }

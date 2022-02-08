@@ -21,7 +21,7 @@ class BanReasonController extends Controller
 
     /**
      * Display a listing of the resource.
-     * 
+     *
      * @response {
      *    "data": [
      *        {
@@ -46,9 +46,9 @@ class BanReasonController extends Controller
      */
     public function index(Request $request)
     {
-        if (!$request->user()->tokenCan('read')) {
+        if (!$request->user()->tokenCan("read")) {
             return response()->json([
-                'error' => 'Token does not have access!',
+                "error" => "Token does not have access!",
             ]);
         }
         $resources = BanReason::all();
@@ -59,7 +59,7 @@ class BanReasonController extends Controller
      * Display the specified resource.
      *
      * @urlParam id string required The UUID of the ban reason.
-     * 
+     *
      * @response {
      *    "data": [
      *        {
@@ -75,9 +75,9 @@ class BanReasonController extends Controller
      */
     public function show(Request $request, $id)
     {
-        if (!$request->user()->tokenCan('read')) {
+        if (!$request->user()->tokenCan("read")) {
             return response()->json([
-                'error' => 'Token does not have access!',
+                "error" => "Token does not have access!",
             ]);
         }
         $resource = BanReason::findOrFail($id);

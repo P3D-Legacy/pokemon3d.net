@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Base URL
@@ -11,7 +10,7 @@ return [
     |
     */
 
-    'base_url' => env('APP_URL', 'http://localhost'),
+    "base_url" => env("APP_URL", "http://localhost"),
 
     /*
     |--------------------------------------------------------------------------
@@ -22,7 +21,7 @@ return [
     |
     */
 
-    'filename' => '{timestamp}_{app}_collection.json',
+    "filename" => "{timestamp}_{app}_collection.json",
 
     /*
     |--------------------------------------------------------------------------
@@ -33,7 +32,7 @@ return [
     |
     */
 
-    'structured' => false,
+    "structured" => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -46,7 +45,7 @@ return [
     |
     */
 
-    'auth_middleware' => 'auth:sanctum',
+    "auth_middleware" => "auth:sanctum",
 
     /*
     |--------------------------------------------------------------------------
@@ -57,14 +56,14 @@ return [
     |
     */
 
-    'headers' => [
+    "headers" => [
         [
-            'key' => 'Accept',
-            'value' => 'application/json',
+            "key" => "Accept",
+            "value" => "application/json",
         ],
         [
-            'key' => 'Content-Type',
-            'value' => 'application/json',
+            "key" => "Content-Type",
+            "value" => "application/json",
         ],
     ],
 
@@ -77,7 +76,7 @@ return [
     |
     */
 
-    'enable_formdata' => false,
+    "enable_formdata" => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -88,7 +87,7 @@ return [
     |
     */
 
-    'formdata' => [
+    "formdata" => [
         // 'email' => 'john@example.com',
         // 'password' => 'changeme',
     ],
@@ -102,7 +101,7 @@ return [
     |
     */
 
-    'include_middleware' => ['api'],
+    "include_middleware" => ["api"],
 
     /*
     |--------------------------------------------------------------------------
@@ -113,6 +112,5 @@ return [
     |
     */
 
-    'disk' => 'local',
-
+    "disk" => "local",
 ];

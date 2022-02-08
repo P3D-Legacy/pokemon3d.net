@@ -11,7 +11,7 @@ class PermissionController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['permission:manage.permissions']);
+        $this->middleware(["permission:manage.permissions"]);
     }
 
     /**
@@ -22,7 +22,7 @@ class PermissionController extends Controller
     public function index()
     {
         return view("permissions.index", [
-            "permissions" => Permission::orderBy('name')->paginate(10)
+            "permissions" => Permission::orderBy("name")->paginate(10),
         ]);
     }
 
@@ -46,7 +46,7 @@ class PermissionController extends Controller
     {
         Permission::create([
             "name" => request("name"),
-            "guard_name" => "web"
+            "guard_name" => "web",
         ]);
         return redirect()->route("permissions.index");
     }
@@ -60,7 +60,7 @@ class PermissionController extends Controller
     public function show(Permission $permission)
     {
         return view("permissions.show", [
-            "permission" => $permission
+            "permission" => $permission,
         ]);
     }
 
@@ -74,7 +74,7 @@ class PermissionController extends Controller
     {
         return view("permissions.edit", [
             "permission" => $permission,
-            "roles" => Role::all()
+            "roles" => Role::all(),
         ]);
     }
 

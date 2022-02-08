@@ -13,7 +13,7 @@ class UploadedSkinController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['permission:skin-player-destroy']);
+        $this->middleware(["permission:skin-player-destroy"]);
     }
 
     /**
@@ -24,7 +24,7 @@ class UploadedSkinController extends Controller
     public function index()
     {
         $skins = Skin::all();
-        return view('skin.uploaded.index')->with('skins', $skins);
+        return view("skin.uploaded.index")->with("skins", $skins);
     }
 
     /**
@@ -91,15 +91,26 @@ class UploadedSkinController extends Controller
     public function destroy(Request $request, $uuid)
     {
         $request->validate([
-            'reason' => ['required', 'string'],
+            "reason" => ["required", "string"],
         ]);
-        $skin = Skin::where('uuid', $uuid)->first();
-        if(!Storage::disk('skin')->exists($skin->path())) {
-            return redirect()->route('uploaded-skins')->with('error', 'Skin was not found!');
+        $skin = Skin::where("uuid", $uuid)->first();
+        if (!Storage::disk("skin")->exists($skin->path())) {
+            return redirect()
+                ->route("uploaded-skins")
+                ->with("error", "Skin was not found!");
         }
-        activity()->causedBy(Auth::user()->gamejolt)->withProperties(['filename' => $skin->path(), 'gjid' => $skin->user->id, 'reason' => $request->reason])->log('deleted');
+        activity()
+            ->causedBy(Auth::user()->gamejolt)
+            ->withProperties([
+                "filename" => $skin->path(),
+                "gjid" => $skin->user->id,
+                "reason" => $request->reason,
+            ])
+            ->log("deleted");
         $skin->delete();
-        Storage::disk('skin')->delete($skin->path());
-        return redirect()->route('uploaded-skins')->with('success', 'Skin was successfully deleted!');
+        Storage::disk("skin")->delete($skin->path());
+        return redirect()
+            ->route("uploaded-skins")
+            ->with("success", "Skin was successfully deleted!");
     }
 }

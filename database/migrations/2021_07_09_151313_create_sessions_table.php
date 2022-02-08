@@ -13,13 +13,16 @@ class CreateSessionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('sessions', function (Blueprint $table) {
-            $table->string('id')->primary();
-            $table->foreignId('user_id')->nullable()->index();
-            $table->string('ip_address', 45)->nullable();
-            $table->text('user_agent')->nullable();
-            $table->text('payload');
-            $table->integer('last_activity')->index();
+        Schema::create("sessions", function (Blueprint $table) {
+            $table->string("id")->primary();
+            $table
+                ->foreignId("user_id")
+                ->nullable()
+                ->index();
+            $table->string("ip_address", 45)->nullable();
+            $table->text("user_agent")->nullable();
+            $table->text("payload");
+            $table->integer("last_activity")->index();
         });
     }
 
@@ -30,6 +33,6 @@ class CreateSessionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sessions');
+        Schema::dropIfExists("sessions");
     }
 }

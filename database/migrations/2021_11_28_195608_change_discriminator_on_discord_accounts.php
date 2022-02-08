@@ -13,8 +13,8 @@ class ChangeDiscriminatorOnDiscordAccounts extends Migration
      */
     public function up()
     {
-        Schema::table('discord_accounts', function (Blueprint $table) {
-            $table->string('discriminator')->change();
+        Schema::table("discord_accounts", function (Blueprint $table) {
+            $table->string("discriminator")->change();
         });
     }
 

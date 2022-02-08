@@ -18,12 +18,12 @@ class GamejoltAccountController extends Controller
     {
         //$this->middleware(['permission:api']);
     }
-    
+
     /**
      * Display the specified resource.
      *
      * @urlParam id int required The ID of the Gamejolt Account.
-     * 
+     *
      * @response {
      *        "data": {
      *           "uuid": "5b52ee9f-2bc8-42a5-891b-27af579ea056",
@@ -97,12 +97,18 @@ class GamejoltAccountController extends Controller
      */
     public function show(Request $request, $id)
     {
-        if (!$request->user()->tokenCan('read')) {
+        if (!$request->user()->tokenCan("read")) {
             return response()->json([
-                'error' => 'Token does not have access!',
+                "error" => "Token does not have access!",
             ]);
         }
-        $gja = GamejoltAccount::with(['user.roles.permissions', 'bans', 'user.discord'])->where('id', $id)->firstOrFail();
+        $gja = GamejoltAccount::with([
+            "user.roles.permissions",
+            "bans",
+            "user.discord",
+        ])
+            ->where("id", $id)
+            ->firstOrFail();
         return new GamejoltAccountResource($gja);
     }
 }

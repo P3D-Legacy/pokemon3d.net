@@ -14,29 +14,29 @@ class DiscordAccountResource extends JsonResource
      */
     public function toArray($request)
     {
-        if ($request->user()->can('api.full')) {
+        if ($request->user()->can("api.full")) {
             return parent::toArray($request);
         }
-        if ($request->user()->can('api.moderate')) {
+        if ($request->user()->can("api.moderate")) {
             return [
-                'id' => $this->id,
-                'username' => $this->username,
-                'discriminator' => $this->discriminator,
-                'verified_at' => $this->verified_at,
-                'created_at' => $this->created_at,
-                'updated_at' => $this->updated_at,
-                'user' => new UserResource($this->user),
+                "id" => $this->id,
+                "username" => $this->username,
+                "discriminator" => $this->discriminator,
+                "verified_at" => $this->verified_at,
+                "created_at" => $this->created_at,
+                "updated_at" => $this->updated_at,
+                "user" => new UserResource($this->user),
             ];
         }
-        if ($request->user()->can('api.minimal')) {
+        if ($request->user()->can("api.minimal")) {
             return [
-                'id' => $this->id,
-                'username' => $this->username,
-                'verified_at' => $this->verified_at,
+                "id" => $this->id,
+                "username" => $this->username,
+                "verified_at" => $this->verified_at,
             ];
         }
         return [
-            'id' => $this->id,
+            "id" => $this->id,
         ];
     }
 }

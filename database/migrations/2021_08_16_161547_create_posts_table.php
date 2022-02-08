@@ -13,14 +13,17 @@ class CreatePostsTable extends Migration
      */
     public function up()
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create("posts", function (Blueprint $table) {
             $table->id();
-            $table->uuid('uuid');
-            $table->string('title');
-            $table->string('slug')->index()->unique();
-            $table->text('body');
-            $table->boolean('active')->default(false);
-            $table->unsignedBigInteger('user_id');
+            $table->uuid("uuid");
+            $table->string("title");
+            $table
+                ->string("slug")
+                ->index()
+                ->unique();
+            $table->text("body");
+            $table->boolean("active")->default(false);
+            $table->unsignedBigInteger("user_id");
             $table->softDeletes();
             $table->timestamps();
         });
@@ -33,6 +36,6 @@ class CreatePostsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists("posts");
     }
 }

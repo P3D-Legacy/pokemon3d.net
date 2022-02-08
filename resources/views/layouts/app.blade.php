@@ -40,6 +40,9 @@
                 document.querySelector('html').classList.add('dark')
             }
         </script>
+        @if(env('APP_ENV') != 'local')
+            <script defer data-domain="{{ request()->getHost() }}" src="https://plausible.io/js/plausible.js"></script>
+        @endif
     </head>
     <body class="font-sans antialiased {{ env('APP_DEBUG') ? 'debug-screens' : '' }}">
         <x-jet-banner />

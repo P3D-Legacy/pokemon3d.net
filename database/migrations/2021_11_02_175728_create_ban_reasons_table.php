@@ -13,11 +13,11 @@ class CreateBanReasonsTable extends Migration
      */
     public function up()
     {
-        Schema::create('ban_reasons', function (Blueprint $table) {
+        Schema::create("ban_reasons", function (Blueprint $table) {
             $table->id();
-            $table->uuid('uuid')->unique();
-            $table->string('name');
-            $table->unsignedBigInteger('user_id');
+            $table->uuid("uuid")->unique();
+            $table->string("name");
+            $table->unsignedBigInteger("user_id");
             $table->timestamps();
             $table->softDeletes();
         });
@@ -30,6 +30,6 @@ class CreateBanReasonsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ban_reasons');
+        Schema::dropIfExists("ban_reasons");
     }
 }

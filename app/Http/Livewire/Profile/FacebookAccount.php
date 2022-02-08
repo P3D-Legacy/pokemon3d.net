@@ -10,12 +10,17 @@ class FacebookAccount extends Component
     public $name;
     public $avatar;
 
-    public function mount() {
+    public function mount()
+    {
         $user = Auth::user();
-        $this->name = ($user->facebook ? $user->facebook->name : null);
-        $this->avatar = ($user->facebook ? $user->facebook->avatar : null);
-        $this->updated_at =  ($user->facebook ? $user->facebook->updated_at->diffForHumans() : null);
-        $this->verified_at =  ($user->facebook ? $user->facebook->verified_at->diffForHumans() : null);
+        $this->name = $user->facebook ? $user->facebook->name : null;
+        $this->avatar = $user->facebook ? $user->facebook->avatar : null;
+        $this->updated_at = $user->facebook
+            ? $user->facebook->updated_at->diffForHumans()
+            : null;
+        $this->verified_at = $user->facebook
+            ? $user->facebook->verified_at->diffForHumans()
+            : null;
     }
 
     /**
@@ -37,14 +42,14 @@ class FacebookAccount extends Component
             $this->updated_at = null;
             $this->verified_at = null;
         }
-        
-        $this->emit('refresh');
-        
+
+        $this->emit("refresh");
+
         return;
     }
-    
+
     public function render()
     {
-        return view('livewire.profile.facebook-account');
+        return view("livewire.profile.facebook-account");
     }
 }

@@ -3,7 +3,6 @@
 use Laravel\Jetstream\Features;
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Jetstream Stack
@@ -15,7 +14,7 @@ return [
     |
     */
 
-    'stack' => 'livewire',
+    "stack" => "livewire",
 
     /*
      |--------------------------------------------------------------------------
@@ -28,7 +27,7 @@ return [
      |
      */
 
-    'middleware' => ['web'],
+    "middleware" => ["web"],
 
     /*
     |--------------------------------------------------------------------------
@@ -41,7 +40,7 @@ return [
     |
     */
 
-    'features' => [
+    "features" => [
         Features::termsAndPrivacyPolicy(),
         Features::profilePhotos(),
         Features::api(),
@@ -60,6 +59,5 @@ return [
     |
     */
 
-    'profile_photo_disk' => 'public',
-
+    "profile_photo_disk" => "public",
 ];

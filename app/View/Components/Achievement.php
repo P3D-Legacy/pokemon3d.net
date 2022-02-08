@@ -7,7 +7,7 @@ use Illuminate\View\Component;
 class Achievement extends Component
 {
     public $achievement;
-    
+
     /**
      * Create a new component instance.
      *
@@ -25,6 +25,6 @@ class Achievement extends Component
      */
     public function render()
     {
-        return view('components.achievement');
+        return view("components.achievement");
     }
 }

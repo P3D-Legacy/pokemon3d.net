@@ -4,7 +4,6 @@ use App\Providers\RouteServiceProvider;
 use Laravel\Fortify\Features;
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Fortify Guard
@@ -16,7 +15,7 @@ return [
     |
     */
 
-    'guard' => 'web',
+    "guard" => "web",
 
     /*
     |--------------------------------------------------------------------------
@@ -29,7 +28,7 @@ return [
     |
     */
 
-    'passwords' => 'users',
+    "passwords" => "users",
 
     /*
     |--------------------------------------------------------------------------
@@ -46,9 +45,9 @@ return [
     |
     */
 
-    'username' => 'username',
+    "username" => "username",
 
-    'email' => 'email',
+    "email" => "email",
 
     /*
     |--------------------------------------------------------------------------
@@ -61,7 +60,7 @@ return [
     |
     */
 
-    'home' => RouteServiceProvider::HOME,
+    "home" => RouteServiceProvider::HOME,
 
     /*
     |--------------------------------------------------------------------------
@@ -74,9 +73,9 @@ return [
     |
     */
 
-    'prefix' => '',
+    "prefix" => "",
 
-    'domain' => null,
+    "domain" => null,
 
     /*
     |--------------------------------------------------------------------------
@@ -89,7 +88,7 @@ return [
     |
     */
 
-    'middleware' => ['web'],
+    "middleware" => ["web"],
 
     /*
     |--------------------------------------------------------------------------
@@ -102,9 +101,9 @@ return [
     |
     */
 
-    'limiters' => [
-        'login' => 'login',
-        'two-factor' => 'two-factor',
+    "limiters" => [
+        "login" => "login",
+        "two-factor" => "two-factor",
     ],
 
     /*
@@ -118,7 +117,7 @@ return [
     |
     */
 
-    'views' => true,
+    "views" => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -131,15 +130,14 @@ return [
     |
     */
 
-    'features' => [
+    "features" => [
         Features::registration(),
         Features::resetPasswords(),
         Features::emailVerification(),
         Features::updateProfileInformation(),
         Features::updatePasswords(),
         Features::twoFactorAuthentication([
-            'confirmPassword' => true,
+            "confirmPassword" => true,
         ]),
     ],
-
 ];

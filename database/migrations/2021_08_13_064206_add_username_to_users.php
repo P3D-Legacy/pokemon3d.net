@@ -13,8 +13,12 @@ class AddUsernameToUsers extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('username')->nullable()->unique()->after('email');
+        Schema::table("users", function (Blueprint $table) {
+            $table
+                ->string("username")
+                ->nullable()
+                ->unique()
+                ->after("email");
         });
     }
 
@@ -25,7 +29,7 @@ class AddUsernameToUsers extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table("users", function (Blueprint $table) {
             //
         });
     }

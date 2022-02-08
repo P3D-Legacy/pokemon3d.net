@@ -74,6 +74,6 @@ class Resource extends Model implements Viewable
      */
     public function updates()
     {
-        return $this->hasMany(ResourceUpdate::class);
+        return $this->hasMany(ResourceUpdate::class)->orderBy('created_at', 'desc');
     }
 }

@@ -19,11 +19,11 @@ class CategoryDelete extends ModalComponent
     {
         $this->category->delete();
         $this->closeModal();
-        $this->emit("categoryAdded");
+        $this->emit('categoryAdded');
     }
 
     public function render()
     {
-        return view("livewire.category.category-delete");
+        return view('livewire.category.category-delete');
     }
 }

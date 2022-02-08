@@ -13,16 +13,16 @@ class CreateDiscordAccountsTable extends Migration
      */
     public function up()
     {
-        Schema::create("discord_accounts", function (Blueprint $table) {
-            $table->increments("aid");
-            $table->uuid("uuid")->unique();
-            $table->bigInteger("id")->comment("Discord ID");
-            $table->text("username")->comment("Discord Username");
-            $table->text("email")->comment("Discord Email");
-            $table->text("avatar")->comment("Discord Avatar URL");
-            $table->integer("discriminator")->comment("Discord Discriminator");
-            $table->timestamp("verified_at")->nullable();
-            $table->unsignedBigInteger("user_id");
+        Schema::create('discord_accounts', function (Blueprint $table) {
+            $table->increments('aid');
+            $table->uuid('uuid')->unique();
+            $table->bigInteger('id')->comment('Discord ID');
+            $table->text('username')->comment('Discord Username');
+            $table->text('email')->comment('Discord Email');
+            $table->text('avatar')->comment('Discord Avatar URL');
+            $table->integer('discriminator')->comment('Discord Discriminator');
+            $table->timestamp('verified_at')->nullable();
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -35,6 +35,6 @@ class CreateDiscordAccountsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists("discord_accounts");
+        Schema::dropIfExists('discord_accounts');
     }
 }

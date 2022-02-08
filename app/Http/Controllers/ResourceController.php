@@ -16,9 +16,9 @@ class ResourceController extends Controller
      */
     public function index()
     {
-        return view("resources.index", [
-            "categories" => Category::all(),
-            "resources" => Resource::orderBy("name")->paginate(10),
+        return view('resources.index', [
+            'categories' => Category::all(),
+            'resources' => Resource::orderBy('name')->paginate(10),
         ]);
     }
 
@@ -30,8 +30,8 @@ class ResourceController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view("resources.create", [
-            "categories" => $categories,
+        return view('resources.create', [
+            'categories' => $categories,
         ]);
     }
 
@@ -44,21 +44,21 @@ class ResourceController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            "name" => ["required", "string", new StrNotContain("official")],
-            "breif" => ["required", "string"],
-            "category" => ["required", "integer"],
-            "description" => ["required", "string"],
+            'name' => ['required', 'string', new StrNotContain('official')],
+            'breif' => ['required', 'string'],
+            'category' => ['required', 'integer'],
+            'description' => ['required', 'string'],
         ]);
 
         $resource = Resource::create([
-            "name" => $request->name,
-            "breif" => $request->breif,
-            "description" => $request->description,
-            "user_id" => auth()->user()->id,
+            'name' => $request->name,
+            'breif' => $request->breif,
+            'description' => $request->description,
+            'user_id' => auth()->user()->id,
         ]);
         $category = Category::find($request->category);
         $resource->attachCategory($category);
-        return redirect()->route("resource.show", ["resource" => $resource]);
+        return redirect()->route('resource.show', ['resource' => $resource]);
     }
 
     /**
@@ -72,8 +72,8 @@ class ResourceController extends Controller
         views($resource)
             ->cooldown(60)
             ->record();
-        return view("resources.show", [
-            "resource" => $resource,
+        return view('resources.show', [
+            'resource' => $resource,
         ]);
     }
 }

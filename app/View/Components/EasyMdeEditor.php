@@ -18,7 +18,7 @@ class EasyMdeEditor extends Component
     /** @var array */
     public $options;
 
-    protected static $assets = ["alpine", "easy-mde"];
+    protected static $assets = ['alpine', 'easy-mde'];
 
     public function __construct(
         string $name,
@@ -34,7 +34,7 @@ class EasyMdeEditor extends Component
     {
         return array_merge(
             [
-                "forceSync" => true,
+                'forceSync' => true,
             ],
             $this->options
         );
@@ -43,14 +43,14 @@ class EasyMdeEditor extends Component
     public function jsonOptions(): string
     {
         if (empty($this->options())) {
-            return "";
+            return '';
         }
 
-        return ", ..." . json_encode((object) $this->options());
+        return ', ...' . json_encode((object) $this->options());
     }
 
     public function render(): View
     {
-        return view("components.easy-mde-editor");
+        return view('components.easy-mde-editor');
     }
 }

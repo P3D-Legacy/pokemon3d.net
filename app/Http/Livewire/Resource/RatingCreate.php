@@ -21,21 +21,21 @@ class RatingCreate extends ModalComponent
     public function save()
     {
         $this->validate([
-            "rating" => ["digits_between:1,5"],
-            "body" => ["required", "string", "min:10", "max:255"],
+            'rating' => ['digits_between:1,5'],
+            'body' => ['required', 'string', 'min:10', 'max:255'],
         ]);
 
         $resource = Resource::find($this->resource);
 
         $resource->review($this->body, $this->user, $this->rating);
 
-        $this->emit("resourceUpdated", $resource->id);
+        $this->emit('resourceUpdated', $resource->id);
 
         $this->closeModal();
     }
 
     public function render()
     {
-        return view("livewire.resource.rating-create");
+        return view('livewire.resource.rating-create');
     }
 }

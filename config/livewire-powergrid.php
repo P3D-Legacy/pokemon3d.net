@@ -10,7 +10,7 @@ return [
     | Configure here the theme of your choice.
     */
 
-    "theme" => \PowerComponents\LivewirePowerGrid\Themes\Tailwind::class,
+    'theme' => \PowerComponents\LivewirePowerGrid\Themes\Tailwind::class,
     //'theme' => \PowerComponents\LivewirePowerGrid\Themes\Bootstrap5::class,
 
     /*
@@ -22,39 +22,39 @@ return [
     |
     */
 
-    "plugins" => [
+    'plugins' => [
         /*
          * https://github.com/snapappointments/bootstrap-select
          */
-        "bootstrap-select" => [
-            "js" =>
-                "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/js/bootstrap-select.min.js",
-            "css" =>
-                "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/css/bootstrap-select.min.css",
+        'bootstrap-select' => [
+            'js' =>
+                'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/js/bootstrap-select.min.js',
+            'css' =>
+                'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/css/bootstrap-select.min.css',
         ],
         /*
          * https://flatpickr.js.org
          */
-        "flat_piker" => [
-            "js" => "https://cdn.jsdelivr.net/npm/flatpickr",
-            "css" =>
-                "https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css",
-            "translate" =>
-                app()->getLocale() != "en"
-                    ? "https://npmcdn.com/flatpickr/dist/l10n/" .
+        'flat_piker' => [
+            'js' => 'https://cdn.jsdelivr.net/npm/flatpickr',
+            'css' =>
+                'https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css',
+            'translate' =>
+                app()->getLocale() != 'en'
+                    ? 'https://npmcdn.com/flatpickr/dist/l10n/' .
                         \Illuminate\Support\Str::substr(
                             app()->getLocale(),
                             0,
                             2
                         ) .
-                        ".js"
-                    : "",
-            "locales" => [
-                "pt_BR" => [
-                    "locale" => "pt",
-                    "dateFormat" => "d/m/Y H:i",
-                    "enableTime" => true,
-                    "time_24hr" => true,
+                        '.js'
+                    : '',
+            'locales' => [
+                'pt_BR' => [
+                    'locale' => 'pt',
+                    'dateFormat' => 'd/m/Y H:i',
+                    'enableTime' => true,
+                    'time_24hr' => true,
                 ],
             ],
         ],
@@ -72,7 +72,7 @@ return [
     |
     */
 
-    "filter" => "inline",
+    'filter' => 'inline',
 
     /*
     |--------------------------------------------------------------------------
@@ -84,7 +84,7 @@ return [
     |
     */
 
-    "cached_data" => true,
+    'cached_data' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -96,7 +96,7 @@ return [
     |
     */
 
-    "js_framework" => null,
+    'js_framework' => null,
 
     /*
     |--------------------------------------------------------------------------
@@ -107,7 +107,7 @@ return [
     |
     */
 
-    "alpinejs_cdn" => "https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js",
+    'alpinejs_cdn' => 'https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js',
 
     /*
     |--------------------------------------------------------------------------
@@ -121,5 +121,5 @@ return [
     |
     */
 
-    "check_version" => true,
+    'check_version' => true,
 ];

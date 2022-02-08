@@ -17,7 +17,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public const HOME = "/dashboard";
+    public const HOME = '/dashboard';
 
     /**
      * The controller namespace for the application.
@@ -38,21 +38,21 @@ class RouteServiceProvider extends ServiceProvider
         $this->configureRateLimiting();
 
         $this->routes(function () {
-            Route::prefix("api")
-                ->middleware("api")
+            Route::prefix('api')
+                ->middleware('api')
                 ->namespace($this->namespace)
-                ->group(base_path("routes/api.php"));
+                ->group(base_path('routes/api.php'));
 
-            Route::middleware("web")
+            Route::middleware('web')
                 ->namespace($this->namespace)
-                ->group(base_path("routes/web.php"));
+                ->group(base_path('routes/web.php'));
 
             Route::namespace($this->namespace)->group(
-                base_path("routes/jetstream.php")
+                base_path('routes/jetstream.php')
             );
 
             Route::namespace($this->namespace)->group(
-                base_path("routes/fortify.php")
+                base_path('routes/fortify.php')
             );
         });
     }
@@ -64,7 +64,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function configureRateLimiting()
     {
-        RateLimiter::for("api", function (Request $request) {
+        RateLimiter::for('api', function (Request $request) {
             return Limit::perMinute(60)->by(
                 optional($request->user())->id ?: $request->ip()
             );

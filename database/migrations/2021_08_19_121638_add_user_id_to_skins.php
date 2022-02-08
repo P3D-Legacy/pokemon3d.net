@@ -13,11 +13,11 @@ class AddUserIdToSkins extends Migration
      */
     public function up()
     {
-        Schema::table("skins", function (Blueprint $table) {
+        Schema::table('skins', function (Blueprint $table) {
             $table
-                ->integer("user_id")
+                ->integer('user_id')
                 ->nullable()
-                ->after("owner_id");
+                ->after('owner_id');
         });
     }
 
@@ -28,7 +28,7 @@ class AddUserIdToSkins extends Migration
      */
     public function down()
     {
-        Schema::table("skins", function (Blueprint $table) {
+        Schema::table('skins', function (Blueprint $table) {
             //
         });
     }

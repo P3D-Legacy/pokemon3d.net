@@ -15,21 +15,21 @@ class GamejoltAccount extends Model
     use SoftDeletes;
     use Uuid;
 
-    protected $primaryKey = "uuid";
+    protected $primaryKey = 'uuid';
 
     /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = "game_jolt_accounts";
+    protected $table = 'game_jolt_accounts';
 
     /**
      * The "type" of the auto-incrementing ID.
      *
      * @var string
      */
-    protected $keyType = "string";
+    protected $keyType = 'string';
 
     /**
      * Indicates if the IDs are auto-incrementing.
@@ -50,7 +50,7 @@ class GamejoltAccount extends Model
      *
      * @var array
      */
-    protected $fillable = ["id", "username", "token", "verified_at", "user_id"];
+    protected $fillable = ['id', 'username', 'token', 'verified_at', 'user_id'];
 
     /**
      * The attributes that should be cast to native types.
@@ -58,7 +58,7 @@ class GamejoltAccount extends Model
      * @var array
      */
     protected $casts = [
-        "verified_at" => "datetime",
+        'verified_at' => 'datetime',
     ];
 
     /**
@@ -66,14 +66,14 @@ class GamejoltAccount extends Model
      *
      * @var array
      */
-    protected $encryptable = ["token"];
+    protected $encryptable = ['token'];
 
     /**
      * The attributes that should be hidden
      *
      * @var array
      */
-    protected $hidden = ["token", "aid"];
+    protected $hidden = ['token', 'aid'];
 
     public function touchVerify()
     {
@@ -86,7 +86,7 @@ class GamejoltAccount extends Model
      */
     public function user()
     {
-        return $this->hasOne(User::class, "id", "user_id");
+        return $this->hasOne(User::class, 'id', 'user_id');
     }
 
     /**
@@ -94,7 +94,7 @@ class GamejoltAccount extends Model
      */
     public function skins()
     {
-        return $this->hasMany(Skin::class, "owner_id", "id");
+        return $this->hasMany(Skin::class, 'owner_id', 'id');
     }
 
     /**
@@ -102,7 +102,7 @@ class GamejoltAccount extends Model
      */
     public function publicSkins()
     {
-        return $this->hasMany(Skin::class, "owner_id", "id")->isPublic();
+        return $this->hasMany(Skin::class, 'owner_id', 'id')->isPublic();
     }
 
     /**
@@ -112,8 +112,8 @@ class GamejoltAccount extends Model
     {
         return $this->hasMany(
             GamejoltAccountBan::class,
-            "gamejoltaccount_id",
-            "id"
+            'gamejoltaccount_id',
+            'id'
         );
     }
 
@@ -124,8 +124,8 @@ class GamejoltAccount extends Model
     {
         return $this->hasMany(
             GamejoltAccountTrophy::class,
-            "gamejolt_account_id",
-            "id"
-        )->orderBy("title", "asc");
+            'gamejolt_account_id',
+            'id'
+        )->orderBy('title', 'asc');
     }
 }

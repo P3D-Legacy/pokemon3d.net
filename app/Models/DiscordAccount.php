@@ -13,14 +13,14 @@ class DiscordAccount extends Model
     use SoftDeletes;
     use Uuid;
 
-    protected $primaryKey = "uuid";
+    protected $primaryKey = 'uuid';
 
     /**
      * The "type" of the auto-incrementing ID.
      *
      * @var string
      */
-    protected $keyType = "string";
+    protected $keyType = 'string';
 
     /**
      * Indicates if the IDs are auto-incrementing.
@@ -42,13 +42,13 @@ class DiscordAccount extends Model
      * @var array
      */
     protected $fillable = [
-        "id",
-        "username",
-        "email",
-        "avatar",
-        "discriminator",
-        "verified_at",
-        "user_id",
+        'id',
+        'username',
+        'email',
+        'avatar',
+        'discriminator',
+        'verified_at',
+        'user_id',
     ];
 
     /**
@@ -57,7 +57,7 @@ class DiscordAccount extends Model
      * @var array
      */
     protected $casts = [
-        "verified_at" => "datetime",
+        'verified_at' => 'datetime',
     ];
 
     /**
@@ -65,14 +65,14 @@ class DiscordAccount extends Model
      *
      * @var array
      */
-    protected $encryptable = ["password"];
+    protected $encryptable = ['password'];
 
     /**
      * The attributes that should be hidden
      *
      * @var array
      */
-    protected $hidden = ["aid"];
+    protected $hidden = ['aid'];
 
     public function touchVerify()
     {
@@ -85,6 +85,6 @@ class DiscordAccount extends Model
      */
     public function user()
     {
-        return $this->hasOne(User::class, "id", "user_id");
+        return $this->hasOne(User::class, 'id', 'user_id');
     }
 }

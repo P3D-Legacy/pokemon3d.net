@@ -12,25 +12,25 @@ class CategoryCreate extends ModalComponent
     public function save()
     {
         $this->validate([
-            "name" => "required|min:3|max:255",
+            'name' => 'required|min:3|max:255',
         ]);
 
-        $isFound = Category::where("name", $this->name)->first();
+        $isFound = Category::where('name', $this->name)->first();
 
         if ($isFound) {
-            $this->addError("name", "Category already exists.");
+            $this->addError('name', 'Category already exists.');
         } else {
             Category::create([
-                "name" => $this->name,
+                'name' => $this->name,
             ]);
             $this->closeModal();
         }
 
-        $this->emit("categoryAdded");
+        $this->emit('categoryAdded');
     }
 
     public function render()
     {
-        return view("livewire.category.category-create");
+        return view('livewire.category.category-create');
     }
 }

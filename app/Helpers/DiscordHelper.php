@@ -12,16 +12,16 @@ class DiscordHelper
     public function __construct()
     {
         $this->discordClient =
-            config("discord.token") && config("discord.server_id")
-                ? new DiscordClient(["token" => config("discord.token")])
+            config('discord.token') && config('discord.server_id')
+                ? new DiscordClient(['token' => config('discord.token')])
                 : null;
     }
 
     public function getServer()
     {
         return $this->discordClient->guild->getGuild([
-            "guild.id" => config("discord.server_id"),
-            "with_counts" => true,
+            'guild.id' => config('discord.server_id'),
+            'with_counts' => true,
         ]);
     }
 
@@ -40,7 +40,7 @@ class DiscordHelper
         $client = new DiscordHelper();
         try {
             return $client->discordClient->guild->getGuildRoles([
-                "guild.id" => config("discord.server_id"),
+                'guild.id' => config('discord.server_id'),
             ]);
         } catch (\Exception $exception) {
             return 0;
@@ -52,8 +52,8 @@ class DiscordHelper
         $client = new DiscordHelper();
         try {
             return $client->discordClient->guild->getGuildMember([
-                "guild.id" => config("discord.server_id"),
-                "user.id" => $user_id,
+                'guild.id' => config('discord.server_id'),
+                'user.id' => $user_id,
             ]);
         } catch (\Exception $exception) {
             return 0;
@@ -65,9 +65,9 @@ class DiscordHelper
         $client = new DiscordHelper();
         try {
             return $client->discordClient->guild->addGuildMemberRole([
-                "guild.id" => config("discord.server_id"),
-                "user.id" => $user_id,
-                "role.id" => $role_id,
+                'guild.id' => config('discord.server_id'),
+                'user.id' => $user_id,
+                'role.id' => $role_id,
             ]);
         } catch (\Exception $exception) {
             return $exception->getMessage();

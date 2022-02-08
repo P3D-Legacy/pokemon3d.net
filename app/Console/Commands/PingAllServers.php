@@ -13,14 +13,14 @@ class PingAllServers extends Command
      *
      * @var string
      */
-    protected $signature = "server:pingall";
+    protected $signature = 'server:pingall';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = "Ping all servers to update their satus.";
+    protected $description = 'Ping all servers to update their satus.';
 
     /**
      * Create a new command instance.
@@ -41,9 +41,9 @@ class PingAllServers extends Command
     {
         $servers = Server::all();
         foreach ($servers as $server) {
-            Artisan::call("server:ping " . $server->uuid);
+            Artisan::call('server:ping ' . $server->uuid);
         }
-        $this->info("All servers have been pinged.");
+        $this->info('All servers have been pinged.');
         return;
     }
 }

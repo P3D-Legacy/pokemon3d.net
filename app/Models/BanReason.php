@@ -13,14 +13,14 @@ class BanReason extends Model
     use SoftDeletes;
     use Uuid;
 
-    protected $primaryKey = "uuid";
+    protected $primaryKey = 'uuid';
 
     /**
      * The "type" of the auto-incrementing ID.
      *
      * @var string
      */
-    protected $keyType = "string";
+    protected $keyType = 'string';
 
     /**
      * Indicates if the IDs are auto-incrementing.
@@ -41,5 +41,5 @@ class BanReason extends Model
      *
      * @var array
      */
-    protected $fillable = ["name", "user_id"];
+    protected $fillable = ['name', 'user_id'];
 }

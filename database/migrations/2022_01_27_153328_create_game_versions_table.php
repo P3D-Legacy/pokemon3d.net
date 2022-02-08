@@ -13,13 +13,13 @@ class CreateGameVersionsTable extends Migration
      */
     public function up()
     {
-        Schema::create("game_versions", function (Blueprint $table) {
+        Schema::create('game_versions', function (Blueprint $table) {
             $table->id();
-            $table->string("version");
-            $table->string("title");
-            $table->date("release_date");
-            $table->string("page_url");
-            $table->string("download_url");
+            $table->string('version');
+            $table->string('title');
+            $table->date('release_date');
+            $table->string('page_url');
+            $table->string('download_url');
             $table->softDeletes();
             $table->timestamps();
         });
@@ -32,6 +32,6 @@ class CreateGameVersionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists("game_versions");
+        Schema::dropIfExists('game_versions');
     }
 }

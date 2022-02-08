@@ -48,13 +48,13 @@ class DiscordAccount extends Component
             $this->verified_at = null;
         }
 
-        $this->emit("refresh");
+        $this->emit('refresh');
 
         return;
     }
 
     public function render()
     {
-        return view("livewire.profile.discord-account");
+        return view('livewire.profile.discord-account');
     }
 }

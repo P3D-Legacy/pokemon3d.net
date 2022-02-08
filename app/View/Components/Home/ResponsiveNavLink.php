@@ -27,6 +27,6 @@ class ResponsiveNavLink extends Component
      */
     public function render()
     {
-        return view("components.home.responsive-nav-link");
+        return view('components.home.responsive-nav-link');
     }
 }

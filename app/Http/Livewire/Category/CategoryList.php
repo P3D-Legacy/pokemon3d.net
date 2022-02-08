@@ -10,7 +10,7 @@ class CategoryList extends Component
     public $categories;
 
     protected $listeners = [
-        "categoryAdded" => "mount",
+        'categoryAdded' => 'mount',
     ];
 
     public function mount()
@@ -20,6 +20,6 @@ class CategoryList extends Component
 
     public function render()
     {
-        return view("livewire.category.category-list");
+        return view('livewire.category.category-list');
     }
 }

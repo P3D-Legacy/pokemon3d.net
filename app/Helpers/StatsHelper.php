@@ -7,8 +7,8 @@ use RestCord\DiscordClient;
 
 class StatsHelper
 {
-    const METHOD_GET = "get";
-    const METHOD_POST = "post";
+    const METHOD_GET = 'get';
+    const METHOD_POST = 'post';
 
     public static function countForumMembers()
     {
@@ -23,8 +23,8 @@ class StatsHelper
     public static function countPlayers()
     {
         try {
-            $data = self::sendRequest("/server/status");
-            return count($data["players"]);
+            $data = self::sendRequest('/server/status');
+            return count($data['players']);
         } catch (\Exception $exception) {
             return 0;
         }
@@ -32,17 +32,17 @@ class StatsHelper
 
     public static function getInGameSeason()
     {
-        $season = date("W") % 4;
-        $seasonName = "spring";
+        $season = date('W') % 4;
+        $seasonName = 'spring';
         #echo "Season (WOY % 4): " . $season;
         if ($season == 0) {
-            $seasonName = "fall";
+            $seasonName = 'fall';
         } elseif ($season == 1) {
-            $seasonName = "winter";
+            $seasonName = 'winter';
         } elseif ($season == 2) {
-            $seasonName = "spring";
+            $seasonName = 'spring';
         } elseif ($season == 3) {
-            $seasonName = "summer";
+            $seasonName = 'summer';
         }
         return $seasonName;
     }
@@ -52,15 +52,15 @@ class StatsHelper
         $data = [],
         $method = self::METHOD_GET
     ) {
-        if (config("gameserver.base_url") == null) {
-            return ["errors" => []];
+        if (config('gameserver.base_url') == null) {
+            return ['errors' => []];
         }
         if (is_string($data)) {
             $method = $data;
             $data = [];
         }
 
-        $url = config("gameserver.base_url") . $endpoint;
+        $url = config('gameserver.base_url') . $endpoint;
         $response = Http::withHeaders([])->$method($url, $data);
         $decodedResponse = json_decode($response, true);
         return $decodedResponse;

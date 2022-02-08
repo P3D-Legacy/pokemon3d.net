@@ -25,6 +25,6 @@ class ReviewStars extends Component
      */
     public function render()
     {
-        return view("components.review-stars");
+        return view('components.review-stars');
     }
 }

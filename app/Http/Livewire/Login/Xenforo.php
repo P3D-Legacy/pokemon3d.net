@@ -29,26 +29,26 @@ class Xenforo extends Component
         $this->resetValidation();
 
         $this->validate([
-            "username" => ["required"],
-            "password" => ["required"],
+            'username' => ['required'],
+            'password' => ['required'],
         ]);
 
         $auth = XenForoHelper::postAuth($this->username, $this->password);
 
-        if (isset($auth["error"])) {
-            $this->addError("error", $auth["message"]);
+        if (isset($auth['error'])) {
+            $this->addError('error', $auth['message']);
             return;
         }
 
         $forumaccount = ForumAccount::where(
-            "username",
+            'username',
             $this->username
         )->first();
 
         if (!$forumaccount) {
             $this->addError(
-                "error",
-                "This Forum Account is not associated with a P3D account yet."
+                'error',
+                'This Forum Account is not associated with a P3D account yet.'
             );
             return;
         }
@@ -57,21 +57,21 @@ class Xenforo extends Component
 
         if (!$user) {
             $this->addError(
-                "error",
+                'error',
                 'Could\'t find the user associated with this Forum Account.'
             );
             return;
         }
 
         if (!Auth::loginUsingId($user->id)) {
-            $this->addError("error", "Login failed!");
+            $this->addError('error', 'Login failed!');
             return;
         } else {
             $forumaccount->touchVerify();
             request()
                 ->session()
                 ->regenerate();
-            return redirect()->intended("dashboard");
+            return redirect()->intended('dashboard');
         }
 
         return;
@@ -79,6 +79,6 @@ class Xenforo extends Component
 
     public function render()
     {
-        return view("livewire.login.xenforo");
+        return view('livewire.login.xenforo');
     }
 }

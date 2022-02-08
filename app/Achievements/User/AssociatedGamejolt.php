@@ -15,12 +15,12 @@ class AssociatedGamejolt extends Achievement
     /*
      * The achievement name
      */
-    public $name = "AssociatedGamejolt";
+    public $name = 'AssociatedGamejolt';
 
     /*
      * A small description for the achievement
      */
-    public $description = "User associated their account with Gamejolt";
+    public $description = 'User associated their account with Gamejolt';
 
     /*
      * The amount of "points" this user need to obtain in order to complete this achievement

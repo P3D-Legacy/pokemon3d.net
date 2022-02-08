@@ -14,14 +14,14 @@ class SkinUserUpdate extends Command
      *
      * @var string
      */
-    protected $signature = "p3d:skinuserupdate";
+    protected $signature = 'p3d:skinuserupdate';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = "Update skins with user instead of old gj owner id.";
+    protected $description = 'Update skins with user instead of old gj owner id.';
 
     /**
      * Create a new command instance.
@@ -40,23 +40,23 @@ class SkinUserUpdate extends Command
      */
     public function handle()
     {
-        $skins = Skin::where("user_id", null)->get();
+        $skins = Skin::where('user_id', null)->get();
         foreach ($skins as $skin) {
-            $gja = GamejoltAccount::where("id", $skin->owner_id)->first();
+            $gja = GamejoltAccount::where('id', $skin->owner_id)->first();
             if ($gja) {
-                $skin->update(["user_id" => $gja->user_id]);
-                $this->info("Skin #" . $skin->id . " updated.");
+                $skin->update(['user_id' => $gja->user_id]);
+                $this->info('Skin #' . $skin->id . ' updated.');
                 $rows = DB::select(
-                    "SELECT * FROM likes WHERE user_id = " . $skin->owner_id
+                    'SELECT * FROM likes WHERE user_id = ' . $skin->owner_id
                 );
                 foreach ($rows as $row) {
                     DB::update(
-                        "UPDATE likes SET user_id = " .
+                        'UPDATE likes SET user_id = ' .
                             $gja->user_id .
-                            " WHERE user_id = " .
+                            ' WHERE user_id = ' .
                             $skin->owner_id
                     );
-                    $this->info("Like #" . $row->id . " updated.");
+                    $this->info('Like #' . $row->id . ' updated.');
                 }
             }
         }

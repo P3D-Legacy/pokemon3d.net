@@ -14,14 +14,14 @@ trait PasswordValidationRules
     protected function passwordRules()
     {
         return [
-            "required",
-            "string",
+            'required',
+            'string',
             (new Password())
                 ->length(10)
                 ->requireUppercase()
                 ->requireNumeric()
                 ->requireSpecialCharacter(),
-            "confirmed",
+            'confirmed',
         ];
     }
 }

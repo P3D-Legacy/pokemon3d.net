@@ -25,6 +25,6 @@ class Achievement extends Component
      */
     public function render()
     {
-        return view("components.achievement");
+        return view('components.achievement');
     }
 }

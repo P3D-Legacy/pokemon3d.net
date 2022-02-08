@@ -16,30 +16,30 @@ class PermissionSeeder extends Seeder
      */
     public function run()
     {
-        $r1 = Role::firstOrCreate(["name" => "super-admin"]);
-        $r2 = Role::firstOrCreate(["name" => "admin"]);
-        $r3 = Role::firstOrCreate(["name" => "moderator"]);
+        $r1 = Role::firstOrCreate(['name' => 'super-admin']);
+        $r2 = Role::firstOrCreate(['name' => 'admin']);
+        $r3 = Role::firstOrCreate(['name' => 'moderator']);
 
-        $p1 = Permission::firstOrCreate(["name" => "manage.users"]);
-        $p2 = Permission::firstOrCreate(["name" => "manage.roles"]);
-        $p3 = Permission::firstOrCreate(["name" => "manage.permissions"]);
+        $p1 = Permission::firstOrCreate(['name' => 'manage.users']);
+        $p2 = Permission::firstOrCreate(['name' => 'manage.roles']);
+        $p3 = Permission::firstOrCreate(['name' => 'manage.permissions']);
 
-        $p4 = Permission::firstOrCreate(["name" => "api"]);
-        $p5 = Permission::firstOrCreate(["name" => "api.minimal"]);
-        $p6 = Permission::firstOrCreate(["name" => "api.moderate"]);
-        $p7 = Permission::firstOrCreate(["name" => "api.full"]);
+        $p4 = Permission::firstOrCreate(['name' => 'api']);
+        $p5 = Permission::firstOrCreate(['name' => 'api.minimal']);
+        $p6 = Permission::firstOrCreate(['name' => 'api.moderate']);
+        $p7 = Permission::firstOrCreate(['name' => 'api.full']);
 
-        $p8 = Permission::firstOrCreate(["name" => "posts.create"]);
-        $p9 = Permission::firstOrCreate(["name" => "posts.update"]);
-        $p10 = Permission::firstOrCreate(["name" => "posts.destroy"]);
+        $p8 = Permission::firstOrCreate(['name' => 'posts.create']);
+        $p9 = Permission::firstOrCreate(['name' => 'posts.update']);
+        $p10 = Permission::firstOrCreate(['name' => 'posts.destroy']);
 
-        $p11 = Permission::firstOrCreate(["name" => "tags.create"]);
-        $p12 = Permission::firstOrCreate(["name" => "tags.update"]);
-        $p13 = Permission::firstOrCreate(["name" => "tags.destroy"]);
+        $p11 = Permission::firstOrCreate(['name' => 'tags.create']);
+        $p12 = Permission::firstOrCreate(['name' => 'tags.update']);
+        $p13 = Permission::firstOrCreate(['name' => 'tags.destroy']);
 
-        $p14 = Permission::firstOrCreate(["name" => "categories.create"]);
-        $p15 = Permission::firstOrCreate(["name" => "categories.update"]);
-        $p16 = Permission::firstOrCreate(["name" => "categories.destroy"]);
+        $p14 = Permission::firstOrCreate(['name' => 'categories.create']);
+        $p15 = Permission::firstOrCreate(['name' => 'categories.update']);
+        $p16 = Permission::firstOrCreate(['name' => 'categories.destroy']);
 
         // Super Admin permissions
         $r1->givePermissionTo(Permission::all());

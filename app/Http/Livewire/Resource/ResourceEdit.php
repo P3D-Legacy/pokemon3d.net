@@ -30,27 +30,27 @@ class ResourceEdit extends ModalComponent
     public function save()
     {
         $this->validate([
-            "name" => ["required", "string", new StrNotContain("official")],
-            "breif" => ["required", "string"],
-            "category" => ["required", "integer"],
-            "description" => ["required", "string"],
+            'name' => ['required', 'string', new StrNotContain('official')],
+            'breif' => ['required', 'string'],
+            'category' => ['required', 'integer'],
+            'description' => ['required', 'string'],
         ]);
 
         $this->resource->update([
-            "name" => $this->name,
-            "breif" => $this->breif,
-            "description" => $this->description,
+            'name' => $this->name,
+            'breif' => $this->breif,
+            'description' => $this->description,
         ]);
         $category = Category::find($this->category);
         $this->resource->syncCategories($category);
 
-        $this->emit("resourceUpdated", $this->resource->id);
+        $this->emit('resourceUpdated', $this->resource->id);
 
         $this->closeModal();
     }
 
     public function render()
     {
-        return view("livewire.resource.resource-edit");
+        return view('livewire.resource.resource-edit');
     }
 }

@@ -13,13 +13,13 @@ return [
     |--------------------------------------------------------------------------
     */
 
-    "models" => [
+    'models' => [
         /*
         |--------------------------------------------------------------------------
         | Package's Category Model
         |--------------------------------------------------------------------------
         */
 
-        "category" => \AliBayat\LaravelCategorizable\Category::class,
+        'category' => \AliBayat\LaravelCategorizable\Category::class,
     ],
 ];

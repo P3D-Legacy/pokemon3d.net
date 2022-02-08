@@ -29,7 +29,7 @@ class OlderThan implements Rule
     {
         try {
             return Carbon::now()->diff(
-                Carbon::createFromFormat("Y-m-d", $value)
+                Carbon::createFromFormat('Y-m-d', $value)
             )->y >= $this->minAge;
         } catch (InvalidArgumentException $e) {
             return false;
@@ -43,6 +43,6 @@ class OlderThan implements Rule
      */
     public function message()
     {
-        return __("validation.OlderThan", ["age" => $this->minAge]);
+        return __('validation.OlderThan', ['age' => $this->minAge]);
     }
 }

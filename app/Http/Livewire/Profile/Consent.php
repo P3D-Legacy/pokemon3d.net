@@ -11,7 +11,7 @@ class Consent extends Component
 
     public function mount()
     {
-        $this->consents = config("app.consents");
+        $this->consents = config('app.consents');
     }
 
     /**
@@ -21,7 +21,7 @@ class Consent extends Component
      */
     public function render()
     {
-        return view("livewire.profile.consent");
+        return view('livewire.profile.consent');
     }
 
     public function consentGiven($consent)
@@ -40,7 +40,7 @@ class Consent extends Component
         }
 
         return $user->giveConsentTo($consent, [
-            "text" => $this->consents[$consent],
+            'text' => $this->consents[$consent],
         ]);
     }
 }

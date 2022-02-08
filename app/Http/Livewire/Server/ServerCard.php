@@ -17,20 +17,20 @@ class ServerCard extends Component
 
     public function reactivate()
     {
-        Artisan::call("ping:server " . $this->server->uuid . " true");
+        Artisan::call('ping:server ' . $this->server->uuid . ' true');
         $this->server->active = true;
         $this->server->save();
-        $this->emit("serverUpdated");
+        $this->emit('serverUpdated');
     }
 
     public function destroy()
     {
         $this->server->delete();
-        $this->emit("serverUpdated");
+        $this->emit('serverUpdated');
     }
 
     public function render()
     {
-        return view("livewire.server.server-card");
+        return view('livewire.server.server-card');
     }
 }

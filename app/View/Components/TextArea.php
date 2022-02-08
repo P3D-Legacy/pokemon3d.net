@@ -23,6 +23,6 @@ class TextArea extends Component
      */
     public function render()
     {
-        return view("components.text-area");
+        return view('components.text-area');
     }
 }

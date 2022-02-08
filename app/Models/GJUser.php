@@ -18,10 +18,10 @@ class GJUser extends Model
      *
      * @var string
      */
-    protected $table = "gjuser";
+    protected $table = 'gjuser';
 
     // Lets use the gjid for primary key
-    protected $primaryKey = "gjid";
+    protected $primaryKey = 'gjid';
 
     /**
      * Indicates if the model's ID is auto-incrementing.
@@ -35,9 +35,9 @@ class GJUser extends Model
      *
      * @var array
      */
-    protected $fillable = ["gjid", "gju", "is_admin"];
+    protected $fillable = ['gjid', 'gju', 'is_admin'];
 
-    protected static $logAttributes = ["gjid", "gju", "is_admin"];
+    protected static $logAttributes = ['gjid', 'gju', 'is_admin'];
     protected static $logOnlyDirty = true;
     protected static $submitEmptyLogs = false;
 
@@ -45,8 +45,8 @@ class GJUser extends Model
     public function tapActivity(Activity $activity)
     {
         $activity->causer_id = $this->where(
-            "gjid",
-            session()->get("gjid")
+            'gjid',
+            session()->get('gjid')
         )->first()->id;
         $activity->causer_type = get_class($this);
     }
@@ -56,7 +56,7 @@ class GJUser extends Model
      */
     public function skins()
     {
-        return $this->hasMany(Skin::class, "owner_id", "gjid");
+        return $this->hasMany(Skin::class, 'owner_id', 'gjid');
     }
 
     /**
@@ -64,6 +64,6 @@ class GJUser extends Model
      */
     public function publicSkins()
     {
-        return $this->hasMany(Skin::class, "owner_id", "gjid")->isPublic();
+        return $this->hasMany(Skin::class, 'owner_id', 'gjid')->isPublic();
     }
 }

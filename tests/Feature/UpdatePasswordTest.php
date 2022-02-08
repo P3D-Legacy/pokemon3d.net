@@ -17,51 +17,51 @@ class UpdatePasswordTest extends TestCase
     {
         $this->actingAs($user = User::factory()->create());
 
-        $password = "SuperSecret123!";
-        $new_password = "NotSoSuperSecret123!";
+        $password = 'SuperSecret123!';
+        $new_password = 'NotSoSuperSecret123!';
         Livewire::test(UpdatePasswordForm::class)
-            ->set("state", [
-                "current_password" => $password,
-                "password" => $new_password,
-                "password_confirmation" => $new_password,
+            ->set('state', [
+                'current_password' => $password,
+                'password' => $new_password,
+                'password_confirmation' => $new_password,
             ])
-            ->call("updatePassword");
+            ->call('updatePassword');
 
-        $this->assertTrue(Hash::check("password", $user->fresh()->password));
+        $this->assertTrue(Hash::check('password', $user->fresh()->password));
     }
 
     public function test_current_password_must_be_correct()
     {
         $this->actingAs($user = User::factory()->create());
 
-        $new_password = "SuperSecret123!2";
+        $new_password = 'SuperSecret123!2';
         Livewire::test(UpdatePasswordForm::class)
-            ->set("state", [
-                "current_password" => "wrong-password",
-                "password" => $new_password,
-                "password_confirmation" => $new_password,
+            ->set('state', [
+                'current_password' => 'wrong-password',
+                'password' => $new_password,
+                'password_confirmation' => $new_password,
             ])
-            ->call("updatePassword")
-            ->assertHasErrors(["current_password"]);
+            ->call('updatePassword')
+            ->assertHasErrors(['current_password']);
 
-        $this->assertTrue(Hash::check("password", $user->fresh()->password));
+        $this->assertTrue(Hash::check('password', $user->fresh()->password));
     }
 
     public function test_new_passwords_must_match()
     {
         $this->actingAs($user = User::factory()->create());
 
-        $password = "SuperSecret123!";
-        $new_password = "SuperSecret123!2";
+        $password = 'SuperSecret123!';
+        $new_password = 'SuperSecret123!2';
         Livewire::test(UpdatePasswordForm::class)
-            ->set("state", [
-                "current_password" => $password,
-                "password" => $new_password,
-                "password_confirmation" => "wrong-password",
+            ->set('state', [
+                'current_password' => $password,
+                'password' => $new_password,
+                'password_confirmation' => 'wrong-password',
             ])
-            ->call("updatePassword")
-            ->assertHasErrors(["password"]);
+            ->call('updatePassword')
+            ->assertHasErrors(['password']);
 
-        $this->assertTrue(Hash::check("password", $user->fresh()->password));
+        $this->assertTrue(Hash::check('password', $user->fresh()->password));
     }
 }

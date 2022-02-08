@@ -22,7 +22,7 @@ class ResourceUpdate extends Model implements HasMedia
 
     public function registerMediaCollections(Media $media = null): void
     {
-        $this->addMediaCollection("resource_update_file")->singleFile();
+        $this->addMediaCollection('resource_update_file')->singleFile();
     }
 
     public function incrementDownload()

@@ -45,14 +45,14 @@ class Resource extends Model implements Viewable
      *
      * @var array
      */
-    protected $routeBindingKeys = ["uuid"];
+    protected $routeBindingKeys = ['uuid'];
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = ["name", "breif", "description", "user_id"];
+    protected $fillable = ['name', 'breif', 'description', 'user_id'];
 
     /**
      * Get the user that made this post.
@@ -68,13 +68,13 @@ class Resource extends Model implements Viewable
     public function updates()
     {
         return $this->hasMany(ResourceUpdate::class)->orderBy(
-            "created_at",
-            "desc"
+            'created_at',
+            'desc'
         );
     }
 
     public function getDownloadsAttribute()
     {
-        return $this->updates->sum("downloads");
+        return $this->updates->sum('downloads');
     }
 }

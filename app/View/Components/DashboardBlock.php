@@ -23,6 +23,6 @@ class DashboardBlock extends Component
      */
     public function render()
     {
-        return view("components.dashboard-block");
+        return view('components.dashboard-block');
     }
 }

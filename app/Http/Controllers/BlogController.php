@@ -14,12 +14,12 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $posts = Post::where("published_at", "<=", now())
-            ->where("active", true)
-            ->orderBy("sticky", "desc")
-            ->orderByDesc("published_at")
+        $posts = Post::where('published_at', '<=', now())
+            ->where('active', true)
+            ->orderBy('sticky', 'desc')
+            ->orderByDesc('published_at')
             ->paginate(5);
-        return view("blog.index", ["posts" => $posts]);
+        return view('blog.index', ['posts' => $posts]);
     }
 
     /**
@@ -30,15 +30,15 @@ class BlogController extends Controller
      */
     public function show($param)
     {
-        $post = Post::where("uuid", $param)
-            ->where("active", true)
-            ->orWhere("slug", $param)
-            ->where("active", true)
+        $post = Post::where('uuid', $param)
+            ->where('active', true)
+            ->orWhere('slug', $param)
+            ->where('active', true)
             ->firstOrFail();
         abort_if(!$post, 404);
         views($post)
             ->cooldown(60)
             ->record();
-        return view("blog.show", ["post" => $post]);
+        return view('blog.show', ['post' => $post]);
     }
 }

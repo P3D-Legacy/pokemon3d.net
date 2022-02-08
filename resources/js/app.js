@@ -1,16 +1,16 @@
-require("./bootstrap");
+require('./bootstrap');
 
-import Alpine from "alpinejs";
+import Alpine from 'alpinejs';
 window.Alpine = Alpine;
-import "./../../vendor/power-components/livewire-powergrid/dist/powergrid";
+import './../../vendor/power-components/livewire-powergrid/dist/powergrid';
 Alpine.start();
 
-import flatpickr from "flatpickr";
-require("flatpickr/dist/themes/dark.css");
+import flatpickr from 'flatpickr';
+require('flatpickr/dist/themes/dark.css');
 
-flatpickr(".flatpickrSelector", {
+flatpickr('.flatpickrSelector', {
     enableTime: true,
-    dateFormat: "Y-m-d H:i:S",
+    dateFormat: 'Y-m-d H:i:S',
     time_24hr: true,
 });
 
@@ -20,11 +20,11 @@ date_max.setFullYear(date_max.getFullYear() - 13);
 var date_min = new Date();
 date_min.setFullYear(date_min.getFullYear() - 90);
 
-flatpickr(".flatpickrBirtdate", {
+flatpickr('.flatpickrBirtdate', {
     enableTime: false,
-    dateFormat: "Y-m-d",
+    dateFormat: 'Y-m-d',
     minDate: date_min,
     maxDate: date_max,
 });
 
-import "tw-elements";
+import 'tw-elements';

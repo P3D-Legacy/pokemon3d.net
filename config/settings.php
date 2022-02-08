@@ -12,7 +12,7 @@ return [
 	| Supported: "json", "database"
 	|
 	*/
-    "store" => "database",
+    'store' => 'database',
 
     /*
 	|--------------------------------------------------------------------------
@@ -23,7 +23,7 @@ return [
 	| file path in JSON format. Use full path to file.
 	|
 	*/
-    "path" => storage_path() . "/settings.json",
+    'path' => storage_path() . '/settings.json',
 
     /*
 	|--------------------------------------------------------------------------
@@ -35,13 +35,13 @@ return [
 	|
 	*/
     // If set to null, the default connection will be used.
-    "connection" => null,
+    'connection' => null,
     // Name of the table used.
-    "table" => "settings",
+    'table' => 'settings',
     // If you want to use custom column names in database store you could
     // set them in this configuration
-    "keyColumn" => "key",
-    "valueColumn" => "value",
+    'keyColumn' => 'key',
+    'valueColumn' => 'value',
 
     /*
     |--------------------------------------------------------------------------
@@ -51,11 +51,11 @@ return [
     | If you want all setting calls to go through Laravel's cache system.
     |
     */
-    "enableCache" => false,
+    'enableCache' => false,
     // Whether to reset the cache when changing a setting.
-    "forgetCacheByWrite" => true,
+    'forgetCacheByWrite' => true,
     // TTL in seconds.
-    "cacheTtl" => 15,
+    'cacheTtl' => 15,
 
     /*
     |--------------------------------------------------------------------------
@@ -67,7 +67,7 @@ return [
     | hardcoding the same defaults in all 'Settings::get()' calls
     |
     */
-    "defaults" => [
-        "foo" => "bar",
+    'defaults' => [
+        'foo' => 'bar',
     ],
 ];

@@ -47,13 +47,7 @@
                     
                                 <div class="col-span-6">
                                     <x-jet-label for="description" value="{{ __('Description') }}" />
-                                    <x-easy-mde-editor name="description" :options="['hideIcons' => ['side-by-side','fullscreen',]]">
-                                        <x-slot name="script">
-                                            easyMDE.codemirror.on('change', function () {
-                                                @this.set('description', easyMDE.value())
-                                            });
-                                        </x-slot>
-                                    </x-easy-mde-editor>
+                                    <textarea id="easyMDE" name="description" name="description">{{ old('description') ?? '' }}</textarea>
                                     <x-jet-input-error for="description" class="mt-2"/>
                                 </div>
                             </div>

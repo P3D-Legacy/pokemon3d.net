@@ -4,7 +4,7 @@
     </x-slot>
 
     <x-slot name="content">
-        <x-jet-label for="version" value="{{ __('Version') }}" />
+        <x-jet-label for="version" value="{{ __('Version Title') }}" />
         <x-jet-input id="version" type="text" class="block w-full mt-1" wire:model.defer="version" autocomplete="version" placeholder="1.2.3" />
         <x-jet-input-error for="version" class="mt-2" />
 

@@ -19,6 +19,7 @@ class CreateResourceUpdatesTable extends Migration
             $table->text('description');
             $table->unsignedBigInteger('resource_id');
             $table->unsignedBigInteger('game_version_id');
+            $table->unsignedInteger('downloads');
             $table->softDeletes();
             $table->timestamps();
         });

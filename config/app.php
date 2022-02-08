@@ -27,9 +27,9 @@ return [
     "consents" => [
         "tos.1" => "Terms of Service &mdash; updated 2021-07-28",
         "email.newsletter" =>
-            "E-mail: Receive an e-mail when we update the game or website",
+        "E-mail: Receive an e-mail when we update the game or website",
         "email.notifications" =>
-            "E-mail: Receive an e-mail if you have unread notifications",
+        "E-mail: Receive an e-mail if you have unread notifications",
     ],
 
     /*--------------------------------------------------------------------------
@@ -238,7 +238,6 @@ return [
         "Queue" => Illuminate\Support\Facades\Queue::class,
         "Redirect" => Illuminate\Support\Facades\Redirect::class,
         // 'Redis' => Illuminate\Support\Facades\Redis::class,
-<<<<<<< HEAD
         'Request' => Illuminate\Support\Facades\Request::class,
         'Response' => Illuminate\Support\Facades\Response::class,
         'Route' => Illuminate\Support\Facades\Route::class,
@@ -250,19 +249,5 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
-=======
-        "Request" => Illuminate\Support\Facades\Request::class,
-        "Response" => Illuminate\Support\Facades\Response::class,
-        "Route" => Illuminate\Support\Facades\Route::class,
-        "Schema" => Illuminate\Support\Facades\Schema::class,
-        "Session" => Illuminate\Support\Facades\Session::class,
-        "Storage" => Illuminate\Support\Facades\Storage::class,
-        "Str" => Illuminate\Support\Str::class,
-        "URL" => Illuminate\Support\Facades\URL::class,
-        "Validator" => Illuminate\Support\Facades\Validator::class,
-        "View" => Illuminate\Support\Facades\View::class,
-
-        "GitHubHelper" => Facades\App\Helpers\GitHubHelper::class,
->>>>>>> develop
     ],
 ];

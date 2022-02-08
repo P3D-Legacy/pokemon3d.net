@@ -76,4 +76,9 @@ class Resource extends Model implements Viewable
     {
         return $this->hasMany(ResourceUpdate::class)->orderBy('created_at', 'desc');
     }
+
+    public function getDownloadsAttribute()
+    {
+        return $this->updates->sum('downloads');
+    }
 }

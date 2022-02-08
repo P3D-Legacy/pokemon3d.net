@@ -7,7 +7,7 @@
     ]])
     @endcomponent
 
-    <div class="grid sm:grid-flow-col grid-rows-2 sm:grid-cols-3 gap-4 mb-4 px-2 sm:px-0">
+    <div class="grid sm:grid-flow-col grid-rows-2 sm:grid-rows-none sm:grid-cols-3 gap-4 mb-4 px-2 sm:px-0">
         <div class="sm:col-span-2 text-2xl dark:text-white">
             {{ $resource->name }} <span class="text-gray-400 dark:text-gray-500">1.2.3</span>
         </div>
@@ -53,14 +53,14 @@
         </div>
     </div>
     <div class="w-full p-4 bg-white rounded-lg shadow-lg dark:bg-gray-900 dark:shadow-gray-700">
-        <div class="grid grid-rows-2 sm:grid-cols-4 gap-4">
+        <div class="grid grid-rows-2 sm:grid-rows-none sm:grid-cols-4 gap-4">
             <div class="sm:col-span-3">
                 <div class="mb-4 text-xs text-gray-400">{{ $resource->breif }}</div>
                 <div class="prose dark:prose-invert">
                     {!! Str::of($resource->description)->markdown() !!}
                 </div>
             </div>
-            <div class="col-span-4 flex sm:flex-col sm:justify-center text-xs text-gray-500 dark:text-gray-300 items-left">
+            <div class="flex sm:flex-col sm:justify-center text-xs text-gray-500 dark:text-gray-300 items-left">
                 <div class="p-4 bg-gray-100 rounded dark:bg-gray-800">
                     <div class="flex flex-row justify-between">
                         <span>Author:</span>

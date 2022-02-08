@@ -59,7 +59,8 @@ class UpdateCreate extends ModalComponent
         $this->resourceUpdate->clearMediaCollection('resource_update_file');
         $this->resourceUpdate->addMedia($this->file->getRealPath())->toMediaCollection('resource_update_file');
 
-        return redirect()->route('posts.index');
+        $this->emit('resourceUpdated', $this->resource->id);
+        $this->closeModal();
     }
 
     public function render()

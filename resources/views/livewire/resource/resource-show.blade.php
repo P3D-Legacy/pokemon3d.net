@@ -105,10 +105,10 @@
                     <div class="flex-1 text-gray-400">
                         {!! strip_tags(Str::of(Str::limit($update->description, 300))->markdown()) !!}
                     </div>
-                    <div class="flex">
+                    <div class="flex text-sm">
                         {{ $update->created_at->diffForHumans() }}
                     </div>
-                    <div class="flex">
+                    <div class="flex text-sm">
                         0 downloads
                     </div>
                     {{--

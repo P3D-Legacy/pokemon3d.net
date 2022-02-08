@@ -98,9 +98,12 @@
         </div>
         <div class="flex flex-col w-full divide-y divide dark:divide-gray-700">
             @forelse ($resource->updates as $update)
-                <div class="flex items-center justify-between w-full p-4 dark:text-white">
+                <div class="flex items-center justify-between w-full p-4 dark:text-white gap-6">
                     <div class="flex">
-                        {{ $update->title }}
+                        <a href="#" class="text-green-400 hover:underline">{{ $update->title }}</a>
+                    </div>
+                    <div class="flex-1 text-gray-400">
+                        {!! strip_tags(Str::of(Str::limit($update->description, 300))->markdown()) !!}
                     </div>
                     <div class="flex">
                         {{ $update->created_at->diffForHumans() }}
@@ -108,6 +111,7 @@
                     <div class="flex">
                         0 downloads
                     </div>
+                    {{--
                     <div class="flex">
                         <button class="px-2 py-1 text-sm text-green-100 transition-colors duration-150 bg-green-600 rounded-md focus:shadow-outline hover:bg-green-700">
                             <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -116,6 +120,7 @@
                             Download
                         </button>
                     </div>
+                    --}}
                 </div>
             @empty
                 <div class="flex items-center justify-center w-full p-4">

@@ -62,10 +62,16 @@ class DiscordController extends Controller
             $user = $discordAccount ? $discordAccount->user : null;
             if (auth()->user() && $user) {
                 if (auth()->user()->id !== $user->id) {
-                    request()->session()->flash('flash.banner', 'This Discord account is associated with another P3D account.');
-                    request()->session()->flash('flash.bannerStyle', 'warning');
-                    return redirect()
-                        ->route('profile.show');
+                    request()
+                        ->session()
+                        ->flash(
+                            'flash.banner',
+                            'This Discord account is associated with another P3D account.'
+                        );
+                    request()
+                        ->session()
+                        ->flash('flash.bannerStyle', 'warning');
+                    return redirect()->route('profile.show');
                 }
                 Auth::login($user);
                 return redirect()->route('dashboard');

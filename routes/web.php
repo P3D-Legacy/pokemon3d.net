@@ -97,7 +97,9 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::resource('server', ServerController::class);
     Route::resource('resource', ResourceController::class);
 
-    Route::get('/resource/u/{uuid}', ResourceShow::class)->name('resource.uuid');
+    Route::get('/resource/u/{uuid}', ResourceShow::class)->name(
+        'resource.uuid'
+    );
 
     Route::get('/resource/category/{name}', function ($name) {
         $resources = Category::findByName($name)

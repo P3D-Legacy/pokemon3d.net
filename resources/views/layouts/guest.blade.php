@@ -43,8 +43,6 @@
 	<body class="flex flex-col font-sans leading-relaxed tracking-wide bg-top bg-repeat bg-spring {{ env('APP_DEBUG') ? 'debug-screens' : '' }}">
 		{{ $slot }}
 
-		@include('cookieConsent::index')
-
 		@livewireScripts
 
 		<script>

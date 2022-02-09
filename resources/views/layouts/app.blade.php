@@ -90,8 +90,6 @@
 
         @stack('modals')
 
-        @include('cookieConsent::index')
-
         @livewireScripts
         @livewire('livewire-ui-modal')
         @bukScripts

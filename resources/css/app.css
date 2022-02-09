@@ -70,4 +70,9 @@
 .dark .editor-toolbar button.active, .dark .editor-toolbar button:hover {
     background: #222;
     border-color: #444;
-  }
+    color:#aaa;
+}
+
+.dark .editor-toolbar button {
+    color:#fff;
+}

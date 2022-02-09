@@ -71,7 +71,7 @@
                                             </div>
                                             <div class="flex flex-row justify-between">
                                                 <span>Donwloads:</span>
-                                                <span>0</span>
+                                                <span>{{ $resource->downloads }}</span>
                                             </div>
                                             <div class="flex flex-row justify-between">
                                                 <span>Updated:</span>

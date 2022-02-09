@@ -12,10 +12,12 @@
                     ['url' => route('resource.index'), 'label' => 'Resources'],
                     ['url' => null, 'label' => Str::ucfirst(Request::segment(3))],
                 ]])
+                @endcomponent
             @else
                 @component('components.breadcrumb', ['breadcrumbs' => [
                     ['url' => null, 'label' => 'Resources'],
                 ]])
+                @endcomponent
             @endif
             <div class="grid grid-cols-1 gap-4 sm:grid-cols-3 md:grid-cols-4 grid-flow-cols">
                 <div>

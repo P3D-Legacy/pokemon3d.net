@@ -14,7 +14,10 @@ class AddDownloadsDefaultToResourceUpdate extends Migration
     public function up()
     {
         Schema::table('resource_update', function (Blueprint $table) {
-            $table->unsignedInteger('downloads')->default(0)->change();
+            $table
+                ->unsignedInteger('downloads')
+                ->default(0)
+                ->change();
         });
     }
 

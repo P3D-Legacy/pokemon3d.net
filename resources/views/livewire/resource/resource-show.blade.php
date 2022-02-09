@@ -57,7 +57,7 @@
     <div class="w-full p-4 bg-white rounded-lg shadow-lg dark:bg-gray-900 dark:shadow-gray-700">
         <div class="grid grid-rows-2 sm:grid-rows-none sm:grid-cols-4 gap-4">
             <div class="sm:col-span-3">
-                <div class="mb-4 text-xs text-gray-400">{{ $resource->breif }}</div>
+                <div class="mb-4 text-xs text-gray-400">{{ $resource->brief }}</div>
                 <div class="prose dark:prose-invert">
                     {!! Str::of($resource->description)->markdown() !!}
                 </div>

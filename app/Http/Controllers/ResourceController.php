@@ -45,14 +45,14 @@ class ResourceController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', new StrNotContain('official')],
-            'breif' => ['required', 'string'],
+            'brief' => ['required', 'string'],
             'category' => ['required', 'integer'],
             'description' => ['required', 'string'],
         ]);
 
         $resource = Resource::create([
             'name' => $request->name,
-            'breif' => $request->breif,
+            'brief' => $request->brief,
             'description' => $request->description,
             'user_id' => auth()->user()->id,
         ]);

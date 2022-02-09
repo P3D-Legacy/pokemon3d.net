@@ -58,7 +58,7 @@
                                                 {{ $resource->user->username }} &middot; {{ $resource->created_at->diffForHumans() }} &middot; {{ $resource->categories()->first()->name }}
                                             </div>
                                             <div class="text-xs text-gray-500 truncate dark:text-gray-300">
-                                                {{ $resource->breif }}
+                                                {{ $resource->brief }}
                                             </div>
                                         </div>
                                         <div class="flex flex-col justify-center text-xs text-gray-400 items-left">

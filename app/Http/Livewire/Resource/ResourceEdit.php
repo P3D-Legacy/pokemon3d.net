@@ -12,7 +12,7 @@ class ResourceEdit extends ModalComponent
     public int|Resource $resource;
     public $categories;
     public $name;
-    public $breif;
+    public $brief;
     public $description;
     public $category;
 
@@ -20,7 +20,7 @@ class ResourceEdit extends ModalComponent
     {
         $this->resource = $resource;
         $this->name = $this->resource->name;
-        $this->breif = $this->resource->breif;
+        $this->brief = $this->resource->brief;
         $this->description = $this->resource->description;
         $this->category = $this->resource->categories->first()->id;
         $this->category_id = $this->resource->categories->first()->id;
@@ -31,14 +31,14 @@ class ResourceEdit extends ModalComponent
     {
         $this->validate([
             'name' => ['required', 'string', new StrNotContain('official')],
-            'breif' => ['required', 'string'],
+            'brief' => ['required', 'string'],
             'category' => ['required', 'integer'],
             'description' => ['required', 'string'],
         ]);
 
         $this->resource->update([
             'name' => $this->name,
-            'breif' => $this->breif,
+            'brief' => $this->brief,
             'description' => $this->description,
         ]);
         $category = Category::find($this->category);

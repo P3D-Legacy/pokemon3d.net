@@ -8,9 +8,9 @@
         <x-jet-input id="name" type="text" class="block w-full mt-1" wire:model.defer="name" autocomplete="name" />
         <x-jet-input-error for="name" class="mt-2" />
 
-        <x-jet-label for="breif" class="mt-4" value="{{ __('Breif') }}" />
-        <x-jet-input id="breif" type="text" name="breif" class="block w-full mt-1" placeholder="A breif one-line description for My Resource Pack" autofocus wire:model.defer="breif" />
-        <x-jet-input-error for="breif" class="mt-2" />
+        <x-jet-label for="brief" class="mt-4" value="{{ __('brief') }}" />
+        <x-jet-input id="brief" type="text" name="brief" class="block w-full mt-1" placeholder="A brief one-line description for My Resource Pack" autofocus wire:model.defer="brief" />
+        <x-jet-input-error for="brief" class="mt-2" />
 
         <x-jet-label for="category" class="mt-4" value="{{ __('Category') }}" />
         <div class="relative inline-block w-full">

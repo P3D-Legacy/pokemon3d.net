@@ -25,9 +25,9 @@
                                 </div>
 
                                 <div class="col-span-6">
-                                    <x-jet-label for="breif" value="{{ __('Breif') }}" />
-                                    <x-jet-input id="breif" type="text" name="breif" class="block w-full mt-1" placeholder="A breif one-line description for My Resource Pack" autofocus value="{{ old('breif') ?? '' }}" />
-                                    <x-jet-input-error for="breif" class="mt-2" />
+                                    <x-jet-label for="brief" value="{{ __('brief') }}" />
+                                    <x-jet-input id="brief" type="text" name="brief" class="block w-full mt-1" placeholder="A brief one-line description for My Resource Pack" autofocus value="{{ old('brief') ?? '' }}" />
+                                    <x-jet-input-error for="brief" class="mt-2" />
                                 </div>
                                 <div class="col-span-6">
                                     <x-jet-label for="category" value="{{ __('Category') }}" />

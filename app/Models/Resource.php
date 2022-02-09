@@ -52,7 +52,7 @@ class Resource extends Model implements Viewable
      *
      * @var array
      */
-    protected $fillable = ['name', 'breif', 'description', 'user_id'];
+    protected $fillable = ['name', 'brief', 'description', 'user_id'];
 
     /**
      * Get the user that made this post.

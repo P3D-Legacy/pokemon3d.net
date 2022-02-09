@@ -45,7 +45,7 @@ class TwitchController extends Controller
                 'id',
                 $twitchUser->id
             )->first();
-            if (! $twitchAccount && auth()->guest()) {
+            if (!$twitchAccount && auth()->guest()) {
                 return redirect()
                     ->route('login')
                     ->withError(
@@ -73,7 +73,7 @@ class TwitchController extends Controller
                 return redirect()->route('dashboard');
             }
 
-            if (auth()->guest() && ! $user) {
+            if (auth()->guest() && !$user) {
                 return redirect()
                     ->route('login')
                     ->withError(

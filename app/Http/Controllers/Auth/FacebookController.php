@@ -44,7 +44,7 @@ class FacebookController extends Controller
                 'id',
                 $facebookUser->id
             )->first();
-            if (! $facebookAccount && auth()->guest()) {
+            if (!$facebookAccount && auth()->guest()) {
                 return redirect()
                     ->route('login')
                     ->withError(
@@ -72,7 +72,7 @@ class FacebookController extends Controller
                 return redirect()->route('dashboard');
             }
 
-            if (auth()->guest() && ! $user) {
+            if (auth()->guest() && !$user) {
                 return redirect()
                     ->route('login')
                     ->withError(

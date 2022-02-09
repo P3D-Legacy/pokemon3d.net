@@ -32,7 +32,7 @@ class DiscordController extends Controller
         try {
             $discordUser = Socialite::driver('discord')->user();
 
-            if (! $discordUser->user['verified']) {
+            if (!$discordUser->user['verified']) {
                 return redirect()
                     ->route('login')
                     ->withError('Discord user not verified.');
@@ -51,7 +51,7 @@ class DiscordController extends Controller
                 'id',
                 $discordUser->id
             )->first();
-            if (! $discordAccount && auth()->guest()) {
+            if (!$discordAccount && auth()->guest()) {
                 return redirect()
                     ->route('login')
                     ->withError(
@@ -80,7 +80,7 @@ class DiscordController extends Controller
                 return redirect()->route('dashboard');
             }
 
-            if (auth()->guest() && ! $user) {
+            if (auth()->guest() && !$user) {
                 return redirect()
                     ->route('login')
                     ->withError(

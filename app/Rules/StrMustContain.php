@@ -37,6 +37,6 @@ class StrMustContain implements Rule
      */
     public function message()
     {
-        return 'The :attribute must conatin '.$this->str.'.';
+        return 'The :attribute must conatin ' . $this->str . '.';
     }
 }

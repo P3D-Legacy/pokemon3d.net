@@ -27,7 +27,7 @@ class StrNotContain implements Rule
      */
     public function passes($attribute, $value)
     {
-        return ! str_contains(strtolower($value), strtolower($this->str));
+        return !str_contains(strtolower($value), strtolower($this->str));
     }
 
     /**
@@ -37,6 +37,6 @@ class StrNotContain implements Rule
      */
     public function message()
     {
-        return 'The :attribute cannot contain '.$this->str.'.';
+        return 'The :attribute cannot contain ' . $this->str . '.';
     }
 }

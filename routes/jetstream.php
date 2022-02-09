@@ -12,14 +12,12 @@ use Laravel\Jetstream\Jetstream;
 
 Route::middleware(config('jetstream.middleware', ['web']))->group(function () {
     if (Jetstream::hasTermsAndPrivacyPolicyFeature()) {
-        Route::get('/terms', [
-            TermsOfServiceController::class,
-            'show',
-        ])->name('terms.show');
-        Route::get('/privacy', [
-            PrivacyPolicyController::class,
-            'show',
-        ])->name('policy.show');
+        Route::get('/terms', [TermsOfServiceController::class, 'show'])->name(
+            'terms.show'
+        );
+        Route::get('/privacy', [PrivacyPolicyController::class, 'show'])->name(
+            'policy.show'
+        );
     }
 
     Route::middleware('auth', 'verified')->group(function () {
@@ -45,10 +43,9 @@ Route::middleware(config('jetstream.middleware', ['web']))->group(function () {
                 TeamController::class,
                 'create',
             ])->name('teams.create');
-            Route::get('/teams/{team}', [
-                TeamController::class,
-                'show',
-            ])->name('teams.show');
+            Route::get('/teams/{team}', [TeamController::class, 'show'])->name(
+                'teams.show'
+            );
             Route::put('/current-team', [
                 CurrentTeamController::class,
                 'update',
@@ -58,9 +55,8 @@ Route::middleware(config('jetstream.middleware', ['web']))->group(function () {
                 TeamInvitationController::class,
                 'accept',
             ])
-                    ->middleware(['signed'])
-                    ->name('team-invitations.accept');
+                ->middleware(['signed'])
+                ->name('team-invitations.accept');
         }
     });
-}
-);
+});

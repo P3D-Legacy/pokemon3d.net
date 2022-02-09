@@ -51,7 +51,7 @@ class XenforoAccount extends Component
             'password' => ['nullable'],
         ]);
 
-        if (! $this->username && ! $this->password) {
+        if (!$this->username && !$this->password) {
             $this->errorBag->add(
                 'success',
                 'Your forum account has now been unlinked.'

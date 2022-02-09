@@ -120,7 +120,7 @@ class UserController extends Controller
                 'string',
                 'email',
                 'max:255',
-                'unique:users,email,'.$user->id,
+                'unique:users,email,' . $user->id,
             ];
         }
 

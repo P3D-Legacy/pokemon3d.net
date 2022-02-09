@@ -17,12 +17,12 @@ class GamejoltSuperAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if (! env('GAMEJOLT_GAME_ID') || ! env('GAMEJOLT_GAME_PRIVATE_KEY')) {
+        if (!env('GAMEJOLT_GAME_ID') || !env('GAMEJOLT_GAME_PRIVATE_KEY')) {
             redirect()
                 ->route('gj-login')
                 ->with('error', 'Gamejolt API keys is not set by the admin!');
         }
-        if (! env('GAMEJOLT_USER_ID_SUPERADMIN')) {
+        if (!env('GAMEJOLT_USER_ID_SUPERADMIN')) {
             redirect()
                 ->route('skin-home')
                 ->with('warning', 'Super Admin has not been set!');

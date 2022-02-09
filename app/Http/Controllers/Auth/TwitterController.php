@@ -51,7 +51,7 @@ class TwitterController extends Controller
                 'id',
                 $twitterUser->id
             )->first();
-            if (! $twitterAccount && auth()->guest()) {
+            if (!$twitterAccount && auth()->guest()) {
                 return redirect()
                     ->route('login')
                     ->withError(
@@ -79,7 +79,7 @@ class TwitterController extends Controller
                 return redirect()->route('dashboard');
             }
 
-            if (auth()->guest() && ! $user) {
+            if (auth()->guest() && !$user) {
                 return redirect()
                     ->route('login')
                     ->withError(

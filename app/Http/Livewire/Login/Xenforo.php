@@ -47,7 +47,7 @@ class Xenforo extends Component
             $this->username
         )->first();
 
-        if (! $forumaccount) {
+        if (!$forumaccount) {
             $this->addError(
                 'error',
                 'This Forum Account is not associated with a P3D account yet.'
@@ -58,7 +58,7 @@ class Xenforo extends Component
 
         $user = $forumaccount->user()->first();
 
-        if (! $user) {
+        if (!$user) {
             $this->addError(
                 'error',
                 'Could\'t find the user associated with this Forum Account.'
@@ -67,7 +67,7 @@ class Xenforo extends Component
             return;
         }
 
-        if (! Auth::loginUsingId($user->id)) {
+        if (!Auth::loginUsingId($user->id)) {
             $this->addError('error', 'Login failed!');
 
             return;

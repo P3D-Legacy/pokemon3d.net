@@ -38,12 +38,12 @@ class SkinHomeController extends Controller
             ->where(
                 'properties',
                 'LIKE',
-                '%'.Auth::user()->gamejolt->id.'.png%'
+                '%' . Auth::user()->gamejolt->id . '.png%'
             )
             ->orWhere(
                 'properties',
                 'LIKE',
-                '%gjid":'.Auth::user()->gamejolt->id.',"reason"%'
+                '%gjid":' . Auth::user()->gamejolt->id . ',"reason"%'
             )
             ->get();
         $skins = Auth::user()

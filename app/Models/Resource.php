@@ -34,7 +34,7 @@ class Resource extends Model implements Viewable
         });
 
         self::updating(function ($model) {
-            if (! $model->uuid) {
+            if (!$model->uuid) {
                 $model->uuid = Str::uuid()->toString();
             }
         });

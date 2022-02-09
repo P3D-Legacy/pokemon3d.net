@@ -62,7 +62,7 @@ class ConnectGamejoltAccount extends Component
             'token' => ['nullable', 'alpha_dash', 'max:30', 'min:4'],
         ]);
 
-        if (! $this->username && ! $this->token) {
+        if (!$this->username && !$this->token) {
             $this->errorBag->add(
                 'success',
                 'Your GameJolt account has now been unlinked.'

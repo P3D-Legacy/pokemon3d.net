@@ -24,7 +24,7 @@ class Preference extends Component
     public function toggle($setting)
     {
         $user = auth()->user();
-        $user->settings()->set($setting, ! $user->settings()->get($setting));
+        $user->settings()->set($setting, !$user->settings()->get($setting));
         $this->settings = auth()
             ->user()
             ->settings()

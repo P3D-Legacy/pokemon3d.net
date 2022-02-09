@@ -131,7 +131,7 @@ class SkinController extends Controller
             'name' => $name,
         ]);
 
-        $filename = $skin->uuid.'.png';
+        $filename = $skin->uuid . '.png';
         $request->file('image')->storeAs(null, $filename, 'skin');
 
         /*
@@ -143,8 +143,9 @@ class SkinController extends Controller
             $webhookurl = env('DISCORD_SKIN_UPLOAD_WEBHOOK');
             $json_data = json_encode(
                 [
-                    'content' => $gju.
-                        ' uploaded a new skin for the public to use! Check it out here: '.
+                    'content' =>
+                        $gju .
+                        ' uploaded a new skin for the public to use! Check it out here: ' .
                         route('skin-show', $skin->uuid), // Message
                     // "username" => env('APP_NAME'), // Username (message posted as username) - NOTE: This should be set in the webhook with the avatar
                     'tts' => false, // Enable text-to-speech
@@ -153,7 +154,8 @@ class SkinController extends Controller
                         [
                             'title' => $name, // Embed Title
                             'type' => 'rich', // Embed Type
-                            'description' => 'File size: '.
+                            'description' =>
+                                'File size: ' .
                                 Binary::bytes(
                                     Storage::disk('skin')->size($skin->path())
                                 )->format(), // Embed Description
@@ -171,7 +173,7 @@ class SkinController extends Controller
                             ],
                             // Author
                             'author' => [
-                                'name' => $gju.' uploaded a skin', // GJ Username
+                                'name' => $gju . ' uploaded a skin', // GJ Username
                             ],
                         ],
                     ],
@@ -213,7 +215,7 @@ class SkinController extends Controller
     public function apply(Request $request, $uuid)
     {
         $gjid = Auth::user()->gamejolt->id;
-        $filename = $gjid.'.png';
+        $filename = $gjid . '.png';
         $skin = Skin::where('uuid', $uuid)->first();
         try {
             Storage::disk('player')->put(
@@ -321,8 +323,8 @@ class SkinController extends Controller
                 ->route('skins')
                 ->with('error', 'You do not own this skin!');
         }
-        $filename = $skin->uuid.'.png';
-        if (! Storage::disk('skin')->exists($filename)) {
+        $filename = $skin->uuid . '.png';
+        if (!Storage::disk('skin')->exists($filename)) {
             return redirect()
                 ->route('skins')
                 ->with('error', 'Skin was not found!');

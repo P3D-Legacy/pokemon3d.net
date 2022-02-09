@@ -36,7 +36,7 @@ class BlogController extends Controller
             ->orWhere('slug', $param)
             ->where('active', true)
             ->firstOrFail();
-        abort_if(! $post, 404);
+        abort_if(!$post, 404);
         views($post)
             ->cooldown(60)
             ->record();

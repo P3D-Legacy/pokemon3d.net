@@ -16,7 +16,7 @@ class GamejoltAccount
      */
     public function handle(Request $request, Closure $next)
     {
-        if (! $request->user()->gamejolt) {
+        if (!$request->user()->gamejolt) {
             $request->session()->flash('flash.bannerStyle', 'info');
             $request
                 ->session()

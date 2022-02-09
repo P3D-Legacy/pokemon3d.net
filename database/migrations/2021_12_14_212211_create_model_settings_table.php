@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
     public function up()
     {
-        if (! Schema::hasTable('model_settings')) {
+        if (!Schema::hasTable('model_settings')) {
             Schema::create('model_settings', function (Blueprint $table) {
                 $table->increments('id');
                 $table->bigInteger('model_id');

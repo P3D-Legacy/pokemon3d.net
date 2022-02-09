@@ -16,8 +16,9 @@ class GameVersion extends Model
         'page_url',
         'download_url',
     ];
-
-    protected $dates = ['release_date'];
+    protected $casts = [
+        'release_date' => 'datetime',
+    ];
 
     public static function latest()
     {

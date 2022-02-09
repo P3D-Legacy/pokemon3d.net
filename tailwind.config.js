@@ -26,6 +26,7 @@ module.exports = {
             },
             colors: {
                 'gamejolt-green': '#ccff00',
+                'gamejolt-dark-green': '#2f7f6f',
             },
         },
         debugScreens: {

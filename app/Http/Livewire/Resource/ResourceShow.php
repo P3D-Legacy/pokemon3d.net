@@ -15,7 +15,9 @@ class ResourceShow extends Component
 
     public function mount($uuid)
     {
-        $this->resource = Resource::with('categories')->where('uuid', $uuid)->firstOrFail();
+        $this->resource = Resource::with('categories')
+            ->where('uuid', $uuid)
+            ->firstOrFail();
         views($this->resource)
             ->cooldown(60)
             ->record();
@@ -23,7 +25,9 @@ class ResourceShow extends Component
 
     public function update($uuid)
     {
-        $this->resource = Resource::with('categories')->where('uuid', $uuid)->firstOrFail();
+        $this->resource = Resource::with('categories')
+            ->where('uuid', $uuid)
+            ->firstOrFail();
     }
 
     public function download()

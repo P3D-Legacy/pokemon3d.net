@@ -26,8 +26,8 @@
         <div wire:ignore>
             <x-easy-mde-editor name="description" :options="['hideIcons' => ['side-by-side','fullscreen',]]">
                 <x-slot name="script">
-                    easyMDE.codemirror.on('change', function () {
-                      @this.set('description', easyMDE.value())
+                    EasyMDE.codemirror.on('change', function () {
+                      @this.set('description', EasyMDE.value())
                     });
                 </x-slot>
             </x-easy-mde-editor>

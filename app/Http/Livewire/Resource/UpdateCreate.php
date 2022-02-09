@@ -49,7 +49,7 @@ class UpdateCreate extends ModalComponent
             ->addMedia($this->file->getRealPath())
             ->toMediaCollection('resource_update_file');
 
-        $this->emit('resourceUpdated', $this->resource->id);
+        $this->emit('resourceUpdated', $this->resource);
         $this->closeModal();
     }
 

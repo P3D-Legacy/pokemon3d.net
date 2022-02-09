@@ -17,7 +17,6 @@
                     ['url' => null, 'label' => 'Resources'],
                 ]])
             @endif
-            @endcomponent
             <div class="grid grid-cols-1 gap-4 sm:grid-cols-3 md:grid-cols-4 grid-flow-cols">
                 <div>
                     <div class="flex flex-col items-center justify-center w-full mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-900 dark:shadow-gray-700">

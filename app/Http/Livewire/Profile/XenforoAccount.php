@@ -93,6 +93,32 @@ class XenforoAccount extends Component
         return;
     }
 
+
+    /**
+     * Update the user's GameJolt Account credentials.
+     *
+     * @return void
+     */
+    public function remove()
+    {
+        $this->resetErrorBag();
+        $this->resetValidation();
+
+        $user = Auth::user();
+
+        if ($user->forum) {
+            $user->forum->delete();
+            $this->username = null;
+            $this->password = null;
+            $this->updated_at = null;
+            $this->verified_at = null;
+        }
+
+        $this->emit('refresh');
+
+        return;
+    }
+
     public function render()
     {
         return view('livewire.profile.xenforo-account');

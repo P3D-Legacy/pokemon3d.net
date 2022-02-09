@@ -10,7 +10,7 @@
             <div class="md:grid md:grid-cols-3 md:gap-6">
                 <x-jet-section-title>
                     <x-slot name="title">{{ __('Create a Resource') }}</x-slot>
-                    <x-slot name="description">{{ __('*insert some description here*') }}</x-slot>
+                    <x-slot name="description"></x-slot>
                 </x-jet-section-title>
             
                 <div class="mt-5 md:mt-0 md:col-span-2">

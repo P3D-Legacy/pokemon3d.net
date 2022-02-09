@@ -129,7 +129,9 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
             ]);
             $category = Category::find($request->category);
             $resource->attachCategory($category);
-            return redirect()->route('resource.show', ['resource' => $resource]);
+            return redirect()->route('resource.show', [
+                'resource' => $resource,
+            ]);
         })->name('resource.store');
 
         Route::get('/{uuid}', ResourceShow::class)->name('resource.uuid');

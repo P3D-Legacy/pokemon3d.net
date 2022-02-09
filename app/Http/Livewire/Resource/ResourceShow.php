@@ -7,24 +7,23 @@ use App\Models\Resource;
 
 class ResourceShow extends Component
 {
-    public int|Resource $resource;
+    public Resource $resource;
 
     protected $listeners = [
         'resourceUpdated' => 'update',
     ];
 
-    public function mount(int|Resource $resource)
+    public function mount($uuid)
     {
-        $this->resource = Resource::with('categories')
-            ->find($resource)
-            ->firstOrFail();
+        $this->resource = Resource::with('categories')->where('uuid', $uuid)->firstOrFail();
+        views($this->resource)
+            ->cooldown(60)
+            ->record();
     }
 
-    public function update(int|Resource $resource)
+    public function update($uuid)
     {
-        $this->resource = Resource::with('categories')
-            ->find($resource)
-            ->firstOrFail();
+        $this->resource = Resource::with('categories')->where('uuid', $uuid)->firstOrFail();
     }
 
     public function download()

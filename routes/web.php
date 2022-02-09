@@ -21,6 +21,7 @@ use App\Http\Controllers\Auth\FacebookController;
 use App\Http\Controllers\Skin\SkinHomeController;
 use App\Http\Controllers\Skin\PlayerSkinController;
 use App\Http\Controllers\Skin\UploadedSkinController;
+use App\Http\Livewire\Resource\ResourceShow;
 use Spatie\Health\Http\Controllers\HealthCheckResultsController;
 
 /*
@@ -95,6 +96,9 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
 
     Route::resource('server', ServerController::class);
     Route::resource('resource', ResourceController::class);
+
+    Route::get('/resource/u/{uuid}', ResourceShow::class)->name('resource.uuid');
+
     Route::get('/resource/category/{name}', function ($name) {
         $resources = Category::findByName($name)
             ->entries(\App\Models\Resource::class)

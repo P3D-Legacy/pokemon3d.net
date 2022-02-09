@@ -41,14 +41,7 @@ class FacebookAccount extends Model
      *
      * @var array
      */
-    protected $fillable = [
-        'id',
-        'name',
-        'email',
-        'avatar',
-        'verified_at',
-        'user_id',
-    ];
+    protected $fillable = ['id', 'name', 'email', 'avatar', 'verified_at', 'user_id'];
 
     /**
      * The attributes that should be cast to native types.

@@ -36,12 +36,7 @@ class GameJolt extends Component
             'token' => ['required', 'alpha_dash', 'max:30', 'min:4'],
         ]);
 
-        $api = new GamejoltApi(
-            new GamejoltConfig(
-                env('GAMEJOLT_GAME_ID'),
-                env('GAMEJOLT_GAME_PRIVATE_KEY')
-            )
-        );
+        $api = new GamejoltApi(new GamejoltConfig(env('GAMEJOLT_GAME_ID'), env('GAMEJOLT_GAME_PRIVATE_KEY')));
 
         try {
             $auth = $api->users()->auth($this->username, $this->token);
@@ -51,18 +46,10 @@ class GameJolt extends Component
             return;
         }
 
-        if (
-            filter_var(
-                $auth['response']['success'],
-                FILTER_VALIDATE_BOOLEAN
-            ) === false
-        ) {
+        if (filter_var($auth['response']['success'], FILTER_VALIDATE_BOOLEAN) === false) {
             $error = $auth['response']['message'];
             // Better description of username/token error
-            if (
-                $error ==
-                'No such user with the credentials passed in could be found.'
-            ) {
+            if ($error == 'No such user with the credentials passed in could be found.') {
                 $error = 'Username and/or token is wrong.';
             }
             $this->addError('error', $error);
@@ -70,16 +57,10 @@ class GameJolt extends Component
             return;
         }
 
-        $gamejoltaccount = GamejoltAccount::where(
-            'username',
-            $this->username
-        )->first();
+        $gamejoltaccount = GamejoltAccount::where('username', $this->username)->first();
 
         if (!$gamejoltaccount) {
-            $this->addError(
-                'error',
-                'This Gamejolt Account is not associated with a P3D account yet.'
-            );
+            $this->addError('error', 'This Gamejolt Account is not associated with a P3D account yet.');
 
             return;
         }
@@ -87,10 +68,7 @@ class GameJolt extends Component
         $user = $gamejoltaccount->user()->first();
 
         if (!$user) {
-            $this->addError(
-                'error',
-                'Could\'t find the user associated with this Gamejolt Account.'
-            );
+            $this->addError('error', 'Could\'t find the user associated with this Gamejolt Account.');
 
             return;
         }

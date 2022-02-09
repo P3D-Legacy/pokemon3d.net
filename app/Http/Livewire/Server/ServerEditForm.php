@@ -39,11 +39,7 @@ class ServerEditForm extends Component
 
         $this->validate([
             'name' => ['required', 'string', new StrNotContain('official')],
-            'host' => [
-                'required',
-                new StrNotContain('pokemon3d.net'),
-                new IPHostnameARecord(),
-            ],
+            'host' => ['required', new StrNotContain('pokemon3d.net'), new IPHostnameARecord()],
             'port' => ['required', 'integer', 'min:10', 'max:99999'],
             'description' => ['nullable', 'string'],
         ]);

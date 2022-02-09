@@ -50,13 +50,7 @@ class PingServer extends Command
 
         $starttime = microtime(true);
         // supress error messages with @
-        $connection = @fsockopen(
-            $server->host,
-            $server->port,
-            $errno,
-            $errstr,
-            2
-        );
+        $connection = @fsockopen($server->host, $server->port, $errno, $errstr, 2);
         $stoptime = microtime(true);
         $ping = 0;
 
@@ -73,12 +67,7 @@ class PingServer extends Command
             $server->last_online_at = now();
             $server->active = true;
         }
-        if (
-            !$reactivate &&
-            !$ping &&
-            !$server->official &&
-            $server->last_online_at < now()->subHours(24)
-        ) {
+        if (!$reactivate && !$ping && !$server->official && $server->last_online_at < now()->subHours(24)) {
             $server->active = false;
         }
         $server->save();

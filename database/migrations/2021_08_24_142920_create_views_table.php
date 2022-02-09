@@ -26,9 +26,7 @@ return new class extends Migration {
      */
     public function __construct()
     {
-        $this->schema = Schema::connection(
-            config('eloquent-viewable.models.view.connection')
-        );
+        $this->schema = Schema::connection(config('eloquent-viewable.models.view.connection'));
 
         $this->table = config('eloquent-viewable.models.view.table_name');
     }

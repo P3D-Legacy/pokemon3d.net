@@ -49,13 +49,7 @@ class UserController extends Controller
     {
         $validatedData = $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => [
-                'required',
-                'string',
-                'email',
-                'max:255',
-                'unique:users',
-            ],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
         $data = [
@@ -115,23 +109,11 @@ class UserController extends Controller
         }
 
         if ($request->has('email')) {
-            $rules['email'] = [
-                'required',
-                'string',
-                'email',
-                'max:255',
-                'unique:users,email,' . $user->id,
-            ];
+            $rules['email'] = ['required', 'string', 'email', 'max:255', 'unique:users,email,' . $user->id];
         }
 
         if ($request->filled('password')) {
-            $rules['password'] = [
-                'sometimes',
-                'required',
-                'string',
-                'min:8',
-                'confirmed',
-            ];
+            $rules['password'] = ['sometimes', 'required', 'string', 'min:8', 'confirmed'];
         }
 
         $validatedData = $request->validate($rules);

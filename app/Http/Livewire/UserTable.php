@@ -142,9 +142,7 @@ final class UserTable extends PowerGridComponent
         return [
             Button::add('edit')
                 ->caption('Edit')
-                ->class(
-                    'bg-red-400 cursor-pointer text-white px-2 py-1 m-1 rounded text-sm'
-                )
+                ->class('bg-red-400 cursor-pointer text-white px-2 py-1 m-1 rounded text-sm')
                 ->route('users.edit', ['user' => 'id'])
                 ->target('_self')
                 ->can(

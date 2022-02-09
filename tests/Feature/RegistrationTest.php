@@ -15,9 +15,7 @@ class RegistrationTest extends TestCase
     public function test_registration_screen_can_be_rendered()
     {
         if (!Features::enabled(Features::registration())) {
-            return $this->markTestSkipped(
-                'Registration support is not enabled.'
-            );
+            return $this->markTestSkipped('Registration support is not enabled.');
         }
 
         $response = $this->get('/register');
@@ -39,9 +37,7 @@ class RegistrationTest extends TestCase
     public function test_new_users_can_register()
     {
         if (!Features::enabled(Features::registration())) {
-            return $this->markTestSkipped(
-                'Registration support is not enabled.'
-            );
+            return $this->markTestSkipped('Registration support is not enabled.');
         }
 
         $password = 'SuperSecret123!';

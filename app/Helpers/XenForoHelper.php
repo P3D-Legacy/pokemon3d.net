@@ -14,11 +14,8 @@ class XenForoHelper
 
     const NEWS_BOARD_ID = '4';
 
-    public static function sendRequest(
-        $endpoint,
-        $data = [],
-        $method = self::METHOD_GET
-    ) {
+    public static function sendRequest($endpoint, $data = [], $method = self::METHOD_GET)
+    {
         if (config('xenforo.apikey') == null) {
             return ['errors' => []];
         }
@@ -37,9 +34,7 @@ class XenForoHelper
 
     public static function getNewsItems()
     {
-        $data = self::sendRequest(
-            '/forums/' . self::NEWS_BOARD_ID . '/threads'
-        );
+        $data = self::sendRequest('/forums/' . self::NEWS_BOARD_ID . '/threads');
 
         if (array_key_exists('errors', $data)) {
             return ['threads' => []];

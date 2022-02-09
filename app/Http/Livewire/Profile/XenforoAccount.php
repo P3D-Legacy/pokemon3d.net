@@ -23,12 +23,8 @@ class XenforoAccount extends Component
         $user = Auth::user();
         $this->username = $user->forum ? $user->forum->username : null;
         $this->password = $user->forum ? $user->forum->password : null;
-        $this->updated_at = $user->forum
-            ? $user->forum->updated_at->diffForHumans()
-            : null;
-        $this->verified_at = $user->forum
-            ? $user->forum->verified_at->diffForHumans()
-            : null;
+        $this->updated_at = $user->forum ? $user->forum->updated_at->diffForHumans() : null;
+        $this->verified_at = $user->forum ? $user->forum->verified_at->diffForHumans() : null;
     }
 
     /**
@@ -44,18 +40,12 @@ class XenforoAccount extends Component
         $user = Auth::user();
 
         $this->validate([
-            'username' => [
-                'nullable',
-                Rule::unique('forum_accounts')->ignore($user->id, 'user_id'),
-            ],
+            'username' => ['nullable', Rule::unique('forum_accounts')->ignore($user->id, 'user_id')],
             'password' => ['nullable'],
         ]);
 
         if (!$this->username && !$this->password) {
-            $this->errorBag->add(
-                'success',
-                'Your forum account has now been unlinked.'
-            );
+            $this->errorBag->add('success', 'Your forum account has now been unlinked.');
             Auth::user()->forum->delete();
             $this->updated_at = null;
             $this->verified_at = null;

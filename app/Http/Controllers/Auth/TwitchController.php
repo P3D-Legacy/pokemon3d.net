@@ -41,16 +41,11 @@ class TwitchController extends Controller
             ];
 
             // Check if user exists with email
-            $twitchAccount = TwitchAccount::where(
-                'id',
-                $twitchUser->id
-            )->first();
+            $twitchAccount = TwitchAccount::where('id', $twitchUser->id)->first();
             if (!$twitchAccount && auth()->guest()) {
                 return redirect()
                     ->route('login')
-                    ->withError(
-                        'Twitch account association not found with any P3D account.'
-                    );
+                    ->withError('Twitch account association not found with any P3D account.');
             }
 
             $user = $twitchAccount ? $twitchAccount->user : null;
@@ -58,10 +53,7 @@ class TwitchController extends Controller
                 if (auth()->user()->id !== $user->id) {
                     request()
                         ->session()
-                        ->flash(
-                            'flash.banner',
-                            'This Twitch account is associated with another P3D account.'
-                        );
+                        ->flash('flash.banner', 'This Twitch account is associated with another P3D account.');
                     request()
                         ->session()
                         ->flash('flash.bannerStyle', 'warning');
@@ -76,9 +68,7 @@ class TwitchController extends Controller
             if (auth()->guest() && !$user) {
                 return redirect()
                     ->route('login')
-                    ->withError(
-                        'You are not logged in and user was not found.'
-                    );
+                    ->withError('You are not logged in and user was not found.');
             }
 
             // Create new twitch account
@@ -92,15 +82,11 @@ class TwitchController extends Controller
         } catch (InvalidStateException $e) {
             return redirect()
                 ->route('home')
-                ->withError(
-                    'Something went wrong with Twitch login. Please try again.'
-                );
+                ->withError('Something went wrong with Twitch login. Please try again.');
         } catch (ClientException $e) {
             return redirect()
                 ->route('home')
-                ->withError(
-                    'Something went wrong with Twitch login. Please try again.'
-                );
+                ->withError('Something went wrong with Twitch login. Please try again.');
         }
 
         return redirect()->route('dashboard');

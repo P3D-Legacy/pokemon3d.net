@@ -55,13 +55,7 @@ class PlayerSkinController extends Controller
         $gjid = Auth::user()->gamejolt->id;
 
         $request->validate([
-            'image' => [
-                'required',
-                'image',
-                'max:2000',
-                'mimes:png',
-                'dimensions:ratio=3/4',
-            ], // 2MB
+            'image' => ['required', 'image', 'max:2000', 'mimes:png', 'dimensions:ratio=3/4'], // 2MB
             'rules' => ['accepted'],
         ]);
         $filename = $gjid . '.png';
@@ -69,10 +63,7 @@ class PlayerSkinController extends Controller
 
         return redirect()
             ->route('skin-home')
-            ->with(
-                'success',
-                'Skin was successfully uploaded! Not seeing it? Refresh the page again.'
-            );
+            ->with('success', 'Skin was successfully uploaded! Not seeing it? Refresh the page again.');
     }
 
     /**
@@ -90,10 +81,7 @@ class PlayerSkinController extends Controller
         if ($skincount >= env('SKIN_MAX_UPLOAD')) {
             return redirect()
                 ->route('skins-my')
-                ->with(
-                    'warning',
-                    'You have reached the maximum amount of skins you can upload.'
-                );
+                ->with('warning', 'You have reached the maximum amount of skins you can upload.');
         }
         $old_filename = $gjid . '.png';
         $skin = Skin::create([
@@ -102,10 +90,7 @@ class PlayerSkinController extends Controller
             'name' => 'Import: ' . $gjid,
         ]);
         $new_filename = $skin->uuid . '.png';
-        Storage::disk('skin')->put(
-            $new_filename,
-            Storage::disk('player')->get($old_filename)
-        );
+        Storage::disk('skin')->put($new_filename, Storage::disk('player')->get($old_filename));
 
         return redirect()
             ->route('skins-my')

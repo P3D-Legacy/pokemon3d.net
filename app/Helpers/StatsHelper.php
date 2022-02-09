@@ -51,11 +51,8 @@ class StatsHelper
         return $seasonName;
     }
 
-    public static function sendRequest(
-        $endpoint,
-        $data = [],
-        $method = self::METHOD_GET
-    ) {
+    public static function sendRequest($endpoint, $data = [], $method = self::METHOD_GET)
+    {
         if (config('gameserver.base_url') == null) {
             return ['errors' => []];
         }

@@ -78,11 +78,7 @@ class UserController extends Controller
                 'error' => 'Token does not have access!',
             ]);
         }
-        $user = User::with([
-            'roles.permissions',
-            'gamejolt',
-            'forum',
-        ])->findOrFail($id);
+        $user = User::with(['roles.permissions', 'gamejolt', 'forum'])->findOrFail($id);
 
         return new UserResource($user);
     }

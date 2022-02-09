@@ -15,9 +15,7 @@ return new class extends Migration {
         } else {
             $this->tablename = Config::get('anlutro/l4-settings::table');
             $this->keyColumn = Config::get('anlutro/l4-settings::keyColumn');
-            $this->valueColumn = Config::get(
-                'anlutro/l4-settings::valueColumn'
-            );
+            $this->valueColumn = Config::get('anlutro/l4-settings::valueColumn');
         }
     }
 

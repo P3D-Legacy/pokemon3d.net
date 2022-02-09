@@ -41,15 +41,7 @@ class DiscordAccount extends Model
      *
      * @var array
      */
-    protected $fillable = [
-        'id',
-        'username',
-        'email',
-        'avatar',
-        'discriminator',
-        'verified_at',
-        'user_id',
-    ];
+    protected $fillable = ['id', 'username', 'email', 'avatar', 'discriminator', 'verified_at', 'user_id'];
 
     /**
      * The attributes that should be cast to native types.

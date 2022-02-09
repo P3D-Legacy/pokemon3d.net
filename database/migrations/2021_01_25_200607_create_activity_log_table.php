@@ -30,8 +30,6 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::connection(
-            config('activitylog.database_connection')
-        )->dropIfExists(config('activitylog.table_name'));
+        Schema::connection(config('activitylog.database_connection'))->dropIfExists(config('activitylog.table_name'));
     }
 };

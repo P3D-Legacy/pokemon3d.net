@@ -16,12 +16,8 @@ class FacebookAccount extends Component
         $user = Auth::user();
         $this->name = $user->facebook ? $user->facebook->name : null;
         $this->avatar = $user->facebook ? $user->facebook->avatar : null;
-        $this->updated_at = $user->facebook
-            ? $user->facebook->updated_at->diffForHumans()
-            : null;
-        $this->verified_at = $user->facebook
-            ? $user->facebook->verified_at->diffForHumans()
-            : null;
+        $this->updated_at = $user->facebook ? $user->facebook->updated_at->diffForHumans() : null;
+        $this->verified_at = $user->facebook ? $user->facebook->verified_at->diffForHumans() : null;
     }
 
     /**

@@ -30,4 +30,12 @@ class ResourceUpdate extends Model implements HasMedia
         $this->downloads++;
         $this->save();
     }
+
+    /**
+     * Get the game_version related to this resource.
+     */
+    public function game_version()
+    {
+        return $this->hasOne(GameVersion::class, 'id', 'game_version_id');
+    }
 }

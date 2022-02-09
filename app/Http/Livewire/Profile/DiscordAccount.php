@@ -51,7 +51,6 @@ class DiscordAccount extends Component
         }
 
         $this->emit('refresh');
-
     }
 
     public function render()

@@ -44,6 +44,5 @@ class PingAllServers extends Command
             Artisan::call('server:ping '.$server->uuid);
         }
         $this->info('All servers have been pinged.');
-
     }
 }

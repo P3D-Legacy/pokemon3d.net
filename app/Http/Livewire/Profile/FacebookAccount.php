@@ -45,7 +45,6 @@ class FacebookAccount extends Component
         }
 
         $this->emit('refresh');
-
     }
 
     public function render()

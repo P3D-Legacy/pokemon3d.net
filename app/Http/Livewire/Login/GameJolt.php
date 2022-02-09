@@ -107,7 +107,6 @@ class GameJolt extends Component
 
             return redirect()->intended('dashboard');
         }
-
     }
 
     public function render()

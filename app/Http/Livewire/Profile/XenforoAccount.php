@@ -94,7 +94,6 @@ class XenforoAccount extends Component
         $this->verified_at = $forum->verified_at->diffForHumans();
 
         $this->emit('saved');
-
     }
 
     public function render()

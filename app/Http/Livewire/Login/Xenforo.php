@@ -79,7 +79,6 @@ class Xenforo extends Component
 
             return redirect()->intended('dashboard');
         }
-
     }
 
     public function render()

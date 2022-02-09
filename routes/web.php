@@ -53,7 +53,7 @@ Route::get('/redirect/discord', function () {
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::resource('blog', BlogController::class);
 
-Route::group(['prefix' => 'login'], function () {
+Route::prefix('login')->group(function () {
     Route::get('/discord', [
         DiscordController::class,
         'redirectToProvider',
@@ -88,7 +88,7 @@ Route::group(['prefix' => 'login'], function () {
     ]);
 });
 
-Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
+Route::middleware('auth:sanctum', 'verified')->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');

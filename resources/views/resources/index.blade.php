@@ -51,7 +51,7 @@
                                         </div>
                                         <div class="flex-1 md:pl-1 md:mr-16">
                                             <div class="font-medium dark:text-white">
-                                                {{ $resource->name }} <span class="text-gray-400 dark:text-gray-500">1.2.3</span>
+                                                {{ $resource->name }} <span class="text-gray-400 dark:text-gray-500">{{ $resource->updates->first() ? $resource->updates->first()->title : 'N/A' }}</span>
                                             </div>
                                             <div class="text-sm text-gray-400 dark:text-gray-200">
                                                 {{ $resource->user->username }} &middot; {{ $resource->created_at->diffForHumans() }} &middot; {{ $resource->categories()->first()->name }}

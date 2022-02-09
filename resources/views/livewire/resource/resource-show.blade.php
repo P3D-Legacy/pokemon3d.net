@@ -9,7 +9,7 @@
 
     <div class="grid sm:grid-flow-col grid-rows-2 sm:grid-rows-none sm:grid-cols-3 gap-4 mb-4 px-2 sm:px-0">
         <div class="sm:col-span-2 text-2xl dark:text-white">
-            {{ $resource->name }} <span class="text-gray-400 dark:text-gray-500">1.2.3</span>
+            {{ $resource->name }} <span class="text-gray-400 dark:text-gray-500">{{ $resource->updates->first() ? $resource->updates->first()->title : 'N/A' }}</span>
         </div>
         <div class="flex justify-end gap-1">
             @livewire('resource.resource-like', ['resource' => $resource])

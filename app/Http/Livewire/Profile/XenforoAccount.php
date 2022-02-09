@@ -93,7 +93,6 @@ class XenforoAccount extends Component
         return;
     }
 
-
     /**
      * Update the user's GameJolt Account credentials.
      *

@@ -21,6 +21,7 @@ class HomeController extends Controller
             ->withAnyTags(['Website', 'Game'])
             ->take(4)
             ->get();
+
         return view('home')->with('posts', $posts);
     }
 }

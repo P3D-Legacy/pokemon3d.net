@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Skin;
 
+use App\Http\Controllers\Controller;
 use App\Models\GJUser;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -35,13 +35,13 @@ class ImportController extends Controller
                     'You have reached the maximum amount of skins you can upload.'
                 );
         }
-        $url = 'https://pokemon3d.net/skin/data/' . $id . '.png';
+        $url = 'https://pokemon3d.net/skin/data/'.$id.'.png';
         $valid_types = ['image/png']; // Valid file types
         $client = new Client();
         try {
             $response = $client->get($url);
             if (
-                !empty($response->getHeaders()['Content-Type'][0]) &&
+                ! empty($response->getHeaders()['Content-Type'][0]) &&
                 in_array(
                     $response->getHeaders()['Content-Type'][0],
                     $valid_types,
@@ -49,7 +49,7 @@ class ImportController extends Controller
                 )
             ) {
                 Storage::disk('player')->put(
-                    $id . '.png',
+                    $id.'.png',
                     $response->getBody()->getContents()
                 );
             } else {
@@ -62,6 +62,7 @@ class ImportController extends Controller
                 ->route('skin-home')
                 ->with('error', 'Could not find a skin!');
         }
+
         return redirect()
             ->route('skin-home')
             ->with('success', 'Your old skin has been imported!');

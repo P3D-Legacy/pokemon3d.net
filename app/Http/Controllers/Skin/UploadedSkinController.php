@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Skin;
 
-use App\Models\Skin;
-use App\Models\GJUser;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\GJUser;
+use App\Models\Skin;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -24,6 +24,7 @@ class UploadedSkinController extends Controller
     public function index()
     {
         $skins = Skin::all();
+
         return view('skin.uploaded.index')->with('skins', $skins);
     }
 
@@ -94,7 +95,7 @@ class UploadedSkinController extends Controller
             'reason' => ['required', 'string'],
         ]);
         $skin = Skin::where('uuid', $uuid)->first();
-        if (!Storage::disk('skin')->exists($skin->path())) {
+        if (! Storage::disk('skin')->exists($skin->path())) {
             return redirect()
                 ->route('uploaded-skins')
                 ->with('error', 'Skin was not found!');
@@ -109,6 +110,7 @@ class UploadedSkinController extends Controller
             ->log('deleted');
         $skin->delete();
         Storage::disk('skin')->delete($skin->path());
+
         return redirect()
             ->route('uploaded-skins')
             ->with('success', 'Skin was successfully deleted!');

@@ -4,10 +4,10 @@ namespace App\Console\Commands;
 
 use App\Http\Livewire\Login\GameJolt;
 use App\Models\GamejoltAccount;
-use Illuminate\Console\Command;
+use Harrk\GameJoltApi\Exceptions\TimeOutException;
 use Harrk\GameJoltApi\GamejoltApi;
 use Harrk\GameJoltApi\GamejoltConfig;
-use Harrk\GameJoltApi\Exceptions\TimeOutException;
+use Illuminate\Console\Command;
 
 class UpdateGamejoltAccountTrophies extends Command
 {
@@ -61,6 +61,7 @@ class UpdateGamejoltAccountTrophies extends Command
                     ) === false
                 ) {
                     $this->error("No success for {$account->username}");
+
                     return;
                 }
                 $trophies = $trophies['response']['trophies'];
@@ -92,6 +93,7 @@ class UpdateGamejoltAccountTrophies extends Command
             }
         }
         $this->info('Done.');
+
         return Command::SUCCESS;
     }
 }

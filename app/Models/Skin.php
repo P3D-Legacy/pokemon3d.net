@@ -2,14 +2,14 @@
 
 namespace App\Models;
 
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Database\Eloquent\Model;
-use Spatie\Activitylog\Models\Activity;
-use Overtrue\LaravelLike\Traits\Likeable;
-use Spatie\Activitylog\Traits\LogsActivity;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use GoldSpecDigital\LaravelEloquentUUID\Database\Eloquent\Uuid;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Auth;
+use Overtrue\LaravelLike\Traits\Likeable;
+use Spatie\Activitylog\Models\Activity;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class Skin extends Model
 {
@@ -60,7 +60,9 @@ class Skin extends Model
     }
 
     protected static $logAttributes = ['name', 'owner_id', 'user_id', 'public'];
+
     protected static $logOnlyDirty = true;
+
     protected static $submitEmptyLogs = false;
 
     // Since we are using sessions with gamejolt logins we have to tap the activity to log the causer
@@ -94,11 +96,11 @@ class Skin extends Model
 
     public function path()
     {
-        return $this->uuid . '.png';
+        return $this->uuid.'.png';
     }
 
     public function urlPath()
     {
-        return env('APP_URL') . '/img/skin/' . $this->path();
+        return env('APP_URL').'/img/skin/'.$this->path();
     }
 }

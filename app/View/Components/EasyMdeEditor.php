@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\View\Components;
 
-use Illuminate\View\Component;
 use Illuminate\Contracts\View\View;
+use Illuminate\View\Component;
 
 class EasyMdeEditor extends Component
 {
@@ -46,7 +46,7 @@ class EasyMdeEditor extends Component
             return '';
         }
 
-        return ', ...' . json_encode((object) $this->options());
+        return ', ...'.json_encode((object) $this->options());
     }
 
     public function render(): View

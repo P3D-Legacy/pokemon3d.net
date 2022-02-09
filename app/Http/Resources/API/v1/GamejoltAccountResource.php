@@ -2,8 +2,8 @@
 
 namespace App\Http\Resources\API\v1;
 
-use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\API\v1\GamejoltAccountBanResource;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 class GamejoltAccountResource extends JsonResource
 {
@@ -38,6 +38,7 @@ class GamejoltAccountResource extends JsonResource
                 'verified_at' => $this->verified_at,
             ];
         }
+
         return [
             'id' => $this->id,
             'username' => $this->username,

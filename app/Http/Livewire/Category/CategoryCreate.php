@@ -2,8 +2,8 @@
 
 namespace App\Http\Livewire\Category;
 
-use LivewireUI\Modal\ModalComponent;
 use AliBayat\LaravelCategorizable\Category;
+use LivewireUI\Modal\ModalComponent;
 
 class CategoryCreate extends ModalComponent
 {

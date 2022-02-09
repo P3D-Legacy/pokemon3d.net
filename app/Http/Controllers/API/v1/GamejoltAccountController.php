@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\API\v1;
 
-use Illuminate\Http\Request;
-use App\Models\GamejoltAccount;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\API\v1\GamejoltAccountResource;
+use App\Models\GamejoltAccount;
+use Illuminate\Http\Request;
 
 /**
  * @group Gamejolt Account
@@ -97,7 +97,7 @@ class GamejoltAccountController extends Controller
      */
     public function show(Request $request, $id)
     {
-        if (!$request->user()->tokenCan('read')) {
+        if (! $request->user()->tokenCan('read')) {
             return response()->json([
                 'error' => 'Token does not have access!',
             ]);
@@ -109,6 +109,7 @@ class GamejoltAccountController extends Controller
         ])
             ->where('id', $id)
             ->firstOrFail();
+
         return new GamejoltAccountResource($gja);
     }
 }

@@ -3,16 +3,20 @@
 namespace App\Http\Livewire\Server;
 
 use App\Models\Server;
-use Livewire\Component;
-use App\Rules\StrNotContain;
 use App\Rules\IPHostnameARecord;
+use App\Rules\StrNotContain;
+use Livewire\Component;
 
 class ServerEditForm extends Component
 {
     public $server;
+
     public $name;
+
     public $host;
+
     public $port;
+
     public $description;
 
     public function mount()
@@ -52,6 +56,7 @@ class ServerEditForm extends Component
             'user_id' => auth()->user()->id,
         ]);
         $this->emit('serverUpdated');
+
         return redirect()->route('server.index');
     }
 

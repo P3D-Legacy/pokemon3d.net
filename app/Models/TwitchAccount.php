@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
+use GoldSpecDigital\LaravelEloquentUUID\Database\Eloquent\Uuid;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use GoldSpecDigital\LaravelEloquentUUID\Database\Eloquent\Uuid;
 
 class TwitchAccount extends Model
 {
@@ -70,6 +70,7 @@ class TwitchAccount extends Model
     public function touchVerify()
     {
         $this->verified_at = $this->freshTimestamp();
+
         return $this->save();
     }
 

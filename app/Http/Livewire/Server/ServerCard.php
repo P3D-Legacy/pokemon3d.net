@@ -3,8 +3,8 @@
 namespace App\Http\Livewire\Server;
 
 use App\Models\Server;
-use Livewire\Component;
 use Illuminate\Support\Facades\Artisan;
+use Livewire\Component;
 
 class ServerCard extends Component
 {
@@ -17,7 +17,7 @@ class ServerCard extends Component
 
     public function reactivate()
     {
-        Artisan::call('ping:server ' . $this->server->uuid . ' true');
+        Artisan::call('ping:server '.$this->server->uuid.' true');
         $this->server->active = true;
         $this->server->save();
         $this->emit('serverUpdated');

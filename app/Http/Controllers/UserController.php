@@ -120,7 +120,7 @@ class UserController extends Controller
                 'string',
                 'email',
                 'max:255',
-                'unique:users,email,' . $user->id,
+                'unique:users,email,'.$user->id,
             ];
         }
 
@@ -141,6 +141,7 @@ class UserController extends Controller
 
         $user->update($validatedData);
         $user->syncRoles(request('roles'));
+
         return redirect()->route('users.index');
     }
 
@@ -153,6 +154,7 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
+
         return redirect()->route('users.index');
     }
 }

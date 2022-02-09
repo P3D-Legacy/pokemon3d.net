@@ -1,11 +1,11 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\API\v1\UserController;
 use App\Http\Controllers\API\v1\BanReasonController;
 use App\Http\Controllers\API\v1\DiscordAccountController;
-use App\Http\Controllers\API\v1\GamejoltAccountController;
 use App\Http\Controllers\API\v1\GamejoltAccountBanController;
+use App\Http\Controllers\API\v1\GamejoltAccountController;
+use App\Http\Controllers\API\v1\UserController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------

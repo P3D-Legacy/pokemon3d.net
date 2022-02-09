@@ -2,14 +2,14 @@
 
 namespace App\Models;
 
-use Spatie\Tags\HasTags;
-use Illuminate\Support\Str;
-use Illuminate\Database\Eloquent\Model;
-use Overtrue\LaravelLike\Traits\Likeable;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Str;
+use Overtrue\LaravelLike\Traits\Likeable;
+use Spatie\Tags\HasTags;
 
 class Post extends Model implements Viewable
 {
@@ -30,7 +30,7 @@ class Post extends Model implements Viewable
         });
 
         self::updating(function ($model) {
-            if (!$model->uuid) {
+            if (! $model->uuid) {
                 $model->uuid = Str::uuid()->toString();
             }
         });

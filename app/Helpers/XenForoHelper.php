@@ -3,13 +3,15 @@
 namespace App\Helpers;
 
 use GuzzleHttp\Client;
-use Illuminate\Support\Facades\Http;
 use GuzzleHttp\Exception\ClientException;
+use Illuminate\Support\Facades\Http;
 
 class XenForoHelper
 {
     const METHOD_GET = 'get';
+
     const METHOD_POST = 'post';
+
     const NEWS_BOARD_ID = '4';
 
     public static function sendRequest(
@@ -24,23 +26,25 @@ class XenForoHelper
             $method = $data;
             $data = [];
         }
-        $url = config('xenforo.base_url') . $endpoint;
+        $url = config('xenforo.base_url').$endpoint;
         $response = Http::withHeaders([
             'XF-Api-Key' => config('xenforo.apikey'),
         ])->$method($url, $data);
         $decodedResponse = json_decode($response, true);
+
         return $decodedResponse;
     }
 
     public static function getNewsItems()
     {
         $data = self::sendRequest(
-            '/forums/' . self::NEWS_BOARD_ID . '/threads'
+            '/forums/'.self::NEWS_BOARD_ID.'/threads'
         );
 
         if (array_key_exists('errors', $data)) {
             return ['threads' => []];
         }
+
         return $data;
     }
 
@@ -50,6 +54,7 @@ class XenForoHelper
         if (array_key_exists('errors', $data)) {
             throw new \Exception('CAN NOT COUNT USERS!');
         }
+
         return $data['pagination']['total'];
     }
 
@@ -80,6 +85,7 @@ class XenForoHelper
                     ->getContents(),
                 true
             );
+
             return [
                 'error' => true,
                 'message' => $data['errors'][0]['message'],

@@ -3,16 +3,19 @@
 namespace App\Http\Livewire\Server;
 
 use App\Models\Server;
-use Livewire\Component;
-use App\Rules\StrNotContain;
 use App\Rules\IPHostnameARecord;
+use App\Rules\StrNotContain;
 use Illuminate\Support\Facades\Artisan;
+use Livewire\Component;
 
 class ServerCreateForm extends Component
 {
     public $name;
+
     public $host;
+
     public $port;
+
     public $description;
 
     /**
@@ -44,6 +47,7 @@ class ServerCreateForm extends Component
             'user_id' => auth()->user()->id,
         ]);
         $this->emit('serverUpdated');
+
         return redirect()->route('server.index');
     }
 

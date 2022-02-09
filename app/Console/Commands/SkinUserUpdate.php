@@ -2,8 +2,8 @@
 
 namespace App\Console\Commands;
 
-use App\Models\Skin;
 use App\Models\GamejoltAccount;
+use App\Models\Skin;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 
@@ -45,18 +45,18 @@ class SkinUserUpdate extends Command
             $gja = GamejoltAccount::where('id', $skin->owner_id)->first();
             if ($gja) {
                 $skin->update(['user_id' => $gja->user_id]);
-                $this->info('Skin #' . $skin->id . ' updated.');
+                $this->info('Skin #'.$skin->id.' updated.');
                 $rows = DB::select(
-                    'SELECT * FROM likes WHERE user_id = ' . $skin->owner_id
+                    'SELECT * FROM likes WHERE user_id = '.$skin->owner_id
                 );
                 foreach ($rows as $row) {
                     DB::update(
-                        'UPDATE likes SET user_id = ' .
-                            $gja->user_id .
-                            ' WHERE user_id = ' .
+                        'UPDATE likes SET user_id = '.
+                            $gja->user_id.
+                            ' WHERE user_id = '.
                             $skin->owner_id
                     );
-                    $this->info('Like #' . $row->id . ' updated.');
+                    $this->info('Like #'.$row->id.' updated.');
                 }
             }
         }

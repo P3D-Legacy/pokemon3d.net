@@ -7,6 +7,7 @@ use Illuminate\Contracts\Validation\Rule;
 class StrMustContain implements Rule
 {
     public $str;
+
     /**
      * Create a new rule instance.
      *
@@ -36,6 +37,6 @@ class StrMustContain implements Rule
      */
     public function message()
     {
-        return 'The :attribute must conatin ' . $this->str . '.';
+        return 'The :attribute must conatin '.$this->str.'.';
     }
 }

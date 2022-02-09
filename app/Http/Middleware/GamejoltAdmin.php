@@ -2,8 +2,8 @@
 
 namespace App\Http\Middleware;
 
-use Closure;
 use App\Models\GJUser;
+use Closure;
 use Illuminate\Http\Request;
 
 class GamejoltAdmin
@@ -17,7 +17,7 @@ class GamejoltAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!env('GAMEJOLT_GAME_ID') || !env('GAMEJOLT_GAME_PRIVATE_KEY')) {
+        if (! env('GAMEJOLT_GAME_ID') || ! env('GAMEJOLT_GAME_PRIVATE_KEY')) {
             redirect()
                 ->route('gj-login')
                 ->with('error', 'Gamejolt API keys is not set by the admin!');
@@ -31,6 +31,7 @@ class GamejoltAdmin
                 return $next($request);
             }
         }
+
         return redirect()
             ->route('skin-home')
             ->with('warning', 'You do not have access to this page!');

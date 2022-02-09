@@ -2,13 +2,15 @@
 
 namespace App\Http\Livewire\Profile;
 
-use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Component;
 
 class DiscordAccount extends Component
 {
     public $username;
+
     public $discriminator;
+
     public $avatar;
 
     public function mount()
@@ -50,7 +52,6 @@ class DiscordAccount extends Component
 
         $this->emit('refresh');
 
-        return;
     }
 
     public function render()

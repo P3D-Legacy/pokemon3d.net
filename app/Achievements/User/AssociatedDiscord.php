@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Achievements\User;
@@ -7,8 +8,6 @@ use Assada\Achievements\Achievement;
 
 /**
  * Class Registered
- *
- * @package App\Achievements\User
  */
 class AssociatedDiscord extends Achievement
 {

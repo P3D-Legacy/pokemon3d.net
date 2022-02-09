@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\API\v1;
 
-use Illuminate\Http\Request;
-use App\Models\DiscordAccount;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\API\v1\DiscordAccountResource;
+use App\Models\DiscordAccount;
+use Illuminate\Http\Request;
 
 /**
  * @group Discord Account
@@ -37,7 +37,7 @@ class DiscordAccountController extends Controller
      */
     public function show(Request $request, $id)
     {
-        if (!$request->user()->tokenCan('read')) {
+        if (! $request->user()->tokenCan('read')) {
             return response()->json([
                 'error' => 'Token does not have access!',
             ]);
@@ -45,6 +45,7 @@ class DiscordAccountController extends Controller
         $gja = DiscordAccount::with(['user.roles.permissions'])
             ->where('id', $id)
             ->firstOrFail();
+
         return new DiscordAccountResource($gja);
     }
 }

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\API\v1;
 
-use App\Models\BanReason;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\API\v1\BanReasonResource;
+use App\Models\BanReason;
+use Illuminate\Http\Request;
 
 /**
  * @group Ban Reason
@@ -46,12 +46,13 @@ class BanReasonController extends Controller
      */
     public function index(Request $request)
     {
-        if (!$request->user()->tokenCan('read')) {
+        if (! $request->user()->tokenCan('read')) {
             return response()->json([
                 'error' => 'Token does not have access!',
             ]);
         }
         $resources = BanReason::all();
+
         return BanReasonResource::collection($resources);
     }
 
@@ -75,12 +76,13 @@ class BanReasonController extends Controller
      */
     public function show(Request $request, $id)
     {
-        if (!$request->user()->tokenCan('read')) {
+        if (! $request->user()->tokenCan('read')) {
             return response()->json([
                 'error' => 'Token does not have access!',
             ]);
         }
         $resource = BanReason::findOrFail($id);
+
         return new BanReasonResource($resource);
     }
 }

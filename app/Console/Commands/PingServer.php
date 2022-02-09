@@ -42,8 +42,9 @@ class PingServer extends Command
         $reactivate = $this->argument('reactivate');
 
         $server = Server::find($server_uuid);
-        if (!$server) {
+        if (! $server) {
             $this->error('Server not found.');
+
             return;
         }
 
@@ -59,7 +60,7 @@ class PingServer extends Command
         $stoptime = microtime(true);
         $ping = 0;
 
-        if (!$connection) {
+        if (! $connection) {
             $ping = null; // Site is down
         } else {
             fclose($connection);
@@ -73,15 +74,16 @@ class PingServer extends Command
             $server->active = true;
         }
         if (
-            !$reactivate &&
-            !$ping &&
-            !$server->official &&
+            ! $reactivate &&
+            ! $ping &&
+            ! $server->official &&
             $server->last_online_at < now()->subHours(24)
         ) {
             $server->active = false;
         }
         $server->save();
-        $this->info('Name: ' . $server->name . ' - Ping: ' . $ping . 'ms');
+        $this->info('Name: '.$server->name.' - Ping: '.$ping.'ms');
+
         return $ping;
     }
 }

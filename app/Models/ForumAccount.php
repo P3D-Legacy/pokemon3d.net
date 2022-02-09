@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use betterapp\LaravelDbEncrypter\Traits\EncryptableDbAttribute;
 use GoldSpecDigital\LaravelEloquentUUID\Database\Eloquent\Uuid;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ForumAccount extends Model
 {
@@ -71,6 +71,7 @@ class ForumAccount extends Model
     public function touchVerify()
     {
         $this->verified_at = $this->freshTimestamp();
+
         return $this->save();
     }
 

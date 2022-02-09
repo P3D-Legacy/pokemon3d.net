@@ -8,7 +8,7 @@ return [
     /*
      * The HTML <title> for the generated documentation. If this is empty, Scribe will infer it from config('app.name').
      */
-    'title' => env('APP_NAME', 'Laravel') . ' API Documentation',
+    'title' => env('APP_NAME', 'Laravel').' API Documentation',
 
     /*
      * A short description of your API. Will be included in the docs webpage, Postman collection and OpenAPI spec.
@@ -239,14 +239,13 @@ return [
          * Any extra authentication-related info for your users. For instance, you can describe how to find or generate their auth credentials.
          * Markdown and HTML are supported.
          */
-        'extra_info' =>
-            'You can retrieve your token by logging in normally and then click your profile top-right, in the menu you should see <b>API Tokens</b> (if you have access).',
+        'extra_info' => 'You can retrieve your token by logging in normally and then click your profile top-right, in the menu you should see <b>API Tokens</b> (if you have access).',
     ],
 
     /*
      * Text to place in the "Introduction" section, right after the `description`. Markdown and HTML are supported.
      */
-    'intro_text' => <<<INTRO
+    'intro_text' => <<<'INTRO'
 This documentation aims to provide all the information you need to work with our API. This API only provides access to the functionallityt built into the website.
 
 This API is a work in progress and is subject to change. 

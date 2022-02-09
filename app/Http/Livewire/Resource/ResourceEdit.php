@@ -2,18 +2,23 @@
 
 namespace App\Http\Livewire\Resource;
 
+use AliBayat\LaravelCategorizable\Category;
 use App\Models\Resource;
 use App\Rules\StrNotContain;
 use LivewireUI\Modal\ModalComponent;
-use AliBayat\LaravelCategorizable\Category;
 
 class ResourceEdit extends ModalComponent
 {
     public int|Resource $resource;
+
     public $categories;
+
     public $name;
+
     public $breif;
+
     public $description;
+
     public $category;
 
     public function mount(Resource $resource)

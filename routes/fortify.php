@@ -29,7 +29,7 @@ Route::group(
                 AuthenticatedSessionController::class,
                 'create',
             ])
-                ->middleware(['guest:' . config('fortify.guard')])
+                ->middleware(['guest:'.config('fortify.guard')])
                 ->name('login');
         }
 
@@ -41,8 +41,8 @@ Route::group(
             'store',
         ])->middleware(
             array_filter([
-                'guest:' . config('fortify.guard'),
-                $limiter ? 'throttle:' . $limiter : null,
+                'guest:'.config('fortify.guard'),
+                $limiter ? 'throttle:'.$limiter : null,
             ])
         );
 
@@ -58,14 +58,14 @@ Route::group(
                     PasswordResetLinkController::class,
                     'create',
                 ])
-                    ->middleware(['guest:' . config('fortify.guard')])
+                    ->middleware(['guest:'.config('fortify.guard')])
                     ->name('password.request');
 
                 Route::get('/reset-password/{token}', [
                     NewPasswordController::class,
                     'create',
                 ])
-                    ->middleware(['guest:' . config('fortify.guard')])
+                    ->middleware(['guest:'.config('fortify.guard')])
                     ->name('password.reset');
             }
 
@@ -73,14 +73,14 @@ Route::group(
                 PasswordResetLinkController::class,
                 'store',
             ])
-                ->middleware(['guest:' . config('fortify.guard')])
+                ->middleware(['guest:'.config('fortify.guard')])
                 ->name('password.email');
 
             Route::post('/reset-password', [
                 NewPasswordController::class,
                 'store',
             ])
-                ->middleware(['guest:' . config('fortify.guard')])
+                ->middleware(['guest:'.config('fortify.guard')])
                 ->name('password.update');
         }
 
@@ -91,14 +91,14 @@ Route::group(
                     RegisteredUserController::class,
                     'create',
                 ])
-                    ->middleware(['guest:' . config('fortify.guard')])
+                    ->middleware(['guest:'.config('fortify.guard')])
                     ->name('register');
             }
 
             Route::post('/register', [
                 RegisteredUserController::class,
                 'store',
-            ])->middleware(['guest:' . config('fortify.guard')]);
+            ])->middleware(['guest:'.config('fortify.guard')]);
         }
 
         // Email Verification...
@@ -173,7 +173,7 @@ Route::group(
                     TwoFactorAuthenticatedSessionController::class,
                     'create',
                 ])
-                    ->middleware(['guest:' . config('fortify.guard')])
+                    ->middleware(['guest:'.config('fortify.guard')])
                     ->name('two-factor.login');
             }
 
@@ -182,8 +182,8 @@ Route::group(
                 'store',
             ])->middleware(
                 array_filter([
-                    'guest:' . config('fortify.guard'),
-                    $twoFactorLimiter ? 'throttle:' . $twoFactorLimiter : null,
+                    'guest:'.config('fortify.guard'),
+                    $twoFactorLimiter ? 'throttle:'.$twoFactorLimiter : null,
                 ])
             );
 

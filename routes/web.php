@@ -1,26 +1,26 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\TagController;
+use AliBayat\LaravelCategorizable\Category;
+use App\Http\Controllers\Auth\DiscordController;
+use App\Http\Controllers\Auth\FacebookController;
+use App\Http\Controllers\Auth\TwitchController;
+use App\Http\Controllers\Auth\TwitterController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\PostController;
-use App\Http\Controllers\RoleController;
-use App\Http\Controllers\UserController;
 use App\Http\Controllers\MemberController;
-use App\Http\Controllers\ServerController;
-use AliBayat\LaravelCategorizable\Category;
-use App\Http\Controllers\ResourceController;
-use App\Http\Controllers\Skin\SkinController;
 use App\Http\Controllers\PermissionController;
-use App\Http\Controllers\Auth\TwitchController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\ResourceController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\ServerController;
 use App\Http\Controllers\Skin\ImportController;
-use App\Http\Controllers\Auth\DiscordController;
-use App\Http\Controllers\Auth\TwitterController;
-use App\Http\Controllers\Auth\FacebookController;
-use App\Http\Controllers\Skin\SkinHomeController;
 use App\Http\Controllers\Skin\PlayerSkinController;
+use App\Http\Controllers\Skin\SkinController;
+use App\Http\Controllers\Skin\SkinHomeController;
 use App\Http\Controllers\Skin\UploadedSkinController;
+use App\Http\Controllers\TagController;
+use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Route;
 use Spatie\Health\Http\Controllers\HealthCheckResultsController;
 
 /*
@@ -99,6 +99,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
         $resources = Category::findByName($name)
             ->entries(\App\Models\Resource::class)
             ->paginate(10);
+
         return view('resources.index', [
             'categories' => Category::all(),
             'resources' => $resources,

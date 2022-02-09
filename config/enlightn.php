@@ -28,12 +28,8 @@ return [
     |
     */
     'analyzer_paths' => [
-        'Enlightn\\Enlightn\\Analyzers' => base_path(
-            'vendor/enlightn/enlightn/src/Analyzers'
-        ),
-        'Enlightn\\EnlightnPro\\Analyzers' => base_path(
-            'vendor/enlightn/enlightnpro/src/Analyzers'
-        ),
+        'Enlightn\\Enlightn\\Analyzers' => base_path('vendor/enlightn/enlightn/src/Analyzers'),
+        'Enlightn\\EnlightnPro\\Analyzers' => base_path('vendor/enlightn/enlightnpro/src/Analyzers'),
     ],
 
     /*
@@ -46,11 +42,7 @@ return [
     | folder, migrations folder and the seeders folder.
     |
     */
-    'base_path' => [
-        app_path(),
-        database_path('migrations'),
-        database_path('seeders'),
-    ],
+    'base_path' => [app_path(), database_path('migrations'), database_path('seeders')],
 
     /*
     |--------------------------------------------------------------------------

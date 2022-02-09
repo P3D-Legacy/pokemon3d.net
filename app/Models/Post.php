@@ -2,14 +2,14 @@
 
 namespace App\Models;
 
-use Spatie\Tags\HasTags;
-use Illuminate\Support\Str;
-use Illuminate\Database\Eloquent\Model;
-use Overtrue\LaravelLike\Traits\Likeable;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Str;
+use Overtrue\LaravelLike\Traits\Likeable;
+use Spatie\Tags\HasTags;
 
 class Post extends Model implements Viewable
 {
@@ -48,15 +48,7 @@ class Post extends Model implements Viewable
      *
      * @var array
      */
-    protected $fillable = [
-        'title',
-        'slug',
-        'body',
-        'active',
-        'sticky',
-        'published_at',
-        'user_id',
-    ];
+    protected $fillable = ['title', 'slug', 'body', 'active', 'sticky', 'published_at', 'user_id'];
 
     /**
      * The attributes that should be cast to native types.

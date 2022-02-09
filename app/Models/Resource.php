@@ -2,16 +2,16 @@
 
 namespace App\Models;
 
-use Spatie\Tags\HasTags;
-use Illuminate\Support\Str;
-use Illuminate\Database\Eloquent\Model;
-use Overtrue\LaravelLike\Traits\Likeable;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use AliBayat\LaravelCategorizable\Categorizable;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Digikraaft\ReviewRating\Traits\HasReviewRating;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Str;
+use Overtrue\LaravelLike\Traits\Likeable;
+use Spatie\Tags\HasTags;
 use Touhidurabir\MultiKyeRouteBinding\HasMultipleRouteBindingKeys;
 
 class Resource extends Model implements Viewable
@@ -67,10 +67,7 @@ class Resource extends Model implements Viewable
      */
     public function updates()
     {
-        return $this->hasMany(ResourceUpdate::class)->orderBy(
-            'created_at',
-            'desc'
-        );
+        return $this->hasMany(ResourceUpdate::class)->orderBy('created_at', 'desc');
     }
 
     public function getDownloadsAttribute()

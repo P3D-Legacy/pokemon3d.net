@@ -7,8 +7,11 @@ use Illuminate\View\Component;
 class MediaArticle extends Component
 {
     public $title;
+
     public $url;
+
     public $author;
+
     public $date;
 
     /**

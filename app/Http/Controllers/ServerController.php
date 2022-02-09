@@ -59,6 +59,7 @@ class ServerController extends Controller
     {
         abort_if(!$server, 404);
         abort_if(!$server->user_id == auth()->user()->id, 403);
+
         return view('server.edit', compact('server'));
     }
 

@@ -3,8 +3,8 @@
 namespace App\Rules;
 
 use Carbon\Carbon;
-use InvalidArgumentException;
 use Illuminate\Contracts\Validation\Rule;
+use InvalidArgumentException;
 
 class YoungerThan implements Rule
 {
@@ -28,9 +28,7 @@ class YoungerThan implements Rule
     public function passes($attribute, $value)
     {
         try {
-            return Carbon::now()->diff(
-                Carbon::createFromFormat('Y-m-d', $value)
-            )->y < $this->maxAge;
+            return Carbon::now()->diff(Carbon::createFromFormat('Y-m-d', $value))->y < $this->maxAge;
         } catch (InvalidArgumentException $e) {
             return false;
         }

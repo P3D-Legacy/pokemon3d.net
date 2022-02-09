@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Models\TwitterAccount;
+use App\Achievements\User\AssociatedTwitter;
 use App\Http\Controllers\Controller;
+use App\Models\TwitterAccount;
+use GuzzleHttp\Exception\ClientException;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
-use GuzzleHttp\Exception\ClientException;
-use App\Achievements\User\AssociatedTwitter;
 use Laravel\Socialite\Two\InvalidStateException;
 
 class TwitterController extends Controller
@@ -47,16 +47,11 @@ class TwitterController extends Controller
             ];
 
             // Check if user exists with email
-            $twitterAccount = TwitterAccount::where(
-                'id',
-                $twitterUser->id
-            )->first();
+            $twitterAccount = TwitterAccount::where('id', $twitterUser->id)->first();
             if (!$twitterAccount && auth()->guest()) {
                 return redirect()
                     ->route('login')
-                    ->withError(
-                        'Twitter account association not found with any P3D account.'
-                    );
+                    ->withError('Twitter account association not found with any P3D account.');
             }
 
             $user = $twitterAccount ? $twitterAccount->user : null;
@@ -64,25 +59,22 @@ class TwitterController extends Controller
                 if (auth()->user()->id !== $user->id) {
                     request()
                         ->session()
-                        ->flash(
-                            'flash.banner',
-                            'This Twitter account is associated with another P3D account.'
-                        );
+                        ->flash('flash.banner', 'This Twitter account is associated with another P3D account.');
                     request()
                         ->session()
                         ->flash('flash.bannerStyle', 'warning');
+
                     return redirect()->route('profile.show');
                 }
                 Auth::login($user);
+
                 return redirect()->route('dashboard');
             }
 
             if (auth()->guest() && !$user) {
                 return redirect()
                     ->route('login')
-                    ->withError(
-                        'You are not logged in and user was not found.'
-                    );
+                    ->withError('You are not logged in and user was not found.');
             }
 
             // Create new twitter account
@@ -91,19 +83,16 @@ class TwitterController extends Controller
             $userProfile['verified_at'] = now();
             TwitterAccount::create($userProfile);
             $user->unlock(new AssociatedTwitter());
+
             return redirect()->route('profile.show');
         } catch (InvalidStateException $e) {
             return redirect()
                 ->route('home')
-                ->withError(
-                    'Something went wrong with Twitter login. Please try again.'
-                );
+                ->withError('Something went wrong with Twitter login. Please try again.');
         } catch (ClientException $e) {
             return redirect()
                 ->route('home')
-                ->withError(
-                    'Something went wrong with Twitter login. Please try again.'
-                );
+                ->withError('Something went wrong with Twitter login. Please try again.');
         }
 
         return redirect()->route('dashboard');

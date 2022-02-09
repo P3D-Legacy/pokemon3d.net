@@ -23,9 +23,7 @@ class RoleResource extends JsonResource
                 'name' => $this->name,
                 'created_at' => $this->created_at,
                 'updated_at' => $this->updated_at,
-                'permissions' => PermissionResource::collection(
-                    $this->whenLoaded('permissions')
-                ),
+                'permissions' => PermissionResource::collection($this->whenLoaded('permissions')),
             ];
         }
         if ($request->user()->can('api.minimal')) {
@@ -35,6 +33,7 @@ class RoleResource extends JsonResource
                 'created_at' => $this->created_at,
             ];
         }
+
         return [
             'id' => $this->id,
             'name' => $this->name,

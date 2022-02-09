@@ -3,14 +3,14 @@
 namespace App\Http\Livewire;
 
 use App\Models\User;
-use Illuminate\Support\Carbon;
-use Illuminate\Database\QueryException;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\QueryException;
+use Illuminate\Support\Carbon;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
-use PowerComponents\LivewirePowerGrid\PowerGridEloquent;
 use PowerComponents\LivewirePowerGrid\PowerGridComponent;
+use PowerComponents\LivewirePowerGrid\PowerGridEloquent;
 use PowerComponents\LivewirePowerGrid\Traits\ActionButton;
 
 final class UserTable extends PowerGridComponent
@@ -137,15 +137,12 @@ final class UserTable extends PowerGridComponent
      *
      * @return array<int, \PowerComponents\LivewirePowerGrid\Button>
      */
-
     public function actions(): array
     {
         return [
             Button::add('edit')
                 ->caption('Edit')
-                ->class(
-                    'bg-red-400 cursor-pointer text-white px-2 py-1 m-1 rounded text-sm'
-                )
+                ->class('bg-red-400 cursor-pointer text-white px-2 py-1 m-1 rounded text-sm')
                 ->route('users.edit', ['user' => 'id'])
                 ->target('_self')
                 ->can(
@@ -159,7 +156,7 @@ final class UserTable extends PowerGridComponent
                ->caption('Delete')
                ->class('bg-red-600 cursor-pointer text-white px-2 py-1 m-1 rounded text-sm')
                ->route('users.destroy', ['user' => 'id'])
-               
+
                ->method('delete')
                ->can(auth()->user()->can('manage.users')),
             */

@@ -8,8 +8,11 @@ use Livewire\Component;
 class LikeButton extends Component
 {
     public Post $post;
+
     public int $count;
+
     public $user;
+
     public bool $liked;
 
     public function mount(Post $post)
@@ -17,9 +20,7 @@ class LikeButton extends Component
         $this->post = $post;
         $this->user = auth()->user();
         $this->count = $this->post->likers()->count();
-        $this->liked = $this->user
-            ? $this->post->isLikedBy($this->user)
-            : false;
+        $this->liked = $this->user ? $this->post->isLikedBy($this->user) : false;
     }
 
     public function like()

@@ -246,7 +246,7 @@ return [
     /*
      * Text to place in the "Introduction" section, right after the `description`. Markdown and HTML are supported.
      */
-    'intro_text' => <<<INTRO
+    'intro_text' => <<<'INTRO'
 This documentation aims to provide all the information you need to work with our API. This API only provides access to the functionallityt built into the website.
 
 This API is a work in progress and is subject to change. 
@@ -335,10 +335,7 @@ INTRO
             Strategies\QueryParameters\GetFromInlineValidator::class,
             Strategies\QueryParameters\GetFromQueryParamTag::class,
         ],
-        'headers' => [
-            Strategies\Headers\GetFromRouteRules::class,
-            Strategies\Headers\GetFromHeaderTag::class,
-        ],
+        'headers' => [Strategies\Headers\GetFromRouteRules::class, Strategies\Headers\GetFromHeaderTag::class],
         'bodyParameters' => [
             Strategies\BodyParameters\GetFromFormRequest::class,
             Strategies\BodyParameters\GetFromInlineValidator::class,
@@ -351,9 +348,7 @@ INTRO
             Strategies\Responses\UseResponseFileTag::class,
             Strategies\Responses\ResponseCalls::class,
         ],
-        'responseFields' => [
-            Strategies\ResponseFields\GetFromResponseFieldTag::class,
-        ],
+        'responseFields' => [Strategies\ResponseFields\GetFromResponseFieldTag::class],
     ],
 
     'fractal' => [

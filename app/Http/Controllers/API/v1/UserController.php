@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\API\v1;
 
-use App\Models\User;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\API\v1\UserResource;
+use App\Models\User;
+use Illuminate\Http\Request;
 
 /**
  * @group User
@@ -78,11 +78,8 @@ class UserController extends Controller
                 'error' => 'Token does not have access!',
             ]);
         }
-        $user = User::with([
-            'roles.permissions',
-            'gamejolt',
-            'forum',
-        ])->findOrFail($id);
+        $user = User::with(['roles.permissions', 'gamejolt', 'forum'])->findOrFail($id);
+
         return new UserResource($user);
     }
 }

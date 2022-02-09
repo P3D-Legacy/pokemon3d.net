@@ -30,6 +30,7 @@ class ResourceController extends Controller
     public function create()
     {
         $categories = Category::all();
+
         return view('resources.create', [
             'categories' => $categories,
         ]);
@@ -58,6 +59,7 @@ class ResourceController extends Controller
         ]);
         $category = Category::find($request->category);
         $resource->attachCategory($category);
+
         return redirect()->route('resource.show', ['resource' => $resource]);
     }
 
@@ -72,6 +74,7 @@ class ResourceController extends Controller
         views($resource)
             ->cooldown(60)
             ->record();
+
         return view('resources.show', [
             'resource' => $resource,
         ]);

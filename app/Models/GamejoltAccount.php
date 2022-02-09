@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use betterapp\LaravelDbEncrypter\Traits\EncryptableDbAttribute;
 use GoldSpecDigital\LaravelEloquentUUID\Database\Eloquent\Uuid;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class GamejoltAccount extends Model
 {
@@ -78,6 +78,7 @@ class GamejoltAccount extends Model
     public function touchVerify()
     {
         $this->verified_at = $this->freshTimestamp();
+
         return $this->save();
     }
 
@@ -110,11 +111,7 @@ class GamejoltAccount extends Model
      */
     public function bans()
     {
-        return $this->hasMany(
-            GamejoltAccountBan::class,
-            'gamejoltaccount_id',
-            'id'
-        );
+        return $this->hasMany(GamejoltAccountBan::class, 'gamejoltaccount_id', 'id');
     }
 
     /**
@@ -122,10 +119,6 @@ class GamejoltAccount extends Model
      */
     public function trophies()
     {
-        return $this->hasMany(
-            GamejoltAccountTrophy::class,
-            'gamejolt_account_id',
-            'id'
-        )->orderBy('title', 'asc');
+        return $this->hasMany(GamejoltAccountTrophy::class, 'gamejolt_account_id', 'id')->orderBy('title', 'asc');
     }
 }

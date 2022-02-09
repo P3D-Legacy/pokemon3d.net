@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\View\Components;
 
-use Illuminate\View\Component;
 use Illuminate\Contracts\View\View;
+use Illuminate\View\Component;
 
 class EasyMdeEditor extends Component
 {
@@ -20,11 +20,8 @@ class EasyMdeEditor extends Component
 
     protected static $assets = ['alpine', 'easy-mde'];
 
-    public function __construct(
-        string $name,
-        string $id = null,
-        array $options = []
-    ) {
+    public function __construct(string $name, string $id = null, array $options = [])
+    {
         $this->name = $name;
         $this->id = $id ?? $name;
         $this->options = $options;

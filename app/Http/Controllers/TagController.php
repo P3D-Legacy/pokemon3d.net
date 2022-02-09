@@ -2,20 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Spatie\Tags\Tag;
 use Illuminate\Http\Request;
+use Spatie\Tags\Tag;
 
 class TagController extends Controller
 {
     public function __construct()
     {
-        $this->middleware([
-            'permission:tags.create|tags.update|tags.destroy',
-        ])->only(['index']);
-        $this->middleware(['permission:tags.create'])->only([
-            'create',
-            'store',
-        ]);
+        $this->middleware(['permission:tags.create|tags.update|tags.destroy'])->only(['index']);
+        $this->middleware(['permission:tags.create'])->only(['create', 'store']);
         $this->middleware(['permission:tags.update'])->only(['update', 'edit']);
         $this->middleware(['permission:tags.destroy'])->only(['destroy']);
     }
@@ -28,6 +23,7 @@ class TagController extends Controller
     public function index()
     {
         $tags = Tag::orderBy('created_at', 'desc')->paginate(10);
+
         return view('tag.index', compact('tags'));
     }
 
@@ -55,6 +51,7 @@ class TagController extends Controller
         Tag::create($validatedData);
         session()->flash('flash.banner', 'Created Tag!');
         session()->flash('flash.bannerStyle', 'success');
+
         return redirect()->route('tags.index');
     }
 
@@ -95,6 +92,7 @@ class TagController extends Controller
         $tag->update($validatedData);
         session()->flash('flash.banner', 'Updated Tag!');
         session()->flash('flash.bannerStyle', 'success');
+
         return redirect()->route('tags.index');
     }
 
@@ -109,6 +107,7 @@ class TagController extends Controller
         $tag->delete();
         session()->flash('flash.banner', 'Deleted Tag!');
         session()->flash('flash.bannerStyle', 'success');
+
         return redirect()->route('tags.index');
     }
 }

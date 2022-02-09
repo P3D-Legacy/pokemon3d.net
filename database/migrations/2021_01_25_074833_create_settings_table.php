@@ -5,8 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Config;
 
-class CreateSettingsTable extends Migration
-{
+return new class extends Migration {
     public function __construct()
     {
         if (version_compare(Application::VERSION, '5.0', '>=')) {
@@ -16,9 +15,7 @@ class CreateSettingsTable extends Migration
         } else {
             $this->tablename = Config::get('anlutro/l4-settings::table');
             $this->keyColumn = Config::get('anlutro/l4-settings::keyColumn');
-            $this->valueColumn = Config::get(
-                'anlutro/l4-settings::valueColumn'
-            );
+            $this->valueColumn = Config::get('anlutro/l4-settings::valueColumn');
         }
     }
 
@@ -45,4 +42,4 @@ class CreateSettingsTable extends Migration
     {
         Schema::drop($this->tablename);
     }
-}
+};

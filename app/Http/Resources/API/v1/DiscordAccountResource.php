@@ -35,6 +35,7 @@ class DiscordAccountResource extends JsonResource
                 'verified_at' => $this->verified_at,
             ];
         }
+
         return [
             'id' => $this->id,
         ];

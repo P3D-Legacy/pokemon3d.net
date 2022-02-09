@@ -2,12 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Support\Str;
-use Illuminate\Database\Eloquent\Model;
-use Overtrue\LaravelLike\Traits\Likeable;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use GoldSpecDigital\LaravelEloquentUUID\Database\Eloquent\Uuid;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Str;
+use Overtrue\LaravelLike\Traits\Likeable;
 
 class Server extends Model
 {
@@ -54,15 +54,7 @@ class Server extends Model
      *
      * @var array
      */
-    protected $fillable = [
-        'name',
-        'description',
-        'host',
-        'port',
-        'active',
-        'last_check_at',
-        'user_id',
-    ];
+    protected $fillable = ['name', 'description', 'host', 'port', 'active', 'last_check_at', 'user_id'];
 
     /**
      * The attributes that should be cast to native types.

@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Skin;
 
-use Carbon\Carbon;
+use App\Http\Controllers\Controller;
 use App\Models\Skin;
 use ByteUnits\Binary;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use League\Flysystem\FileNotFoundException;
@@ -29,6 +29,7 @@ class SkinController extends Controller
             ->isPublic()
             ->first();
         abort_unless($skin, 404);
+
         return view('skin.show')->with('skin', $skin);
     }
 
@@ -42,6 +43,7 @@ class SkinController extends Controller
         $skins = Skin::isPublic()
             ->orderBy('created_at', 'DESC')
             ->paginate(9);
+
         return view('skin.public.newest')->with('skins', $skins);
     }
 
@@ -56,6 +58,7 @@ class SkinController extends Controller
             ->withCount('likers')
             ->orderBy('likers_count', 'desc')
             ->paginate(9);
+
         return view('skin.public.popular')->with('skins', $skins);
     }
 
@@ -72,11 +75,9 @@ class SkinController extends Controller
         if ($skincount >= env('SKIN_MAX_UPLOAD')) {
             return redirect()
                 ->route('skins-my')
-                ->with(
-                    'warning',
-                    'You have reached the maximum amount of skins you can upload.'
-                );
+                ->with('warning', 'You have reached the maximum amount of skins you can upload.');
         }
+
         return view('skin.create');
     }
 
@@ -99,20 +100,11 @@ class SkinController extends Controller
         if ($skincount >= env('SKIN_MAX_UPLOAD')) {
             return redirect()
                 ->route('skins-my')
-                ->with(
-                    'warning',
-                    'You have reached the maximum amount of skins you can upload.'
-                );
+                ->with('warning', 'You have reached the maximum amount of skins you can upload.');
         }
 
         $request->validate([
-            'image' => [
-                'required',
-                'image',
-                'max:2000',
-                'mimes:png',
-                'dimensions:ratio=3/4',
-            ], // 2MB
+            'image' => ['required', 'image', 'max:2000', 'mimes:png', 'dimensions:ratio=3/4'], // 2MB
             'name' => ['required', 'string', 'max:48'],
             'public' => [''],
             'rules' => ['accepted'],
@@ -151,10 +143,7 @@ class SkinController extends Controller
                             'title' => $name, // Embed Title
                             'type' => 'rich', // Embed Type
                             'description' =>
-                                'File size: ' .
-                                Binary::bytes(
-                                    Storage::disk('skin')->size($skin->path())
-                                )->format(), // Embed Description
+                                'File size: ' . Binary::bytes(Storage::disk('skin')->size($skin->path()))->format(), // Embed Description
                             'url' => route('skin-show', $skin->uuid), // URL of title link
                             'timestamp' => Carbon::now()->toIso8601String(), // Timestamp of embed must be formatted as ISO8601
                             'color' => hexdec('198754'), // Embed left border color in HEX
@@ -177,9 +166,7 @@ class SkinController extends Controller
                 JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE
             );
             $ch = curl_init($webhookurl);
-            curl_setopt($ch, CURLOPT_HTTPHEADER, [
-                'Content-type: application/json',
-            ]);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-type: application/json']);
             curl_setopt($ch, CURLOPT_POST, 1);
             curl_setopt($ch, CURLOPT_POSTFIELDS, $json_data);
             curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
@@ -196,10 +183,7 @@ class SkinController extends Controller
 
         return redirect()
             ->route('skins-my')
-            ->with(
-                'success',
-                'Skin was successfully uploaded! Not seeing it? Refresh the page again.'
-            );
+            ->with('success', 'Skin was successfully uploaded! Not seeing it? Refresh the page again.');
     }
 
     /**
@@ -214,21 +198,16 @@ class SkinController extends Controller
         $filename = $gjid . '.png';
         $skin = Skin::where('uuid', $uuid)->first();
         try {
-            Storage::disk('player')->put(
-                $filename,
-                Storage::disk('skin')->get($skin->path())
-            );
+            Storage::disk('player')->put($filename, Storage::disk('skin')->get($skin->path()));
         } catch (FileNotFoundException $e) {
             return redirect()
                 ->route('skins-my')
                 ->with('warning', 'Could not apply skin.');
         }
+
         return redirect()
             ->route('skin-home')
-            ->with(
-                'success',
-                'Skin was applied! Not seeing it? Refresh the page again.'
-            );
+            ->with('success', 'Skin was applied! Not seeing it? Refresh the page again.');
     }
 
     /**
@@ -245,6 +224,7 @@ class SkinController extends Controller
         if ($user->gamejolt->id != $skin->owner_id) {
             $user->toggleLike($skin);
         }
+
         return redirect()->back();
     }
 
@@ -252,7 +232,7 @@ class SkinController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  str  $uuid
+     * @param  string  $uuid
      * @return \Illuminate\Http\Response
      */
     public function edit(Request $request, $uuid)
@@ -264,6 +244,7 @@ class SkinController extends Controller
                 ->route('skins')
                 ->with('error', 'You do not own this skin!');
         }
+
         return view('skin.edit')->with('skin', $skin);
     }
 
@@ -324,6 +305,7 @@ class SkinController extends Controller
         }
         Storage::disk('skin')->delete($filename);
         $skin->delete();
+
         return redirect()
             ->route('skins-my')
             ->with('success', 'Skin was successfully deleted!');

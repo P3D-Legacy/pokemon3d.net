@@ -2,13 +2,15 @@
 
 namespace App\Http\Livewire\Profile;
 
-use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Component;
 
 class TwitterAccount extends Component
 {
     public $username;
+
     public $name;
+
     public $avatar;
 
     public function mount()
@@ -17,12 +19,8 @@ class TwitterAccount extends Component
         $this->username = $user->twitter ? $user->twitter->username : null;
         $this->name = $user->twitter ? $user->twitter->name : null;
         $this->avatar = $user->twitter ? $user->twitter->avatar : null;
-        $this->updated_at = $user->twitter
-            ? $user->twitter->updated_at->diffForHumans()
-            : null;
-        $this->verified_at = $user->twitter
-            ? $user->twitter->verified_at->diffForHumans()
-            : null;
+        $this->updated_at = $user->twitter ? $user->twitter->updated_at->diffForHumans() : null;
+        $this->verified_at = $user->twitter ? $user->twitter->verified_at->diffForHumans() : null;
     }
 
     /**
@@ -47,8 +45,6 @@ class TwitterAccount extends Component
         }
 
         $this->emit('refresh');
-
-        return;
     }
 
     public function render()

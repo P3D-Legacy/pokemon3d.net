@@ -3,16 +3,19 @@
 namespace App\Http\Livewire\Server;
 
 use App\Models\Server;
-use Livewire\Component;
-use App\Rules\StrNotContain;
 use App\Rules\IPHostnameARecord;
+use App\Rules\StrNotContain;
 use Illuminate\Support\Facades\Artisan;
+use Livewire\Component;
 
 class ServerCreateForm extends Component
 {
     public $name;
+
     public $host;
+
     public $port;
+
     public $description;
 
     /**
@@ -27,11 +30,7 @@ class ServerCreateForm extends Component
 
         $this->validate([
             'name' => ['required', 'string', new StrNotContain('official')],
-            'host' => [
-                'required',
-                new StrNotContain('pokemon3d.net'),
-                new IPHostnameARecord(),
-            ],
+            'host' => ['required', new StrNotContain('pokemon3d.net'), new IPHostnameARecord()],
             'port' => ['required', 'integer', 'min:10', 'max:99999'],
             'description' => ['nullable', 'string'],
         ]);
@@ -44,6 +43,7 @@ class ServerCreateForm extends Component
             'user_id' => auth()->user()->id,
         ]);
         $this->emit('serverUpdated');
+
         return redirect()->route('server.index');
     }
 

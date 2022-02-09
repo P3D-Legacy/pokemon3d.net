@@ -8,12 +8,14 @@ use RestCord\DiscordClient;
 class StatsHelper
 {
     const METHOD_GET = 'get';
+
     const METHOD_POST = 'post';
 
     public static function countForumMembers()
     {
         try {
             $count = XenForoHelper::getUserCount();
+
             return $count;
         } catch (\Exception $exception) {
             return 0;
@@ -24,6 +26,7 @@ class StatsHelper
     {
         try {
             $data = self::sendRequest('/server/status');
+
             return count($data['players']);
         } catch (\Exception $exception) {
             return 0;
@@ -34,7 +37,7 @@ class StatsHelper
     {
         $season = date('W') % 4;
         $seasonName = 'spring';
-        #echo "Season (WOY % 4): " . $season;
+        //echo "Season (WOY % 4): " . $season;
         if ($season == 0) {
             $seasonName = 'fall';
         } elseif ($season == 1) {
@@ -44,14 +47,12 @@ class StatsHelper
         } elseif ($season == 3) {
             $seasonName = 'summer';
         }
+
         return $seasonName;
     }
 
-    public static function sendRequest(
-        $endpoint,
-        $data = [],
-        $method = self::METHOD_GET
-    ) {
+    public static function sendRequest($endpoint, $data = [], $method = self::METHOD_GET)
+    {
         if (config('gameserver.base_url') == null) {
             return ['errors' => []];
         }
@@ -63,6 +64,7 @@ class StatsHelper
         $url = config('gameserver.base_url') . $endpoint;
         $response = Http::withHeaders([])->$method($url, $data);
         $decodedResponse = json_decode($response, true);
+
         return $decodedResponse;
     }
 }

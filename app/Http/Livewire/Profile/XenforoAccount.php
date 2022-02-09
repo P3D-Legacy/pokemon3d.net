@@ -2,17 +2,20 @@
 
 namespace App\Http\Livewire\Profile;
 
-use Carbon\Carbon;
-use Livewire\Component;
 use App\Helpers\XenForoHelper;
-use Illuminate\Validation\Rule;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
+use Livewire\Component;
 
 class XenforoAccount extends Component
 {
     public $username;
+
     public $password;
+
     public $updated_at;
+
     public $verified_at;
 
     public function mount()
@@ -20,12 +23,8 @@ class XenforoAccount extends Component
         $user = Auth::user();
         $this->username = $user->forum ? $user->forum->username : null;
         $this->password = $user->forum ? $user->forum->password : null;
-        $this->updated_at = $user->forum
-            ? $user->forum->updated_at->diffForHumans()
-            : null;
-        $this->verified_at = $user->forum
-            ? $user->forum->verified_at->diffForHumans()
-            : null;
+        $this->updated_at = $user->forum ? $user->forum->updated_at->diffForHumans() : null;
+        $this->verified_at = $user->forum ? $user->forum->verified_at->diffForHumans() : null;
     }
 
     /**
@@ -41,21 +40,16 @@ class XenforoAccount extends Component
         $user = Auth::user();
 
         $this->validate([
-            'username' => [
-                'nullable',
-                Rule::unique('forum_accounts')->ignore($user->id, 'user_id'),
-            ],
+            'username' => ['nullable', Rule::unique('forum_accounts')->ignore($user->id, 'user_id')],
             'password' => ['nullable'],
         ]);
 
         if (!$this->username && !$this->password) {
-            $this->errorBag->add(
-                'success',
-                'Your forum account has now been unlinked.'
-            );
+            $this->errorBag->add('success', 'Your forum account has now been unlinked.');
             Auth::user()->forum->delete();
             $this->updated_at = null;
             $this->verified_at = null;
+
             return;
         }
 
@@ -63,6 +57,7 @@ class XenforoAccount extends Component
 
         if (isset($auth['error'])) {
             $this->addError('error', $auth['message']);
+
             return;
         }
 
@@ -89,8 +84,6 @@ class XenforoAccount extends Component
         $this->verified_at = $forum->verified_at->diffForHumans();
 
         $this->emit('saved');
-
-        return;
     }
 
     public function render()

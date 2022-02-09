@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Models\DiscordAccount;
+use App\Achievements\User\AssociatedDiscord;
 use App\Http\Controllers\Controller;
+use App\Models\DiscordAccount;
+use GuzzleHttp\Exception\ClientException;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
-use GuzzleHttp\Exception\ClientException;
-use App\Achievements\User\AssociatedDiscord;
 use Laravel\Socialite\Two\InvalidStateException;
 
 class DiscordController extends Controller
@@ -47,16 +47,11 @@ class DiscordController extends Controller
             ];
 
             // Check if user exists with email
-            $discordAccount = DiscordAccount::where(
-                'id',
-                $discordUser->id
-            )->first();
+            $discordAccount = DiscordAccount::where('id', $discordUser->id)->first();
             if (!$discordAccount && auth()->guest()) {
                 return redirect()
                     ->route('login')
-                    ->withError(
-                        'Discord account association not found with any P3D account.'
-                    );
+                    ->withError('Discord account association not found with any P3D account.');
             }
 
             $user = $discordAccount ? $discordAccount->user : null;
@@ -65,25 +60,22 @@ class DiscordController extends Controller
                 if (auth()->user()->id !== $user->id) {
                     request()
                         ->session()
-                        ->flash(
-                            'flash.banner',
-                            'This Discord account is associated with another P3D account.'
-                        );
+                        ->flash('flash.banner', 'This Discord account is associated with another P3D account.');
                     request()
                         ->session()
                         ->flash('flash.bannerStyle', 'warning');
+
                     return redirect()->route('profile.show');
                 }
                 Auth::login($user);
+
                 return redirect()->route('dashboard');
             }
 
             if (auth()->guest() && !$user) {
                 return redirect()
                     ->route('login')
-                    ->withError(
-                        'You are not logged in and user was not found.'
-                    );
+                    ->withError('You are not logged in and user was not found.');
             }
 
             // Create new discord account
@@ -92,19 +84,16 @@ class DiscordController extends Controller
             $userProfile['verified_at'] = now();
             DiscordAccount::create($userProfile);
             $user->unlock(new AssociatedDiscord());
+
             return redirect()->route('profile.show');
         } catch (InvalidStateException $e) {
             return redirect()
                 ->route('home')
-                ->withError(
-                    'Something went wrong with Discord login. Please try again.'
-                );
+                ->withError('Something went wrong with Discord login. Please try again.');
         } catch (ClientException $e) {
             return redirect()
                 ->route('home')
-                ->withError(
-                    'Something went wrong with Discord login. Please try again.'
-                );
+                ->withError('Something went wrong with Discord login. Please try again.');
         }
 
         return redirect()->route('dashboard');

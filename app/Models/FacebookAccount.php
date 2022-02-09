@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
+use GoldSpecDigital\LaravelEloquentUUID\Database\Eloquent\Uuid;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use GoldSpecDigital\LaravelEloquentUUID\Database\Eloquent\Uuid;
 
 class FacebookAccount extends Model
 {
@@ -41,14 +41,7 @@ class FacebookAccount extends Model
      *
      * @var array
      */
-    protected $fillable = [
-        'id',
-        'name',
-        'email',
-        'avatar',
-        'verified_at',
-        'user_id',
-    ];
+    protected $fillable = ['id', 'name', 'email', 'avatar', 'verified_at', 'user_id'];
 
     /**
      * The attributes that should be cast to native types.
@@ -69,6 +62,7 @@ class FacebookAccount extends Model
     public function touchVerify()
     {
         $this->verified_at = $this->freshTimestamp();
+
         return $this->save();
     }
 

@@ -28,6 +28,7 @@ class IPHostnameARecord implements Rule
         $ipValid = filter_var($value, FILTER_VALIDATE_IP) !== false;
         $domainValid = filter_var($value, FILTER_VALIDATE_DOMAIN) !== false;
         $aRecord = checkdnsrr($value, 'A');
+
         return $ipValid || ($domainValid && $aRecord) ? true : false;
     }
 

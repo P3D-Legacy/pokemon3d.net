@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateViewsTable extends Migration
+return new class extends Migration
 {
     /**
      * The database schema.
@@ -59,4 +59,4 @@ class CreateViewsTable extends Migration
     {
         Schema::dropIfExists($this->table);
     }
-}
+};

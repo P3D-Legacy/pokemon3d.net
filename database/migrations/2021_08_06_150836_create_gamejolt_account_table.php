@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateGamejoltAccountTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -39,4 +39,4 @@ class CreateGamejoltAccountTable extends Migration
     {
         Schema::drop('game_jolt_accounts');
     }
-}
+};

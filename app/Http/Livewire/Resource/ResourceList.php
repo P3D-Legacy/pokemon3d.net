@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Resource;
 
 use Livewire\Component;
 use App\Models\Resource;
+use AliBayat\LaravelCategorizable\Category;
 
 class ResourceList extends Component
 {
@@ -15,12 +16,22 @@ class ResourceList extends Component
 
     public function mount()
     {
-        $this->resources = Resource::orderBy('created_at', 'desc')->get();
+        if (request()->is('resource/category/*')) {
+            $this->resources = Category::findByName(request()->segment(3))
+                ->entries(Resource::class)->get();
+        } else {
+            $this->resources = Resource::all();
+        }
     }
 
     public function update()
     {
-        $this->resources = Resource::orderBy('created_at', 'desc')->get();
+        if (request()->is('resource/category/*')) {
+            $this->resources = Category::findByName(request()->segment(3))
+                ->entries(Resource::class)->get();
+        } else {
+            $this->resources = Resource::all();
+        }
     }
 
     public function render()

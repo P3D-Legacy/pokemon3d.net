@@ -143,7 +143,7 @@
             </h3>
         </div>
         <div class="flex flex-col w-full divide-y divide dark:divide-gray-700">
-            @foreach ($resource->reviews as $review)
+            @forelse ($resource->reviews as $review)
                 <div class="flex items-center w-full p-4">
                     <div class="flex flex-col items-center justify-center w-10 h-10 mr-4">
                         <img alt="{{ $review->author->username }}" src="{{ $review->author->profile_photo_url ?? asset('img/TreeLogoSmall.png') }}" class="object-cover w-10 h-10 mx-auto rounded-full "/>
@@ -160,7 +160,13 @@
                         </div>
                     </div>
                 </div>
-            @endforeach
+                @empty
+                <div class="flex items-center justify-center w-full p-4">
+                    <div class="text-center dark:text-gray-400">
+                        {{ __('No reviews found.') }}
+                    </div>
+                </div>
+            @endforelse
         </div>
     </div>
 </div>

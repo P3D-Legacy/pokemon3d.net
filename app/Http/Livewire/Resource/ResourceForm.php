@@ -7,7 +7,7 @@ use App\Rules\StrNotContain;
 use LivewireUI\Modal\ModalComponent;
 use AliBayat\LaravelCategorizable\Category;
 
-class ResourceEdit extends ModalComponent
+class ResourceForm extends ModalComponent
 {
     public int|Resource $resource;
     public $categories;
@@ -51,6 +51,6 @@ class ResourceEdit extends ModalComponent
 
     public function render()
     {
-        return view('livewire.resource.resource-edit');
+        return view('livewire.resource.resource-form');
     }
 }

@@ -7,24 +7,24 @@ use AliBayat\LaravelCategorizable\Category;
 
 class CategoryCreate extends ModalComponent
 {
-    public $name;
+
+    public int|Category $category;
+
+    protected array $rules = [
+        'category.name' => 'required|min:3|max:255|unique:categories,name',
+    ];
+
+    public function mount(int|Category $category = null)
+    {
+        $this->category = $category ? Category::find($category) : new Category;
+    }
 
     public function save()
     {
-        $this->validate([
-            'name' => 'required|min:3|max:255',
-        ]);
+        $this->validate();
 
-        $isFound = Category::where('name', $this->name)->first();
-
-        if ($isFound) {
-            $this->addError('name', 'Category already exists.');
-        } else {
-            Category::create([
-                'name' => $this->name,
-            ]);
-            $this->closeModal();
-        }
+        $this->category->save();
+        $this->closeModal();
 
         $this->emit('categoryAdded');
     }

@@ -1,12 +1,12 @@
 <x-modal>
     <x-slot name="title">
-        Create Category
+        Category
     </x-slot>
 
     <x-slot name="content">
-        <x-jet-label for="name" value="{{ __('Name') }}" />
-        <x-jet-input id="name" type="text" class="block w-full mt-1" wire:model.defer="name" autocomplete="name" />
-        <x-jet-input-error for="name" class="mt-2" />
+        <x-jet-label for="category.name" value="{{ __('Name') }}" />
+        <x-jet-input id="category.name" type="text" class="block w-full mt-1" wire:model.defer="category.name" autocomplete="name" />
+        <x-jet-input-error for="category.name" class="mt-2" />
     </x-slot>
 
     <x-slot name="buttons">

@@ -41,12 +41,7 @@ class GamejoltAccountBan extends Model
      *
      * @var array
      */
-    protected $fillable = [
-        'gamejoltaccount_id',
-        'banned_by_id',
-        'reason_id',
-        'expire_at',
-    ];
+    protected $fillable = ['gamejoltaccount_id', 'banned_by_id', 'reason_id', 'expire_at'];
 
     /**
      * The attributes that should be cast to native types.
@@ -62,11 +57,7 @@ class GamejoltAccountBan extends Model
      */
     public function gamejoltaccount()
     {
-        return $this->hasOne(
-            GamejoltAccount::class,
-            'id',
-            'gamejoltaccount_id'
-        );
+        return $this->hasOne(GamejoltAccount::class, 'id', 'gamejoltaccount_id');
     }
 
     /**

@@ -335,10 +335,7 @@ INTRO
             Strategies\QueryParameters\GetFromInlineValidator::class,
             Strategies\QueryParameters\GetFromQueryParamTag::class,
         ],
-        'headers' => [
-            Strategies\Headers\GetFromRouteRules::class,
-            Strategies\Headers\GetFromHeaderTag::class,
-        ],
+        'headers' => [Strategies\Headers\GetFromRouteRules::class, Strategies\Headers\GetFromHeaderTag::class],
         'bodyParameters' => [
             Strategies\BodyParameters\GetFromFormRequest::class,
             Strategies\BodyParameters\GetFromInlineValidator::class,
@@ -351,9 +348,7 @@ INTRO
             Strategies\Responses\UseResponseFileTag::class,
             Strategies\Responses\ResponseCalls::class,
         ],
-        'responseFields' => [
-            Strategies\ResponseFields\GetFromResponseFieldTag::class,
-        ],
+        'responseFields' => [Strategies\ResponseFields\GetFromResponseFieldTag::class],
     ],
 
     'fractal' => [

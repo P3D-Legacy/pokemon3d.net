@@ -22,9 +22,7 @@ class GamejoltAccountBanResource extends JsonResource
             return [
                 'id' => $this->id,
                 'uuid' => $this->uuid,
-                'gamejoltaccount' => new GamejoltAccountResource(
-                    $this->gamejoltaccount
-                ),
+                'gamejoltaccount' => new GamejoltAccountResource($this->gamejoltaccount),
                 'reason' => new BanReasonResource($this->reason),
                 'banned_by' => new UserResource($this->banned_by),
                 'updated_at' => $this->updated_at,
@@ -34,17 +32,13 @@ class GamejoltAccountBanResource extends JsonResource
         if ($request->user()->can('api.minimal')) {
             return [
                 'uuid' => $this->uuid,
-                'gamejoltaccount' => new GamejoltAccountResource(
-                    $this->gamejoltaccount
-                ),
+                'gamejoltaccount' => new GamejoltAccountResource($this->gamejoltaccount),
                 'reason' => new BanReasonResource($this->reason),
                 'expire_at' => $this->expire_at,
             ];
         }
         return [
-            'gamejoltaccount' => new GamejoltAccountResource(
-                $this->gamejoltaccount
-            ),
+            'gamejoltaccount' => new GamejoltAccountResource($this->gamejoltaccount),
             'reason' => new BanReasonResource($this->reason),
         ];
     }

@@ -15,16 +15,10 @@ class DiscordAccount extends Component
     {
         $user = Auth::user();
         $this->username = $user->discord ? $user->discord->username : null;
-        $this->discriminator = $user->discord
-            ? $user->discord->discriminator
-            : null;
+        $this->discriminator = $user->discord ? $user->discord->discriminator : null;
         $this->avatar = $user->discord ? $user->discord->avatar : null;
-        $this->updated_at = $user->discord
-            ? $user->discord->updated_at->diffForHumans()
-            : null;
-        $this->verified_at = $user->discord
-            ? $user->discord->verified_at->diffForHumans()
-            : null;
+        $this->updated_at = $user->discord ? $user->discord->updated_at->diffForHumans() : null;
+        $this->verified_at = $user->discord ? $user->discord->verified_at->diffForHumans() : null;
     }
 
     /**

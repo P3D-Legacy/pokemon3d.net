@@ -42,24 +42,12 @@ class UpdateGamejoltAccountTrophies extends Command
      */
     public function handle()
     {
-        $api = new GamejoltApi(
-            new GamejoltConfig(
-                env('GAMEJOLT_GAME_ID'),
-                env('GAMEJOLT_GAME_PRIVATE_KEY')
-            )
-        );
+        $api = new GamejoltApi(new GamejoltConfig(env('GAMEJOLT_GAME_ID'), env('GAMEJOLT_GAME_PRIVATE_KEY')));
         $accounts = GamejoltAccount::all();
         foreach ($accounts as $account) {
             try {
-                $trophies = $api
-                    ->trophies()
-                    ->fetch($account->username, $account->token);
-                if (
-                    filter_var(
-                        $trophies['response']['success'],
-                        FILTER_VALIDATE_BOOLEAN
-                    ) === false
-                ) {
+                $trophies = $api->trophies()->fetch($account->username, $account->token);
+                if (filter_var($trophies['response']['success'], FILTER_VALIDATE_BOOLEAN) === false) {
                     $this->error("No success for {$account->username}");
                     return;
                 }
@@ -77,10 +65,7 @@ class UpdateGamejoltAccountTrophies extends Command
                             'difficulty' => $trophy['difficulty'],
                             'description' => $trophy['description'],
                             'image_url' => $trophy['image_url'],
-                            'achieved' => filter_var(
-                                $trophy['achieved'],
-                                FILTER_VALIDATE_BOOLEAN
-                            ),
+                            'achieved' => filter_var($trophy['achieved'], FILTER_VALIDATE_BOOLEAN),
                         ]
                     );
                 }

@@ -12,17 +12,9 @@ class PostController extends Controller
 {
     public function __construct()
     {
-        $this->middleware([
-            'permission:posts.create|posts.update|posts.destroy',
-        ])->only(['index']);
-        $this->middleware(['permission:posts.create'])->only([
-            'create',
-            'store',
-        ]);
-        $this->middleware(['permission:posts.update'])->only([
-            'update',
-            'edit',
-        ]);
+        $this->middleware(['permission:posts.create|posts.update|posts.destroy'])->only(['index']);
+        $this->middleware(['permission:posts.create'])->only(['create', 'store']);
+        $this->middleware(['permission:posts.update'])->only(['update', 'edit']);
         $this->middleware(['permission:posts.destroy'])->only(['destroy']);
     }
 
@@ -111,12 +103,7 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         $request->validate([
-            'title' => [
-                'required',
-                'string',
-                'max:255',
-                Rule::unique('posts')->ignore($post->id),
-            ],
+            'title' => ['required', 'string', 'max:255', Rule::unique('posts')->ignore($post->id)],
             'active' => ['required', 'integer'],
             'sticky' => ['required', 'integer'],
             'published_at' => ['required', 'date_format:Y-m-d H:i:s'],

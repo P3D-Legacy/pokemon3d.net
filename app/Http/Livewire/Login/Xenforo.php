@@ -40,26 +40,17 @@ class Xenforo extends Component
             return;
         }
 
-        $forumaccount = ForumAccount::where(
-            'username',
-            $this->username
-        )->first();
+        $forumaccount = ForumAccount::where('username', $this->username)->first();
 
         if (!$forumaccount) {
-            $this->addError(
-                'error',
-                'This Forum Account is not associated with a P3D account yet.'
-            );
+            $this->addError('error', 'This Forum Account is not associated with a P3D account yet.');
             return;
         }
 
         $user = $forumaccount->user()->first();
 
         if (!$user) {
-            $this->addError(
-                'error',
-                'Could\'t find the user associated with this Forum Account.'
-            );
+            $this->addError('error', 'Could\'t find the user associated with this Forum Account.');
             return;
         }
 

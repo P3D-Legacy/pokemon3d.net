@@ -17,9 +17,7 @@ class LikeButton extends Component
         $this->post = $post;
         $this->user = auth()->user();
         $this->count = $this->post->likers()->count();
-        $this->liked = $this->user
-            ? $this->post->isLikedBy($this->user)
-            : false;
+        $this->liked = $this->user ? $this->post->isLikedBy($this->user) : false;
     }
 
     public function like()

@@ -22,10 +22,7 @@ class GamejoltAdmin
                 ->route('gj-login')
                 ->with('error', 'Gamejolt API keys is not set by the admin!');
         }
-        $user = GJUser::where(
-            'gjid',
-            $request->session()->get('gjid')
-        )->first();
+        $user = GJUser::where('gjid', $request->session()->get('gjid'))->first();
         if ($user) {
             if ($user->is_admin) {
                 return $next($request);

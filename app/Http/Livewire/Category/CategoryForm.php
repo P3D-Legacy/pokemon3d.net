@@ -15,9 +15,7 @@ class CategoryForm extends ModalComponent
 
     public function mount(int|Category $category = null)
     {
-        $this->category = $category
-            ? Category::find($category)
-            : new Category();
+        $this->category = $category ? Category::find($category) : new Category();
     }
 
     public function save()

@@ -102,11 +102,7 @@ class GamejoltAccountController extends Controller
                 'error' => 'Token does not have access!',
             ]);
         }
-        $gja = GamejoltAccount::with([
-            'user.roles.permissions',
-            'bans',
-            'user.discord',
-        ])
+        $gja = GamejoltAccount::with(['user.roles.permissions', 'bans', 'user.discord'])
             ->where('id', $id)
             ->firstOrFail();
         return new GamejoltAccountResource($gja);

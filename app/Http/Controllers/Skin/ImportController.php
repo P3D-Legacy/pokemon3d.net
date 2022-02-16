@@ -30,10 +30,7 @@ class ImportController extends Controller
         if ($skincount >= env('SKIN_MAX_UPLOAD')) {
             return redirect()
                 ->route('skins-my')
-                ->with(
-                    'warning',
-                    'You have reached the maximum amount of skins you can upload.'
-                );
+                ->with('warning', 'You have reached the maximum amount of skins you can upload.');
         }
         $url = 'https://pokemon3d.net/skin/data/' . $id . '.png';
         $valid_types = ['image/png']; // Valid file types
@@ -42,16 +39,9 @@ class ImportController extends Controller
             $response = $client->get($url);
             if (
                 !empty($response->getHeaders()['Content-Type'][0]) &&
-                in_array(
-                    $response->getHeaders()['Content-Type'][0],
-                    $valid_types,
-                    true
-                )
+                in_array($response->getHeaders()['Content-Type'][0], $valid_types, true)
             ) {
-                Storage::disk('player')->put(
-                    $id . '.png',
-                    $response->getBody()->getContents()
-                );
+                Storage::disk('player')->put($id . '.png', $response->getBody()->getContents());
             } else {
                 return redirect()
                     ->route('skin-home')

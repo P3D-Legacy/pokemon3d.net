@@ -20,10 +20,7 @@ class UpdateLastActiveAt
             return $next($request);
         }
 
-        if (
-            !$request->user()->last_active_at ||
-            $request->user()->last_active_at->isPast()
-        ) {
+        if (!$request->user()->last_active_at || $request->user()->last_active_at->isPast()) {
             $request->user()->update([
                 'last_active_at' => now(),
             ]);

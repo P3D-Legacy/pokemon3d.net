@@ -110,11 +110,7 @@ class GamejoltAccount extends Model
      */
     public function bans()
     {
-        return $this->hasMany(
-            GamejoltAccountBan::class,
-            'gamejoltaccount_id',
-            'id'
-        );
+        return $this->hasMany(GamejoltAccountBan::class, 'gamejoltaccount_id', 'id');
     }
 
     /**
@@ -122,10 +118,6 @@ class GamejoltAccount extends Model
      */
     public function trophies()
     {
-        return $this->hasMany(
-            GamejoltAccountTrophy::class,
-            'gamejolt_account_id',
-            'id'
-        )->orderBy('title', 'asc');
+        return $this->hasMany(GamejoltAccountTrophy::class, 'gamejolt_account_id', 'id')->orderBy('title', 'asc');
     }
 }

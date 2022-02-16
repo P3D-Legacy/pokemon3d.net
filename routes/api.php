@@ -20,10 +20,7 @@ use App\Http\Controllers\API\v1\GamejoltAccountBanController;
 Route::prefix('v1')->group(function () {
     Route::apiResource('user', UserController::class);
     Route::apiResource('gamejoltaccount', GamejoltAccountController::class);
-    Route::apiResource(
-        'ban/gamejoltaccount',
-        GamejoltAccountBanController::class
-    );
+    Route::apiResource('ban/gamejoltaccount', GamejoltAccountBanController::class);
     Route::apiResource('banreason', BanReasonController::class);
     Route::apiResource('discordaccount', DiscordAccountController::class);
 });

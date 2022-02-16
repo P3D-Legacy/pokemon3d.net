@@ -36,10 +36,7 @@ class ResourceShow extends Component
         $update->incrementDownload();
         $mediaItem = $update->getFirstMedia('resource_update_file');
         $this->emit('resourceUpdated', $this->resource->id);
-        return response()->download(
-            $mediaItem->getPath(),
-            $mediaItem->file_name
-        );
+        return response()->download($mediaItem->getPath(), $mediaItem->file_name);
     }
 
     public function render()

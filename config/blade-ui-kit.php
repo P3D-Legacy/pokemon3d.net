@@ -119,9 +119,6 @@ return [
             'https://cdn.jsdelivr.net/npm/pikaday/pikaday.js',
         ],
 
-        'trix' => [
-            'https://unpkg.com/trix@1.2.3/dist/trix.css',
-            'https://unpkg.com/trix@1.2.3/dist/trix.js',
-        ],
+        'trix' => ['https://unpkg.com/trix@1.2.3/dist/trix.css', 'https://unpkg.com/trix@1.2.3/dist/trix.js'],
     ],
 ];

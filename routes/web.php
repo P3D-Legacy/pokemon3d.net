@@ -84,12 +84,8 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
         Route::get('/{uuid}', ResourceShow::class)->name('resource.uuid');
 
         Route::get('/category/{name}', function ($name) {
-            $resources = Category::findByName($name)
-                ->entries(\App\Models\Resource::class)
-                ->paginate(10);
             return view('resources.index', [
                 'categories' => Category::all(),
-                'resources' => $resources,
             ]);
         })->name('resource.category');
     });

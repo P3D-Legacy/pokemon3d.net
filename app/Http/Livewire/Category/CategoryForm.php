@@ -5,7 +5,7 @@ namespace App\Http\Livewire\Category;
 use LivewireUI\Modal\ModalComponent;
 use AliBayat\LaravelCategorizable\Category;
 
-class CategoryCreate extends ModalComponent
+class CategoryForm extends ModalComponent
 {
 
     public int|Category $category;
@@ -31,6 +31,6 @@ class CategoryCreate extends ModalComponent
 
     public function render()
     {
-        return view('livewire.category.category-create');
+        return view('livewire.category.category-form');
     }
 }

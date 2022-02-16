@@ -3,7 +3,6 @@
 namespace App\Http\Livewire\Resource;
 
 use App\Models\Resource;
-use App\Rules\StrNotContain;
 use LivewireUI\Modal\ModalComponent;
 use AliBayat\LaravelCategorizable\Category;
 
@@ -11,38 +10,32 @@ class ResourceForm extends ModalComponent
 {
     public int|Resource $resource;
     public $categories;
-    public $name;
-    public $brief;
-    public $description;
     public $category;
 
-    public function mount(Resource $resource)
+    protected array $rules = [
+        'resource.name' => 'required|min:3|max:255|unique:resources,name',
+        'resource.description' => 'required|min:3|max:255',
+        'resource.brief' => 'required|min:3|max:255',
+        'category' => 'required|exists:categories,id',
+    ];
+
+    public function mount(int|Resource $resource = null)
     {
-        $this->resource = $resource;
-        $this->name = $this->resource->name;
-        $this->brief = $this->resource->brief;
-        $this->description = $this->resource->description;
-        $this->category = $this->resource->categories->first()->id;
-        $this->category_id = $this->resource->categories->first()->id;
+        $this->resource = $resource ? Resource::find($resource) : new Resource();
+        $this->category = $this->resource->categories->first()->id ?? 0;
         $this->categories = Category::all();
     }
 
     public function save()
     {
-        $this->validate([
-            'name' => ['required', 'string', new StrNotContain('official')],
-            'brief' => ['required', 'string'],
-            'category' => ['required', 'integer'],
-            'description' => ['required', 'string'],
-        ]);
+        $this->validate();
 
-        $this->resource->update([
-            'name' => $this->name,
-            'brief' => $this->brief,
-            'description' => $this->description,
-        ]);
+        $this->resource->save();
+
         $category = Category::find($this->category);
-        $this->resource->syncCategories($category);
+        if ($category) {
+            $this->resource->syncCategories($category);
+        }
 
         $this->emit('resourceUpdated', $this->resource->id);
 

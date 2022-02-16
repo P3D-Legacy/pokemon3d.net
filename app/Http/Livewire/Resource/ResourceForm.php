@@ -37,7 +37,7 @@ class ResourceForm extends ModalComponent
             $this->resource->syncCategories($category);
         }
 
-        $this->emit('resourceUpdated', $this->resource->id);
+        $this->emit('resourceUpdated', $this->resource->uuid);
 
         $this->closeModal();
     }

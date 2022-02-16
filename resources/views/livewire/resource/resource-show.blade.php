@@ -66,7 +66,7 @@
                 <div class="p-4 bg-gray-100 rounded dark:bg-gray-800">
                     <div class="flex flex-row justify-between">
                         <span>Author:</span>
-                        <span>{{ $resource->user->username }}</span>
+                        <span><a href="{{ route('member.show', $resource->user) }}" class="text-green-400 hover:text-green-500 hover:underline">{{ $resource->user->username }}</a></span>
                     </div>
                     <div class="flex flex-row justify-between">
                         <span>Rating:</span>
@@ -146,11 +146,11 @@
             @forelse ($resource->reviews as $review)
                 <div class="flex items-center w-full p-4">
                     <div class="flex flex-col items-center justify-center w-10 h-10 mr-4">
-                        <img alt="{{ $review->author->username }}" src="{{ $review->author->profile_photo_url ?? asset('img/TreeLogoSmall.png') }}" class="object-cover w-10 h-10 mx-auto rounded-full "/>
+                        <a href="{{ route('member.show', $review->author) }}"><img alt="{{ $review->author->username }}" src="{{ $review->author->profile_photo_url ?? asset('img/TreeLogoSmall.png') }}" class="object-cover w-10 h-10 mx-auto rounded-full "/></a>
                     </div>
                     <div class="flex-1 pl-1 mr-16">
                         <div class="text-sm text-gray-400 dark:text-gray-200 flex items-center">
-                            {{ $review->author->username }} &middot; <x-review-stars :stars="$review->rating" /> &middot; {{ $review->created_at->diffForHumans() }}
+                            <a href="{{ route('member.show', $review->author) }}" class="text-green-400 hover:text-green-500 mr-2 hover:underline">{{ $review->author->username }}</a> &middot; <x-review-stars :stars="$review->rating" /> &middot; {{ $review->created_at->diffForHumans() }}
                         </div>
                         <div class="text-xs text-gray-500 truncate dark:text-gray-300">
                             

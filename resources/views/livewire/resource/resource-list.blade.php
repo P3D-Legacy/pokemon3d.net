@@ -1,9 +1,4 @@
 <div class="flex flex-col items-center justify-center w-full mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-900 dark:shadow-gray-700">
-    <div class="w-full px-4 py-5 border-b sm:px-6 dark:border-gray-700">
-        <h3 class="text-lg font-medium leading-6 text-gray-900 dark:text-white">
-            Resources
-        </h3>
-    </div>
     <div class="flex flex-col w-full divide-y divide dark:divide-gray-700">
         @foreach ($resources as $resource)
             <a href="{{ route('resource.uuid', $resource->uuid) }}" class="flex hover:bg-green-400/10">

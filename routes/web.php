@@ -78,7 +78,6 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
         Route::get('/', function () {
             return view('resources.index', [
                 'categories' => Category::all(),
-                'resources' => Resource::orderBy('name')->paginate(10),
             ]);
         })->name('resource.index');
 

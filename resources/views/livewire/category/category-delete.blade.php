@@ -12,7 +12,7 @@
             {{ __('Yes') }}
         </x-jet-danger-button>
         <x-jet-button wire:click="$emit('closeModal')">
-            {{ __('No, i do not') }}
+            {{ __('No, do not delete') }}
         </x-jet-button>
     </x-slot>
 </x-modal>

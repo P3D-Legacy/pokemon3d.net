@@ -82,34 +82,6 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
             ]);
         })->name('resource.index');
 
-        Route::get('/create', function () {
-            $categories = Category::all();
-            return view('resources.create', [
-                'categories' => $categories,
-            ]);
-        })->name('resource.create');
-
-        Route::post('/store', function (Request $request) {
-            $request->validate([
-                'name' => ['required', 'string', new StrNotContain('official')],
-                'brief' => ['required', 'string'],
-                'category' => ['required', 'integer'],
-                'description' => ['required', 'string'],
-            ]);
-
-            $resource = Resource::create([
-                'name' => $request->name,
-                'brief' => $request->brief,
-                'description' => $request->description,
-                'user_id' => auth()->user()->id,
-            ]);
-            $category = Category::find($request->category);
-            $resource->attachCategory($category);
-            return redirect()->route('resource.show', [
-                'resource' => $resource,
-            ]);
-        })->name('resource.store');
-
         Route::get('/{uuid}', ResourceShow::class)->name('resource.uuid');
 
         Route::get('/category/{name}', function ($name) {

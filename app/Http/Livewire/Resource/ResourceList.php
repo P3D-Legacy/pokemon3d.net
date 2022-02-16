@@ -18,7 +18,8 @@ class ResourceList extends Component
     {
         if (request()->is('resource/category/*')) {
             $this->resources = Category::findByName(request()->segment(3))
-                ->entries(Resource::class)->get();
+                ->entries(Resource::class)
+                ->get();
         } else {
             $this->resources = Resource::all();
         }
@@ -28,7 +29,8 @@ class ResourceList extends Component
     {
         if (request()->is('resource/category/*')) {
             $this->resources = Category::findByName(request()->segment(3))
-                ->entries(Resource::class)->get();
+                ->entries(Resource::class)
+                ->get();
         } else {
             $this->resources = Resource::all();
         }

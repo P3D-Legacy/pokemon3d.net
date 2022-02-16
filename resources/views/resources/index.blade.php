@@ -30,7 +30,7 @@
                         <div class="flex flex-col w-full text-gray-900 divide-y divide dark:divide-gray-700 dark:text-white">
                             <a href="{{ route('resource.index') }}" class="px-4 py-3 text-xs hover:bg-black/10 dark:hover:bg-white/10">{{ __('All categories') }}</a>
                             @foreach ($categories as $category)
-                                <a href="{{ route('resource.category', $category->slug) }}" class="px-4 py-3 text-xs hover:bg-black/10 dark:hover:bg-white/10">{{ $category->name }}</a>
+                                <a href="{{ route('resource.category', $category->slug) }}" class="px-4 py-3 text-xs hover:bg-black/10 dark:hover:bg-white/10 {{ $category->slug === request()->segment(3) ? 'bg-green-400/20 font-bold' : '' }}">{{ $category->name }}</a>
                             @endforeach
                         </div>
                     </div>

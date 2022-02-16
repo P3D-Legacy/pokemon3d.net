@@ -7,7 +7,6 @@ use AliBayat\LaravelCategorizable\Category;
 
 class CategoryCreate extends ModalComponent
 {
-
     public int|Category $category;
 
     protected array $rules = [
@@ -16,7 +15,9 @@ class CategoryCreate extends ModalComponent
 
     public function mount(int|Category $category = null)
     {
-        $this->category = $category ? Category::find($category) : new Category;
+        $this->category = $category
+            ? Category::find($category)
+            : new Category();
     }
 
     public function save()

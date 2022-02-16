@@ -86,6 +86,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
         Route::get('/category/{name}', function ($name) {
             return view('resources.index', [
                 'categories' => Category::all(),
+                'category' => Category::findByName($name),
             ]);
         })->name('resource.category');
     });

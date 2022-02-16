@@ -10,7 +10,7 @@
             @if(Request::is('resource/category/*'))
                 @component('components.breadcrumb', ['breadcrumbs' => [
                     ['url' => route('resource.index'), 'label' => 'Resources'],
-                    ['url' => null, 'label' => Str::ucfirst(Request::segment(3))],
+                    ['url' => null, 'label' => $category->name],
                 ]])
                 @endcomponent
             @else

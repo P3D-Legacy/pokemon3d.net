@@ -71,7 +71,7 @@
                     @endforeach
                 </div>
 
-                <article class="mt-8 prose dark:text-gray-100">
+                <article class="mt-8 prose dark:prose-invert dark:text-gray-100 prose-a:text-green-600">
                     @markdown($post->body)
                 </article>
             </div>

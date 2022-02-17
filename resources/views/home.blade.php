@@ -140,9 +140,12 @@
                               </svg>
                         </x-slot>
                     </x-home.nav-link> --}}
-                    <button id="switchTheme2" class="flex items-center justify-center w-10 h-10 text-white dark:text-yellow-500 focus:outline-none">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
+                    <button id="switchTheme2" class="flex items-center justify-center w-10 h-10 text-white focus:outline-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor" id="theme-toggle-light-icon">
                             <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd" />
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="hidden w-5 h-5" viewBox="0 0 20 20" fill="currentColor" id="theme-toggle-dark-icon">
+                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
                         </svg>
                     </button>
                 </ul>
@@ -189,7 +192,7 @@
                 </div>
 
                 <div class="flex flex-col items-center w-1/2 p-4 md:w-auto">
-                    <div class="flex">{{  App\Helpers\NumberHelper::nearestK(\App\Helpers\StatsHelper::countDiscordMembers()) }}</div>
+                    <div class="flex">{{  App\Helpers\NumberHelper::nearestK(\App\Helpers\DiscordHelper::countMembers()) }}</div>
                     <div class="flex text-xl text-gray-600 dark:text-gray-400">Discord Users</div>
                     {{-- TOTAL COUNT DISCORD USERS --}}
                 </div>
@@ -230,6 +233,40 @@
                     </a>
                 </div>
             @endforelse
+        </div>
+    </section>
+
+    <section class="p-8">
+        <div class="container max-w-5xl m-8 mx-auto text-white">
+            <h2 class="w-full my-2 text-3xl font-black leading-tight text-center uppercase">
+                Screenshots
+            </h2>
+            <div class="w-full mb-4">
+                <div class="w-64 h-1 py-0 mx-auto my-0 bg-white rounded-t opacity-25"></div>
+            </div>
+        
+            <div id="carousel" class="relative carousel slide carousel-fade dark:carousel-dark" data-bs-ride="carousel">
+                <div class="relative w-full overflow-hidden shadow-xl rounded-xl shadow-black/50 carousel-inner">
+                    <div class="relative float-left w-full carousel-item active">
+                        <img src="{{ asset('img/carousel/Elms_Lab.png') }}" class="block w-full" alt="" />
+                    </div>
+                    <div class="relative float-left w-full carousel-item">
+                        <img src="{{ asset('img/carousel/Player_House_Bedroom.png') }}" class="block w-full" alt="" />
+                    </div>
+                    <div class="relative float-left w-full carousel-item">
+                        <img src="{{ asset('img/carousel/Player_House_Bedroom2.png') }}" class="block w-full" alt="" />
+                    </div>
+                </div>
+                <button class="absolute top-0 bottom-0 left-0 flex items-center justify-center p-0 text-center border-0 carousel-control-prev hover:outline-none hover:no-underline focus:outline-none focus:no-underline" type="button" data-bs-target="#carousel" data-bs-slide="prev">
+                    <span class="inline-block w-12 h-12 bg-no-repeat carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="absolute top-0 bottom-0 right-0 flex items-center justify-center p-0 text-center border-0 carousel-control-next hover:outline-none hover:no-underline focus:outline-none focus:no-underline" type="button" data-bs-target="#carousel" data-bs-slide="next">
+                    <span class="inline-block w-12 h-12 bg-no-repeat carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+
         </div>
     </section>
 

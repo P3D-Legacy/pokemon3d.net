@@ -14,7 +14,7 @@ class XenForoHelper
 
     public static function sendRequest($endpoint, $data = [], $method = self::METHOD_GET)
     {
-        if(config('xenforo.apikey') == null) {
+        if (config('xenforo.apikey') == null) {
             return ['errors' => []];
         }
         if (is_string($data)) {
@@ -23,7 +23,7 @@ class XenForoHelper
         }
         $url = config('xenforo.base_url') . $endpoint;
         $response = Http::withHeaders([
-            'XF-Api-Key' => config('xenforo.apikey')
+            'XF-Api-Key' => config('xenforo.apikey'),
         ])->$method($url, $data);
         $decodedResponse = json_decode($response, true);
         return $decodedResponse;
@@ -33,7 +33,7 @@ class XenForoHelper
     {
         $data = self::sendRequest('/forums/' . self::NEWS_BOARD_ID . '/threads');
 
-        if(array_key_exists('errors', $data)) {
+        if (array_key_exists('errors', $data)) {
             return ['threads' => []];
         }
         return $data;
@@ -42,7 +42,7 @@ class XenForoHelper
     public static function getUserCount()
     {
         $data = self::sendRequest('/users');
-        if(array_key_exists('errors', $data)) {
+        if (array_key_exists('errors', $data)) {
             throw new \Exception('CAN NOT COUNT USERS!');
         }
         return $data['pagination']['total'];
@@ -52,7 +52,7 @@ class XenForoHelper
     {
         $credentials = [
             'login' => $login,
-            'password' => $password
+            'password' => $password,
         ];
 
         $client = new Client([
@@ -64,17 +64,26 @@ class XenForoHelper
                 'form_params' => $credentials,
                 'headers' => [
                     'XF-Api-Key' => config('xenforo.apikey'),
-                    'Accept' => 'application/json'
-                ]
+                    'Accept' => 'application/json',
+                ],
             ]);
         } catch (ClientException $e) {
-            $data = json_decode($e->getResponse()->getBody()->getContents(), true);
-            return ['error' => true, 'message' => $data['errors'][0]['message']];
+            $data = json_decode(
+                $e
+                    ->getResponse()
+                    ->getBody()
+                    ->getContents(),
+                true
+            );
+            return [
+                'error' => true,
+                'message' => $data['errors'][0]['message'],
+            ];
         }
-        
+
         $data = $response->getBody();
         $data = json_decode($data, true);
-        
+
         return ['success' => true, 'user' => $data['user']];
     }
 }

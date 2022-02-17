@@ -4,16 +4,18 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class nav-dropdown extends Component
+class breadcrumb extends Component
 {
+    public $breadcrumbs;
+
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($breadcrumbs)
     {
-        //
+        $this->breadcrumbs = $breadcrumbs;
     }
 
     /**
@@ -23,6 +25,8 @@ class nav-dropdown extends Component
      */
     public function render()
     {
-        return view('components.nav-dropdown');
+        return view('components.breadcrumb', [
+            'breadcrumbs' => $this->breadcrumbs,
+        ]);
     }
 }

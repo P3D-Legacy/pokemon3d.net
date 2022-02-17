@@ -41,13 +41,8 @@ class GamejoltAccountBan extends Model
      *
      * @var array
      */
-    protected $fillable = [
-        'gamejoltaccount_id',
-        'banned_by_id',
-        'reason_id',
-        'expire_at',
-    ];
-    
+    protected $fillable = ['gamejoltaccount_id', 'banned_by_id', 'reason_id', 'expire_at'];
+
     /**
      * The attributes that should be cast to native types.
      *

@@ -30,7 +30,6 @@ class FacebookController extends Controller
     public function handleProviderCallback()
     {
         try {
-
             $facebookUser = Socialite::driver('facebook')->user();
 
             $userProfile = [
@@ -43,17 +42,30 @@ class FacebookController extends Controller
             // Check if user exists with email
             $facebookAccount = FacebookAccount::where('id', $facebookUser->id)->first();
             if (!$facebookAccount && auth()->guest()) {
-                return redirect()->route('login')->withError('Facebook account association not found with any P3D account.');
+                return redirect()
+                    ->route('login')
+                    ->withError('Facebook account association not found with any P3D account.');
             }
 
             $user = $facebookAccount ? $facebookAccount->user : null;
-            if ($user) {
+            if (auth()->user() && $user) {
+                if (auth()->user()->id !== $user->id) {
+                    request()
+                        ->session()
+                        ->flash('flash.banner', 'This Facebook account is associated with another P3D account.');
+                    request()
+                        ->session()
+                        ->flash('flash.bannerStyle', 'warning');
+                    return redirect()->route('profile.show');
+                }
                 Auth::login($user);
                 return redirect()->route('dashboard');
             }
 
             if (auth()->guest() && !$user) {
-                return redirect()->route('login')->withError('You are not logged in and user was not found.');
+                return redirect()
+                    ->route('login')
+                    ->withError('You are not logged in and user was not found.');
             }
 
             // Create new facebook account
@@ -63,13 +75,15 @@ class FacebookController extends Controller
             FacebookAccount::create($userProfile);
             $user->unlock(new AssociatedFacebook());
             return redirect()->route('profile.show');
-
         } catch (InvalidStateException $e) {
-            return redirect()->route('home')->withError('Something went wrong with Facebook login. Please try again.');
+            return redirect()
+                ->route('home')
+                ->withError('Something went wrong with Facebook login. Please try again.');
         } catch (ClientException $e) {
-            return redirect()->route('home')->withError('Something went wrong with Facebook login. Please try again.');
+            return redirect()
+                ->route('home')
+                ->withError('Something went wrong with Facebook login. Please try again.');
         }
-
 
         return redirect()->route('dashboard');
     }

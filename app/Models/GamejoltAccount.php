@@ -50,13 +50,7 @@ class GamejoltAccount extends Model
      *
      * @var array
      */
-    protected $fillable = [
-        'id',
-        'username',
-        'token',
-        'verified_at',
-        'user_id',
-    ];
+    protected $fillable = ['id', 'username', 'token', 'verified_at', 'user_id'];
 
     /**
      * The attributes that should be cast to native types.
@@ -67,24 +61,19 @@ class GamejoltAccount extends Model
         'verified_at' => 'datetime',
     ];
 
-    /** 
+    /**
      * The attributes that should be encrypted/decrypted
-     * 
+     *
      * @var array
      */
-    protected $encryptable = [
-        'token',
-    ];
+    protected $encryptable = ['token'];
 
-    /** 
+    /**
      * The attributes that should be hidden
-     * 
+     *
      * @var array
      */
-    protected $hidden = [
-        'token',
-        'aid',
-    ];
+    protected $hidden = ['token', 'aid'];
 
     public function touchVerify()
     {

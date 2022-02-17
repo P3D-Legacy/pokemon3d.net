@@ -26,6 +26,8 @@
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.15.3",
         "alpinejs": "^3.1.0",
-        "flatpickr": "^4.6.9"
+        "easymde": "^2.15.0",
+        "flatpickr": "^4.6.9",
+        "tw-elements": "^1.0.0-alpha4"
     }
 }

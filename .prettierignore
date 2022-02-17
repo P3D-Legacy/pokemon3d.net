@@ -1,0 +1,9 @@
+/vendor
+/storage
+/node_modules
+/.github
+/public
+README.md
+CHANGELOG.md
+LICENSE
+phpunit.xml

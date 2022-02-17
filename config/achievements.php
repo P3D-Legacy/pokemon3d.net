@@ -21,7 +21,7 @@ return [
     */
     'table_names' => [
         'details' => 'achievement_details',
-        'progress' => 'achievement_progress'
+        'progress' => 'achievement_progress',
     ],
 
     /*
@@ -63,5 +63,5 @@ return [
     | This will keep your database in sync, but may also increase the amount
     | of database calls.
     */
-    'auto_sync' => false
+    'auto_sync' => false,
 ];

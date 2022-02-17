@@ -16,7 +16,11 @@ class CreateGamejoltAccountTable extends Migration
         Schema::create('game_jolt_accounts', function (Blueprint $table) {
             $table->increments('aid');
             $table->uuid('uuid')->unique();
-            $table->bigInteger('id')->unsigned()->unique()->comment('GameJolt Account ID');
+            $table
+                ->bigInteger('id')
+                ->unsigned()
+                ->unique()
+                ->comment('GameJolt Account ID');
             $table->text('username')->comment('GameJolt Username');
             $table->string('token')->comment('GameJolt Token');
             $table->timestamp('verified_at')->nullable();

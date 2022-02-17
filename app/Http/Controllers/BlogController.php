@@ -14,7 +14,11 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $posts = Post::where('published_at', '<=', now())->where('active', true)->orderBy('sticky', 'desc')->orderByDesc('published_at')->paginate(5);
+        $posts = Post::where('published_at', '<=', now())
+            ->where('active', true)
+            ->orderBy('sticky', 'desc')
+            ->orderByDesc('published_at')
+            ->paginate(5);
         return view('blog.index', ['posts' => $posts]);
     }
 
@@ -32,7 +36,9 @@ class BlogController extends Controller
             ->where('active', true)
             ->firstOrFail();
         abort_if(!$post, 404);
-        views($post)->cooldown(60)->record();
+        views($post)
+            ->cooldown(60)
+            ->record();
         return view('blog.show', ['post' => $post]);
     }
 }

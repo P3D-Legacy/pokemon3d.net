@@ -14,10 +14,22 @@ class AddFieldsToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->text('about')->nullable()->after('username');
-            $table->tinyInteger('gender')->default(0)->after('about');
-            $table->string('location')->nullable()->after('gender');
-            $table->timestamp('birthdate')->nullable()->after('location');
+            $table
+                ->text('about')
+                ->nullable()
+                ->after('username');
+            $table
+                ->tinyInteger('gender')
+                ->default(0)
+                ->after('about');
+            $table
+                ->string('location')
+                ->nullable()
+                ->after('gender');
+            $table
+                ->timestamp('birthdate')
+                ->nullable()
+                ->after('location');
         });
     }
 

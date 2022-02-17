@@ -12,7 +12,8 @@ class Xenforo extends Component
     public $username;
     public $password;
 
-    public function mount() {
+    public function mount()
+    {
         $this->username = null;
         $this->password = null;
     }
@@ -28,16 +29,12 @@ class Xenforo extends Component
         $this->resetValidation();
 
         $this->validate([
-            'username' => [
-                'required',
-            ],
-            'password' => [
-                'required',
-            ],
+            'username' => ['required'],
+            'password' => ['required'],
         ]);
 
         $auth = XenForoHelper::postAuth($this->username, $this->password);
-        
+
         if (isset($auth['error'])) {
             $this->addError('error', $auth['message']);
             return;
@@ -62,10 +59,12 @@ class Xenforo extends Component
             return;
         } else {
             $forumaccount->touchVerify();
-            request()->session()->regenerate();
+            request()
+                ->session()
+                ->regenerate();
             return redirect()->intended('dashboard');
         }
-        
+
         return;
     }
 

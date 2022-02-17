@@ -94,12 +94,23 @@ class UploadedSkinController extends Controller
             'reason' => ['required', 'string'],
         ]);
         $skin = Skin::where('uuid', $uuid)->first();
-        if(!Storage::disk('skin')->exists($skin->path())) {
-            return redirect()->route('uploaded-skins')->with('error', 'Skin was not found!');
+        if (!Storage::disk('skin')->exists($skin->path())) {
+            return redirect()
+                ->route('uploaded-skins')
+                ->with('error', 'Skin was not found!');
         }
-        activity()->causedBy(Auth::user()->gamejolt)->withProperties(['filename' => $skin->path(), 'gjid' => $skin->user->id, 'reason' => $request->reason])->log('deleted');
+        activity()
+            ->causedBy(Auth::user()->gamejolt)
+            ->withProperties([
+                'filename' => $skin->path(),
+                'gjid' => $skin->user->id,
+                'reason' => $request->reason,
+            ])
+            ->log('deleted');
         $skin->delete();
         Storage::disk('skin')->delete($skin->path());
-        return redirect()->route('uploaded-skins')->with('success', 'Skin was successfully deleted!');
+        return redirect()
+            ->route('uploaded-skins')
+            ->with('success', 'Skin was successfully deleted!');
     }
 }

@@ -17,15 +17,17 @@
 
         @livewireStyles
         @powerGridStyles
+        @bukStyles
+        <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
 
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
         <script> 
             var $buoop = {required:{e:-6,f:-6,o:-6,s:-3,c:-6},insecure:true,unsupported:true,api:2021.08 }; 
             function $buo_f(){ 
-             var e = document.createElement("script"); 
-             e.src = "//browser-update.org/update.min.js"; 
-             document.body.appendChild(e);
+                var e = document.createElement("script"); 
+                e.src = "//browser-update.org/update.min.js"; 
+                document.body.appendChild(e);
             };
             try {document.addEventListener("DOMContentLoaded", $buo_f,false)}
             catch(e){window.attachEvent("onload", $buo_f)}
@@ -38,6 +40,9 @@
                 document.querySelector('html').classList.add('dark')
             }
         </script>
+        @if(env('APP_ENV') != 'local')
+            <script defer data-domain="{{ request()->getHost() }}" src="https://plausible.io/js/plausible.js"></script>
+        @endif
     </head>
     <body class="font-sans antialiased {{ env('APP_DEBUG') ? 'debug-screens' : '' }}">
         <x-jet-banner />
@@ -85,30 +90,41 @@
 
         @stack('modals')
 
-        @include('cookieConsent::index')
-
         @livewireScripts
-        @powerGridScripts
+        @livewire('livewire-ui-modal')
+        @bukScripts
+        <script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.js"></script>
+        <script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
 
         <script>
+            var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+            var themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
             document.getElementById('switchTheme').addEventListener('click', function() {
                 let htmlClasses = document.querySelector('html').classList;
                 if(localStorage.theme == 'dark') {
                     htmlClasses.remove('dark');
-                    localStorage.removeItem('theme')
+                    localStorage.removeItem('theme');
+                    themeToggleLightIcon.classList.add('hidden');
+                    themeToggleDarkIcon.classList.remove('hidden');
                 } else {
                     htmlClasses.add('dark');
                     localStorage.theme = 'dark';
+                    themeToggleLightIcon.classList.remove('hidden');
+                    themeToggleDarkIcon.classList.add('hidden');
                 }
             });
             document.getElementById('switchTheme2').addEventListener('click', function() {
                 let htmlClasses = document.querySelector('html').classList;
                 if(localStorage.theme == 'dark') {
                     htmlClasses.remove('dark');
-                    localStorage.removeItem('theme')
+                    localStorage.removeItem('theme');
+                    themeToggleLightIcon.classList.add('hidden');
+                    themeToggleDarkIcon.classList.remove('hidden');
                 } else {
                     htmlClasses.add('dark');
                     localStorage.theme = 'dark';
+                    themeToggleLightIcon.classList.remove('hidden');
+                    themeToggleDarkIcon.classList.add('hidden');
                 }
             });
         </script>

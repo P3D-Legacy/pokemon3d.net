@@ -20,12 +20,12 @@ class UpdatePasswordTest extends TestCase
         $password = 'SuperSecret123!';
         $new_password = 'NotSoSuperSecret123!';
         Livewire::test(UpdatePasswordForm::class)
-                ->set('state', [
-                    'current_password' => $password,
-                    'password' => $new_password,
-                    'password_confirmation' => $new_password,
-                ])
-                ->call('updatePassword');
+            ->set('state', [
+                'current_password' => $password,
+                'password' => $new_password,
+                'password_confirmation' => $new_password,
+            ])
+            ->call('updatePassword');
 
         $this->assertTrue(Hash::check('password', $user->fresh()->password));
     }
@@ -36,13 +36,13 @@ class UpdatePasswordTest extends TestCase
 
         $new_password = 'SuperSecret123!2';
         Livewire::test(UpdatePasswordForm::class)
-                ->set('state', [
-                    'current_password' => 'wrong-password',
-                    'password' => $new_password,
-                    'password_confirmation' => $new_password,
-                ])
-                ->call('updatePassword')
-                ->assertHasErrors(['current_password']);
+            ->set('state', [
+                'current_password' => 'wrong-password',
+                'password' => $new_password,
+                'password_confirmation' => $new_password,
+            ])
+            ->call('updatePassword')
+            ->assertHasErrors(['current_password']);
 
         $this->assertTrue(Hash::check('password', $user->fresh()->password));
     }
@@ -54,13 +54,13 @@ class UpdatePasswordTest extends TestCase
         $password = 'SuperSecret123!';
         $new_password = 'SuperSecret123!2';
         Livewire::test(UpdatePasswordForm::class)
-                ->set('state', [
-                    'current_password' => $password,
-                    'password' => $new_password,
-                    'password_confirmation' => 'wrong-password',
-                ])
-                ->call('updatePassword')
-                ->assertHasErrors(['password']);
+            ->set('state', [
+                'current_password' => $password,
+                'password' => $new_password,
+                'password_confirmation' => 'wrong-password',
+            ])
+            ->call('updatePassword')
+            ->assertHasErrors(['password']);
 
         $this->assertTrue(Hash::check('password', $user->fresh()->password));
     }

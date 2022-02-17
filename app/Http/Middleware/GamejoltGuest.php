@@ -16,10 +16,12 @@ class GamejoltGuest
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!env("GAMEJOLT_GAME_ID") || !env("GAMEJOLT_GAME_PRIVATE_KEY")) {
-            redirect()->route('gj-login')->with('error', 'Gamejolt API keys is not set by the admin!');
+        if (!env('GAMEJOLT_GAME_ID') || !env('GAMEJOLT_GAME_PRIVATE_KEY')) {
+            redirect()
+                ->route('gj-login')
+                ->with('error', 'Gamejolt API keys is not set by the admin!');
         }
-        if ($request->session()->get('gju')){
+        if ($request->session()->get('gju')) {
             return redirect()->route('skin-home');
         }
         return $next($request);

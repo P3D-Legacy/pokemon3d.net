@@ -24,8 +24,11 @@ class PlayerSkinController extends Controller
      */
     public function index()
     {
-        $playerskins = array_filter(Storage::disk('player')->files(),
-            function ($item) {return strpos($item, '.png');} // only png's
+        $playerskins = array_filter(
+            Storage::disk('player')->files(),
+            function ($item) {
+                return strpos($item, '.png');
+            } // only png's
         );
         return view('player-skin.index')->with('playerskins', $playerskins);
     }
@@ -54,10 +57,12 @@ class PlayerSkinController extends Controller
             'image' => ['required', 'image', 'max:2000', 'mimes:png', 'dimensions:ratio=3/4'], // 2MB
             'rules' => ['accepted'],
         ]);
-        $filename = $gjid.'.png';
+        $filename = $gjid . '.png';
         $request->file('image')->storeAs(null, $filename, 'player');
 
-        return redirect()->route('skin-home')->with('success', 'Skin was successfully uploaded! Not seeing it? Refresh the page again.');
+        return redirect()
+            ->route('skin-home')
+            ->with('success', 'Skin was successfully uploaded! Not seeing it? Refresh the page again.');
     }
 
     /**
@@ -69,19 +74,25 @@ class PlayerSkinController extends Controller
     public function duplicate(Request $request)
     {
         $gjid = Auth::user()->gamejolt->id;
-        $skincount = Auth::user()->gamejolt->skins()->count();
-        if($skincount >= env('SKIN_MAX_UPLOAD')) {
-            return redirect()->route('skins-my')->with('warning', 'You have reached the maximum amount of skins you can upload.');
+        $skincount = Auth::user()
+            ->gamejolt->skins()
+            ->count();
+        if ($skincount >= env('SKIN_MAX_UPLOAD')) {
+            return redirect()
+                ->route('skins-my')
+                ->with('warning', 'You have reached the maximum amount of skins you can upload.');
         }
-        $old_filename = $gjid.'.png';
+        $old_filename = $gjid . '.png';
         $skin = Skin::create([
             'owner_id' => $gjid,
             'user_id' => auth()->user()->id,
-            'name' => 'Import: '.$gjid,
+            'name' => 'Import: ' . $gjid,
         ]);
-        $new_filename = $skin->uuid.'.png';
+        $new_filename = $skin->uuid . '.png';
         Storage::disk('skin')->put($new_filename, Storage::disk('player')->get($old_filename));
-        return redirect()->route('skins-my')->with('success', 'Skin was duplicated!');
+        return redirect()
+            ->route('skins-my')
+            ->with('success', 'Skin was duplicated!');
     }
 
     /**
@@ -115,13 +126,17 @@ class PlayerSkinController extends Controller
      */
     public function destroy(Request $request)
     {
-        $gjid = Auth::user()->gamejolt>id;
-        $filename = $gjid.'.png';
-        if(!Storage::disk('player')->exists($filename)) {
-            return redirect()->route('skin-home')->with('error', 'Skin was not found!');
+        $gjid = Auth::user()->gamejolt > id;
+        $filename = $gjid . '.png';
+        if (!Storage::disk('player')->exists($filename)) {
+            return redirect()
+                ->route('skin-home')
+                ->with('error', 'Skin was not found!');
         }
         Storage::disk('player')->delete($filename);
-        return redirect()->route('skins-my')->with('success', 'Skin was successfully deleted!');
+        return redirect()
+            ->route('skins-my')
+            ->with('success', 'Skin was successfully deleted!');
     }
 
     /**
@@ -135,12 +150,23 @@ class PlayerSkinController extends Controller
         $request->validate([
             'reason' => ['required', 'string'],
         ]);
-        $filename = $gjid.'.png';
-        if(!Storage::disk('player')->exists($filename)) {
-            return redirect()->route('player-skins')->with('error', 'Skin was not found!');
+        $filename = $gjid . '.png';
+        if (!Storage::disk('player')->exists($filename)) {
+            return redirect()
+                ->route('player-skins')
+                ->with('error', 'Skin was not found!');
         }
-        activity()->causedBy(Auth::user()->gamejolt)->withProperties(['filename' => $filename, 'gjid' => $gjid, 'reason' => $request->reason])->log('deleted');
+        activity()
+            ->causedBy(Auth::user()->gamejolt)
+            ->withProperties([
+                'filename' => $filename,
+                'gjid' => $gjid,
+                'reason' => $request->reason,
+            ])
+            ->log('deleted');
         Storage::disk('player')->delete($filename);
-        return redirect()->route('player-skins')->with('success', 'Skin was successfully deleted!');
+        return redirect()
+            ->route('player-skins')
+            ->with('success', 'Skin was successfully deleted!');
     }
 }

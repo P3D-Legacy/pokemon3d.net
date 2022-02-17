@@ -14,7 +14,8 @@ class GameJolt extends Component
     public $username;
     public $token;
 
-    public function mount() {
+    public function mount()
+    {
         $this->username = null;
         $this->token = null;
     }
@@ -30,34 +31,24 @@ class GameJolt extends Component
         $this->resetValidation();
 
         $this->validate([
-            'username' => [
-                'required',
-                'alpha_dash',
-                'max:30',
-                'min:4',
-            ],
-            'token' => [
-                'required',
-                'alpha_dash',
-                'max:30',
-                'min:4',
-            ],
+            'username' => ['required', 'alpha_dash', 'max:30', 'min:4'],
+            'token' => ['required', 'alpha_dash', 'max:30', 'min:4'],
         ]);
 
-        $api = new GamejoltApi(new GamejoltConfig(env("GAMEJOLT_GAME_ID"), env("GAMEJOLT_GAME_PRIVATE_KEY")));
-        
+        $api = new GamejoltApi(new GamejoltConfig(env('GAMEJOLT_GAME_ID'), env('GAMEJOLT_GAME_PRIVATE_KEY')));
+
         try {
             $auth = $api->users()->auth($this->username, $this->token);
         } catch (TimeOutException $e) {
             $this->addError('error', $e->getMessage());
             return;
         }
-        
-        if(filter_var($auth['response']['success'], FILTER_VALIDATE_BOOLEAN) === false) {
+
+        if (filter_var($auth['response']['success'], FILTER_VALIDATE_BOOLEAN) === false) {
             $error = $auth['response']['message'];
             // Better description of username/token error
-            if($error == "No such user with the credentials passed in could be found.") {
-                $error = "Username and/or token is wrong.";
+            if ($error == 'No such user with the credentials passed in could be found.') {
+                $error = 'Username and/or token is wrong.';
             }
             $this->addError('error', $error);
             return;
@@ -82,10 +73,12 @@ class GameJolt extends Component
             return;
         } else {
             $gamejoltaccount->touchVerify();
-            request()->session()->regenerate();
+            request()
+                ->session()
+                ->regenerate();
             return redirect()->intended('dashboard');
         }
-        
+
         return;
     }
 

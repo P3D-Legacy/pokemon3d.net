@@ -16,9 +16,9 @@ class PermissionSeeder extends Seeder
      */
     public function run()
     {
-        $r1 = Role::firstOrCreate(["name" => "super-admin"]);
-        $r2 = Role::firstOrCreate(["name" => "admin"]);
-        $r3 = Role::firstOrCreate(["name" => "moderator"]);
+        $r1 = Role::firstOrCreate(['name' => 'super-admin']);
+        $r2 = Role::firstOrCreate(['name' => 'admin']);
+        $r3 = Role::firstOrCreate(['name' => 'moderator']);
 
         $p1 = Permission::firstOrCreate(['name' => 'manage.users']);
         $p2 = Permission::firstOrCreate(['name' => 'manage.roles']);
@@ -37,23 +37,12 @@ class PermissionSeeder extends Seeder
         $p12 = Permission::firstOrCreate(['name' => 'tags.update']);
         $p13 = Permission::firstOrCreate(['name' => 'tags.destroy']);
 
-        $p14 = Permission::firstOrCreate(['name' => 'stats']);
+        $p14 = Permission::firstOrCreate(['name' => 'categories.create']);
+        $p15 = Permission::firstOrCreate(['name' => 'categories.update']);
+        $p16 = Permission::firstOrCreate(['name' => 'categories.destroy']);
 
         // Super Admin permissions
-        $r1->givePermissionTo($p1->name);
-        $r1->givePermissionTo($p2->name);
-        $r1->givePermissionTo($p3->name);
-        $r1->givePermissionTo($p4->name);
-        $r1->givePermissionTo($p5->name);
-        $r1->givePermissionTo($p6->name);
-        $r1->givePermissionTo($p7->name);
-        $r1->givePermissionTo($p8->name);
-        $r1->givePermissionTo($p9->name);
-        $r1->givePermissionTo($p10->name);
-        $r1->givePermissionTo($p11->name);
-        $r1->givePermissionTo($p12->name);
-        $r1->givePermissionTo($p13->name);
-        $r1->givePermissionTo($p14->name);
+        $r1->givePermissionTo(Permission::all());
 
         // Admin permissions
         $r2->givePermissionTo($p2->name);
@@ -77,9 +66,8 @@ class PermissionSeeder extends Seeder
         $r3->givePermissionTo($p13->name);
 
         $user = User::first();
-        if($user) {
+        if ($user) {
             $user->assignRole($r1);
         }
-
     }
 }

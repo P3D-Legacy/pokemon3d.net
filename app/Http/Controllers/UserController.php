@@ -23,7 +23,7 @@ class UserController extends Controller
     public function index()
     {
         return view('users.index', [
-            'users' => User::orderBy('name')->paginate(10)
+            'users' => User::orderBy('name')->paginate(10),
         ]);
     }
 
@@ -74,7 +74,7 @@ class UserController extends Controller
     {
         return view('users.show', [
             'menu' => $menu,
-            'users' => $menu->users
+            'users' => $menu->users,
         ]);
     }
 
@@ -89,7 +89,7 @@ class UserController extends Controller
         return view('users.edit', [
             'user' => $user,
             'roles' => Role::all(),
-            'custom_fields' => config('custom_fields')
+            'custom_fields' => config('custom_fields'),
         ]);
     }
 
@@ -109,7 +109,7 @@ class UserController extends Controller
         }
 
         if ($request->has('email')) {
-            $rules['email'] = ['required', 'string', 'email', 'max:255', 'unique:users,email,'.$user->id];
+            $rules['email'] = ['required', 'string', 'email', 'max:255', 'unique:users,email,' . $user->id];
         }
 
         if ($request->filled('password')) {

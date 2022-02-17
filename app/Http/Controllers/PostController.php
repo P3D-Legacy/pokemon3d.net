@@ -56,7 +56,7 @@ class PostController extends Controller
             'body' => ['required', 'string', 'min:25'],
         ]);
 
-        $post = new Post;
+        $post = new Post();
         $post->title = $request->title;
         $post->body = $request->body;
         $post->active = $request->active;

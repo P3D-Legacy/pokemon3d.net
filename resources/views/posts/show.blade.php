@@ -13,7 +13,7 @@
               <a class="text-sm leading-5 text-gray-700 hover:underline" href="{{ url()->previous() }}">Back to blog</a>
             </div>
 
-            <h1 class="text-5xl text-center ">{{$post->title}}</h1>
+            <h1 class="text-5xl text-center ">{{ $post->title }}</h1>
             <p class="text-sm text-center leading-5 text-gray-700 mt-3">Posted {{$post->updated_at->format('d/m/Y')}}</p>
             <article class="markdown-body">
               {!! $post->body_html !!}

@@ -42,7 +42,7 @@ class UpdateGamejoltAccountTrophies extends Command
      */
     public function handle()
     {
-        $api = new GamejoltApi(new GamejoltConfig(env("GAMEJOLT_GAME_ID"), env("GAMEJOLT_GAME_PRIVATE_KEY")));
+        $api = new GamejoltApi(new GamejoltConfig(env('GAMEJOLT_GAME_ID'), env('GAMEJOLT_GAME_PRIVATE_KEY')));
         $accounts = GamejoltAccount::all();
         foreach ($accounts as $account) {
             try {
@@ -76,7 +76,7 @@ class UpdateGamejoltAccountTrophies extends Command
                 $this->error("Unknown Error: {$e->getMessage()}");
             }
         }
-        $this->info("Done.");
+        $this->info('Done.');
         return Command::SUCCESS;
     }
 }

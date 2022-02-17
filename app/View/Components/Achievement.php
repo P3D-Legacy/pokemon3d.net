@@ -7,7 +7,7 @@ use Illuminate\View\Component;
 class Achievement extends Component
 {
     public $achievement;
-    
+
     /**
      * Create a new component instance.
      *

@@ -45,10 +45,7 @@ class TagController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'name' => [
-                'string',
-                'required',
-            ],
+            'name' => ['string', 'required'],
         ]);
         Tag::create($validatedData);
         session()->flash('flash.banner', 'Created Tag!');
@@ -88,10 +85,7 @@ class TagController extends Controller
     public function update(Request $request, Tag $tag)
     {
         $validatedData = $request->validate([
-            'name' => [
-                'string',
-                'required',
-            ],
+            'name' => ['string', 'required'],
         ]);
         $tag->update($validatedData);
         session()->flash('flash.banner', 'Updated Tag!');

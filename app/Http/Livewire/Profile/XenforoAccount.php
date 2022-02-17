@@ -15,12 +15,13 @@ class XenforoAccount extends Component
     public $updated_at;
     public $verified_at;
 
-    public function mount() {
+    public function mount()
+    {
         $user = Auth::user();
-        $this->username = ($user->forum ? $user->forum->username : null);
-        $this->password = ($user->forum ? $user->forum->password : null);
-        $this->updated_at =  ($user->forum ? $user->forum->updated_at->diffForHumans() : null);
-        $this->verified_at =  ($user->forum ? $user->forum->verified_at->diffForHumans() : null);
+        $this->username = $user->forum ? $user->forum->username : null;
+        $this->password = $user->forum ? $user->forum->password : null;
+        $this->updated_at = $user->forum ? $user->forum->updated_at->diffForHumans() : null;
+        $this->verified_at = $user->forum ? $user->forum->verified_at->diffForHumans() : null;
     }
 
     /**
@@ -36,13 +37,8 @@ class XenforoAccount extends Component
         $user = Auth::user();
 
         $this->validate([
-            'username' => [
-                'nullable',
-                Rule::unique('forum_accounts')->ignore($user->id, 'user_id'),
-            ],
-            'password' => [
-                'nullable',
-            ],
+            'username' => ['nullable', Rule::unique('forum_accounts')->ignore($user->id, 'user_id')],
+            'password' => ['nullable'],
         ]);
 
         if (!$this->username && !$this->password) {
@@ -54,7 +50,7 @@ class XenforoAccount extends Component
         }
 
         $auth = XenForoHelper::postAuth($this->username, $this->password);
-        
+
         if (isset($auth['error'])) {
             $this->addError('error', $auth['message']);
             return;
@@ -67,7 +63,9 @@ class XenforoAccount extends Component
             'user_id' => $user->id,
         ];
 
-        $forum = \App\Models\ForumAccount::where('user_id', $user->id)->withTrashed()->first();
+        $forum = \App\Models\ForumAccount::where('user_id', $user->id)
+            ->withTrashed()
+            ->first();
         if ($forum !== null) {
             $forum->restore();
             $forum->update($data);
@@ -79,12 +77,37 @@ class XenforoAccount extends Component
         $this->password = $forum->password;
         $this->updated_at = $forum->updated_at->diffForHumans();
         $this->verified_at = $forum->verified_at->diffForHumans();
-        
+
         $this->emit('saved');
-        
+
         return;
     }
-    
+
+    /**
+     * Update the user's GameJolt Account credentials.
+     *
+     * @return void
+     */
+    public function remove()
+    {
+        $this->resetErrorBag();
+        $this->resetValidation();
+
+        $user = Auth::user();
+
+        if ($user->forum) {
+            $user->forum->delete();
+            $this->username = null;
+            $this->password = null;
+            $this->updated_at = null;
+            $this->verified_at = null;
+        }
+
+        $this->emit('refresh');
+
+        return;
+    }
+
     public function render()
     {
         return view('livewire.profile.xenforo-account');

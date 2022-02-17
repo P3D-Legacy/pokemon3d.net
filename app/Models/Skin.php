@@ -47,12 +47,7 @@ class Skin extends Model
      *
      * @var array
      */
-    protected $fillable = [
-        'name',
-        'owner_id',
-        'user_id',
-        'public',
-    ];
+    protected $fillable = ['name', 'owner_id', 'user_id', 'public'];
 
     /**
      * Get the route key for the model.
@@ -64,12 +59,7 @@ class Skin extends Model
         return 'uuid';
     }
 
-    protected static $logAttributes = [
-        'name',
-        'owner_id',
-        'user_id',
-        'public',
-    ];
+    protected static $logAttributes = ['name', 'owner_id', 'user_id', 'public'];
     protected static $logOnlyDirty = true;
     protected static $submitEmptyLogs = false;
 
@@ -97,16 +87,18 @@ class Skin extends Model
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
-    public function scopeIsPublic($query) {
+    public function scopeIsPublic($query)
+    {
         return $query->where('public', 1);
     }
 
-    public function path() {
-        return $this->uuid.'.png';
-    }
-    
-    public function urlPath() {
-        return env('APP_URL').'/img/skin/'.$this->path();
+    public function path()
+    {
+        return $this->uuid . '.png';
     }
 
+    public function urlPath()
+    {
+        return env('APP_URL') . '/img/skin/' . $this->path();
+    }
 }

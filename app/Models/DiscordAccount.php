@@ -41,15 +41,7 @@ class DiscordAccount extends Model
      *
      * @var array
      */
-    protected $fillable = [
-        'id',
-        'username',
-        'email',
-        'avatar',
-        'discriminator',
-        'verified_at',
-        'user_id',
-    ];
+    protected $fillable = ['id', 'username', 'email', 'avatar', 'discriminator', 'verified_at', 'user_id'];
 
     /**
      * The attributes that should be cast to native types.
@@ -60,23 +52,19 @@ class DiscordAccount extends Model
         'verified_at' => 'datetime',
     ];
 
-    /** 
+    /**
      * The attributes that should be encrypted/decrypted
-     * 
+     *
      * @var array
      */
-    protected $encryptable = [
-        'password',
-    ];
+    protected $encryptable = ['password'];
 
-    /** 
+    /**
      * The attributes that should be hidden
-     * 
+     *
      * @var array
      */
-    protected $hidden = [
-        'aid',
-    ];
+    protected $hidden = ['aid'];
 
     public function touchVerify()
     {

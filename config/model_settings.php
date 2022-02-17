@@ -11,6 +11,6 @@ return [
             'name' => true,
             'birthdate' => false,
             'age' => false,
-        ]
-    ]
+        ],
+    ],
 ];

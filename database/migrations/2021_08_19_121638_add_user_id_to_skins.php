@@ -14,7 +14,10 @@ class AddUserIdToSkins extends Migration
     public function up()
     {
         Schema::table('skins', function (Blueprint $table) {
-            $table->integer('user_id')->nullable()->after('owner_id');
+            $table
+                ->integer('user_id')
+                ->nullable()
+                ->after('owner_id');
         });
     }
 

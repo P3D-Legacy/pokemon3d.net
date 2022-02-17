@@ -11,13 +11,14 @@ class TwitterAccount extends Component
     public $name;
     public $avatar;
 
-    public function mount() {
+    public function mount()
+    {
         $user = Auth::user();
-        $this->username = ($user->twitter ? $user->twitter->username : null);
-        $this->name = ($user->twitter ? $user->twitter->name : null);
-        $this->avatar = ($user->twitter ? $user->twitter->avatar : null);
-        $this->updated_at =  ($user->twitter ? $user->twitter->updated_at->diffForHumans() : null);
-        $this->verified_at =  ($user->twitter ? $user->twitter->verified_at->diffForHumans() : null);
+        $this->username = $user->twitter ? $user->twitter->username : null;
+        $this->name = $user->twitter ? $user->twitter->name : null;
+        $this->avatar = $user->twitter ? $user->twitter->avatar : null;
+        $this->updated_at = $user->twitter ? $user->twitter->updated_at->diffForHumans() : null;
+        $this->verified_at = $user->twitter ? $user->twitter->verified_at->diffForHumans() : null;
     }
 
     /**
@@ -40,12 +41,12 @@ class TwitterAccount extends Component
             $this->updated_at = null;
             $this->verified_at = null;
         }
-        
+
         $this->emit('refresh');
-        
+
         return;
     }
-    
+
     public function render()
     {
         return view('livewire.profile.twitter-account');

@@ -9,10 +9,11 @@ class Consent extends Component
 {
     public $consents = [];
 
-    public function mount() {
+    public function mount()
+    {
         $this->consents = config('app.consents');
     }
-        
+
     /**
      * Display a view.
      *
@@ -23,13 +24,15 @@ class Consent extends Component
         return view('livewire.profile.consent');
     }
 
-    public function consentGiven($consent) {
+    public function consentGiven($consent)
+    {
         $user = Auth::user();
 
         return $user->hasGivenConsent($consent);
     }
 
-    public function toggleConsent($consent) {
+    public function toggleConsent($consent)
+    {
         $user = Auth::user();
 
         if ($user->hasGivenConsent($consent)) {
@@ -39,6 +42,5 @@ class Consent extends Component
         return $user->giveConsentTo($consent, [
             'text' => $this->consents[$consent],
         ]);
-
     }
 }

@@ -23,7 +23,7 @@ class CreateConsentTable extends Migration
             $table->text('text')->nullable();
             $table->mediumText('meta')->nullable();
             $table->timestamps();
-            $table->index(['model_id','model_type','name']);
+            $table->index(['model_id', 'model_type', 'name']);
         });
     }
 

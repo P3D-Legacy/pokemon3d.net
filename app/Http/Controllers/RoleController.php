@@ -21,8 +21,7 @@ class RoleController extends Controller
      */
     public function index()
     {
-        return view("roles.index", ["roles" => Role::paginate(8)]);
-
+        return view('roles.index', ['roles' => Role::paginate(8)]);
     }
 
     /**
@@ -32,8 +31,8 @@ class RoleController extends Controller
      */
     public function create()
     {
-        return view("roles.create", [
-            "permissions" => Permission::all()
+        return view('roles.create', [
+            'permissions' => Permission::all(),
         ]);
     }
 
@@ -45,12 +44,12 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        $role=Role::create([
-            "name" => request("name"),
-            "guard_name" => "web"
+        $role = Role::create([
+            'name' => request('name'),
+            'guard_name' => 'web',
         ]);
         $role->syncPermissions(request('permissions'));
-        return redirect()->route("roles.index");
+        return redirect()->route('roles.index');
     }
 
     /**
@@ -61,9 +60,9 @@ class RoleController extends Controller
      */
     public function show(Role $role)
     {
-        return view("roles.show", [
-            "menu" => $menu,
-            "roles" => $menu->roles
+        return view('roles.show', [
+            'menu' => $menu,
+            'roles' => $menu->roles,
         ]);
     }
 
@@ -75,9 +74,9 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
-        return view("roles.edit", [
-            "role" => $role,
-            "permissions" => Permission::all()
+        return view('roles.edit', [
+            'role' => $role,
+            'permissions' => Permission::all(),
         ]);
     }
 
@@ -91,7 +90,7 @@ class RoleController extends Controller
     public function update(Request $request, Role $role)
     {
         $role->syncPermissions(request('permissions'));
-        return redirect()->route("roles.index");
+        return redirect()->route('roles.index');
     }
 
     /**
@@ -102,8 +101,7 @@ class RoleController extends Controller
      */
     public function destroy(Role $role)
     {
-
         $role->delete();
-        return redirect()->route("roles.index");
+        return redirect()->route('roles.index');
     }
 }

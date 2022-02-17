@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     /*
      * Whether or not minute/second should be abbreviated as min/sec
      */

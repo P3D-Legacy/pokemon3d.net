@@ -54,15 +54,18 @@ class UserFactory extends Factory
      */
     public function withPersonalTeam()
     {
-        if (! Features::hasTeamFeatures()) {
+        if (!Features::hasTeamFeatures()) {
             return $this->state([]);
         }
 
         return $this->has(
-            Team::factory()
-                ->state(function (array $attributes, User $user) {
-                    return ['name' => $user->name.'\'s Team', 'user_id' => $user->id, 'personal_team' => true];
-                }),
+            Team::factory()->state(function (array $attributes, User $user) {
+                return [
+                    'name' => $user->name . '\'s Team',
+                    'user_id' => $user->id,
+                    'personal_team' => true,
+                ];
+            }),
             'ownedTeams'
         );
     }

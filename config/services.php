@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Third Party Services
@@ -29,29 +28,28 @@ return [
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
-    
+
     'discord' => [
         'client_id' => env('DISCORD_CLIENT_ID'),
         'client_secret' => env('DISCORD_CLIENT_SECRET'),
         'redirect' => env('DISCORD_REDIRECT_URI', '/login/discord/callback'),
     ],
 
-    'twitter' => [    
-        'client_id' => env('TWITTER_CLIENT_ID'),  
-        'client_secret' => env('TWITTER_CLIENT_SECRET'),  
+    'twitter' => [
+        'client_id' => env('TWITTER_CLIENT_ID'),
+        'client_secret' => env('TWITTER_CLIENT_SECRET'),
         'redirect' => env('TWITTER_REDIRECT_URI', '/login/twitter/callback'),
     ],
 
-    'facebook' => [    
-        'client_id' => env('FACEBOOK_CLIENT_ID'),  
-        'client_secret' => env('FACEBOOK_CLIENT_SECRET'),  
-        'redirect' => env('FACEBOOK_REDIRECT_URI', '/login/facebook/callback') 
+    'facebook' => [
+        'client_id' => env('FACEBOOK_CLIENT_ID'),
+        'client_secret' => env('FACEBOOK_CLIENT_SECRET'),
+        'redirect' => env('FACEBOOK_REDIRECT_URI', '/login/facebook/callback'),
     ],
 
-    'twitch' => [    
-        'client_id' => env('TWITCH_CLIENT_ID'),  
-        'client_secret' => env('TWITCH_CLIENT_SECRET'),  
-        'redirect' => env('TWITCH_REDIRECT_URI', '/login/twitch/callback') 
+    'twitch' => [
+        'client_id' => env('TWITCH_CLIENT_ID'),
+        'client_secret' => env('TWITCH_CLIENT_SECRET'),
+        'redirect' => env('TWITCH_REDIRECT_URI', '/login/twitch/callback'),
     ],
-
 ];

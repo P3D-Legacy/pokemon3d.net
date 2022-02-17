@@ -22,10 +22,7 @@ class Handler extends ExceptionHandler
      *
      * @var array
      */
-    protected $dontFlash = [
-        'password',
-        'password_confirmation',
-    ];
+    protected $dontFlash = ['password', 'password_confirmation'];
 
     /**
      * Register the exception handling callbacks for the application.
@@ -44,11 +41,13 @@ class Handler extends ExceptionHandler
         // Custom Error Handling for 404 in API
         $this->renderable(function (NotFoundHttpException $e, $request) {
             if ($request->is('api/*')) {
-                return response()->json([
-                    'message' => 'No records found.',
-                ], 404);
+                return response()->json(
+                    [
+                        'message' => 'No records found.',
+                    ],
+                    404
+                );
             }
         });
-        
     }
 }

@@ -44,6 +44,5 @@ class AppServiceProvider extends ServiceProvider
                 ->failWhenLoadIsHigherInTheLast5Minutes(2.0)
                 ->failWhenLoadIsHigherInTheLast15Minutes(1.5),
         ]);
-        
     }
 }

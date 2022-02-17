@@ -41,8 +41,5 @@ class BanReason extends Model
      *
      * @var array
      */
-    protected $fillable = [
-        'name',
-        'user_id',
-    ];
+    protected $fillable = ['name', 'user_id'];
 }

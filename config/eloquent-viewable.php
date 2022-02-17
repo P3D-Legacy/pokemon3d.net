@@ -1,24 +1,19 @@
 <?php
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Eloquent Models
     |--------------------------------------------------------------------------
     */
     'models' => [
-
         /*
          * Here you can configure the default `View` model.
          */
         'view' => [
-
             'table_name' => 'views',
             'connection' => env('DB_CONNECTION', 'mysql'),
-
         ],
-
     ],
 
     /*
@@ -27,7 +22,6 @@ return [
     |--------------------------------------------------------------------------
     */
     'cache' => [
-
         /*
          * Everthing will be stored under the following key.
          */
@@ -37,7 +31,6 @@ return [
          * Here you may define the cache store that should be used.
          */
         'store' => env('CACHE_DRIVER', 'file'),
-
     ],
 
     /*
@@ -46,12 +39,10 @@ return [
     |--------------------------------------------------------------------------
     */
     'cooldown' => [
-
         /*
          * Everthing will be stored under the following key in the session.
          */
         'key' => 'cyrildewit.eloquent-viewable.cooldowns',
-
     ],
 
     /*
@@ -99,9 +90,6 @@ return [
     */
 
     'ignored_ip_addresses' => [
-
         // '127.0.0.1',
-
     ],
-
 ];

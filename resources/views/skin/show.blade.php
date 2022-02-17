@@ -8,6 +8,14 @@
     
     <div class="py-12">
         <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
+
+            @component('components.breadcrumb', ['breadcrumbs' => [
+                ['label' => 'Skins'],
+                ['label' => 'Public'],
+                ['label' => $skin->name],
+            ]])
+            @endcomponent
+            
             @include('skin.component.card', ['skin' => $skin])
         </div>
     </div>

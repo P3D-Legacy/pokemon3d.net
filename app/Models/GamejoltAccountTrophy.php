@@ -46,24 +46,14 @@ class GamejoltAccountTrophy extends Model
      *
      * @var array
      */
-    protected $fillable = [
-        'id',
-        'title',
-        'difficulty',
-        'description',
-        'image_url',
-        'achieved',
-        'gamejolt_account_id',
-    ];
+    protected $fillable = ['id', 'title', 'difficulty', 'description', 'image_url', 'achieved', 'gamejolt_account_id'];
 
-    /** 
+    /**
      * The attributes that should be hidden
-     * 
+     *
      * @var array
      */
-    protected $hidden = [
-        'aid',
-    ];
+    protected $hidden = ['aid'];
 
     /**
      * Get the gamejolt account associated with the gamejolt account ban.
@@ -72,5 +62,4 @@ class GamejoltAccountTrophy extends Model
     {
         return $this->hasOne(GamejoltAccount::class, 'id', 'gamejolt_account_id');
     }
-
 }

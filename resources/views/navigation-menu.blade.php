@@ -15,11 +15,17 @@
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('server.index') }}" :active="request()->routeIs('server.*')">
+                        {{ __('Servers') }}
+                    </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('resource.index') }}" :active="request()->routeIs('resource.*')">
+                        {{ __('Resources') }}
+                    </x-jet-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-dropdown :active="request()->routeIs('skin*')">
                         <x-slot name="trigger">
-                            {{ __('Skin') }}
+                            {{ __('Skins') }}
                         </x-slot>
                         <x-slot name="content">
                             <x-jet-dropdown-link href="{{ route('skin-home') }}">
@@ -94,9 +100,12 @@
                     <x-jet-dropdown align="right" width="60">
                         <x-slot name="trigger">
                             <span class="inline-flex rounded-md">
-                                <button id="switchTheme" class="inline-flex items-center p-2 text-sm font-medium leading-4 text-gray-500 transition bg-transparent border border-transparent rounded-full hover:bg-gray-50 hover:text-gray-700 dark:text-yellow-500 dark:hover:bg-gray-800">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
+                                <button id="switchTheme" class="inline-flex items-center p-2 text-sm font-medium leading-4 text-gray-500 transition bg-transparent border border-transparent rounded-full hover:bg-gray-50 hover:text-gray-700 dark:text-gray-300 dark:hover:bg-gray-800">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor" id="theme-toggle-light-icon">
                                         <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd" />
+                                    </svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="hidden w-5 h-5" viewBox="0 0 20 20" fill="currentColor" id="theme-toggle-dark-icon">
+                                        <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
                                     </svg>
                                 </button>
                             </span>
@@ -137,6 +146,11 @@
                                     @canany(['stats'])
                                         <x-jet-dropdown-link href="{{ route('stats.index') }}">
                                             {{ __('Stats') }}
+                                        </x-jet-dropdown-link>
+                                    @endcanany
+                                    @canany(['categories.create','categories.update','categories.destroy']) 
+                                        <x-jet-dropdown-link href="{{ route('categories.index') }}">
+                                            {{ __('Categories') }}
                                         </x-jet-dropdown-link>
                                     @endcanany
                                     @canany(['manage.users','manage.roles','manage.permissions']) 
@@ -241,8 +255,14 @@
             <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-jet-responsive-nav-link>
+            <x-jet-responsive-nav-link href="{{ route('server.index') }}" :active="request()->routeIs('server.*')">
+                {{ __('Servers') }}
+            </x-jet-responsive-nav-link>
+            <x-jet-responsive-nav-link href="{{ route('resource.index') }}" :active="request()->routeIs('resource.*')">
+                {{ __('Resources') }}
+            </x-jet-responsive-nav-link>
             <x-jet-responsive-nav-link href="{{ route('skin-home') }}" :active="request()->routeIs('skin-home')">
-                {{ __('Skin') }}
+                {{ __('Skins') }}
             </x-jet-responsive-nav-link>
             <x-jet-responsive-nav-link href="{{ route('skins-popular') }}" :active="request()->routeIs('skins-popular')">
                 {{ __('Most Popular') }} {{ __('Skin') }}
@@ -270,6 +290,11 @@
                     @canany(['posts.create','posts.update','posts.destroy']) 
                         <x-jet-responsive-nav-link href="{{ route('posts.index') }}" :active="request()->routeIs('posts.index')">
                             {{ __('Blog Posts') }}
+                        </x-jet-responsive-nav-link>
+                    @endcanany
+                    @canany(['categories.create','categories.update','categories.destroy']) 
+                        <x-jet-responsive-nav-link href="{{ route('categories.index') }}" :active="request()->routeIs('categories.index')">
+                            {{ __('Categories') }}
                         </x-jet-responsive-nav-link>
                     @endcanany
                     @canany(['tags.create','tags.update','tags.destroy']) 
@@ -307,8 +332,11 @@
         @endrole
 
         <button id="switchTheme2" class="block w-full py-2 pl-3 pr-4 text-base font-medium text-gray-600 transition border-l-4 border-transparent dark:text-gray-300 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:outline-none focus:text-gray-800 focus:bg-gray-50 focus:border-gray-300">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor" id="theme-toggle-light-icon">
                 <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd" />
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="hidden w-5 h-5" viewBox="0 0 20 20" fill="currentColor" id="theme-toggle-dark-icon">
+                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
             </svg>
         </button>
         

@@ -35,17 +35,9 @@ class GJUser extends Model
      *
      * @var array
      */
-    protected $fillable = [
-        'gjid',
-        'gju',
-        'is_admin',
-    ];
+    protected $fillable = ['gjid', 'gju', 'is_admin'];
 
-    protected static $logAttributes = [
-        'gjid',
-        'gju',
-        'is_admin',
-    ];
+    protected static $logAttributes = ['gjid', 'gju', 'is_admin'];
     protected static $logOnlyDirty = true;
     protected static $submitEmptyLogs = false;
 

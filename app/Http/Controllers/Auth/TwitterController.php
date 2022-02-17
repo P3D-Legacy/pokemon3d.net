@@ -30,11 +30,12 @@ class TwitterController extends Controller
     public function handleProviderCallback()
     {
         try {
-
             $twitterUser = Socialite::driver('twitter')->user();
-            
+
             if ($twitterUser->user['suspended']) {
-                return redirect()->route('login')->withError('Twitter user is suspended.');
+                return redirect()
+                    ->route('login')
+                    ->withError('Twitter user is suspended.');
             }
 
             $userProfile = [
@@ -48,17 +49,30 @@ class TwitterController extends Controller
             // Check if user exists with email
             $twitterAccount = TwitterAccount::where('id', $twitterUser->id)->first();
             if (!$twitterAccount && auth()->guest()) {
-                return redirect()->route('login')->withError('Twitter account association not found with any P3D account.');
+                return redirect()
+                    ->route('login')
+                    ->withError('Twitter account association not found with any P3D account.');
             }
 
             $user = $twitterAccount ? $twitterAccount->user : null;
-            if ($user) {
+            if (auth()->user() && $user) {
+                if (auth()->user()->id !== $user->id) {
+                    request()
+                        ->session()
+                        ->flash('flash.banner', 'This Twitter account is associated with another P3D account.');
+                    request()
+                        ->session()
+                        ->flash('flash.bannerStyle', 'warning');
+                    return redirect()->route('profile.show');
+                }
                 Auth::login($user);
                 return redirect()->route('dashboard');
             }
 
             if (auth()->guest() && !$user) {
-                return redirect()->route('login')->withError('You are not logged in and user was not found.');
+                return redirect()
+                    ->route('login')
+                    ->withError('You are not logged in and user was not found.');
             }
 
             // Create new twitter account
@@ -68,13 +82,15 @@ class TwitterController extends Controller
             TwitterAccount::create($userProfile);
             $user->unlock(new AssociatedTwitter());
             return redirect()->route('profile.show');
-
         } catch (InvalidStateException $e) {
-            return redirect()->route('home')->withError('Something went wrong with Twitter login. Please try again.');
+            return redirect()
+                ->route('home')
+                ->withError('Something went wrong with Twitter login. Please try again.');
         } catch (ClientException $e) {
-            return redirect()->route('home')->withError('Something went wrong with Twitter login. Please try again.');
+            return redirect()
+                ->route('home')
+                ->withError('Something went wrong with Twitter login. Please try again.');
         }
-
 
         return redirect()->route('dashboard');
     }

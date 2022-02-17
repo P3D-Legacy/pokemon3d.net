@@ -14,7 +14,7 @@ class NewTermsBanner extends Component
         ]);
         redirect()->route('profile.show');
     }
-    
+
     /**
      * Display a view.
      *

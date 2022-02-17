@@ -43,12 +43,7 @@ class ForumAccount extends Model
      *
      * @var array
      */
-    protected $fillable = [
-        'username',
-        'password',
-        'verified_at',
-        'user_id',
-    ];
+    protected $fillable = ['username', 'password', 'verified_at', 'user_id'];
 
     /**
      * The attributes that should be cast to native types.
@@ -59,24 +54,19 @@ class ForumAccount extends Model
         'verified_at' => 'datetime',
     ];
 
-    /** 
+    /**
      * The attributes that should be encrypted/decrypted
-     * 
+     *
      * @var array
      */
-    protected $encryptable = [
-        'password',
-    ];
+    protected $encryptable = ['password'];
 
-    /** 
+    /**
      * The attributes that should be hidden
-     * 
+     *
      * @var array
      */
-    protected $hidden = [
-        'password',
-        'aid',
-    ];
+    protected $hidden = ['password', 'aid'];
 
     public function touchVerify()
     {

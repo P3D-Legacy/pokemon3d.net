@@ -10,7 +10,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use GoldSpecDigital\LaravelEloquentUUID\Database\Eloquent\Uuid;
 
 class Post extends Model implements Viewable
 {
@@ -38,19 +37,18 @@ class Post extends Model implements Viewable
     }
 
     /**
+     * The attributes that will be used for multiple key binding on route models
+     *
+     * @var array
+     */
+    protected $routeBindingKeys = ['uuid'];
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = [
-        'title',
-        'slug',
-        'body',
-        'active',
-        'sticky',
-        'published_at',
-        'user_id',
-    ];
+    protected $fillable = ['title', 'slug', 'body', 'active', 'sticky', 'published_at', 'user_id'];
 
     /**
      * The attributes that should be cast to native types.
@@ -68,5 +66,4 @@ class Post extends Model implements Viewable
     {
         return $this->belongsTo(User::class);
     }
-    
 }

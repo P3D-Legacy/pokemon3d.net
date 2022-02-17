@@ -31,7 +31,7 @@ class LikeButton extends Component
         $this->count = $this->post->likers()->count();
         $this->liked = $this->post->isLikedBy($this->user);
     }
-    
+
     public function render()
     {
         return view('livewire.blog.like-button');

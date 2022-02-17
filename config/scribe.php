@@ -3,13 +3,12 @@
 use Knuckles\Scribe\Extracting\Strategies;
 
 return [
-
     'theme' => 'default',
 
     /*
      * The HTML <title> for the generated documentation. If this is empty, Scribe will infer it from config('app.name').
      */
-    'title' => env('APP_NAME', 'Laravel').' API Documentation',
+    'title' => env('APP_NAME', 'Laravel') . ' API Documentation',
 
     /*
      * A short description of your API. Will be included in the docs webpage, Postman collection and OpenAPI spec.
@@ -170,8 +169,7 @@ return [
         /*
          * Middleware to attach to the docs endpoint (if `add_routes` is true).
          */
-        'middleware' => [
-        ],
+        'middleware' => [],
     ],
 
     'try_it_out' => [
@@ -241,7 +239,8 @@ return [
          * Any extra authentication-related info for your users. For instance, you can describe how to find or generate their auth credentials.
          * Markdown and HTML are supported.
          */
-        'extra_info' => 'You can retrieve your token by logging in normally and then click your profile top-right, in the menu you should see <b>API Tokens</b> (if you have access).',
+        'extra_info' =>
+            'You can retrieve your token by logging in normally and then click your profile top-right, in the menu you should see <b>API Tokens</b> (if you have access).',
     ],
 
     /*
@@ -256,19 +255,13 @@ This API is a work in progress and is subject to change.
 You can switch the language used with the tabs at the top right (or from the nav menu at the top left on mobile).</aside>
 INTRO
     ,
-
     /*
      * Example requests for each endpoint will be shown in each of these languages.
      * Supported options are: bash, javascript, php, python
      * To add a language of your own, see https://scribe.knuckles.wtf/laravel/advanced/example-requests
      *
      */
-    'example_languages' => [
-        'php',
-        'python',
-        'javascript',
-        'bash',
-    ],
+    'example_languages' => ['php', 'python', 'javascript', 'bash'],
 
     /*
      * Generate a Postman collection (v2.1.0) in addition to HTML docs.
@@ -331,9 +324,7 @@ INTRO
      * If you create or install a custom strategy, add it here.
      */
     'strategies' => [
-        'metadata' => [
-            Strategies\Metadata\GetFromDocBlocks::class,
-        ],
+        'metadata' => [Strategies\Metadata\GetFromDocBlocks::class],
         'urlParameters' => [
             Strategies\UrlParameters\GetFromLaravelAPI::class,
             Strategies\UrlParameters\GetFromLumenAPI::class,
@@ -344,10 +335,7 @@ INTRO
             Strategies\QueryParameters\GetFromInlineValidator::class,
             Strategies\QueryParameters\GetFromQueryParamTag::class,
         ],
-        'headers' => [
-            Strategies\Headers\GetFromRouteRules::class,
-            Strategies\Headers\GetFromHeaderTag::class,
-        ],
+        'headers' => [Strategies\Headers\GetFromRouteRules::class, Strategies\Headers\GetFromHeaderTag::class],
         'bodyParameters' => [
             Strategies\BodyParameters\GetFromFormRequest::class,
             Strategies\BodyParameters\GetFromInlineValidator::class,
@@ -360,9 +348,7 @@ INTRO
             Strategies\Responses\UseResponseFileTag::class,
             Strategies\Responses\ResponseCalls::class,
         ],
-        'responseFields' => [
-            Strategies\ResponseFields\GetFromResponseFieldTag::class,
-        ],
+        'responseFields' => [Strategies\ResponseFields\GetFromResponseFieldTag::class],
     ],
 
     'fractal' => [
@@ -384,5 +370,5 @@ INTRO
      * Tell Scribe which connections should be transacted here.
      * If you only use one db connection, you can leave this as is.
      */
-    'database_connections_to_transact' => [config('database.default')]
+    'database_connections_to_transact' => [config('database.default')],
 ];

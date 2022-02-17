@@ -31,7 +31,7 @@
             </p>
         </div>
         <div class="flex justify-between mt-3 item-center">
-            @if(request()->is('uploaded/skins*') || request()->is('player/skins'))
+            @if(request()->is('uploaded/skins*') || request()->is('player/skins*'))
                 <form class="w-full" method="post" action="{{ route('uploaded-skin-destroy', $skin->uuid) }}">
                     @csrf
                     <p class="m-0 my-2 text-xs text-blue-500">
@@ -49,7 +49,7 @@
                     </button>
                 </form>
             @else
-                @if(!request()->is('skins/public/*') && $skin->public)
+                @if(!request()->is('public/*') && $skin->public)
                     <a class="px-2 py-1 text-xs font-bold uppercase bg-blue-800 rounded text-blue-50" href="{{ route('skin-show', $skin->uuid) }}">
                         <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />

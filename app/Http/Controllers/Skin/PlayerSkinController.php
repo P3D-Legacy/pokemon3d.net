@@ -91,7 +91,6 @@ class PlayerSkinController extends Controller
         ]);
         $new_filename = $skin->uuid . '.png';
         Storage::disk('skin')->put($new_filename, Storage::disk('player')->get($old_filename));
-
         return redirect()
             ->route('skins-my')
             ->with('success', 'Skin was duplicated!');

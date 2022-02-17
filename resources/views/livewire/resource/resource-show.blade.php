@@ -9,7 +9,7 @@
 
     <div class="grid sm:grid-flow-col grid-rows-2 sm:grid-rows-none sm:grid-cols-3 gap-4 mb-4 px-2 sm:px-0">
         <div class="sm:col-span-2 text-2xl dark:text-white">
-            {{ $resource->name }} <span class="text-gray-400 dark:text-gray-500">{{ $resource->updates->first() ? $resource->updates->first()->title : 'N/A' }}</span>
+            {{ $resource->name }} <span class="text-gray-400 dark:text-gray-500">{{ $resource->updates->first() ? $resource->updates->first()->title : 'Unreleased' }}</span>
         </div>
         <div class="flex justify-end gap-1">
             @if(auth()->user()->id != $resource->user_id || config('app.debug') == true)
@@ -37,13 +37,13 @@
                         </svg>
                     </button>
                     <div x-show="dropdownOpen" @click.away="dropdownOpen = false" class="absolute z-10 w-48 py-2 mt-2 bg-white border border-gray-200 rounded-md shadow-md dark:bg-gray-900 dark:border-gray-800">
-                        <button onclick="Livewire.emit('openModal', 'resource.resource-edit', {{ json_encode(['resource' => $resource->id]) }})" class="block w-full px-4 py-2 text-sm text-left text-gray-700 dark:text-gray-300 hover:bg-green-700 hover:text-white">
+                        <button onclick="Livewire.emit('openModal', 'resource.resource-form', {{ json_encode(['resource' => $resource->id]) }})" class="block w-full px-4 py-2 text-sm text-left text-gray-700 dark:text-gray-300 hover:bg-green-700 hover:text-white">
                             <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                             </svg>
                             Edit
                         </button>
-                        <button onclick="Livewire.emit('openModal', 'resource.update-create', {{ json_encode(['resource' => $resource->id]) }})" class="block w-full px-4 py-2 text-sm text-left text-gray-700 dark:text-gray-300 hover:bg-green-700 hover:text-white">
+                        <button onclick="Livewire.emit('openModal', 'resource.update-create', {{ json_encode(['resource_uuid' => $resource->uuid]) }})" class="block w-full px-4 py-2 text-sm text-left text-gray-700 dark:text-gray-300 hover:bg-green-700 hover:text-white">
                             <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                             </svg>
@@ -57,7 +57,7 @@
     <div class="w-full p-4 bg-white rounded-lg shadow-lg dark:bg-gray-900 dark:shadow-gray-700">
         <div class="grid grid-rows-2 sm:grid-rows-none sm:grid-cols-4 gap-4">
             <div class="sm:col-span-3">
-                <div class="mb-4 text-xs text-gray-400">{{ $resource->breif }}</div>
+                <div class="mb-4 text-xs text-gray-400">{{ $resource->brief }}</div>
                 <div class="prose dark:prose-invert">
                     {!! Str::of($resource->description)->markdown() !!}
                 </div>
@@ -66,7 +66,7 @@
                 <div class="p-4 bg-gray-100 rounded dark:bg-gray-800">
                     <div class="flex flex-row justify-between">
                         <span>Author:</span>
-                        <span>{{ $resource->user->username }}</span>
+                        <span><a href="{{ route('member.show', $resource->user) }}" class="text-green-400 hover:text-green-500 hover:underline">{{ $resource->user->username }}</a></span>
                     </div>
                     <div class="flex flex-row justify-between">
                         <span>Rating:</span>
@@ -95,7 +95,7 @@
     <div class="flex flex-col items-center justify-center w-full mx-auto mt-10 overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-900 dark:shadow-gray-700">
         <div class="w-full px-4 py-5 border-b sm:px-6 dark:border-gray-700">
             <h3 class="text-lg font-medium leading-6 text-gray-900 dark:text-white">
-                Files
+                Updates
             </h3>
         </div>
         <div class="flex flex-col w-full divide-y divide dark:divide-gray-700">
@@ -130,7 +130,7 @@
             @empty
                 <div class="flex items-center justify-center w-full p-4">
                     <div class="text-center dark:text-gray-400">
-                        {{ __('No files found.') }}
+                        {{ __('No updates found.') }}
                     </div>
                 </div>
             @endforelse
@@ -143,14 +143,14 @@
             </h3>
         </div>
         <div class="flex flex-col w-full divide-y divide dark:divide-gray-700">
-            @foreach ($resource->reviews as $review)
+            @forelse ($resource->reviews as $review)
                 <div class="flex items-center w-full p-4">
                     <div class="flex flex-col items-center justify-center w-10 h-10 mr-4">
-                        <img alt="{{ $review->author->username }}" src="{{ $review->author->profile_photo_url ?? asset('img/TreeLogoSmall.png') }}" class="object-cover w-10 h-10 mx-auto rounded-full "/>
+                        <a href="{{ route('member.show', $review->author) }}"><img alt="{{ $review->author->username }}" src="{{ $review->author->profile_photo_url ?? asset('img/TreeLogoSmall.png') }}" class="object-cover w-10 h-10 mx-auto rounded-full "/></a>
                     </div>
                     <div class="flex-1 pl-1 mr-16">
                         <div class="text-sm text-gray-400 dark:text-gray-200 flex items-center">
-                            {{ $review->author->username }} &middot; <x-review-stars :stars="$review->rating" /> &middot; {{ $review->created_at->diffForHumans() }}
+                            <a href="{{ route('member.show', $review->author) }}" class="text-green-400 hover:text-green-500 mr-2 hover:underline">{{ $review->author->username }}</a> &middot; <x-review-stars :stars="$review->rating" /> &middot; {{ $review->created_at->diffForHumans() }}
                         </div>
                         <div class="text-xs text-gray-500 truncate dark:text-gray-300">
                             
@@ -160,7 +160,13 @@
                         </div>
                     </div>
                 </div>
-            @endforeach
+                @empty
+                <div class="flex items-center justify-center w-full p-4">
+                    <div class="text-center dark:text-gray-400">
+                        {{ __('No reviews found.') }}
+                    </div>
+                </div>
+            @endforelse
         </div>
     </div>
 </div>

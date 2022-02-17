@@ -79,7 +79,6 @@ class UserController extends Controller
             ]);
         }
         $user = User::with(['roles.permissions', 'gamejolt', 'forum'])->findOrFail($id);
-
         return new UserResource($user);
     }
 }

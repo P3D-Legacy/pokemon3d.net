@@ -61,7 +61,6 @@ class GameJolt extends Component
 
         if (!$gamejoltaccount) {
             $this->addError('error', 'This Gamejolt Account is not associated with a P3D account yet.');
-
             return;
         }
 
@@ -69,7 +68,6 @@ class GameJolt extends Component
 
         if (!$user) {
             $this->addError('error', 'Could\'t find the user associated with this Gamejolt Account.');
-
             return;
         }
 

@@ -7,23 +7,26 @@ use Livewire\Component;
 
 class ResourceShow extends Component
 {
-    public int|Resource $resource;
+    public Resource $resource;
 
     protected $listeners = [
         'resourceUpdated' => 'update',
     ];
 
-    public function mount(int|Resource $resource)
+    public function mount($uuid)
     {
         $this->resource = Resource::with('categories')
-            ->find($resource)
+            ->where('uuid', $uuid)
             ->firstOrFail();
+        views($this->resource)
+            ->cooldown(60)
+            ->record();
     }
 
-    public function update(int|Resource $resource)
+    public function update($uuid)
     {
         $this->resource = Resource::with('categories')
-            ->find($resource)
+            ->where('uuid', $uuid)
             ->firstOrFail();
     }
 
@@ -33,7 +36,6 @@ class ResourceShow extends Component
         $update->incrementDownload();
         $mediaItem = $update->getFirstMedia('resource_update_file');
         $this->emit('resourceUpdated', $this->resource->id);
-
         return response()->download($mediaItem->getPath(), $mediaItem->file_name);
     }
 

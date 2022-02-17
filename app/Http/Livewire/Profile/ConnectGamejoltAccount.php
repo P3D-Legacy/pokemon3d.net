@@ -121,6 +121,31 @@ class ConnectGamejoltAccount extends Component
     }
 
     /**
+     * Update the user's GameJolt Account credentials.
+     *
+     * @return void
+     */
+    public function remove()
+    {
+        $this->resetErrorBag();
+        $this->resetValidation();
+
+        $user = Auth::user();
+
+        if ($user->gamejolt) {
+            $user->gamejolt->delete();
+            $this->username = null;
+            $this->token = null;
+            $this->updated_at = null;
+            $this->verified_at = null;
+        }
+
+        $this->emit('refresh');
+
+        return;
+    }
+
+    /**
      * Render the component.
      *
      * @return \Illuminate\View\View

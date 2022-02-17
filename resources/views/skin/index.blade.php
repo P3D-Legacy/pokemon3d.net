@@ -7,6 +7,12 @@
 
     <div class="py-12">
         <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
+
+            @component('components.breadcrumb', ['breadcrumbs' => [
+                ['label' => 'Skins'],
+            ]])
+            @endcomponent
+
             <div class="grid grid-flow-col grid-cols-3 gap-4">
                 <div>
                     <div class="w-full m-auto overflow-hidden rounded-lg shadow-lg h-90">
@@ -17,7 +23,7 @@
                                     @if(File::exists(public_path('player/'.Auth::user()->gamejolt->id.'.png')))
                                         <img src="{{ asset('player/'.Auth::user()->gamejolt->id.'.png') }}?r={{ now()->timestamp }}" class="mx-auto my-4">
                                     @else
-                                        <p>No skins have been added to your account yet.</p>
+                                        <p class="dark:text-gray-400">No skins have been added to your account yet.</p>
                                         @if(Auth::user()->gamejolt->skins()->count() >= env('SKIN_MAX_UPLOAD'))
                                             <div class="px-4 py-3 mt-4 text-sm leading-normal text-blue-800 bg-blue-300 rounded-lg">
                                                 <i class="mr-2 fas fa-info-circle" aria-hidden="true"></i> Your slots are full. You cannot import from the old site unless you delete one of the slots.

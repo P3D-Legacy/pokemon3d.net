@@ -24,7 +24,7 @@
 
         <x-jet-label for="description" class="mt-4" value="{{ __('Description') }}" />
         <div wire:ignore>
-            <x-easy-mde-editor name="description" :options="['hideIcons' => ['side-by-side','fullscreen',]]">
+            <x-easy-mde-editor name="description" id="easyMDE" :options="['hideIcons' => ['side-by-side','fullscreen',]]">
                 <x-slot name="script">
                     easyMDE.codemirror.on('change', function () {
                       @this.set('description', easyMDE.value())

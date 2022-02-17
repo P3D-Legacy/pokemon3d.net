@@ -64,6 +64,8 @@ class Update extends Command
         Artisan::call('storage:link');
         $this->info('Generating API Docs...');
         Artisan::call('scribe:generate');
+        $this->info('Getting Github release...');
+        Artisan::call('github:syncrelease');
         $this->info('Done.');
     }
 }

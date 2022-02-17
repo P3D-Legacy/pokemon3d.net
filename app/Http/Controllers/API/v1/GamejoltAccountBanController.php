@@ -34,7 +34,6 @@ class GamejoltAccountBanController extends Controller
             ]);
         }
         $resources = GamejoltAccountBan::with(['reason', 'gamejoltaccount'])->get();
-
         return GamejoltAccountBanResource::collection($resources);
     }
 

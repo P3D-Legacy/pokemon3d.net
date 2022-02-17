@@ -25,7 +25,7 @@
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-dropdown :active="request()->routeIs('skin*')">
                         <x-slot name="trigger">
-                            {{ __('Skin') }}
+                            {{ __('Skins') }}
                         </x-slot>
                         <x-slot name="content">
                             <x-jet-dropdown-link href="{{ route('skin-home') }}">
@@ -257,7 +257,7 @@
                 {{ __('Resources') }}
             </x-jet-responsive-nav-link>
             <x-jet-responsive-nav-link href="{{ route('skin-home') }}" :active="request()->routeIs('skin-home')">
-                {{ __('Skin') }}
+                {{ __('Skins') }}
             </x-jet-responsive-nav-link>
             <x-jet-responsive-nav-link href="{{ route('skins-popular') }}" :active="request()->routeIs('skins-popular')">
                 {{ __('Most Popular') }} {{ __('Skin') }}

@@ -46,7 +46,6 @@ class Xenforo extends Component
 
         if (!$forumaccount) {
             $this->addError('error', 'This Forum Account is not associated with a P3D account yet.');
-
             return;
         }
 
@@ -54,7 +53,6 @@ class Xenforo extends Component
 
         if (!$user) {
             $this->addError('error', 'Could\'t find the user associated with this Forum Account.');
-
             return;
         }
 

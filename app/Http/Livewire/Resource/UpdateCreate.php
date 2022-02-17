@@ -29,13 +29,13 @@ class UpdateCreate extends ModalComponent
     protected array $rules = [
         'version' => ['required', 'string'],
         'description' => ['required', 'string'],
-        'file' => ['required', 'file', 'mimes:zip'],
+        'file' => ['required', 'file', 'mimes:zip', 'max:200000'], //200mb
         'gameversion' => ['required'],
     ];
 
-    public function mount(int|Resource $resource)
+    public function mount($resource_uuid)
     {
-        $this->resource = $resource;
+        $this->resource = Resource::where('uuid', $resource_uuid)->first();
         $this->gameversions = GameVersion::all();
     }
 
@@ -46,14 +46,14 @@ class UpdateCreate extends ModalComponent
         $this->resourceUpdate = ResourceUpdate::create([
             'title' => $this->version,
             'description' => $this->description,
-            'resource_id' => $this->resource,
+            'resource_id' => $this->resource->id,
             'game_version_id' => $this->gameversion,
         ]);
 
         $this->resourceUpdate->clearMediaCollection('resource_update_file');
         $this->resourceUpdate->addMedia($this->file->getRealPath())->toMediaCollection('resource_update_file');
 
-        $this->emit('resourceUpdated', $this->resource);
+        $this->emit('resourceUpdated', $this->resource->uuid);
         $this->closeModal();
     }
 

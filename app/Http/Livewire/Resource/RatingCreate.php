@@ -32,7 +32,7 @@ class RatingCreate extends ModalComponent
 
         $resource->review($this->body, $this->user, $this->rating);
 
-        $this->emit('resourceUpdated', $resource->id);
+        $this->emit('resourceUpdated', $resource->uuid);
 
         $this->closeModal();
     }

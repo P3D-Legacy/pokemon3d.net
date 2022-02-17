@@ -15,10 +15,10 @@ class StatsGraph extends Component
     {
         //UserRegistrationStats::set(random_int(1, 1000), now()->subDays(10));
         $this->stats = UserRegistrationStats::query()
-                        ->start(now()->subDays(10))
-                        ->end(now()->subSecond())
-                        ->groupByDay()
-                        ->get();
+            ->start(now()->subDays(10))
+            ->end(now()->subSecond())
+            ->groupByDay()
+            ->get();
         $this->labels = $this->stats->pluck('start')->toArray();
         $this->values = $this->stats->pluck('value')->toArray();
         //dd($this->stats->pluck('value')->toArray());

@@ -7,6 +7,12 @@
 
     <div class="py-12">
         <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
+
+            @component('components.breadcrumb', ['breadcrumbs' => [
+                ['label' => 'Skins'],
+            ]])
+            @endcomponent
+
             <div class="grid grid-flow-col grid-cols-3 gap-4">
                 <div>
                     <div class="w-full m-auto overflow-hidden rounded-lg shadow-lg h-90">

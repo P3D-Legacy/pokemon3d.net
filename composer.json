@@ -12,6 +12,7 @@
     "license": "gpl-3.0-only",
     "require": {
         "php": "^8.0",
+        "akaunting/laravel-language": "^1.0",
         "alibayat/laravel-categorizable": "1.0.x-dev",
         "anlutro/l4-settings": "^1.0",
         "assada/laravel-achievements": "^2.3",
@@ -30,6 +31,7 @@
         "guzzlehttp/psr7": "^1.8.2",
         "harrk/gamejolt-api": "^1.1",
         "intervention/image": "^2.5",
+        "kkomelin/laravel-translatable-string-exporter": "^1.16",
         "knuckleswtf/scribe": "^3.11",
         "laravel/framework": "^8.54",
         "laravel/jetstream": "^2.3",

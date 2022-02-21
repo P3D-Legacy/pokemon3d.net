@@ -34,7 +34,7 @@
         @enderror
 
         <x-jet-button>
-            {{ __('Login') }}
+            {{ __('Log in') }}
         </x-jet-button>
     </x-slot>
 </x-jet-form-section>

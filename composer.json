@@ -31,6 +31,7 @@
         "guzzlehttp/psr7": "^1.8.2",
         "harrk/gamejolt-api": "^1.1",
         "intervention/image": "^2.5",
+        "kkomelin/laravel-translatable-string-exporter": "^1.16",
         "knuckleswtf/scribe": "^3.11",
         "laravel/framework": "^8.54",
         "laravel/jetstream": "^2.3",

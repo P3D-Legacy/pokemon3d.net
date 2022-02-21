@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ba9a9a806e9f73438b9335837bef840a",
+    "content-hash": "56e3adb015c3ad845a1000c664331704",
     "packages": [
         {
             "name": "akaunting/laravel-language",
@@ -3266,6 +3266,71 @@
                 "source": "https://github.com/lazychaser/laravel-nestedset/tree/v6.0.0"
             },
             "time": "2021-05-28T07:08:55+00:00"
+        },
+        {
+            "name": "kkomelin/laravel-translatable-string-exporter",
+            "version": "1.16.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kkomelin/laravel-translatable-string-exporter.git",
+                "reference": "4714516a8f3c52759f1de503ba1bc978442ed7f4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kkomelin/laravel-translatable-string-exporter/zipball/4714516a8f3c52759f1de503ba1bc978442ed7f4",
+                "reference": "4714516a8f3c52759f1de503ba1bc978442ed7f4",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "illuminate/support": "^5.4|^6|^7|^8|^9",
+                "illuminate/translation": "^5.4|^6|^7|^8|^9",
+                "php": "^7.2|^8.0",
+                "symfony/finder": "^3.2|^4|^5|^6"
+            },
+            "require-dev": {
+                "nunomaduro/larastan": "^1.0|^2.0",
+                "orchestra/testbench": "^3.4|^4.0|^5.0|^6.0|^7.0",
+                "phpunit/phpunit": "^6.0|^7.0|^8.0|^9.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "KKomelin\\TranslatableStringExporter\\Providers\\ExporterServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "KKomelin\\TranslatableStringExporter\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Konstantin Komelin",
+                    "email": "konstantin.komelin@gmail.com"
+                }
+            ],
+            "description": "Translatable String Exporter for Laravel",
+            "keywords": [
+                "export",
+                "exporter",
+                "json",
+                "laravel",
+                "localization",
+                "translation",
+                "translations"
+            ],
+            "support": {
+                "issues": "https://github.com/kkomelin/laravel-translatable-string-exporter/issues",
+                "source": "https://github.com/kkomelin/laravel-translatable-string-exporter/tree/1.16.0"
+            },
+            "time": "2022-02-16T05:53:46+00:00"
         },
         {
             "name": "knuckleswtf/scribe",

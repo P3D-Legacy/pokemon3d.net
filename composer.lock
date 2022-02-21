@@ -4,8 +4,70 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "69c9b5e56cc4411360fb6de8cd2286b8",
+    "content-hash": "ba9a9a806e9f73438b9335837bef840a",
     "packages": [
+        {
+            "name": "akaunting/laravel-language",
+            "version": "1.0.20",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/akaunting/laravel-language.git",
+                "reference": "76c044e1c691bbc90f179a42ea58c6c4771f7ed5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/akaunting/laravel-language/zipball/76c044e1c691bbc90f179a42ea58c6c4771f7ed5",
+                "reference": "76c044e1c691bbc90f179a42ea58c6c4771f7ed5",
+                "shasum": ""
+            },
+            "require": {
+                "jenssegers/agent": "2.6.*",
+                "laravel/framework": ">=5.4.0",
+                "php": ">=5.6.4"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Akaunting\\Language\\Provider"
+                    ],
+                    "aliases": {
+                        "Language": "Akaunting\\Language\\Facade"
+                    }
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/helpers.php"
+                ],
+                "psr-4": {
+                    "Akaunting\\Language\\": "./src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Denis Duliçi",
+                    "email": "info@akaunting.com",
+                    "homepage": "https://akaunting.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Language switcher package for Laravel",
+            "keywords": [
+                "language",
+                "laravel",
+                "switcher"
+            ],
+            "support": {
+                "issues": "https://github.com/akaunting/laravel-language/issues",
+                "source": "https://github.com/akaunting/laravel-language/tree/1.0.20"
+            },
+            "time": "2022-02-15T06:21:49+00:00"
+        },
         {
             "name": "alibayat/laravel-categorizable",
             "version": "dev-master",

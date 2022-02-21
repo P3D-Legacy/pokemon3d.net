@@ -12,6 +12,7 @@
     "license": "gpl-3.0-only",
     "require": {
         "php": "^8.0",
+        "akaunting/laravel-language": "^1.0",
         "alibayat/laravel-categorizable": "1.0.x-dev",
         "anlutro/l4-settings": "^1.0",
         "assada/laravel-achievements": "^2.3",

@@ -2,6 +2,7 @@
 
 namespace App\Actions\Fortify;
 
+use Carbon\Carbon;
 use App\Rules\OlderThan;
 use App\Rules\YoungerThan;
 use Illuminate\Validation\Rule;
@@ -45,7 +46,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
                     'gender' => $input['gender'],
                     'location' => $input['location'],
                     'about' => $input['about'],
-                    'birthdate' => $input['birthdate'],
+                    'birthdate' => Carbon::parse($input['birthdate'])->format('Y-m-d'),
                     'email' => $input['email'],
                 ])
                 ->save();
@@ -68,7 +69,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
                 'gender' => $input['gender'],
                 'location' => $input['location'],
                 'about' => $input['about'],
-                'birthdate' => $input['birthdate'],
+                'birthdate' => Carbon::parse($input['birthdate'])->format('Y-m-d'),
                 'email' => $input['email'],
                 'email_verified_at' => null,
             ])

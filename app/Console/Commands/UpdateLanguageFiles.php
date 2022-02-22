@@ -2,6 +2,8 @@
 
 namespace App\Console\Commands;
 
+use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
 
@@ -39,7 +41,17 @@ class UpdateLanguageFiles extends Command
     public function handle()
     {
         $this->info('Updating language files...');
-        $langs = array_values(config('language.allowed'));
+        $special_langs = ['cn', 'tw']; // these have a special long format
+        $langs = Arr::flatten(config('language.allowed')); // get allowed languages
+        $all_langs_codes = Arr::pluck(config('language.all'), 'long', 'short'); // get all languages short and long codes from config
+        foreach ($langs as $lang) {
+            if (in_array($lang, $special_langs)) {
+                $this->info('Getting special name for ' . $lang . '...');
+                Arr::pull($langs, array_search($lang, $langs)); // remove the lang from the array
+                $lang_name = Str::replaceFirst('-', '_', $all_langs_codes[$lang]); // format the name correctly
+                array_push($langs, $lang_name); // add the new name to the array
+            }
+        }
         Artisan::call('lang:add ' . implode(' ', $langs));
         Artisan::call('lang:update');
         Artisan::call('translatable:export ' . implode(',', $langs));

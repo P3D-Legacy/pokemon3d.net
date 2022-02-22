@@ -41,6 +41,6 @@ class YoungerThan implements Rule
      */
     public function message()
     {
-        return __('validation.YoungerThan', ['age' => $this->maxAge]);
+        return __('You need to be younger than :age years old', ['age' => $this->maxAge]);
     }
 }

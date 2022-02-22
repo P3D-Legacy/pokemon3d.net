@@ -41,6 +41,6 @@ class OlderThan implements Rule
      */
     public function message()
     {
-        return __('validation.OlderThan', ['age' => $this->minAge]);
+        return __('You need to be older than :age years old', ['age' => $this->minAge]);
     }
 }

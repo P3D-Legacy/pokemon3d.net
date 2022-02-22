@@ -135,7 +135,7 @@ return [
     | This options indicates the language allowed languages.
     |
     */
-    'allowed' => ['en', 'cn', 'cs', 'el', 'es', 'et', 'nb', 'nl', 'ru', 'sv', 'tw',],
+    'allowed' => ['en', 'cn', 'cs', 'el', 'es', 'et', 'nb', 'nl', 'ru', 'sv', 'tw'],
 
     /*
     |--------------------------------------------------------------------------

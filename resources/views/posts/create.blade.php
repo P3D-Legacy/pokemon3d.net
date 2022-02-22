@@ -61,7 +61,7 @@
 						<div class="flex flex-wrap">
 							<div class="w-full px-3">
 								<label for="grid-password" class="block mb-1">Post body</label>
-								<textarea name="body" id="easyMDE">{{ old('body') }}</textarea>
+								<x-easy-mde name="body" id="body" :options="['hideIcons' => ['side-by-side','fullscreen',]]"></x-easy-mde>
 								@error('body')
                                     <span class="text-xs text-red-700">{{ $message }}</span>
                                 @enderror
@@ -72,7 +72,7 @@
                             <label for="tags" class="block text-sm font-medium">Tags</label>
                             @foreach($tags as $tag)
                                 <label class="inline-flex items-center m-2">
-                                    <input class="text-indigo-600 border-gray-300 rounded shadow-sm focus:border-indigo-300 focus:ring focus:ring-offset-0 focus:ring-indigo-200 focus:ring-opacity-50" type="checkbox" value="{{ $tag->name }}" name="tags[]" />
+                                    <input class="text-green-600 border-gray-300 rounded shadow-sm focus:border-green-300 focus:ring focus:ring-offset-0 focus:ring-green-200 focus:ring-opacity-50" type="checkbox" value="{{ $tag->name }}" name="tags[]" />
                                     <span class="ml-1">{{ $tag->name }}</span>
                                 </label>
                             @endforeach

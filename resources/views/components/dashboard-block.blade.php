@@ -1,11 +1,11 @@
 <div class="p-6 border-b border-gray-200 bg-spring sm:px-20 dark:border-gray-700 dark:bg-gray-900">
 
     <div class="mt-8 font-mono text-3xl font-bold tracking-tighter text-gray-50">
-        Welcome to {{ config('app.name') }}!
+        @lang('Welcome to :game!', ['game' => config('app.name')])
     </div>
 
     <div class="mt-6 text-gray-100">
-        {{ config('app.name') }} is a video game originally created by Nilllzz. It is heavily inspired by Minecraft, and the Pokémon series. Pokémon 3D focused on the strong points of Pokémon Gold and Silver versions and their remakes, and gives players a taste as to how the once 2D world they knew was in 3D. They could even see through the eyes of their own trainer. We hope you love it.
+        @lang(':game is a video game originally created by Nilllzz. It is heavily inspired by Minecraft, and the Pokémon series. :game focused on the strong points of Pokémon Gold and Silver versions and their remakes, and gives players a taste as to how the once 2D world they knew was in 3D. They could even see through the eyes of their own trainer. We hope you love it.', ['game' => config('app.name')])
     </div>
 
     <x-download-button />
@@ -16,17 +16,17 @@
     <div class="p-6">
         <div class="flex items-center">
             <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-8 h-8 text-gray-400"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
-            <div class="ml-4 text-lg font-semibold leading-7 text-gray-600 dark:text-gray-300">Documentation</div>
+            <div class="ml-4 text-lg font-semibold leading-7 text-gray-600 dark:text-gray-300">@lang('Documentation')</div>
         </div>
 
         <div class="ml-12">
             <div class="mt-2 text-sm text-gray-500 dark:text-gray-300">
-                {{ config('app.name') }} has wonderful documentation covering every aspect of the game. Whether you're new to the game or have previous experience, we recommend reading all of the documentation from beginning to end.
+                @lang(":game has wonderful documentation covering every aspect of the game. Whether you're new to the game or have previous experience, we recommend reading all of the documentation from beginning to end.", ['game' => config('app.name')])
             </div>
 
             <a href="{{ route('wiki') }}">
                 <div class="flex items-center mt-3 text-sm font-semibold text-green-700 dark:text-green-500">
-                    <div>Explore the wiki</div>
+                    <div>@lang('Explore the wiki')</div>
 
                     <div class="ml-1 text-green-700 dark:text-green-500">
                         <svg viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
@@ -46,11 +46,11 @@
 
         <div class="ml-12">
             <div class="mt-2 text-sm text-gray-500 dark:text-gray-300">
-                We've made it easy for you to get in touch with other players in real-time with our community Discord-server for the game. You can ask questions, share your ideas and even get help from other players. We're always happy to help!
+                @lang("We've made it easy for you to get in touch with other players in real-time with our community Discord-server for the game. You can ask questions, share your ideas and even get help from other players. We're always happy to help!")
             </div>
             <a href="{{ route('discord') }}">
                 <div class="flex items-center mt-3 text-sm font-semibold text-green-700 dark:text-green-500">
-                    <div>Get on our Discord server</div>
+                    <div>@lang('Get on our Discord server')</div>
 
                     <div class="ml-1 text-green-700 dark:text-green-500">
                         <svg viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
@@ -64,16 +64,16 @@
     <div class="p-6 border-t border-gray-200 dark:border-gray-900">
         <div class="flex items-center">
             <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-8 h-8 text-gray-400"><path d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-            <div class="ml-4 text-lg font-semibold leading-7 text-gray-600 dark:text-gray-300">Custom Skin</div>
+            <div class="ml-4 text-lg font-semibold leading-7 text-gray-600 dark:text-gray-300">@lang('Custom Skin')</div>
         </div>
 
         <div class="ml-12">
             <div class="mt-2 text-sm text-gray-500 dark:text-gray-300">
-                {{ config('app.name') }} has a built in feature where every player has the opportunity to change their look for multiplayer sessions. You'll be amazed how easily you can change it, store other skin and browse what other have made just at your fingertips.
+                @lang(":game has a built in feature where every player has the opportunity to change their look for multiplayer sessions. You'll be amazed how easily you can change it, store other skin and browse what other have made just at your fingertips.", ['game' => config('app.name')])
             </div>
             <a href="{{ route('skin-home') }}">
                 <div class="flex items-center mt-3 text-sm font-semibold text-green-700 dark:text-green-500">
-                    <div>Get to customization</div>
+                    <div>@lang('Get to customization')</div>
 
                     <div class="ml-1 text-green-700 dark:text-green-500">
                         <svg viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
@@ -88,17 +88,17 @@
             <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
             </svg>
-            <div class="ml-4 text-lg font-semibold leading-7 text-gray-600 dark:text-gray-300">Forum</div>
+            <div class="ml-4 text-lg font-semibold leading-7 text-gray-600 dark:text-gray-300">@lang('Forum (Archived)')</div>
         </div>
 
         <div class="ml-12">
             <div class="mt-2 text-sm text-gray-500 dark:text-gray-300">
-                Our forum offers a lot of threads of discussions, bugs and other information. Check them out, see for yourself, and massively level up your knowledge skills in the process.
+                @lang('Our forum offers a lot of threads of discussions, bugs and other information. Check them out, see for yourself, and massively level up your knowledge skills in the process.')
             </div>
 
             <a href="{{ route('forum') }}">
                 <div class="flex items-center mt-3 text-sm font-semibold text-green-700 dark:text-green-500">
-                    <div>Start browsing</div>
+                    <div>@lang('Start browsing')</div>
 
                     <div class="ml-1 text-green-700 dark:text-green-500">
                         <svg viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>

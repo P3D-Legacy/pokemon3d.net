@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight dark:text-gray-200">
-            {{ __('Mange Users') }} - {{ $user->name }}
+            {{ __('Manage Users') }} - {{ $user->name }}
         </h2>
     </x-slot>
     <form method="POST" action="{{ route('users.update', $user) }}">

@@ -33,7 +33,7 @@ class ProfileInformationTest extends TestCase
                 'gender' => 0,
                 'location' => 'Oslo',
                 'about' => 'I am a test user.',
-                'birthdate' => '1970-12-31',
+                'birthdate' => '31-12-1990',
                 'email' => 'test@example.com',
             ])
             ->call('updateProfileInformation');

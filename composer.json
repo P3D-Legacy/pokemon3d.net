@@ -63,6 +63,8 @@
         "barryvdh/laravel-debugbar": "^3.5",
         "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",
+        "laravel-lang/lang": "^10.4",
+        "laravel-lang/publisher": "^12.2",
         "laravel/sail": "^1.0.1",
         "mockery/mockery": "^1.4.2",
         "nunomaduro/collision": "^5.0",

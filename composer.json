@@ -42,6 +42,7 @@
         "martinbean/socialite-discord-provider": "^1.2",
         "mtownsend/read-time": "^2.0",
         "origami/consent": "^2.0",
+        "overtrue/laravel-lang": "~5.0",
         "overtrue/laravel-like": "^4.0",
         "power-components/livewire-powergrid": "^v2.0.0",
         "restcord/restcord": "dev-develop",

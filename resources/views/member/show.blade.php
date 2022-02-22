@@ -7,7 +7,7 @@
                     <div class="w-full h-48 bg-green-600 rounded-t-lg bg-spring"></div>
                     <div class="absolute ml-5 -mt-20">
                         <div class="overflow-hidden bg-gray-200 border border-b border-gray-300 rounded-lg shadow-md shadow-black/25 w-36 h-36 border-primary">
-                            <img class="object-cover w-full" src="{{ $user->profile_photo_url }}" alt="{{ $user->name }}" />
+                            <img class="object-cover h-full w-full" src="{{ $user->profile_photo_url }}" alt="{{ $user->name }}" />
                         </div>
                     </div>
                 </div>

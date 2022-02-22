@@ -5,7 +5,7 @@ namespace App\Http\Livewire\Admin;
 use Livewire\Component;
 use App\Stats\UserRegistrationStats;
 
-class StatsGraph extends Component
+class UserRegistrationStatsGraph extends Component
 {
     public $stats;
     public $labels;
@@ -26,6 +26,6 @@ class StatsGraph extends Component
 
     public function render()
     {
-        return view('livewire.admin.stats-graph');
+        return view('livewire.admin.user-registration-stats-graph');
     }
 }

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Spatie\Tags\HasTags;
 use Illuminate\Support\Str;
+use App\Stats\ResourceCreationStats;
 use Illuminate\Database\Eloquent\Model;
 use Overtrue\LaravelLike\Traits\Likeable;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -32,12 +33,17 @@ class Resource extends Model implements Viewable
         self::creating(function ($model) {
             $model->uuid = Str::uuid()->toString();
             $model->user_id = auth()->id();
+            ResourceCreationStats::increase();
         });
 
         self::updating(function ($model) {
             if (!$model->uuid) {
                 $model->uuid = Str::uuid()->toString();
             }
+        });
+
+        self::deleting(function ($model) {
+            ResourceCreationStats::decrease();
         });
     }
 

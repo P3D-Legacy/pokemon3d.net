@@ -112,7 +112,7 @@ return [
     | This option indicates the flags features.
     |
     */
-    'flags' => ['width' => '22px', 'ul_class' => '', 'li_class' => '', 'img_class' => ''],
+    'flags' => ['width' => '22px', 'ul_class' => 'w-48', 'li_class' => '', 'img_class' => 'h-auto w-5'],
 
     /*
     |--------------------------------------------------------------------------
@@ -135,7 +135,7 @@ return [
     | This options indicates the language allowed languages.
     |
     */
-    'allowed' => ['en', 'zh_CN', 'nl', 'el', 'es', 'ru', 'sv', 'et', 'zh_TW', 'nb'],
+    'allowed' => ['en', 'cn', 'nl', 'el', 'es', 'ru', 'sv', 'et', 'tw', 'nb'],
 
     /*
     |--------------------------------------------------------------------------

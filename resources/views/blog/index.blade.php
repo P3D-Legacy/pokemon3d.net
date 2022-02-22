@@ -7,7 +7,7 @@
                 </a>
             </div>
 
-			<div class="w-full p-6 pt-4 mt-6 mb-10 overflow-hidden rounded-lg shadow-md sm:max-w-3xl bg-gray-50 dark:bg-gray-800">
+			<div class="w-full p-6 pt-4 mt-6 mb-10 overflow-hidden rounded-lg shadow-md sm:max-w-2xl bg-gray-50 dark:bg-gray-800">
 
 				<ul class="flex mb-8 text-sm text-gray-500 lg:text-base">
                     <li class="inline-flex items-center">
@@ -36,7 +36,7 @@
 				
 			</div>
 
-			<div class="grid w-full grid-cols-1 gap-8 sm:max-w-3xl">
+			<div class="grid w-full grid-cols-1 gap-8 sm:max-w-2xl">
 				@empty($posts->count())
 					<div class="w-full m-auto overflow-hidden no-underline transition border rounded-lg shadow-lg h-90 border-gray-50 dark:border-gray-900">
 						<div class="block w-full h-full">

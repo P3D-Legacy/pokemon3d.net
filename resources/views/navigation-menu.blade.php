@@ -340,6 +340,17 @@
                 <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
             </svg>
         </button>
+
+        <div class="relative ml-2">
+            <x-jet-dropdown align="left">
+                <x-slot name="trigger">
+                    @include('vendor.language.flag')
+                </x-slot>
+                <x-slot name="content">
+                    @include('vendor.language.flags')
+                </x-slot>
+            </x-jet-dropdown>
+        </div>
         
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200 dark:border-gray-700">

@@ -28,7 +28,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             'location' => ['nullable', 'max:255'],
             'about' => ['nullable', 'max:255'],
             'birthdate' => ['required', 'date_format:Y-m-d', new OlderThan(), new YoungerThan()],
-            'photo' => ['nullable', 'mimes:jpg,jpeg,png', 'max:1024'],
+            'photo' => ['nullable', 'mimes:jpg,jpeg,png', 'max:3072'],
         ])->validateWithBag('updateProfileInformation');
 
         if (isset($input['photo'])) {

@@ -191,7 +191,7 @@
     "Version Title": "Título de la versión",
     "We will always send you important information about your account. But we are required by law to obtain consent for other things.": "Siempre le enviaremos información importante sobre su cuenta. Pero estamos obligados por ley a obtener el consentimiento para otras cosas.",
     "What's my token?": "¿Cuál es mi token?",
-    "When two factor authentication is enabled, you will be prompted for a secure, random token during authentication. You may retrieve this token from your phone's Google Authenticator application.": "Cuando la autenticación de dos factores está habilitada, se le solicitará un token seguro y aleatorio durante la autenticación. Puede recuperar este token de la aplicación Google Authenticator de su teléfono.",
+    "When two factor authentication is enabled, you will be prompted for a secure, random token during authentication. You may retrieve this token from your phone's Authenticator application.": "Cuando la autenticación de dos factores está habilitada, se le solicitará un token seguro y aleatorio durante la autenticación. Puede recuperar este token de la aplicación Google Authenticator de su teléfono.",
     "Whoops! Something went wrong.": "¡Ups! Algo salió mal.",
     "Yes": "Sí",
     "You have been invited to join the :team team!": "¡Usted ha sido invitado a unirse al equipo :team!",

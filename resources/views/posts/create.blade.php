@@ -61,7 +61,7 @@
 						<div class="flex flex-wrap">
 							<div class="w-full px-3">
 								<label for="grid-password" class="block mb-1">Post body</label>
-								<textarea name="body" id="easyMDE">{{ old('body') }}</textarea>
+								<x-easy-mde name="body" id="body" :options="['hideIcons' => ['side-by-side','fullscreen',]]"></x-easy-mde>
 								@error('body')
                                     <span class="text-xs text-red-700">{{ $message }}</span>
                                 @enderror

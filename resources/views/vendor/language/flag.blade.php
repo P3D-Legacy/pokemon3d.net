@@ -1,1 +1,3 @@
-<img src="{{ asset('img/vendor/language/flags/'. language()->country(app()->getLocale()) .'.png') }}" alt="{{ language()->country(app()->getLocale()) }}" class="{{ config('language.flags.img_class') }}" width="{{ config('language.flags.width') }}" />
+<div class="inline-flex items-center py-3 px-2 text-gray-500 transition bg-transparent border border-transparent rounded-full hover:bg-gray-50 hover:text-gray-700 dark:text-gray-300 dark:hover:bg-gray-800 cursor-pointer">
+    <img src="{{ asset('img/vendor/language/flags/'. language()->country(app()->getLocale()) .'.png') }}" alt="{{ language()->country(app()->getLocale()) }}" class="{{ config('language.flags.img_class') }}" />
+</div>

@@ -114,6 +114,17 @@
                     </x-jet-dropdown>
                 </div>
 
+                <div class="relative ml-3">
+                    <x-jet-dropdown align="right" width="60">
+                        <x-slot name="trigger">
+                            @include('vendor.language.flag')
+                        </x-slot>
+                        <x-slot name="content">
+                            @include('vendor.language.flags')
+                        </x-slot>
+                    </x-jet-dropdown>
+                </div>
+
                 @role('super-admin|admin')
                     <div class="relative ml-3">
                         <x-jet-dropdown align="right" width="60">

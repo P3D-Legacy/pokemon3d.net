@@ -112,7 +112,7 @@ return [
     | This option indicates the flags features.
     |
     */
-    'flags' => ['width' => '22px', 'ul_class' => '', 'li_class' => '', 'img_class' => ''],
+    'flags' => ['width' => '22px', 'ul_class' => 'w-48', 'li_class' => '', 'img_class' => ''],
 
     /*
     |--------------------------------------------------------------------------

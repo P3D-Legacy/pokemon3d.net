@@ -40,6 +40,7 @@ class UpdateLanguageFiles extends Command
     {
         $this->info('Updating language files...');
         $langs = implode(',', array_values(config('language.allowed')));
+        Artisan::call('lang:publish ' . $langs);
         Artisan::call('translatable:export ' . $langs);
         $this->info('Done.');
     }

@@ -53,7 +53,7 @@ class UpdateLanguageFiles extends Command
             }
         }
         Artisan::call('lang:add ' . implode(' ', $langs));
-        Artisan::call('lang:update');
+        //Artisan::call('lang:update');
         Artisan::call('translatable:export ' . implode(',', $langs));
         $this->info('Done.');
     }

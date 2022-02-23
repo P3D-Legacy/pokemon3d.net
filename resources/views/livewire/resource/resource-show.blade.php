@@ -1,7 +1,7 @@
 <div class="py-10 mx-auto max-w-7xl sm:px-6 lg:px-8">
     
     @component('components.breadcrumb', ['breadcrumbs' => [
-        ['url' => route('resource.index'), 'label' => 'Resources'],
+        ['url' => route('resource.index'), 'label' => __('Resources')],
         ['url' => route('resource.category', Str::lower($resource->categories()->first()->name)), 'label' => $resource->categories()->first()->name],
         ['url' => null, 'label' => $resource->name],
     ]])
@@ -18,7 +18,7 @@
                     <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
                     </svg>
-                    Leave a rating
+                    @lang('Leave a rating')
                 </button>
             @endif
             @if($resource->updates->first())
@@ -26,7 +26,7 @@
                     <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                     </svg>
-                    Download
+                    @lang('Download')
                 </button>
             @endif
             @if(auth()->user()->id == $resource->user_id)
@@ -41,13 +41,13 @@
                             <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                             </svg>
-                            Edit
+                            @lang('Edit')
                         </button>
                         <button onclick="Livewire.emit('openModal', 'resource.update-create', {{ json_encode(['resource_uuid' => $resource->uuid]) }})" class="block w-full px-4 py-2 text-sm text-left text-gray-700 dark:text-gray-300 hover:bg-green-700 hover:text-white">
                             <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                             </svg>
-                            Post a update
+                            @lang('Post a update')
                         </button>
                     </div>
                 </div>
@@ -65,27 +65,27 @@
             <div class="flex sm:flex-col sm:justify-center text-xs text-gray-500 dark:text-gray-300 items-left">
                 <div class="p-4 bg-gray-100 rounded dark:bg-gray-800">
                     <div class="flex flex-row justify-between">
-                        <span>Author:</span>
+                        <span>@lang('Author'):</span>
                         <span><a href="{{ route('member.show', $resource->user) }}" class="text-green-400 hover:text-green-500 hover:underline">{{ $resource->user->username }}</a></span>
                     </div>
                     <div class="flex flex-row justify-between">
-                        <span>Rating:</span>
+                        <span>@lang('Rating'):</span>
                         <span class="flex items-center"><x-review-stars :stars="$resource->averageRating(0)" />{{ $resource->hasReview() ? $resource->averageRating(1) : 0 }} ({{ $resource->numberOfReviews() }})</span>
                     </div>
                     <div class="flex flex-row justify-between">
-                        <span>Donwloads:</span>
+                        <span>@lang('Donwloads'):</span>
                         <span>{{ $resource->downloads }}</span>
                     </div>
                     <div class="flex flex-row justify-between">
-                        <span>Views:</span>
+                        <span>@lang('Views'):</span>
                         <span>{{ App\Helpers\NumberHelper::nearestK(views($resource)->count()) }}</span>
                     </div>
                     <div class="flex flex-row justify-between">
-                        <span>Created:</span>
+                        <span>@lang('Created'):</span>
                         <span>{{ $resource->created_at->diffForHumans() }}</span>
                     </div>
                     <div class="flex flex-row justify-between">
-                        <span>Updated:</span>
+                        <span>@lang('Updated'):</span>
                         <span>{{ $resource->updated_at->diffForHumans() }}</span>
                     </div>
                 </div>
@@ -95,7 +95,7 @@
     <div class="flex flex-col items-center justify-center w-full mx-auto mt-10 overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-900 dark:shadow-gray-700">
         <div class="w-full px-4 py-5 border-b sm:px-6 dark:border-gray-700">
             <h3 class="text-lg font-medium leading-6 text-gray-900 dark:text-white">
-                Updates
+                @lang('Updates')
             </h3>
         </div>
         <div class="flex flex-col w-full divide-y divide dark:divide-gray-700">
@@ -114,7 +114,7 @@
                         {{ $update->created_at->diffForHumans() }}
                     </div>
                     <div class="flex text-sm">
-                        {{ $update->downloads }} downloads
+                        {{ $update->downloads }} @lang('downloads')
                     </div>
                     {{--
                     <div class="flex">
@@ -122,7 +122,7 @@
                             <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                             </svg>
-                            Download
+                            @lang('Download')
                         </button>
                     </div>
                     --}}
@@ -139,7 +139,7 @@
     <div class="flex flex-col items-center justify-center w-full mx-auto mt-10 overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-900 dark:shadow-gray-700">
         <div class="w-full px-4 py-5 border-b sm:px-6 dark:border-gray-700">
             <h3 class="text-lg font-medium leading-6 text-gray-900 dark:text-white">
-                Latest reviews
+                @lang('Latest reviews')
             </h3>
         </div>
         <div class="flex flex-col w-full divide-y divide dark:divide-gray-700">

@@ -8,7 +8,7 @@
                     </div>
                     <div class="flex-1 md:pl-1 md:mr-16">
                         <div class="font-medium dark:text-white">
-                            {{ $resource->name }} <span class="text-gray-400 dark:text-gray-500">{{ $resource->updates->first() ? $resource->updates->first()->title : 'Unreleased' }}</span>
+                            {{ $resource->name }} <span class="text-gray-400 dark:text-gray-500">{{ $resource->updates->first() ? $resource->updates->first()->title : __('Unreleased') }}</span>
                         </div>
                         <div class="text-sm text-gray-400 dark:text-gray-200">
                             {{ $resource->user->username }} &middot; {{ $resource->created_at->diffForHumans() }} &middot; {{ $resource->categories()->first()->name }}
@@ -19,19 +19,19 @@
                     </div>
                     <div class="flex flex-col justify-center text-xs text-gray-400 items-left">
                         <div class="flex flex-row justify-between">
-                            <span>Rating:</span>
+                            <span>@lang('Rating'):</span>
                             <span class="flex items-center"><x-review-stars :stars="$resource->averageRating(0)" />{{ $resource->hasReview() ? $resource->averageRating(1) : 0 }} ({{ $resource->numberOfReviews() }})</span>
                         </div>
                         <div class="flex flex-row justify-between">
-                            <span>Likes:</span>
+                            <span>@lang('Likes'):</span>
                             <span>{{ $resource->likers()->count() }}</span>
                         </div>
                         <div class="flex flex-row justify-between">
-                            <span>Donwloads:</span>
+                            <span>@lang('Donwloads'):</span>
                             <span>{{ $resource->downloads }}</span>
                         </div>
                         <div class="flex flex-row justify-between">
-                            <span>Updated:</span>
+                            <span>@lang('Updated'):</span>
                             <span>{{ $resource->updated_at->diffForHumans() }}</span>
                         </div>
                     </div>

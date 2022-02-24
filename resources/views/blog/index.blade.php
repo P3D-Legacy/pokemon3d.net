@@ -51,7 +51,7 @@
 						<div class="block w-full h-full">
 							<div class="w-full p-4 bg-white dark:bg-gray-800">
 								<p class="font-medium text-green-500 text-md">
-									{{ $post->published_at ? $post->published_at->diffForHumans() : $post->created_at->diffForHumans() }}<span class="text-sm text-gray-400 dark:text-gray-500"> &middot; {{ read_time($post->body)}}{!! ($post->tags->count()) ? ' &middot; ' : '' !!}</span>
+									{{ now()->subYear(1) > $post->published_at ? $post->published_at->isoFormat('D MMMM YYYY') : $post->published_at->diffForHumans() }}<span class="text-sm text-gray-400 dark:text-gray-500"> &middot; {{ read_time($post->body)}}{!! ($post->tags->count()) ? ' &middot; ' : '' !!}</span>
 									@foreach ($post->tags as $tag)
 										<span class="inline-flex items-center justify-center px-1 py-1 mr-1 text-xs font-bold leading-none uppercase bg-gray-400 rounded text-gray-50 dark:text-gray-800 dark:bg-gray-400">{{ $tag->name }}</span>
 									@endforeach

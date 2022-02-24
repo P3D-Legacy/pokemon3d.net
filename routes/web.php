@@ -53,11 +53,6 @@ Route::get('/redirect/discord', function () {
     return redirect(config('discord.invite_url'));
 })->name('discord');
 
-Route::get('test', function () {
-    $posts = \App\Models\Post::withAnyTags(['Website'])->get();
-    dd($posts);
-});
-
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::resource('blog', BlogController::class);
 

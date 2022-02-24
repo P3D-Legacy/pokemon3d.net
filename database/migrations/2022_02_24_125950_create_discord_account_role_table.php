@@ -15,9 +15,17 @@ class CreateDiscordAccountRoleTable extends Migration
     {
         Schema::create('discord_account_discord_role', function (Blueprint $table) {
             $table->bigInteger('discord_account_id');
-            $table->foreign('discord_account_id')->references('id')->on('discord_accounts')->onDelete('cascade');
+            $table
+                ->foreign('discord_account_id')
+                ->references('id')
+                ->on('discord_accounts')
+                ->onDelete('cascade');
             $table->bigInteger('discord_role_id');
-            $table->foreign('discord_role_id')->references('id')->on('discord_roles')->onDelete('cascade');
+            $table
+                ->foreign('discord_role_id')
+                ->references('id')
+                ->on('discord_roles')
+                ->onDelete('cascade');
         });
     }
 

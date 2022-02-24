@@ -14,9 +14,16 @@ class ChangePrimaryDiscordAccounts extends Migration
      */
     public function up()
     {
-        $duplicateRecords = DB::table('discord_accounts')->selectRaw('id, count(`id`) as `occurences`')->groupBy('id')->having('occurences', '>', 1)->get();
+        $duplicateRecords = DB::table('discord_accounts')
+            ->selectRaw('id, count(`id`) as `occurences`')
+            ->groupBy('id')
+            ->having('occurences', '>', 1)
+            ->get();
         foreach ($duplicateRecords as $duplicateRecord) {
-            DB::table('discord_accounts')->where('id', $duplicateRecord->id)->whereNotNull('deleted_at')->delete();
+            DB::table('discord_accounts')
+                ->where('id', $duplicateRecord->id)
+                ->whereNotNull('deleted_at')
+                ->delete();
         }
         Schema::table('discord_accounts', function (Blueprint $table) {
             $table->dropColumn('aid');

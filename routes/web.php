@@ -73,6 +73,11 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     })->name('dashboard');
 
     Route::get('/member/{user}', [MemberController::class, 'show'])->name('member.show');
+
+    Route::get('/review', function () {
+        return view('review.index');
+    })->name('review');
+
     Route::resource('server', ServerController::class);
 
     Route::prefix('resource')->group(function () {

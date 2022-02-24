@@ -66,6 +66,10 @@ class Update extends Command
         Artisan::call('scribe:generate');
         $this->info('Getting Github release...');
         Artisan::call('github:syncrelease');
+        $this->info('Getting Discord roles...');
+        Artisan::call('discord:syncroles');
+        $this->info('Getting Discord user roles...');
+        Artisan::call('discord:syncuserroles');
         $this->info('Done.');
     }
 }

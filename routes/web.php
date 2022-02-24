@@ -54,7 +54,12 @@ Route::get('/redirect/discord', function () {
 })->name('discord');
 
 Route::get('test', function () {
-    $posts = \App\Models\Post::all();
+    $posts = \App\Models\Post::where('active', true)
+        ->orderBy('sticky', 'desc')
+        ->orderBy('published_at', 'desc')
+        ->withAnyTags(['Website', 'Game'])
+        ->take(4)
+        ->get();
     dd($posts);
 });
 

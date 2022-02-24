@@ -4,7 +4,7 @@ namespace App\Http\Resources\API\v1;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class DiscordAccountResource extends JsonResource
+class DiscordRoleResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -20,13 +20,10 @@ class DiscordAccountResource extends JsonResource
         if ($request->user()->can('api.moderate')) {
             return [
                 'id' => $this->id,
-                'username' => $this->username,
-                'discriminator' => $this->discriminator,
-                'verified_at' => $this->verified_at,
-                'created_at' => $this->created_at,
-                'updated_at' => $this->updated_at,
-                'user' => new UserResource($this->user),
-                'roles' => DiscordRoleResource::collection($this->whenLoaded('roles')),
+                'color' => $this->color,
+                'managed' => $this->managed,
+                'mentionable' => $this->mentionable,
+                'name' => $this->name,
             ];
         }
         if ($request->user()->can('api.minimal')) {

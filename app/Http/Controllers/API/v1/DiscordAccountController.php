@@ -42,9 +42,7 @@ class DiscordAccountController extends Controller
                 'error' => 'Token does not have access!',
             ]);
         }
-        $gja = DiscordAccount::with(['user.roles.permissions'])
-            ->where('id', $id)
-            ->firstOrFail();
-        return new DiscordAccountResource($gja);
+        $account = DiscordAccount::with(['roles', 'user.roles.permissions'])->findOrFail($id);
+        return new DiscordAccountResource($account);
     }
 }

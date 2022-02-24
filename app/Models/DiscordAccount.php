@@ -13,14 +13,14 @@ class DiscordAccount extends Model
     use SoftDeletes;
     use Uuid;
 
-    protected $primaryKey = 'uuid';
+    protected $primaryKey = 'id';
 
     /**
      * The "type" of the auto-incrementing ID.
      *
      * @var string
      */
-    protected $keyType = 'string';
+    protected $keyType = 'integer';
 
     /**
      * Indicates if the IDs are auto-incrementing.
@@ -28,6 +28,13 @@ class DiscordAccount extends Model
      * @var bool
      */
     public $incrementing = false;
+
+    /**
+     * The attributes that will be used for multiple key binding on route models
+     *
+     * @var array
+     */
+    protected $routeBindingKeys = ['uuid'];
 
     /**
      * The attributes that are mass assignable.
@@ -59,13 +66,6 @@ class DiscordAccount extends Model
      */
     protected $encryptable = ['password'];
 
-    /**
-     * The attributes that should be hidden
-     *
-     * @var array
-     */
-    protected $hidden = ['aid'];
-
     public function touchVerify()
     {
         $this->verified_at = $this->freshTimestamp();
@@ -78,5 +78,10 @@ class DiscordAccount extends Model
     public function user()
     {
         return $this->hasOne(User::class, 'id', 'user_id');
+    }
+
+    public function roles()
+    {
+        return $this->belongsToMany(DiscordRole::class);
     }
 }

@@ -54,7 +54,9 @@ Route::get('/redirect/discord', function () {
 })->name('discord');
 
 Route::get('test', function () {
-    $posts = \App\Models\Post::orderBy('sticky', 'desc')
+    $posts = \App\Models\Post::where('published_at', '<=', now())
+        ->where('active', true)
+        ->orderBy('sticky', 'desc')
         ->orderBy('published_at', 'desc')
         ->take(4)
         ->get();

@@ -13,8 +13,8 @@ class DiscordHelper
     {
         $this->discordClient =
             config('discord.token') && config('discord.server_id')
-                ? new DiscordClient(['token' => config('discord.token')])
-                : null;
+            ? new DiscordClient(['token' => config('discord.token')])
+            : null;
     }
 
     public function getServer()
@@ -43,7 +43,7 @@ class DiscordHelper
                 'guild.id' => config('discord.server_id'),
             ]);
         } catch (\Exception $exception) {
-            return 0;
+            return $exception->getMessage();
         }
     }
 
@@ -56,7 +56,7 @@ class DiscordHelper
                 'user.id' => $user_id,
             ]);
         } catch (\Exception $exception) {
-            return 0;
+            return $exception->getMessage();
         }
     }
 

@@ -58,6 +58,7 @@ Route::get('test', function () {
         ->where('active', true)
         ->orderBy('sticky', 'desc')
         ->orderBy('published_at', 'desc')
+        ->withAnyTags(['Website', 'Game'])
         ->take(4)
         ->get();
     dd($posts);

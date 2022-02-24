@@ -45,10 +45,12 @@ class DiscordUserRoleSync extends Command
         $accounts = DiscordAccount::all();
         foreach ($accounts as $account) {
             $this->info('Syncing roles for ' . $account->username);
-            $member_roles = DiscordHelper::getMemberRoles($account->id);
-            if ($member_roles) {
-                $discord_roles = $member_roles->roles;
-                $account->roles()->sync($discord_roles);
+            try {
+                $roles = DiscordHelper::getMemberRoles($account->id);
+                $account->roles()->sync($roles);
+            } catch (\Exception $exception) {
+                $this->error('Error syncing roles for ' . $account->username);
+                $this->error($exception->getMessage());
             }
         }
         $this->info('Done!');

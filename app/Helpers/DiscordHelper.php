@@ -13,8 +13,8 @@ class DiscordHelper
     {
         $this->discordClient =
             config('discord.token') && config('discord.server_id')
-            ? new DiscordClient(['token' => config('discord.token')])
-            : null;
+                ? new DiscordClient(['token' => config('discord.token')])
+                : null;
     }
 
     public function getServer()

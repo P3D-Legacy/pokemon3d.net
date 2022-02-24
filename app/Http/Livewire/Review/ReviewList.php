@@ -17,14 +17,18 @@ class ReviewList extends Component
 
     public function mount()
     {
-        $this->reviews = Review::where('model_type', '=', 'App\Models\GameVersion')->orderBy('created_at', 'desc')->get();
+        $this->reviews = Review::where('model_type', '=', 'App\Models\GameVersion')
+            ->orderBy('created_at', 'desc')
+            ->get();
         $this->numberOfReviews = $this->reviews->count();
         $this->averageRating = $this->reviews->pluck('rating')->avg();
     }
 
     public function update()
     {
-        $this->reviews = Review::where('model_type', '=', 'App\Models\GameVersion')->orderBy('created_at', 'desc')->get();
+        $this->reviews = Review::where('model_type', '=', 'App\Models\GameVersion')
+            ->orderBy('created_at', 'desc')
+            ->get();
         $this->numberOfReviews = $this->reviews->count();
         $this->averageRating = $this->reviews->pluck('rating')->avg();
     }

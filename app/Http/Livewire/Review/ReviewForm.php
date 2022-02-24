@@ -16,7 +16,9 @@ class ReviewForm extends ModalComponent
     public function mount()
     {
         $this->user = auth()->user();
-        $this->gameversions = GameVersion::orderBy('release_date', 'desc')->take(3)->get();
+        $this->gameversions = GameVersion::orderBy('release_date', 'desc')
+            ->take(3)
+            ->get();
     }
 
     public function save()

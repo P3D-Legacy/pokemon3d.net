@@ -156,21 +156,19 @@
     <div class="container h-auto mx-auto text-white sm:min-h-screen">
         <div class="px-3 text-center lg:px-0">
             <h1 class="my-4 text-2xl font-black leading-tight md:text-3xl lg:text-5xl">
-                Old school Pokémon in a 3D world!
+                @lang('Old school Pokémon in a 3D world!')
             </h1>
             <p class="mb-8 text-base leading-normal text-gray-50 md:text-xl lg:text-2xl">
-                Bringing the games from the early generation of Pokémon games to the modern era.
+                @lang('Bringing the games from the early generation of Pokémon games to the modern era.')
             </p>
             <x-download-button />
         </div>
 
         <div class="z-auto flex items-center content-end w-full mx-auto overflow-hidden">
             <div class="flex flex-1 m-6 bg-white rounded-t rounded-b-lg shadow-xl browser-mockup with-url md:m-12 aspect-w-16 aspect-h-9 shadow-black/50">
-                {{-- <iframe class="object-cover object-center w-full h-full lg:w-full lg:h-full"  src="https://www.youtube.com/embed/hsnFgua89vQ?&autoplay=1" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
-                <img src="{{ asset('img/daniel_ingame.png') }}" class="object-cover object-center w-full h-full rounded-b-lg lg:w-full lg:h-full" /> --}}
                 <video muted controls class="object-cover object-center w-full h-full rounded-b-lg lg:w-full lg:h-full">
                     <source src="https://files.pokemon3d.net/video/trailer.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
+                    @lang('Your browser does not support the video tag.')
                 </video>
             </div>
         </div>
@@ -181,31 +179,31 @@
             <div class="flex flex-wrap items-center justify-between flex-1 max-w-5xl mx-auto text-5xl font-bold text-gray-900 opacity-75 dark:text-gray-200">
                 <div class="flex flex-col items-center w-1/2 p-4 md:w-auto">
                     <div class="flex">{{  App\Helpers\NumberHelper::nearestK(\App\Helpers\StatsHelper::countPlayers()) }}</div>
-                    <div class="flex text-xl text-gray-600 dark:text-gray-400">Online Players</div>
+                    <div class="flex text-xl text-gray-600 dark:text-gray-400">@lang('Online Players')</div>
                     {{-- ONLINE USERS FROM THE SERVER --}}
                 </div>
 
                 <div class="flex flex-col items-center w-1/2 p-4 md:w-auto">
                     <div class="flex">{{  App\Helpers\NumberHelper::nearestK(App\Models\User::count()) }}</div>
-                    <div class="flex text-xl text-gray-600 dark:text-gray-400">Active Users</div>
+                    <div class="flex text-xl text-gray-600 dark:text-gray-400">@lang('Active Users')</div>
                     {{-- ACTIVE USERS FROM THE WEBSITE --}}
                 </div>
 
                 <div class="flex flex-col items-center w-1/2 p-4 md:w-auto">
                     <div class="flex">{{  App\Helpers\NumberHelper::nearestK(\App\Helpers\DiscordHelper::countMembers()) }}</div>
-                    <div class="flex text-xl text-gray-600 dark:text-gray-400">Discord Users</div>
+                    <div class="flex text-xl text-gray-600 dark:text-gray-400">@lang('Discord Users')</div>
                     {{-- TOTAL COUNT DISCORD USERS --}}
                 </div>
 
                 <div class="flex flex-col items-center w-1/2 p-4 md:w-auto">
                     <div class="flex">{{  App\Helpers\NumberHelper::nearestK(\App\Helpers\StatsHelper::countForumMembers()) }}</div>
-                    <div class="flex text-xl text-gray-600 dark:text-gray-400">Forum Users</div>
+                    <div class="flex text-xl text-gray-600 dark:text-gray-400">@lang('Forum Users')</div>
                     {{-- ACTIVE USERS FROM THE FORUM --}}
                 </div>
 
                 <div class="flex flex-col items-center w-1/2 p-4 md:w-auto">
                     <div class="flex">{{ ucfirst(\App\Helpers\StatsHelper::getInGameSeason()) }}</div>
-                    <div class="flex text-xl text-gray-600 dark:text-gray-400">In-Game Season</div>
+                    <div class="flex text-xl text-gray-600 dark:text-gray-400">@lang('In-Game Season')</div>
                     {{-- CURRENT IN-GAME SEASON --}}
                 </div>
             </div>
@@ -215,7 +213,7 @@
     <section class="py-8 bg-white border-b dark:bg-gray-800 dark:border-black">
         <div class="container flex flex-wrap pt-4 pb-12 mx-auto">
             <h2 class="w-full my-2 text-3xl font-black leading-tight text-center text-gray-800 uppercase dark:text-gray-200">
-                Latest news
+                @lang('Latest news')
             </h2>
             <div class="w-full mb-4">
                 <div class="w-64 h-1 py-0 mx-auto my-0 bg-black rounded-t opacity-25 dark:bg-white"></div>
@@ -226,7 +224,7 @@
                 <div class="w-full text-xs text-center">
                     <p class="mb-1 dark:text-gray-400">There is nothing to show...</p>
                     <a href="{{ route('blog.index') }}" class="text-green-500 hover:underline">
-                        Go to blog
+                        @lang('Go to blog')
                         <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
                         </svg>
@@ -239,7 +237,7 @@
     <section class="p-8">
         <div class="container max-w-5xl m-8 mx-auto text-white">
             <h2 class="w-full my-2 text-3xl font-black leading-tight text-center uppercase">
-                Screenshots
+                @lang('Screenshots')
             </h2>
             <div class="w-full mb-4">
                 <div class="w-64 h-1 py-0 mx-auto my-0 bg-white rounded-t opacity-25"></div>
@@ -273,7 +271,7 @@
     <section class="p-8 border-b dark:border-black bg-black/20">
         <div class="container max-w-5xl m-8 mx-auto text-white">
             <h2 class="w-full my-2 text-3xl font-black leading-tight text-center uppercase">
-                History
+                @lang('History')
             </h2>
             <div class="w-full mb-4">
                 <div class="w-64 h-1 py-0 mx-auto my-0 bg-white rounded-t opacity-25"></div>
@@ -281,7 +279,10 @@
 
             <div class="flex flex-wrap">
                 <p class="mb-8">
-                    {{ config('app.name') }} is a video game originally created by <a href="https://github.com/nilllzz" class="text-green-100 hover:underline hover:text-white">Nilllzz</a>. It is heavily inspired by Minecraft, and the Pokémon series. {{ config('app.name') }} focused on the strong points of Pokémon Gold and Silver versions and their remakes, and gives players a taste as to how the once 2D world they knew was in 3D. They could even see through the eyes of their own trainer.
+                    @lang(':game is a video game originally created by :author. It is heavily inspired by Minecraft, and the Pokémon series. :game focused on the strong points of Pokémon Gold and Silver versions and their remakes, and gives players a taste as to how the once 2D world they knew was in 3D. They could even see through the eyes of their own trainer.', [
+                        'game' => config('app.name'),
+                        'author' => '<a href="https://github.com/nilllzz" class="text-green-100 hover:underline hover:text-white">Nilllzz</a>',
+                    ])
                 </p>
             </div>
         </div>
@@ -290,7 +291,7 @@
     <section class="py-8 bg-white border-b dark:bg-gray-800 dark:border-black">
         <div class="container max-w-5xl m-8 mx-auto">
             <h2 class="w-full my-2 text-3xl font-black leading-tight text-center text-gray-800 uppercase dark:text-gray-200">
-                Features
+                @lang('Features')
             </h2>
             <div class="w-full mb-4">
                 <div class="w-64 h-1 py-0 mx-auto my-0 bg-black rounded-t opacity-25 dark:bg-white"></div>
@@ -299,10 +300,10 @@
             <div class="flex flex-wrap">
                 <div class="w-5/6 p-6 sm:w-1/2">
                     <h3 class="mb-3 text-3xl font-bold leading-none text-gray-800 dark:text-gray-200">
-                        Nostalgia
+                        @lang('Nostalgia')
                     </h3>
                     <p class="mb-8 text-gray-600 dark:text-gray-400">
-                        Remember the old days when you where playing on a GameBoy? If so; you should try out this game and get the nostalgic feeling as well as visit your inner child.
+                        @lang('Remember the old days when you where playing on a GameBoy? If so; you should try out this game and get the nostalgic feeling as well as visit your inner child.')
                     </p>
                 </div>
                 <div class="w-full p-6 sm:w-1/2">
@@ -317,10 +318,12 @@
                 <div class="w-full p-6 mt-6 sm:w-1/2">
                     <div class="align-middle">
                         <h3 class="mb-3 text-3xl font-bold leading-none text-gray-800 dark:text-gray-200">
-                            Most Generations and Regions
+                            @lang('Most Generations and Regions')
                         </h3>
                         <p class="mb-8 text-gray-600 dark:text-gray-400">
-                            {{ config('app.name') }} will in the future have support for all generations of pokémon. And all the regions will accessible in the game.
+                            @lang(':game will in the future have support for all generations of pokémon. And all the regions will accessible in the game.', [
+                                'game' => config('app.name'),
+                            ])
                         </p>
                     </div>
                 </div>
@@ -329,10 +332,12 @@
             <div class="flex flex-wrap">
                 <div class="w-5/6 p-6 sm:w-1/2">
                     <h3 class="mb-3 text-3xl font-bold leading-none text-gray-800 dark:text-gray-200">
-                        A New Experience
+                        @lang('A New Experience')
                     </h3>
                     <p class="mb-8 text-gray-600 dark:text-gray-400">
-                        {{ config('app.name') }} focuses on the strong points of Pokémon Gold and Silver versions and their remakes, and gives players a taste as to how the once 2D world they knew was in 3D.
+                        @lang(':game focuses on the strong points of Pokémon Gold and Silver versions and their remakes, and gives players a taste as to how the once 2D world they knew was in 3D. They could even see through the eyes of their own trainer.', [
+                            'game' => config('app.name'),
+                        ])
                     </p>
                 </div>
                 <div class="w-full p-6 sm:w-1/2">
@@ -345,7 +350,7 @@
     <section class="py-12">
         <div class="container flex flex-wrap items-center justify-between pb-12 mx-auto text-white">
             <h2 class="w-full my-2 text-3xl font-black leading-tight text-center uppercase lg:mt-8">
-                Media
+                @lang('Media')
             </h2>
             <div class="w-full mb-4">
                 <div class="w-64 h-1 py-0 mx-auto my-0 bg-white rounded-t opacity-25"></div>
@@ -362,14 +367,16 @@
 
     <section class="w-full px-3 py-12 mx-auto text-center text-white bg-black/20">
         <h2 class="w-full my-2 text-3xl font-black leading-tight text-center uppercase">
-            Miss your childhood?
+            @lang('Miss your childhood?')
         </h2>
         <div class="w-full mb-4">
             <div class="w-1/6 h-1 py-0 mx-auto my-0 bg-white rounded-t opacity-25"></div>
         </div>
 
         <h3 class="my-4 text-2xl font-extrabold text-gray-100">
-            Go back in time with {{ config('app.name') }}!
+            @lang('Go back in time with :game!', [
+                'game' => config('app.name')
+            ])
         </h3>
 
         <x-download-button />
@@ -382,26 +389,27 @@
                 <div class="px-3 mb-6 flex-2">
                     <x-logo-large class="max-w-xs" />
                     <p class="mt-3 text-sm text-gray-600 dark:text-gray-200">
-                        {{ config('app.name') }} is not affiliated with Nintendo, Creatures Inc. or GAME FREAK Inc.
+                        @lang(':game is not affiliated with', ['game' => config('app.name')]) Nintendo, Creatures Inc. or GAME FREAK Inc.
                     </p>
                     <p class="mt-3 text-sm text-gray-500 dark:text-gray-300">
-                        pokemon3d.net is owned and operated by <a href="https://infihex.com/" class="text-green-600 no-underline hover:underline">Infihex</a>
+                        pokemon3d.net @lang('is owned and operated by') <a href="https://kilobyte.no/" class="text-green-600 no-underline hover:underline">Kilobyte AS</a>
                     </p>
                     <p class="mt-3 text-sm text-gray-400 dark:text-gray-400">
-                        This website is open-source on <a href="https://github.com/P3D-Legacy/pokemon3d.net" class="hover:underline"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="inline-block w-4 h-4" viewBox="0 0 1792 1792"><path d="M896 128q209 0 385.5 103t279.5 279.5 103 385.5q0 251-146.5 451.5t-378.5 277.5q-27 5-40-7t-13-30q0-3 .5-76.5t.5-134.5q0-97-52-142 57-6 102.5-18t94-39 81-66.5 53-105 20.5-150.5q0-119-79-206 37-91-8-204-28-9-81 11t-92 44l-38 24q-93-26-192-26t-192 26q-16-11-42.5-27t-83.5-38.5-85-13.5q-45 113-8 204-79 87-79 206 0 85 20.5 150t52.5 105 80.5 67 94 39 102.5 18q-39 36-49 103-21 10-45 15t-57 5-65.5-21.5-55.5-62.5q-19-32-48.5-52t-49.5-24l-20-3q-21 0-29 4.5t-5 11.5 9 14 13 12l7 5q22 10 43.5 38t31.5 51l10 23q13 38 44 61.5t67 30 69.5 7 55.5-3.5l23-4q0 38 .5 88.5t.5 54.5q0 18-13 30t-40 7q-232-77-378.5-277.5t-146.5-451.5q0-209 103-385.5t279.5-279.5 385.5-103zm-477 1103q3-7-7-12-10-3-13 2-3 7 7 12 9 6 13-2zm31 34q7-5-2-16-10-9-16-3-7 5 2 16 10 10 16 3zm30 45q9-7 0-19-8-13-17-6-9 5 0 18t17 7zm42 42q8-8-4-19-12-12-20-3-9 8 4 19 12 12 20 3zm57 25q3-11-13-16-15-4-19 7t13 15q15 6 19-6zm63 5q0-13-17-11-16 0-16 11 0 13 17 11 16 0 16-11zm58-10q-2-11-18-9-16 3-14 15t18 8 14-14z"></path></svg> Github</a>, thanks to our contributors! <span class="text-red-400 dark:text-red-700">&hearts;</span>
+                        @lang('This website is open-source on :github, thanks to our contributors! :hearts', [
+                            'github' => '<a href="https://github.com/P3D-Legacy/pokemon3d.net" class="hover:underline"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="inline-block w-4 h-4" viewBox="0 0 1792 1792"><path d="M896 128q209 0 385.5 103t279.5 279.5 103 385.5q0 251-146.5 451.5t-378.5 277.5q-27 5-40-7t-13-30q0-3 .5-76.5t.5-134.5q0-97-52-142 57-6 102.5-18t94-39 81-66.5 53-105 20.5-150.5q0-119-79-206 37-91-8-204-28-9-81 11t-92 44l-38 24q-93-26-192-26t-192 26q-16-11-42.5-27t-83.5-38.5-85-13.5q-45 113-8 204-79 87-79 206 0 85 20.5 150t52.5 105 80.5 67 94 39 102.5 18q-39 36-49 103-21 10-45 15t-57 5-65.5-21.5-55.5-62.5q-19-32-48.5-52t-49.5-24l-20-3q-21 0-29 4.5t-5 11.5 9 14 13 12l7 5q22 10 43.5 38t31.5 51l10 23q13 38 44 61.5t67 30 69.5 7 55.5-3.5l23-4q0 38 .5 88.5t.5 54.5q0 18-13 30t-40 7q-232-77-378.5-277.5t-146.5-451.5q0-209 103-385.5t279.5-279.5 385.5-103zm-477 1103q3-7-7-12-10-3-13 2-3 7 7 12 9 6 13-2zm31 34q7-5-2-16-10-9-16-3-7 5 2 16 10 10 16 3zm30 45q9-7 0-19-8-13-17-6-9 5 0 18t17 7zm42 42q8-8-4-19-12-12-20-3-9 8 4 19 12 12 20 3zm57 25q3-11-13-16-15-4-19 7t13 15q15 6 19-6zm63 5q0-13-17-11-16 0-16 11 0 13 17 11 16 0 16-11zm58-10q-2-11-18-9-16 3-14 15t18 8 14-14z"></path></svg> Github</a>', 'hearts' => '<span class="text-red-400 dark:text-red-700">&hearts;</span>'])
                     </p>
                     <p class="mt-3 text-xs text-gray-300 dark:text-gray-500"><a class="hover:underline" href="https://github.com/P3D-Legacy/pokemon3d.net/blob/main/CHANGELOG.md">{{ setting('APP_VERSION') ?? 'N/A' }}</a></p>
-                    <p class="mt-3 text-xs text-gray-300 dark:text-gray-500">Language: {{ app()->getLocale() }}</p>
+                    <p class="mt-3 text-xs text-gray-300 dark:text-gray-500">@lang('Language'): {{ app()->getLocale() }}</p>
                 </div>
                 <div class="flex-1 px-3">
-                    <p class="font-extrabold text-gray-500 uppercase dark:text-gray-200 md:mb-6">Legal</p>
+                    <p class="font-extrabold text-gray-500 uppercase dark:text-gray-200 md:mb-6">@lang('Legal')</p>
                     <ul class="mb-6 list-reset">
-                        <x-home.footer-link title="Terms and Conditions" url="{{ route('terms.show') }}" />
-                        <x-home.footer-link title="Privacy Policy" url="{{ route('policy.show') }}" />
+                        <x-home.footer-link title="{{ __('Terms and Conditions') }}" url="{{ route('terms.show') }}" />
+                        <x-home.footer-link title="{{ __('Privacy Policy') }}" url="{{ route('policy.show') }}" />
                     </ul>
                 </div>
                 <div class="flex-1 px-3">
-                    <p class="font-extrabold text-gray-500 uppercase dark:text-gray-200 md:mb-6">Social</p>
+                    <p class="font-extrabold text-gray-500 uppercase dark:text-gray-200 md:mb-6">@lang('Social')</p>
                     <ul class="mb-6 list-reset">
                         <x-home.footer-link title="Discord" url="{{ route('discord') }}" />
                         <x-home.footer-link title="Github" url="{{ route('github') }}" />
@@ -412,7 +420,7 @@
                         {{ config('app.name') }}
                     </p>
                     <ul class="mb-6 list-reset">
-                        <x-home.footer-link title="Official Blog" url="{{ route('blog.index') }}" />
+                        <x-home.footer-link title="{{ __('Official Blog') }}" url="{{ route('blog.index') }}" />
                     </ul>
                 </div>
             </div>

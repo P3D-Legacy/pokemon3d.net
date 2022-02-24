@@ -72,6 +72,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
         return view('dashboard');
     })->name('dashboard');
 
+    Route::get('/member/{user}', [MemberController::class, 'show'])->name('member.show');
     Route::resource('server', ServerController::class);
 
     Route::prefix('resource')->group(function () {
@@ -90,8 +91,6 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
             ]);
         })->name('resource.category');
     });
-
-    Route::get('/member/{user}', [MemberController::class, 'show'])->name('member.show');
 
     Route::prefix('skin')->group(function () {
         Route::get('/', [SkinHomeController::class, 'index'])->name('skin-home');

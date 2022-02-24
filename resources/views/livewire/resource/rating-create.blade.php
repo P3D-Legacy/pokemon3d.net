@@ -43,7 +43,9 @@
             <x-jet-input-error for="rating" class="mt-2" />
         </div>
 
+        <x-jet-label for="body" class="mt-4" value="{{ __('Your review of this resource') }}" />
         <x-text-area id="body" name="body" class="block w-full mt-1" placeholder="{{ __('Your review of this resource') }}" autofocus wire:model.defer="body"></x-text-area>
+        <span class="text-xs text-gray-400">@lang('Min characters'): 10 &middot; @lang('Max characters'): 255</span>
         <x-jet-input-error for="body" class="mt-2" />
     </x-slot>
 

@@ -31,6 +31,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('gj:update-trophies')->hourly();
         $schedule->command('github:syncrelease')->daily();
         $schedule->command('discord:syncroles')->daily();
+        $schedule->command('discord:syncuserroles')->daily();
         $schedule->command(RunHealthChecksCommand::class)->everyMinute();
     }
 

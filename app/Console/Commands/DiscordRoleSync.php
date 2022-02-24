@@ -39,7 +39,6 @@ class DiscordRoleSync extends Command
      */
     public function handle()
     {
-
         $server_roles = DiscordHelper::getServerRoles();
         foreach ($server_roles as $server_role) {
             if (str_starts_with($server_role->name, '⁣     ^')) {

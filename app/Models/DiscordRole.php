@@ -9,14 +9,5 @@ class DiscordRole extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'color',
-        'hoist',
-        'id',
-        'managed',
-        'mentionable',
-        'name',
-        'permissions',
-        'position',
-    ];
+    protected $fillable = ['color', 'hoist', 'id', 'managed', 'mentionable', 'name', 'permissions', 'position'];
 }

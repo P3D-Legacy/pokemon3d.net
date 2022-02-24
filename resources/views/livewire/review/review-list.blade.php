@@ -1,4 +1,4 @@
-<div class="col-span-1 sm:col-span-3 md:col-span-4 rounded-lg overflow-hidden shadow-lg text-gray-700 border border-gray-200 bg-gray-50 dark:bg-gray-900 dark:border-gray-700 p-4 dark:text-gray-100">
+<div class="col-span-1 sm:col-span-2 md:col-span-3 lg:col-span-4 rounded-lg overflow-hidden shadow-lg text-gray-700 border border-gray-200 bg-gray-50 dark:bg-gray-900 dark:border-gray-700 p-4 dark:text-gray-100">
     <div class="font-bold text-lg my-1">@lang('Overall Game Reviews')</div>
     <div class="flex items-center"><x-review-stars :stars="$averageRating" /><span class="ml-2">{{ round($averageRating, 2) }} ({{ $numberOfReviews }})</span></div>
 </div>
@@ -11,10 +11,10 @@
             </a>
             <a href="{{ route('member.show', $review->author) }}" class="text-green-400 hover:text-green-500 mr-2 hover:underline">{{ $review->author->username }}</a>
         </div>
-        <div class="">
+        <div>
             <x-review-stars :stars="$review->rating" :size="6" />
             <div class="font-bold text-lg my-1">{{ $review->model->version }}</div>
-            <p class="text-gray-700 dark:text-gray-200 text-base">
+            <p class="text-gray-700 dark:text-gray-200 break-all">
                 {{ $review->review }}
             </p>
         </div>

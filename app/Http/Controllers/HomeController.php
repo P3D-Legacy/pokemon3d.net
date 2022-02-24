@@ -22,7 +22,9 @@ class HomeController extends Controller
             ->withAnyTags(['Website', 'Game'])
             ->take(4)
             ->get();
-        $reviews = Review::where('model_type', '=', 'App\Models\GameVersion')->orderBy('created_at', 'desc')->get();
+        $reviews = Review::where('model_type', '=', 'App\Models\GameVersion')
+            ->orderBy('created_at', 'desc')
+            ->get();
         $numberOfReviews = $reviews->count();
         $averageRating = round($reviews->pluck('rating')->avg(), 1);
         return view('home', compact('posts', 'reviews', 'averageRating', 'numberOfReviews'));

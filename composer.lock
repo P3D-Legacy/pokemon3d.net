@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "79e6f81ee6d11dd17c05a910df8070a9",
+    "content-hash": "6c21083a8e0547fda6571f8b06110236",
     "packages": [
         {
             "name": "akaunting/laravel-language",
@@ -8403,28 +8403,28 @@
         },
         {
             "name": "spatie/laravel-tags",
-            "version": "3.1.0",
+            "version": "4.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-tags.git",
-                "reference": "1c3fbda67e05987333b64579d87f89287c4038ea"
+                "reference": "64a1ba78a69ddb3b0dbe3abe56ecb456c0591771"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-tags/zipball/1c3fbda67e05987333b64579d87f89287c4038ea",
-                "reference": "1c3fbda67e05987333b64579d87f89287c4038ea",
+                "url": "https://api.github.com/repos/spatie/laravel-tags/zipball/64a1ba78a69ddb3b0dbe3abe56ecb456c0591771",
+                "reference": "64a1ba78a69ddb3b0dbe3abe56ecb456c0591771",
                 "shasum": ""
             },
             "require": {
-                "laravel/framework": "^8.0",
-                "php": "^7.4|^8.0",
-                "spatie/eloquent-sortable": "^3.5",
-                "spatie/laravel-translatable": "^4.1"
+                "laravel/framework": "^8.67|^9.0",
+                "php": "^8.0",
+                "spatie/eloquent-sortable": "^3.10|^4.0",
+                "spatie/laravel-package-tools": "^1.4",
+                "spatie/laravel-translatable": "^4.6|^5.0"
             },
             "require-dev": {
-                "friendsofphp/php-cs-fixer": "^2.16",
-                "orchestra/testbench": "^6.0",
-                "phpunit/phpunit": "^9.3"
+                "orchestra/testbench": "^6.13|^7.0",
+                "phpunit/phpunit": "^9.5.2"
             },
             "type": "library",
             "extra": {
@@ -8459,7 +8459,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/laravel-tags/issues",
-                "source": "https://github.com/spatie/laravel-tags/tree/3.1.0"
+                "source": "https://github.com/spatie/laravel-tags/tree/4.3.0"
             },
             "funding": [
                 {
@@ -8467,7 +8467,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-03-01T08:16:49+00:00"
+            "time": "2022-01-14T07:44:43+00:00"
         },
         {
             "name": "spatie/laravel-translatable",

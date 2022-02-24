@@ -56,7 +56,6 @@ Route::get('/redirect/discord', function () {
 Route::get('test', function () {
     $posts = \App\Models\Post::orderBy('sticky', 'desc')
         ->orderBy('published_at', 'desc')
-        ->withAnyTags(['Website', 'Game'])
         ->take(4)
         ->get();
     dd($posts);

@@ -77,6 +77,18 @@
                             </svg>
                         </button>
                     </li>
+                    <li class="w-full">
+                        <x-jet-dropdown align="left">
+                            <x-slot name="trigger">
+                                <div class="flex items-center h-10 max-w-max px-2 text-white no-underline transition duration-150 rounded-lg shadow hover:text-gray-50 hover:text-underline bg-gray-900/40 hover:bg-gray-900/50 border-gray-900/50 backdrop-blur-sm hover:translate-x-1 dark:text-yellow-500 focus:outline-none">
+                                    @include('vendor.language.flag')
+                                </div>
+                            </x-slot>
+                            <x-slot name="content">
+                                @include('vendor.language.flags')
+                            </x-slot>
+                        </x-jet-dropdown>
+                    </li>
                 </ul>
             </div>
 
@@ -148,6 +160,16 @@
                             <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
                         </svg>
                     </button>
+                    <x-jet-dropdown align="right">
+                        <x-slot name="trigger">
+                            <div class="flex items-center h-10 max-w-max w-10 text-white focus:outline-none">
+                                @include('vendor.language.flag')
+                            </div>
+                        </x-slot>
+                        <x-slot name="content">
+                            @include('vendor.language.flags')
+                        </x-slot>
+                    </x-jet-dropdown>
                 </ul>
             </div>
         </div>

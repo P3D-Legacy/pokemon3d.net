@@ -1,4 +1,4 @@
-<div class="col-span-1 sm:col-span-3 md:col-span-4 rounded-lg overflow-hidden shadow-lg bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 p-4">
+<div class="col-span-1 sm:col-span-3 md:col-span-4 rounded-lg overflow-hidden shadow-lg text-gray-700 border border-gray-200 bg-gray-50 dark:bg-gray-900 dark:border-gray-700 p-4 dark:text-gray-100">
     <div class="font-bold text-lg my-1">@lang('Overall Game Reviews')</div>
     <div class="flex items-center"><x-review-stars :stars="$averageRating" /><span class="ml-2">{{ round($averageRating, 2) }} ({{ $numberOfReviews }})</span></div>
 </div>

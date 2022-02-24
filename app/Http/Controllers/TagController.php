@@ -47,7 +47,11 @@ class TagController extends Controller
         $validatedData = $request->validate([
             'name' => ['string', 'required'],
         ]);
-        Tag::create($validatedData);
+        $tag = Tag::create($validatedData);
+        foreach (config('language.allowed') as $lang) {
+            $tag->setTranslation('name', $lang, $request->input('name'));
+        }
+        $tag->save();
         session()->flash('flash.banner', 'Created Tag!');
         session()->flash('flash.bannerStyle', 'success');
         return redirect()->route('tags.index');
@@ -88,6 +92,10 @@ class TagController extends Controller
             'name' => ['string', 'required'],
         ]);
         $tag->update($validatedData);
+        foreach (config('language.allowed') as $lang) {
+            $tag->setTranslation('name', $lang, $request->input('name'));
+        }
+        $tag->save();
         session()->flash('flash.banner', 'Updated Tag!');
         session()->flash('flash.bannerStyle', 'success');
         return redirect()->route('tags.index');

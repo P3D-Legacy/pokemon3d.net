@@ -26,6 +26,7 @@ class DiscordAccountResource extends JsonResource
                 'created_at' => $this->created_at,
                 'updated_at' => $this->updated_at,
                 'user' => new UserResource($this->user),
+                'roles' => DiscordRoleResource::collection($this->whenLoaded('roles')),
             ];
         }
         if ($request->user()->can('api.minimal')) {

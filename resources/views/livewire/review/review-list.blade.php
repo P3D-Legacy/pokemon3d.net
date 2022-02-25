@@ -14,7 +14,7 @@
         <div>
             <x-review-stars :stars="$review->rating" :size="6" />
             <div class="my-1 text-lg font-bold">{{ $review->model->version }}</div>
-            <p class="text-gray-700 break-all dark:text-gray-200">
+            <p class="text-gray-700 break-word dark:text-gray-200">
                 {{ $review->review }}
             </p>
         </div>

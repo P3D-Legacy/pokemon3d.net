@@ -2,7 +2,7 @@
     
     <div class="col-span-1 p-4 overflow-hidden text-gray-700 border border-gray-200 rounded-lg shadow-lg sm:col-span-2 md:col-span-3 lg:col-span-4 bg-gray-50 dark:bg-gray-900 dark:border-gray-700 dark:text-gray-100">
         <div class="my-1 text-lg font-bold">@lang('Overall Game Reviews')</div>
-        <div class="flex items-center"><x-review-stars :stars="$averageRating" /><span class="ml-2">{{ round($averageRating, 2) }} ({{ $numberOfReviews }})</span></div>
+        <div class="flex items-center"><x-review-stars :stars="$averageRating" :size="8" /><span class="ml-2">{{ round($averageRating, 2) }} ({{ $numberOfReviews }})</span></div>
     </div>
 
     @foreach ($reviews as $review)

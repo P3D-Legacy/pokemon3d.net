@@ -7,8 +7,8 @@
     ]])
     @endcomponent
 
-    <div class="grid sm:grid-flow-col grid-rows-2 sm:grid-rows-none sm:grid-cols-3 gap-4 mb-4 px-2 sm:px-0">
-        <div class="sm:col-span-2 text-2xl dark:text-white">
+    <div class="grid grid-rows-2 gap-4 px-2 mb-4 sm:grid-flow-col sm:grid-rows-none sm:grid-cols-3 sm:px-0">
+        <div class="text-2xl sm:col-span-2 dark:text-white">
             {{ $resource->name }} <span class="text-gray-400 dark:text-gray-500">{{ $resource->updates->first() ? $resource->updates->first()->title : 'Unreleased' }}</span>
         </div>
         <div class="flex justify-end gap-1">
@@ -55,14 +55,14 @@
         </div>
     </div>
     <div class="w-full p-4 bg-white rounded-lg shadow-lg dark:bg-gray-900 dark:shadow-gray-700">
-        <div class="grid grid-rows-2 sm:grid-rows-none sm:grid-cols-4 gap-4">
+        <div class="grid grid-rows-2 gap-4 sm:grid-rows-none sm:grid-cols-4">
             <div class="sm:col-span-3">
                 <div class="mb-4 text-xs text-gray-400">{{ $resource->brief }}</div>
                 <div class="prose dark:prose-invert">
                     {!! Str::of($resource->description)->markdown() !!}
                 </div>
             </div>
-            <div class="flex sm:flex-col sm:justify-center text-xs text-gray-500 dark:text-gray-300 items-left">
+            <div class="flex text-xs text-gray-500 sm:flex-col sm:justify-center dark:text-gray-300 items-left">
                 <div class="p-4 bg-gray-100 rounded dark:bg-gray-800">
                     <div class="flex flex-row justify-between">
                         <span>@lang('Author'):</span>
@@ -70,7 +70,7 @@
                     </div>
                     <div class="flex flex-row justify-between">
                         <span>@lang('Rating'):</span>
-                        <span class="flex items-center"><x-review-stars :stars="$resource->averageRating(0)" />{{ $resource->hasReview() ? $resource->averageRating(1) : 0 }} ({{ $resource->numberOfReviews() }})</span>
+                        <span class="flex items-center"><x-review-stars :stars="$resource->averageRating(0)" :size="4" />{{ $resource->hasReview() ? $resource->averageRating(1) : 0 }} ({{ $resource->numberOfReviews() }})</span>
                     </div>
                     <div class="flex flex-row justify-between">
                         <span>@lang('Donwloads'):</span>
@@ -100,7 +100,7 @@
         </div>
         <div class="flex flex-col w-full divide-y divide dark:divide-gray-700">
             @forelse ($resource->updates as $update)
-                <div class="flex items-center justify-between w-full p-4 dark:text-white gap-6">
+                <div class="flex items-center justify-between w-full gap-6 p-4 dark:text-white">
                     <div class="flex">
                         <a href="#" class="text-green-400 hover:underline">{{ $update->title }}</a>
                     </div>
@@ -149,8 +149,8 @@
                         <a href="{{ route('member.show', $review->author) }}"><img alt="{{ $review->author->username }}" src="{{ $review->author->profile_photo_url ?? asset('img/TreeLogoSmall.png') }}" class="object-cover w-10 h-10 mx-auto rounded-full "/></a>
                     </div>
                     <div class="flex-1 pl-1 mr-16">
-                        <div class="text-sm text-gray-400 dark:text-gray-200 flex items-center">
-                            <a href="{{ route('member.show', $review->author) }}" class="text-green-400 hover:text-green-500 mr-2 hover:underline">{{ $review->author->username }}</a> &middot; <x-review-stars :stars="$review->rating" /> &middot; {{ $review->created_at->diffForHumans() }}
+                        <div class="flex items-center text-sm text-gray-400 dark:text-gray-200">
+                            <a href="{{ route('member.show', $review->author) }}" class="mr-2 text-green-400 hover:text-green-500 hover:underline">{{ $review->author->username }}</a> &middot; <x-review-stars :stars="$review->rating" :size="4" /> &middot; {{ $review->created_at->diffForHumans() }}
                         </div>
                         <div class="text-xs text-gray-500 truncate dark:text-gray-300">
                             

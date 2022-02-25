@@ -26,7 +26,7 @@
                     </x-jet-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-dropdown :active="request()->routeIs('skin*')">
+                    <x-nav-dropdown :active="request()->is('skin*')">
                         <x-slot name="trigger">
                             {{ __('Skins') }}
                         </x-slot>

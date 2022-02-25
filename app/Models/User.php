@@ -77,6 +77,13 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
     /**
+     * The attributes that will be used for multiple key binding on route models
+     *
+     * @var array
+     */
+    protected $routeBindingKeys = ['username'];
+
+    /**
      * Get the gamejolt account associated with the user.
      */
     public function gamejolt()

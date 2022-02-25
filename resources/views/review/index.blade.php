@@ -11,9 +11,8 @@
                 ['url' => null, 'label' => __('Reviews')],
             ]])
             @endcomponent
-            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 grid-flow-cols">
-                @livewire('review.review-list')
-            </div>
+            
+            @livewire('review.review-list')
         </div>
     </div>
 </x-app-layout>

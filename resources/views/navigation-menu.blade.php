@@ -270,17 +270,17 @@
             <x-jet-responsive-nav-link href="{{ route('resource.index') }}" :active="request()->routeIs('resource.*')">
                 {{ __('Resources') }}
             </x-jet-responsive-nav-link>
+            <x-jet-responsive-nav-link href="{{ route('review') }}" :active="request()->routeIs('review')">
+                {{ __('Reviews') }}
+            </x-jet-responsive-nav-link>
             <x-jet-responsive-nav-link href="{{ route('skin-home') }}" :active="request()->routeIs('skin-home')">
                 {{ __('Skins') }}
             </x-jet-responsive-nav-link>
             <x-jet-responsive-nav-link href="{{ route('skins-popular') }}" :active="request()->routeIs('skins-popular')">
-                {{ __('Most Popular') }} {{ __('Skin') }}
+                {{ __('Most Popular') }} {{ __('Skins') }}
             </x-jet-responsive-nav-link>
             <x-jet-responsive-nav-link href="{{ route('skins-newest') }}" :active="request()->routeIs('skins-newest')">
-                {{ __('Newest') }} {{ __('Skin') }}
-            </x-jet-responsive-nav-link>
-            <x-jet-responsive-nav-link href="{{ route('review') }}" :active="request()->routeIs('review')">
-                {{ __('Reviews') }}
+                {{ __('Newest') }} {{ __('Skins') }}
             </x-jet-responsive-nav-link>
         </div>
 

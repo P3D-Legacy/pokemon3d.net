@@ -7,7 +7,7 @@
     </a>
     <div class="mt-1 mb-2 text-xs text-gray-50 drop-shadow shadow-black">
         
-        <span>@lang('Released') {{ now()->subYear(1) > App\Models\GameVersion::latest()->release_date ? App\Models\GameVersion::latest()->release_date->isoFormat('D MMMM YYYY') : App\Models\GameVersion::latest()->release_date->diffForHumans() }}</span>
+        <span>@lang('Released') {{ now()->subYear(1) > App\Models\GameVersion::latest()->release_date ? App\Models\GameVersion::latest()->release_date->isoFormat('LL') : App\Models\GameVersion::latest()->release_date->diffForHumans() }}</span>
         <span class="px-2">&mdash;</span>
         <span><a href="https://pokemon3d.net/wiki/index.php/Pok%C3%A9mon_3D#Requirements" class="hover:text-gray-300"><sup>&dagger;</sup> @lang('Requirements apply')</a></span>
     </div>

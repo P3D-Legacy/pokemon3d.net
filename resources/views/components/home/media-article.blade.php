@@ -13,8 +13,8 @@
             <span class="text-sm font-semibold text-green-500">
                 {{ $author }}
             </span>
-                {{ Carbon\Carbon::parse($date)->format('F j, Y') }}
             <span class="flex items-center text-xs text-gray-600 dark:text-gray-400">
+                {{ Carbon\Carbon::parse($date)->isoFormat('LL') }}
             </span>
         </div>
     </div>

@@ -37,6 +37,12 @@ use Spatie\Health\Http\Controllers\HealthCheckResultsController;
 |
 */
 
+if (config('app.debug')) {
+    Route::get('/test', function () {
+        return 'test';
+    });
+}
+
 Route::get('/redirect/wiki', function () {
     return redirect('https://pokemon3d.net/wiki/');
 })->name('wiki');

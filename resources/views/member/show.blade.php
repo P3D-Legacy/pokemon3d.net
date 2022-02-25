@@ -68,7 +68,7 @@
                                 @endif
                                 @if($user->birthdate && $user->settings()->get('birthdate') || $user->birthdate && $user->settings()->get('age'))
                                     <div class="mt-2 mb-1 font-medium underline decoration underline-offset-4">Birthday</div>
-                                    <div>{{ $user->settings()->get('birthdate') ? $user->birthdate->format('d M Y') :'' }}</div>
+                                    <div>{{ $user->settings()->get('birthdate') ? $user->birthdate->isoFormat('LL') :'' }}</div>
                                     <div>{{ $user->settings()->get('age') ? $user->birthdate->age.' years old' : '' }}</div>
                                 @endif
                             </div>

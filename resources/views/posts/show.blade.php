@@ -14,7 +14,7 @@
             </div>
 
             <h1 class="text-5xl text-center ">{{ $post->title }}</h1>
-            <p class="text-sm text-center leading-5 text-gray-700 mt-3">Posted {{$post->updated_at->format('d/m/Y')}}</p>
+            <p class="mt-3 text-sm leading-5 text-center text-gray-700">Posted {{$post->updated_at->isoFormat('LL')}}</p>
             <article class="markdown-body">
               {!! $post->body_html !!}
             </article>

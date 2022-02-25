@@ -325,9 +325,12 @@
 
             <div class="flex flex-wrap">
                 <p class="mb-8">
-                    @lang(':game is a video game originally created by :author. It is heavily inspired by Minecraft, and the Pokémon series. :game focused on the strong points of Pokémon Gold and Silver versions and their remakes, and gives players a taste as to how the once 2D world they knew was in 3D. They could even see through the eyes of their own trainer.', [
+                    @lang(':game is a video game originally created by :author. It is heavily inspired by Minecraft, and the Pokémon series.', [
                         'game' => config('app.name'),
                         'author' => '<a href="https://github.com/nilllzz" class="text-green-100 hover:underline hover:text-white">Nilllzz</a>',
+                    ])
+                    @lang(':game focuses on the strong points of Pokémon Gold and Silver versions and their remakes, and gives players a taste as to how the once 2D world they knew was in 3D. They could even see through the eyes of their trainer.', [
+                        'game' => config('app.name'),
                     ])
                 </p>
             </div>
@@ -381,7 +384,7 @@
                         @lang('A New Experience')
                     </h3>
                     <p class="text-gray-600 sm:mb-8 dark:text-gray-400">
-                        @lang(':game focuses on the strong points of Pokémon Gold and Silver versions and their remakes, and gives players a taste as to how the once 2D world they knew was in 3D. They could even see through the eyes of their own trainer.', [
+                        @lang(':game focuses on the strong points of Pokémon Gold and Silver versions and their remakes, and gives players a taste as to how the once 2D world they knew was in 3D. They could even see through the eyes of their trainer.', [
                             'game' => config('app.name'),
                         ])
                     </p>

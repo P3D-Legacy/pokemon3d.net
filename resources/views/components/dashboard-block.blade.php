@@ -5,7 +5,13 @@
     </div>
 
     <div class="mt-6 text-gray-100">
-        @lang(':game is a video game originally created by Nilllzz. It is heavily inspired by Minecraft, and the Pokémon series. :game focused on the strong points of Pokémon Gold and Silver versions and their remakes, and gives players a taste as to how the once 2D world they knew was in 3D. They could even see through the eyes of their own trainer. We hope you love it.', ['game' => config('app.name')])
+        @lang(':game is a video game originally created by :author. It is heavily inspired by Minecraft, and the Pokémon series.', [
+            'game' => config('app.name'),
+            'author' => '<a href="https://github.com/nilllzz" class="text-green-100 hover:underline hover:text-white">Nilllzz</a>',
+        ])
+        @lang(':game focuses on the strong points of Pokémon Gold and Silver versions and their remakes, and gives players a taste as to how the once 2D world they knew was in 3D. They could even see through the eyes of their trainer.', [
+            'game' => config('app.name'),
+        ])
     </div>
 
     <x-download-button />

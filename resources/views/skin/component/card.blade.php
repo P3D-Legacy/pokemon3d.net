@@ -17,7 +17,7 @@
             @if($skin->user)
                 @lang('Published by'): <a class="text-green-800 hover:text-green-600 dark:text-green-500 dark:hover:text-green-300" href="{{ route('member.show', $skin->user) }}">{{ $skin->user->username }}</a><br>
             @else
-                @lang('Gamejolt user ID'): {{ $skin->owner_id }}<br>
+                @lang('Game Jolt ID'): {{ $skin->owner_id }}<br>
             @endif
             @lang('Uploaded'): {{ $skin->created_at->diffForHumans() }}<br>
             @lang('File size'): {{ Storage::disk('skin')->exists($skin->path()) ? \ByteUnits\Binary::bytes(Storage::disk('skin')->size($skin->path()))->format() : 'N/A' }}

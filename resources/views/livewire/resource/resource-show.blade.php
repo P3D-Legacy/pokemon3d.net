@@ -102,7 +102,7 @@
             @forelse ($resource->updates as $update)
                 <div class="flex items-center justify-between w-full gap-6 p-4 dark:text-white">
                     <div class="flex">
-                        <a href="#" class="text-green-400 hover:underline">{{ $update->title }}</a>
+                        <span onclick="Livewire.emit('openModal', 'resource.update-show', {{ json_encode(['update' => $update->id]) }})" class="text-green-400 cursor-pointer hover:underline">{{ $update->title }}</span>
                     </div>
                     <div class="flex-1 text-gray-400">
                         {!! strip_tags(Str::of(Str::limit($update->description, 80))->markdown()) !!}

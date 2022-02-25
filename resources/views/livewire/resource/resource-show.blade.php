@@ -130,7 +130,7 @@
             @empty
                 <div class="flex items-center justify-center w-full p-4">
                     <div class="text-center dark:text-gray-400">
-                        {{ __('No updates found.') }}
+                        {{ __('Nothing found.') }}
                     </div>
                 </div>
             @endforelse

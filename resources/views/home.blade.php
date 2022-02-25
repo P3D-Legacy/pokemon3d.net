@@ -186,7 +186,7 @@
             <x-download-button />
         </div>
 
-        <div class="z-auto flex items-center content-end w-full mx-auto overflow-hidden">
+        <div class="z-auto flex items-center content-end w-full mx-auto overflow-hidden lg:w-11/12">
             <div class="flex flex-1 m-6 bg-white rounded-t rounded-b-lg shadow-xl browser-mockup with-url md:m-12 aspect-w-16 aspect-h-9 shadow-black/50">
                 <video muted controls class="object-cover object-center w-full h-full rounded-b-lg lg:w-full lg:h-full">
                     <source src="https://files.pokemon3d.net/video/trailer.mp4" type="video/mp4">
@@ -245,7 +245,7 @@
 
     <section class="py-8 bg-white border-b dark:bg-gray-800 dark:border-black">
         <div class="container flex flex-wrap pt-4 pb-12 mx-auto">
-            <h2 class="w-full my-2 text-3xl font-black leading-tight text-center text-gray-800 uppercase dark:text-gray-200">
+            <h2 class="w-full my-2 text-2xl font-black leading-tight text-center text-gray-800 uppercase sm:text-3xl dark:text-gray-200">
                 @lang('Latest news')
             </h2>
             <div class="w-full mb-4">
@@ -277,9 +277,9 @@
         </div>
     </section>
 
-    <section class="p-8">
+    <section class="px-4 py-8 sm:p-8">
         <div class="container max-w-5xl m-8 mx-auto text-white">
-            <h2 class="w-full my-2 text-3xl font-black leading-tight text-center uppercase">
+            <h2 class="w-full my-2 text-2xl font-black leading-tight text-center uppercase sm:text-3xl">
                 @lang('Screenshots')
             </h2>
             <div class="w-full mb-4">
@@ -314,9 +314,9 @@
         </div>
     </section>
 
-    <section class="p-8 border-b dark:border-black bg-black/20">
+    <section class="p-4 border-b sm:p-8 dark:border-black bg-black/20">
         <div class="container max-w-5xl m-8 mx-auto text-white">
-            <h2 class="w-full my-2 text-3xl font-black leading-tight text-center uppercase">
+            <h2 class="w-full my-2 text-2xl font-black leading-tight text-center uppercase sm:text-3xl">
                 @lang('History')
             </h2>
             <div class="w-full mb-4">
@@ -336,7 +336,7 @@
 
     <section class="py-8 bg-white border-b dark:bg-gray-800 dark:border-black">
         <div class="container max-w-5xl m-8 mx-auto">
-            <h2 class="w-full my-2 text-3xl font-black leading-tight text-center text-gray-800 uppercase dark:text-gray-200">
+            <h2 class="w-full my-2 text-2xl font-black leading-tight text-center text-gray-800 uppercase sm:text-3xl dark:text-gray-200">
                 @lang('Features')
             </h2>
             <div class="w-full mb-4">
@@ -345,25 +345,25 @@
 
             <div class="flex flex-wrap">
                 <div class="w-5/6 p-6 sm:w-1/2">
-                    <h3 class="mb-3 text-3xl font-bold leading-none text-gray-800 dark:text-gray-200">
+                    <h3 class="mb-3 text-xl font-bold leading-none text-gray-800 sm:text-3xl dark:text-gray-200">
                         @lang('Nostalgia')
                     </h3>
-                    <p class="mb-8 text-gray-600 dark:text-gray-400">
+                    <p class="text-gray-600 sm:mb-8 dark:text-gray-400">
                         @lang('Remember the old days when you where playing on a GameBoy? If so; you should try out this game and get the nostalgic feeling as well as visit your inner child.')
                     </p>
                 </div>
-                <div class="w-full p-6 sm:w-1/2">
+                <div class="w-full px-4 sm:p-6 sm:w-1/2">
                     <img src="{{ asset('img/pikachu.png') }}" />
                 </div>
             </div>
 
             <div class="flex flex-col-reverse flex-wrap sm:flex-row">
-                <div class="grid w-full p-6 mt-6 sm:w-1/2 justify-items-end">
+                <div class="grid w-full px-4 sm:p-6 sm:mt-6 sm:w-1/2 justify-items-end">
                     <img src="{{ asset('img/rhydon.png') }}" />
                 </div>
                 <div class="w-full p-6 mt-6 sm:w-1/2">
                     <div class="align-middle">
-                        <h3 class="mb-3 text-3xl font-bold leading-none text-gray-800 dark:text-gray-200">
+                        <h3 class="mb-3 text-xl font-bold leading-none text-gray-800 sm:text-3xl dark:text-gray-200">
                             @lang('Most Generations and Regions')
                         </h3>
                         <p class="mb-8 text-gray-600 dark:text-gray-400">
@@ -377,32 +377,32 @@
 
             <div class="flex flex-wrap">
                 <div class="w-5/6 p-6 sm:w-1/2">
-                    <h3 class="mb-3 text-3xl font-bold leading-none text-gray-800 dark:text-gray-200">
+                    <h3 class="mb-3 text-xl font-bold leading-none text-gray-800 sm:text-3xl dark:text-gray-200">
                         @lang('A New Experience')
                     </h3>
-                    <p class="mb-8 text-gray-600 dark:text-gray-400">
+                    <p class="text-gray-600 sm:mb-8 dark:text-gray-400">
                         @lang(':game focuses on the strong points of Pokémon Gold and Silver versions and their remakes, and gives players a taste as to how the once 2D world they knew was in 3D. They could even see through the eyes of their own trainer.', [
                             'game' => config('app.name'),
                         ])
                     </p>
                 </div>
-                <div class="w-full p-6 sm:w-1/2">
+                <div class="w-full px-4 sm:p-6 sm:w-1/2">
                     <img src="{{ asset('img/scizor.png') }}" />
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="py-12">
-        <div class="container flex flex-wrap items-center justify-between pb-12 mx-auto text-white">
-            <h2 class="w-full my-2 text-3xl font-black leading-tight text-center uppercase lg:mt-8">
+    <section class="py-8 sm:py-12">
+        <div class="container flex flex-wrap items-center justify-between pb-8 mx-auto text-white sm:pb-12">
+            <h2 class="w-full my-2 text-2xl font-black leading-tight text-center uppercase sm:text-3xl lg:mt-8">
                 @lang('Media')
             </h2>
             <div class="w-full mb-4">
                 <div class="w-64 h-1 py-0 mx-auto my-0 bg-white rounded-t opacity-25"></div>
             </div>
             
-            <div class="flex flex-wrap items-center w-full gap-4 p-8 mb-8 md:mb-0 flex-between">
+            <div class="flex flex-wrap items-center w-full gap-4 p-4 mb-8 sm:p-8 md:mb-0 flex-between">
                 <x-home.media-article title="Pokemon 3D creator envisions a fully cooperative Pokemon campaign" url="https://www.polygon.com/2012/12/7/3740086/pokemon-3d-interview" author="Polygon" date="Dec 7, 2012, 4:40pm EST" />
                 <x-home.media-article title="This Fan-Made Pokémon Remake Is In 3D And First Person" url="https://www.kotaku.com.au/2012/12/this-fan-made-pokemon-remake-is-in-3d-and-first-person/" author="Kotaku" date="December 4, 2012 at 7:00 pm" />
                 <x-home.media-article title="'Pokemon' gets a virtual reality makeover for Oculus Rift" url="https://www.theverge.com/2014/2/25/5445930/pokemon-3d-oculus-rift" author="The Verge" date="Feb 25, 2014, 11:54am EST" />
@@ -412,14 +412,14 @@
     </section>
 
     <section class="w-full px-3 py-12 mx-auto text-center text-white bg-black/20">
-        <h2 class="w-full my-2 text-3xl font-black leading-tight text-center uppercase">
+        <h2 class="w-full my-2 text-2xl font-black leading-tight text-center uppercase sm:text-3xl">
             @lang('Miss your childhood?')
         </h2>
         <div class="w-full mb-4">
             <div class="w-1/6 h-1 py-0 mx-auto my-0 bg-white rounded-t opacity-25"></div>
         </div>
 
-        <h3 class="my-4 text-2xl font-extrabold text-gray-100">
+        <h3 class="my-4 text-xl font-extrabold text-gray-100 sm:text-2xl">
             @lang('Go back in time with :game!', [
                 'game' => config('app.name')
             ])

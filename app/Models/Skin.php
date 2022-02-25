@@ -19,21 +19,21 @@ class Skin extends Model
     use Likeable;
     use Uuid;
 
-    protected $primaryKey = 'uuid';
+    protected $primaryKey = 'id';
 
     /**
      * The "type" of the auto-incrementing ID.
      *
      * @var string
      */
-    protected $keyType = 'string';
+    protected $keyType = 'integer';
 
     /**
      * Indicates if the IDs are auto-incrementing.
      *
      * @var bool
      */
-    public $incrementing = false;
+    public $incrementing = true;
 
     /**
      * The attributes that are mass assignable.

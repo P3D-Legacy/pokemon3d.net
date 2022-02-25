@@ -80,7 +80,7 @@
                     <li class="w-full">
                         <x-jet-dropdown align="left">
                             <x-slot name="trigger">
-                                <div class="flex items-center h-10 max-w-max px-2 text-white no-underline transition duration-150 rounded-lg shadow hover:text-gray-50 hover:text-underline bg-gray-900/40 hover:bg-gray-900/50 border-gray-900/50 backdrop-blur-sm hover:translate-x-1 dark:text-yellow-500 focus:outline-none">
+                                <div class="flex items-center h-10 px-2 text-white no-underline transition duration-150 rounded-lg shadow max-w-max hover:text-gray-50 hover:text-underline bg-gray-900/40 hover:bg-gray-900/50 border-gray-900/50 backdrop-blur-sm hover:translate-x-1 dark:text-yellow-500 focus:outline-none">
                                     @include('vendor.language.flag')
                                 </div>
                             </x-slot>
@@ -162,7 +162,7 @@
                     </button>
                     <x-jet-dropdown align="right">
                         <x-slot name="trigger">
-                            <div class="flex items-center h-10 max-w-max w-10 text-white focus:outline-none">
+                            <div class="flex items-center w-10 h-10 text-white max-w-max focus:outline-none">
                                 @include('vendor.language.flag')
                             </div>
                         </x-slot>
@@ -197,12 +197,12 @@
     </div>
 
     <section class="py-12 bg-gray-100 border-b dark:bg-gray-900 dark:border-black">
-        <div class="grid grid-flow-row sm:grid-flow-auto grid-cols-1 sm:grid-cols-3 lg:grid-cols-6 items-center justify-between max-w-7xl mx-auto text-5xl font-bold text-gray-900 opacity-75 dark:text-gray-200 gap-4">
+        <div class="grid items-center justify-between grid-flow-row grid-cols-1 gap-4 mx-auto text-5xl font-bold text-gray-900 opacity-75 sm:grid-flow-auto sm:grid-cols-3 lg:grid-cols-6 max-w-7xl dark:text-gray-200">
 
             <div class="flex flex-col items-center">
                 <div class="flex">
                     {{ $averageRating }}
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-auto inline-block text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-auto h-12 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
                         <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                     </svg>
                 </div>

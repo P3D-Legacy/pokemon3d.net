@@ -295,6 +295,9 @@
                         <img src="{{ asset('img/carousel/Player_House_Bedroom.png') }}" class="block w-full" alt="" />
                     </div>
                     <div class="relative float-left w-full carousel-item">
+                        <img src="{{ asset('img/carousel/Multiplayer.png') }}" class="block w-full" alt="" />
+                    </div>
+                    <div class="relative float-left w-full carousel-item">
                         <img src="{{ asset('img/carousel/Player_House_Bedroom2.png') }}" class="block w-full" alt="" />
                     </div>
                 </div>

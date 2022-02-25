@@ -20,7 +20,7 @@
             <!-- Responsive Navigation Menu -->
             <div :class="{'flex': open, 'hidden': ! open}" class="hidden w-full pt-2">
                 <ul class="grid flex-1 space-y-1 list-reset lg:flex place-items-end justify-items-end">
-                    <x-home.responsive-nav-link title="Blog" url="{{ route('blog.index') }}">
+                    <x-home.responsive-nav-link title="@lang('Blog')" url="{{ route('blog.index') }}">
                         <x-slot name="icon">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
@@ -62,7 +62,7 @@
                             </x-slot>
                         </x-home.responsive-nav-link>
                     @else
-                        <x-home.responsive-nav-link title="Go to Dashboard" url="{{ route('dashboard') }}">
+                        <x-home.responsive-nav-link title="@lang('Go to Dashboard')" url="{{ route('dashboard') }}">
                             <x-slot name="icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
@@ -95,7 +95,7 @@
             <div class="z-20 flex-grow hidden w-full p-4 mt-2 lg:flex lg:items-center lg:w-auto lg:mt-0 lg:p-0"
                 id="nav-content">
                 <ul class="items-center justify-end flex-1 list-reset lg:flex">
-                    <x-home.nav-link title="Blog" url="{{ route('blog.index') }}">
+                    <x-home.nav-link title="@lang('Blog')" url="{{ route('blog.index') }}">
                         <x-slot name="icon">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
@@ -137,7 +137,7 @@
                             </x-slot>
                         </x-home.nav-link>
                     @else
-                        <x-home.nav-link title="Go to Dashboard" url="{{ route('dashboard') }}">
+                        <x-home.nav-link title="@lang('Go to Dashboard')" url="{{ route('dashboard') }}">
                             <x-slot name="icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />

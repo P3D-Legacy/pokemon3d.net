@@ -105,7 +105,7 @@
                         <a href="#" class="text-green-400 hover:underline">{{ $update->title }}</a>
                     </div>
                     <div class="flex-1 text-gray-400">
-                        {!! strip_tags(Str::of(Str::limit($update->description, 300))->markdown()) !!}
+                        {!! strip_tags(Str::of(Str::limit($update->description, 80))->markdown()) !!}
                     </div>
                     <div class="flex text-sm">
                         {{ $update->game_version->version }}

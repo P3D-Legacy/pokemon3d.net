@@ -6,14 +6,16 @@ use Illuminate\View\Component;
 
 class NavDropdown extends Component
 {
+    public $active;
+
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($active)
     {
-        //
+        $this->active = $active;
     }
 
     /**

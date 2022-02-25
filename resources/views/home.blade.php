@@ -189,7 +189,7 @@
         <div class="z-auto flex items-center content-end w-full mx-auto overflow-hidden lg:w-11/12">
             <div class="flex flex-1 m-6 bg-white rounded-t rounded-b-lg shadow-xl browser-mockup with-url md:m-12 aspect-w-16 aspect-h-9 shadow-black/50">
                 <video muted controls class="object-cover object-center w-full h-full rounded-b-lg lg:w-full lg:h-full">
-                    <source src="https://files.pokemon3d.net/video/trailer.mp4" type="video/mp4">
+                    <source src="https://files.pokemon3d.net/video/trailer.webm" type="video/webm">
                     @lang('Your browser does not support the video tag.')
                 </video>
             </div>

@@ -9,6 +9,7 @@ use Laravel\Jetstream\HasProfilePhoto;
 use Overtrue\LaravelLike\Traits\Liker;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
+use Spatie\Activitylog\Traits\LogsActivity;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Glorand\Model\Settings\Traits\HasSettingsTable;
@@ -27,6 +28,7 @@ class User extends Authenticatable implements MustVerifyEmail
     use Liker;
     use Achiever;
     use HasSettingsTable;
+    use LogsActivity;
 
     /**
      * The attributes that are mass assignable.

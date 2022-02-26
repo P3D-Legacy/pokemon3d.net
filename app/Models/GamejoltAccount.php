@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use betterapp\LaravelDbEncrypter\Traits\EncryptableDbAttribute;
@@ -14,6 +15,7 @@ class GamejoltAccount extends Model
     use EncryptableDbAttribute;
     use SoftDeletes;
     use Uuid;
+    use LogsActivity;
 
     protected $primaryKey = 'uuid';
 

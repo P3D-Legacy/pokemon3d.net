@@ -11,7 +11,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class GJUser extends Model
 {
-    use HasFactory, SoftDeletes, LogsActivity, Liker;
+    use HasFactory;
+    use SoftDeletes;
+    use LogsActivity;
+    use Liker;
 
     /**
      * The table associated with the model.

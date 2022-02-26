@@ -6,6 +6,7 @@ use Spatie\Tags\HasTags;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 use Overtrue\LaravelLike\Traits\Likeable;
+use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
@@ -18,6 +19,7 @@ class Post extends Model implements Viewable
     use Likeable;
     use SoftDeletes;
     use HasTags;
+    use LogsActivity;
 
     protected $removeViewsOnDelete = true;
 

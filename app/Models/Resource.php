@@ -6,6 +6,7 @@ use Spatie\Tags\HasTags;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 use Overtrue\LaravelLike\Traits\Likeable;
+use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use AliBayat\LaravelCategorizable\Categorizable;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
@@ -24,6 +25,7 @@ class Resource extends Model implements Viewable
     use HasMultipleRouteBindingKeys;
     use Categorizable;
     use HasReviewRating;
+    use LogsActivity;
 
     public static function boot()
     {

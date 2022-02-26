@@ -16,7 +16,25 @@ class ResourceUpdate extends Model implements HasMedia
     use InteractsWithMedia;
     use LogsActivity;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $guarded = [];
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'title',
+        'description',
+        'resource_id',
+        'game_version_id',
+        'downloads',
+    ];
 
     /**
      * The attributes that should be logged for the user.

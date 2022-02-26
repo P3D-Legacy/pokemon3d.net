@@ -28,13 +28,7 @@ class ResourceUpdate extends Model implements HasMedia
      *
      * @var array
      */
-    protected $fillable = [
-        'title',
-        'description',
-        'resource_id',
-        'game_version_id',
-        'downloads',
-    ];
+    protected $fillable = ['title', 'description', 'resource_id', 'game_version_id', 'downloads'];
 
     /**
      * The attributes that should be logged for the user.
@@ -43,7 +37,9 @@ class ResourceUpdate extends Model implements HasMedia
      */
     public function getActivitylogOptions(): LogOptions
     {
-        return LogOptions::defaults()->logFillable()->logOnlyDirty();
+        return LogOptions::defaults()
+            ->logFillable()
+            ->logOnlyDirty();
     }
 
     public function resource()

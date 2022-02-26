@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Spatie\Activitylog\LogOptions;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Digikraaft\ReviewRating\Traits\HasReviewRating;
@@ -16,6 +17,16 @@ class GameVersion extends Model
     protected $fillable = ['version', 'title', 'release_date', 'page_url', 'download_url'];
 
     protected $dates = ['release_date'];
+
+    /**
+     * The attributes that should be logged for the user.
+     *
+     * @return array
+     */
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults();
+    }
 
     public static function latest()
     {

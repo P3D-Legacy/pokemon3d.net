@@ -5,6 +5,7 @@ namespace App\Models;
 use Assada\Achievements\Achiever;
 use Laravel\Sanctum\HasApiTokens;
 use Origami\Consent\GivesConsent;
+use Spatie\Activitylog\LogOptions;
 use Laravel\Jetstream\HasProfilePhoto;
 use Overtrue\LaravelLike\Traits\Liker;
 use Spatie\Permission\Traits\HasRoles;
@@ -84,6 +85,16 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $routeBindingKeys = ['username'];
+
+    /**
+     * The attributes that should be logged for the user.
+     *
+     * @return array
+     */
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults();
+    }
 
     /**
      * Get the gamejolt account associated with the user.

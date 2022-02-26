@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Spatie\Tags\HasTags;
 use Illuminate\Support\Str;
+use Spatie\Activitylog\LogOptions;
 use Illuminate\Database\Eloquent\Model;
 use Overtrue\LaravelLike\Traits\Likeable;
 use Spatie\Activitylog\Traits\LogsActivity;
@@ -60,6 +61,16 @@ class Post extends Model implements Viewable
     protected $casts = [
         'published_at' => 'datetime',
     ];
+
+    /**
+     * The attributes that should be logged for the user.
+     *
+     * @return array
+     */
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults();
+    }
 
     /**
      * Get the user that made this post.

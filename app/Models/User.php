@@ -93,7 +93,7 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     public function getActivitylogOptions(): LogOptions
     {
-        return LogOptions::defaults();
+        return LogOptions::defaults()->logFillable()->logOnlyDirty()->logExcept(['last_active_at']);
     }
 
     /**

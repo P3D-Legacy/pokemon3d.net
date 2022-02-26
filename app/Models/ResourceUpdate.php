@@ -43,7 +43,7 @@ class ResourceUpdate extends Model implements HasMedia
      */
     public function getActivitylogOptions(): LogOptions
     {
-        return LogOptions::defaults();
+        return LogOptions::defaults()->logFillable()->logOnlyDirty();
     }
 
     public function resource()

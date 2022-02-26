@@ -65,7 +65,7 @@ class Resource extends Model implements Viewable
      */
     public function getActivitylogOptions(): LogOptions
     {
-        return LogOptions::defaults();
+        return LogOptions::defaults()->logFillable()->logOnlyDirty();
     }
 
     /**

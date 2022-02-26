@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6c21083a8e0547fda6571f8b06110236",
+    "content-hash": "ec20147b91cbbdd42a20c65e62d19231",
     "packages": [
         {
             "name": "akaunting/laravel-language",
@@ -7915,28 +7915,29 @@
         },
         {
             "name": "spatie/laravel-activitylog",
-            "version": "3.17.0",
+            "version": "4.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-activitylog.git",
-                "reference": "bdc44862aaca39ecbd824133b80dbd7c8017ed7f"
+                "reference": "ba1b15d37f536d5525cdf84275a0414cd0d957d4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-activitylog/zipball/bdc44862aaca39ecbd824133b80dbd7c8017ed7f",
-                "reference": "bdc44862aaca39ecbd824133b80dbd7c8017ed7f",
+                "url": "https://api.github.com/repos/spatie/laravel-activitylog/zipball/ba1b15d37f536d5525cdf84275a0414cd0d957d4",
+                "reference": "ba1b15d37f536d5525cdf84275a0414cd0d957d4",
                 "shasum": ""
             },
             "require": {
-                "illuminate/config": "^6.0 || ^7.0 || ^8.0",
-                "illuminate/database": "^6.0 || ^7.0 || ^8.0",
-                "illuminate/support": "^6.0 || ^7.0 || ^8.0",
-                "php": "^7.3 || ^8.0"
+                "illuminate/config": "^8.0 || ^9.0",
+                "illuminate/database": "^8.53 || ^9.0",
+                "illuminate/support": "^8.0 || ^9.0",
+                "php": "^8.0",
+                "spatie/laravel-package-tools": "^1.6.3"
             },
             "require-dev": {
                 "ext-json": "*",
-                "orchestra/testbench": "^4.0 || ^5.0 || ^6.0",
-                "phpunit/phpunit": "^9.3"
+                "orchestra/testbench": "^6.23 || ^7.0",
+                "phpunit/phpunit": "^9.5"
             },
             "type": "library",
             "extra": {
@@ -7989,7 +7990,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/laravel-activitylog/issues",
-                "source": "https://github.com/spatie/laravel-activitylog/tree/3.17.0"
+                "source": "https://github.com/spatie/laravel-activitylog/tree/4.4.0"
             },
             "funding": [
                 {
@@ -8001,7 +8002,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-03-02T16:49:06+00:00"
+            "time": "2022-01-12T17:33:02+00:00"
         },
         {
             "name": "spatie/laravel-health",

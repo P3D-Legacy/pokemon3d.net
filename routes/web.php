@@ -137,7 +137,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
         Route::post('/uploaded/delete/{id}', [UploadedSkinController::class, 'destroy'])->name('uploaded-skin-destroy');
     });
 
-    Route::prefix('admin')
+    Route::prefix('sadmin')
         ->middleware(['role:super-admin|admin'])
         ->group(function () {
             Route::get('health', HealthCheckResultsController::class);

@@ -1,4 +1,5 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
+const colors = require('tailwindcss/colors');
 
 module.exports = {
     mode: 'jit',
@@ -9,6 +10,7 @@ module.exports = {
         './resources/views/**/*.blade.php',
         './vendor/power-components/livewire-powergrid/resources/views/**/*.blade.php',
         './vendor/power-components/livewire-powergrid/src/Themes/Tailwind.php',
+        './vendor/filament/**/*.blade.php', 
     ],
 
     darkMode: 'class',
@@ -27,6 +29,8 @@ module.exports = {
             colors: {
                 'gamejolt-green': '#ccff00',
                 'gamejolt-dark-green': '#2f7f6f',
+                danger: colors.rose,
+                primary: colors.blue,
             },
         },
         debugScreens: {

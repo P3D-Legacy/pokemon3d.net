@@ -23,6 +23,7 @@
         "doctrine/dbal": "^3.3",
         "fideloper/proxy": "^4.4",
         "filament/filament": "^2.10",
+        "filament/forms": "^2.10",
         "fruitcake/laravel-cors": "^2.0",
         "gabrielelana/byte-units": "^0.5.0",
         "glorand/laravel-model-settings": "^4.4",

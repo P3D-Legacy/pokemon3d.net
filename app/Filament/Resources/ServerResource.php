@@ -18,6 +18,8 @@ class ServerResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-server';
 
+    protected static ?string $navigationGroup = 'Game';
+
     public static function form(Form $form): Form
     {
         return $form->schema([
@@ -58,8 +60,8 @@ class ServerResource extends Resource
     public static function getRelations(): array
     {
         return [
-                //
-            ];
+            //
+        ];
     }
 
     public static function getPages(): array

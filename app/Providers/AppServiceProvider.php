@@ -46,16 +46,14 @@ class AppServiceProvider extends ServiceProvider
                 ->failWhenLoadIsHigherInTheLast15Minutes(1.5),
         ]);
 
-        Filament::registerNavigationGroups([
-            'User Management',
-        ]);
+        Filament::registerNavigationGroups(['User Management']);
 
         Filament::registerNavigationItems([
             NavigationItem::make()
                 ->label('To user dashboard')
                 ->icon('heroicon-o-chevron-double-left')
                 ->url('/dashboard')
-                ->sort(-1)
+                ->sort(-1),
         ]);
     }
 }

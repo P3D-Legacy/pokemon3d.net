@@ -10,7 +10,7 @@ module.exports = {
         './resources/views/**/*.blade.php',
         './vendor/power-components/livewire-powergrid/resources/views/**/*.blade.php',
         './vendor/power-components/livewire-powergrid/src/Themes/Tailwind.php',
-        './vendor/filament/**/*.blade.php', 
+        './vendor/filament/**/*.blade.php',
     ],
 
     darkMode: 'class',

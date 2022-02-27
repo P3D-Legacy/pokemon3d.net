@@ -1,7 +1,7 @@
 require('./bootstrap');
 
 import Alpine from 'alpinejs';
-Alpine.plugin(FormsAlpinePlugin)
+Alpine.plugin(FormsAlpinePlugin);
 window.Alpine = Alpine;
 import './../../vendor/power-components/livewire-powergrid/dist/powergrid';
 Alpine.start();

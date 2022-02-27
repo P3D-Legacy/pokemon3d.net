@@ -2,14 +2,16 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\PostResource\Pages;
-use App\Filament\Resources\PostResource\RelationManagers;
-use App\Models\Post;
 use Filament\Forms;
-use Filament\Resources\Form;
-use Filament\Resources\Resource;
-use Filament\Resources\Table;
+use App\Models\Post;
 use Filament\Tables;
+use Filament\Resources\Form;
+use Filament\Resources\Table;
+use Filament\Resources\Resource;
+use Filament\Tables\Columns\SpatieTagsColumn;
+use App\Filament\Resources\PostResource\Pages;
+use Filament\Forms\Components\SpatieTagsInput;
+use App\Filament\Resources\PostResource\RelationManagers;
 
 class PostResource extends Resource
 {
@@ -26,6 +28,7 @@ class PostResource extends Resource
             Forms\Components\MarkdownEditor::make('body')->required(),
             Forms\Components\Toggle::make('active')->required(),
             Forms\Components\Toggle::make('sticky')->required(),
+            SpatieTagsInput::make('tags'),
         ]);
     }
 
@@ -36,6 +39,7 @@ class PostResource extends Resource
                 Tables\Columns\TextColumn::make('title'),
                 Tables\Columns\BooleanColumn::make('active'),
                 Tables\Columns\BooleanColumn::make('sticky'),
+                SpatieTagsColumn::make('tags'),
                 Tables\Columns\TextColumn::make('user.username'),
                 Tables\Columns\TextColumn::make('published_at')->dateTime(),
                 Tables\Columns\TextColumn::make('created_at')->dateTime(),
@@ -50,8 +54,8 @@ class PostResource extends Resource
     public static function getRelations(): array
     {
         return [
-                //
-            ];
+            //
+        ];
     }
 
     public static function getPages(): array

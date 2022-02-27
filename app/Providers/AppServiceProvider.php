@@ -46,7 +46,7 @@ class AppServiceProvider extends ServiceProvider
                 ->failWhenLoadIsHigherInTheLast15Minutes(1.5),
         ]);
 
-        Filament::registerNavigationGroups(['User Management']);
+        Filament::registerNavigationGroups(['User Management', 'Resource Management']);
 
         Filament::registerNavigationItems([
             NavigationItem::make()

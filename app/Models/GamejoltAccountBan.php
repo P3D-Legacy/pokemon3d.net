@@ -80,7 +80,7 @@ class GamejoltAccountBan extends Model
      */
     public function reason()
     {
-        return $this->hasOne(BanReason::class, 'id', 'reason_id');
+        return $this->belongsTo(BanReason::class, 'reason_id', 'id');
     }
 
     /**
@@ -88,6 +88,6 @@ class GamejoltAccountBan extends Model
      */
     public function banned_by()
     {
-        return $this->hasOne(User::class, 'id', 'banned_by_id');
+        return $this->belongsTo(User::class);
     }
 }

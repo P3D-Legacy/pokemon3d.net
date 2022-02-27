@@ -30,7 +30,9 @@ class UserResource extends Resource
                 ->email()
                 ->required()
                 ->maxLength(255),
-            Forms\Components\TextInput::make('username')->required()->maxLength(255),
+            Forms\Components\TextInput::make('username')
+                ->required()
+                ->maxLength(255),
             Forms\Components\Textarea::make('about')->maxLength(65535),
             Forms\Components\TextInput::make('gender')->required(),
             Forms\Components\TextInput::make('location')->maxLength(255),
@@ -39,7 +41,7 @@ class UserResource extends Resource
                 ->password()
                 ->required()
                 ->maxLength(255),
-            BelongsToManyMultiSelect::make('roles')->relationship('roles', 'name')
+            BelongsToManyMultiSelect::make('roles')->relationship('roles', 'name'),
         ]);
     }
 
@@ -63,8 +65,8 @@ class UserResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
-        ];
+                //
+            ];
     }
 
     public static function getPages(): array

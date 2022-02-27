@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use Spatie\Activitylog\LogOptions;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use GoldSpecDigital\LaravelEloquentUUID\Database\Eloquent\Uuid;
@@ -12,6 +14,7 @@ class GamejoltAccountBan extends Model
     use HasFactory;
     use SoftDeletes;
     use Uuid;
+    use LogsActivity;
 
     protected $primaryKey = 'uuid';
 
@@ -51,6 +54,18 @@ class GamejoltAccountBan extends Model
     protected $casts = [
         'expire_at' => 'datetime',
     ];
+
+    /**
+     * The attributes that should be logged for the user.
+     *
+     * @return array
+     */
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logFillable()
+            ->logOnlyDirty();
+    }
 
     /**
      * Get the gamejolt account associated with the gamejolt account ban.

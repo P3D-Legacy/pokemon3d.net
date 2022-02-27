@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
+use Spatie\Activitylog\LogOptions;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use GoldSpecDigital\LaravelEloquentUUID\Database\Eloquent\Uuid;
@@ -12,6 +14,7 @@ class BanReason extends Model
     use HasFactory;
     use SoftDeletes;
     use Uuid;
+    use LogsActivity;
 
     protected $primaryKey = 'uuid';
 
@@ -42,4 +45,16 @@ class BanReason extends Model
      * @var array
      */
     protected $fillable = ['name', 'user_id'];
+
+    /**
+     * The attributes that should be logged for the user.
+     *
+     * @return array
+     */
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logFillable()
+            ->logOnlyDirty();
+    }
 }

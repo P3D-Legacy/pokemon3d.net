@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Spatie\Activitylog\LogOptions;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Models\Activity;
@@ -59,16 +60,16 @@ class Skin extends Model
         return 'uuid';
     }
 
-    protected static $logAttributes = ['name', 'owner_id', 'user_id', 'public'];
-    protected static $logOnlyDirty = true;
-    protected static $submitEmptyLogs = false;
-
-    // Since we are using sessions with gamejolt logins we have to tap the activity to log the causer
-    public function tapActivity(Activity $activity)
+    /**
+     * The attributes that should be logged for the user.
+     *
+     * @return array
+     */
+    public function getActivitylogOptions(): LogOptions
     {
-        $activity->subject_id = $this->id;
-        $activity->causer_id = Auth::user()->id ?? null;
-        $activity->causer_type = User::class;
+        return LogOptions::defaults()
+            ->logFillable()
+            ->logOnlyDirty();
     }
 
     /**

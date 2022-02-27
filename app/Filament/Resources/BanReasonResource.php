@@ -19,12 +19,11 @@ class BanReasonResource extends Resource
 
     public static function form(Form $form): Form
     {
-        return $form
-            ->schema([
-                Forms\Components\TextInput::make('name')
-                    ->required()
-                    ->maxLength(255),
-            ]);
+        return $form->schema([
+            Forms\Components\TextInput::make('name')
+                ->required()
+                ->maxLength(255),
+        ]);
     }
 
     public static function table(Table $table): Table
@@ -32,8 +31,7 @@ class BanReasonResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name'),
-                Tables\Columns\TextColumn::make('user.name')
-                    ->label('Author'),
+                Tables\Columns\TextColumn::make('user.name')->label('Author'),
             ])
             ->filters([
                 //
@@ -43,8 +41,8 @@ class BanReasonResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
-        ];
+                //
+            ];
     }
 
     public static function getPages(): array

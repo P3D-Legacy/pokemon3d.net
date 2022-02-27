@@ -15,7 +15,6 @@ use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Filament Path
@@ -28,7 +27,6 @@ return [
 
     'path' => env('FILAMENT_PATH', 'admin'),
 
-
     /*
     |--------------------------------------------------------------------------
     | Filament Core Path
@@ -40,7 +38,6 @@ return [
     */
 
     'core_path' => env('FILAMENT_CORE_PATH', 'filament'),
-
 
     /*
     |--------------------------------------------------------------------------
@@ -107,9 +104,7 @@ return [
     'pages' => [
         'namespace' => 'App\\Filament\\Pages',
         'path' => app_path('Filament/Pages'),
-        'register' => [
-            Pages\Dashboard::class,
-        ],
+        'register' => [Pages\Dashboard::class],
     ],
 
     /*
@@ -249,9 +244,7 @@ return [
     */
 
     'middleware' => [
-        'auth' => [
-            Authenticate::class,
-        ],
+        'auth' => [Authenticate::class],
         'base' => [
             EncryptCookies::class,
             AddQueuedCookiesToResponse::class,
@@ -264,5 +257,4 @@ return [
             MirrorConfigToSubpackages::class,
         ],
     ],
-
 ];

@@ -19,18 +19,14 @@ class PostResource extends Resource
 
     public static function form(Form $form): Form
     {
-        return $form
-            ->schema([
-                Forms\Components\TextInput::make('title')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\MarkdownEditor::make('body')
-                    ->required(),
-                Forms\Components\Toggle::make('active')
-                    ->required(),
-                Forms\Components\Toggle::make('sticky')
-                    ->required(),
-            ]);
+        return $form->schema([
+            Forms\Components\TextInput::make('title')
+                ->required()
+                ->maxLength(255),
+            Forms\Components\MarkdownEditor::make('body')->required(),
+            Forms\Components\Toggle::make('active')->required(),
+            Forms\Components\Toggle::make('sticky')->required(),
+        ]);
     }
 
     public static function table(Table $table): Table
@@ -41,14 +37,10 @@ class PostResource extends Resource
                 Tables\Columns\BooleanColumn::make('active'),
                 Tables\Columns\BooleanColumn::make('sticky'),
                 Tables\Columns\TextColumn::make('user.username'),
-                Tables\Columns\TextColumn::make('published_at')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('deleted_at')
-                    ->dateTime(),
+                Tables\Columns\TextColumn::make('published_at')->dateTime(),
+                Tables\Columns\TextColumn::make('created_at')->dateTime(),
+                Tables\Columns\TextColumn::make('updated_at')->dateTime(),
+                Tables\Columns\TextColumn::make('deleted_at')->dateTime(),
             ])
             ->filters([
                 //
@@ -58,8 +50,8 @@ class PostResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
-        ];
+                //
+            ];
     }
 
     public static function getPages(): array

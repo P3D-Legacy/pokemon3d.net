@@ -19,29 +19,24 @@ class UserResource extends Resource
 
     public static function form(Form $form): Form
     {
-        return $form
-            ->schema([
-                Forms\Components\TextInput::make('name')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('email')
-                    ->email()
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('username')
-                    ->maxLength(255),
-                Forms\Components\Textarea::make('about')
-                    ->maxLength(65535),
-                Forms\Components\TextInput::make('gender')
-                    ->required(),
-                Forms\Components\TextInput::make('location')
-                    ->maxLength(255),
-                Forms\Components\DateTimePicker::make('birthdate'),
-                Forms\Components\TextInput::make('password')
-                    ->password()
-                    ->required()
-                    ->maxLength(255),
-            ]);
+        return $form->schema([
+            Forms\Components\TextInput::make('name')
+                ->required()
+                ->maxLength(255),
+            Forms\Components\TextInput::make('email')
+                ->email()
+                ->required()
+                ->maxLength(255),
+            Forms\Components\TextInput::make('username')->maxLength(255),
+            Forms\Components\Textarea::make('about')->maxLength(65535),
+            Forms\Components\TextInput::make('gender')->required(),
+            Forms\Components\TextInput::make('location')->maxLength(255),
+            Forms\Components\DateTimePicker::make('birthdate'),
+            Forms\Components\TextInput::make('password')
+                ->password()
+                ->required()
+                ->maxLength(255),
+        ]);
     }
 
     public static function table(Table $table): Table
@@ -53,8 +48,7 @@ class UserResource extends Resource
                 Tables\Columns\TextColumn::make('username'),
                 Tables\Columns\TextColumn::make('gender'),
                 Tables\Columns\TextColumn::make('location'),
-                Tables\Columns\TextColumn::make('birthdate')
-                    ->date(),
+                Tables\Columns\TextColumn::make('birthdate')->date(),
                 Tables\Columns\TextColumn::make('locale'),
             ])
             ->filters([
@@ -65,8 +59,8 @@ class UserResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
-        ];
+                //
+            ];
     }
 
     public static function getPages(): array

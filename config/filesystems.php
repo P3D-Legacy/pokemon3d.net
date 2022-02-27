@@ -50,6 +50,13 @@ return [
             'root' => public_path() . '/img/skin',
         ],
 
+        'blog' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/blog'),
+            'url' => env('APP_URL') . '/storage/blog',
+            'visibility' => 'public',
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "491ad1cf7d49ea4e4f9ab89ffde7fbd1",
+    "content-hash": "7c274780d95eeda26b631b3c83874b35",
     "packages": [
         {
             "name": "akaunting/laravel-language",
@@ -193,6 +193,69 @@
                 "source": "https://github.com/AliBayat/Laravel-Categorizable/tree/master"
             },
             "time": "2021-11-27T07:14:05+00:00"
+        },
+        {
+            "name": "althinect/filament-spatie-roles-permissions",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Althinect/filament-spatie-roles-permissions.git",
+                "reference": "c7216682042c48c5ab40d99c2e7a00ff660d9736"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Althinect/filament-spatie-roles-permissions/zipball/c7216682042c48c5ab40d99c2e7a00ff660d9736",
+                "reference": "c7216682042c48c5ab40d99c2e7a00ff660d9736",
+                "shasum": ""
+            },
+            "require": {
+                "filament/filament": "^2.0|^2.1",
+                "illuminate/support": "^8|^9",
+                "php": "^7.4|^8.0|^8.1",
+                "spatie/laravel-permission": "^5.4"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^6.0",
+                "phpunit/phpunit": "^9.0"
+            },
+            "default-branch": true,
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Althinect\\FilamentSpatieRolesPermissions\\FilamentSpatieRolesPermissionsServiceProvider"
+                    ],
+                    "aliases": {
+                        "FilamentSpatieRolesPermissions": "Althinect\\FilamentSpatieRolesPermissions\\FilamentSpatieRolesPermissionsFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Althinect\\FilamentSpatieRolesPermissions\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tharinda Rodrigo",
+                    "email": "tharindarodrigo@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "homepage": "https://github.com/althinect/filament-spatie-roles-permissions",
+            "keywords": [
+                "althinect",
+                "filament-spatie-roles-permissions"
+            ],
+            "support": {
+                "issues": "https://github.com/Althinect/filament-spatie-roles-permissions/issues",
+                "source": "https://github.com/Althinect/filament-spatie-roles-permissions/tree/main"
+            },
+            "time": "2022-02-16T11:31:29+00:00"
         },
         {
             "name": "anlutro/l4-settings",
@@ -15425,6 +15488,7 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "alibayat/laravel-categorizable": 20,
+        "althinect/filament-spatie-roles-permissions": 20,
         "restcord/restcord": 20
     },
     "prefer-stable": true,

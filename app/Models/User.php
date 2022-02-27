@@ -10,6 +10,7 @@ use Laravel\Jetstream\HasProfilePhoto;
 use Overtrue\LaravelLike\Traits\Liker;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
+use Filament\Models\Contracts\FilamentUser;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -17,7 +18,7 @@ use Glorand\Model\Settings\Traits\HasSettingsTable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable implements MustVerifyEmail
+class User extends Authenticatable implements FilamentUser, MustVerifyEmail
 {
     use HasApiTokens;
     use HasFactory;
@@ -97,6 +98,16 @@ class User extends Authenticatable implements MustVerifyEmail
             ->logFillable()
             ->logOnlyDirty()
             ->logExcept(['last_active_at']);
+    }
+
+    public function canAccessFilament(): bool
+    {
+        return $this->hasAnyRole(['admin', 'super-admin']) && $this->hasVerifiedEmail();
+    }
+
+    public function getFilamentAvatarUrl(): ?string
+    {
+        return $this->profile_photo_url;
     }
 
     /**

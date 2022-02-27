@@ -19,11 +19,12 @@ class ReviewResource extends Resource
 
     public static function form(Form $form): Form
     {
-        return $form->schema([
-            Forms\Components\Textarea::make('review')
-                ->required()
-                ->maxLength(255),
-        ]);
+        return $form
+            ->schema([
+                Forms\Components\Textarea::make('review')
+                    ->required()
+                    ->maxLength(255),
+            ]);
     }
 
     public static function table(Table $table): Table
@@ -32,11 +33,12 @@ class ReviewResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('review'),
                 Tables\Columns\TextColumn::make('rating'),
-                Tables\Columns\TextColumn::make('model_type')->name('Type'),
-                Tables\Columns\TextColumn::make('model_id')->name('Type ID'),
+                Tables\Columns\TextColumn::make('model_type'),
+                Tables\Columns\TextColumn::make('model_id'),
                 Tables\Columns\TextColumn::make('author_type'),
                 Tables\Columns\TextColumn::make('author_id'),
-                Tables\Columns\TextColumn::make('created_at')->dateTime(),
+                Tables\Columns\TextColumn::make('created_at')
+                    ->dateTime(),
             ])
             ->filters([
                 //
@@ -46,8 +48,8 @@ class ReviewResource extends Resource
     public static function getRelations(): array
     {
         return [
-                //
-            ];
+            //
+        ];
     }
 
     public static function getPages(): array

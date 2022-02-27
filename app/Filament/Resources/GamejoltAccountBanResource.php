@@ -23,17 +23,16 @@ class GamejoltAccountBanResource extends Resource
 
     public static function form(Form $form): Form
     {
-        return $form
-            ->schema([
-                Forms\Components\BelongsToSelect::make('banned_by_id')
-                    ->relationship('banned_by', 'username')
-                    ->searchable()
-                    ->options(User::all()->pluck('username', 'id')),
-                Forms\Components\BelongsToSelect::make('reason_id')
-                    ->relationship('reason', 'name')
-                    ->searchable()
-                    ->options(BanReason::all()->pluck('name', 'id')),
-            ]);
+        return $form->schema([
+            Forms\Components\BelongsToSelect::make('banned_by_id')
+                ->relationship('banned_by', 'username')
+                ->searchable()
+                ->options(User::all()->pluck('username', 'id')),
+            Forms\Components\BelongsToSelect::make('reason_id')
+                ->relationship('reason', 'name')
+                ->searchable()
+                ->options(BanReason::all()->pluck('name', 'id')),
+        ]);
     }
 
     public static function table(Table $table): Table
@@ -43,10 +42,8 @@ class GamejoltAccountBanResource extends Resource
                 Tables\Columns\TextColumn::make('gamejoltaccount.username'),
                 Tables\Columns\TextColumn::make('banned_by.username'),
                 Tables\Columns\TextColumn::make('reason.name'),
-                Tables\Columns\TextColumn::make('expire_at')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime(),
+                Tables\Columns\TextColumn::make('expire_at')->dateTime(),
+                Tables\Columns\TextColumn::make('created_at')->dateTime(),
             ])
             ->filters([
                 //
@@ -56,8 +53,8 @@ class GamejoltAccountBanResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
-        ];
+                //
+            ];
     }
 
     public static function getPages(): array

@@ -21,10 +21,9 @@ class GamejoltAccountResource extends Resource
 
     public static function form(Form $form): Form
     {
-        return $form
-            ->schema([
-                //
-            ]);
+        return $form->schema([
+            //
+        ]);
     }
 
     public static function table(Table $table): Table
@@ -34,12 +33,12 @@ class GamejoltAccountResource extends Resource
                 Tables\Columns\TextColumn::make('id'),
                 Tables\Columns\TextColumn::make('username'),
                 Tables\Columns\TextColumn::make('user.username'),
-                Tables\Columns\TextColumn::make('verified_at')
-                    ->dateTime(),
+                Tables\Columns\TextColumn::make('verified_at')->dateTime(),
             ])
             ->filters([
                 //
-            ])->bulkActions([
+            ])
+            ->bulkActions([
                 // ...
             ]);
     }
@@ -47,8 +46,8 @@ class GamejoltAccountResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
-        ];
+                //
+            ];
     }
 
     public static function getPages(): array

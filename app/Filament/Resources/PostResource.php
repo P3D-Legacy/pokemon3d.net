@@ -28,7 +28,11 @@ class PostResource extends Resource
                 ->maxLength(255),
             Forms\Components\Toggle::make('active')->required(),
             Forms\Components\Toggle::make('sticky')->required(),
-            SpatieTagsInput::make('tags')->suggestions(Tag::all()->pluck('name')->toArray()),
+            SpatieTagsInput::make('tags')->suggestions(
+                Tag::all()
+                    ->pluck('name')
+                    ->toArray()
+            ),
             Forms\Components\MarkdownEditor::make('body')->required(),
         ]);
     }
@@ -54,8 +58,8 @@ class PostResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
-        ];
+                //
+            ];
     }
 
     public static function getPages(): array

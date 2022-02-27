@@ -2,14 +2,15 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\UserResource\Pages;
-use App\Filament\Resources\UserResource\RelationManagers;
-use App\Models\User;
 use Filament\Forms;
-use Filament\Resources\Form;
-use Filament\Resources\Resource;
-use Filament\Resources\Table;
+use App\Models\User;
 use Filament\Tables;
+use Filament\Resources\Form;
+use Filament\Resources\Table;
+use Filament\Resources\Resource;
+use App\Filament\Resources\UserResource\Pages;
+use Filament\Forms\Components\BelongsToManyMultiSelect;
+use App\Filament\Resources\UserResource\RelationManagers;
 
 class UserResource extends Resource
 {
@@ -38,6 +39,7 @@ class UserResource extends Resource
                 ->password()
                 ->required()
                 ->maxLength(255),
+            BelongsToManyMultiSelect::make('roles')->relationship('roles', 'name')
         ]);
     }
 
@@ -61,8 +63,8 @@ class UserResource extends Resource
     public static function getRelations(): array
     {
         return [
-                //
-            ];
+            //
+        ];
     }
 
     public static function getPages(): array

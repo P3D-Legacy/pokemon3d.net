@@ -21,11 +21,7 @@ class DiscordAccountResource extends Resource
 
     public static function form(Form $form): Form
     {
-        return $form
-            ->schema([
-                Forms\Components\TextInput::make('user_id')
-                    ->required(),
-            ]);
+        return $form->schema([Forms\Components\TextInput::make('user_id')->required()]);
     }
 
     public static function table(Table $table): Table
@@ -36,15 +32,14 @@ class DiscordAccountResource extends Resource
                 Tables\Columns\TextColumn::make('username'),
                 Tables\Columns\TextColumn::make('discriminator'),
                 //Tables\Columns\TextColumn::make('email'),
-                Tables\Columns\TextColumn::make('verified_at')
-                    ->dateTime(),
+                Tables\Columns\TextColumn::make('verified_at')->dateTime(),
                 Tables\Columns\TextColumn::make('user.username'),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime(),
+                Tables\Columns\TextColumn::make('created_at')->dateTime(),
             ])
             ->filters([
                 //
-            ])->bulkActions([
+            ])
+            ->bulkActions([
                 // ...
             ]);
     }
@@ -52,8 +47,8 @@ class DiscordAccountResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
-        ];
+                //
+            ];
     }
 
     public static function getPages(): array

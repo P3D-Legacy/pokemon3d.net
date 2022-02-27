@@ -21,28 +21,22 @@ class DiscordRoleResource extends Resource
 
     public static function form(Form $form): Form
     {
-        return $form
-            ->schema([
-                Forms\Components\TextInput::make('id')
-                    ->required(),
-                Forms\Components\TextInput::make('color')
-                    ->required(),
-                Forms\Components\Toggle::make('hoist')
-                    ->required(),
-                Forms\Components\Toggle::make('managed')
-                    ->required(),
-                Forms\Components\Toggle::make('mentionable')
-                    ->required(),
-                Forms\Components\TextInput::make('name')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('permissions')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('position')
-                    ->required()
-                    ->maxLength(255),
-            ]);
+        return $form->schema([
+            Forms\Components\TextInput::make('id')->required(),
+            Forms\Components\TextInput::make('color')->required(),
+            Forms\Components\Toggle::make('hoist')->required(),
+            Forms\Components\Toggle::make('managed')->required(),
+            Forms\Components\Toggle::make('mentionable')->required(),
+            Forms\Components\TextInput::make('name')
+                ->required()
+                ->maxLength(255),
+            Forms\Components\TextInput::make('permissions')
+                ->required()
+                ->maxLength(255),
+            Forms\Components\TextInput::make('position')
+                ->required()
+                ->maxLength(255),
+        ]);
     }
 
     public static function table(Table $table): Table
@@ -59,7 +53,8 @@ class DiscordRoleResource extends Resource
             ])
             ->filters([
                 //
-            ])->bulkActions([
+            ])
+            ->bulkActions([
                 // ...
             ]);
     }
@@ -67,8 +62,8 @@ class DiscordRoleResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
-        ];
+                //
+            ];
     }
 
     public static function getPages(): array

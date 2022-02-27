@@ -21,23 +21,21 @@ class GameVersionResource extends Resource
 
     public static function form(Form $form): Form
     {
-        return $form
-            ->schema([
-                Forms\Components\TextInput::make('version')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('title')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\DatePicker::make('release_date')
-                    ->required(),
-                Forms\Components\TextInput::make('page_url')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('download_url')
-                    ->required()
-                    ->maxLength(255),
-            ]);
+        return $form->schema([
+            Forms\Components\TextInput::make('version')
+                ->required()
+                ->maxLength(255),
+            Forms\Components\TextInput::make('title')
+                ->required()
+                ->maxLength(255),
+            Forms\Components\DatePicker::make('release_date')->required(),
+            Forms\Components\TextInput::make('page_url')
+                ->required()
+                ->maxLength(255),
+            Forms\Components\TextInput::make('download_url')
+                ->required()
+                ->maxLength(255),
+        ]);
     }
 
     public static function table(Table $table): Table
@@ -46,10 +44,8 @@ class GameVersionResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('version'),
                 Tables\Columns\TextColumn::make('title'),
-                Tables\Columns\TextColumn::make('release_date')
-                    ->date(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime(),
+                Tables\Columns\TextColumn::make('release_date')->date(),
+                Tables\Columns\TextColumn::make('created_at')->dateTime(),
             ])
             ->filters([
                 //
@@ -59,8 +55,8 @@ class GameVersionResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
-        ];
+                //
+            ];
     }
 
     public static function getPages(): array

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c09fbe85e7777ce087304bf8f467edd7",
+    "content-hash": "096b720cd234f38906bda1fdbb46b963",
     "packages": [
         {
             "name": "akaunting/laravel-language",
@@ -2142,6 +2142,43 @@
                 "source": "https://github.com/laravel-filament/filament"
             },
             "time": "2022-02-24T21:09:44+00:00"
+        },
+        {
+            "name": "filament/spatie-laravel-tags-plugin",
+            "version": "v2.10.14",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel-filament/spatie-laravel-tags-plugin.git",
+                "reference": "4fe5872a91ee6ce166ca0807a10c05746c05689b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel-filament/spatie-laravel-tags-plugin/zipball/4fe5872a91ee6ce166ca0807a10c05746c05689b",
+                "reference": "4fe5872a91ee6ce166ca0807a10c05746c05689b",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "^8.6|^9.0",
+                "php": "^8.0",
+                "spatie/laravel-tags": "^4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Filament\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Filament support for `spatie/laravel-tags`.",
+            "homepage": "https://github.com/laravel-filament/filament",
+            "support": {
+                "issues": "https://github.com/laravel-filament/filament/issues",
+                "source": "https://github.com/laravel-filament/filament"
+            },
+            "time": "2022-02-03T10:48:28+00:00"
         },
         {
             "name": "filament/tables",

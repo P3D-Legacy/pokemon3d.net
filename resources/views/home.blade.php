@@ -315,6 +315,16 @@
                                 'path' => 'img/carousel/PokeCenter.png',
                                 'author' => 'GhostlyRose',
                             ],
+                            5 => [
+                                'title' => 'New Bark Town',
+                                'path' => 'img/carousel/nbt.png',
+                                'author' => 'JappaWakka',
+                            ],
+                            6 => [
+                                'title' => 'Cerulean Cave',
+                                'path' => 'img/carousel/cerulean_cave.png',
+                                'author' => 'JappaWakka',
+                            ],
                         ]
                     @endphp
                     @foreach ($screenshots as $screenshot)

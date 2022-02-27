@@ -12,6 +12,7 @@ use Filament\Tables\Columns\SpatieTagsColumn;
 use App\Filament\Resources\PostResource\Pages;
 use Filament\Forms\Components\SpatieTagsInput;
 use App\Filament\Resources\PostResource\RelationManagers;
+use App\Models\Tag;
 
 class PostResource extends Resource
 {
@@ -25,10 +26,10 @@ class PostResource extends Resource
             Forms\Components\TextInput::make('title')
                 ->required()
                 ->maxLength(255),
-            Forms\Components\MarkdownEditor::make('body')->required(),
             Forms\Components\Toggle::make('active')->required(),
             Forms\Components\Toggle::make('sticky')->required(),
-            SpatieTagsInput::make('tags'),
+            SpatieTagsInput::make('tags')->suggestions(Tag::all()->pluck('name')->toArray()),
+            Forms\Components\MarkdownEditor::make('body')->required(),
         ]);
     }
 
@@ -44,7 +45,6 @@ class PostResource extends Resource
                 Tables\Columns\TextColumn::make('published_at')->dateTime(),
                 Tables\Columns\TextColumn::make('created_at')->dateTime(),
                 Tables\Columns\TextColumn::make('updated_at')->dateTime(),
-                Tables\Columns\TextColumn::make('deleted_at')->dateTime(),
             ])
             ->filters([
                 //
@@ -54,8 +54,8 @@ class PostResource extends Resource
     public static function getRelations(): array
     {
         return [
-                //
-            ];
+            //
+        ];
     }
 
     public static function getPages(): array

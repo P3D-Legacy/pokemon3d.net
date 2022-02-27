@@ -57,4 +57,12 @@ class BanReason extends Model
             ->logFillable()
             ->logOnlyDirty();
     }
+
+    /**
+     * Get the user that owns the ban reason.
+     */
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
 }

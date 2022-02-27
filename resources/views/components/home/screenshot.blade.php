@@ -3,7 +3,7 @@
     {{--
     <div class="absolute hidden text-center carousel-caption md:block">
         <h5 class="text-xl drop-shadow shadow-black dark:shadow-white">{{ $title }}</h5>
-        <p>@lang('By'): {{ $author }}</p>
+        <p>@lang('Screenshot by'): {{ $author }}</p>
     </div>
     --}}
 </div>

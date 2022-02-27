@@ -48,6 +48,7 @@
         "overtrue/laravel-like": "^4.0",
         "power-components/livewire-powergrid": "^v2.0.0",
         "restcord/restcord": "dev-develop",
+        "ryangjchandler/filament-spatie-laravel-activitylog": "^0.1.0",
         "sentry/sentry-laravel": "^2.5",
         "socialiteproviders/facebook": "^4.1",
         "socialiteproviders/twitch": "^5.3",

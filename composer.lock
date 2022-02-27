@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "096b720cd234f38906bda1fdbb46b963",
+    "content-hash": "451900f3c82664ebf7c32cbdb9282022",
     "packages": [
         {
             "name": "akaunting/laravel-language",
@@ -7489,6 +7489,86 @@
                 "source": "https://github.com/restcord/restcord/tree/develop"
             },
             "time": "2021-12-28T00:16:46+00:00"
+        },
+        {
+            "name": "ryangjchandler/filament-spatie-laravel-activitylog",
+            "version": "v0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ryangjchandler/filament-spatie-laravel-activitylog.git",
+                "reference": "c4e345a83dcd23c92da0b22876013beaef116a09"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ryangjchandler/filament-spatie-laravel-activitylog/zipball/c4e345a83dcd23c92da0b22876013beaef116a09",
+                "reference": "c4e345a83dcd23c92da0b22876013beaef116a09",
+                "shasum": ""
+            },
+            "require": {
+                "filament/filament": "^2.7",
+                "illuminate/contracts": "^8.73",
+                "php": "^8.0",
+                "spatie/laravel-activitylog": "^4.3",
+                "spatie/laravel-package-tools": "^1.9.2"
+            },
+            "require-dev": {
+                "nunomaduro/collision": "^5.10",
+                "nunomaduro/larastan": "^1.0",
+                "orchestra/testbench": "^6.22",
+                "pestphp/pest": "^1.21",
+                "pestphp/pest-plugin-laravel": "^1.1",
+                "phpstan/extension-installer": "^1.1",
+                "phpstan/phpstan-deprecation-rules": "^1.0",
+                "phpstan/phpstan-phpunit": "^1.0",
+                "phpunit/phpunit": "^9.5",
+                "spatie/laravel-ray": "^1.26"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "RyanChandler\\FilamentSpatieLaravelActivitylog\\FilamentSpatieLaravelActivitylogServiceProvider"
+                    ],
+                    "aliases": {
+                        "FilamentSpatieLaravelActivitylog": "RyanChandler\\FilamentSpatieLaravelActivitylog\\Facades\\FilamentSpatieLaravelActivitylog"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "RyanChandler\\FilamentSpatieLaravelActivitylog\\": "src",
+                    "RyanChandler\\FilamentSpatieLaravelActivitylog\\Database\\Factories\\": "database/factories"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ryan Chandler",
+                    "email": "support@ryangjchandler.co.uk",
+                    "role": "Developer"
+                }
+            ],
+            "description": "View your activity logs inside of Filament.",
+            "homepage": "https://github.com/ryangjchandler/filament-spatie-laravel-activitylog",
+            "keywords": [
+                "filament-spatie-laravel-activitylog",
+                "laravel",
+                "ryangjchandler"
+            ],
+            "support": {
+                "issues": "https://github.com/ryangjchandler/filament-spatie-laravel-activitylog/issues",
+                "source": "https://github.com/ryangjchandler/filament-spatie-laravel-activitylog/tree/v0.1.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/ryangjchandler",
+                    "type": "github"
+                }
+            ],
+            "time": "2022-02-27T18:43:58+00:00"
         },
         {
             "name": "sentry/sdk",

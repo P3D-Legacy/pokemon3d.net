@@ -29,7 +29,7 @@ class UserResource extends Resource
                 ->email()
                 ->required()
                 ->maxLength(255),
-            Forms\Components\TextInput::make('username')->maxLength(255),
+            Forms\Components\TextInput::make('username')->required()->maxLength(255),
             Forms\Components\Textarea::make('about')->maxLength(65535),
             Forms\Components\TextInput::make('gender')->required(),
             Forms\Components\TextInput::make('location')->maxLength(255),

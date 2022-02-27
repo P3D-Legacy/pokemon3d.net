@@ -21,21 +21,17 @@ class RUResource extends Resource
 
     public static function form(Form $form): Form
     {
-        return $form
-            ->schema([
-                Forms\Components\TextInput::make('title')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\Textarea::make('description')
-                    ->required()
-                    ->maxLength(65535),
-                Forms\Components\TextInput::make('resource_id')
-                    ->required(),
-                Forms\Components\TextInput::make('game_version_id')
-                    ->required(),
-                Forms\Components\TextInput::make('downloads')
-                    ->required(),
-            ]);
+        return $form->schema([
+            Forms\Components\TextInput::make('title')
+                ->required()
+                ->maxLength(255),
+            Forms\Components\Textarea::make('description')
+                ->required()
+                ->maxLength(65535),
+            Forms\Components\TextInput::make('resource_id')->required(),
+            Forms\Components\TextInput::make('game_version_id')->required(),
+            Forms\Components\TextInput::make('downloads')->required(),
+        ]);
     }
 
     public static function table(Table $table): Table
@@ -47,12 +43,9 @@ class RUResource extends Resource
                 Tables\Columns\TextColumn::make('resource_id'),
                 Tables\Columns\TextColumn::make('game_version_id'),
                 Tables\Columns\TextColumn::make('downloads'),
-                Tables\Columns\TextColumn::make('deleted_at')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime(),
+                Tables\Columns\TextColumn::make('deleted_at')->dateTime(),
+                Tables\Columns\TextColumn::make('created_at')->dateTime(),
+                Tables\Columns\TextColumn::make('updated_at')->dateTime(),
             ])
             ->filters([
                 //
@@ -62,8 +55,8 @@ class RUResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
-        ];
+                //
+            ];
     }
 
     public static function getPages(): array

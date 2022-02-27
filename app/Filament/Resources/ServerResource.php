@@ -20,25 +20,22 @@ class ServerResource extends Resource
 
     public static function form(Form $form): Form
     {
-        return $form
-            ->schema([
-                Forms\Components\TextInput::make('name')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('host')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('port')
-                    ->required(),
-                Forms\Components\Textarea::make('description')
-                    ->maxLength(65535),
-                Forms\Components\Toggle::make('official')
-                    ->required(),
-                Forms\Components\Toggle::make('active')
-                    ->required(),
-                Forms\Components\BelongsToSelect::make('user_id')
-                    ->relationship('user', 'username')->searchable()->options(User::all()->pluck('username', 'id')),
-            ]);
+        return $form->schema([
+            Forms\Components\TextInput::make('name')
+                ->required()
+                ->maxLength(255),
+            Forms\Components\TextInput::make('host')
+                ->required()
+                ->maxLength(255),
+            Forms\Components\TextInput::make('port')->required(),
+            Forms\Components\Textarea::make('description')->maxLength(65535),
+            Forms\Components\Toggle::make('official')->required(),
+            Forms\Components\Toggle::make('active')->required(),
+            Forms\Components\BelongsToSelect::make('user_id')
+                ->relationship('user', 'username')
+                ->searchable()
+                ->options(User::all()->pluck('username', 'id')),
+        ]);
     }
 
     public static function table(Table $table): Table
@@ -51,8 +48,7 @@ class ServerResource extends Resource
                 Tables\Columns\BooleanColumn::make('official'),
                 Tables\Columns\BooleanColumn::make('active'),
                 Tables\Columns\TextColumn::make('user.username'),
-                Tables\Columns\TextColumn::make('last_online_at')
-                    ->dateTime(),
+                Tables\Columns\TextColumn::make('last_online_at')->dateTime(),
             ])
             ->filters([
                 //
@@ -62,8 +58,8 @@ class ServerResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
-        ];
+                //
+            ];
     }
 
     public static function getPages(): array

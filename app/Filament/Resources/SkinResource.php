@@ -20,18 +20,19 @@ class SkinResource extends Resource
 
     public static function form(Form $form): Form
     {
-        return $form
-            ->schema([
-                Forms\Components\TextInput::make('name')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('owner_id')->name('Game Jolt ID')
-                    ->required(),
-                Forms\Components\BelongsToSelect::make('user_id')
-                    ->relationship('user', 'username')->searchable()->options(User::all()->pluck('username', 'id')),
-                Forms\Components\Toggle::make('public')
-                    ->required(),
-            ]);
+        return $form->schema([
+            Forms\Components\TextInput::make('name')
+                ->required()
+                ->maxLength(255),
+            Forms\Components\TextInput::make('owner_id')
+                ->name('Game Jolt ID')
+                ->required(),
+            Forms\Components\BelongsToSelect::make('user_id')
+                ->relationship('user', 'username')
+                ->searchable()
+                ->options(User::all()->pluck('username', 'id')),
+            Forms\Components\Toggle::make('public')->required(),
+        ]);
     }
 
     public static function table(Table $table): Table
@@ -42,8 +43,7 @@ class SkinResource extends Resource
                 Tables\Columns\TextColumn::make('owner_id')->name('Game Jolt ID'),
                 Tables\Columns\TextColumn::make('user.username'),
                 Tables\Columns\BooleanColumn::make('public'),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime(),
+                Tables\Columns\TextColumn::make('created_at')->dateTime(),
             ])
             ->filters([
                 //
@@ -53,8 +53,8 @@ class SkinResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
-        ];
+                //
+            ];
     }
 
     public static function getPages(): array

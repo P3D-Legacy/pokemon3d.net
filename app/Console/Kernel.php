@@ -29,9 +29,9 @@ class Kernel extends ConsoleKernel
         $schedule->command('server:pingall')->hourly();
         $schedule->command('gj:update-trophies')->hourly();
         $schedule->command('github:syncrelease')->daily();
-        $schedule->command('discord:syncroles')->daily();
-        $schedule->command('discord:syncuserroles')->daily();
-        $schedule->command('activity:cleanup')->dailyAt(10);
+        $schedule->command('discord:syncroles')->dailyAt('12:00');
+        $schedule->command('discord:syncuserroles')->dailyAt('12:10');
+        $schedule->command('activity:cleanup')->dailyAt('01:00');
         $schedule->command(RunHealthChecksCommand::class)->everyMinute();
     }
 

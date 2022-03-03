@@ -38,11 +38,11 @@ if (config('app.debug')) {
 }
 
 Route::get('/redirect/wiki', function () {
-    return redirect('https://pokemon3d.net/wiki/');
+    return redirect('https://wiki.pokemon3d.net/');
 })->name('wiki');
 
 Route::get('/redirect/forum', function () {
-    return redirect('https://pokemon3d.net/forum/');
+    return redirect('https://forum.pokemon3d.net/');
 })->name('forum');
 
 Route::get('/redirect/github', function () {

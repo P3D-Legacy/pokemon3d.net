@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\BanReason;
 use Illuminate\Database\Seeder;
 
 class BanReasonSeeder extends Seeder
@@ -26,7 +27,7 @@ class BanReasonSeeder extends Seeder
         ];
 
         foreach ($reasons as $reason) {
-            \App\Models\BanReason::firstOrCreate([
+            BanReason::firstOrCreate([
                 'name' => $reason,
                 'user_id' => 1,
             ]);

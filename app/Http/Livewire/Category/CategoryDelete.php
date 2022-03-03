@@ -2,12 +2,13 @@
 
 namespace App\Http\Livewire\Category;
 
-use LivewireUI\Modal\ModalComponent;
 use AliBayat\LaravelCategorizable\Category;
+use LivewireUI\Modal\ModalComponent;
 
 class CategoryDelete extends ModalComponent
 {
     public $category_id;
+
     public $category;
 
     public function mount()

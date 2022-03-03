@@ -49,6 +49,7 @@ class RoleController extends Controller
             'guard_name' => 'web',
         ]);
         $role->syncPermissions(request('permissions'));
+
         return redirect()->route('roles.index');
     }
 
@@ -90,6 +91,7 @@ class RoleController extends Controller
     public function update(Request $request, Role $role)
     {
         $role->syncPermissions(request('permissions'));
+
         return redirect()->route('roles.index');
     }
 
@@ -102,6 +104,7 @@ class RoleController extends Controller
     public function destroy(Role $role)
     {
         $role->delete();
+
         return redirect()->route('roles.index');
     }
 }

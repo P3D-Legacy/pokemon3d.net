@@ -2,12 +2,13 @@
 
 namespace App\Http\Livewire\Profile;
 
-use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Component;
 
 class FacebookAccount extends Component
 {
     public $name;
+
     public $avatar;
 
     public function mount()
@@ -40,8 +41,6 @@ class FacebookAccount extends Component
         }
 
         $this->emit('refresh');
-
-        return;
     }
 
     public function render()

@@ -2,14 +2,15 @@
 
 namespace App\Http\Livewire\Login;
 
-use Livewire\Component;
-use App\Models\ForumAccount;
 use App\Helpers\XenForoHelper;
+use App\Models\ForumAccount;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Component;
 
 class Xenforo extends Component
 {
     public $username;
+
     public $password;
 
     public function mount()
@@ -37,6 +38,7 @@ class Xenforo extends Component
 
         if (isset($auth['error'])) {
             $this->addError('error', $auth['message']);
+
             return;
         }
 
@@ -56,16 +58,16 @@ class Xenforo extends Component
 
         if (!Auth::loginUsingId($user->id)) {
             $this->addError('error', 'Login failed!');
+
             return;
         } else {
             $forumaccount->touchVerify();
             request()
                 ->session()
                 ->regenerate();
+
             return redirect()->intended('dashboard');
         }
-
-        return;
     }
 
     public function render()

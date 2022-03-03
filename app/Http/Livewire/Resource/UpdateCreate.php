@@ -4,8 +4,8 @@ namespace App\Http\Livewire\Resource;
 
 use App\Models\GameVersion;
 use App\Models\Resource;
-use Livewire\WithFileUploads;
 use App\Models\ResourceUpdate;
+use Livewire\WithFileUploads;
 use LivewireUI\Modal\ModalComponent;
 
 class UpdateCreate extends ModalComponent
@@ -13,11 +13,17 @@ class UpdateCreate extends ModalComponent
     use WithFileUploads;
 
     public ResourceUpdate $resourceUpdate;
+
     public int|Resource $resource;
+
     public $file;
+
     public $version;
+
     public $description;
+
     public $gameversion;
+
     public $gameversions;
 
     protected array $rules = [

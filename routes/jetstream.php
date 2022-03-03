@@ -10,13 +10,13 @@ use Laravel\Jetstream\Http\Controllers\Livewire\UserProfileController;
 use Laravel\Jetstream\Http\Controllers\TeamInvitationController;
 use Laravel\Jetstream\Jetstream;
 
-Route::group(['middleware' => config('jetstream.middleware', ['web'])], function () {
+Route::middleware(config('jetstream.middleware', ['web']))->group(function () {
     if (Jetstream::hasTermsAndPrivacyPolicyFeature()) {
         Route::get('/terms', [TermsOfServiceController::class, 'show'])->name('terms.show');
         Route::get('/privacy', [PrivacyPolicyController::class, 'show'])->name('policy.show');
     }
 
-    Route::group(['middleware' => ['auth', 'verified']], function () {
+    Route::middleware('auth', 'verified')->group(function () {
         // User & Profile...
         Route::get('/user/edit/profile', function () {
             return view('profile.edit', [

@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Models\TwitterAccount;
+use App\Achievements\User\AssociatedTwitter;
 use App\Http\Controllers\Controller;
+use App\Models\TwitterAccount;
+use GuzzleHttp\Exception\ClientException;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
-use GuzzleHttp\Exception\ClientException;
-use App\Achievements\User\AssociatedTwitter;
 use Laravel\Socialite\Two\InvalidStateException;
 
 class TwitterController extends Controller
@@ -63,9 +63,11 @@ class TwitterController extends Controller
                     request()
                         ->session()
                         ->flash('flash.bannerStyle', 'warning');
+
                     return redirect()->route('profile.show');
                 }
                 Auth::login($user);
+
                 return redirect()->route('dashboard');
             }
 
@@ -81,6 +83,7 @@ class TwitterController extends Controller
             $userProfile['verified_at'] = now();
             TwitterAccount::create($userProfile);
             $user->unlock(new AssociatedTwitter());
+
             return redirect()->route('profile.show');
         } catch (InvalidStateException $e) {
             return redirect()

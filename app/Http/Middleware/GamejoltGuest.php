@@ -24,6 +24,7 @@ class GamejoltGuest
         if ($request->session()->get('gju')) {
             return redirect()->route('skin-home');
         }
+
         return $next($request);
     }
 }

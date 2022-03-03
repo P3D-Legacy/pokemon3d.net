@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Skin;
 
+use App\Http\Controllers\Controller;
 use App\Models\GJUser;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -52,6 +52,7 @@ class ImportController extends Controller
                 ->route('skin-home')
                 ->with('error', 'Could not find a skin!');
         }
+
         return redirect()
             ->route('skin-home')
             ->with('success', 'Your old skin has been imported!');

@@ -86,6 +86,7 @@ class ForumAccount extends Model
     public function touchVerify()
     {
         $this->verified_at = $this->freshTimestamp();
+
         return $this->save();
     }
 

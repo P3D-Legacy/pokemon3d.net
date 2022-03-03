@@ -24,6 +24,7 @@ class GamejoltAuth
         if (!$request->session()->get('gju')) {
             return redirect()->route('gj-login');
         }
+
         return $next($request);
     }
 }

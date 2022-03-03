@@ -2,8 +2,8 @@
 
 namespace App\Http\Livewire\Category;
 
-use Livewire\Component;
 use AliBayat\LaravelCategorizable\Category;
+use Livewire\Component;
 
 class CategoryList extends Component
 {

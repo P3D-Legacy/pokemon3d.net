@@ -16,7 +16,9 @@ class GameVersion extends Model
 
     protected $fillable = ['version', 'title', 'release_date', 'page_url', 'download_url'];
 
-    protected $dates = ['release_date'];
+    protected $casts = [
+        'release_date' => 'datetime',
+    ];
 
     /**
      * The attributes that should be logged for the user.

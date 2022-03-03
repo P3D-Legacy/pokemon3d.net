@@ -2,9 +2,9 @@
 
 namespace App\Console\Commands;
 
+use anlutro\LaravelSettings\Facade as Setting;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
-use anlutro\LaravelSettings\Facade as Setting;
 
 class Update extends Command
 {

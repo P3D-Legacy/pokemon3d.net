@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Skin;
 
-use Carbon\Carbon;
+use App\Http\Controllers\Controller;
 use App\Models\Skin;
 use ByteUnits\Binary;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use League\Flysystem\FileNotFoundException;
@@ -29,6 +29,7 @@ class SkinController extends Controller
             ->isPublic()
             ->first();
         abort_unless($skin, 404);
+
         return view('skin.show')->with('skin', $skin);
     }
 
@@ -42,6 +43,7 @@ class SkinController extends Controller
         $skins = Skin::isPublic()
             ->orderBy('created_at', 'DESC')
             ->paginate(9);
+
         return view('skin.public.newest')->with('skins', $skins);
     }
 
@@ -56,6 +58,7 @@ class SkinController extends Controller
             ->withCount('likers')
             ->orderBy('likers_count', 'desc')
             ->paginate(9);
+
         return view('skin.public.popular')->with('skins', $skins);
     }
 
@@ -74,6 +77,7 @@ class SkinController extends Controller
                 ->route('skins-my')
                 ->with('warning', 'You have reached the maximum amount of skins you can upload.');
         }
+
         return view('skin.create');
     }
 
@@ -200,6 +204,7 @@ class SkinController extends Controller
                 ->route('skins-my')
                 ->with('warning', 'Could not apply skin.');
         }
+
         return redirect()
             ->route('skin-home')
             ->with('success', 'Skin was applied! Not seeing it? Refresh the page again.');
@@ -219,6 +224,7 @@ class SkinController extends Controller
         if ($user->gamejolt->id != $skin->owner_id) {
             $user->toggleLike($skin);
         }
+
         return redirect()->back();
     }
 
@@ -226,7 +232,7 @@ class SkinController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  str  $uuid
+     * @param  string  $uuid
      * @return \Illuminate\Http\Response
      */
     public function edit(Request $request, $uuid)
@@ -238,6 +244,7 @@ class SkinController extends Controller
                 ->route('skins')
                 ->with('error', 'You do not own this skin!');
         }
+
         return view('skin.edit')->with('skin', $skin);
     }
 
@@ -298,6 +305,7 @@ class SkinController extends Controller
         }
         Storage::disk('skin')->delete($filename);
         $skin->delete();
+
         return redirect()
             ->route('skins-my')
             ->with('success', 'Skin was successfully deleted!');

@@ -32,6 +32,7 @@ class GamejoltSuperAdmin
                 ->route('skin-home')
                 ->with('warning', 'You do not have access to this page!');
         }
+
         return $next($request);
     }
 }

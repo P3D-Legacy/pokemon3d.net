@@ -42,6 +42,7 @@ class SyncGameVersion extends Command
         $api_url = env('GITHUB_API_REPO');
         if (!$api_url) {
             $this->error('GitHub API URL is not set.');
+
             return 1;
         }
         $release_url = env('GITHUB_API_REPO') . '/releases';

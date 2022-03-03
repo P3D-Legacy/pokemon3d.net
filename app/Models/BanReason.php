@@ -8,13 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use GoldSpecDigital\LaravelEloquentUUID\Database\Eloquent\Uuid;
 
 class BanReason extends Model
 {
     use HasFactory;
     use SoftDeletes;
-    use Uuid;
     use LogsActivity;
 
     protected $primaryKey = 'id';
@@ -32,6 +30,13 @@ class BanReason extends Model
      * @var bool
      */
     public $incrementing = true;
+
+    /**
+     * The attributes that will be used for multiple key binding on route models
+     *
+     * @var array
+     */
+    protected $routeBindingKeys = ['uuid'];
 
     /**
      * The attributes that are mass assignable.

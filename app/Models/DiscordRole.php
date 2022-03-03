@@ -29,6 +29,13 @@ class DiscordRole extends Model
     public $incrementing = false;
 
     /**
+     * The attributes that will be used for multiple key binding on route models
+     *
+     * @var array
+     */
+    protected $routeBindingKeys = ['uuid'];
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array

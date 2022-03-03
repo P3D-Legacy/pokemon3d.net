@@ -19,7 +19,7 @@ class GamejoltAccount extends Model
     use Uuid;
     use LogsActivity;
 
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'aid';
 
     /**
      * The "type" of the auto-incrementing ID.
@@ -34,6 +34,13 @@ class GamejoltAccount extends Model
      * @var bool
      */
     public $incrementing = true;
+
+    /**
+     * The attributes that will be used for multiple key binding on route models
+     *
+     * @var array
+     */
+    protected $routeBindingKeys = ['uuid'];
 
     /**
      * The table associated with the model.

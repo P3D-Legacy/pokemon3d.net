@@ -14,7 +14,28 @@ class GamejoltAccountTrophy extends Model
     use Uuid;
     use LogsActivity;
 
-    protected $primaryKey = 'uuid';
+    protected $primaryKey = 'aid';
+
+    /**
+     * The "type" of the auto-incrementing ID.
+     *
+     * @var string
+     */
+    protected $keyType = 'integer';
+
+    /**
+     * Indicates if the IDs are auto-incrementing.
+     *
+     * @var bool
+     */
+    public $incrementing = true;
+
+    /**
+     * The attributes that will be used for multiple key binding on route models
+     *
+     * @var array
+     */
+    protected $routeBindingKeys = ['uuid'];
 
     /**
      * The table associated with the model.
@@ -22,20 +43,6 @@ class GamejoltAccountTrophy extends Model
      * @var string
      */
     protected $table = 'gamejolt_account_trophies';
-
-    /**
-     * The "type" of the auto-incrementing ID.
-     *
-     * @var string
-     */
-    protected $keyType = 'string';
-
-    /**
-     * Indicates if the IDs are auto-incrementing.
-     *
-     * @var bool
-     */
-    public $incrementing = false;
 
     /**
      * The attributes that are mass assignable.

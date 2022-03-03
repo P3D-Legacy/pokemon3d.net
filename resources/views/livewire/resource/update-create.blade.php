@@ -1,6 +1,6 @@
 <x-modal>
     <x-slot name="title">
-        Add resource update
+        @lang('Add resource update')
     </x-slot>
 
     <x-slot name="content">
@@ -11,7 +11,7 @@
         <x-jet-label for="gameversion" class="mt-4" value="{{ __('Latest supported version') }}" />
         <div class="relative inline-block w-full">
             <select class="w-full h-10 pl-3 pr-6 text-base text-gray-800 placeholder-gray-600 border rounded-lg appearance-none focus:shadow-outline" id="gameversion" name="gameversion" wire:model.defer="gameversion">
-                <option value="">Select a game version</option>
+                <option value="">@lang('Select a game version')</option>
                 @foreach ($gameversions as $game_version)
                     <option value="{{ $game_version->id }}" {{ $game_version->id == $gameversion ? 'selected="selected"' : '' }}>{{ $game_version->version }}</option>
                 @endforeach
@@ -27,7 +27,7 @@
             <x-easy-mde-editor name="description" id="easyMDE" :options="['hideIcons' => ['side-by-side','fullscreen',]]">
                 <x-slot name="script">
                     easyMDE.codemirror.on('change', function () {
-                      @this.set('description', easyMDE.value())
+                        @this.set('description', easyMDE.value())
                     });
                 </x-slot>
             </x-easy-mde-editor>

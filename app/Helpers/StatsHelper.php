@@ -39,13 +39,13 @@ class StatsHelper
         $seasonName = 'spring';
         //echo "Season (WOY % 4): " . $season;
         if ($season == 0) {
-            $seasonName = 'fall';
+            $seasonName = __('fall');
         } elseif ($season == 1) {
-            $seasonName = 'winter';
+            $seasonName = __('winter');
         } elseif ($season == 2) {
-            $seasonName = 'spring';
+            $seasonName = __('spring');
         } elseif ($season == 3) {
-            $seasonName = 'summer';
+            $seasonName = __('summer');
         }
 
         return $seasonName;

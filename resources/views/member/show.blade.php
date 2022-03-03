@@ -7,7 +7,7 @@
                     <div class="w-full h-48 bg-green-600 rounded-t-lg bg-spring"></div>
                     <div class="absolute ml-5 -mt-20">
                         <div class="overflow-hidden bg-gray-200 border border-b border-gray-300 rounded-lg shadow-md shadow-black/25 w-36 h-36 border-primary">
-                            <img class="object-cover w-full" src="{{ $user->profile_photo_url }}" alt="{{ $user->name }}" />
+                            <img class="object-cover w-full h-full" src="{{ $user->profile_photo_url }}" alt="{{ $user->name }}" />
                         </div>
                     </div>
                 </div>
@@ -68,7 +68,7 @@
                                 @endif
                                 @if($user->birthdate && $user->settings()->get('birthdate') || $user->birthdate && $user->settings()->get('age'))
                                     <div class="mt-2 mb-1 font-medium underline decoration underline-offset-4">Birthday</div>
-                                    <div>{{ $user->settings()->get('birthdate') ? $user->birthdate->format('d M Y') :'' }}</div>
+                                    <div>{{ $user->settings()->get('birthdate') ? $user->birthdate->isoFormat('LL') :'' }}</div>
                                     <div>{{ $user->settings()->get('age') ? $user->birthdate->age.' years old' : '' }}</div>
                                 @endif
                             </div>

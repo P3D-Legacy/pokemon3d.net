@@ -22,7 +22,7 @@ date_min.setFullYear(date_min.getFullYear() - 90);
 
 flatpickr('.flatpickrBirtdate', {
     enableTime: false,
-    dateFormat: 'Y-m-d',
+    dateFormat: 'd-m-Y',
     minDate: date_min,
     maxDate: date_max,
 });

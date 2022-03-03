@@ -2,14 +2,16 @@
 
 namespace App\Models;
 
+use Spatie\Tags\HasTags;
+use Illuminate\Support\Str;
+use Spatie\Activitylog\LogOptions;
+use Illuminate\Database\Eloquent\Model;
+use Overtrue\LaravelLike\Traits\Likeable;
+use Spatie\Activitylog\Traits\LogsActivity;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Str;
-use Overtrue\LaravelLike\Traits\Likeable;
-use Spatie\Tags\HasTags;
 
 class Post extends Model implements Viewable
 {
@@ -18,6 +20,7 @@ class Post extends Model implements Viewable
     use Likeable;
     use SoftDeletes;
     use HasTags;
+    use LogsActivity;
 
     protected $removeViewsOnDelete = true;
 
@@ -58,6 +61,18 @@ class Post extends Model implements Viewable
     protected $casts = [
         'published_at' => 'datetime',
     ];
+
+    /**
+     * The attributes that should be logged for the user.
+     *
+     * @return array
+     */
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logFillable()
+            ->logOnlyDirty();
+    }
 
     /**
      * Get the user that made this post.

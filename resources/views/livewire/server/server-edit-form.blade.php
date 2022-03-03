@@ -1,7 +1,7 @@
 <div>
     <x-jet-form-section submit="save">
         <x-slot name="title">
-            {{ __('Edit server: ') . $server->name }}
+            {{ __('Edit') . ': ' . $server->name }}
         </x-slot>
 
         <x-slot name="description">

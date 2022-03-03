@@ -18,9 +18,7 @@ class GamejoltAccount
     {
         if (!$request->user()->gamejolt) {
             $request->session()->flash('flash.bannerStyle', 'info');
-            $request
-                ->session()
-                ->flash('flash.banner', 'You need to link your GameJolt account before accessing this page.');
+            $request->session()->flash('flash.banner', 'You need to link your GameJolt account before accessing this page.');
             return redirect()->route('profile.show');
         }
 

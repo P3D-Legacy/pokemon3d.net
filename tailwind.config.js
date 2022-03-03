@@ -30,7 +30,7 @@ module.exports = {
             },
         },
         debugScreens: {
-            position: ['top', 'left'],
+            position: ['top', 'right'],
         },
     },
 

@@ -14,6 +14,8 @@ use Laravel\Sanctum\HasApiTokens;
 use Origami\Consent\GivesConsent;
 use Overtrue\LaravelLike\Traits\Liker;
 use Spatie\Permission\Traits\HasRoles;
+use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -27,6 +29,7 @@ class User extends Authenticatable implements MustVerifyEmail
     use Liker;
     use Achiever;
     use HasSettingsTable;
+    use LogsActivity;
 
     /**
      * The attributes that are mass assignable.
@@ -75,6 +78,26 @@ class User extends Authenticatable implements MustVerifyEmail
         'birthdate' => false,
         'age' => false,
     ];
+
+    /**
+     * The attributes that will be used for multiple key binding on route models
+     *
+     * @var array
+     */
+    protected $routeBindingKeys = ['username'];
+
+    /**
+     * The attributes that should be logged for the user.
+     *
+     * @return array
+     */
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logFillable()
+            ->logOnlyDirty()
+            ->logExcept(['last_active_at']);
+    }
 
     /**
      * Get the gamejolt account associated with the user.

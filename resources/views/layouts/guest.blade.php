@@ -5,7 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="csrf-token" content="{{ csrf_token() }}">
 
-		<title>{{ config('app.name', 'Laravel') }}</title>
+		<title>{{ config('app.name', 'Pokémon 3D') }}</title>
 
 		<link rel="shortcut icon" href="{{ asset('img/favicon.png') }}">
 
@@ -40,7 +40,7 @@
 			<script defer data-domain="{{ request()->getHost() }}" src="https://plausible.io/js/plausible.js"></script>
 		@endif
 	</head>
-	<body class="flex flex-col font-sans leading-relaxed tracking-wide bg-top bg-repeat bg-spring {{ env('APP_DEBUG') ? 'debug-screens' : '' }}">
+	<body class="flex flex-col font-sans leading-relaxed tracking-wide bg-top bg-repeat bg-spring {{ config('app.debug') ? 'debug-screens' : '' }}">
 		{{ $slot }}
 
 		@livewireScripts

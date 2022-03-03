@@ -2,14 +2,17 @@
 
 namespace App\Models;
 
-use GoldSpecDigital\LaravelEloquentUUID\Database\Eloquent\Uuid;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Spatie\Activitylog\LogOptions;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\Traits\LogsActivity;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use GoldSpecDigital\LaravelEloquentUUID\Database\Eloquent\Uuid;
 
 class GamejoltAccountTrophy extends Model
 {
     use HasFactory;
     use Uuid;
+    use LogsActivity;
 
     protected $primaryKey = 'uuid';
 
@@ -54,6 +57,18 @@ class GamejoltAccountTrophy extends Model
      * @var array
      */
     protected $hidden = ['aid'];
+
+    /**
+     * The attributes that should be logged for the user.
+     *
+     * @return array
+     */
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logFillable()
+            ->logOnlyDirty();
+    }
 
     /**
      * Get the gamejolt account associated with the gamejolt account ban.

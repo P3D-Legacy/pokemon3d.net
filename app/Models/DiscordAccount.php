@@ -4,7 +4,9 @@ namespace App\Models;
 
 use GoldSpecDigital\LaravelEloquentUUID\Database\Eloquent\Uuid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Spatie\Activitylog\LogOptions;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class DiscordAccount extends Model
@@ -12,15 +14,16 @@ class DiscordAccount extends Model
     use HasFactory;
     use SoftDeletes;
     use Uuid;
+    use LogsActivity;
 
-    protected $primaryKey = 'uuid';
+    protected $primaryKey = 'id';
 
     /**
      * The "type" of the auto-incrementing ID.
      *
      * @var string
      */
-    protected $keyType = 'string';
+    protected $keyType = 'integer';
 
     /**
      * Indicates if the IDs are auto-incrementing.
@@ -28,6 +31,13 @@ class DiscordAccount extends Model
      * @var bool
      */
     public $incrementing = false;
+
+    /**
+     * The attributes that will be used for multiple key binding on route models
+     *
+     * @var array
+     */
+    protected $routeBindingKeys = ['uuid'];
 
     /**
      * The attributes that are mass assignable.
@@ -60,11 +70,16 @@ class DiscordAccount extends Model
     protected $encryptable = ['password'];
 
     /**
-     * The attributes that should be hidden
+     * The attributes that should be logged for the user.
      *
-     * @var array
+     * @return array
      */
-    protected $hidden = ['aid'];
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logFillable()
+            ->logOnlyDirty();
+    }
 
     public function touchVerify()
     {
@@ -79,5 +94,10 @@ class DiscordAccount extends Model
     public function user()
     {
         return $this->hasOne(User::class, 'id', 'user_id');
+    }
+
+    public function roles()
+    {
+        return $this->belongsToMany(DiscordRole::class);
     }
 }

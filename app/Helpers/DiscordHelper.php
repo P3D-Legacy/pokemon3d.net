@@ -43,7 +43,7 @@ class DiscordHelper
                 'guild.id' => config('discord.server_id'),
             ]);
         } catch (\Exception $exception) {
-            return 0;
+            return $exception;
         }
     }
 
@@ -56,7 +56,7 @@ class DiscordHelper
                 'user.id' => $user_id,
             ]);
         } catch (\Exception $exception) {
-            return 0;
+            return $exception;
         }
     }
 

@@ -12,6 +12,7 @@
     "license": "gpl-3.0-only",
     "require": {
         "php": "^8.0.2",
+        "akaunting/laravel-language": "^1.0",
         "alibayat/laravel-categorizable": "1.0.x-dev",
         "anlutro/l4-settings": "^1.0",
         "assada/laravel-achievements": "^2.3",
@@ -35,6 +36,7 @@
         "laravel/sanctum": "^2.14",
         "laravel/socialite": "^5.5",
         "laravel/tinker": "^2.7",
+        "kkomelin/laravel-translatable-string-exporter": "^1.16",
         "livewire/livewire": "^2.5",
         "martinbean/socialite-discord-provider": "^1.2",
         "mtownsend/read-time": "^2.0",
@@ -64,7 +66,9 @@
         "pestphp/pest": "^1.21",
         "pestphp/pest-plugin-laravel": "^1.2",
         "phpunit/phpunit": "^9.5.10",
-        "spatie/laravel-ignition": "^1.0"
+        "spatie/laravel-ignition": "^1.0",
+        "laravel-lang/lang": "^10.4",
+        "laravel-lang/publisher": "^12.2"
     },
     "config": {
         "optimize-autoloader": true,

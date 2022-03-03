@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>{{ config('app.name', 'Pokémon 3D') }}</title>
 
         <link rel="shortcut icon" href="{{ asset('img/favicon.png') }}">
 
@@ -44,7 +44,7 @@
             <script defer data-domain="{{ request()->getHost() }}" src="https://plausible.io/js/plausible.js"></script>
         @endif
     </head>
-    <body class="font-sans antialiased {{ env('APP_DEBUG') ? 'debug-screens' : '' }}">
+    <body class="font-sans antialiased {{ config('app.debug') ? 'debug-screens' : '' }}">
         <x-jet-banner />
 
         @if(Auth::user() && ! Auth::user()->hasGivenConsent(config('app.required_consent')))

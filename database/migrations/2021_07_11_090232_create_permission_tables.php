@@ -16,9 +16,7 @@ return new class extends Migration {
         $columnNames = config('permission.column_names');
 
         if (empty($tableNames)) {
-            throw new \Exception(
-                'Error: config/permission.php not loaded. Run [php artisan config:clear] and try again.'
-            );
+            throw new \Exception('Error: config/permission.php not loaded. Run [php artisan config:clear] and try again.');
         }
 
         Schema::create($tableNames['permissions'], function (Blueprint $table) {
@@ -39,10 +37,7 @@ return new class extends Migration {
             $table->unique(['name', 'guard_name']);
         });
 
-        Schema::create($tableNames['model_has_permissions'], function (Blueprint $table) use (
-            $tableNames,
-            $columnNames
-        ) {
+        Schema::create($tableNames['model_has_permissions'], function (Blueprint $table) use ($tableNames, $columnNames) {
             $table->unsignedBigInteger('permission_id');
 
             $table->string('model_type');

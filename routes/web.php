@@ -31,6 +31,12 @@ use Spatie\Health\Http\Controllers\HealthCheckResultsController;
 |
 */
 
+if (config('app.debug')) {
+    Route::get('/test', function () {
+        return 'test';
+    });
+}
+
 Route::get('/redirect/wiki', function () {
     return redirect('https://pokemon3d.net/wiki/');
 })->name('wiki');
@@ -66,6 +72,12 @@ Route::middleware('auth:sanctum', 'verified')->group(function () {
         return view('dashboard');
     })->name('dashboard');
 
+    Route::get('/member/{user}', [MemberController::class, 'show'])->name('member.show');
+
+    Route::get('/review', function () {
+        return view('review.index');
+    })->name('review');
+
     Route::resource('server', ServerController::class);
 
     Route::prefix('resource')->group(function () {
@@ -84,8 +96,6 @@ Route::middleware('auth:sanctum', 'verified')->group(function () {
             ]);
         })->name('resource.category');
     });
-
-    Route::get('/member/{user}', [MemberController::class, 'show'])->name('member.show');
 
     Route::prefix('skin')->group(function () {
         Route::get('/', [SkinHomeController::class, 'index'])->name('skin-home');

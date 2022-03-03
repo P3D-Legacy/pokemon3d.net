@@ -47,4 +47,5 @@ jobs:
         env:
           DB_CONNECTION: sqlite
           DB_DATABASE: database/database.sqlite
+          MAIL_FROM_ADDRESS: test@example.com
         run: vendor/bin/pest

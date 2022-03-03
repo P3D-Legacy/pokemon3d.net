@@ -21,11 +21,13 @@ test('registration screen cannot be rendered if support is disabled', function (
 }, 'Registration support is enabled.');
 
 test('new users can register', function () {
+    $password = 'SuperSecret123!';
     $response = $this->post('/register', [
         'name' => 'Test User',
+        'username' => 'testuser',
         'email' => 'test@example.com',
-        'password' => 'password',
-        'password_confirmation' => 'password',
+        'password' => $password,
+        'password_confirmation' => $password,
         'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature(),
     ]);
 

@@ -1,8 +1,5 @@
 <?php
 
-use App\Models\Resource;
-use App\Rules\StrNotContain;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\BlogController;
@@ -18,9 +15,6 @@ use App\Http\Controllers\Skin\SkinController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\Auth\TwitchController;
 use App\Http\Controllers\Skin\ImportController;
-use App\Http\Controllers\Auth\DiscordController;
-use App\Http\Controllers\Auth\TwitterController;
-use App\Http\Controllers\Auth\FacebookController;
 use App\Http\Controllers\Skin\SkinHomeController;
 use App\Http\Controllers\Skin\PlayerSkinController;
 use App\Http\Controllers\Skin\UploadedSkinController;
@@ -62,7 +56,7 @@ Route::get('/redirect/discord', function () {
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::resource('blog', BlogController::class);
 
-Route::group(['prefix' => 'login'], function () {
+Route::prefix('login')->group(function () {
     Route::get('/discord', [DiscordController::class, 'redirectToProvider'])->name('discord.login');
     Route::get('/discord/callback', [DiscordController::class, 'handleProviderCallback']);
     Route::get('/twitter', [TwitterController::class, 'redirectToProvider'])->name('twitter.login');
@@ -73,7 +67,7 @@ Route::group(['prefix' => 'login'], function () {
     Route::get('/twitch/callback', [TwitchController::class, 'handleProviderCallback']);
 });
 
-Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
+Route::middleware('auth:sanctum', 'verified')->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');

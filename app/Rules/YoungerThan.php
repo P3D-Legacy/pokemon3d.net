@@ -3,8 +3,8 @@
 namespace App\Rules;
 
 use Carbon\Carbon;
-use InvalidArgumentException;
 use Illuminate\Contracts\Validation\Rule;
+use InvalidArgumentException;
 
 class YoungerThan implements Rule
 {

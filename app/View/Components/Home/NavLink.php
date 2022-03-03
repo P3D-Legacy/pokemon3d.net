@@ -7,6 +7,7 @@ use Illuminate\View\Component;
 class NavLink extends Component
 {
     public $title;
+
     public $url;
 
     /**

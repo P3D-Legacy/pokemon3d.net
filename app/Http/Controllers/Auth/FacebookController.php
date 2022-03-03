@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Models\FacebookAccount;
+use App\Achievements\User\AssociatedFacebook;
 use App\Http\Controllers\Controller;
+use App\Models\FacebookAccount;
+use GuzzleHttp\Exception\ClientException;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
-use GuzzleHttp\Exception\ClientException;
-use App\Achievements\User\AssociatedFacebook;
 use Laravel\Socialite\Two\InvalidStateException;
 
 class FacebookController extends Controller
@@ -56,9 +56,11 @@ class FacebookController extends Controller
                     request()
                         ->session()
                         ->flash('flash.bannerStyle', 'warning');
+
                     return redirect()->route('profile.show');
                 }
                 Auth::login($user);
+
                 return redirect()->route('dashboard');
             }
 
@@ -74,6 +76,7 @@ class FacebookController extends Controller
             $userProfile['verified_at'] = now();
             FacebookAccount::create($userProfile);
             $user->unlock(new AssociatedFacebook());
+
             return redirect()->route('profile.show');
         } catch (InvalidStateException $e) {
             return redirect()

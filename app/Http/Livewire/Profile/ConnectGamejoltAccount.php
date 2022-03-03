@@ -3,21 +3,24 @@
 namespace App\Http\Livewire\Profile;
 
 use App\Achievements\User\AssociatedGamejolt;
-use Carbon\Carbon;
-use Livewire\Component;
 use App\Models\GamejoltAccount;
-use Illuminate\Validation\Rule;
+use Carbon\Carbon;
+use Harrk\GameJoltApi\Exceptions\TimeOutException;
 use Harrk\GameJoltApi\GamejoltApi;
-use Illuminate\Support\Facades\Auth;
 use Harrk\GameJoltApi\GamejoltConfig;
 use Illuminate\Support\Facades\Artisan;
-use Harrk\GameJoltApi\Exceptions\TimeOutException;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
+use Livewire\Component;
 
 class ConnectGamejoltAccount extends Component
 {
     public $username;
+
     public $token;
+
     public $updated_at;
+
     public $verified_at;
 
     public function mount()
@@ -57,6 +60,7 @@ class ConnectGamejoltAccount extends Component
             $user->gamejolt->delete();
             $this->updated_at = null;
             $this->verified_at = null;
+
             return;
         }
 
@@ -66,6 +70,7 @@ class ConnectGamejoltAccount extends Component
             $auth = $api->users()->auth($this->username, $this->token);
         } catch (TimeOutException $e) {
             $this->addError('error', $e->getMessage());
+
             return;
         }
 
@@ -76,6 +81,7 @@ class ConnectGamejoltAccount extends Component
                 $error = 'Username and/or token is wrong.';
             }
             $this->addError('error', $error);
+
             return;
         }
 

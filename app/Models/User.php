@@ -3,19 +3,19 @@
 namespace App\Models;
 
 use Assada\Achievements\Achiever;
-use Laravel\Sanctum\HasApiTokens;
-use Origami\Consent\GivesConsent;
-use Spatie\Activitylog\LogOptions;
-use Laravel\Jetstream\HasProfilePhoto;
-use Overtrue\LaravelLike\Traits\Liker;
-use Spatie\Permission\Traits\HasRoles;
-use Illuminate\Notifications\Notifiable;
-use Spatie\Activitylog\Traits\LogsActivity;
-use Laravel\Fortify\TwoFactorAuthenticatable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Glorand\Model\Settings\Traits\HasSettingsTable;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Fortify\TwoFactorAuthenticatable;
+use Laravel\Jetstream\HasProfilePhoto;
+use Laravel\Sanctum\HasApiTokens;
+use Origami\Consent\GivesConsent;
+use Overtrue\LaravelLike\Traits\Liker;
+use Spatie\Permission\Traits\HasRoles;
+use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class User extends Authenticatable implements MustVerifyEmail
 {

@@ -2,14 +2,17 @@
 
 namespace App\Http\Livewire\Resource;
 
-use Livewire\Component;
 use App\Models\Resource;
+use Livewire\Component;
 
 class ResourceLike extends Component
 {
     public Resource $resource;
+
     public int $count;
+
     public $user;
+
     public bool $liked;
 
     public function mount(Resource $resource)

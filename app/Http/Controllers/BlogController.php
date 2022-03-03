@@ -19,6 +19,7 @@ class BlogController extends Controller
             ->orderBy('sticky', 'desc')
             ->orderByDesc('published_at')
             ->paginate(5);
+
         return view('blog.index', ['posts' => $posts]);
     }
 
@@ -39,6 +40,7 @@ class BlogController extends Controller
         views($post)
             ->cooldown(60)
             ->record();
+
         return view('blog.show', ['post' => $post]);
     }
 }

@@ -25,7 +25,7 @@ return [
     'before_or_equal' => 'The :attribute must be a date before or equal to :date.',
     'between' => [
         'numeric' => 'The :attribute must be between :min and :max.',
-        'string'  => 'The :attribute must be between :min and :max characters.',
+        'string' => 'The :attribute must be between :min and :max characters.',
     ],
     'boolean' => 'The :attribute field must be true or false.',
     'confirmed' => 'The :attribute confirmation does not match.',
@@ -48,7 +48,7 @@ return [
     'filled' => 'The :attribute field must have a value.',
     'gt' => [
         'numeric' => 'The :attribute must be greater than :value.',
-        'string'  => 'The :attribute must be greater than :value characters.',
+        'string' => 'The :attribute must be greater than :value characters.',
     ],
     'gte' => [
         'numeric' => 'The :attribute must be greater than or equal to :value.',
@@ -67,7 +67,7 @@ return [
     'json' => 'The :attribute must be a valid JSON string.',
     'lt' => [
         'numeric' => 'The :attribute must be less than :value.',
-        'string'  => 'The :attribute must be less than :value characters.',
+        'string' => 'The :attribute must be less than :value characters.',
     ],
     'lte' => [
         'numeric' => 'The :attribute must be less than or equal to :value.',
@@ -81,13 +81,13 @@ return [
         'string' => 'The :attribute must not be greater than :max characters.',
         'array' => 'The :attribute must not have more than :max items.',
     ],
-    'mimes'                => 'The :attribute must be a file of type: :values.',
-    'mimetypes'            => 'The :attribute must be a file of type: :values.',
-    'min'                  => [
-        'array'   => 'The :attribute must have at least :min items.',
-        'file'    => 'The :attribute must be at least :min kilobytes.',
+    'mimes' => 'The :attribute must be a file of type: :values.',
+    'mimetypes' => 'The :attribute must be a file of type: :values.',
+    'min' => [
+        'array' => 'The :attribute must have at least :min items.',
+        'file' => 'The :attribute must be at least :min kilobytes.',
         'numeric' => 'The :attribute must be at least :min.',
-        'string'  => 'The :attribute must be at least :min characters.',
+        'string' => 'The :attribute must be at least :min characters.',
     ],
     'multiple_of' => 'The :attribute must be a multiple of :value.',
     'not_in' => 'The selected :attribute is invalid.',
@@ -107,12 +107,12 @@ return [
     'required_with_all' => 'The :attribute field is required when :values are present.',
     'required_without' => 'The :attribute field is required when :values is not present.',
     'required_without_all' => 'The :attribute field is required when none of :values are present.',
-    'same'                 => 'The :attribute and :other must match.',
-    'size'                 => [
-        'array'   => 'The :attribute must contain :size items.',
-        'file'    => 'The :attribute must be :size kilobytes.',
+    'same' => 'The :attribute and :other must match.',
+    'size' => [
+        'array' => 'The :attribute must contain :size items.',
+        'file' => 'The :attribute must be :size kilobytes.',
         'numeric' => 'The :attribute must be :size.',
-        'string'  => 'The :attribute must be :size characters.',
+        'string' => 'The :attribute must be :size characters.',
     ],
     'starts_with' => 'The :attribute must start with one of the following: :values.',
     'string' => 'The :attribute must be a string.',

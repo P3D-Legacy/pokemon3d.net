@@ -9,14 +9,12 @@ use Overtrue\LaravelLike\Traits\Likeable;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use GoldSpecDigital\LaravelEloquentUUID\Database\Eloquent\Uuid;
 
 class Skin extends Model
 {
     use HasFactory;
     use SoftDeletes;
     use Likeable;
-    use Uuid;
     use LogsActivity;
 
     protected $primaryKey = 'id';

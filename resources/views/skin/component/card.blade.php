@@ -1,6 +1,6 @@
 <div class="flex max-w-md overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-900">
     <div class="items-center justify-center w-1/4 pt-4 pl-4">
-        <img class="mx-auto" src="{{ Storage::disk('skin')->exists($skin->path()) ? asset('img/skins/'.$skin->path()) : asset('img/noskin.png') }}" height="128" width="96">
+        <img class="mx-auto" src="{{ Storage::disk('skin')->exists($skin->path()) ? asset('img/skin/'.$skin->path()) : asset('img/noskin.png') }}" height="128" width="96">
     </div>
     <div class="w-3/4 p-4">
         <h1 class="text-2xl font-bold text-gray-900 break-all dark:text-gray-100">

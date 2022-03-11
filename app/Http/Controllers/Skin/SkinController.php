@@ -132,7 +132,7 @@ class SkinController extends Controller
             $json_data = json_encode(
                 [
                     'content' =>
-                        $gju .
+                    $gju .
                         ' uploaded a new skin for the public to use! Check it out here: ' .
                         route('skin-show', $skin->uuid), // Message
                     // "username" => env('APP_NAME'), // Username (message posted as username) - NOTE: This should be set in the webhook with the avatar
@@ -143,7 +143,7 @@ class SkinController extends Controller
                             'title' => $name, // Embed Title
                             'type' => 'rich', // Embed Type
                             'description' =>
-                                'File size: ' . Binary::bytes(Storage::disk('skin')->size($skin->path()))->format(), // Embed Description
+                            'File size: ' . Binary::bytes(Storage::disk('skin')->size($skin->path()))->format(), // Embed Description
                             'url' => route('skin-show', $skin->uuid), // URL of title link
                             'timestamp' => Carbon::now()->toIso8601String(), // Timestamp of embed must be formatted as ISO8601
                             'color' => hexdec('198754'), // Embed left border color in HEX

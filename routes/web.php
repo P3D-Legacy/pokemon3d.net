@@ -100,39 +100,41 @@ Route::middleware('auth:sanctum', 'verified')->group(function () {
         })->name('resource.category');
     });
 
-    Route::prefix('skin')->middleware('gj.account')->group(function () {
-        Route::get('/', [SkinHomeController::class, 'index'])->name('skin-home');
-        Route::get('/my', function () {
-            return redirect()->route('skin-home');
-        })->name('skins-my');
+    Route::prefix('skin')
+        ->middleware('gj.account')
+        ->group(function () {
+            Route::get('/', [SkinHomeController::class, 'index'])->name('skin-home');
+            Route::get('/my', function () {
+                return redirect()->route('skin-home');
+            })->name('skins-my');
 
-        Route::get('/import/{id}', [ImportController::class, 'import'])->name('import');
+            Route::get('/import/{id}', [ImportController::class, 'import'])->name('import');
 
-        Route::get('/player', [PlayerSkinController::class, 'index'])->name('player-skins');
-        Route::post('/player/create', [PlayerSkinController::class, 'store'])->name('player-skin-store');
-        Route::get('/player/duplicate', [PlayerSkinController::class, 'duplicate'])->name('player-skin-duplicate');
-        Route::post('/player/delete/{id}', [PlayerSkinController::class, 'destroyAsAdmin'])->name(
-            'player-skin-destroy-admin'
-        );
-        Route::get('/player/delete', [PlayerSkinController::class, 'destroy'])->name('player-skin-destroy');
+            Route::get('/player', [PlayerSkinController::class, 'index'])->name('player-skins');
+            Route::post('/player/create', [PlayerSkinController::class, 'store'])->name('player-skin-store');
+            Route::get('/player/duplicate', [PlayerSkinController::class, 'duplicate'])->name('player-skin-duplicate');
+            Route::post('/player/delete/{id}', [PlayerSkinController::class, 'destroyAsAdmin'])->name(
+                'player-skin-destroy-admin'
+            );
+            Route::get('/player/delete', [PlayerSkinController::class, 'destroy'])->name('player-skin-destroy');
 
-        Route::get('/public', function () {
-            return redirect()->route('skins-newest');
-        })->name('skins');
-        Route::get('/public/new', [SkinController::class, 'newestpublicskins'])->name('skins-newest');
-        Route::get('/public/popular', [SkinController::class, 'popularpublicskins'])->name('skins-popular');
-        Route::get('/public/{uuid}', [SkinController::class, 'show'])->name('skin-show');
-        Route::get('/create', [SkinController::class, 'create'])->name('skin-create');
-        Route::post('/create', [SkinController::class, 'store'])->name('skin-store');
-        Route::get('/{uuid}/edit', [SkinController::class, 'edit'])->name('skin-edit');
-        Route::post('/{uuid}/edit', [SkinController::class, 'update'])->name('skin-update');
-        Route::get('/{uuid}/delete', [SkinController::class, 'destroy'])->name('skin-destroy');
-        Route::get('/{uuid}/apply', [SkinController::class, 'apply'])->name('skin-apply');
-        Route::get('/{uuid}/like', [SkinController::class, 'like'])->name('skin-like');
+            Route::get('/public', function () {
+                return redirect()->route('skins-newest');
+            })->name('skins');
+            Route::get('/public/new', [SkinController::class, 'newestpublicskins'])->name('skins-newest');
+            Route::get('/public/popular', [SkinController::class, 'popularpublicskins'])->name('skins-popular');
+            Route::get('/public/{uuid}', [SkinController::class, 'show'])->name('skin-show');
+            Route::get('/create', [SkinController::class, 'create'])->name('skin-create');
+            Route::post('/create', [SkinController::class, 'store'])->name('skin-store');
+            Route::get('/{uuid}/edit', [SkinController::class, 'edit'])->name('skin-edit');
+            Route::post('/{uuid}/edit', [SkinController::class, 'update'])->name('skin-update');
+            Route::get('/{uuid}/delete', [SkinController::class, 'destroy'])->name('skin-destroy');
+            Route::get('/{uuid}/apply', [SkinController::class, 'apply'])->name('skin-apply');
+            Route::get('/{uuid}/like', [SkinController::class, 'like'])->name('skin-like');
 
-        Route::get('/uploaded', [UploadedSkinController::class, 'index'])->name('uploaded-skins');
-        Route::post('/uploaded/delete/{id}', [UploadedSkinController::class, 'destroy'])->name('uploaded-skin-destroy');
-    });
+            Route::get('/uploaded', [UploadedSkinController::class, 'index'])->name('uploaded-skins');
+            Route::post('/uploaded/delete/{id}', [UploadedSkinController::class, 'destroy'])->name('uploaded-skin-destroy');
+        });
 
     Route::prefix('admin')
         ->middleware(['role:super-admin|admin'])

@@ -11,11 +11,6 @@ use Spatie\Activitylog\Models\Activity;
 
 class SkinHomeController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware(['gj.account']);
-    }
-
     /**
      * Display a listing of the resource.
      *

@@ -100,7 +100,7 @@ Route::middleware('auth:sanctum', 'verified')->group(function () {
         })->name('resource.category');
     });
 
-    Route::prefix('skin')->group(function () {
+    Route::prefix('skin')->middleware('gj.account')->group(function () {
         Route::get('/', [SkinHomeController::class, 'index'])->name('skin-home');
         Route::get('/my', function () {
             return redirect()->route('skin-home');

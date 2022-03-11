@@ -13,11 +13,6 @@ use League\Flysystem\FileNotFoundException;
 
 class SkinController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware(['gj.account']);
-    }
-
     /**
      * Display a listing of the resource.
      *

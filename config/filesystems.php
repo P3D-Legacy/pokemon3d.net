@@ -47,7 +47,7 @@ return [
 
         'skin' => [
             'driver' => 'local',
-            'root' => public_path() . '/img/skin',
+            'root' => public_path() . '/img/skins',
         ],
 
         's3' => [

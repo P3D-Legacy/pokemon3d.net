@@ -8,14 +8,12 @@ use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use betterapp\LaravelDbEncrypter\Traits\EncryptableDbAttribute;
-use GoldSpecDigital\LaravelEloquentUUID\Database\Eloquent\Uuid;
 
 class ForumAccount extends Model
 {
     use HasFactory;
     use EncryptableDbAttribute;
     use SoftDeletes;
-    use Uuid;
     use LogsActivity;
 
     protected $primaryKey = 'aid';

@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use GoldSpecDigital\LaravelEloquentUUID\Database\Eloquent\Uuid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\Activitylog\LogOptions;
 use Illuminate\Database\Eloquent\Model;
@@ -13,7 +12,6 @@ class FacebookAccount extends Model
 {
     use HasFactory;
     use SoftDeletes;
-    use Uuid;
     use LogsActivity;
 
     protected $primaryKey = 'aid';

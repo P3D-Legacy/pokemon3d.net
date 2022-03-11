@@ -15,7 +15,6 @@ class Server extends Model
     use HasFactory;
     use Likeable;
     use SoftDeletes;
-    use Uuid;
     use LogsActivity;
 
     protected $primaryKey = 'id';

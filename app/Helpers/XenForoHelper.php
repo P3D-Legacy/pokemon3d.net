@@ -65,7 +65,7 @@ class XenForoHelper
         ]);
 
         try {
-            $response = $client->post('/forum/api/auth', [
+            $response = $client->post('/api/auth', [
                 'form_params' => $credentials,
                 'headers' => [
                     'XF-Api-Key' => config('xenforo.apikey'),

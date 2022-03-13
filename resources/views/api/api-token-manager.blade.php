@@ -26,7 +26,7 @@
                         @foreach (Laravel\Jetstream\Jetstream::$permissions as $permission)
                             <label class="flex items-center">
                                 <x-jet-checkbox wire:model.defer="createApiTokenForm.permissions" :value="$permission"/>
-                                <span class="ml-2 text-sm text-gray-600 dark:text-gray-300">{{ $permission }}</span>
+                                <span class="ml-2 text-sm text-gray-600 dark:text-white">{{ $permission }}</span>
                             </label>
                         @endforeach
                     </div>
@@ -63,7 +63,7 @@
                 <x-slot name="content">
                     <div class="space-y-6">
                         @foreach ($this->user->tokens->sortBy('name') as $token)
-                            <div class="flex items-center justify-between">
+                            <div class="flex items-center justify-between dark:text-white">
                                 <div>
                                     {{ $token->name }}
                                 </div>
@@ -129,7 +129,7 @@
                 @foreach (Laravel\Jetstream\Jetstream::$permissions as $permission)
                     <label class="flex items-center">
                         <x-jet-checkbox wire:model.defer="updateApiTokenForm.permissions" :value="$permission"/>
-                        <span class="ml-2 text-sm text-gray-600">{{ $permission }}</span>
+                        <span class="ml-2 text-sm text-gray-600 dark:text-white">{{ $permission }}</span>
                     </label>
                 @endforeach
             </div>

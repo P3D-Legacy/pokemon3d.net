@@ -83,7 +83,7 @@ class XenForoHelper
 
             return [
                 'error' => true,
-                'message' => $data['errors'][0]['message'],
+                'message' => $data['errors'][0]['message'] ?? 'Could not find error message.',
             ];
         }
 

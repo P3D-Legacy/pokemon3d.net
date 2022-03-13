@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Str;
 use Spatie\Activitylog\LogOptions;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
@@ -15,6 +16,21 @@ class ForumAccount extends Model
     use EncryptableDbAttribute;
     use SoftDeletes;
     use LogsActivity;
+
+    public static function boot()
+    {
+        parent::boot();
+
+        self::creating(function ($model) {
+            $model->uuid = Str::uuid()->toString();
+        });
+
+        self::updating(function ($model) {
+            if (!$model->uuid) {
+                $model->uuid = Str::uuid()->toString();
+            }
+        });
+    }
 
     protected $primaryKey = 'aid';
 

@@ -56,8 +56,7 @@ class XenforoAccount extends Component
         $auth = XenForoHelper::postAuth($this->username, $this->password);
 
         if (isset($auth['error'])) {
-            $this->addError('error', $auth['message']);
-
+            $this->addError('error', $auth['message'] ?? 'An unknown error occurred.');
             return;
         }
 

@@ -2,14 +2,14 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\BaseModel;
 use Spatie\Activitylog\LogOptions;
 use Overtrue\LaravelLike\Traits\Liker;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Activitylog\Traits\LogsActivity;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class GJUser extends Model
+class GJUser extends BaseModel
 {
     use HasFactory;
     use SoftDeletes;

@@ -3,9 +3,9 @@
 namespace App\Models;
 
 use Spatie\Tags\HasTags;
+use App\Models\BaseModel;
 use Illuminate\Support\Str;
 use Spatie\Activitylog\LogOptions;
-use Illuminate\Database\Eloquent\Model;
 use Overtrue\LaravelLike\Traits\Likeable;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -13,7 +13,7 @@ use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Post extends Model implements Viewable
+class Post extends BaseModel implements Viewable
 {
     use HasFactory;
     use InteractsWithViews;

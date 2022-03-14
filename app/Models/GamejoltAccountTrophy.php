@@ -2,13 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\BaseModel;
 use Spatie\Activitylog\LogOptions;
-use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use GoldSpecDigital\LaravelEloquentUUID\Database\Eloquent\Uuid;
 
-class GamejoltAccountTrophy extends Model
+class GamejoltAccountTrophy extends BaseModel
 {
     use HasFactory;
     use Uuid;

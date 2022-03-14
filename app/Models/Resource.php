@@ -3,9 +3,9 @@
 namespace App\Models;
 
 use Spatie\Tags\HasTags;
+use App\Models\BaseModel;
 use Illuminate\Support\Str;
 use Spatie\Activitylog\LogOptions;
-use Illuminate\Database\Eloquent\Model;
 use Overtrue\LaravelLike\Traits\Likeable;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -16,7 +16,7 @@ use Digikraaft\ReviewRating\Traits\HasReviewRating;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Touhidurabir\MultiKyeRouteBinding\HasMultipleRouteBindingKeys;
 
-class Resource extends Model implements Viewable
+class Resource extends BaseModel implements Viewable
 {
     use HasFactory;
     use InteractsWithViews;

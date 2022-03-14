@@ -2,13 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\BaseModel;
 use Spatie\Activitylog\LogOptions;
-use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Digikraaft\ReviewRating\Traits\HasReviewRating;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class GameVersion extends Model
+class GameVersion extends BaseModel
 {
     use HasFactory;
     use HasReviewRating;

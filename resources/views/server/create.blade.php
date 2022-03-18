@@ -4,7 +4,7 @@
 
             @component('components.breadcrumb', ['breadcrumbs' => [
                 ['label' => __('Servers')],
-                ['label' => __('Create')],
+                ['label' => __('Add')],
             ]])
             @endcomponent
 

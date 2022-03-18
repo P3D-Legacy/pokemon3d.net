@@ -72,7 +72,7 @@
                 </div>
 
                 <article class="mt-8 prose dark:prose-invert dark:text-gray-100 prose-a:text-green-600">
-                    @markdown($post->body)
+                    {!! Str::of($post->body)->markdown() !!}
                 </article>
             </div>
         </div>

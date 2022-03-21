@@ -47,7 +47,9 @@ class DiscordController extends Controller
             ];
 
             // Check if user exists with email
-            $discordAccount = DiscordAccount::withTrashed()->where('id', $discordUser->id)->first();
+            $discordAccount = DiscordAccount::withTrashed()
+                ->where('id', $discordUser->id)
+                ->first();
             if (!$discordAccount && auth()->guest()) {
                 return redirect()
                     ->route('login')

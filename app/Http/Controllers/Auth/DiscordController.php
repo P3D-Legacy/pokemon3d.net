@@ -67,6 +67,10 @@ class DiscordController extends Controller
 
                     return redirect()->route('profile.show');
                 }
+                if ($discordAccount->trashed()) {
+                    $discordAccount->restore();
+                    return redirect()->route('profile.show');
+                }
                 Auth::login($user);
 
                 return redirect()->route('dashboard');

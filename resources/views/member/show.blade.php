@@ -22,7 +22,7 @@
                             <div>{{ __('Last online') }}: {{ $user->last_active_at ? $user->last_active_at ->diffForHumans() : 'Never.' }}</div>
                         </div>
                     </div>
-                    <div class="flex gap-2 mt-3">
+                    <div class="flex gap-2 mt-3 mb-3">
                         @foreach($user->unlockedAchievements() as $achievement)
                             <x-achievement :achievement="$achievement" />
                         @endforeach

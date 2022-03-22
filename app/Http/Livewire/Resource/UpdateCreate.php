@@ -51,7 +51,7 @@ class UpdateCreate extends ModalComponent
         ]);
 
         $this->resourceUpdate->clearMediaCollection('resource_update_file');
-        $this->resourceUpdate->addMedia($this->file->getRealPath())->toMediaCollection('resource_update_file');
+        $this->resourceUpdate->addMedia($this->file->getRealPath())->usingName($this->file->getClientOriginalName())->toMediaCollection('resource_update_file');
 
         $this->emit('resourceUpdated', $this->resource->uuid);
         $this->closeModal();

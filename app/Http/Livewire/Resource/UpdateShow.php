@@ -20,7 +20,7 @@ class UpdateShow extends ModalComponent
         $mediaItem = $this->update->getFirstMedia('resource_update_file');
         $this->emit('resourceUpdated', $this->update->resource->uuid);
         $this->closeModal();
-        return response()->download($mediaItem->getPath(), $mediaItem->file_name);
+        return response()->download($mediaItem->getPath(), $mediaItem->name);
     }
 
     public function render()

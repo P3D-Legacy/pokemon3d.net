@@ -23,7 +23,7 @@ class ImportController extends Controller
             ->gamejolt->skins()
             ->count();
         if ($skincount >= env('SKIN_MAX_UPLOAD')) {
-            session()->flash('flash.bannerStyle', 'danger');
+            session()->flash('flash.bannerStyle', 'warning');
             session()->flash('flash.banner', 'You have reached the maximum amount of skins you can upload.');
             return redirect()->route('skins-my');
         }
@@ -49,7 +49,7 @@ class ImportController extends Controller
             session()->flash('flash.banner', 'Could not find a skin!');
             return redirect()->route('skin-home');
         }
-        session()->flash('flash.bannerStyle', 'danger');
+        session()->flash('flash.bannerStyle', 'success');
         session()->flash('flash.banner', 'Your old skin has been imported!');
         return redirect()->route('skin-home');
     }

@@ -126,7 +126,7 @@ class PlayerSkinController extends Controller
      */
     public function destroy(Request $request)
     {
-        $gjid = Auth::user()->gamejolt > id;
+        $gjid = Auth::user()->gamejolt->id;
         $filename = $gjid . '.png';
         if (!Storage::disk('player')->exists($filename)) {
             return redirect()

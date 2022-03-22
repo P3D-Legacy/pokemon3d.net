@@ -79,7 +79,7 @@
                         <span class="flex items-center"><x-review-stars :stars="$resource->averageRating(0)" :size="4" />{{ $resource->hasReview() ? $resource->averageRating(1) : 0 }} ({{ $resource->numberOfReviews() }})</span>
                     </div>
                     <div class="flex flex-row justify-between">
-                        <span>@lang('Donwloads'):</span>
+                        <span>@lang('Downloads'):</span>
                         <span>{{ $resource->downloads }}</span>
                     </div>
                     <div class="flex flex-row justify-between">

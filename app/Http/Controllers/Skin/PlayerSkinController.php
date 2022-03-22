@@ -60,9 +60,10 @@ class PlayerSkinController extends Controller
         $filename = $gjid . '.png';
         $request->file('image')->storeAs(null, $filename, 'player');
 
+        session()->flash('flash.bannerStyle', 'success');
+        session()->flash('flash.banner', 'Skin was successfully uploaded! Not seeing it? Refresh the page again.');
         return redirect()
-            ->route('skin-home')
-            ->with('success', 'Skin was successfully uploaded! Not seeing it? Refresh the page again.');
+            ->route('skin-home');
     }
 
     /**

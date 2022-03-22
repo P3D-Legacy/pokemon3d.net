@@ -15,17 +15,19 @@ class ImportController extends Controller
     {
         $gjid = Auth::user()->gamejolt->id;
         if ($id != $gjid) {
+            session()->flash('flash.bannerStyle', 'danger');
+            session()->flash('flash.banner', 'You cannot import this skin!');
             return redirect()
-                ->route('skin-home')
-                ->with('error', 'You cannot import this skin!');
+                ->route('skin-home');
         }
         $skincount = Auth::user()
             ->gamejolt->skins()
             ->count();
         if ($skincount >= env('SKIN_MAX_UPLOAD')) {
+            session()->flash('flash.bannerStyle', 'danger');
+            session()->flash('flash.banner', 'You have reached the maximum amount of skins you can upload.');
             return redirect()
-                ->route('skins-my')
-                ->with('warning', 'You have reached the maximum amount of skins you can upload.');
+                ->route('skins-my');
         }
         $url = 'https://pokemon3d.net/skin/data/' . $id . '.png';
         $valid_types = ['image/png']; // Valid file types
@@ -38,18 +40,21 @@ class ImportController extends Controller
             ) {
                 Storage::disk('player')->put($id . '.png', $response->getBody()->getContents());
             } else {
+                session()->flash('flash.bannerStyle', 'danger');
+                session()->flash('flash.banner', 'Skin was not in a valid format!');
                 return redirect()
                     ->route('skin-home')
                     ->with('error', 'Skin was not in a valid format!');
             }
         } catch (\Exception $e) {
+            session()->flash('flash.bannerStyle', 'danger');
+            session()->flash('flash.banner', 'Could not find a skin!');
             return redirect()
-                ->route('skin-home')
-                ->with('error', 'Could not find a skin!');
+                ->route('skin-home');
         }
-
+        session()->flash('flash.bannerStyle', 'danger');
+        session()->flash('flash.banner', 'Your old skin has been imported!');
         return redirect()
-            ->route('skin-home')
-            ->with('success', 'Your old skin has been imported!');
+            ->route('skin-home');
     }
 }

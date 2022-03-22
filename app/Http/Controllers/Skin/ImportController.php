@@ -17,8 +17,7 @@ class ImportController extends Controller
         if ($id != $gjid) {
             session()->flash('flash.bannerStyle', 'danger');
             session()->flash('flash.banner', 'You cannot import this skin!');
-            return redirect()
-                ->route('skin-home');
+            return redirect()->route('skin-home');
         }
         $skincount = Auth::user()
             ->gamejolt->skins()
@@ -26,8 +25,7 @@ class ImportController extends Controller
         if ($skincount >= env('SKIN_MAX_UPLOAD')) {
             session()->flash('flash.bannerStyle', 'danger');
             session()->flash('flash.banner', 'You have reached the maximum amount of skins you can upload.');
-            return redirect()
-                ->route('skins-my');
+            return redirect()->route('skins-my');
         }
         $url = 'https://pokemon3d.net/skin/data/' . $id . '.png';
         $valid_types = ['image/png']; // Valid file types
@@ -49,12 +47,10 @@ class ImportController extends Controller
         } catch (\Exception $e) {
             session()->flash('flash.bannerStyle', 'danger');
             session()->flash('flash.banner', 'Could not find a skin!');
-            return redirect()
-                ->route('skin-home');
+            return redirect()->route('skin-home');
         }
         session()->flash('flash.bannerStyle', 'danger');
         session()->flash('flash.banner', 'Your old skin has been imported!');
-        return redirect()
-            ->route('skin-home');
+        return redirect()->route('skin-home');
     }
 }

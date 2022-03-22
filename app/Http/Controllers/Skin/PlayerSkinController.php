@@ -62,8 +62,7 @@ class PlayerSkinController extends Controller
 
         session()->flash('flash.bannerStyle', 'success');
         session()->flash('flash.banner', 'Skin was successfully uploaded! Not seeing it? Refresh the page again.');
-        return redirect()
-            ->route('skin-home');
+        return redirect()->route('skin-home');
     }
 
     /**

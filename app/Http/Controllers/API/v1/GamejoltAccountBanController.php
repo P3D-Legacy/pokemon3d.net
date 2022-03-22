@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\API\v1;
 
-use App\Models\User;
-use Illuminate\Http\Request;
-use App\Models\GamejoltAccount;
-use App\Models\GamejoltAccountBan;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\API\v1\GamejoltAccountBanResource;
+use App\Models\GamejoltAccount;
+use App\Models\GamejoltAccountBan;
+use App\Models\User;
+use Illuminate\Http\Request;
 
 /**
  * @group Ban Gamejolt Account
@@ -101,6 +101,7 @@ class GamejoltAccountBanController extends Controller
             'expire_at' => $request->expire_at,
         ];
         $resource = GamejoltAccountBan::create($new_data);
+
         return new GamejoltAccountBanResource($resource);
     }
 
@@ -135,6 +136,7 @@ class GamejoltAccountBanController extends Controller
         $resources = GamejoltAccountBan::with(['reason', 'gamejoltaccount', 'banned_by'])
             ->where('gamejoltaccount_id', $id)
             ->get();
+
         return GamejoltAccountBanResource::collection($resources);
     }
 
@@ -155,6 +157,7 @@ class GamejoltAccountBanController extends Controller
         }
         $resource = GamejoltAccountBan::where('uuid', $uuid)->firstOrFail();
         $resource->delete();
+
         return response()
             ->json([
                 'success' => 'Ban was removed!',

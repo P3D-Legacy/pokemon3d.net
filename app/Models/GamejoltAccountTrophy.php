@@ -2,16 +2,40 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Models\BaseModel;
+use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use GoldSpecDigital\LaravelEloquentUUID\Database\Eloquent\Uuid;
 
-class GamejoltAccountTrophy extends Model
+class GamejoltAccountTrophy extends BaseModel
 {
     use HasFactory;
     use Uuid;
+    use LogsActivity;
 
-    protected $primaryKey = 'uuid';
+    protected $primaryKey = 'aid';
+
+    /**
+     * The "type" of the auto-incrementing ID.
+     *
+     * @var string
+     */
+    protected $keyType = 'integer';
+
+    /**
+     * Indicates if the IDs are auto-incrementing.
+     *
+     * @var bool
+     */
+    public $incrementing = true;
+
+    /**
+     * The attributes that will be used for multiple key binding on route models
+     *
+     * @var array
+     */
+    protected $routeBindingKeys = ['uuid'];
 
     /**
      * The table associated with the model.
@@ -19,20 +43,6 @@ class GamejoltAccountTrophy extends Model
      * @var string
      */
     protected $table = 'gamejolt_account_trophies';
-
-    /**
-     * The "type" of the auto-incrementing ID.
-     *
-     * @var string
-     */
-    protected $keyType = 'string';
-
-    /**
-     * Indicates if the IDs are auto-incrementing.
-     *
-     * @var bool
-     */
-    public $incrementing = false;
 
     /**
      * The attributes that are mass assignable.
@@ -54,6 +64,18 @@ class GamejoltAccountTrophy extends Model
      * @var array
      */
     protected $hidden = ['aid'];
+
+    /**
+     * The attributes that should be logged for the user.
+     *
+     * @return array
+     */
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logFillable()
+            ->logOnlyDirty();
+    }
 
     /**
      * Get the gamejolt account associated with the gamejolt account ban.

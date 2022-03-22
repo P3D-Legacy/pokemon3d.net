@@ -2,16 +2,17 @@
 
 namespace App\Http\Livewire\Login;
 
-use Livewire\Component;
 use App\Models\GamejoltAccount;
-use Harrk\GameJoltApi\GamejoltApi;
-use Illuminate\Support\Facades\Auth;
-use Harrk\GameJoltApi\GamejoltConfig;
 use Harrk\GameJoltApi\Exceptions\TimeOutException;
+use Harrk\GameJoltApi\GamejoltApi;
+use Harrk\GameJoltApi\GamejoltConfig;
+use Illuminate\Support\Facades\Auth;
+use Livewire\Component;
 
 class GameJolt extends Component
 {
     public $username;
+
     public $token;
 
     public function mount()
@@ -41,6 +42,7 @@ class GameJolt extends Component
             $auth = $api->users()->auth($this->username, $this->token);
         } catch (TimeOutException $e) {
             $this->addError('error', $e->getMessage());
+
             return;
         }
 
@@ -51,6 +53,7 @@ class GameJolt extends Component
                 $error = 'Username and/or token is wrong.';
             }
             $this->addError('error', $error);
+
             return;
         }
 
@@ -70,16 +73,16 @@ class GameJolt extends Component
 
         if (!Auth::loginUsingId($user->id)) {
             $this->addError('error', 'Login failed!');
+
             return;
         } else {
             $gamejoltaccount->touchVerify();
             request()
                 ->session()
                 ->regenerate();
+
             return redirect()->intended('dashboard');
         }
-
-        return;
     }
 
     public function render()

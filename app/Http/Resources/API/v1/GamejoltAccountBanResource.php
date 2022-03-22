@@ -37,6 +37,7 @@ class GamejoltAccountBanResource extends JsonResource
                 'expire_at' => $this->expire_at,
             ];
         }
+
         return [
             'gamejoltaccount' => new GamejoltAccountResource($this->gamejoltaccount),
             'reason' => new BanReasonResource($this->reason),

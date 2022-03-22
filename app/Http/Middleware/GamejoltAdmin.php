@@ -2,8 +2,8 @@
 
 namespace App\Http\Middleware;
 
-use Closure;
 use App\Models\GJUser;
+use Closure;
 use Illuminate\Http\Request;
 
 class GamejoltAdmin
@@ -28,6 +28,7 @@ class GamejoltAdmin
                 return $next($request);
             }
         }
+
         return redirect()
             ->route('skin-home')
             ->with('warning', 'You do not have access to this page!');

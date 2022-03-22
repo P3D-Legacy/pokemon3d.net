@@ -44,7 +44,7 @@
             <script defer data-domain="{{ request()->getHost() }}" src="https://plausible.io/js/plausible.js"></script>
         @endif
     </head>
-    <body class="font-sans antialiased {{ env('APP_DEBUG') ? 'debug-screens' : '' }}">
+    <body class="font-sans antialiased {{ config('app.debug') ? 'debug-screens' : '' }}">
         <x-jet-banner />
 
         @if(Auth::user() && ! Auth::user()->hasGivenConsent(config('app.required_consent')))

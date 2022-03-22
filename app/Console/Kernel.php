@@ -3,20 +3,11 @@
 namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
-use Spatie\Health\Commands\RunHealthChecksCommand;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Spatie\Health\Commands\RunHealthChecksCommand;
 
 class Kernel extends ConsoleKernel
 {
-    /**
-     * The Artisan commands provided by your application.
-     *
-     * @var array
-     */
-    protected $commands = [
-        //
-    ];
-
     /**
      * Define the application's command schedule.
      *
@@ -25,13 +16,13 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('activitylog:clean')->daily();
         $schedule->command('p3d:skinuserupdate')->hourlyAt(10);
         $schedule->command('server:pingall')->hourly();
         $schedule->command('gj:update-trophies')->hourly();
         $schedule->command('github:syncrelease')->daily();
-        $schedule->command('discord:syncroles')->daily();
-        $schedule->command('discord:syncuserroles')->daily();
+        $schedule->command('discord:syncroles')->dailyAt('12:00');
+        $schedule->command('discord:syncuserroles')->dailyAt('12:10');
+        $schedule->command('activity:cleanup')->dailyAt('01:00');
         $schedule->command(RunHealthChecksCommand::class)->everyMinute();
     }
 

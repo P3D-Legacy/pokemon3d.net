@@ -2,18 +2,35 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Models\BaseModel;
+use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Traits\LogsActivity;
 use Digikraaft\ReviewRating\Traits\HasReviewRating;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class GameVersion extends Model
+class GameVersion extends BaseModel
 {
     use HasFactory;
     use HasReviewRating;
+    use LogsActivity;
 
     protected $fillable = ['version', 'title', 'release_date', 'page_url', 'download_url'];
 
-    protected $dates = ['release_date'];
+    protected $casts = [
+        'release_date' => 'datetime',
+    ];
+
+    /**
+     * The attributes that should be logged for the user.
+     *
+     * @return array
+     */
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logFillable()
+            ->logOnlyDirty();
+    }
 
     public static function latest()
     {

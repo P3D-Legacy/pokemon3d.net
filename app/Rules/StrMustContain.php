@@ -7,6 +7,7 @@ use Illuminate\Contracts\Validation\Rule;
 class StrMustContain implements Rule
 {
     public $str;
+
     /**
      * Create a new rule instance.
      *

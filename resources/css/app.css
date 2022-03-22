@@ -47,17 +47,6 @@
 }
 /** END BROWSER MOCKUP **/
 
-.tooltip .tooltip-text {
-    visibility: hidden;
-    text-align: center;
-    padding: 2px 6px;
-    position: absolute;
-    z-index: 100;
-}
-.tooltip:hover .tooltip-text {
-    visibility: visible;
-}
-
 .editor-toolbar {
     background-color: #fff;
 }
@@ -74,4 +63,13 @@
 
 .dark .editor-toolbar button {
     color:#fff;
+}
+
+
+.tip {
+    @apply absolute invisible;
+}
+
+.has-tip:hover .tip {
+    @apply z-50 visible px-2 py-1 -mt-8 text-gray-900 bg-green-200 rounded;
 }

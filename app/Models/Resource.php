@@ -3,9 +3,11 @@
 namespace App\Models;
 
 use Spatie\Tags\HasTags;
+use App\Models\BaseModel;
 use Illuminate\Support\Str;
-use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\LogOptions;
 use Overtrue\LaravelLike\Traits\Likeable;
+use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use AliBayat\LaravelCategorizable\Categorizable;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
@@ -14,7 +16,7 @@ use Digikraaft\ReviewRating\Traits\HasReviewRating;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Touhidurabir\MultiKyeRouteBinding\HasMultipleRouteBindingKeys;
 
-class Resource extends Model implements Viewable
+class Resource extends BaseModel implements Viewable
 {
     use HasFactory;
     use InteractsWithViews;
@@ -24,6 +26,7 @@ class Resource extends Model implements Viewable
     use HasMultipleRouteBindingKeys;
     use Categorizable;
     use HasReviewRating;
+    use LogsActivity;
 
     public static function boot()
     {
@@ -54,6 +57,18 @@ class Resource extends Model implements Viewable
      * @var array
      */
     protected $fillable = ['name', 'brief', 'description', 'user_id'];
+
+    /**
+     * The attributes that should be logged for the user.
+     *
+     * @return array
+     */
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logFillable()
+            ->logOnlyDirty();
+    }
 
     /**
      * Get the user that made this post.

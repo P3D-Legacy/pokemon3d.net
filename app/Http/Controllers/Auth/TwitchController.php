@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Models\TwitchAccount;
+use App\Achievements\User\AssociatedTwitch;
 use App\Http\Controllers\Controller;
+use App\Models\TwitchAccount;
+use GuzzleHttp\Exception\ClientException;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
-use GuzzleHttp\Exception\ClientException;
-use App\Achievements\User\AssociatedTwitch;
 use Laravel\Socialite\Two\InvalidStateException;
 
 class TwitchController extends Controller
@@ -57,9 +57,11 @@ class TwitchController extends Controller
                     request()
                         ->session()
                         ->flash('flash.bannerStyle', 'warning');
+
                     return redirect()->route('profile.show');
                 }
                 Auth::login($user);
+
                 return redirect()->route('dashboard');
             }
 
@@ -75,6 +77,7 @@ class TwitchController extends Controller
             $userProfile['verified_at'] = now();
             TwitchAccount::create($userProfile);
             $user->unlock(new AssociatedTwitch());
+
             return redirect()->route('profile.show');
         } catch (InvalidStateException $e) {
             return redirect()

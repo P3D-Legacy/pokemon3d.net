@@ -20,7 +20,7 @@
             <!-- Responsive Navigation Menu -->
             <div :class="{'flex': open, 'hidden': ! open}" class="hidden w-full pt-2">
                 <ul class="grid flex-1 space-y-1 list-reset lg:flex place-items-end justify-items-end">
-                    <x-home.responsive-nav-link title="Blog" url="{{ route('blog.index') }}">
+                    <x-home.responsive-nav-link title="{{ __('Blog') }}" url="{{ route('blog.index') }}">
                         <x-slot name="icon">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
@@ -62,7 +62,7 @@
                             </x-slot>
                         </x-home.responsive-nav-link>
                     @else
-                        <x-home.responsive-nav-link title="Go to Dashboard" url="{{ route('dashboard') }}">
+                        <x-home.responsive-nav-link title="{{ __('Go to Dashboard') }}" url="{{ route('dashboard') }}">
                             <x-slot name="icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
@@ -95,7 +95,7 @@
             <div class="z-20 flex-grow hidden w-full p-4 mt-2 lg:flex lg:items-center lg:w-auto lg:mt-0 lg:p-0"
                 id="nav-content">
                 <ul class="items-center justify-end flex-1 list-reset lg:flex">
-                    <x-home.nav-link title="Blog" url="{{ route('blog.index') }}">
+                    <x-home.nav-link title="{{ __('Blog') }}" url="{{ route('blog.index') }}">
                         <x-slot name="icon">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
@@ -137,7 +137,7 @@
                             </x-slot>
                         </x-home.nav-link>
                     @else
-                        <x-home.nav-link title="Go to Dashboard" url="{{ route('dashboard') }}">
+                        <x-home.nav-link title="{{ __('Go to Dashboard') }}" url="{{ route('dashboard') }}">
                             <x-slot name="icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
@@ -288,18 +288,48 @@
         
             <div id="carousel" class="relative carousel slide carousel-fade dark:carousel-dark" data-bs-ride="carousel">
                 <div class="relative w-full overflow-hidden shadow-xl rounded-xl shadow-black/50 carousel-inner">
-                    <div class="relative float-left w-full carousel-item active">
-                        <img src="{{ asset('img/carousel/Elms_Lab.png') }}" class="block w-full" alt="" />
-                    </div>
-                    <div class="relative float-left w-full carousel-item">
-                        <img src="{{ asset('img/carousel/Player_House_Bedroom.png') }}" class="block w-full" alt="" />
-                    </div>
-                    <div class="relative float-left w-full carousel-item">
-                        <img src="{{ asset('img/carousel/Multiplayer.png') }}" class="block w-full" alt="" />
-                    </div>
-                    <div class="relative float-left w-full carousel-item">
-                        <img src="{{ asset('img/carousel/Player_House_Bedroom2.png') }}" class="block w-full" alt="" />
-                    </div>
+                    @php
+                        $screenshots = [
+                            0 => [
+                                'title' => 'Elms Lab',
+                                'path' => 'img/carousel/Elms_Lab.png',
+                                'author' => 'JappaWakka',
+                            ],
+                            1 => [
+                                'title' => 'Player House Bedroom',
+                                'path' => 'img/carousel/Player_House_Bedroom.png',
+                                'author' => 'JappaWakka',
+                            ],
+                            2 => [
+                                'title' => 'Player House Bedroom',
+                                'path' => 'img/carousel/Player_House_Bedroom2.png',
+                                'author' => 'JappaWakka',
+                            ],
+                            3 => [
+                                'title' => 'Ferry',
+                                'path' => 'img/carousel/Ferry.png',
+                                'author' => 'GhostlyRose',
+                            ],
+                            4 => [
+                                'title' => 'PokeCenter',
+                                'path' => 'img/carousel/PokeCenter.png',
+                                'author' => 'GhostlyRose',
+                            ],
+                            5 => [
+                                'title' => 'New Bark Town',
+                                'path' => 'img/carousel/nbt.png',
+                                'author' => 'JappaWakka',
+                            ],
+                            6 => [
+                                'title' => 'Cerulean Cave',
+                                'path' => 'img/carousel/cerulean_cave.png',
+                                'author' => 'JappaWakka',
+                            ],
+                        ]
+                    @endphp
+                    @foreach ($screenshots as $screenshot)
+                        <x-home.screenshot title="{{ $screenshot['title'] }}" path="{{ $screenshot['path'] }}" author="{{ $screenshot['author'] }}" active="{{ $loop->first ?? true }}" />
+                    @endforeach
                 </div>
                 <button class="absolute top-0 bottom-0 left-0 flex items-center justify-center p-0 text-center border-0 carousel-control-prev hover:outline-none hover:no-underline focus:outline-none focus:no-underline" type="button" data-bs-target="#carousel" data-bs-slide="prev">
                     <span class="inline-block w-12 h-12 bg-no-repeat carousel-control-prev-icon" aria-hidden="true"></span>

@@ -37,17 +37,23 @@
                         </svg>
                     </button>
                     <div x-show="dropdownOpen" @click.away="dropdownOpen = false" class="absolute z-10 w-48 py-2 mt-2 bg-white border border-gray-200 rounded-md shadow-md dark:bg-gray-900 dark:border-gray-800">
+                        <button onclick="Livewire.emit('openModal', 'resource.update-create', {{ json_encode(['resource_uuid' => $resource->uuid]) }})" class="block w-full px-4 py-2 text-sm text-left text-gray-700 dark:text-gray-300 hover:bg-green-700 hover:text-white">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                            </svg>
+                            @lang('Post a update')
+                        </button>
                         <button onclick="Livewire.emit('openModal', 'resource.resource-form', {{ json_encode(['resource' => $resource->id]) }})" class="block w-full px-4 py-2 text-sm text-left text-gray-700 dark:text-gray-300 hover:bg-green-700 hover:text-white">
                             <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                             </svg>
                             @lang('Edit')
                         </button>
-                        <button onclick="Livewire.emit('openModal', 'resource.update-create', {{ json_encode(['resource_uuid' => $resource->uuid]) }})" class="block w-full px-4 py-2 text-sm text-left text-gray-700 dark:text-gray-300 hover:bg-green-700 hover:text-white">
+                        <button onclick="Livewire.emit('openModal', 'resource.resource-delete', {{ json_encode(['resource' => $resource->id]) }})" class="block w-full px-4 py-2 text-sm text-left text-gray-700 dark:text-gray-300 hover:bg-green-700 hover:text-white">
                             <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                             </svg>
-                            @lang('Post a update')
+                            @lang('Delete')
                         </button>
                     </div>
                 </div>
@@ -73,7 +79,7 @@
                         <span class="flex items-center"><x-review-stars :stars="$resource->averageRating(0)" :size="4" />{{ $resource->hasReview() ? $resource->averageRating(1) : 0 }} ({{ $resource->numberOfReviews() }})</span>
                     </div>
                     <div class="flex flex-row justify-between">
-                        <span>@lang('Donwloads'):</span>
+                        <span>@lang('Downloads'):</span>
                         <span>{{ $resource->downloads }}</span>
                     </div>
                     <div class="flex flex-row justify-between">
@@ -102,10 +108,10 @@
             @forelse ($resource->updates as $update)
                 <div class="flex items-center justify-between w-full gap-6 p-4 dark:text-white">
                     <div class="flex">
-                        <a href="#" class="text-green-400 hover:underline">{{ $update->title }}</a>
+                        <span onclick="Livewire.emit('openModal', 'resource.update-show', {{ json_encode(['update' => $update->id]) }})" class="text-green-400 cursor-pointer hover:underline">{{ $update->title }}</span>
                     </div>
                     <div class="flex-1 text-gray-400">
-                        {!! strip_tags(Str::of(Str::limit($update->description, 300))->markdown()) !!}
+                        {!! strip_tags(Str::of(Str::limit($update->description, 80))->markdown()) !!}
                     </div>
                     <div class="flex text-sm">
                         {{ $update->game_version->version }}
@@ -116,21 +122,11 @@
                     <div class="flex text-sm">
                         {{ $update->downloads }} @lang('downloads')
                     </div>
-                    {{--
-                    <div class="flex">
-                        <button class="px-2 py-1 text-sm text-green-100 transition-colors duration-150 bg-green-600 rounded-md focus:shadow-outline hover:bg-green-700">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                            </svg>
-                            @lang('Download')
-                        </button>
-                    </div>
-                    --}}
                 </div>
             @empty
                 <div class="flex items-center justify-center w-full p-4">
                     <div class="text-center dark:text-gray-400">
-                        {{ __('No updates found.') }}
+                        {{ __('Nothing found.') }}
                     </div>
                 </div>
             @endforelse
@@ -163,7 +159,7 @@
                 @empty
                 <div class="flex items-center justify-center w-full p-4">
                     <div class="text-center dark:text-gray-400">
-                        {{ __('No reviews found.') }}
+                        {{ __('Nothing found.') }}
                     </div>
                 </div>
             @endforelse

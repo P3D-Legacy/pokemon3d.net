@@ -2,20 +2,15 @@
 
 namespace App\Http\Controllers\Skin;
 
-use Illuminate\Http\Request;
-use Harrk\GameJoltApi\GamejoltApi;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
+use Harrk\GameJoltApi\GamejoltApi;
 use Harrk\GameJoltApi\GamejoltConfig;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Spatie\Activitylog\Models\Activity;
 
 class SkinHomeController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware(['gj.account']);
-    }
-
     /**
      * Display a listing of the resource.
      *

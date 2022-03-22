@@ -1,10 +1,10 @@
 <x-modal>
     <x-slot name="title">
-        Delete Category: <span class="font-bold text-red-400">{{ $category->name }}</span>
+        @lang('Delete') @lang('Category'): <span class="font-bold text-red-400">{{ $category->name }}</span>
     </x-slot>
 
     <x-slot name="content">
-        {{ __('Are you sure you want to delete this category?') }}
+        {{ __('Are you sure you want to delete this :item?', ['item' => strtolower(__('Category'))]) }}
     </x-slot>
 
     <x-slot name="buttons">

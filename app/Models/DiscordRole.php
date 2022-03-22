@@ -2,12 +2,15 @@
 
 namespace App\Models;
 
+use App\Models\BaseModel;
+use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 
-class DiscordRole extends Model
+class DiscordRole extends BaseModel
 {
     use HasFactory;
+    use LogsActivity;
 
     protected $primaryKey = 'id';
 
@@ -26,11 +29,30 @@ class DiscordRole extends Model
     public $incrementing = false;
 
     /**
+     * The attributes that will be used for multiple key binding on route models
+     *
+     * @var array
+     */
+    protected $routeBindingKeys = ['uuid'];
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = ['color', 'hoist', 'id', 'managed', 'mentionable', 'name', 'permissions', 'position'];
+
+    /**
+     * The attributes that should be logged for the user.
+     *
+     * @return array
+     */
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logFillable()
+            ->logOnlyDirty();
+    }
 
     public function accounts()
     {

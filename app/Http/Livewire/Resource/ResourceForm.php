@@ -38,7 +38,7 @@ class ResourceForm extends ModalComponent
         }
 
         $this->emit('resourceUpdated', $this->resource->uuid);
-
+        //$this->emit('openModal', 'resource.update-create', json_encode(['resource_uuid' => $this->resource->uuid]));
         $this->closeModal();
     }
 

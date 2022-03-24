@@ -18,11 +18,11 @@ Please be aware that while this information may not be personally identifying by
 
 We may ask for personal information which may include one or more of the following:
 
-*   Name
-*   Username
-*   Email
-*   Social media profiles
-*   Date of birth
+-   Name
+-   Username
+-   Email
+-   Social media profiles
+-   Date of birth
 
 ### Legitimate Reasons for Processing Your Personal Information
 
@@ -32,21 +32,21 @@ We only collect and use your personal information when we have a legitimate reas
 
 We may collect personal information from you when you do any of the following on our website:
 
-*   Enter any of our competitions, contests, sweepstakes, and surveys
-*   Sign up to receive updates from us via email or social media channels
-*   Use a mobile device or web browser to access our content
-*   Contact us via email, social media, or on any similar technologies
-*   When you mention us on social media
+-   Enter any of our competitions, contests, sweepstakes, and surveys
+-   Sign up to receive updates from us via email or social media channels
+-   Use a mobile device or web browser to access our content
+-   Contact us via email, social media, or on any similar technologies
+-   When you mention us on social media
 
 We may collect, hold, use, and disclose information for the following purposes, and personal information will not be further processed in a manner that is incompatible with these purposes:
 
 We may collect, hold, use, and disclose information for the following purposes, and personal information will not be further processed in a manner that is incompatible with these purposes:
 
-*   to enable you to customise or personalise your experience of our website
-*   to contact and communicate with you
-*   to enable you to access and use our website, associated applications, and associated social media platforms
-*   to run competitions, sweepstakes, and/or offer additional benefits to you
-*   for security and fraud prevention, and to ensure that our sites and apps are safe, secure, and used in line with our terms of use
+-   to enable you to customise or personalise your experience of our website
+-   to contact and communicate with you
+-   to enable you to access and use our website, associated applications, and associated social media platforms
+-   to run competitions, sweepstakes, and/or offer additional benefits to you
+-   for security and fraud prevention, and to ensure that our sites and apps are safe, secure, and used in line with our terms of use
 
 Please be aware that we may combine information we collect about you with general information or research data we receive from other trusted sources.
 
@@ -72,13 +72,13 @@ We do not aim any of our products or services directly at children under the age
 
 We may disclose personal information to:
 
-*   a parent, subsidiary, or affiliate of our company
-*   third party service providers for the purpose of enabling them to provide their services, for example, IT service providers, data storage, hosting and server providers, advertisers, or analytics platforms
-*   our employees, contractors, and/or related entities
-*   our existing or potential agents or business partners
-*   sponsors or promoters of any competition, sweepstakes, or promotion we run
-*   courts, tribunals, regulatory authorities, and law enforcement officers, as required by law, in connection with any actual or prospective legal proceedings, or in order to establish, exercise, or defend our legal rights
-*   third parties, including agents or sub-contractors, who assist us in providing information, products, services, or direct marketing to you third parties to collect and process data
+-   a parent, subsidiary, or affiliate of our company
+-   third party service providers for the purpose of enabling them to provide their services, for example, IT service providers, data storage, hosting and server providers, advertisers, or analytics platforms
+-   our employees, contractors, and/or related entities
+-   our existing or potential agents or business partners
+-   sponsors or promoters of any competition, sweepstakes, or promotion we run
+-   courts, tribunals, regulatory authorities, and law enforcement officers, as required by law, in connection with any actual or prospective legal proceedings, or in order to establish, exercise, or defend our legal rights
+-   third parties, including agents or sub-contractors, who assist us in providing information, products, services, or direct marketing to you third parties to collect and process data
 
 ## International Transfers of Personal Information
 

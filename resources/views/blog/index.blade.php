@@ -29,7 +29,7 @@
 							@lang('Official Blog')
 						</p>
 						<p class="font-light text-gray-400 text-1xl dark:text-gray-300">
-							@lang('Here is the official blog of the team and developers of the game.')
+							@lang('This is the official blog of the team and developers of the game.')
 						</p>
 					</div>
 				</div>

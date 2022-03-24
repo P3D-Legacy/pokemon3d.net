@@ -382,7 +382,7 @@
                         @lang('Nostalgia')
                     </h3>
                     <p class="text-gray-600 sm:mb-8 dark:text-gray-400">
-                        @lang('Remember the old days when you where playing on a GameBoy? If so; you should try out this game and get the nostalgic feeling as well as visit your inner child.')
+                        @lang('Remember the old days when you were playing on a GameBoy? If so; you should try out this game and awake your inner child.')
                     </p>
                 </div>
                 <div class="w-full px-4 sm:p-6 sm:w-1/2">
@@ -400,7 +400,7 @@
                             @lang('Most Generations and Regions')
                         </h3>
                         <p class="mb-8 text-gray-600 dark:text-gray-400">
-                            @lang(':game will in the future have support for all generations of pokémon. And all the regions will accessible in the game.', [
+                            @lang(':game will have support for all generations of Pokémon in the future and all regions will be accessible in the game.', [
                                 'game' => config('app.name'),
                             ])
                         </p>

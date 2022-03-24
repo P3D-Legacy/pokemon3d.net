@@ -1,8 +1,8 @@
 # Privacy Policy
 
-Your privacy is important to us. It is The Pokémon 3D Team's policy to respect your privacy and comply with any applicable law and regulation regarding any personal information we may collect about you, including across our website, [https://pokemon3d.net/](https://pokemon3d.net/), and other sites we own and operate.
+The Pokémon 3D Team's policy to respect your privacy and comply with any applicable law and regulation regarding any personal information we may collect about you, including across our website, [https://pokemon3d.net/](https://pokemon3d.net/), and other sites we own and operate.
 
-This policy is effective as of 1 August 2021 and was last updated on 1 August 2021.
+This policy is effective as of 1 August 2021 and was last updated on 24 March 2022.
 
 ## Information We Collect
 
@@ -26,7 +26,7 @@ We may ask for personal information which may include one or more of the followi
 
 ### Legitimate Reasons for Processing Your Personal Information
 
-We only collect and use your personal information when we have a legitimate reason for doing so. In which instance, we only collect personal information that is reasonably necessary to provide our services to you.
+We only collect and use your personal information when we have a legitimate reason for doing so. We only collect personal information that is reasonably necessary to provide our services to you.
 
 ### Collection and Use of Information
 

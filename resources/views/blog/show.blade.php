@@ -27,7 +27,7 @@
                         </svg>
                     </li>
                     <li class="inline-flex items-center">
-                        <p class="text-gray-300 truncate">{{ $post->title }}</p>
+                        <p class="font-bold text-gray-600 truncate dark:text-gray-400">{{ $post->title }}</p>
                     </li>
                 </ul>
 

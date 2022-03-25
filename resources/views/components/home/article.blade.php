@@ -12,7 +12,7 @@
                 @endif
                 {{ $post->title }}
             </div>
-            <p class="hidden px-6 mb-5 text-sm text-gray-600 sm:block">
+            <p class="hidden px-6 mb-5 text-sm text-gray-600 dark:text-gray-300 sm:block">
                 {!! strip_tags(Str::of(Str::limit($post->body, 150))->markdown()) !!}
             </p>
         </a>

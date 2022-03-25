@@ -120,7 +120,7 @@
                         {{ $update->created_at->diffForHumans() }}
                     </div>
                     <div class="flex text-sm">
-                        {{ $update->downloads }} @lang('downloads')
+                        {{ $update->downloads }}  {{ Str::lower(__('Downloads')) }}
                     </div>
                 </div>
             @empty

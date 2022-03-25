@@ -18,3 +18,4 @@ public/skin/*.png
 resources/views/scribe/
 public/vendor/scribe/
 .vscode/
+.idea/

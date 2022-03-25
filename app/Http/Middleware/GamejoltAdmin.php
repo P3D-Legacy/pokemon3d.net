@@ -20,7 +20,7 @@ class GamejoltAdmin
         if (!env('GAMEJOLT_GAME_ID') || !env('GAMEJOLT_GAME_PRIVATE_KEY')) {
             redirect()
                 ->route('gj-login')
-                ->with('error', 'Gamejolt API keys is not set by the admin!');
+                ->with('error', 'Game Jolt API keys is not set by the admin!');
         }
         $user = GJUser::where('gjid', $request->session()->get('gjid'))->first();
         if ($user) {

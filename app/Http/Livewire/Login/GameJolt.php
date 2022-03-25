@@ -22,7 +22,7 @@ class GameJolt extends Component
     }
 
     /**
-     * Update the user's GameJolt Account credentials.
+     * Update the user's Game Jolt Account credentials.
      *
      * @return void
      */
@@ -60,14 +60,14 @@ class GameJolt extends Component
         $gamejoltaccount = GamejoltAccount::where('username', $this->username)->first();
 
         if (!$gamejoltaccount) {
-            $this->addError('error', 'This Gamejolt Account is not associated with a P3D account yet.');
+            $this->addError('error', 'This Game Jolt Account is not associated with a P3D account yet.');
             return;
         }
 
         $user = $gamejoltaccount->user()->first();
 
         if (!$user) {
-            $this->addError('error', 'Could\'t find the user associated with this Gamejolt Account.');
+            $this->addError('error', 'Could\'t find the user associated with this Game Jolt Account.');
             return;
         }
 

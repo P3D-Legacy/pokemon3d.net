@@ -4,7 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
     /**
      * Run the migrations.
      *
@@ -15,16 +16,16 @@ return new class extends Migration {
         Schema::create('gamejolt_account_trophies', function (Blueprint $table) {
             $table->increments('aid');
             $table->uuid('uuid')->unique();
-            $table->unsignedBigInteger('id')->comment('Gamejolt Trophy ID');
-            $table->string('title')->comment('Gamejolt Trophy Title');
-            $table->string('difficulty')->comment('Gamejolt Trophy Difficulty');
-            $table->string('description')->comment('GameJolt Trophy Description');
-            $table->text('image_url')->comment('GameJolt Trophy Image URL');
+            $table->unsignedBigInteger('id')->comment('Game Jolt Trophy ID');
+            $table->string('title')->comment('Game Jolt Trophy Title');
+            $table->string('difficulty')->comment('Game Jolt Trophy Difficulty');
+            $table->string('description')->comment('Game Jolt Trophy Description');
+            $table->text('image_url')->comment('Game Jolt Trophy Image URL');
             $table
                 ->boolean('achieved')
                 ->default(false)
-                ->comment('GameJolt Trophy Achieved By User');
-            $table->unsignedBigInteger('gamejolt_account_id')->comment('GameJolt Account ID');
+                ->comment('Game Jolt Trophy Achieved By User');
+            $table->unsignedBigInteger('gamejolt_account_id')->comment('Game Jolt Account ID');
             $table->timestamps();
         });
     }

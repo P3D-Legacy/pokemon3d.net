@@ -19,9 +19,9 @@ return new class extends Migration {
                 ->bigInteger('id')
                 ->unsigned()
                 ->unique()
-                ->comment('GameJolt Account ID');
-            $table->text('username')->comment('GameJolt Username');
-            $table->string('token')->comment('GameJolt Token');
+                ->comment('Game Jolt Account ID');
+            $table->text('username')->comment('Game Jolt Username');
+            $table->string('token')->comment('Game Jolt Token');
             $table->timestamp('verified_at')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->timestamps();

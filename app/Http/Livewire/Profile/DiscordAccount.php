@@ -24,7 +24,7 @@ class DiscordAccount extends Component
     }
 
     /**
-     * Update the user's GameJolt Account credentials.
+     * Update the user's Discord Account credentials.
      *
      * @return void
      */

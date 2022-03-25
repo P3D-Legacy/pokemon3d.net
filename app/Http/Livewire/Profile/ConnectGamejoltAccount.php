@@ -33,7 +33,7 @@ class ConnectGamejoltAccount extends Component
     }
 
     /**
-     * Update the user's GameJolt Account credentials.
+     * Update the user's Game Jolt Account credentials.
      *
      * @return void
      */
@@ -56,7 +56,7 @@ class ConnectGamejoltAccount extends Component
         ]);
 
         if (!$this->username && !$this->token) {
-            $this->errorBag->add('success', 'Your GameJolt account has now been unlinked.');
+            $this->errorBag->add('success', 'Your Game Jolt account has now been unlinked.');
             $user->gamejolt->delete();
             $this->updated_at = null;
             $this->verified_at = null;
@@ -106,7 +106,7 @@ class ConnectGamejoltAccount extends Component
             $gamejolt = GamejoltAccount::firstOrCreate($data);
         }
 
-        // Update the user's (and other user's) GameJolt Account skin link.
+        // Update the user's (and other user's) Game Jolt Account skin link.
         Artisan::call('p3d:skinuserupdate');
 
         // Unlock achievement
@@ -121,7 +121,7 @@ class ConnectGamejoltAccount extends Component
     }
 
     /**
-     * Update the user's GameJolt Account credentials.
+     * Update the user's Game Jolt Account credentials.
      *
      * @return void
      */

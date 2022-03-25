@@ -27,7 +27,7 @@
                             <span>{{ $resource->likers()->count() }}</span>
                         </div>
                         <div class="flex flex-row justify-between">
-                            <span>@lang('Donwloads'):</span>
+                            <span>@lang('Downloads'):</span>
                             <span>{{ $resource->downloads }}</span>
                         </div>
                         <div class="flex flex-row justify-between">

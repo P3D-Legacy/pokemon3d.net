@@ -4,7 +4,7 @@
     ":game has wonderful documentation covering every aspect of the game. Whether you're new to the game or have previous experience, we recommend reading all of the documentation from beginning to end.": ":game heeft uitgebreide documentatie waarin elk aspect van het spel wordt uitgelegd. Of je nou een nieuwe of een ervaren speler bent, we bevelen je aan om de documentatie eens goed door te lezen van begin tot eind.",
     ":game is a video game originally created by :author. It is heavily inspired by Minecraft, and the Pokémon series.": ":game is een videospel oorspronkelijk gemaakt door :author. Het is sterk geïnspireerd door Minecraft en de Pokémon-spellenserie.",
     ":game is not affiliated with": ":game is niet gelieerd met",
-    ":game will in the future have support for all generations of pokémon. And all the regions will accessible in the game.": ":game zal in de toekomst alle generaties van Pokémon ondersteunen. En alle regio's zullen beschikbaar zijn in het spel.",
+    ":game will have support for all generations of Pokémon in the future and all 2D regions will be accessible in the game.": ":game zal in de toekomst alle generaties van Pokémon ondersteunen. En alle 2D regio's zullen beschikbaar zijn in het spel.",
     ":item deleted successfully.": ":item met succes verwijderd.",
     "A New Experience": "Een nieuwe ervaring",
     "A new verification link has been sent to the email address you provided during registration.": "Er is een nieuwe verificatielink verstuurd naar het e-mailadres dat je ingegeven hebt tijdens de registratie.",
@@ -74,9 +74,8 @@
     "Do you want your server to be listed for other players to see?": "Wil je dat andere spelers jouw server kunnen zien?",
     "Documentation": "Documentatie",
     "Done.": "Klaar.",
-    "Downloads": "Downloads",
     "Download": "Download",
-    "downloads": "downloads",
+    "Downloads": "Downloads",
     "Draft": "Concept",
     "Edit": "Aanpassen",
     "Edit Permission": "Pas machtiging aan",
@@ -139,7 +138,7 @@
     "Liked": "Gewaardeerd",
     "Likes": "Waarderingen",
     "likes": "waarderingen",
-    "Link your account with Game Jolt to be able to edit your skins for in-game use, and more features to come.": "Verbind je account met Game Jolt om de mogelijkheid te krijgen om je Karakterafbeelding in het spel aan te passen, en voor mogelijke andere functies die in de toekomst toegevoegd kunnen worden.",
+    "Link your account with Game Jolt to be able to edit your skins for in-game use, and for more features to come.": "Verbind je account met Game Jolt om de mogelijkheid te krijgen om je Karakterafbeelding in het spel aan te passen, en voor mogelijke andere functies die in de toekomst toegevoegd kunnen worden.",
     "Link your account with your :account account.": "Verbind je account met je :account account.",
     "Location": "Locatie",
     "Log in": "Inloggen",
@@ -316,4 +315,3 @@
     "Your review of this game": "Jouw beoordeling van dit spel",
     "Your review of this resource": "Jouw beoordeling van deze bron",
     "Your slots are full. You cannot import from the old site unless you delete one of the slots.": "Er is geen plaats meer. Je kunt niet van de oude site importeren tenzij je een van de plaatsen vrij maakt."
-}

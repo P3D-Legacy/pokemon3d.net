@@ -24,7 +24,7 @@ class TwitterAccount extends Component
     }
 
     /**
-     * Update the user's GameJolt Account credentials.
+     * Update the user's Twitter Account credentials.
      *
      * @return void
      */

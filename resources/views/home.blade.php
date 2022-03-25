@@ -400,7 +400,7 @@
                             @lang('Most Generations and Regions')
                         </h3>
                         <p class="mb-8 text-gray-600 dark:text-gray-400">
-                            @lang(':game will have support for all generations of Pokémon in the future and all regions will be accessible in the game.', [
+                            @lang(':game will have support for all generations of Pokémon in the future and all 2D regions will be accessible in the game.', [
                                 'game' => config('app.name'),
                             ])
                         </p>

@@ -28,7 +28,7 @@ class XenforoAccount extends Component
     }
 
     /**
-     * Update the user's GameJolt Account credentials.
+     * Update the user's Xenforo Account credentials.
      *
      * @return void
      */
@@ -86,7 +86,7 @@ class XenforoAccount extends Component
     }
 
     /**
-     * Update the user's GameJolt Account credentials.
+     * Update the user's Xenforo Account credentials.
      *
      * @return void
      */

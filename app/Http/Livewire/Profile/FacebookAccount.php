@@ -21,7 +21,7 @@ class FacebookAccount extends Component
     }
 
     /**
-     * Update the user's GameJolt Account credentials.
+     * Update the user's Facebook Account credentials.
      *
      * @return void
      */

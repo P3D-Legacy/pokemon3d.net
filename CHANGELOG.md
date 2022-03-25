@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 
 <a name="0.4.0"></a>
 
+## 0.4.3 - 2022-03-25
+
+## What's Changed
+
+- Bump follow-redirects from 1.14.7 to 1.14.8 by @dependabot in https://github.com/P3D-Legacy/pokemon3d.net/pull/110
+- Bump node-forge from 1.2.1 to 1.3.0 by @dependabot in https://github.com/P3D-Legacy/pokemon3d.net/pull/128
+- Bump minimist from 1.2.5 to 1.2.6 by @dependabot in https://github.com/P3D-Legacy/pokemon3d.net/pull/129
+
+**Full Changelog**: https://github.com/P3D-Legacy/pokemon3d.net/compare/0.4.2...0.4.3
+
 ## 0.4.2 - 2021-12-29
 
 ## What's Changed

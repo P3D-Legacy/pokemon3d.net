@@ -41,6 +41,8 @@
 		@endif
 	</head>
 	<body class="flex flex-col font-sans leading-relaxed tracking-wide bg-top bg-repeat bg-spring {{ config('app.debug') ? 'debug-screens' : '' }}">
+        <x-jet-banner />
+
 		{{ $slot }}
 
 		@livewireScripts

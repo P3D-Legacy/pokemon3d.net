@@ -53,7 +53,10 @@ class DiscordController extends Controller
 
             // if it does not exist and is guest
             if (!$discordAccount && auth()->guest()) {
-                session()->flash('flash.banner', 'Discord account association not found with any P3D account. Log in with your P3D account to associate.');
+                session()->flash(
+                    'flash.banner',
+                    'Discord account association not found with any P3D account. Log in with your P3D account to associate.'
+                );
                 session()->flash('flash.bannerStyle', 'danger');
                 return redirect()->route('login');
             }
@@ -73,7 +76,6 @@ class DiscordController extends Controller
 
             // if user is logged in and discord account has a user
             if (auth()->user() && $discordAccountHasUser) {
-
                 // check if authenticated user is not the same as discord account user
                 if (auth()->id() !== $discordAccountHasUser->id) {
                     session()->flash('flash.banner', 'This Discord account is associated with another P3D account.');
@@ -95,7 +97,9 @@ class DiscordController extends Controller
             $userProfile['user_id'] = auth()->id();
             $userProfile['verified_at'] = now();
             DiscordAccount::create($userProfile);
-            auth()->user()->unlock(new AssociatedDiscord());
+            auth()
+                ->user()
+                ->unlock(new AssociatedDiscord());
 
             return redirect()->route('profile.show');
         } catch (InvalidStateException $e) {

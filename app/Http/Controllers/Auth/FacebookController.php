@@ -84,7 +84,6 @@ class FacebookController extends Controller
                 return redirect()->route('dashboard');
             }
 
-
             // Create new facebook account
             $userProfile['user_id'] = auth()->id();
             $userProfile['verified_at'] = now();

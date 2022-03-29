@@ -17,11 +17,11 @@
 
 		<!-- Scripts -->
 		<script src="{{ mix('js/app.js') }}" defer></script>
-		<script> 
-			var $buoop = {required:{e:-6,f:-6,o:-6,s:-3,c:-6},insecure:true,unsupported:true,api:2021.08 }; 
-			function $buo_f(){ 
-				var e = document.createElement("script"); 
-				e.src = "//browser-update.org/update.min.js"; 
+		<script>
+			var $buoop = {required:{e:-6,f:-6,o:-6,s:-3,c:-6},insecure:true,unsupported:true,api:2021.08 };
+			function $buo_f(){
+				var e = document.createElement("script");
+				e.src = "//browser-update.org/update.min.js";
 				document.body.appendChild(e);
 			};
 			try {document.addEventListener("DOMContentLoaded", $buo_f,false)}

@@ -25,9 +25,9 @@ class TwitterController extends Controller
     /**
      * Obtain the user information from Twitter.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function handleProviderCallback()
+    public function handleProviderCallback(): \Illuminate\Http\RedirectResponse
     {
         try {
             $twitterUser = Socialite::driver('twitter')->user();
@@ -46,43 +46,58 @@ class TwitterController extends Controller
                 'avatar' => $twitterUser->avatar,
             ];
 
-            // Check if user exists with email
+            // Check if account is already registered
             $twitterAccount = TwitterAccount::where('id', $twitterUser->id)->first();
+
+            // if it does not exist and is guest
             if (!$twitterAccount && auth()->guest()) {
-                return redirect()
-                    ->route('login')
-                    ->withError('Twitter account association not found with any P3D account.');
+                session()->flash(
+                    'flash.banner',
+                    'Twitter account association not found with any P3D account. Log in with your P3D account to associate.'
+                );
+                session()->flash('flash.bannerStyle', 'danger');
+                return redirect()->route('login');
             }
 
-            $user = $twitterAccount ? $twitterAccount->user : null;
-            if (auth()->user() && $user) {
-                if (auth()->user()->id !== $user->id) {
-                    request()
-                        ->session()
-                        ->flash('flash.banner', 'This Twitter account is associated with another P3D account.');
-                    request()
-                        ->session()
-                        ->flash('flash.bannerStyle', 'warning');
+            $twitterAccountHasUser = $twitterAccount ? $twitterAccount->user : null;
 
-                    return redirect()->route('profile.show');
-                }
-                Auth::login($user);
-
+            // if account is not associated with a user and is guest
+            if (auth()->guest() && !$twitterAccountHasUser) {
+                session()->flash('flash.banner', 'You are not logged in and user was not found.');
+                session()->flash('flash.bannerStyle', 'danger');
+                return redirect()->route('login');
+            } elseif ($twitterAccountHasUser && auth()->guest()) {
+                // if account is not associated with a user and is not guest
+                Auth::login($twitterAccountHasUser);
                 return redirect()->route('dashboard');
             }
 
-            if (auth()->guest() && !$user) {
-                return redirect()
-                    ->route('login')
-                    ->withError('You are not logged in and user was not found.');
+            // if user is logged in and account has a user
+            if (auth()->user() && $twitterAccountHasUser) {
+                // check if authenticated user is not the same as account user
+                if (auth()->id() !== $twitterAccountHasUser->id) {
+                    session()->flash('flash.banner', 'This Twitter account is associated with another P3D account.');
+                    session()->flash('flash.bannerStyle', 'warning');
+                    return redirect()->route('profile.show');
+                }
+
+                // check if account is deleted then restore
+                if ($twitterAccount->trashed()) {
+                    $twitterAccount->restore();
+                    return redirect()->route('profile.show');
+                }
+
+                Auth::login($twitterAccountHasUser);
+                return redirect()->route('dashboard');
             }
 
             // Create new twitter account
-            $user = auth()->user();
-            $userProfile['user_id'] = $user->id;
+            $userProfile['user_id'] = auth()->id();
             $userProfile['verified_at'] = now();
             TwitterAccount::create($userProfile);
-            $user->unlock(new AssociatedTwitter());
+            auth()
+                ->user()
+                ->unlock(new AssociatedTwitter());
 
             return redirect()->route('profile.show');
         } catch (InvalidStateException $e) {

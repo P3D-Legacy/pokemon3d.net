@@ -3,6 +3,7 @@
 namespace App\Actions\Fortify;
 
 use App\Models\User;
+use App\Stats\UserRegistrationStats;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
@@ -38,6 +39,8 @@ class CreateNewUser implements CreatesNewUsers
         $user->giveConsentTo(config('app.required_consent'), [
             'text' => config('app.consents')[config('app.required_consent')],
         ]);
+
+        UserRegistrationStats::increase();
 
         return $user;
     }

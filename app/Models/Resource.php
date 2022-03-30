@@ -5,6 +5,9 @@ namespace App\Models;
 use Spatie\Tags\HasTags;
 use App\Models\BaseModel;
 use Illuminate\Support\Str;
+
+use App\Stats\ResourceCreationStats;
+use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\LogOptions;
 use Overtrue\LaravelLike\Traits\Likeable;
 use Spatie\Activitylog\Traits\LogsActivity;
@@ -35,12 +38,17 @@ class Resource extends BaseModel implements Viewable
         self::creating(function ($model) {
             $model->uuid = Str::uuid()->toString();
             $model->user_id = auth()->id();
+            ResourceCreationStats::increase();
         });
 
         self::updating(function ($model) {
             if (!$model->uuid) {
                 $model->uuid = Str::uuid()->toString();
             }
+        });
+
+        self::deleting(function ($model) {
+            ResourceCreationStats::decrease();
         });
     }
 

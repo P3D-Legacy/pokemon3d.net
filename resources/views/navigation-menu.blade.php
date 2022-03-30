@@ -157,6 +157,11 @@
                                             {{ __('Tags') }}
                                         </x-jet-dropdown-link>
                                     @endcanany
+                                    @canany(['stats'])
+                                        <x-jet-dropdown-link href="{{ route('stats.index') }}">
+                                            {{ __('Stats') }}
+                                        </x-jet-dropdown-link>
+                                    @endcanany
                                     @canany(['categories.create','categories.update','categories.destroy']) 
                                         <x-jet-dropdown-link href="{{ route('categories.index') }}">
                                             {{ __('Categories') }}
@@ -312,6 +317,11 @@
                     @canany(['tags.create','tags.update','tags.destroy']) 
                         <x-jet-responsive-nav-link href="{{ route('tags.index') }}" :active="request()->routeIs('tags.index')">
                             {{ __('Tags') }}
+                        </x-jet-responsive-nav-link>
+                    @endcanany
+                    @canany(['stats']) 
+                        <x-jet-responsive-nav-link href="{{ route('stats.index') }}" :active="request()->routeIs('stats.index')">
+                            {{ __('Stats') }}
                         </x-jet-responsive-nav-link>
                     @endcanany
                     @canany(['manage.users','manage.roles','manage.permissions']) 

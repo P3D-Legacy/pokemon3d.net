@@ -41,6 +41,8 @@ class PermissionSeeder extends Seeder
         $p15 = Permission::firstOrCreate(['name' => 'categories.update']);
         $p16 = Permission::firstOrCreate(['name' => 'categories.destroy']);
 
+        $p17 = Permission::firstOrCreate(['name' => 'stats']);
+
         // Super Admin permissions
         $r1->givePermissionTo(Permission::all());
 
@@ -55,6 +57,7 @@ class PermissionSeeder extends Seeder
         $r2->givePermissionTo($p11->name);
         $r2->givePermissionTo($p12->name);
         $r2->givePermissionTo($p13->name);
+        $r2->givePermissionTo($p14->name);
 
         // Moderator permissions
         $r3->givePermissionTo($p8->name);

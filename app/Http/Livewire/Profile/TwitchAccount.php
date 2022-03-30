@@ -2,13 +2,15 @@
 
 namespace App\Http\Livewire\Profile;
 
-use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Component;
 
 class TwitchAccount extends Component
 {
     public $username;
+
     public $name;
+
     public $avatar;
 
     public function mount()
@@ -22,7 +24,7 @@ class TwitchAccount extends Component
     }
 
     /**
-     * Update the user's GameJolt Account credentials.
+     * Update the user's Twitch Account credentials.
      *
      * @return void
      */
@@ -43,8 +45,6 @@ class TwitchAccount extends Component
         }
 
         $this->emit('refresh');
-
-        return;
     }
 
     public function render()

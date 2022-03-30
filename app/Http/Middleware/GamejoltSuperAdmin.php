@@ -20,7 +20,7 @@ class GamejoltSuperAdmin
         if (!env('GAMEJOLT_GAME_ID') || !env('GAMEJOLT_GAME_PRIVATE_KEY')) {
             redirect()
                 ->route('gj-login')
-                ->with('error', 'Gamejolt API keys is not set by the admin!');
+                ->with('error', 'Game Jolt API keys is not set by the admin!');
         }
         if (!env('GAMEJOLT_USER_ID_SUPERADMIN')) {
             redirect()
@@ -32,6 +32,7 @@ class GamejoltSuperAdmin
                 ->route('skin-home')
                 ->with('warning', 'You do not have access to this page!');
         }
+
         return $next($request);
     }
 }

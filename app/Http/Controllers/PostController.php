@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tag;
 use App\Models\Post;
-use Spatie\Tags\Tag;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -26,6 +26,7 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::orderByDesc('created_at')->paginate(10);
+
         return view('posts.index', ['posts' => $posts]);
     }
 
@@ -37,6 +38,7 @@ class PostController extends Controller
     public function create()
     {
         $tags = Tag::all();
+
         return view('posts.create', compact('tags'));
     }
 
@@ -90,6 +92,7 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         $tags = Tag::all();
+
         return view('posts.edit', compact('post', 'tags'));
     }
 

@@ -2,38 +2,36 @@
 
 namespace App\Models;
 
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Database\Eloquent\Model;
-use Spatie\Activitylog\Models\Activity;
+use App\Models\BaseModel;
+use Illuminate\Support\Str;
+use Spatie\Activitylog\LogOptions;
 use Overtrue\LaravelLike\Traits\Likeable;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use GoldSpecDigital\LaravelEloquentUUID\Database\Eloquent\Uuid;
 
-class Skin extends Model
+class Skin extends BaseModel
 {
     use HasFactory;
     use SoftDeletes;
-    use LogsActivity;
     use Likeable;
-    use Uuid;
+    use LogsActivity;
 
-    protected $primaryKey = 'uuid';
+    protected $primaryKey = 'id';
 
     /**
      * The "type" of the auto-incrementing ID.
      *
      * @var string
      */
-    protected $keyType = 'string';
+    protected $keyType = 'integer';
 
     /**
      * Indicates if the IDs are auto-incrementing.
      *
      * @var bool
      */
-    public $incrementing = false;
+    public $incrementing = true;
 
     /**
      * The attributes that are mass assignable.
@@ -59,16 +57,30 @@ class Skin extends Model
         return 'uuid';
     }
 
-    protected static $logAttributes = ['name', 'owner_id', 'user_id', 'public'];
-    protected static $logOnlyDirty = true;
-    protected static $submitEmptyLogs = false;
-
-    // Since we are using sessions with gamejolt logins we have to tap the activity to log the causer
-    public function tapActivity(Activity $activity)
+    /**
+     * The attributes that should be logged for the user.
+     *
+     * @return array
+     */
+    public function getActivitylogOptions(): LogOptions
     {
-        $activity->subject_id = $this->id;
-        $activity->causer_id = Auth::user()->id ?? null;
-        $activity->causer_type = User::class;
+        return LogOptions::defaults()
+            ->logFillable()
+            ->logOnlyDirty();
+    }
+
+    /**
+     * The boot method of the model.
+     *
+     * @return void
+     */
+    public static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            $model->uuid = (string) Str::uuid();
+        });
     }
 
     /**

@@ -28,8 +28,7 @@ return [
          */
         'bootstrap-select' => [
             'js' => 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/js/bootstrap-select.min.js',
-            'css' =>
-                'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/css/bootstrap-select.min.css',
+            'css' => 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/css/bootstrap-select.min.css',
         ],
         /*
          * https://flatpickr.js.org

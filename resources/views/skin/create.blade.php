@@ -9,8 +9,8 @@
         <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
 
             @component('components.breadcrumb', ['breadcrumbs' => [
-                ['label' => 'Skins'],
-                ['label' => 'Create'],
+                ['label' => __('Skins')],
+                ['label' => __('Create')],
             ]])
             @endcomponent
             
@@ -32,7 +32,7 @@
                             <div class="mt-6 mb-3">
                                 <label for="public" class="flex items-center">
                                     <x-jet-checkbox id="public" name="public" />
-                                    <span class="ml-2 text-sm text-gray-600 dark:text-gray-300">Public <span class="ml-2 text-sm text-gray-500">Other users will be able to see this skin</span></span>
+                                    <span class="ml-2 text-sm text-gray-600 dark:text-gray-300">@lang('Public') <span class="ml-2 text-sm text-gray-500">@lang('Other users will be able to see this skin')</span></span>
                                 </label>
                                 <x-jet-input-error for="public" class="mt-2" />
                             </div>
@@ -47,7 +47,7 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
                                 </svg>
-                                Upload
+                                @lang('Upload')
                             </x-jet-button>
                         </form>
                     </div>

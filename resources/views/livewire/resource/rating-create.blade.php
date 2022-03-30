@@ -1,6 +1,6 @@
 <x-modal>
     <x-slot name="title">
-        Leave a review
+        @lang('Leave a review')
     </x-slot>
 
     <x-slot name="content">
@@ -8,7 +8,7 @@
         {
             rating: 0,
             hoverRating: 0,
-            ratings: [{'amount': 1, 'label':'Terrible'}, {'amount': 2, 'label':'Bad'}, {'amount': 3, 'label':'Okay'}, {'amount': 4, 'label':'Good'}, {'amount': 5, 'label':'Amazing'}],
+            ratings: [{'amount': 1, 'label':'@lang('Terrible')'}, {'amount': 2, 'label':'@lang('Bad')'}, {'amount': 3, 'label':'@lang('Okay')'}, {'amount': 4, 'label':'@lang('Good')'}, {'amount': 5, 'label':'@lang('Amazing')'}],
             rate(amount) {
                 this.rating = amount;
             },
@@ -35,7 +35,7 @@
                         <p x-text="currentLabel()"></p>
                     </template>
                     <template x-if="!rating && !hoverRating">
-                        <p>Please click star rating!</p>
+                        <p>@lang('Please click star rating!')</p>
                     </template>
                 </div>
             </div>
@@ -43,7 +43,9 @@
             <x-jet-input-error for="rating" class="mt-2" />
         </div>
 
-        <x-text-area id="body" name="body" class="block w-full mt-1" placeholder="Your review of this resource" autofocus wire:model.defer="body"></x-text-area>
+        <x-jet-label for="body" class="mt-4" value="{{ __('Your review of this resource') }}" />
+        <x-text-area id="body" name="body" class="block w-full mt-1" placeholder="{{ __('Your review of this resource') }}" autofocus wire:model.defer="body"></x-text-area>
+        <span class="text-xs text-gray-400">@lang('Min characters'): 10 &middot; @lang('Max characters'): 255</span>
         <x-jet-input-error for="body" class="mt-2" />
     </x-slot>
 

@@ -8,8 +8,11 @@ use LivewireUI\Modal\ModalComponent;
 class RatingCreate extends ModalComponent
 {
     public int|Resource $resource;
+
     public $body;
+
     public $rating;
+
     public $user;
 
     public function mount(int|Resource $resource)

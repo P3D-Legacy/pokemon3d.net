@@ -1,6 +1,6 @@
 <x-modal>
     <x-slot name="title">
-        Resource
+        @lang('Resource')
     </x-slot>
 
     <x-slot name="content">
@@ -8,14 +8,14 @@
         <x-jet-input id="resource.name" type="text" class="block w-full mt-1" wire:model.defer="resource.name" autocomplete="name" />
         <x-jet-input-error for="resource.name" class="mt-2" />
 
-        <x-jet-label for="resource.brief" class="mt-4" value="{{ __('brief') }}" />
+        <x-jet-label for="resource.brief" class="mt-4" value="{{ __('Brief') }}" />
         <x-jet-input id="resource.brief" type="text" name="resource.brief" class="block w-full mt-1" placeholder="A brief one-line description for My Resource Pack" autofocus wire:model.defer="resource.brief" />
         <x-jet-input-error for="resource.brief" class="mt-2" />
 
         <x-jet-label for="category" class="mt-4" value="{{ __('Category') }}" />
         <div class="relative inline-block w-full">
             <select class="w-full h-10 pl-3 pr-6 text-base text-gray-800 placeholder-gray-600 border rounded-lg appearance-none focus:shadow-outline" id="category" name="category" wire:model.defer="category">
-                <option value="">Select a category</option>
+                <option value="">@lang('Select a category')</option>
                 @foreach ($categories as $c)
                     <option value="{{ $c->id }}" {{ $c->id == $category ? 'selected="selected"' : '' }}>{{ $c->name }}</option>
                 @endforeach
@@ -31,7 +31,7 @@
             <x-easy-mde-editor name="resource.description" wire:model.defer="resource.description" :options="['hideIcons' => ['side-by-side','fullscreen',]]">
                 <x-slot name="script">
                     easyMDE.codemirror.on('change', function () {
-                    @this.set('resource.description', easyMDE.value())
+                        @this.set('resource.description', easyMDE.value())
                     });
                 </x-slot>
             </x-easy-mde-editor>

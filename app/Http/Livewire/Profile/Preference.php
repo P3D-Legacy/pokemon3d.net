@@ -29,6 +29,7 @@ class Preference extends Component
             ->user()
             ->settings()
             ->all();
+
         return $user->settings()->get($setting);
     }
 }

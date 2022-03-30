@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Achievements\User;
@@ -7,8 +8,6 @@ use Assada\Achievements\Achievement;
 
 /**
  * Class Registered
- *
- * @package App\Achievements\User
  */
 class AssociatedGamejolt extends Achievement
 {
@@ -20,7 +19,7 @@ class AssociatedGamejolt extends Achievement
     /*
      * A small description for the achievement
      */
-    public $description = 'User associated their account with Gamejolt';
+    public $description = 'User associated their account with Game Jolt';
 
     /*
      * The amount of "points" this user need to obtain in order to complete this achievement

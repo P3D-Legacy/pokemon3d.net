@@ -44,6 +44,7 @@ class PingServer extends Command
         $server = Server::find($server_uuid);
         if (!$server) {
             $this->error('Server not found.');
+
             return;
         }
 
@@ -71,6 +72,7 @@ class PingServer extends Command
         }
         $server->save();
         $this->info('Name: ' . $server->name . ' - Ping: ' . $ping . 'ms');
+
         return $ping;
     }
 }

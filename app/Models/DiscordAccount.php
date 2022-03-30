@@ -2,25 +2,42 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Models\BaseModel;
+use Illuminate\Support\Str;
+use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use GoldSpecDigital\LaravelEloquentUUID\Database\Eloquent\Uuid;
 
-class DiscordAccount extends Model
+class DiscordAccount extends BaseModel
 {
     use HasFactory;
     use SoftDeletes;
-    use Uuid;
+    use LogsActivity;
 
-    protected $primaryKey = 'uuid';
+    public static function boot()
+    {
+        parent::boot();
+
+        self::creating(function ($model) {
+            $model->uuid = Str::uuid()->toString();
+        });
+
+        self::updating(function ($model) {
+            if (!$model->uuid) {
+                $model->uuid = Str::uuid()->toString();
+            }
+        });
+    }
+
+    protected $primaryKey = 'id';
 
     /**
      * The "type" of the auto-incrementing ID.
      *
      * @var string
      */
-    protected $keyType = 'string';
+    protected $keyType = 'integer';
 
     /**
      * Indicates if the IDs are auto-incrementing.
@@ -28,6 +45,13 @@ class DiscordAccount extends Model
      * @var bool
      */
     public $incrementing = false;
+
+    /**
+     * The attributes that will be used for multiple key binding on route models
+     *
+     * @var array
+     */
+    protected $routeBindingKeys = ['uuid'];
 
     /**
      * The attributes that are mass assignable.
@@ -60,15 +84,21 @@ class DiscordAccount extends Model
     protected $encryptable = ['password'];
 
     /**
-     * The attributes that should be hidden
+     * The attributes that should be logged for the user.
      *
-     * @var array
+     * @return array
      */
-    protected $hidden = ['aid'];
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logFillable()
+            ->logOnlyDirty();
+    }
 
     public function touchVerify()
     {
         $this->verified_at = $this->freshTimestamp();
+
         return $this->save();
     }
 
@@ -78,5 +108,10 @@ class DiscordAccount extends Model
     public function user()
     {
         return $this->hasOne(User::class, 'id', 'user_id');
+    }
+
+    public function roles()
+    {
+        return $this->belongsToMany(DiscordRole::class);
     }
 }

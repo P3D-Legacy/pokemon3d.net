@@ -2,16 +2,17 @@
 
 namespace App\Http\Livewire\Login;
 
-use Livewire\Component;
 use App\Models\GamejoltAccount;
-use Harrk\GameJoltApi\GamejoltApi;
-use Illuminate\Support\Facades\Auth;
-use Harrk\GameJoltApi\GamejoltConfig;
 use Harrk\GameJoltApi\Exceptions\TimeOutException;
+use Harrk\GameJoltApi\GamejoltApi;
+use Harrk\GameJoltApi\GamejoltConfig;
+use Illuminate\Support\Facades\Auth;
+use Livewire\Component;
 
 class GameJolt extends Component
 {
     public $username;
+
     public $token;
 
     public function mount()
@@ -21,7 +22,7 @@ class GameJolt extends Component
     }
 
     /**
-     * Update the user's GameJolt Account credentials.
+     * Update the user's Game Jolt Account credentials.
      *
      * @return void
      */
@@ -41,6 +42,7 @@ class GameJolt extends Component
             $auth = $api->users()->auth($this->username, $this->token);
         } catch (TimeOutException $e) {
             $this->addError('error', $e->getMessage());
+
             return;
         }
 
@@ -51,35 +53,36 @@ class GameJolt extends Component
                 $error = 'Username and/or token is wrong.';
             }
             $this->addError('error', $error);
+
             return;
         }
 
         $gamejoltaccount = GamejoltAccount::where('username', $this->username)->first();
 
         if (!$gamejoltaccount) {
-            $this->addError('error', 'This Gamejolt Account is not associated with a P3D account yet.');
+            $this->addError('error', 'This Game Jolt Account is not associated with a P3D account yet.');
             return;
         }
 
         $user = $gamejoltaccount->user()->first();
 
         if (!$user) {
-            $this->addError('error', 'Could\'t find the user associated with this Gamejolt Account.');
+            $this->addError('error', 'Could\'t find the user associated with this Game Jolt Account.');
             return;
         }
 
         if (!Auth::loginUsingId($user->id)) {
             $this->addError('error', 'Login failed!');
+
             return;
         } else {
             $gamejoltaccount->touchVerify();
             request()
                 ->session()
                 ->regenerate();
+
             return redirect()->intended('dashboard');
         }
-
-        return;
     }
 
     public function render()

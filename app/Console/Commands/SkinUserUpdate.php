@@ -2,8 +2,8 @@
 
 namespace App\Console\Commands;
 
-use App\Models\Skin;
 use App\Models\GamejoltAccount;
+use App\Models\Skin;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 

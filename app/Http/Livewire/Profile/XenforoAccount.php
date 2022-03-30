@@ -2,17 +2,20 @@
 
 namespace App\Http\Livewire\Profile;
 
-use Carbon\Carbon;
-use Livewire\Component;
 use App\Helpers\XenForoHelper;
-use Illuminate\Validation\Rule;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
+use Livewire\Component;
 
 class XenforoAccount extends Component
 {
     public $username;
+
     public $password;
+
     public $updated_at;
+
     public $verified_at;
 
     public function mount()
@@ -25,7 +28,7 @@ class XenforoAccount extends Component
     }
 
     /**
-     * Update the user's GameJolt Account credentials.
+     * Update the user's Xenforo Account credentials.
      *
      * @return void
      */
@@ -46,13 +49,14 @@ class XenforoAccount extends Component
             Auth::user()->forum->delete();
             $this->updated_at = null;
             $this->verified_at = null;
+
             return;
         }
 
         $auth = XenForoHelper::postAuth($this->username, $this->password);
 
         if (isset($auth['error'])) {
-            $this->addError('error', $auth['message']);
+            $this->addError('error', $auth['message'] ?? 'An unknown error occurred.');
             return;
         }
 
@@ -79,12 +83,10 @@ class XenforoAccount extends Component
         $this->verified_at = $forum->verified_at->diffForHumans();
 
         $this->emit('saved');
-
-        return;
     }
 
     /**
-     * Update the user's GameJolt Account credentials.
+     * Update the user's Xenforo Account credentials.
      *
      * @return void
      */

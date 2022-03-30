@@ -20,9 +20,10 @@ class GamejoltAccount
             $request->session()->flash('flash.bannerStyle', 'info');
             $request
                 ->session()
-                ->flash('flash.banner', 'You need to link your GameJolt account before accessing this page.');
+                ->flash('flash.banner', __('You need to link your Game Jolt account before accessing this page.'));
             return redirect()->route('profile.show');
         }
+
         return $next($request);
     }
 }

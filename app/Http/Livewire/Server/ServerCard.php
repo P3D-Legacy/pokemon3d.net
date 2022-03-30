@@ -3,8 +3,8 @@
 namespace App\Http\Livewire\Server;
 
 use App\Models\Server;
-use Livewire\Component;
 use Illuminate\Support\Facades\Artisan;
+use Livewire\Component;
 
 class ServerCard extends Component
 {

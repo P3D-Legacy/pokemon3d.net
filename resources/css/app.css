@@ -24,7 +24,7 @@
     height: 0.8em;
     background-color: rgb(184, 184, 184);
     box-shadow: 0 0 0 2px rgb(184, 184, 184), 1.5em 0 0 2px rgb(184, 184, 184), 3em 0 0 2px  #f44;
-    z-index: 100;
+    z-index: 10;
 }
 .browser-mockup > * {
     display: block;
@@ -47,17 +47,6 @@
 }
 /** END BROWSER MOCKUP **/
 
-.tooltip .tooltip-text {
-    visibility: hidden;
-    text-align: center;
-    padding: 2px 6px;
-    position: absolute;
-    z-index: 100;
-}
-.tooltip:hover .tooltip-text {
-    visibility: visible;
-}
-
 .editor-toolbar {
     background-color: #fff;
 }
@@ -74,4 +63,13 @@
 
 .dark .editor-toolbar button {
     color:#fff;
+}
+
+
+.tip {
+    @apply absolute invisible;
+}
+
+.has-tip:hover .tip {
+    @apply z-50 visible px-2 py-1 -mt-8 text-gray-900 bg-green-200 rounded;
 }

@@ -7,6 +7,7 @@ use Illuminate\View\Component;
 class ResponsiveNavLink extends Component
 {
     public $title;
+
     public $url;
 
     /**

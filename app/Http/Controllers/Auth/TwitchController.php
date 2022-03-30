@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Models\TwitchAccount;
+use App\Achievements\User\AssociatedTwitch;
 use App\Http\Controllers\Controller;
+use App\Models\TwitchAccount;
+use GuzzleHttp\Exception\ClientException;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
-use GuzzleHttp\Exception\ClientException;
-use App\Achievements\User\AssociatedTwitch;
 use Laravel\Socialite\Two\InvalidStateException;
 
 class TwitchController extends Controller
@@ -25,7 +25,7 @@ class TwitchController extends Controller
     /**
      * Obtain the user information from Twitch.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function handleProviderCallback()
     {
@@ -40,50 +40,68 @@ class TwitchController extends Controller
                 'avatar' => $twitchUser->avatar,
             ];
 
-            // Check if user exists with email
+            // Check if TwitchAccount is already registered
             $twitchAccount = TwitchAccount::where('id', $twitchUser->id)->first();
+
+            // if it does not exist and is guest
             if (!$twitchAccount && auth()->guest()) {
-                return redirect()
-                    ->route('login')
-                    ->withError('Twitch account association not found with any P3D account.');
+                session()->flash(
+                    'flash.banner',
+                    'Discord account association not found with any P3D account. Log in with your P3D account to associate.'
+                );
+                session()->flash('flash.bannerStyle', 'danger');
+                return redirect()->route('login');
             }
 
-            $user = $twitchAccount ? $twitchAccount->user : null;
-            if (auth()->user() && $user) {
-                if (auth()->user()->id !== $user->id) {
-                    request()
-                        ->session()
-                        ->flash('flash.banner', 'This Twitch account is associated with another P3D account.');
-                    request()
-                        ->session()
-                        ->flash('flash.bannerStyle', 'warning');
-                    return redirect()->route('profile.show');
-                }
-                Auth::login($user);
-                return redirect()->route('dashboard');
-            }
+            $twitchAccountHasUser = $twitchAccount ? $twitchAccount->user : null;
 
-            if (auth()->guest() && !$user) {
+            // if account is not associated with a user and is guest
+            if (auth()->guest() && !$twitchAccountHasUser) {
                 return redirect()
                     ->route('login')
                     ->withError('You are not logged in and user was not found.');
+            } elseif ($twitchAccountHasUser && auth()->guest()) {
+                // if account is not associated with a user and is not guest
+                Auth::login($twitchAccountHasUser);
+                return redirect()->route('dashboard');
+            }
+
+            // if user is logged in and discord account has a user
+            if (auth()->user() && $twitchAccountHasUser) {
+                // check if authenticated user is not the same as discord account user
+                if (auth()->id() !== $twitchAccountHasUser->id) {
+                    session()->flash('flash.banner', 'This Twitch account is associated with another P3D account.');
+                    session()->flash('flash.bannerStyle', 'warning');
+                    return redirect()->route('profile.show');
+                }
+
+                // check if discord account is deleted then restore
+                if ($twitchAccount->trashed()) {
+                    $twitchAccount->restore();
+                    return redirect()->route('profile.show');
+                }
+
+                Auth::login($twitchAccountHasUser);
+                return redirect()->route('dashboard');
             }
 
             // Create new twitch account
-            $user = auth()->user();
-            $userProfile['user_id'] = $user->id;
+            $userProfile['user_id'] = auth()->id();
             $userProfile['verified_at'] = now();
             TwitchAccount::create($userProfile);
-            $user->unlock(new AssociatedTwitch());
+            auth()
+                ->user()
+                ->unlock(new AssociatedTwitch());
+
             return redirect()->route('profile.show');
         } catch (InvalidStateException $e) {
-            return redirect()
-                ->route('home')
-                ->withError('Something went wrong with Twitch login. Please try again.');
+            session()->flash('flash.banner', 'Something went wrong with Discord login. Please try again.');
+            session()->flash('flash.bannerStyle', 'danger');
+            return redirect()->route('home');
         } catch (ClientException $e) {
-            return redirect()
-                ->route('home')
-                ->withError('Something went wrong with Twitch login. Please try again.');
+            session()->flash('flash.banner', 'Something went wrong with Discord login. Please try again.');
+            session()->flash('flash.bannerStyle', 'danger');
+            return redirect()->route('home');
         }
 
         return redirect()->route('dashboard');

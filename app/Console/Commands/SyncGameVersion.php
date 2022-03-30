@@ -42,10 +42,17 @@ class SyncGameVersion extends Command
         $api_url = env('GITHUB_API_REPO');
         if (!$api_url) {
             $this->error('GitHub API URL is not set.');
+
             return 1;
         }
         $release_url = env('GITHUB_API_REPO') . '/releases';
-        $response = Http::get($release_url)->json();
+        try {
+            $response = Http::get($release_url)->json();
+        } catch (\Exception $exception) {
+            $this->error('Error getting latest release from GitHub.');
+            $this->error($exception->getMessage());
+            return 1;
+        }
 
         foreach ($response as $release) {
             $date = new \DateTime($release['published_at']);

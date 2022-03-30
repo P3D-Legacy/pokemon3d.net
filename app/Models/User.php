@@ -2,13 +2,17 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
+use DateTimeInterface;
 use Assada\Achievements\Achiever;
 use Laravel\Sanctum\HasApiTokens;
 use Origami\Consent\GivesConsent;
+use Spatie\Activitylog\LogOptions;
 use Laravel\Jetstream\HasProfilePhoto;
 use Overtrue\LaravelLike\Traits\Liker;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
+use Spatie\Activitylog\Traits\LogsActivity;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Glorand\Model\Settings\Traits\HasSettingsTable;
@@ -27,6 +31,7 @@ class User extends Authenticatable implements MustVerifyEmail
     use Liker;
     use Achiever;
     use HasSettingsTable;
+    use LogsActivity;
 
     /**
      * The attributes that are mass assignable.
@@ -75,6 +80,33 @@ class User extends Authenticatable implements MustVerifyEmail
         'birthdate' => false,
         'age' => false,
     ];
+
+    /**
+     * The attributes that will be used for multiple key binding on route models
+     *
+     * @var array
+     */
+    protected $routeBindingKeys = ['username'];
+
+    /**
+     * The attributes that should be logged for the user.
+     *
+     * @return array
+     */
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logFillable()
+            ->logOnlyDirty()
+            ->logExcept(['last_active_at']);
+    }
+
+    // Overrides datetime object serialization
+    protected function serializeDate(DateTimeInterface $date)
+    {
+        $carbonInstance = Carbon::instance($date);
+        return $carbonInstance->toDateTimeString();
+    }
 
     /**
      * Get the gamejolt account associated with the user.

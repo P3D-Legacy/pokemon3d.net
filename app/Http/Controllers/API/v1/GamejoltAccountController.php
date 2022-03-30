@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers\API\v1;
 
-use Illuminate\Http\Request;
-use App\Models\GamejoltAccount;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\API\v1\GamejoltAccountResource;
+use App\Models\GamejoltAccount;
+use Illuminate\Http\Request;
 
 /**
- * @group Gamejolt Account
+ * @group Game Jolt Account
  *
- * APIs for getting Gamejolt Accounts.
+ * APIs for getting Game Jolt Accounts.
  */
 class GamejoltAccountController extends Controller
 {
@@ -22,7 +22,7 @@ class GamejoltAccountController extends Controller
     /**
      * Display the specified resource.
      *
-     * @urlParam id int required The ID of the Gamejolt Account.
+     * @urlParam id int required The ID of the Game Jolt Account.
      *
      * @response {
      *        "data": {
@@ -105,6 +105,7 @@ class GamejoltAccountController extends Controller
         $gja = GamejoltAccount::with(['user.roles.permissions', 'bans', 'user.discord'])
             ->where('id', $id)
             ->firstOrFail();
+
         return new GamejoltAccountResource($gja);
     }
 }

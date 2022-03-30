@@ -3,21 +3,24 @@
 namespace App\Http\Livewire\Profile;
 
 use App\Achievements\User\AssociatedGamejolt;
-use Carbon\Carbon;
-use Livewire\Component;
 use App\Models\GamejoltAccount;
-use Illuminate\Validation\Rule;
+use Carbon\Carbon;
+use Harrk\GameJoltApi\Exceptions\TimeOutException;
 use Harrk\GameJoltApi\GamejoltApi;
-use Illuminate\Support\Facades\Auth;
 use Harrk\GameJoltApi\GamejoltConfig;
 use Illuminate\Support\Facades\Artisan;
-use Harrk\GameJoltApi\Exceptions\TimeOutException;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
+use Livewire\Component;
 
 class ConnectGamejoltAccount extends Component
 {
     public $username;
+
     public $token;
+
     public $updated_at;
+
     public $verified_at;
 
     public function mount()
@@ -30,7 +33,7 @@ class ConnectGamejoltAccount extends Component
     }
 
     /**
-     * Update the user's GameJolt Account credentials.
+     * Update the user's Game Jolt Account credentials.
      *
      * @return void
      */
@@ -53,10 +56,11 @@ class ConnectGamejoltAccount extends Component
         ]);
 
         if (!$this->username && !$this->token) {
-            $this->errorBag->add('success', 'Your GameJolt account has now been unlinked.');
+            $this->errorBag->add('success', 'Your Game Jolt account has now been unlinked.');
             $user->gamejolt->delete();
             $this->updated_at = null;
             $this->verified_at = null;
+
             return;
         }
 
@@ -66,6 +70,7 @@ class ConnectGamejoltAccount extends Component
             $auth = $api->users()->auth($this->username, $this->token);
         } catch (TimeOutException $e) {
             $this->addError('error', $e->getMessage());
+
             return;
         }
 
@@ -76,6 +81,7 @@ class ConnectGamejoltAccount extends Component
                 $error = 'Username and/or token is wrong.';
             }
             $this->addError('error', $error);
+
             return;
         }
 
@@ -100,7 +106,7 @@ class ConnectGamejoltAccount extends Component
             $gamejolt = GamejoltAccount::firstOrCreate($data);
         }
 
-        // Update the user's (and other user's) GameJolt Account skin link.
+        // Update the user's (and other user's) Game Jolt Account skin link.
         Artisan::call('p3d:skinuserupdate');
 
         // Unlock achievement
@@ -115,7 +121,7 @@ class ConnectGamejoltAccount extends Component
     }
 
     /**
-     * Update the user's GameJolt Account credentials.
+     * Update the user's Game Jolt Account credentials.
      *
      * @return void
      */

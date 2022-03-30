@@ -29,6 +29,7 @@ class BanReasonResource extends JsonResource
                 'name' => $this->name,
             ];
         }
+
         return [
             'name' => $this->name,
         ];

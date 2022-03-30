@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers\API\v1;
 
-use App\Models\User;
-use Illuminate\Http\Request;
-use App\Models\GamejoltAccount;
-use App\Models\GamejoltAccountBan;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\API\v1\GamejoltAccountBanResource;
+use App\Models\GamejoltAccount;
+use App\Models\GamejoltAccountBan;
+use App\Models\User;
+use Illuminate\Http\Request;
 
 /**
- * @group Ban Gamejolt Account
+ * @group Ban Game Jolt Account
  *
- * APIs for getting, creating, updating and deleting Gamejolt Account Bans.
+ * APIs for getting, creating, updating and deleting Game Jolt Account Bans.
  */
 class GamejoltAccountBanController extends Controller
 {
@@ -40,10 +40,10 @@ class GamejoltAccountBanController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @bodyParam gamejoltaccount_id int required The ID of the Gamejolt Account. Example: 123456
+     * @bodyParam gamejoltaccount_id int required The ID of the Game Jolt Account. Example: 123456
      * @bodyParam reason_id int required The ID of the Ban Reason. Example: 3
-     * @bodyParam banned_by_id int optional The ID of the Gamejolt Account, default will be owner of token. Cannot be used with banned_by_gamejoltaccount_id. Example: 123456
-     * @bodyParam banned_by_gamejoltaccount_id int optional The ID of the Gamejolt Account. Cannot be used with banned_by_id. Example: 123456
+     * @bodyParam banned_by_id int optional The ID of the Game Jolt Account, default will be owner of token. Cannot be used with banned_by_gamejoltaccount_id. Example: 123456
+     * @bodyParam banned_by_gamejoltaccount_id int optional The ID of the Game Jolt Account. Cannot be used with banned_by_id. Example: 123456
      * @bodyParam expires_at string optional The expiry of the ban. Example: 2020-01-01
      *
      * @response 201 {
@@ -81,7 +81,7 @@ class GamejoltAccountBanController extends Controller
             $gja = GamejoltAccount::where('id', $request->banned_by_gamejoltaccount_id)->first();
             if (!$gja) {
                 return response()->json([
-                    'error' => 'Gamejolt Account not found with banned_by_gamejoltaccount_id!',
+                    'error' => 'Game Jolt Account not found with banned_by_gamejoltaccount_id!',
                 ]);
             }
             $banned_by_id = $gja->user->id;
@@ -101,13 +101,14 @@ class GamejoltAccountBanController extends Controller
             'expire_at' => $request->expire_at,
         ];
         $resource = GamejoltAccountBan::create($new_data);
+
         return new GamejoltAccountBanResource($resource);
     }
 
     /**
      * Display the specified resource.
      *
-     * @urlParam id int required The ID of the Gamejolt Account.
+     * @urlParam id int required The ID of the Game Jolt Account.
      *
      * @response {
      *    "data": [
@@ -135,6 +136,7 @@ class GamejoltAccountBanController extends Controller
         $resources = GamejoltAccountBan::with(['reason', 'gamejoltaccount', 'banned_by'])
             ->where('gamejoltaccount_id', $id)
             ->get();
+
         return GamejoltAccountBanResource::collection($resources);
     }
 
@@ -155,6 +157,7 @@ class GamejoltAccountBanController extends Controller
         }
         $resource = GamejoltAccountBan::where('uuid', $uuid)->firstOrFail();
         $resource->delete();
+
         return response()
             ->json([
                 'success' => 'Ban was removed!',

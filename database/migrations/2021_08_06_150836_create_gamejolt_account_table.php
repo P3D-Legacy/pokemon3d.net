@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateGamejoltAccountTable extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      *
@@ -20,9 +19,9 @@ class CreateGamejoltAccountTable extends Migration
                 ->bigInteger('id')
                 ->unsigned()
                 ->unique()
-                ->comment('GameJolt Account ID');
-            $table->text('username')->comment('GameJolt Username');
-            $table->string('token')->comment('GameJolt Token');
+                ->comment('Game Jolt Account ID');
+            $table->text('username')->comment('Game Jolt Username');
+            $table->string('token')->comment('Game Jolt Token');
             $table->timestamp('verified_at')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
@@ -39,4 +38,4 @@ class CreateGamejoltAccountTable extends Migration
     {
         Schema::drop('game_jolt_accounts');
     }
-}
+};

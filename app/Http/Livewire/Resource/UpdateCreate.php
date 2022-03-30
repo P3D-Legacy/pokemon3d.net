@@ -4,8 +4,8 @@ namespace App\Http\Livewire\Resource;
 
 use App\Models\GameVersion;
 use App\Models\Resource;
-use Livewire\WithFileUploads;
 use App\Models\ResourceUpdate;
+use Livewire\WithFileUploads;
 use LivewireUI\Modal\ModalComponent;
 
 class UpdateCreate extends ModalComponent
@@ -13,17 +13,23 @@ class UpdateCreate extends ModalComponent
     use WithFileUploads;
 
     public ResourceUpdate $resourceUpdate;
+
     public int|Resource $resource;
+
     public $file;
+
     public $version;
+
     public $description;
+
     public $gameversion;
+
     public $gameversions;
 
     protected array $rules = [
         'version' => ['required', 'string'],
         'description' => ['required', 'string'],
-        'file' => ['required', 'file', 'mimes:zip', 'max:200000'], //200mb
+        'file' => ['required', 'file', 'mimes:zip', 'max:100000'], //100mb
         'gameversion' => ['required'],
     ];
 
@@ -45,7 +51,10 @@ class UpdateCreate extends ModalComponent
         ]);
 
         $this->resourceUpdate->clearMediaCollection('resource_update_file');
-        $this->resourceUpdate->addMedia($this->file->getRealPath())->toMediaCollection('resource_update_file');
+        $this->resourceUpdate
+            ->addMedia($this->file->getRealPath())
+            ->usingName($this->file->getClientOriginalName())
+            ->toMediaCollection('resource_update_file');
 
         $this->emit('resourceUpdated', $this->resource->uuid);
         $this->closeModal();

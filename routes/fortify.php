@@ -18,7 +18,7 @@ use Laravel\Fortify\Http\Controllers\TwoFactorAuthenticationController;
 use Laravel\Fortify\Http\Controllers\TwoFactorQrCodeController;
 use Laravel\Fortify\Http\Controllers\VerifyEmailController;
 
-Route::group(['middleware' => config('fortify.middleware', ['web'])], function () {
+Route::middleware(config('fortify.middleware', ['web']))->group(function () {
     $enableViews = config('fortify.views', true);
 
     // Authentication...
@@ -124,10 +124,7 @@ Route::group(['middleware' => config('fortify.middleware', ['web'])], function (
         }
 
         Route::post('/two-factor-challenge', [TwoFactorAuthenticatedSessionController::class, 'store'])->middleware(
-            array_filter([
-                'guest:' . config('fortify.guard'),
-                $twoFactorLimiter ? 'throttle:' . $twoFactorLimiter : null,
-            ])
+            array_filter(['guest:' . config('fortify.guard'), $twoFactorLimiter ? 'throttle:' . $twoFactorLimiter : null])
         );
 
         $twoFactorMiddleware = Features::optionEnabled(Features::twoFactorAuthentication(), 'confirmPassword')

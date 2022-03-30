@@ -7,15 +7,17 @@ use Illuminate\View\Component;
 class ReviewStars extends Component
 {
     public $stars;
+    public $size;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($stars)
+    public function __construct($stars, $size)
     {
         $this->stars = $stars;
+        $this->size = $size;
     }
 
     /**

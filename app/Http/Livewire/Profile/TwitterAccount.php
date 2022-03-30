@@ -2,13 +2,15 @@
 
 namespace App\Http\Livewire\Profile;
 
-use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Component;
 
 class TwitterAccount extends Component
 {
     public $username;
+
     public $name;
+
     public $avatar;
 
     public function mount()
@@ -22,7 +24,7 @@ class TwitterAccount extends Component
     }
 
     /**
-     * Update the user's GameJolt Account credentials.
+     * Update the user's Twitter Account credentials.
      *
      * @return void
      */
@@ -43,8 +45,6 @@ class TwitterAccount extends Component
         }
 
         $this->emit('refresh');
-
-        return;
     }
 
     public function render()

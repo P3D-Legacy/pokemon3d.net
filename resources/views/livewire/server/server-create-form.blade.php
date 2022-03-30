@@ -1,18 +1,20 @@
 <div>
     <x-jet-form-section submit="save">
         <x-slot name="title">
-            {{ __('Create a server') }}
+            {{ __('Add a server') }}
         </x-slot>
 
         <x-slot name="description">
             {{ __('Do you want your server to be listed for other players to see?') }}
-            <div class="px-4 py-3 my-3 text-sm leading-normal text-blue-600 bg-blue-100 border rounded-lg border-blue-600/25 dark:text-blue-100 dark:bg-blue-600 dark:border-blue-100/25" role="alert">
-                <p>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-4 h-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>{!! __('Need help to setup a own server? Check out <a href=":url" class="font-semibold underline">this guide</a>.', ['url' => '#']) !!}
-                </p>
-            </div>
+            {{--
+                <div class="px-4 py-3 my-3 text-sm leading-normal text-blue-600 bg-blue-100 border rounded-lg border-blue-600/25 dark:text-blue-100 dark:bg-blue-600 dark:border-blue-100/25" role="alert">
+                    <p>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-4 h-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>{!! __('Need help to setup a own server? Check out <a href=":url" class="font-semibold underline">this guide</a>.', ['url' => '#']) !!}
+                    </p>
+                </div>
+            --}}
         </x-slot>
 
         <x-slot name="form">

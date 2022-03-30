@@ -2,35 +2,36 @@
 
 namespace App\Models;
 
+use App\Models\BaseModel;
 use Illuminate\Support\Str;
-use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\LogOptions;
 use Overtrue\LaravelLike\Traits\Likeable;
+use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use GoldSpecDigital\LaravelEloquentUUID\Database\Eloquent\Uuid;
 
-class Server extends Model
+class Server extends BaseModel
 {
     use HasFactory;
     use Likeable;
     use SoftDeletes;
-    use Uuid;
+    use LogsActivity;
 
-    protected $primaryKey = 'uuid';
+    protected $primaryKey = 'id';
 
     /**
      * The "type" of the auto-incrementing ID.
      *
      * @var string
      */
-    protected $keyType = 'string';
+    protected $keyType = 'integer';
 
     /**
      * Indicates if the IDs are auto-incrementing.
      *
      * @var bool
      */
-    public $incrementing = false;
+    public $incrementing = true;
 
     /**
      * The attributes that are mass assignable.
@@ -77,6 +78,18 @@ class Server extends Model
         static::creating(function ($model) {
             $model->uuid = (string) Str::uuid();
         });
+    }
+
+    /**
+     * The attributes that should be logged for the user.
+     *
+     * @return array
+     */
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logFillable()
+            ->logOnlyDirty();
     }
 
     public function scopeIsActive($query)

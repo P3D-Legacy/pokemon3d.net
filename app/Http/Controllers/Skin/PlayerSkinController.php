@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Skin;
 
-use App\Models\Skin;
-use App\Models\GJUser;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\GJUser;
+use App\Models\Skin;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -13,7 +13,6 @@ class PlayerSkinController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['gj.account']);
         $this->middleware(['gj.admin'])->only(['index']);
     }
 
@@ -30,6 +29,7 @@ class PlayerSkinController extends Controller
                 return strpos($item, '.png');
             } // only png's
         );
+
         return view('player-skin.index')->with('playerskins', $playerskins);
     }
 
@@ -60,9 +60,9 @@ class PlayerSkinController extends Controller
         $filename = $gjid . '.png';
         $request->file('image')->storeAs(null, $filename, 'player');
 
-        return redirect()
-            ->route('skin-home')
-            ->with('success', 'Skin was successfully uploaded! Not seeing it? Refresh the page again.');
+        session()->flash('flash.bannerStyle', 'success');
+        session()->flash('flash.banner', 'Skin was successfully uploaded! Not seeing it? Refresh the page again.');
+        return redirect()->route('skin-home');
     }
 
     /**
@@ -126,7 +126,7 @@ class PlayerSkinController extends Controller
      */
     public function destroy(Request $request)
     {
-        $gjid = Auth::user()->gamejolt > id;
+        $gjid = Auth::user()->gamejolt->id;
         $filename = $gjid . '.png';
         if (!Storage::disk('player')->exists($filename)) {
             return redirect()
@@ -134,6 +134,7 @@ class PlayerSkinController extends Controller
                 ->with('error', 'Skin was not found!');
         }
         Storage::disk('player')->delete($filename);
+
         return redirect()
             ->route('skins-my')
             ->with('success', 'Skin was successfully deleted!');
@@ -165,6 +166,7 @@ class PlayerSkinController extends Controller
             ])
             ->log('deleted');
         Storage::disk('player')->delete($filename);
+
         return redirect()
             ->route('player-skins')
             ->with('success', 'Skin was successfully deleted!');

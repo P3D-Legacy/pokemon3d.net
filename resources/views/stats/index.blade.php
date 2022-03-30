@@ -9,6 +9,7 @@
         <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
             <div class="overflow-hidden bg-white dark:bg-gray-900 shadow-xl sm:rounded-lg">
                 @livewire('admin.user-registration-stats-graph')
+                @livewire('admin.resource-creation-stats-graph')
             </div>
         </div>
     </div>

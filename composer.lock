@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "30d9677d90a5b0582e4a7dda71b3ad86",
+    "content-hash": "573a0c0e8df9746718284c5207494690",
     "packages": [
         {
             "name": "akaunting/laravel-language",
@@ -3762,16 +3762,16 @@
         },
         {
             "name": "laravel/jetstream",
-            "version": "v2.7.0",
+            "version": "v2.7.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/jetstream.git",
-                "reference": "45e16bfc79baa6708bd7a799694afea09234c37e"
+                "reference": "2c3c9c57053da665a45bb02060367144ac7588a6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/jetstream/zipball/45e16bfc79baa6708bd7a799694afea09234c37e",
-                "reference": "45e16bfc79baa6708bd7a799694afea09234c37e",
+                "url": "https://api.github.com/repos/laravel/jetstream/zipball/2c3c9c57053da665a45bb02060367144ac7588a6",
+                "reference": "2c3c9c57053da665a45bb02060367144ac7588a6",
                 "shasum": ""
             },
             "require": {
@@ -3824,7 +3824,7 @@
                 "issues": "https://github.com/laravel/jetstream/issues",
                 "source": "https://github.com/laravel/jetstream"
             },
-            "time": "2022-03-29T14:57:24+00:00"
+            "time": "2022-03-30T14:56:45+00:00"
         },
         {
             "name": "laravel/sanctum",
@@ -8670,16 +8670,16 @@
         },
         {
             "name": "spatie/laravel-stats",
-            "version": "1.0.1",
+            "version": "2.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-stats.git",
-                "reference": "f01eafb71a5c4d89dd5bece24a979cda73675493"
+                "reference": "987841593938e7a98f4c9f11ae11595cef5518a1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-stats/zipball/f01eafb71a5c4d89dd5bece24a979cda73675493",
-                "reference": "f01eafb71a5c4d89dd5bece24a979cda73675493",
+                "url": "https://api.github.com/repos/spatie/laravel-stats/zipball/987841593938e7a98f4c9f11ae11595cef5518a1",
+                "reference": "987841593938e7a98f4c9f11ae11595cef5518a1",
                 "shasum": ""
             },
             "require": {
@@ -8688,6 +8688,7 @@
                 "spatie/laravel-package-tools": "^1.9.2"
             },
             "require-dev": {
+                "doctrine/dbal": "^3.3",
                 "orchestra/testbench": "^6.23|^7.0",
                 "phpunit/phpunit": "^9.4",
                 "vimeo/psalm": "^4.12"
@@ -8731,7 +8732,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/laravel-stats/issues",
-                "source": "https://github.com/spatie/laravel-stats/tree/1.0.1"
+                "source": "https://github.com/spatie/laravel-stats/tree/2.0.0"
             },
             "funding": [
                 {
@@ -8743,7 +8744,7 @@
                     "type": "other"
                 }
             ],
-            "time": "2022-02-02T08:38:29+00:00"
+            "time": "2022-03-04T11:54:33+00:00"
         },
         {
             "name": "spatie/laravel-tags",

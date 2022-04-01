@@ -38,23 +38,24 @@ class UpdateLanguageFiles extends Command
      *
      * @return int
      */
-    public function handle()
+    public function handle(): int
     {
         $this->info('Updating language files...');
-        $special_langs = ['cn', 'tw']; // these have a special long format
-        $langs = Arr::flatten(config('language.allowed')); // get allowed languages
-        $all_langs_codes = Arr::pluck(config('language.all'), 'long', 'short'); // get all languages short and long codes from config
-        foreach ($langs as $lang) {
-            if (in_array($lang, $special_langs)) {
+        $special_languages = ['cn', 'tw']; // these have a special long format
+        $languages = Arr::flatten(config('language.allowed')); // get allowed languages
+        $all_lang_codes = Arr::pluck(config('language.all'), 'long', 'short'); // get all languages short and long codes from config
+        foreach ($languages as $lang) {
+            if (in_array($lang, $special_languages)) {
                 $this->info('Getting special name for ' . $lang . '...');
-                Arr::pull($langs, array_search($lang, $langs)); // remove the lang from the array
-                $lang_name = Str::replaceFirst('-', '_', $all_langs_codes[$lang]); // format the name correctly
-                array_push($langs, $lang_name); // add the new name to the array
+                Arr::pull($languages, array_search($lang, $languages)); // remove the lang from the array
+                $lang_name = Str::replaceFirst('-', '_', $all_lang_codes[$lang]); // format the name correctly
+                $languages[] = $lang_name; // add the new name to the array
+                $this->info('Special name for ' . $lang . ' is ' . $lang_name);
             }
         }
-        Artisan::call('lang:add ' . implode(' ', $langs));
-        //Artisan::call('lang:update');
-        Artisan::call('translatable:export ' . implode(',', $langs));
-        $this->info('Done.');
+        Artisan::call('lang:add ' . implode(' ', $languages)); // add the languages
+        Artisan::call('translatable:export ' . implode(',', $languages)); // export the translations
+        $this->info('Language files updated!');
+        return 0;
     }
 }

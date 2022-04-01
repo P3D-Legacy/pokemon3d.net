@@ -3,11 +3,11 @@ name: Check language JSON
 on:
   push:
     paths:
-      - '/lang/*'
+      - '**.json'
   pull_request:
 
 jobs:
-  test:
+  jsoncheck:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2

@@ -15,6 +15,11 @@ return [
     'name' => env('APP_NAME', 'Laravel'),
 
     /*
+     * Language Contribution URL
+     */
+    'lang_contribution_url' => env('LANG_CONTRIBUTION_URL', '/'),
+
+    /*
     |--------------------------------------------------------------------------
     | Consents
     |--------------------------------------------------------------------------

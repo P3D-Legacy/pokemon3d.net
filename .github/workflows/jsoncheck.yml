@@ -1,4 +1,4 @@
-name: Check language JSON
+name: Check JSON syntax
 
 on:
   push:

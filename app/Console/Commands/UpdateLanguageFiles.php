@@ -77,16 +77,7 @@ class UpdateLanguageFiles extends Command
                     rmdir($current_lang_long_path); // remove the long path
                 }
             } catch (\Exception $e) {
-                $this->error(
-                    'Error renaming folder for ' .
-                        $lang .
-                        ' (' .
-                        $long_lang_name .
-                        '): ' .
-                        $e->getMessage() .
-                        '\n' .
-                        $e->getTraceAsString()
-                );
+                $this->error('Error renaming folder for ' . $lang . ' (' . $long_lang_name . '): ' . $e->getMessage());
             }
         }
         $this->info('Language files updated!');

@@ -3,7 +3,7 @@ name: Check language JSON
 on:
   push:
     paths:
-      - '/lang/**.json'
+      - '/lang/*'
   pull_request:
 
 jobs:

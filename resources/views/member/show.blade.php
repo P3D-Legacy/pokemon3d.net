@@ -165,6 +165,11 @@
                             <div x-show="activeTab===3">
                                 @if($user->gamejolt)
                                     @if($user->gamejolt->trophies->count() > 0)
+                                        <div class="px-4 py-3 leading-normal text-blue-700 bg-blue-100 dark:bg-blue-800 dark:text-blue-100 rounded-md mb-4" role="alert">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline-block mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                                <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                            </svg>{{ __('These trophies is not synced with your Gamejolt save yet. This will come soon!') }}
+                                        </div>
                                         <div class="w-full mb-2 text-gray-800 dark:text-slate-200">Completed {{ $user->gamejolt->trophies->where('achieved', true)->count() }} of {{ $user->gamejolt->trophies->count() }} trophies</div>
                                         <div class="grid grid-cols-2 gap-4">
                                             @foreach ($user->gamejolt->trophies as $trophy)

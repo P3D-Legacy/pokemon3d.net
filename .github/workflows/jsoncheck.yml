@@ -1,9 +1,6 @@
 name: Check JSON syntax
 
 on:
-  push:
-    paths:
-      - '**.json'
   pull_request:
 
 jobs:

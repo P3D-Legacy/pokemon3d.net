@@ -1,5 +1,5 @@
 name: Laravel
-on: [push, pull_request]
+on: [pull_request]
 jobs:
   laravel:
     name: Laravel (PHP ${{ matrix.php-versions }} on ${{ matrix.operating-system }})

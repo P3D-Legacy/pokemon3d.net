@@ -19,7 +19,7 @@ class AssociatedGamejolt extends Achievement
     /*
      * A small description for the achievement
      */
-    public $description = 'User associated their account with Game Jolt';
+    public $description = 'User associated their account with Gamejolt';
 
     /*
      * The amount of "points" this user need to obtain in order to complete this achievement

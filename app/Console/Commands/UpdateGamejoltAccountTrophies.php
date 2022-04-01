@@ -41,7 +41,7 @@ class UpdateGamejoltAccountTrophies extends Command
      *
      * @return int
      */
-    public function handle() : int
+    public function handle(): int
     {
         $api = new GamejoltApi(new GamejoltConfig(env('GAMEJOLT_GAME_ID'), env('GAMEJOLT_GAME_PRIVATE_KEY')));
         $accounts = GamejoltAccount::all();

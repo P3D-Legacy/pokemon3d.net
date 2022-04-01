@@ -1,7 +1,10 @@
 <ul class="{{ config('language.flags.ul_class') }}">
-    @foreach (language()->allowed() as $code => $name)
+    @php
+        $languages = config('app.env') === 'production' ? config('language.done') : config('language.allowed');
+    @endphp
+    @foreach ($languages as $code)
         <x-jet-dropdown-link href="{{ language()->back($code) }}">
-            <img src="{{ asset('img/vendor/language/flags/'. language()->country($code) .'.png') }}" alt="{{ $name }}" width="{{ config('language.flags.width') }}" class="inline-flex mr-2" /> {{ $name }}
+            <img src="{{ asset('img/vendor/language/flags/'. language()->country($code) .'.png') }}" alt="{{ language()->getName($code) }}" width="{{ config('language.flags.width') }}" class="inline-flex mr-2" /> {{ language()->getName($code) }}
         </x-jet-dropdown-link>
     @endforeach
     <x-jet-dropdown-link href="{{ config('app.lang_contribution_url') }}">

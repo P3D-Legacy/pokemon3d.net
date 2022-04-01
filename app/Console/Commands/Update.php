@@ -35,9 +35,9 @@ class Update extends Command
     /**
      * Execute the console command.
      *
-     * @return string
+     * @return integer
      */
-    public function handle()
+    public function handle(): int
     {
         $rev = exec('git rev-parse --short HEAD');
         $branch = exec('git describe --tags --abbrev=0');
@@ -71,5 +71,6 @@ class Update extends Command
         $this->info('Getting Discord user roles...');
         Artisan::call('discord:syncuserroles');
         $this->info('Done.');
+        return 0;
     }
 }

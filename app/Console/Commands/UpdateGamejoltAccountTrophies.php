@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Http\Livewire\Login\GameJolt;
 use App\Models\GamejoltAccount;
+use App\Models\GamejoltAccountTrophy;
 use Harrk\GameJoltApi\Exceptions\TimeOutException;
 use Harrk\GameJoltApi\GamejoltApi;
 use Harrk\GameJoltApi\GamejoltConfig;
@@ -40,7 +41,7 @@ class UpdateGamejoltAccountTrophies extends Command
      *
      * @return int
      */
-    public function handle()
+    public function handle() : int
     {
         $api = new GamejoltApi(new GamejoltConfig(env('GAMEJOLT_GAME_ID'), env('GAMEJOLT_GAME_PRIVATE_KEY')));
         $accounts = GamejoltAccount::all();
@@ -49,14 +50,13 @@ class UpdateGamejoltAccountTrophies extends Command
                 $trophies = $api->trophies()->fetch($account->username, $account->token);
                 if (filter_var($trophies['response']['success'], FILTER_VALIDATE_BOOLEAN) === false) {
                     $this->error("No success for {$account->username}");
-
-                    return;
+                    return 0;
                 }
                 $trophies = $trophies['response']['trophies'];
                 $trophy_count = count($trophies);
                 $this->info("Found {$trophy_count} for {$account->username}");
                 foreach ($trophies as $trophy) {
-                    $account->trophies()->updateOrCreate(
+                    GamejoltAccountTrophy::updateOrCreate(
                         [
                             'gamejolt_account_id' => $account->id,
                             'id' => $trophy['id'],
@@ -78,7 +78,6 @@ class UpdateGamejoltAccountTrophies extends Command
             }
         }
         $this->info('Done.');
-
-        return Command::SUCCESS;
+        return 0;
     }
 }

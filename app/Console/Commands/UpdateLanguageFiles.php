@@ -63,7 +63,7 @@ class UpdateLanguageFiles extends Command
             try {
                 if (file_exists($current_lang_long_path . '.json')) {
                     $this->info('Renaming file for ' . $lang . ' (' . $long_lang_name . ')...');
-                    rename($current_lang_long_path . '.json', $current_lang_short_path . '.json'); // rename the long path to the short path
+                    copy($current_lang_long_path . '.json', $current_lang_short_path . '.json'); // rename the long path to the short path
                 }
             } catch (\Exception $e) {
                 $this->error('Error renaming files for ' . $lang . ' (' . $long_lang_name . '): ' . $e->getMessage());
@@ -72,9 +72,8 @@ class UpdateLanguageFiles extends Command
                 if (is_dir($current_lang_long_path)) {
                     $this->info('Starting renaming folder for ' . $lang . ' (' . $long_lang_name . ')...');
                     foreach (glob($current_lang_long_path . '/*') as $file) {
-                        rename($file, $current_lang_short_path . '/' . basename($file)); // rename the long path to the short path
+                        copy($file, $current_lang_short_path . '/' . basename($file)); // rename the long path to the short path
                     }
-                    rmdir($current_lang_long_path); // remove the long path
                 }
             } catch (\Exception $e) {
                 $this->error('Error renaming folder for ' . $lang . ' (' . $long_lang_name . '): ' . $e->getMessage());

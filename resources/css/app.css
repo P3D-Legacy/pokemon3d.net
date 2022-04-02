@@ -1,10 +1,75 @@
+@import 'easymde/dist/easymde.min.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import '@fortawesome/fontawesome-free';
+
+/* Browser mockup code
+* Contribute: https://gist.github.com/jarthod/8719db9fef8deb937f4f
+*/
+.browser-mockup {
+    border-top: 2em solid rgba(230, 230, 230, 0.8);
+}
+.dark .browser-mockup {
+    border-top: 2em solid rgba(0, 0, 0, 0.9);
+}
+.browser-mockup:before {
+    display: block;
+    position: absolute;
+    content: "";
+    top: -1.4em;
+    right: 3.6em;
+    width: 0.8em;
+    height: 0.8em;
+    background-color: rgb(184, 184, 184);
+    box-shadow: 0 0 0 2px rgb(184, 184, 184), 1.5em 0 0 2px rgb(184, 184, 184), 3em 0 0 2px  #f44;
+    z-index: 10;
+}
+.browser-mockup > * {
+    display: block;
+}
+.browser-mockup.with-url:after {
+    display: block;
+    position: absolute;
+    content: 'Pokémon 3D';
+    top: -1.8em;
+    left: 0.5em;
+    width: calc(100% - 6em);
+    height: 1.0em;
+    border-radius: 2px;
+    text-align: center;
+    color:#CCC;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+.dark .browser-mockup.with-url:after {
+    color:#777;
+}
+/** END BROWSER MOCKUP **/
+
+.editor-toolbar {
+    background-color: #fff;
+}
+
+.dark .editor-toolbar {
+    background-color: #000;
+    border-color: #333;
+}
+
+.dark .editor-toolbar button.active, .dark .editor-toolbar button:hover {
+    background: #222;
+    border-color: #444;
+}
+
+.dark .editor-toolbar button {
+    color:#fff;
+}
 
 
-.svg-inline--fa {
-    margin-right: 0.25rem !important;
+.tip {
+    @apply absolute invisible;
+}
+
+.has-tip:hover .tip {
+    @apply z-50 visible px-2 py-1 -mt-8 text-gray-900 bg-green-200 rounded;
 }

@@ -1,15 +1,23 @@
-@extends('layout.auth')
-@section('title', 'Not Found')
-	 
-@section('content')
-<div class="text-white mx-auto w-1/2">
-    <p class="text-8xl">404</p>
-    <p>Seems like you hit a dead end.</p>
-    <a href="{{ route('home') }}" class="mt-4 py-2 px-4 flex justify-center items-center bg-green-600 hover:bg-green-700 focus:ring-green-500 focus:ring-offset-red-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline-block mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-        </svg>
-        Home
-    </a>
-</div>
-@endsection
+<x-guest-layout>
+    <main class="relative overflow-hidden">
+        <div class="container z-10 flex items-center justify-between h-screen px-6 pt-32 mx-auto md:pt-0">
+            <div class="container relative flex flex-col-reverse items-center justify-between h-screen px-6 mx-auto bg-white lg:flex-row dark:bg-gray-800 max-h-96 rounded-xl">
+                <div class="w-full mb-16 text-center md:mb-8 lg:text-left">
+                    <h1 class="mt-12 font-sans text-5xl font-light text-center text-gray-700 lg:text-left lg:text-8xl md:mt-0 dark:text-gray-300">
+                        MissingNo.
+                    </h1>
+                    <p class="text-gray-400">404 &mdash; This path was not found.</p>
+                    <a href="{{ route('home') }}" class="inline-flex items-center justify-center px-8 py-4 mt-8 font-extrabold transition duration-150 bg-green-500 border border-green-400 rounded-lg shadow-xl w-76 text-green-50 group-hover:text-green-100 hover:bg-green-600 hover:-translate-y-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                        </svg>
+                        @lang('Go back home')
+                    </a>
+                </div>
+                <div class="relative block w-full max-w-md mx-auto md:mt-0 lg:max-w-2xl">
+                    <img src="{{ asset('img/missingno.png') }}" class="w-40 h-40 mx-auto md:h-60 md:w-60 lg:h-80 lg:w-80" />
+                </div>
+            </div>
+        </div>
+    </main>
+</x-guest-layout>

@@ -3,7 +3,6 @@
 use Illuminate\Support\Str;
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Default Cache Store
@@ -27,12 +26,11 @@ return [
     | same cache driver to group types of items stored in your caches.
     |
     | Supported drivers: "apc", "array", "database", "file",
-    |            "memcached", "redis", "dynamodb", "null"
+    |         "memcached", "redis", "dynamodb", "octane", "null"
     |
     */
 
     'stores' => [
-
         'apc' => [
             'driver' => 'apc',
         ],
@@ -57,10 +55,7 @@ return [
         'memcached' => [
             'driver' => 'memcached',
             'persistent_id' => env('MEMCACHED_PERSISTENT_ID'),
-            'sasl' => [
-                env('MEMCACHED_USERNAME'),
-                env('MEMCACHED_PASSWORD'),
-            ],
+            'sasl' => [env('MEMCACHED_USERNAME'), env('MEMCACHED_PASSWORD')],
             'options' => [
                 // Memcached::OPT_CONNECT_TIMEOUT => 2000,
             ],
@@ -88,6 +83,9 @@ return [
             'endpoint' => env('DYNAMODB_ENDPOINT'),
         ],
 
+        'octane' => [
+            'driver' => 'octane',
+        ],
     ],
 
     /*
@@ -101,6 +99,5 @@ return [
     |
     */
 
-    'prefix' => env('CACHE_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_').'_cache'),
-
+    'prefix' => env('CACHE_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_') . '_cache'),
 ];

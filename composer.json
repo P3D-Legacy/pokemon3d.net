@@ -1,5 +1,5 @@
 {
-    "name": "p3d-legacy/skin.pokemon3d.net",
+    "name": "p3d-legacy/pokemon3d.net",
     "type": "project",
     "description": "",
     "keywords": [
@@ -9,38 +9,78 @@
         "pokemon3d",
         "laravel"
     ],
-    "license": "gpl-3.0",
+    "license": "gpl-3.0-only",
     "require": {
-        "php": "^7.3|^8.0",
+        "php": "^8.0.2",
+        "akaunting/laravel-language": "^1.0",
+        "alibayat/laravel-categorizable": "1.0.x-dev",
         "anlutro/l4-settings": "^1.0",
-        "binarycabin/laravel-uuid": "^1.0",
-        "enlightn/enlightn": "^1.0",
-        "fideloper/proxy": "^4.4",
-        "fruitcake/laravel-cors": "^2.0",
+        "assada/laravel-achievements": "^2.3",
+        "betterapp/laravel-db-encrypter": "^1.0",
+        "blade-ui-kit/blade-ui-kit": "^0.3.2",
+        "cyrildewit/eloquent-viewable": "^6.0",
+        "digikraaft/laravel-review-rating": "^2.3",
+        "doctrine/dbal": "^3.3",
+        "fruitcake/laravel-cors": "^2.0.5",
         "gabrielelana/byte-units": "^0.5.0",
-        "guzzlehttp/guzzle": "^7.0.1",
+        "glorand/laravel-model-settings": "^5.0",
+        "goldspecdigital/laravel-eloquent-uuid": "^9.0",
+        "graham-campbell/markdown": "^14.0.x-dev",
+        "guzzlehttp/guzzle": "^7.2",
+        "guzzlehttp/psr7": "^2.1",
         "harrk/gamejolt-api": "^1.1",
-        "intervention/image": "^2.5",
-        "laravel/framework": "^8.12",
-        "laravel/tinker": "^2.5",
-        "overtrue/laravel-like": "^4.0",
-        "sentry/sentry-laravel": "^2.5",
-        "spatie/laravel-activitylog": "^3.16",
-        "spatie/laravel-cookie-consent": "^2.12"
+        "intervention/image": "^2.7",
+        "kkomelin/laravel-translatable-string-exporter": "^1.16",
+        "knuckleswtf/scribe": "^3.23",
+        "laravel/framework": "^9.0",
+        "laravel/jetstream": "^2.6",
+        "laravel/sanctum": "^2.14",
+        "laravel/socialite": "^5.5",
+        "laravel/tinker": "^2.7",
+        "livewire/livewire": "^2.5",
+        "martinbean/socialite-discord-provider": "^1.2",
+        "mtownsend/read-time": "^2.0",
+        "origami/consent": "^2.2",
+        "overtrue/laravel-like": "^5.0",
+        "power-components/livewire-powergrid": "^2.2",
+        "restcord/restcord": "dev-develop",
+        "sentry/sentry-laravel": "^2.11",
+        "socialiteproviders/facebook": "^4.1",
+        "socialiteproviders/twitch": "^5.3",
+        "socialiteproviders/twitter": "^4.1",
+        "spatie/cpu-load-health-check": "^1.0",
+        "spatie/laravel-activitylog": "^4.4",
+        "spatie/laravel-health": "^1.8",
+        "spatie/laravel-medialibrary": "^10.0",
+        "spatie/laravel-permission": "^5.5",
+        "spatie/laravel-stats": "^2.0",
+        "spatie/laravel-tags": "^4.3",
+        "symfony/http-client": "^6.0",
+        "symfony/postmark-mailer": "^6.0",
+        "touhidurabir/laravel-multi-key-route-binding": "^1.0",
+        "wire-elements/modal": "^1.0"
     },
     "require-dev": {
-        "barryvdh/laravel-debugbar": "^3.5",
-        "facade/ignition": "^2.5",
+        "barryvdh/laravel-debugbar": "^3.6",
         "fakerphp/faker": "^1.9.1",
-        "laravel/sail": "^1.0.1",
-        "mockery/mockery": "^1.4.2",
-        "nunomaduro/collision": "^5.0",
-        "phpunit/phpunit": "^9.3.3"
+        "laravel/sail": "^1.13",
+        "mockery/mockery": "^1.4.4",
+        "nunomaduro/collision": "^6.1",
+        "pestphp/pest": "^1.21",
+        "pestphp/pest-plugin-laravel": "^1.2",
+        "phpunit/phpunit": "^9.5.10",
+        "spatie/laravel-ignition": "^1.0",
+        "laravel-lang/lang": "^10.4",
+        "laravel-lang/publisher": "^12.2"
     },
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "composer/package-versions-deprecated": true,
+            "pestphp/pest-plugin": true
+        }
     },
     "extra": {
         "laravel": {
@@ -71,6 +111,9 @@
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
+        ],
+        "post-update-cmd": [
+            "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
         ]
     }
 }

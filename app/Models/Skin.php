@@ -2,38 +2,50 @@
 
 namespace App\Models;
 
-use BinaryCabin\LaravelUUID\Traits\HasUUID;
-use Illuminate\Database\Eloquent\Model;
-use Spatie\Activitylog\Models\Activity;
+use App\Models\BaseModel;
+use Illuminate\Support\Str;
+use Spatie\Activitylog\LogOptions;
 use Overtrue\LaravelLike\Traits\Likeable;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Skin extends Model
+class Skin extends BaseModel
 {
-    use HasFactory, SoftDeletes, LogsActivity, Likeable, HasUUID;
+    use HasFactory;
+    use SoftDeletes;
+    use Likeable;
+    use LogsActivity;
+
+    protected $primaryKey = 'id';
+
+    /**
+     * The "type" of the auto-incrementing ID.
+     *
+     * @var string
+     */
+    protected $keyType = 'integer';
+
+    /**
+     * Indicates if the IDs are auto-incrementing.
+     *
+     * @var bool
+     */
+    public $incrementing = true;
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = [
-        'name',
-        'owner_id',
-        'public',
-    ];
-
-    // Lets use the uuid for primary key
-    // protected $primaryKey = 'uuid';
+    protected $guarded = [];
 
     /**
-     * Indicates if the model's ID is auto-incrementing.
+     * The attributes that are mass assignable.
      *
-     * @var bool
+     * @var array
      */
-    public $incrementing = false;
+    protected $fillable = ['name', 'owner_id', 'user_id', 'public'];
 
     /**
      * Get the route key for the model.
@@ -45,20 +57,38 @@ class Skin extends Model
         return 'uuid';
     }
 
-    protected static $logAttributes = [
-        'name',
-        'owner_id',
-        'public',
-    ];
-    protected static $logOnlyDirty = true;
-    protected static $submitEmptyLogs = false;
-
-    // Since we are using sessions with gamejolt logins we have to tap the activity to log the causer
-    public function tapActivity(Activity $activity)
+    /**
+     * The attributes that should be logged for the user.
+     *
+     * @return array
+     */
+    public function getActivitylogOptions(): LogOptions
     {
-        $activity->subject_id = $this->id;
-        $activity->causer_id = session()->get('gjid');
-        $activity->causer_type = GJUser::class;
+        return LogOptions::defaults()
+            ->logFillable()
+            ->logOnlyDirty();
+    }
+
+    /**
+     * The boot method of the model.
+     *
+     * @return void
+     */
+    public static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            $model->uuid = (string) Str::uuid();
+        });
+    }
+
+    /**
+     * Get the user that owns the skin.
+     */
+    public function gamejoltaccount()
+    {
+        return $this->belongsTo(GamejoltAccount::class, 'owner_id', 'id');
     }
 
     /**
@@ -66,19 +96,21 @@ class Skin extends Model
      */
     public function user()
     {
-        return $this->belongsTo(GJUser::class, 'owner_id', 'gjid');
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
-    public function scopeIsPublic($query) {
+    public function scopeIsPublic($query)
+    {
         return $query->where('public', 1);
     }
 
-    public function path() {
-        return $this->uuid.'.png';
-    }
-    
-    public function urlPath() {
-        return env('APP_URL').'/skin/'.$this->path();
+    public function path()
+    {
+        return $this->uuid . '.png';
     }
 
+    public function urlPath()
+    {
+        return env('APP_URL') . '/img/skin/' . $this->path();
+    }
 }

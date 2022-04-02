@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Application Name
@@ -14,6 +13,33 @@ return [
     */
 
     'name' => env('APP_NAME', 'Laravel'),
+
+    /*
+     * Language Contribution URL
+     */
+    'lang_contribution_url' => env('LANG_CONTRIBUTION_URL', '/'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Consents
+    |--------------------------------------------------------------------------
+    |
+    | A list of consents that will be presented to the user on the user profile
+    | page.
+    |
+    */
+
+    'consents' => [
+        'tos.1' => 'Terms of Service &mdash; updated 2021-07-28',
+        'email.newsletter' => 'E-mail: Receive an e-mail when we update the game or website',
+        'email.notifications' => 'E-mail: Receive an e-mail if you have unread notifications',
+    ],
+
+    /*--------------------------------------------------------------------------
+    | Required consent
+    |--------------------------------------------------------------------------
+    */
+    'required_consent' => 'tos.1',
 
     /*
     |--------------------------------------------------------------------------
@@ -135,7 +161,6 @@ return [
     */
 
     'providers' => [
-
         /*
          * Laravel Framework Service Providers...
          */
@@ -174,7 +199,8 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
+        App\Providers\FortifyServiceProvider::class,
+        App\Providers\JetstreamServiceProvider::class,
     ],
 
     /*
@@ -189,7 +215,6 @@ return [
     */
 
     'aliases' => [
-
         'App' => Illuminate\Support\Facades\App::class,
         'Arr' => Illuminate\Support\Arr::class,
         'Artisan' => Illuminate\Support\Facades\Artisan::class,
@@ -226,9 +251,5 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-
-        'GitHubHelper' => Facades\App\Helpers\GitHubHelper::class,
-
     ],
-
 ];

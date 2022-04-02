@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class GamejoltSuperAdmin
 {
@@ -16,15 +17,22 @@ class GamejoltSuperAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!env("GAMEJOLT_GAME_ID") || !env("GAMEJOLT_GAME_PRIVATE_KEY")) {
-            redirect()->route('login')->with('error', 'Gamejolt API keys is not set by the admin!');
+        if (!env('GAMEJOLT_GAME_ID') || !env('GAMEJOLT_GAME_PRIVATE_KEY')) {
+            redirect()
+                ->route('gj-login')
+                ->with('error', 'Game Jolt API keys is not set by the admin!');
         }
-        if(!env("GAMEJOLT_USER_ID_SUPERADMIN")) {
-            redirect()->route('home')->with('warning', 'Super Admin has not been set!');
+        if (!env('GAMEJOLT_USER_ID_SUPERADMIN')) {
+            redirect()
+                ->route('skin-home')
+                ->with('warning', 'Super Admin has not been set!');
         }
-        if ($request->session()->get('gjid') != env("GAMEJOLT_USER_ID_SUPERADMIN")) {
-            return redirect()->route('home')->with('warning', 'You do not have access to this page!');
+        if (Auth::user()->gamejolt->id != env('GAMEJOLT_USER_ID_SUPERADMIN')) {
+            return redirect()
+                ->route('skin-home')
+                ->with('warning', 'You do not have access to this page!');
         }
+
         return $next($request);
     }
 }

@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Enlightn Analyzer Classes
@@ -43,11 +42,7 @@ return [
     | folder, migrations folder and the seeders folder.
     |
     */
-    'base_path' => [
-        app_path(),
-        database_path('migrations'),
-        database_path('seeders'),
-    ],
+    'base_path' => [app_path(), database_path('migrations'), database_path('seeders')],
 
     /*
     |--------------------------------------------------------------------------
@@ -84,15 +79,23 @@ return [
     |
     */
     'license_whitelist' => [
-        'Apache-2.0', 'Apache2', 'BSD-2-Clause', 'BSD-3-Clause', 'LGPL-2.1-only', 'LGPL-2.1',
-        'LGPL-2.1-or-later', 'LGPL-3.0', 'LGPL-3.0-only', 'LGPL-3.0-or-later', 'MIT', 'ISC',
+        'Apache-2.0',
+        'Apache2',
+        'BSD-2-Clause',
+        'BSD-3-Clause',
+        'LGPL-2.1-only',
+        'LGPL-2.1',
+        'LGPL-2.1-or-later',
+        'LGPL-3.0',
+        'LGPL-3.0-only',
+        'LGPL-3.0-or-later',
+        'MIT',
+        'ISC',
     ],
 
     // List your commercial packages (licensed by you) below, so that they are not
     // flagged by the License Analyzer.
-    'commercial_packages' => [
-        'enlightn/enlightnpro',
-    ],
+    'commercial_packages' => ['enlightn/enlightnpro'],
 
     'allowed_permissions' => [
         base_path() => '775',
@@ -111,8 +114,5 @@ return [
         public_path('server.php') => '664',
     ],
 
-    'writable_directories' => [
-        storage_path(),
-        app()->bootstrapPath('cache'),
-    ],
+    'writable_directories' => [storage_path(), app()->bootstrapPath('cache')],
 ];

@@ -1,11 +1,33 @@
 require('./bootstrap');
 
-import Alpine from 'alpinejs'
+import Alpine from 'alpinejs';
+window.Alpine = Alpine;
+import './../../vendor/power-components/livewire-powergrid/dist/powergrid';
+Alpine.start();
 
-window.Alpine = Alpine
+import flatpickr from 'flatpickr';
+require('flatpickr/dist/themes/dark.css');
 
-Alpine.start()
+flatpickr('.flatpickrSelector', {
+    enableTime: true,
+    dateFormat: 'Y-m-d H:i:S',
+    time_24hr: true,
+});
 
+var date_max = new Date();
+date_max.setFullYear(date_max.getFullYear() - 13);
 
-require('@fortawesome/fontawesome-free/js/all.js');
+var date_min = new Date();
+date_min.setFullYear(date_min.getFullYear() - 90);
 
+flatpickr('.flatpickrBirtdate', {
+    enableTime: false,
+    dateFormat: 'd-m-Y',
+    minDate: date_min,
+    maxDate: date_max,
+});
+
+import 'tw-elements';
+
+import * as EasyMDE from 'easymde';
+window.EasyMDE = EasyMDE;

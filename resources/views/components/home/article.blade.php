@@ -2,7 +2,7 @@
     <div class="flex-1 overflow-hidden bg-white rounded-t rounded-b-none shadow dark:bg-gray-900">
         <a href="{{ route('blog.show', $post->uuid) }}" class="flex flex-wrap no-underline hover:no-underline">
             <p class="w-full px-6 mt-6 text-xs text-gray-600 uppercase dark:text-gray-400 md:text-sm">
-                <span class="text-green-700 dark:text-green-200">{{ $post->tags->first()->name }}</span> &mdash; {{ $post->created_at->isoFormat('LL') }}
+                <span class="text-green-700 dark:text-green-200">{{ $post->tags->first()->name }}</span> &mdash; {{ $post->published_at->isoFormat('LL') }}
             </p>
             <div class="w-full px-6 mb-3 text-2xl font-bold text-gray-800 sm:truncate dark:text-gray-200">
                 @if($post->sticky)

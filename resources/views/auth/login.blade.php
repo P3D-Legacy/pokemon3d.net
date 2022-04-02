@@ -15,7 +15,7 @@
 			</div>
 		@endif
 
-		@if(\Carbon\Carbon::createFromFormat('Y-m-d', '2022-03-01')->isFuture())
+		@if(\Carbon\Carbon::createFromFormat('Y-m-d', '2022-05-01')->isFuture())
 			<div class="px-4 py-3 text-sm leading-normal text-blue-700 bg-blue-100 rounded-lg" role="alert">
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -170,8 +170,8 @@
 				</div>
 			</div>
 		</div>
-	</div>	
-	
+	</div>
+
 	<div class="fixed inset-0 z-40 hidden bg-black opacity-50" id="modal-backdrop"></div>
 	<script type="text/javascript">
 		function toggleModal(modalID){

@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 <a name="0.4.0"></a>
 
+## 4.0.2 - 2022-04-02
+
+## What's Changed
+
+- Published date for article on home + error page by @DanielRTRD in https://github.com/P3D-Legacy/pokemon3d.net/pull/140
+
+**Full Changelog**: https://github.com/P3D-Legacy/pokemon3d.net/compare/4.0.1...4.0.2
+
 ## 4.0.1 - 2022-04-02
 
 ## What's Changed

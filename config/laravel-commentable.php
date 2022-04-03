@@ -13,5 +13,5 @@ return [
     |--------------------------------------------------------------------------
     */
 
-    'model' => \AliBayat\LaravelCommentable\Comment::class,
+    'model' => \App\Models\Comment::class,
 ];

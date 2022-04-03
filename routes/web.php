@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DownloadController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\BlogController;
@@ -59,6 +60,7 @@ Route::get('/redirect/discord', function () {
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::resource('blog', BlogController::class);
+Route::get('/download', [DownloadController::class, 'download'])->name('download');
 
 Route::prefix('login')->group(function () {
     Route::get('/discord', [DiscordController::class, 'redirectToProvider'])->name('discord.login');

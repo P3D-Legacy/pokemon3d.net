@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f58677e45f1122208297bdc27b907674",
+    "content-hash": "4c6ab2e6a2a36ff9867802e73825de8f",
     "packages": [
         {
             "name": "akaunting/laravel-language",
@@ -128,6 +128,64 @@
                 "source": "https://github.com/AliBayat/Laravel-Categorizable/tree/master"
             },
             "time": "2022-03-02T19:16:11+00:00"
+        },
+        {
+            "name": "alibayat/laravel-commentable",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/DanielRTRD/Laravel-Commentable.git",
+                "reference": "f2b385f2431d47d86caf4b5019b4a0d6697579fb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/DanielRTRD/Laravel-Commentable/zipball/f2b385f2431d47d86caf4b5019b4a0d6697579fb",
+                "reference": "f2b385f2431d47d86caf4b5019b4a0d6697579fb",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "^7.0|^8.0|^9.0",
+                "illuminate/support": "^7.0|^8.0|^9.0",
+                "kalnoy/nestedset": "^6.0",
+                "php": "^7.2|^8.0|^8.1"
+            },
+            "default-branch": true,
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.1-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "AliBayat\\LaravelCommentable\\CommentableServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "AliBayat\\LaravelCommentable\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ali Bayat",
+                    "email": "ali.bayat@live.com"
+                }
+            ],
+            "description": "Implementing a Comment system for Laravel's Eloquent models.",
+            "keywords": [
+                "Eloquent",
+                "Laravel",
+                "Laravel Commentable",
+                "Laravel-Commentable"
+            ],
+            "support": {
+                "source": "https://github.com/DanielRTRD/Laravel-Commentable/tree/master"
+            },
+            "time": "2022-04-03T14:14:43+00:00"
         },
         {
             "name": "anlutro/l4-settings",
@@ -15366,6 +15424,7 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "alibayat/laravel-categorizable": 20,
+        "alibayat/laravel-commentable": 20,
         "graham-campbell/markdown": 20,
         "restcord/restcord": 20
     },

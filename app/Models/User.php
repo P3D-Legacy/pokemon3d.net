@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use BeyondCode\Comments\Contracts\Commentator;
 use Carbon\Carbon;
 use DateTimeInterface;
 use Assada\Achievements\Achiever;
@@ -20,7 +19,7 @@ use Glorand\Model\Settings\Traits\HasSettingsTable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable implements MustVerifyEmail, Commentator
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens;
     use HasFactory;
@@ -157,13 +156,4 @@ class User extends Authenticatable implements MustVerifyEmail, Commentator
         return $this->hasOne(TwitchAccount::class);
     }
 
-    /**
-     * Check if a comment for a specific model needs to be approved.
-     * @param mixed $model
-     * @return bool
-     */
-    public function needsCommentApproval($model): bool
-    {
-        return false;
-    }
 }

@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use BeyondCode\Comments\Traits\HasComments;
 use Spatie\Tags\HasTags;
 use App\Models\BaseModel;
 use Illuminate\Support\Str;
@@ -22,7 +21,6 @@ class Post extends BaseModel implements Viewable
     use SoftDeletes;
     use HasTags;
     use LogsActivity;
-    use HasComments;
 
     protected $removeViewsOnDelete = true;
 

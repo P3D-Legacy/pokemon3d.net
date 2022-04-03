@@ -14,6 +14,7 @@
 
 		<!-- Styles -->
 		<link rel="stylesheet" href="{{ mix('css/app.css') }}">
+        @livewireStyles
 
 		<!-- Scripts -->
 		<script src="{{ mix('js/app.js') }}" defer></script>
@@ -45,7 +46,8 @@
 
 		{{ $slot }}
 
-		@livewireScripts
+        @livewireScripts
+        @livewire('livewire-ui-modal')
 
 		<script>
             var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');

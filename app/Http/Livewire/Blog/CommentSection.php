@@ -16,7 +16,7 @@ class CommentSection extends Component
 
     public function mount(int|Post $post)
     {
-        if($post instanceof Post) {
+        if ($post instanceof Post) {
             $this->post = $post;
         } else {
             $this->post = Post::find($post);

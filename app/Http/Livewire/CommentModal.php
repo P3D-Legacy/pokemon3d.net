@@ -27,7 +27,7 @@ class CommentModal extends ModalComponent
 
         $commentData = [
             'title' => null,
-            'body' => $this->body
+            'body' => $this->body,
         ];
 
         if ($this->parentComment) {

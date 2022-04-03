@@ -7,13 +7,11 @@ declare(strict_types=1);
  */
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Eloquent Model
     |--------------------------------------------------------------------------
     */
-    
-    'model' => \AliBayat\LaravelCommentable\Comment::class,
 
+    'model' => \AliBayat\LaravelCommentable\Comment::class,
 ];

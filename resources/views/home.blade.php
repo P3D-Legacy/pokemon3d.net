@@ -7,7 +7,7 @@
                     <x-logo-small class="" />
                 </a>
             </div>
-            
+
             <div class="block pr-4 lg:hidden">
                 <button @click="open = ! open" id="nav-toggle" class="flex items-center px-2 py-1 text-white border border-white rounded appearance-none hover:text-gray-200 hover:border-gray-200 focus:outline-none">
                     <svg class="w-6 h-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
@@ -265,7 +265,7 @@
                 </div>
             @endforelse
             @if($posts->count() > 0)
-                <div class="w-full text-xs text-center">
+                <div class="w-full text-xs text-center mt-6">
                     <a href="{{ route('blog.index') }}" class="text-green-500 hover:underline">
                         @lang('Read more blog posts')
                         <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -285,7 +285,7 @@
             <div class="w-full mb-4">
                 <div class="w-64 h-1 py-0 mx-auto my-0 bg-white rounded-t opacity-25"></div>
             </div>
-        
+
             <div id="carousel" class="relative carousel slide carousel-fade dark:carousel-dark" data-bs-ride="carousel">
                 <div class="relative w-full overflow-hidden shadow-xl rounded-xl shadow-black/50 carousel-inner">
                     @php
@@ -434,7 +434,7 @@
             <div class="w-full mb-4">
                 <div class="w-64 h-1 py-0 mx-auto my-0 bg-white rounded-t opacity-25"></div>
             </div>
-            
+
             <div class="flex flex-wrap items-center w-full gap-4 p-4 mb-8 sm:p-8 md:mb-0 flex-between">
                 <x-home.media-article title="Pokemon 3D creator envisions a fully cooperative Pokemon campaign" url="https://www.polygon.com/2012/12/7/3740086/pokemon-3d-interview" author="Polygon" date="Dec 7, 2012, 4:40pm EST" />
                 <x-home.media-article title="This Fan-Made Pokémon Remake Is In 3D And First Person" url="https://www.kotaku.com.au/2012/12/this-fan-made-pokemon-remake-is-in-3d-and-first-person/" author="Kotaku" date="December 4, 2012 at 7:00 pm" />

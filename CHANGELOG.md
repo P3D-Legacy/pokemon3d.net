@@ -4,6 +4,105 @@ All notable changes to this project will be documented in this file.
 
 <a name="0.4.0"></a>
 
+## 4.0.2 - 2022-04-02
+
+## What's Changed
+
+- Published date for article on home + error page by @DanielRTRD in https://github.com/P3D-Legacy/pokemon3d.net/pull/140
+
+**Full Changelog**: https://github.com/P3D-Legacy/pokemon3d.net/compare/4.0.1...4.0.2
+
+## 4.0.1 - 2022-04-02
+
+## What's Changed
+
+- Bump dependabot/fetch-metadata from 1.2.1 to 1.3.0 by @dependabot in https://github.com/P3D-Legacy/pokemon3d.net/pull/137
+- Bump actions/cache from 2 to 3.0.1 by @dependabot in https://github.com/P3D-Legacy/pokemon3d.net/pull/136
+- Bump actions/checkout from 2 to 3 by @dependabot in https://github.com/P3D-Legacy/pokemon3d.net/pull/138
+- Update wiki link by @DanielRTRD in https://github.com/P3D-Legacy/pokemon3d.net/pull/139
+
+**Full Changelog**: https://github.com/P3D-Legacy/pokemon3d.net/compare/4.0.0...4.0.1
+
+## 4.0.0 - 2022-04-02
+
+## What's Changed
+
+- Jetstream by @DanielRTRD in https://github.com/P3D-Legacy/pokemon3d.net/pull/32
+- Consent by @DanielRTRD in https://github.com/P3D-Legacy/pokemon3d.net/pull/39
+- GameJolt Account by @DanielRTRD in https://github.com/P3D-Legacy/pokemon3d.net/pull/40
+- Updated styling for "app not in prod" alert by @DanielRTRD in https://github.com/P3D-Legacy/pokemon3d.net/pull/41
+- Xenforo news by @DanielRTRD in https://github.com/P3D-Legacy/pokemon3d.net/pull/42
+- Username by @DanielRTRD in https://github.com/P3D-Legacy/pokemon3d.net/pull/46
+- Blog by @DanielRTRD in https://github.com/P3D-Legacy/pokemon3d.net/pull/47
+- Login with by @DanielRTRD in https://github.com/P3D-Legacy/pokemon3d.net/pull/49
+- Mig clean by @DanielRTRD in https://github.com/P3D-Legacy/pokemon3d.net/pull/50
+- WIP API User by @DanielRTRD in https://github.com/P3D-Legacy/pokemon3d.net/pull/55
+- Api rev2 by @DanielRTRD in https://github.com/P3D-Legacy/pokemon3d.net/pull/57
+- Api rev3 by @DanielRTRD in https://github.com/P3D-Legacy/pokemon3d.net/pull/58
+- Api rev4 by @DanielRTRD in https://github.com/P3D-Legacy/pokemon3d.net/pull/59
+- Update Handler.php by @DanielRTRD in https://github.com/P3D-Legacy/pokemon3d.net/pull/60
+- Api rev5 by @DanielRTRD in https://github.com/P3D-Legacy/pokemon3d.net/pull/62
+- Discord account by @DanielRTRD in https://github.com/P3D-Legacy/pokemon3d.net/pull/64
+- PHP 8 by @DanielRTRD in https://github.com/P3D-Legacy/pokemon3d.net/pull/65
+- Sticky news by @DanielRTRD in https://github.com/P3D-Legacy/pokemon3d.net/pull/66
+- Power grid by @DanielRTRD in https://github.com/P3D-Legacy/pokemon3d.net/pull/67
+- published at for post by @DanielRTRD in https://github.com/P3D-Legacy/pokemon3d.net/pull/68
+- Tailwind3 by @DanielRTRD in https://github.com/P3D-Legacy/pokemon3d.net/pull/71
+- Skin subdomain cleanup by @DanielRTRD in https://github.com/P3D-Legacy/pokemon3d.net/pull/52
+- Profile by @DanielRTRD in https://github.com/P3D-Legacy/pokemon3d.net/pull/72
+- Profile by @DanielRTRD in https://github.com/P3D-Legacy/pokemon3d.net/pull/73
+- Achievements by @DanielRTRD in https://github.com/P3D-Legacy/pokemon3d.net/pull/74
+- Laravel Health by @DanielRTRD in https://github.com/P3D-Legacy/pokemon3d.net/pull/77
+- Gamejolt trophies by @DanielRTRD in https://github.com/P3D-Legacy/pokemon3d.net/pull/79
+- Gamejolt trophies by @DanielRTRD in https://github.com/P3D-Legacy/pokemon3d.net/pull/80
+- Gamejolt trophies rev3 by @DanielRTRD in https://github.com/P3D-Legacy/pokemon3d.net/pull/81
+- Profile additions by @DanielRTRD in https://github.com/P3D-Legacy/pokemon3d.net/pull/82
+- Profile additions rev2 by @DanielRTRD in https://github.com/P3D-Legacy/pokemon3d.net/pull/83
+- Twitter account association by @DanielRTRD in https://github.com/P3D-Legacy/pokemon3d.net/pull/92
+- Facebook account association by @DanielRTRD in https://github.com/P3D-Legacy/pokemon3d.net/pull/93
+- Twitch account association by @DanielRTRD in https://github.com/P3D-Legacy/pokemon3d.net/pull/95
+- Twitch account association part 2 by @DanielRTRD in https://github.com/P3D-Legacy/pokemon3d.net/pull/96
+- Discord Account API endpoint by @DanielRTRD in https://github.com/P3D-Legacy/pokemon3d.net/pull/98
+- Servers by @DanielRTRD in https://github.com/P3D-Legacy/pokemon3d.net/pull/51
+- Add Discord relation to gamejolt account api endpoint by @DanielRTRD in https://github.com/P3D-Legacy/pokemon3d.net/pull/101
+- Resource rating by @DanielRTRD in https://github.com/P3D-Legacy/pokemon3d.net/pull/105
+- GitHub game version by @DanielRTRD in https://github.com/P3D-Legacy/pokemon3d.net/pull/107
+- Resource Files by @DanielRTRD in https://github.com/P3D-Legacy/pokemon3d.net/pull/106
+- Resource by @DanielRTRD in https://github.com/P3D-Legacy/pokemon3d.net/pull/104
+- Laravel 9.x Shift by @DanielRTRD in https://github.com/P3D-Legacy/pokemon3d.net/pull/109
+- Language by @DanielRTRD in https://github.com/P3D-Legacy/pokemon3d.net/pull/111
+- Create cn.json by @DanielRTRD in https://github.com/P3D-Legacy/pokemon3d.net/pull/112
+- Update es.json by @eldiosx in https://github.com/P3D-Legacy/pokemon3d.net/pull/113
+- Update cn.json by @HamtaroSama in https://github.com/P3D-Legacy/pokemon3d.net/pull/114
+- Update on zh_CN.json by @HamtaroSama in https://github.com/P3D-Legacy/pokemon3d.net/pull/116
+- Language Change Button by @DanielRTRD in https://github.com/P3D-Legacy/pokemon3d.net/pull/117
+- Updated et.json by @LKLynthia in https://github.com/P3D-Legacy/pokemon3d.net/pull/118
+- Discord roles by @DanielRTRD in https://github.com/P3D-Legacy/pokemon3d.net/pull/119
+- Game reviews by @DanielRTRD in https://github.com/P3D-Legacy/pokemon3d.net/pull/120
+- Update et.json by @LKLynthia in https://github.com/P3D-Legacy/pokemon3d.net/pull/122
+- Update zh_CN.json by @HamtaroSama in https://github.com/P3D-Legacy/pokemon3d.net/pull/124
+- Activity log by @DanielRTRD in https://github.com/P3D-Legacy/pokemon3d.net/pull/123
+- Laravel 9 by @DanielRTRD in https://github.com/P3D-Legacy/pokemon3d.net/pull/108
+- Dutch localization by @JappaWakka in https://github.com/P3D-Legacy/pokemon3d.net/pull/126
+- Update et.json by @LKLynthia in https://github.com/P3D-Legacy/pokemon3d.net/pull/127
+- update greek translation by @AKaravas in https://github.com/P3D-Legacy/pokemon3d.net/pull/130
+- Finish Untranslated Sentences by @HamtaroSama in https://github.com/P3D-Legacy/pokemon3d.net/pull/131
+- Update the Translation based on zh_CN.json by @HamtaroSama in https://github.com/P3D-Legacy/pokemon3d.net/pull/132
+- Bump guzzlehttp/psr7 from 2.1.0 to 2.2.1 by @dependabot in https://github.com/P3D-Legacy/pokemon3d.net/pull/133
+- Stats by @DanielRTRD in https://github.com/P3D-Legacy/pokemon3d.net/pull/99
+- JSON Checker by @DanielRTRD in https://github.com/P3D-Legacy/pokemon3d.net/pull/134
+- Release 4.0.0 by @DanielRTRD in https://github.com/P3D-Legacy/pokemon3d.net/pull/33
+
+## New Contributors
+
+- @eldiosx made their first contribution in https://github.com/P3D-Legacy/pokemon3d.net/pull/113
+- @HamtaroSama made their first contribution in https://github.com/P3D-Legacy/pokemon3d.net/pull/114
+- @LKLynthia made their first contribution in https://github.com/P3D-Legacy/pokemon3d.net/pull/118
+- @JappaWakka made their first contribution in https://github.com/P3D-Legacy/pokemon3d.net/pull/126
+- @AKaravas made their first contribution in https://github.com/P3D-Legacy/pokemon3d.net/pull/130
+
+**Full Changelog**: https://github.com/P3D-Legacy/pokemon3d.net/compare/0.4.3...4.0.0
+
 ## 0.4.3 - 2022-03-25
 
 ## What's Changed

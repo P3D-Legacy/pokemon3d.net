@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     /*
      * The comment class that should be used to store and retrieve
      * the comments.
@@ -14,5 +13,4 @@ return [
      * Laravel authentication configuration will be used.
      */
     'user_model' => null,
-
 ];

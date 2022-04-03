@@ -42,6 +42,6 @@ class CommentModal extends ModalComponent
 
     public function render()
     {
-        return view('livewire.comment-modal');
+        return view('livewire.blog.comment-modal');
     }
 }

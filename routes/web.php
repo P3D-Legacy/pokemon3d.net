@@ -71,7 +71,7 @@ Route::prefix('login')->group(function () {
     Route::get('/twitch/callback', [TwitchController::class, 'handleProviderCallback']);
 });
 
-Route::middleware('auth:sanctum', 'verified')->group(function () {
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');

@@ -20,7 +20,7 @@ Want to contribute to the project? Check out [CONTRIBUTING.md](CONTRIBUTING.md) 
 # Installation
 Want to install the project? Here is a quick guide to installing the project.
 
-Please check the official laravel installation guide for server requirements before you start, [official documentation](https://laravel.com/docs/8.x/installation).
+Please check the official laravel installation guide for server requirements before you start, [official documentation](https://laravel.com/docs/9.x/installation).
 
 Clone the repository
 ``` bash

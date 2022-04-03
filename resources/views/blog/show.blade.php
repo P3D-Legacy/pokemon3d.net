@@ -79,6 +79,7 @@
                     {!! Str::of($post->body)->markdown() !!}
                 </article>
             </div>
+            @livewire('blog.comment-section', ['post' => $post])
         </div>
     </div>
 </x-guest-layout>

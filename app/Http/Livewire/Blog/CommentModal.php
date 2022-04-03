@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Blog;
 
-use App\Models\Comment;
 use App\Models\Post;
 use LivewireUI\Modal\ModalComponent;
 

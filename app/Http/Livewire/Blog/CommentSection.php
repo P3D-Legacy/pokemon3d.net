@@ -21,7 +21,7 @@ class CommentSection extends Component
         } else {
             $this->post = Post::find($post);
         }
-        $this->comments = $this->post->comments;
+        $this->comments = $this->post->comments->sortByDesc('created_at');
     }
 
     public function render()

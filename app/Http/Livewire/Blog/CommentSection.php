@@ -11,7 +11,7 @@ class CommentSection extends Component
     public $comments;
 
     protected $listeners = [
-        'commentAdded' => 'update',
+        'commentAdded' => '$refresh',
     ];
 
     public function mount(int|Post $post)
@@ -21,11 +21,6 @@ class CommentSection extends Component
         } else {
             $this->post = Post::find($post);
         }
-        $this->comments = $this->post->comments;
-    }
-
-    public function update()
-    {
         $this->comments = $this->post->comments;
     }
 

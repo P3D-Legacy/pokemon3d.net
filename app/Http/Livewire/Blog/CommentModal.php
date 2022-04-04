@@ -21,7 +21,7 @@ class CommentModal extends ModalComponent
     public function save()
     {
         $this->validate([
-            'body' => ['required', 'string', 'min:10', 'max:255'],
+            'body' => ['required', 'string', 'min:2', 'max:255'],
         ]);
 
         $commentData = [

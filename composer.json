@@ -10,12 +10,6 @@
         "laravel"
     ],
     "license": "gpl-3.0-only",
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/DanielRTRD/Laravel-Commentable"
-        }
-    ],
     "require": {
         "php": "^8.0.2",
         "akaunting/laravel-language": "^1.0",

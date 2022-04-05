@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4c6ab2e6a2a36ff9867802e73825de8f",
+    "content-hash": "2029c69db19a91296c85c5515b8df093",
     "packages": [
         {
             "name": "akaunting/laravel-language",
@@ -134,13 +134,13 @@
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/DanielRTRD/Laravel-Commentable.git",
-                "reference": "f2b385f2431d47d86caf4b5019b4a0d6697579fb"
+                "url": "https://github.com/AliBayat/Laravel-Commentable.git",
+                "reference": "c0ee2cd4816404fa506f4ba94b2209e31a88dd6f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/DanielRTRD/Laravel-Commentable/zipball/f2b385f2431d47d86caf4b5019b4a0d6697579fb",
-                "reference": "f2b385f2431d47d86caf4b5019b4a0d6697579fb",
+                "url": "https://api.github.com/repos/AliBayat/Laravel-Commentable/zipball/c0ee2cd4816404fa506f4ba94b2209e31a88dd6f",
+                "reference": "c0ee2cd4816404fa506f4ba94b2209e31a88dd6f",
                 "shasum": ""
             },
             "require": {
@@ -166,6 +166,7 @@
                     "AliBayat\\LaravelCommentable\\": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -177,15 +178,16 @@
             ],
             "description": "Implementing a Comment system for Laravel's Eloquent models.",
             "keywords": [
-                "Eloquent",
-                "Laravel",
                 "Laravel Commentable",
-                "Laravel-Commentable"
+                "eloquent",
+                "laravel",
+                "laravel-commentable"
             ],
             "support": {
-                "source": "https://github.com/DanielRTRD/Laravel-Commentable/tree/master"
+                "issues": "https://github.com/AliBayat/Laravel-Commentable/issues",
+                "source": "https://github.com/AliBayat/Laravel-Commentable/tree/master"
             },
-            "time": "2022-04-03T14:14:43+00:00"
+            "time": "2022-04-05T07:48:00+00:00"
         },
         {
             "name": "anlutro/l4-settings",

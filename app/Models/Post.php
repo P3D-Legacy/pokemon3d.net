@@ -32,12 +32,14 @@ class Post extends BaseModel implements Viewable
 
         self::creating(function ($model) {
             $model->uuid = Str::uuid()->toString();
+            $model->slug = Str::slug($model->title);
         });
 
         self::updating(function ($model) {
             if (!$model->uuid) {
                 $model->uuid = Str::uuid()->toString();
             }
+            $model->slug = Str::slug($model->title);
         });
     }
 

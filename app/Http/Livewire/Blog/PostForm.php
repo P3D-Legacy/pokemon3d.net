@@ -26,7 +26,7 @@ class PostForm extends ModalComponent
     public function rules()
     {
         return [
-            'post.title' => 'required|string|max:255|unique:posts,title,'.$this->post->id,
+            'post.title' => 'required|string|max:255|unique:posts,title,' . $this->post->id,
             'post.active' => ['required', 'integer'],
             'post.sticky' => ['required', 'integer'],
             'post.published_at' => ['required', 'date_format:Y-m-d H:i:s'],

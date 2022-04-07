@@ -68,7 +68,7 @@
                                 <div class="text-sm text-gray-800 dark:text-white">
                                     @if($activity->count())
                                         @foreach ($activity as $log)
-                                            <p class="m-0"><span class="text-gray-500">{{ $log->created_at }}:</span> {{ $log->properties['reason'] }}</p>
+                                            <p class="m-0"><span class="text-gray-500">{{ $log->created_at->setTimezone(auth()->user()->timezone ?? config('app.timezone')) }}:</span> {{ $log->properties['reason'] }}</p>
                                         @endforeach
                                     @else
                                         <p class="m-0">@lang('Nothing found.')</p>

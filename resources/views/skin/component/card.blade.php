@@ -19,7 +19,7 @@
             @else
                 @lang('Game Jolt ID'): {{ $skin->owner_id }}<br>
             @endif
-            @lang('Uploaded'): {{ $skin->created_at->diffForHumans() }}<br>
+            @lang('Uploaded'): {{ $skin->created_at->setTimezone(auth()->user()->timezone ?? config('app.timezone'))->diffForHumans() }}<br>
             @lang('File size'): {{ Storage::disk('skin')->exists($skin->path()) ? \ByteUnits\Binary::bytes(Storage::disk('skin')->size($skin->path()))->format() : 'N/A' }}
         </p>
         <div class="flex mt-2 text-sm text-black item-center dark:text-white">

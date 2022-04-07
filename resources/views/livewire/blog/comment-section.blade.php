@@ -17,7 +17,7 @@
                     <img class="mt-2 rounded-full w-8 h-8 sm:w-10 sm:h-10" src="{{ $comment->creator->profile_photo_url }}" alt="">
                 </div>
                 <div class="flex-1 border rounded-lg px-4 py-2 sm:px-6 sm:py-4 leading-relaxed dark:border-gray-600 dark:text-white">
-                    <strong>{{ $comment->creator->username }}</strong> <span class="text-xs text-gray-400">{{ $comment->created_at->isoFormat('LLL') }}</span>
+                    <strong>{{ $comment->creator->username }}</strong> <span class="text-xs text-gray-400">{{ now()->subMonth(1) > $comment->created_at ? $comment->created_at->isoFormat('LLL') : $comment->created_at->diffForHumans() }}</span>
                     <p class="text-sm text-clip">
                         {{ $comment->body }}
                     </p>
@@ -37,7 +37,7 @@
                                         <img class="mt-2 rounded-full w-8 h-8 sm:w-10 sm:h-10" src="{{ $comment->creator->profile_photo_url }}" alt="">
                                     </div>
                                     <div class="flex-1 border rounded-lg px-4 py-2 sm:px-6 sm:py-4 leading-relaxed dark:border-gray-600 dark:text-white">
-                                        <strong>{{ $comment->creator->username }}</strong> <span class="text-xs text-gray-400">{{ $comment->created_at->isoFormat('LLL') }}</span>
+                                        <strong>{{ $comment->creator->username }}</strong> <span class="text-xs text-gray-400">{{ now()->subMonth(1) > $comment->created_at ? $comment->created_at->isoFormat('LLL') : $comment->created_at->diffForHumans() }}</span>
                                         <p class="text-sm">
                                             {{ $comment->body }}
                                         </p>

@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Logging Configuration
@@ -50,11 +49,13 @@ return [
     */
 
     'services' => [
-
         'maxmind_database' => [
             'class' => \Torann\GeoIP\Services\MaxMindDatabase::class,
             'database_path' => storage_path('app/geoip.mmdb'),
-            'update_url' => sprintf('https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-City&license_key=%s&suffix=tar.gz', env('MAXMIND_LICENSE_KEY')),
+            'update_url' => sprintf(
+                'https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-City&license_key=%s&suffix=tar.gz',
+                env('MAXMIND_LICENSE_KEY')
+            ),
             'locales' => ['en'],
         ],
 
@@ -82,18 +83,17 @@ return [
         ],
 
         'ipdata' => [
-            'class'  => \Torann\GeoIP\Services\IPData::class,
-            'key'    => env('IPDATA_API_KEY'),
+            'class' => \Torann\GeoIP\Services\IPData::class,
+            'key' => env('IPDATA_API_KEY'),
             'secure' => true,
         ],
 
         'ipfinder' => [
-            'class'  => \Torann\GeoIP\Services\IPFinder::class,
-            'key'    => env('IPFINDER_API_KEY'),
+            'class' => \Torann\GeoIP\Services\IPFinder::class,
+            'key' => env('IPFINDER_API_KEY'),
             'secure' => true,
             'locales' => ['en'],
         ],
-
     ],
 
     /*
@@ -161,5 +161,4 @@ return [
         'default' => true,
         'currency' => 'USD',
     ],
-
 ];

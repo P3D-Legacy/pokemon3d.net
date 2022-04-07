@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Flash messages
@@ -62,12 +61,8 @@ return [
     */
 
     'lookup' => [
-        'server' => [
-            'REMOTE_ADDR',
-        ],
-        'headers' => [
-
-        ],
+        'server' => ['REMOTE_ADDR'],
+        'headers' => [],
     ],
 
     /*

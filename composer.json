@@ -31,7 +31,6 @@
         "guzzlehttp/psr7": "^2.1",
         "harrk/gamejolt-api": "^1.1",
         "intervention/image": "^2.7",
-        "jamesmills/laravel-timezone": "^1.11",
         "kkomelin/laravel-translatable-string-exporter": "^1.16",
         "knuckleswtf/scribe": "^3.23",
         "laravel/framework": "^9.0",

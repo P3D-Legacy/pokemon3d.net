@@ -70,7 +70,6 @@ return [
             'HTTP_FORWARDED_FOR',
             'HTTP_FORWARDED',
             'HTTP_VIA',
-            'REMOTE_ADDR',
         ],
     ],
 

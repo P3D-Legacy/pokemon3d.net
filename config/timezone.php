@@ -62,7 +62,7 @@ return [
 
     'lookup' => [
         'server' => ['REMOTE_ADDR'],
-        'headers' => [],
+        'headers' => ['HTTP_CLIENT_IP', 'HTTP_X_FORWARDED_FOR', 'HTTP_X_FORWARDED', 'HTTP_X_CLUSTER_CLIENT_IP', 'HTTP_FORWARDED_FOR', 'HTTP_FORWARDED', 'HTTP_VIA', 'REMOTE_ADDR'],
     ],
 
     /*

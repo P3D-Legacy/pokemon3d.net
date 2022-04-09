@@ -4,7 +4,6 @@ namespace App\Listeners\Auth;
 
 use Illuminate\Auth\Events\Login;
 use Illuminate\Support\Facades\Auth;
-use Torann\GeoIP\Location;
 
 class UpdateUserTimezone
 {
@@ -13,7 +12,7 @@ class UpdateUserTimezone
      *
      * @return void
      */
-    public function handle($event)
+    public function handle(Login $event)
     {
         $user = null;
 
@@ -32,6 +31,8 @@ class UpdateUserTimezone
         }
 
         $ip = request()->ip();
+        dd($ip);
+
         $geoip_info = geoip()->getLocation($ip);
 
         if ($user->timezone != $geoip_info['timezone']) {

@@ -31,7 +31,7 @@ class UpdateUserTimezone
         }
 
         $ip = request()->ip();
-        dd($ip);
+        //dd($ip);
 
         $geoip_info = geoip()->getLocation($ip);
 

@@ -31,7 +31,7 @@ class PostForm extends ModalComponent
             'post.sticky' => ['required', 'integer'],
             'post.published_at' => ['required', 'date_format:Y-m-d H:i:s'],
             'post.body' => ['required', 'string', 'min:25'],
-            'checked' => ['required', 'array'],
+            'checked' => ['array'],
         ];
     }
 

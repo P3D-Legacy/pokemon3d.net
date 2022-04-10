@@ -42,17 +42,17 @@
 									</td>
 									<td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
 										<p class="text-gray-900 whitespace-no-wrap">
-											{{ $post->published_at ? $post->published_at->diffForHumans() : 'Not published' }}
+											{{ $post->published_at ? $post->published_at->setTimezone(auth()->user()->timezone)->diffForHumans() : 'Not published' }}
 										</p>
 									</td>
 									<td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
 										<p class="text-gray-900 whitespace-no-wrap">
-											{{ $post->created_at->diffForHumans() }}
+											{{ $post->created_at->setTimezone(auth()->user()->timezone)->diffForHumans() }}
 										</p>
 									</td>
 									<td class="px-5 py-5 text-sm bg-white border-b border-gray-200">
 										<p class="text-gray-900 whitespace-no-wrap">
-											{{ $post->updated_at->diffForHumans() }}
+											{{ $post->updated_at->setTimezone(auth()->user()->timezone)->diffForHumans() }}
 										</p>
 									</td>
 									<td class="px-5 py-5 text-sm bg-white border-b border-gray-200">

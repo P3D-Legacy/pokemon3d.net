@@ -4,8 +4,11 @@
     </x-slot>
 
     <x-slot name="description">
-        {{ __("Update your account's profile information and email address.") }}
-        {{ __('Your timezone') }}: {{ $this->user->timezone }}
+        {{ __("Update your account's profile information and email address.") }}<br>
+        {{ __('Your timezone') }}: {{ $this->user->timezone }}<br>
+        <br>
+        UTC: {{ $this->user->created_at->setTimezone('UTC')->format('Y-m-d H:i:s') }}<br>
+        {{ $this->user->timezone }}: {{ $this->user->created_at->setTimezone($this->user->timezone)->format('Y-m-d H:i:s') }}
     </x-slot>
 
     <x-slot name="form">

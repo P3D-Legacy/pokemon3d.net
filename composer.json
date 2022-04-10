@@ -31,7 +31,6 @@
         "guzzlehttp/psr7": "^2.1",
         "harrk/gamejolt-api": "^1.1",
         "intervention/image": "^2.7",
-        "jamesmills/laravel-timezone": "^1.11",
         "kkomelin/laravel-translatable-string-exporter": "^1.16",
         "knuckleswtf/scribe": "^3.23",
         "laravel/framework": "^9.0",
@@ -59,6 +58,7 @@
         "spatie/laravel-tags": "^4.3",
         "symfony/http-client": "^6.0",
         "symfony/postmark-mailer": "^6.0",
+        "torann/geoip": "^3.0",
         "touhidurabir/laravel-multi-key-route-binding": "^1.0",
         "wire-elements/modal": "^1.0"
     },

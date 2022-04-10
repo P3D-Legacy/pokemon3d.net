@@ -147,12 +147,12 @@
                                     <div class="block px-4 py-2 text-xs text-gray-400">
                                         {{ __('Content') }}
                                     </div>
-                                    @canany(['posts.create','posts.update','posts.destroy']) 
+                                    @canany(['posts.create','posts.update','posts.destroy'])
                                         <x-jet-dropdown-link href="{{ route('posts.index') }}">
                                             {{ __('Blog Posts') }}
                                         </x-jet-dropdown-link>
                                     @endcanany
-                                    @canany(['tags.create','tags.update','tags.destroy']) 
+                                    @canany(['tags.create','tags.update','tags.destroy'])
                                         <x-jet-dropdown-link href="{{ route('tags.index') }}">
                                             {{ __('Tags') }}
                                         </x-jet-dropdown-link>
@@ -162,27 +162,27 @@
                                             {{ __('Stats') }}
                                         </x-jet-dropdown-link>
                                     @endcanany
-                                    @canany(['categories.create','categories.update','categories.destroy']) 
+                                    @canany(['categories.create','categories.update','categories.destroy'])
                                         <x-jet-dropdown-link href="{{ route('categories.index') }}">
                                             {{ __('Categories') }}
                                         </x-jet-dropdown-link>
                                     @endcanany
-                                    @canany(['manage.users','manage.roles','manage.permissions']) 
+                                    @canany(['manage.users','manage.roles','manage.permissions'])
                                         <div class="block px-4 py-2 text-xs text-gray-400">
                                             {{ __('User Management') }}
                                         </div>
                                     @endcanany
-                                    @can('manage.users') 
+                                    @can('manage.users')
                                         <x-jet-dropdown-link href="{{ route('users.index') }}" :active="request()->routeIs('users.index')">
                                             {{ __('Users') }}
                                         </x-jet-dropdown-link>
                                     @endcan
-                                    @can('manage.roles') 
+                                    @can('manage.roles')
                                         <x-jet-dropdown-link href="{{ route('roles.index') }}" :active="request()->routeIs('roles.index')">
                                             {{ __('Roles') }}
                                         </x-jet-dropdown-link>
                                     @endcan
-                                    @can('manage.permissions') 
+                                    @can('manage.permissions')
                                         <x-jet-dropdown-link href="{{ route('permissions.index') }}" :active="request()->routeIs('permissions.index')">
                                             {{ __('Permissions') }}
                                         </x-jet-dropdown-link>
@@ -304,42 +304,42 @@
                     <div class="block px-4 py-2 text-xs text-gray-400">
                         {{ __('Content') }}
                     </div>
-                    @canany(['posts.create','posts.update','posts.destroy']) 
+                    @canany(['posts.create','posts.update','posts.destroy'])
                         <x-jet-responsive-nav-link href="{{ route('posts.index') }}" :active="request()->routeIs('posts.index')">
                             {{ __('Blog Posts') }}
                         </x-jet-responsive-nav-link>
                     @endcanany
-                    @canany(['categories.create','categories.update','categories.destroy']) 
+                    @canany(['categories.create','categories.update','categories.destroy'])
                         <x-jet-responsive-nav-link href="{{ route('categories.index') }}" :active="request()->routeIs('categories.index')">
                             {{ __('Categories') }}
                         </x-jet-responsive-nav-link>
                     @endcanany
-                    @canany(['tags.create','tags.update','tags.destroy']) 
+                    @canany(['tags.create','tags.update','tags.destroy'])
                         <x-jet-responsive-nav-link href="{{ route('tags.index') }}" :active="request()->routeIs('tags.index')">
                             {{ __('Tags') }}
                         </x-jet-responsive-nav-link>
                     @endcanany
-                    @canany(['stats']) 
+                    @canany(['stats'])
                         <x-jet-responsive-nav-link href="{{ route('stats.index') }}" :active="request()->routeIs('stats.index')">
                             {{ __('Stats') }}
                         </x-jet-responsive-nav-link>
                     @endcanany
-                    @canany(['manage.users','manage.roles','manage.permissions']) 
+                    @canany(['manage.users','manage.roles','manage.permissions'])
                         <div class="block px-4 py-2 text-xs text-gray-400">
                             {{ __('User Management') }}
                         </div>
                     @endcanany
-                    @can('manage.users') 
+                    @can('manage.users')
                         <x-jet-responsive-nav-link href="{{ route('users.index') }}" :active="request()->routeIs('users.index')">
                             {{ __('Users') }}
                         </x-jet-responsive-nav-link>
                     @endcan
-                    @can('manage.roles') 
+                    @can('manage.roles')
                         <x-jet-responsive-nav-link href="{{ route('roles.index') }}" :active="request()->routeIs('roles.index')">
                             {{ __('Roles') }}
                         </x-jet-responsive-nav-link>
                     @endcan
-                    @can('manage.permissions') 
+                    @can('manage.permissions')
                         <x-jet-responsive-nav-link href="{{ route('permissions.index') }}" :active="request()->routeIs('permissions.index')">
                             {{ __('Permissions') }}
                         </x-jet-responsive-nav-link>
@@ -367,7 +367,7 @@
                 </x-slot>
             </x-jet-dropdown>
         </div>
-        
+
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200 dark:border-gray-700">
             <div class="flex items-center px-4">
@@ -376,13 +376,13 @@
                     <img class="object-cover w-10 h-10 rounded-full" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
                 </div>
                 @endif
-                
+
                 <div>
                     <div class="text-base font-medium text-gray-800 dark:text-gray-200">{{ Auth::user()->name }}</div>
                     <div class="text-sm font-medium text-gray-500">{{ Auth::user()->email }}</div>
                 </div>
             </div>
-            
+
             <div class="mt-3 space-y-1">
                 <x-jet-responsive-nav-link href="{{ route('member.show', auth()->user()) }}">
                     {{ __('Show Profile') }}

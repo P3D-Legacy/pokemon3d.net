@@ -32,13 +32,11 @@ class UpdateUserTimezone
 
         $ip = request()->ip();
         $geoip_info = geoip()->getLocation($ip);
-        $timezone = $geoip_info['time_zone']['name'] ?? config('geoip.default_location.timezone');
+        $timezone = $geoip_info['time_zone']['name'] ?? config('app.timezone');
 
-        if ($user->timezone != $timezone) {
-            if (config('timezone.overwrite') == true || $user->timezone == null) {
-                $user->timezone = $timezone;
-                $user->save();
-            }
+        if ($user->timezone != $timezone || $user->timezone == null) {
+            $user->timezone = $timezone;
+            $user->save();
         }
     }
 }

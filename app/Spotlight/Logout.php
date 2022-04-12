@@ -5,16 +5,13 @@ namespace App\Spotlight;
 use Illuminate\Contracts\Auth\StatefulGuard;
 use LivewireUI\Spotlight\Spotlight;
 use LivewireUI\Spotlight\SpotlightCommand;
-use LivewireUI\Spotlight\SpotlightCommandDependencies;
-use LivewireUI\Spotlight\SpotlightCommandDependency;
-use LivewireUI\Spotlight\SpotlightSearchResult;
 
 class Logout extends SpotlightCommand
 {
     /**
      * This is the name of the command that will be shown in the Spotlight component.
      */
-    protected string $name = 'logout';
+    protected string $name = 'Logout';
 
     /**
      * This is the description of your command which will be shown besides the command name.

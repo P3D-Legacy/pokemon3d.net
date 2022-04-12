@@ -62,7 +62,7 @@ class UserSearch extends SpotlightCommand
                 return new SpotlightSearchResult(
                     $user->id,
                     $user->username,
-                    sprintf('Show user for %s', $user->username)
+                    sprintf('Show details for %s', $user->username)
                 );
             });
     }

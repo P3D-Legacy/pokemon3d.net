@@ -12,7 +12,7 @@
         </h1>
         <p class="mt-2 text-xs text-gray-600 dark:text-gray-200">
             @if(Auth::user()->gamejolt->id == $skin->owner_id)
-                @lang('Public'): {{ ($skin->public) ? 'Yes' : 'No' }}<br>
+                @lang('Public'): {{ ($skin->public) ? __('Yes') : __('No') }}<br>
             @endif
             @if($skin->user)
                 @lang('Published by'): <a class="text-green-800 hover:text-green-600 dark:text-green-500 dark:hover:text-green-300" href="{{ route('member.show', $skin->user) }}">{{ $skin->user->username }}</a><br>

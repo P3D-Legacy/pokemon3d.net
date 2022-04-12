@@ -26,21 +26,16 @@ class SkinSearch extends SpotlightCommand
      * You can define any number of additional search terms (also known as synonyms)
      * to be used when searching for this command.
      */
-    protected array $synonyms = [
-        'skin',
-        'skins',
-        'skin search',
-    ];
+    protected array $synonyms = ['skin', 'skins', 'skin search'];
 
     public function dependencies(): ?SpotlightCommandDependencies
     {
-        return SpotlightCommandDependencies::collection()
-            ->add(
-                // In this example we will register a 'team' dependency
-                SpotlightCommandDependency::make('skin')
-                    // The default Spotlight placeholder will be changed to your dependency place holder
-                    ->setPlaceholder('For which skin do you want to search?')
-            );
+        return SpotlightCommandDependencies::collection()->add(
+            // In this example we will register a 'team' dependency
+            SpotlightCommandDependency::make('skin')
+                // The default Spotlight placeholder will be changed to your dependency place holder
+                ->setPlaceholder('For which skin do you want to search?')
+        );
     }
 
     /**
@@ -51,13 +46,9 @@ class SkinSearch extends SpotlightCommand
     {
         return Skin::where('name', 'like', "%$query%")
             ->get()
-            ->map(function(Skin $skin) {
+            ->map(function (Skin $skin) {
                 // You must map your search result into SpotlightSearchResult objects
-                return new SpotlightSearchResult(
-                    $skin->uuid,
-                    $skin->name,
-                    sprintf('Show details for %s', $skin->name)
-                );
+                return new SpotlightSearchResult($skin->uuid, $skin->name, sprintf('Show details for %s', $skin->name));
             });
     }
 

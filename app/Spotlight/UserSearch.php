@@ -25,14 +25,7 @@ class UserSearch extends SpotlightCommand
      * You can define any number of additional search terms (also known as synonyms)
      * to be used when searching for this command.
      */
-    protected array $synonyms = [
-        'user',
-        'users',
-        'person',
-        'people',
-        'member',
-        'members',
-    ];
+    protected array $synonyms = ['user', 'users', 'person', 'people', 'member', 'members'];
 
     /**
      * Defining dependencies is optional. If you don't have any dependencies you can remove this method.
@@ -40,13 +33,12 @@ class UserSearch extends SpotlightCommand
      */
     public function dependencies(): ?SpotlightCommandDependencies
     {
-        return SpotlightCommandDependencies::collection()
-            ->add(
-                // In this example we will register a 'team' dependency
-                SpotlightCommandDependency::make('user')
+        return SpotlightCommandDependencies::collection()->add(
+            // In this example we will register a 'team' dependency
+            SpotlightCommandDependency::make('user')
                 // The default Spotlight placeholder will be changed to your dependency place holder
                 ->setPlaceholder('For which user do you want to search?')
-            );
+        );
     }
 
     /**
@@ -57,7 +49,7 @@ class UserSearch extends SpotlightCommand
     {
         return User::where('username', 'like', "%$query%")
             ->get()
-            ->map(function(User $user) {
+            ->map(function (User $user) {
                 // You must map your search result into SpotlightSearchResult objects
                 return new SpotlightSearchResult(
                     $user->id,

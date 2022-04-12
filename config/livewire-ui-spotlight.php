@@ -24,7 +24,10 @@ return [
     |
     */
 
-    'commands' => [\LivewireUI\Spotlight\Commands\Logout::class],
+    'commands' => [
+        \App\Spotlight\Logout::class,
+        \App\Spotlight\UserSearch::class,
+    ],
 
     /*
     |--------------------------------------------------------------------------

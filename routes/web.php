@@ -127,7 +127,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
             })->name('skins');
             Route::get('/public/new', [SkinController::class, 'newestpublicskins'])->name('skins-newest');
             Route::get('/public/popular', [SkinController::class, 'popularpublicskins'])->name('skins-popular');
-            Route::get('/public/{uuid}', [SkinController::class, 'show'])->name('skin-show');
+            Route::get('/public/{skin}', [SkinController::class, 'show'])->name('skin-show');
             Route::get('/create', [SkinController::class, 'create'])->name('skin-create');
             Route::post('/create', [SkinController::class, 'store'])->name('skin-store');
             Route::get('/{uuid}/edit', [SkinController::class, 'edit'])->name('skin-edit');

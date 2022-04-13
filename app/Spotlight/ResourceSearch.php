@@ -25,11 +25,7 @@ class ResourceSearch extends SpotlightCommand
      * You can define any number of additional search terms (also known as synonyms)
      * to be used when searching for this command.
      */
-    protected array $synonyms = [
-        'resource',
-        'resources',
-        'resource search',
-    ];
+    protected array $synonyms = ['resource', 'resources', 'resource search'];
 
     /**
      * Defining dependencies is optional. If you don't have any dependencies you can remove this method.
@@ -37,13 +33,12 @@ class ResourceSearch extends SpotlightCommand
      */
     public function dependencies(): ?SpotlightCommandDependencies
     {
-        return SpotlightCommandDependencies::collection()
-            ->add(
-                // In this example we will register a 'team' dependency
-                SpotlightCommandDependency::make('resource')
+        return SpotlightCommandDependencies::collection()->add(
+            // In this example we will register a 'team' dependency
+            SpotlightCommandDependency::make('resource')
                 // The default Spotlight placeholder will be changed to your dependency place holder
                 ->setPlaceholder('For which resource do you want to search?')
-            );
+        );
     }
 
     /**
@@ -54,7 +49,7 @@ class ResourceSearch extends SpotlightCommand
     {
         return Resource::where('name', 'like', "%$query%")
             ->get()
-            ->map(function(Resource $resource) {
+            ->map(function (Resource $resource) {
                 // You must map your search result into SpotlightSearchResult objects
                 return new SpotlightSearchResult(
                     $resource->uuid,

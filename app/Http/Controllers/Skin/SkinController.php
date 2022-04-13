@@ -18,9 +18,9 @@ class SkinController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function show($uuid)
+    public function show(Skin $skin)
     {
-        $skin = Skin::where('uuid', $uuid)
+        $skin = Skin::where('uuid', $skin->uuid)
             ->isPublic()
             ->first();
         abort_unless($skin, 404);

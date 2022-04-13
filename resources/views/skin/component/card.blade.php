@@ -12,14 +12,14 @@
         </h1>
         <p class="mt-2 text-xs text-gray-600 dark:text-gray-200">
             @if(Auth::user()->gamejolt->id == $skin->owner_id)
-                @lang('Public'): {{ ($skin->public) ? 'Yes' : 'No' }}<br>
+                @lang('Public'): {{ ($skin->public) ? __('Yes') : __('No') }}<br>
             @endif
             @if($skin->user)
                 @lang('Published by'): <a class="text-green-800 hover:text-green-600 dark:text-green-500 dark:hover:text-green-300" href="{{ route('member.show', $skin->user) }}">{{ $skin->user->username }}</a><br>
             @else
                 @lang('Game Jolt ID'): {{ $skin->owner_id }}<br>
             @endif
-            @lang('Uploaded'): {{ $skin->created_at->diffForHumans() }}<br>
+            @lang('Uploaded'): {{ now()->subMonth(1) > $skin->created_at ? $skin->created_at->setTimezone(auth()->user()->timezone ?? config('app.timezone'))->isoFormat('LLL') : $skin->created_at->diffForHumans()  }}<br>
             @lang('File size'): {{ Storage::disk('skin')->exists($skin->path()) ? \ByteUnits\Binary::bytes(Storage::disk('skin')->size($skin->path()))->format() : 'N/A' }}
         </p>
         <div class="flex mt-2 text-sm text-black item-center dark:text-white">
@@ -49,7 +49,7 @@
                     </button>
                 </form>
             @else
-                @if(!request()->is('public/*') && $skin->public)
+                @if(!request()->is('skin/public/'.$skin->uuid) && $skin->public)
                     <a class="px-2 py-1 text-xs font-bold uppercase bg-blue-800 rounded text-blue-50" href="{{ route('skin-show', $skin->uuid) }}">
                         <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />

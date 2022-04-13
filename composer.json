@@ -14,6 +14,7 @@
         "php": "^8.0.2",
         "akaunting/laravel-language": "^1.0",
         "alibayat/laravel-categorizable": "1.0.x-dev",
+        "alibayat/laravel-commentable": "1.1.x-dev",
         "anlutro/l4-settings": "^1.0",
         "assada/laravel-achievements": "^2.3",
         "betterapp/laravel-db-encrypter": "^1.0",
@@ -57,21 +58,23 @@
         "spatie/laravel-tags": "^4.3",
         "symfony/http-client": "^6.0",
         "symfony/postmark-mailer": "^6.0",
+        "torann/geoip": "^3.0",
         "touhidurabir/laravel-multi-key-route-binding": "^1.0",
         "wire-elements/modal": "^1.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.6",
+        "barryvdh/laravel-ide-helper": "^2.12",
         "fakerphp/faker": "^1.9.1",
+        "laravel-lang/lang": "^10.4",
+        "laravel-lang/publisher": "^12.2",
         "laravel/sail": "^1.13",
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^6.1",
         "pestphp/pest": "^1.21",
         "pestphp/pest-plugin-laravel": "^1.2",
         "phpunit/phpunit": "^9.5.10",
-        "spatie/laravel-ignition": "^1.0",
-        "laravel-lang/lang": "^10.4",
-        "laravel-lang/publisher": "^12.2"
+        "spatie/laravel-ignition": "^1.0"
     },
     "config": {
         "optimize-autoloader": true,
@@ -79,7 +82,8 @@
         "sort-packages": true,
         "allow-plugins": {
             "composer/package-versions-deprecated": true,
-            "pestphp/pest-plugin": true
+            "pestphp/pest-plugin": true,
+            "treeware/plant": true
         }
     },
     "extra": {

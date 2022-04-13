@@ -22,14 +22,6 @@ Want to install the project? Here is a quick guide to installing the project.
 
 Please check the official laravel installation guide for server requirements before you start, [official documentation](https://laravel.com/docs/9.x/installation).
 
-Clone the repository
-``` bash
-git clone git@github.com:P3D-Legacy/pokemon3d.net.git
-```
-Switch to the repo folder
-``` bash
-cd pokemon3d.net
-```
 Install all the dependencies using composer
 ``` bash
 composer install
@@ -51,11 +43,16 @@ We've made it easy for updating stuff for the application. Running this command 
 ``` bash
 php artisan p3d:update
 ```
-Start the local development server
+Start the local development server on Windows:
 ``` bash
 php artisan serve
 ```
 You can now access the server at http://localhost:8000
+
+Mac (Requires Laravel Valet):
+``` bash
+valet open
+```
 
 # Licence
 

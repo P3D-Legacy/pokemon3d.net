@@ -29,6 +29,7 @@ class StatsHelper
 
             return count($data['players']);
         } catch (\Exception $exception) {
+            report($exception);
             return 0;
         }
     }

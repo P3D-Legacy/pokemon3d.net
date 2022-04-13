@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DownloadController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\BlogController;
@@ -40,25 +41,27 @@ if (config('app.debug')) {
         return 'test';
     });
 }
+Route::prefix('redirect')->group(function () {
+    Route::get('/wiki', function () {
+        return redirect('https://wiki.pokemon3d.net/');
+    })->name('wiki');
 
-Route::get('/redirect/wiki', function () {
-    return redirect('https://wiki.pokemon3d.net/');
-})->name('wiki');
+    Route::get('/forum', function () {
+        return redirect('https://forum.pokemon3d.net/');
+    })->name('forum');
 
-Route::get('/redirect/forum', function () {
-    return redirect('https://forum.pokemon3d.net/');
-})->name('forum');
+    Route::get('/github', function () {
+        return redirect('https://github.com/P3D-Legacy');
+    })->name('github');
 
-Route::get('/redirect/github', function () {
-    return redirect('https://github.com/P3D-Legacy');
-})->name('github');
-
-Route::get('/redirect/discord', function () {
-    return redirect(config('discord.invite_url'));
-})->name('discord');
+    Route::get('/discord', function () {
+        return redirect(config('discord.invite_url'));
+    })->name('discord');
+});
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::resource('blog', BlogController::class);
+Route::get('/download', [DownloadController::class, 'download'])->name('download');
 
 Route::prefix('login')->group(function () {
     Route::get('/discord', [DiscordController::class, 'redirectToProvider'])->name('discord.login');

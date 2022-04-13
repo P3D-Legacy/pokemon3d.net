@@ -33,107 +33,60 @@ class PostController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function create()
+    public function create(): \Illuminate\Http\RedirectResponse
     {
-        $tags = Tag::all();
-
-        return view('posts.create', compact('tags'));
+        return redirect()->route('posts.index');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(): \Illuminate\Http\RedirectResponse
     {
-        $request->validate([
-            'title' => ['required', 'string', 'max:255', 'unique:posts,title'],
-            'active' => ['required', 'integer'],
-            'sticky' => ['required', 'integer'],
-            'published_at' => ['required', 'date_format:Y-m-d H:i:s'],
-            'body' => ['required', 'string', 'min:25'],
-        ]);
-
-        $post = new Post();
-        $post->title = $request->title;
-        $post->body = $request->body;
-        $post->active = $request->active;
-        $post->sticky = $request->sticky;
-        $post->published_at = $request->published_at;
-        $post->slug = Str::of($post->title)->slug('-');
-        $post->user_id = auth()->user()->id;
-        $post->save();
-        $post->attachTags($request->tags);
-
         return redirect()->route('posts.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Post  $post
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function show(Post $post)
+    public function show()
     {
-        //
+        return redirect()->route('posts.index');
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Post  $post
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function edit(Post $post)
+    public function edit(): \Illuminate\Http\RedirectResponse
     {
-        $tags = Tag::all();
-
-        return view('posts.edit', compact('post', 'tags'));
+        return redirect()->route('posts.index');
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Post  $post
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, Post $post)
+    public function update(): \Illuminate\Http\RedirectResponse
     {
-        $request->validate([
-            'title' => ['required', 'string', 'max:255', Rule::unique('posts')->ignore($post->id)],
-            'active' => ['required', 'integer'],
-            'sticky' => ['required', 'integer'],
-            'published_at' => ['required', 'date_format:Y-m-d H:i:s'],
-            'body' => ['required', 'string', 'min:25'],
-        ]);
-
-        $post->title = $request->title;
-        $post->body = $request->body;
-        $post->active = $request->active;
-        $post->sticky = $request->sticky;
-        $post->published_at = $request->published_at;
-        $post->slug = Str::of($post->title)->slug('-');
-        $post->user_id = auth()->user()->id;
-        $post->save();
-        $post->syncTags($request->tags);
-
         return redirect()->route('posts.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Post  $post
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(Post $post)
+    public function destroy(): \Illuminate\Http\RedirectResponse
     {
-        //
+        return redirect()->route('posts.index');
     }
 }

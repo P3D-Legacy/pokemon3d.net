@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use AliBayat\LaravelCommentable\Commentable;
 use Spatie\Tags\HasTags;
 use App\Models\BaseModel;
 use Illuminate\Support\Str;
@@ -21,6 +22,7 @@ class Post extends BaseModel implements Viewable
     use SoftDeletes;
     use HasTags;
     use LogsActivity;
+    use Commentable;
 
     protected $removeViewsOnDelete = true;
 
@@ -30,12 +32,14 @@ class Post extends BaseModel implements Viewable
 
         self::creating(function ($model) {
             $model->uuid = Str::uuid()->toString();
+            $model->slug = Str::slug($model->title);
         });
 
         self::updating(function ($model) {
             if (!$model->uuid) {
                 $model->uuid = Str::uuid()->toString();
             }
+            $model->slug = Str::slug($model->title);
         });
     }
 

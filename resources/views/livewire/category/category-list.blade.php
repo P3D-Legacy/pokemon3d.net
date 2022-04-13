@@ -1,4 +1,4 @@
-<div class="flex flex-col items-center justify-center w-full mx-auto mt-10 overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-900 dark:shadow-gray-700">
+<div class="flex flex-col items-center justify-center w-full mx-auto mt-10 overflow-hidden bg-white rounded-lg shadow-lg dark:bg-black dark:shadow-gray-700">
     <div class="flex flex-col w-full divide-y divide dark:divide-gray-700">
         @foreach ($categories as $category)
             <div class="flex items-center justify-between w-full p-4 dark:text-white">

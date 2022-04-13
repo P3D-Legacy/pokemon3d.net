@@ -24,7 +24,7 @@ return [
     |
     */
 
-    'commands' => [\App\Spotlight\Logout::class, \App\Spotlight\UserSearch::class, \App\Spotlight\SkinSearch::class],
+    'commands' => [\App\Spotlight\Logout::class, \App\Spotlight\UserSearch::class, \App\Spotlight\SkinSearch::class, \App\Spotlight\ResourceSearch::class],
 
     /*
     |--------------------------------------------------------------------------

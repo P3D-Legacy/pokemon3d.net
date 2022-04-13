@@ -29,6 +29,7 @@ return [
         \App\Spotlight\UserSearch::class,
         \App\Spotlight\SkinSearch::class,
         \App\Spotlight\ResourceSearch::class,
+        \App\Spotlight\WikiSearch::class,
     ],
 
     /*

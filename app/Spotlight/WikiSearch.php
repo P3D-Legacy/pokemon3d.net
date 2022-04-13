@@ -25,14 +25,7 @@ class WikiSearch extends SpotlightCommand
      * You can define any number of additional search terms (also known as synonyms)
      * to be used when searching for this command.
      */
-    protected array $synonyms = [
-        'wiki',
-        'wikipedia',
-        'wiki search',
-        'documentation',
-        'docs',
-        'docs search',
-    ];
+    protected array $synonyms = ['wiki', 'wikipedia', 'wiki search', 'documentation', 'docs', 'docs search'];
 
     /**
      * Defining dependencies is optional. If you don't have any dependencies you can remove this method.
@@ -40,13 +33,12 @@ class WikiSearch extends SpotlightCommand
      */
     public function dependencies(): ?SpotlightCommandDependencies
     {
-        return SpotlightCommandDependencies::collection()
-            ->add(
-                // In this example we will register a 'team' dependency
-                SpotlightCommandDependency::make('wiki')
+        return SpotlightCommandDependencies::collection()->add(
+            // In this example we will register a 'team' dependency
+            SpotlightCommandDependency::make('wiki')
                 // The default Spotlight placeholder will be changed to your dependency place holder
                 ->setPlaceholder('For which title do you want to search?')
-            );
+        );
     }
 
     /**
@@ -55,15 +47,10 @@ class WikiSearch extends SpotlightCommand
      */
     public function searchWiki($query)
     {
-        return WikiHelper::getAllPages()
-            ->map(function($wiki) {
-                // You must map your search result into SpotlightSearchResult objects
-                return new SpotlightSearchResult(
-                    $wiki->pageid,
-                    $wiki->title,
-                    sprintf('Show details for %s', $wiki->title),
-                );
-            });
+        return WikiHelper::getAllPages()->map(function ($wiki) {
+            // You must map your search result into SpotlightSearchResult objects
+            return new SpotlightSearchResult($wiki->pageid, $wiki->title, sprintf('Show details for %s', $wiki->title));
+        });
     }
 
     /**

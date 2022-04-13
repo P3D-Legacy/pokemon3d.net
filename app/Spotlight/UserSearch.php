@@ -14,7 +14,7 @@ class UserSearch extends SpotlightCommand
     /**
      * This is the name of the command that will be shown in the Spotlight component.
      */
-    protected string $name = 'User search';
+    protected string $name = 'Search Users';
 
     /**
      * This is the description of your command which will be shown besides the command name.

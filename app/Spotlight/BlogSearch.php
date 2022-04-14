@@ -25,13 +25,7 @@ class BlogSearch extends SpotlightCommand
      * You can define any number of additional search terms (also known as synonyms)
      * to be used when searching for this command.
      */
-    protected array $synonyms = [
-        'search blog',
-        'search post',
-        'search posts',
-        'search blog post',
-        'search blog posts',
-    ];
+    protected array $synonyms = ['search blog', 'search post', 'search posts', 'search blog post', 'search blog posts'];
 
     /**
      * Defining dependencies is optional. If you don't have any dependencies you can remove this method.
@@ -39,13 +33,12 @@ class BlogSearch extends SpotlightCommand
      */
     public function dependencies(): ?SpotlightCommandDependencies
     {
-        return SpotlightCommandDependencies::collection()
-            ->add(
-                // In this example we will register a 'team' dependency
-                SpotlightCommandDependency::make('post')
+        return SpotlightCommandDependencies::collection()->add(
+            // In this example we will register a 'team' dependency
+            SpotlightCommandDependency::make('post')
                 // The default Spotlight placeholder will be changed to your dependency place holder
                 ->setPlaceholder('For which resource do you want to search?')
-            );
+        );
     }
 
     /**
@@ -56,13 +49,9 @@ class BlogSearch extends SpotlightCommand
     {
         return Post::where('title', 'like', "%$query%")
             ->get()
-            ->map(function(Post $post) {
+            ->map(function (Post $post) {
                 // You must map your search result into SpotlightSearchResult objects
-                return new SpotlightSearchResult(
-                    $post->id,
-                    $post->title,
-                    sprintf('Show details for %s', $post->title)
-                );
+                return new SpotlightSearchResult($post->id, $post->title, sprintf('Show details for %s', $post->title));
             });
     }
 

@@ -15,7 +15,9 @@ class Notifications extends Component
 
     public function open($id)
     {
-        $notification = auth()->user()->notifications->find($id);
+        $notification = auth()
+            ->user()
+            ->notifications->find($id);
 
         $notification->markAsRead();
 

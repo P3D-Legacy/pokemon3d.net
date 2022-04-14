@@ -43,9 +43,9 @@ class PostCommentLikeNotification extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)
-                    ->line($this->message)
-                    ->action('View comment', route('blog.show', $this->comment->commentable->uuid));
+        return (new MailMessage())
+            ->line($this->message)
+            ->action('View comment', route('blog.show', $this->comment->commentable->uuid));
     }
 
     /**
@@ -58,7 +58,7 @@ class PostCommentLikeNotification extends Notification
     {
         return [
             'message' => $this->message,
-            'url' => route('blog.show', $this->comment->commentable->uuid)
+            'url' => route('blog.show', $this->comment->commentable->uuid),
         ];
     }
 }

@@ -58,7 +58,7 @@ class PostCommentLikeNotification extends Notification
     {
         return [
             'message' => $this->message,
-            'link' => route('blog.show', $this->comment->commentable->uuid)
+            'url' => route('blog.show', $this->comment->commentable->uuid)
         ];
     }
 }

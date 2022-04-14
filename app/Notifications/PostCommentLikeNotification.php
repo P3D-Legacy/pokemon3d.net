@@ -41,9 +41,9 @@ class PostCommentLikeNotification extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)
-                    ->line('You have a new like on your comment!')
-                    ->action('View comment', route('blog.show', $this->comment->commentable->uuid));
+        return (new MailMessage())
+            ->line('You have a new like on your comment!')
+            ->action('View comment', route('blog.show', $this->comment->commentable->uuid));
     }
 
     /**

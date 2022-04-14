@@ -30,6 +30,7 @@ return [
         \App\Spotlight\SkinSearch::class,
         \App\Spotlight\ResourceSearch::class,
         \App\Spotlight\WikiSearch::class,
+        \App\Spotlight\BlogSearch::class,
     ],
 
     /*

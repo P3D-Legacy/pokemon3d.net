@@ -116,6 +116,8 @@
                     </x-jet-dropdown>
                 </div>
 
+                @livewire('notifications')
+
                 <div class="relative ml-3">
                     <x-jet-dropdown align="right" width="60">
                         <x-slot name="trigger">

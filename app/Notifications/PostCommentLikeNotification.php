@@ -11,6 +11,7 @@ class PostCommentLikeNotification extends Notification
 {
     use Queueable;
     private $comment;
+    private $message;
 
     /**
      * Create a new notification instance.
@@ -20,6 +21,7 @@ class PostCommentLikeNotification extends Notification
     public function __construct($comment)
     {
         $this->comment = $comment;
+        $this->message = 'You have a new like on your comment!';
     }
 
     /**
@@ -42,7 +44,7 @@ class PostCommentLikeNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('You have a new like on your comment!')
+                    ->line($this->message)
                     ->action('View comment', route('blog.show', $this->comment->commentable->uuid));
     }
 
@@ -55,7 +57,8 @@ class PostCommentLikeNotification extends Notification
     public function toArray($notifiable)
     {
         return [
-            'comment' => $this->comment,
+            'message' => $this->message,
+            'link' => route('blog.show', $this->comment->commentable->uuid)
         ];
     }
 }

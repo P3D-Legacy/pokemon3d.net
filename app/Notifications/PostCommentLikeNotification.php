@@ -32,7 +32,7 @@ class PostCommentLikeNotification extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail', 'database'];
+        return $notifiable->hasGivenConsent('email.notifications') ? ['mail', 'database'] : ['database'];
     }
 
     /**

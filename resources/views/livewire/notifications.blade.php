@@ -1,5 +1,5 @@
 <div class="relative ml-3">
-    <x-jet-dropdown align="left" width="64">
+    <x-jet-dropdown align="left" width="72">
         <x-slot name="trigger">
             <span class="inline-flex rounded-md">
                 <button class="inline-flex items-center p-2 text-sm font-medium leading-4 text-gray-500 transition bg-transparent border border-transparent rounded-full hover:bg-gray-100 hover:text-gray-700 dark:text-gray-300 dark:hover:bg-gray-800">
@@ -18,7 +18,16 @@
             @forelse($this->unreadNotifications as $notification)
                 <div wire:click="open('{{ $notification->id }}')" class="cursor-pointer">
                     <x-jet-dropdown-link>
-                        {{ $notification->data['message'] }}
+                        <div class="flex relative">
+                            <div class="flex-shrink-0 inline-flex items-center justify-center text-white relative z-10">
+                                @if(isset($notification->data['icon']))
+                                    <span class="rounded-full bg-green-500 uppercase p-1 text-xs font-bold mr-2 h-6 w-6">{!! $notification->data['icon'] !!}</span>
+                                @endif
+                            </div>
+                            <div class="flex-grow ml-1">
+                                <div class="text-sm leading-5 text-gray-200">{{ $notification->data['message'] }}</div>
+                            </div>
+                        </div>
                     </x-jet-dropdown-link>
                 </div>
             @empty

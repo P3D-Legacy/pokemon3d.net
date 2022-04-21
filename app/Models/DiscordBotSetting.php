@@ -9,10 +9,5 @@ class DiscordBotSetting extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'category_id',
-        'chat_id',
-        'events_id',
-        'hide_events',
-    ];
+    protected $fillable = ['category_id', 'chat_id', 'events_id', 'hide_events'];
 }

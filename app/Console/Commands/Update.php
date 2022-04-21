@@ -74,7 +74,7 @@ class Update extends Command
         $this->info('Saving DiscordBotSetting...');
         if (DiscordBotSetting::first() === null) {
             DiscordBotSetting::create([
-                'hide_events' => '{}'
+                'hide_events' => '{}',
             ]);
         }
         $this->info('Done.');

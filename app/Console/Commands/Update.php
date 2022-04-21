@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use anlutro\LaravelSettings\Facade as Setting;
+use App\Models\DiscordBotSetting;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
 
@@ -70,6 +71,12 @@ class Update extends Command
         Artisan::call('discord:syncroles');
         $this->info('Getting Discord user roles...');
         Artisan::call('discord:syncuserroles');
+        $this->info('Saving DiscordBotSetting...');
+        if (DiscordBotSetting::first() === null) {
+            DiscordBotSetting::create([
+                'hide_events' => '{}'
+            ]);
+        }
         $this->info('Done.');
         return 0;
     }

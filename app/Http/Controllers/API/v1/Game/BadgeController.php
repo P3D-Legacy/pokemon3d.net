@@ -30,20 +30,19 @@ class BadgeController extends Controller
      */
     public function index(): JsonResponse
     {
-        $badges = array();
+        $badges = [];
         $folder_path = 'img/badge/';
         $files = File::allFiles(public_path($folder_path));
         foreach ($files as $file) {
             $filename = str_replace('.png', '', $file->getFilename());
             $name = str_replace('_', ' ', $filename);
-            $badges[Str::slug($filename, '_')] = array(
+            $badges[Str::slug($filename, '_')] = [
                 'name' => $name,
                 'image' => url($folder_path . $file->getFilename()),
-            );
+            ];
         }
-        return response()->json(array(
+        return response()->json([
             'data' => $badges,
-        ));
+        ]);
     }
-
 }

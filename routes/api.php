@@ -3,6 +3,7 @@
 use App\Http\Controllers\API\v1\BanReasonController;
 use App\Http\Controllers\API\v1\DiscordAccountController;
 use App\Http\Controllers\API\v1\DiscordBotSettingController;
+use App\Http\Controllers\API\v1\Game\BadgeController;
 use App\Http\Controllers\API\v1\GamejoltAccountBanController;
 use App\Http\Controllers\API\v1\GamejoltAccountController;
 use App\Http\Controllers\API\v1\UserController;
@@ -25,4 +26,5 @@ Route::prefix('v1')->group(function () {
     Route::apiResource('banreason', BanReasonController::class);
     Route::apiResource('discordaccount', DiscordAccountController::class);
     Route::apiResource('bot/discord/settings', DiscordBotSettingController::class);
+    Route::apiResource('game/badges', BadgeController::class);
 });

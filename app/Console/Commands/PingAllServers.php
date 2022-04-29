@@ -20,7 +20,7 @@ class PingAllServers extends Command
      *
      * @var string
      */
-    protected $description = 'Ping all servers to update their satus.';
+    protected $description = 'Ping all servers to update their status.';
 
     /**
      * Create a new command instance.

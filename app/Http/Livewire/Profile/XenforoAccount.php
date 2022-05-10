@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Profile;
 
 use App\Helpers\XenForoHelper;
+use App\Models\ForumAccount;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
@@ -68,14 +69,14 @@ class XenforoAccount extends Component
             'user_id' => $user->id,
         ];
 
-        $forum = \App\Models\ForumAccount::where('user_id', $user->id)
+        $forum = ForumAccount::where('user_id', $user->id)
             ->withTrashed()
             ->first();
         if ($forum !== null) {
             $forum->restore();
             $forum->update($data);
         } else {
-            $forum = \App\Models\ForumAccount::firstOrCreate($data);
+            $forum = ForumAccount::firstOrCreate($data);
         }
 
         $this->username = $forum->username;

@@ -62,6 +62,7 @@ class PermissionSeeder extends Seeder
         $r2->givePermissionTo($p17->name);
 
         // Moderator permissions
+        $r3->givePermissionTo($p4->name);
         $r3->givePermissionTo($p8->name);
         $r3->givePermissionTo($p9->name);
         $r3->givePermissionTo($p10->name);

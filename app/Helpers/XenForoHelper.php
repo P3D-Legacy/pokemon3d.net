@@ -46,11 +46,13 @@ class XenForoHelper
     public static function getUserCount()
     {
         $data = self::sendRequest('/users');
-        if (array_key_exists('errors', $data)) {
-            throw new \Exception('CAN NOT COUNT USERS!');
+        if ($data) {
+            if (array_key_exists('errors', $data)) {
+                return 0;
+            }
+            return $data['pagination']['total'];
         }
-
-        return $data['pagination']['total'];
+        return 0;
     }
 
     public static function postAuth($login, $password)

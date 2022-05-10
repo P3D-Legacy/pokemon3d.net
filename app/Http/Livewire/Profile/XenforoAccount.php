@@ -108,7 +108,6 @@ class XenforoAccount extends Component
         }
 
         $this->emit('refresh');
-
     }
 
     public function render()

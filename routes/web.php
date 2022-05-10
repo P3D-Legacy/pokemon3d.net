@@ -151,5 +151,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
             Route::resource('tags', TagController::class);
             Route::resource('stats', StatsController::class);
             Route::view('categories', 'category.index')->name('categories.index');
+            Route::get('/analytics', \App\Http\Livewire\Analytics::class)->name('analytics')->middleware(['permission:analytics']);
         });
 });

@@ -72,7 +72,7 @@ class Kernel extends HttpKernel
         'gj.guest' => \App\Http\Middleware\GamejoltGuest::class,
         'gj.admin' => \App\Http\Middleware\GamejoltAdmin::class,
         'gj.superadmin' => \App\Http\Middleware\GamejoltSuperAdmin::class,
-        'gj.account' => \App\Http\Middleware\GamejoltAccount::class,
+        'gj.association' => \App\Http\Middleware\GameJoltAssociation::class,
         'role' => \Spatie\Permission\Middlewares\RoleMiddleware::class,
         'permission' => \Spatie\Permission\Middlewares\PermissionMiddleware::class,
         'role_or_permission' => \Spatie\Permission\Middlewares\RoleOrPermissionMiddleware::class,

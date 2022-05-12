@@ -105,7 +105,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     });
 
     Route::prefix('skin')
-        ->middleware('gj.account')
+        ->middleware('gj.association')
         ->group(function () {
             Route::get('/', [SkinHomeController::class, 'index'])->name('skin-home');
             Route::get('/my', function () {

@@ -20,7 +20,12 @@ class GameJoltAssociation
             $request->session()->flash('flash.bannerStyle', 'warning');
             $request
                 ->session()
-                ->flash('flash.banner', __('Please link your Game Jolt account in the section below, you will be able to use the skin section once this is done'));
+                ->flash(
+                    'flash.banner',
+                    __(
+                        'Please link your Game Jolt account in the section below, you will be able to use the skin section once this is done'
+                    )
+                );
             return redirect()->route('profile.show');
         }
 

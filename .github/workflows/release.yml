@@ -7,6 +7,9 @@ on:
 jobs:
   update-changelog:
     runs-on: ubuntu-latest
+    environment:
+      name: 'website'
+      url: 'https://pokemon3d.net'
     steps:
       - name: Checkout code
         uses: actions/checkout@v2

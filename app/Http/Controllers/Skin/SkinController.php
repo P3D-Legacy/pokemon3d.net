@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Skin;
 use ByteUnits\Binary;
 use Carbon\Carbon;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -280,14 +281,26 @@ class SkinController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param $uuid
+     * @return RedirectResponse
      */
-    public function destroy(Request $request, $uuid)
+    public function destroy(Request $request, $uuid): RedirectResponse
     {
         $gjid = Auth::user()->gamejolt->id;
         $skin = Skin::where('uuid', $uuid)->first();
-        if ($gjid != $skin->owner_id) {
+        if(!$skin) {
+            return redirect()
+                ->route('skins-my')
+                ->with('error', 'Skin does not exist!');
+        }
+        if ($skin->gamejoltaccount) {
+            if ($gjid != $skin->gamejoltaccount->id) {
+                return redirect()
+                    ->route('skins')
+                    ->with('error', 'You do not own this skin!');
+            }
+        } else {
             return redirect()
                 ->route('skins')
                 ->with('error', 'You do not own this skin!');

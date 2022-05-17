@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "13a9ad3c51e321f1bb25d0d01376b4bb",
+    "content-hash": "9c5f930d6727dc70cc943dc1c34ad1ec",
     "packages": [
         {
             "name": "akaunting/laravel-language",
@@ -3416,6 +3416,84 @@
                 "source": "https://github.com/lazychaser/laravel-nestedset/tree/v6.0.1"
             },
             "time": "2022-02-11T06:17:57+00:00"
+        },
+        {
+            "name": "kilobyteno/laravel-plausible",
+            "version": "0.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kilobyteno/laravel-plausible.git",
+                "reference": "ccb20a70b9fcd3a81340b4aca1009b78746bd276"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kilobyteno/laravel-plausible/zipball/ccb20a70b9fcd3a81340b4aca1009b78746bd276",
+                "reference": "ccb20a70b9fcd3a81340b4aca1009b78746bd276",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "^8.0|^9.0",
+                "php": "^8.0|^8.1",
+                "spatie/laravel-package-tools": "^1.9.2"
+            },
+            "require-dev": {
+                "nunomaduro/collision": "^6.0",
+                "nunomaduro/larastan": "^2.0.1",
+                "orchestra/testbench": "^7.0",
+                "pestphp/pest": "^1.21",
+                "pestphp/pest-plugin-laravel": "^1.1",
+                "phpstan/extension-installer": "^1.1",
+                "phpstan/phpstan-deprecation-rules": "^1.0",
+                "phpstan/phpstan-phpunit": "^1.0",
+                "phpunit/phpunit": "^9.5",
+                "spatie/laravel-ray": "^1.26"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Kilobyteno\\LaravelPlausible\\LaravelPlausibleServiceProvider"
+                    ],
+                    "aliases": {
+                        "LaravelPlausible": "Kilobyteno\\LaravelPlausible\\Facades\\LaravelPlausible"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Kilobyteno\\LaravelPlausible\\": "src",
+                    "Kilobyteno\\LaravelPlausible\\Database\\Factories\\": "database/factories"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Daniel S. Billing",
+                    "email": "daniel@kilobyte.no",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A simple package for communicating with the Plausible API within Laravel.",
+            "homepage": "https://github.com/kilobyteno/laravel-plausible",
+            "keywords": [
+                "kilobyteno",
+                "laravel",
+                "laravel-plausible"
+            ],
+            "support": {
+                "issues": "https://github.com/kilobyteno/laravel-plausible/issues",
+                "source": "https://github.com/kilobyteno/laravel-plausible/tree/0.0.2"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/danielrtrd",
+                    "type": "github"
+                }
+            ],
+            "time": "2022-04-28T19:43:49+00:00"
         },
         {
             "name": "kkomelin/laravel-translatable-string-exporter",

@@ -179,6 +179,11 @@
                                             {{ __('Stats') }}
                                         </x-jet-dropdown-link>
                                     @endcanany
+                                    @canany(['analytics'])
+                                        <x-jet-dropdown-link href="{{ route('analytics') }}">
+                                            {{ __('Analytics') }}
+                                        </x-jet-dropdown-link>
+                                    @endcanany
                                     @canany(['categories.create','categories.update','categories.destroy'])
                                         <x-jet-dropdown-link href="{{ route('categories.index') }}">
                                             {{ __('Categories') }}

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Skin;
 use ByteUnits\Binary;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -287,35 +288,29 @@ class SkinController extends Controller
      */
     public function destroy(Request $request, $uuid): RedirectResponse
     {
-        $gjid = Auth::user()->gamejolt->id;
-        $skin = Skin::where('uuid', $uuid)->first();
-        if(!$skin) {
-            return redirect()
-                ->route('skins-my')
-                ->with('error', 'Skin does not exist!');
-        }
-        if ($skin->gamejoltaccount) {
+        try {
+            $gjid = $request->user()->gamejolt->id;
+            $skin = Skin::where('uuid', $uuid)->first();
             if ($gjid != $skin->gamejoltaccount->id) {
-                return redirect()
-                    ->route('skins')
-                    ->with('error', 'You do not own this skin!');
+                session()->flash('flash.bannerStyle', 'warning');
+                session()->flash('flash.banner', 'You do not own this skin!');
+                return redirect()->route('skins-my');
             }
-        } else {
-            return redirect()
-                ->route('skins')
-                ->with('error', 'You do not own this skin!');
+            $filename = $skin->uuid . '.png';
+            if (!Storage::disk('skin')->exists($filename)) {
+                session()->flash('flash.bannerStyle', 'warning');
+                session()->flash('flash.banner', 'Skin does not exist!');
+                return redirect()->route('skins-my');
+            }
+            Storage::disk('skin')->delete($filename);
+            $skin->delete();
+            session()->flash('flash.bannerStyle', 'success');
+            session()->flash('flash.banner', 'Skin was deleted!');
+            return redirect()->route('skins-my');
+        } catch (Exception) {
+            session()->flash('flash.bannerStyle', 'danger');
+            session()->flash('flash.banner', 'Something went wrong!');
+            return redirect()->route('skins-my');
         }
-        $filename = $skin->uuid . '.png';
-        if (!Storage::disk('skin')->exists($filename)) {
-            return redirect()
-                ->route('skins')
-                ->with('error', 'Skin was not found!');
-        }
-        Storage::disk('skin')->delete($filename);
-        $skin->delete();
-
-        return redirect()
-            ->route('skins-my')
-            ->with('success', 'Skin was successfully deleted!');
     }
 }

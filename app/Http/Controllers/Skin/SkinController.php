@@ -289,7 +289,7 @@ class SkinController extends Controller
     {
         $gjid = Auth::user()->gamejolt->id;
         $skin = Skin::where('uuid', $uuid)->first();
-        if(!$skin) {
+        if (!$skin) {
             return redirect()
                 ->route('skins-my')
                 ->with('error', 'Skin does not exist!');

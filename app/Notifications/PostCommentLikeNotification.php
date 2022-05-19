@@ -2,6 +2,8 @@
 
 namespace App\Notifications;
 
+use App\Models\Comment;
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -10,19 +12,21 @@ use Illuminate\Notifications\Notification;
 class PostCommentLikeNotification extends Notification
 {
     use Queueable;
-    private string $comment;
+    private Comment $comment;
     private string $message;
     private string $icon;
+    private User $liker;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($comment)
+    public function __construct($comment, $liker)
     {
         $this->comment = $comment;
-        $this->message = 'You have a new like on your comment!';
+        $this->liker = $liker;
+        $this->message = "{$this->liker->username} liked a comment your comment on {$this->comment->commentable->title}";
         $this->icon =
             '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>';
     }

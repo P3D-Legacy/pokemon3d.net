@@ -32,7 +32,7 @@ class CommentLike extends Component
         $this->count = $this->comment->likers()->count();
         $this->liked = $this->comment->isLikedBy($this->user);
         if ($this->liked) {
-            Notification::send($this->comment->creator, new \App\Notifications\PostCommentLikeNotification($this->comment));
+            Notification::send($this->comment->creator, new \App\Notifications\PostCommentLikeNotification($this->comment, $this->user));
         }
         return $this->emit('liked');
     }

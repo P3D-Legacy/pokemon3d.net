@@ -14,7 +14,7 @@ class GameVersion extends BaseModel
     use HasReviewRating;
     use LogsActivity;
 
-    protected $fillable = ['version', 'title', 'release_date', 'page_url', 'download_url'];
+    protected $fillable = ['version', 'title', 'release_date', 'page_url', 'download_url', 'post_id'];
 
     protected $casts = [
         'release_date' => 'datetime',
@@ -37,5 +37,10 @@ class GameVersion extends BaseModel
         return self::query()
             ->orderBy('release_date', 'desc')
             ->first();
+    }
+
+    public function post(): \Illuminate\Database\Eloquent\Relations\HasOne
+    {
+        return $this->hasOne(Post::class, 'id', 'post_id');
     }
 }

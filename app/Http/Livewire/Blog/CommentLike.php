@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Blog;
 
 use App\Models\Comment;
 use Livewire\Component;
+use Notification;
 
 class CommentLike extends Component
 {
@@ -30,6 +31,13 @@ class CommentLike extends Component
         $this->user->toggleLike($this->comment);
         $this->count = $this->comment->likers()->count();
         $this->liked = $this->comment->isLikedBy($this->user);
+        if ($this->liked) {
+            Notification::send(
+                $this->comment->creator,
+                new \App\Notifications\PostCommentLikeNotification($this->comment, $this->user)
+            );
+        }
+        return $this->emit('liked');
     }
 
     public function render()

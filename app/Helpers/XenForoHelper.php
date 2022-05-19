@@ -12,8 +12,6 @@ class XenForoHelper
 
     const METHOD_POST = 'post';
 
-    const NEWS_BOARD_ID = '4';
-
     public static function sendRequest($endpoint, $data = [], $method = self::METHOD_GET)
     {
         if (config('xenforo.apikey') == null) {
@@ -32,25 +30,16 @@ class XenForoHelper
         return $decodedResponse;
     }
 
-    public static function getNewsItems()
-    {
-        $data = self::sendRequest('/forums/' . self::NEWS_BOARD_ID . '/threads');
-
-        if (array_key_exists('errors', $data)) {
-            return ['threads' => []];
-        }
-
-        return $data;
-    }
-
     public static function getUserCount()
     {
         $data = self::sendRequest('/users');
-        if (array_key_exists('errors', $data)) {
-            throw new \Exception('CAN NOT COUNT USERS!');
+        if ($data) {
+            if (array_key_exists('errors', $data)) {
+                return 0;
+            }
+            return $data['pagination']['total'];
         }
-
-        return $data['pagination']['total'];
+        return 0;
     }
 
     public static function postAuth($login, $password)

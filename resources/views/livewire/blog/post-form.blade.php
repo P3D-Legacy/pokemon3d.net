@@ -20,7 +20,7 @@
         </div>
         <x-jet-input-error for="post.body" class="mt-2" />
 
-        <x-jet-label for="post.published_at" value="{{ __('Published At') }}" class="mt-4" />
+        <x-jet-label for="post.published_at" value="{{ __('Published At') }} (UTC)" class="mt-4" />
         <x-date-picker id="post.published_at" wire:model="post.published_at" />
         <x-jet-input-error for="post.published_at" class="mt-2" />
 

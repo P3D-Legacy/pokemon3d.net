@@ -1,3 +1,5 @@
+/*! For license information please see powergrid.js.LICENSE.txt */
+
 /**
  * @license
  * Lodash <https://lodash.com/>

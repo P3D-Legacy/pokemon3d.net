@@ -105,7 +105,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     });
 
     Route::prefix('skin')
-        ->middleware('gj.account')
+        ->middleware('gj.association')
         ->group(function () {
             Route::get('/', [SkinHomeController::class, 'index'])->name('skin-home');
             Route::get('/my', function () {
@@ -151,5 +151,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
             Route::resource('tags', TagController::class);
             Route::resource('stats', StatsController::class);
             Route::view('categories', 'category.index')->name('categories.index');
+            Route::get('/analytics', \App\Http\Livewire\Analytics::class)
+                ->name('analytics')
+                ->middleware(['permission:analytics']);
         });
 });

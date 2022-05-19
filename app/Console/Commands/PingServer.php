@@ -41,11 +41,11 @@ class PingServer extends Command
         $server_uuid = $this->argument('uuid');
         $reactivate = $this->argument('reactivate');
 
-        $server = Server::find($server_uuid);
+        $server = Server::where('uuid', $server_uuid)->first();
         if (!$server) {
             $this->error('Server not found.');
 
-            return;
+            return 0;
         }
 
         $starttime = microtime(true);
@@ -73,6 +73,6 @@ class PingServer extends Command
         $server->save();
         $this->info('Name: ' . $server->name . ' - Ping: ' . $ping . 'ms');
 
-        return $ping;
+        return 0;
     }
 }

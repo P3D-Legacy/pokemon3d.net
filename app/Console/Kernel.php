@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Console\Commands\NotifyGameUpdate;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use Spatie\Health\Commands\RunHealthChecksCommand;
@@ -24,6 +25,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('discord:syncuserroles')->dailyAt('12:10');
         $schedule->command('activity:cleanup')->dailyAt('01:00');
         $schedule->command(RunHealthChecksCommand::class)->everyMinute();
+        $schedule->command(NotifyGameUpdate::class)->dailyAt('00:01');
     }
 
     /**

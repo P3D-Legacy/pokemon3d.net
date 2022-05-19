@@ -51,7 +51,12 @@ class NewGameUpdateNotification extends Notification
         return (new MailMessage())
             ->line($this->message)
             ->line($this->gameVersion->title)
-            ->action($btn_text, $this->gameVersion->post ? route('blog.show', $this->gameVersion->post->uuid) : url($this->gameVersion->page_url));
+            ->action(
+                $btn_text,
+                $this->gameVersion->post
+                    ? route('blog.show', $this->gameVersion->post->uuid)
+                    : url($this->gameVersion->page_url)
+            );
     }
 
     /**
@@ -64,7 +69,9 @@ class NewGameUpdateNotification extends Notification
     {
         return [
             'message' => $this->message,
-            'url' => $this->gameVersion->post ? route('blog.show', $this->gameVersion->post->uuid) : url($this->gameVersion->page_url),
+            'url' => $this->gameVersion->post
+                ? route('blog.show', $this->gameVersion->post->uuid)
+                : url($this->gameVersion->page_url),
             'icon' => $this->icon,
         ];
     }

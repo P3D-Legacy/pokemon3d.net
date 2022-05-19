@@ -36,7 +36,12 @@ class NotifyGameUpdate extends Command
         $latest = GameVersion::latest();
         $rls_date = $latest->release_date;
         $yesterday = Carbon::yesterday();
-        $users = Consent::all()->where('name', 'email.newsletter')->where('given', '1')->where('model_type', 'App\\Models\\User')->pluck('model_id')->toArray();
+        $users = Consent::all()
+            ->where('name', 'email.newsletter')
+            ->where('given', '1')
+            ->where('model_type', 'App\\Models\\User')
+            ->pluck('model_id')
+            ->toArray();
         $users = User::whereIn('id', $users)->get();
         if ($rls_date->isSameDay($yesterday)) {
             $this->info("New update found: {$latest->version}");

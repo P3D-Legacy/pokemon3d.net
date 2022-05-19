@@ -42,6 +42,26 @@
 		@endif
 	</head>
 	<body class="flex flex-col font-sans leading-relaxed tracking-wide bg-top bg-repeat bg-spring {{ config('app.debug') ? 'debug-screens' : '' }}">
+
+        @if(env('APP_ENV') != 'production')
+            <div class="fixed inset-x-0 top-0 z-50 pointer-events-none">
+                <div class="max-w-xs p-0 mx-auto">
+                    <div class="p-0 rounded-b-lg shadow bg-yellow-600/80">
+                        <div class="flex flex-wrap items-center justify-between">
+                            <div class="flex items-center flex-1 w-0">
+                                <p class="w-full text-sm font-bold text-center text-white truncate">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                                    </svg>
+                                    {{ (env('APP_ENV') == 'staging') ? 'QA: FOR TESTING ONLY' : 'DEV MODE' }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endif
+
         <x-jet-banner />
 
 		{{ $slot }}

@@ -10,8 +10,9 @@ use Illuminate\Notifications\Notification;
 class PostCommentLikeNotification extends Notification
 {
     use Queueable;
-    private $comment;
-    private $message;
+    private string $comment;
+    private string $message;
+    private string $icon;
 
     /**
      * Create a new notification instance.

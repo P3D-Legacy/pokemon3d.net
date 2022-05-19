@@ -25,7 +25,7 @@
                                 @endif
                             </div>
                             <div class="flex-grow ml-1">
-                                <div class="text-sm leading-5 text-gray-200">{{ $notification->data['message'] }}</div>
+                                <div class="text-sm leading-5 text-gray-900 dark:text-gray-200">{{ $notification->data['message'] }}</div>
                             </div>
                         </div>
                     </x-jet-dropdown-link>

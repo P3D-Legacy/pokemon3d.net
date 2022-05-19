@@ -20,12 +20,12 @@ class Kernel extends ConsoleKernel
         $schedule->command('p3d:skinuserupdate')->hourlyAt(10);
         $schedule->command('server:pingall')->hourly();
         $schedule->command('gj:update-trophies')->hourly();
-        $schedule->command('github:syncrelease')->daily();
+        $schedule->command('github:syncrelease')->dailyAt('00:00');
         $schedule->command('discord:syncroles')->dailyAt('12:00');
         $schedule->command('discord:syncuserroles')->dailyAt('12:10');
         $schedule->command('activity:cleanup')->dailyAt('01:00');
         $schedule->command(RunHealthChecksCommand::class)->everyMinute();
-        $schedule->command(NotifyGameUpdate::class)->dailyAt('00:01');
+        $schedule->command(NotifyGameUpdate::class)->dailyAt('00:30');
     }
 
     /**

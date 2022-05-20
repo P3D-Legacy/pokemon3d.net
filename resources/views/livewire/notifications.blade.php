@@ -29,7 +29,7 @@
                                 <span class="rounded-full bg-green-500 uppercase p-1 text-xs font-bold mr-2 h-6 w-6">{!! $notification->data['icon'] !!}</span>
                             @endif
                         </div>
-                        <div class="ml-3">
+                        <div class="flex-grow ml-3">
                             <p class="text-sm leading-5 font-medium text-gray-900 dark:text-gray-200">
                                 {!! $notification->data['message'] !!}
                             </p>
@@ -37,9 +37,9 @@
                                 {{ $notification->created_at->diffForHumans() }}
                             </div>
                         </div>
-                        <div class="flex-grow ml-1">
-                            <x-button 2xs icon="external-link" info label="{{ trans('Open') }}" wire:click="open('{{ $notification->id }}')" class="m-0.5" />
-                            <x-button 2xs icon="eye-off" secondary label="{{ trans('Dismiss') }}" wire:click="dismiss('{{ $notification->id }}')" class="m-0.5" />
+                        <div class="flex ml-1 items-end">
+                            <x-button.circle 2xs icon="external-link" info wire:click="open('{{ $notification->id }}')" class="m-0.5" />
+                            <x-button.circle 2xs icon="eye-off" secondary wire:click="dismiss('{{ $notification->id }}')" class="m-0.5" />
                         </div>
                     </div>
                 </div>

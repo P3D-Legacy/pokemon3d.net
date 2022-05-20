@@ -6,7 +6,7 @@
     </x-slot>
     <div class="px-4 py-10 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div class="flex justify-center my-4">
-            <div class="bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-700 text-gray-900 text-gray-900 dark:text-gray-200 overflow-hidden shadow">
+            <div class="bg-white dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-700 text-gray-900 text-gray-900 dark:text-gray-200 overflow-hidden shadow w-full">
                 @forelse($notifications as $notification)
                     <div class="flex items-center px-4 py-2 border-b dark:border-gray-700 {{ $notification->read_at ? 'bg-gray-100 dark:bg-gray-800/60' : '' }}">
                         <div class="flex-shrink-0 inline-flex items-center justify-center text-white relative z-10">

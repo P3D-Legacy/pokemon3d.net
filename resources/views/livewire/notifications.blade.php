@@ -16,8 +16,9 @@
         </x-slot>
         <x-slot name="content">
             @if($this->count > 0)
-                <div class="block px-4 py-2 transition">
-                    <x-button xs icon="eye-off" label="{{ trans('Dismiss all notifications') }}" class="w-full" wire:click="dismissAll()" />
+                <div class="flex px-4 py-2 gap-2">
+                    <x-button xs icon="eye-off" label="{{ trans('Dismiss all notifications') }}" class="w-1/2 inline-block" wire:click="dismissAll()" />
+                    <x-button xs icon="collection" label="{{ trans('Show all notifications') }}" class="w-1/2 inline-block" href="{{ route('notifications.index') }}" />
                 </div>
             @endif
             @forelse($this->unreadNotifications as $notification)
@@ -47,11 +48,6 @@
                     @lang('No new notifications')
                 </div>
             @endforelse
-            @if($this->count > $this->max)
-                <div class="block px-4 py-2 transition">
-                    <x-button xs icon="collection" label="{{ trans('Show all notifications') }}" class="w-full" href="{{ route('notifications.index') }}" />
-                </div>
-            @endif
         </x-slot>
     </x-jet-dropdown>
 </div>

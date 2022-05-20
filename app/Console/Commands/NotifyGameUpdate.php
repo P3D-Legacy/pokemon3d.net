@@ -8,7 +8,6 @@ use App\Notifications\NewGameUpdateNotification;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Notification;
-use Origami\Consent\Consent;
 
 class NotifyGameUpdate extends Command
 {
@@ -31,18 +30,14 @@ class NotifyGameUpdate extends Command
      *
      * @return int
      */
-    public function handle()
+    public function handle(): int
     {
         $latest = GameVersion::latest();
         $rls_date = $latest->release_date;
         $yesterday = Carbon::yesterday();
-        $users = Consent::all()
-            ->where('name', 'email.newsletter')
-            ->where('given', '1')
-            ->where('model_type', 'App\\Models\\User')
-            ->pluck('model_id')
-            ->toArray();
-        $users = User::whereIn('id', $users)->get();
+        $users = User::all()->filter(function ($user) {
+            return $user->getConsent('email.newsletter');
+        });
         if ($rls_date->isSameDay($yesterday)) {
             $this->info("New update found: {$latest->version}");
             Notification::send($users, new NewGameUpdateNotification($latest));

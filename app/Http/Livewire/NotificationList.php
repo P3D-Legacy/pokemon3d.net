@@ -26,11 +26,14 @@ class NotificationList extends Component
 
     public function dismiss($id)
     {
-        Auth::user()->notifications->find($id)->markAsRead();
+        Auth::user()
+            ->notifications->find($id)
+            ->markAsRead();
         $this->emit('notificationDismissed');
     }
 
-    public function dismissAll() {
+    public function dismissAll()
+    {
         Auth::user()->notifications->markAsRead();
         $this->emit('notificationDismissed');
     }
@@ -38,7 +41,9 @@ class NotificationList extends Component
     public function render()
     {
         return view('livewire.notification-list', [
-            'notifications' => Auth::user()->notifications()->paginate(),
+            'notifications' => Auth::user()
+                ->notifications()
+                ->paginate(),
         ]);
     }
 }

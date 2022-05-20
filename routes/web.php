@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DownloadController;
+use App\Http\Controllers\NotificationsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\BlogController;
@@ -78,6 +79,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
+    Route::get('/notifications', \App\Http\Livewire\NotificationList::class)->name('notifications.index');
 
     Route::get('/member/{user}', [MemberController::class, 'show'])->name('member.show');
 

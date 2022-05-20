@@ -62,7 +62,8 @@
         "torann/geoip": "^3.0",
         "touhidurabir/laravel-multi-key-route-binding": "^1.0",
         "wire-elements/modal": "^1.0",
-        "wire-elements/spotlight": "^1.0"
+        "wire-elements/spotlight": "^1.0",
+        "wireui/wireui": "^1.3"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.6",

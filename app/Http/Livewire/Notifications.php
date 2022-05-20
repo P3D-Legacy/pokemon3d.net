@@ -44,7 +44,8 @@ class Notifications extends Component
         $this->emit('notificationDismissed');
     }
 
-    public function dismissAll() {
+    public function dismissAll()
+    {
         $this->user->unreadNotifications->markAsRead();
         $this->emit('notificationDismissed');
     }

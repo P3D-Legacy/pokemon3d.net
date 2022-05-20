@@ -12,6 +12,8 @@ jobs:
           ref: ${{ github.head_ref }}
       - name: Install NPM dependencies
         run: npm install
+      - name: Install Composer dependencies
+        run: composer install
       - name: Prettify code
         uses: creyD/prettier_action@v4.2
         with:

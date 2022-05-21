@@ -175,7 +175,7 @@
         </div>
     </nav>
 
-    <div class="container h-auto mx-auto text-white sm:min-h-screen">
+    <div class="container h-auto mx-auto text-white">
         <div class="px-3 text-center lg:px-0">
             <h1 class="my-4 text-2xl font-black leading-tight md:text-3xl lg:text-5xl">
                 @lang('Old school Pokémon in a 3D world!')
@@ -187,7 +187,7 @@
         </div>
 
         <div class="z-auto flex items-center content-end w-full mx-auto overflow-hidden lg:w-11/12">
-            <div class="flex flex-1 m-6 bg-white rounded-t rounded-b-lg shadow-xl browser-mockup with-url md:m-12 aspect-w-16 aspect-h-9 shadow-black/50">
+            <div class="flex flex-1 mx-6 my-8 bg-white rounded-t rounded-b-lg shadow-xl browser-mockup with-url md:m-12 aspect-w-16 aspect-h-9 shadow-black/50">
                 <video muted controls class="object-cover object-center w-full h-full rounded-b-lg lg:w-full lg:h-full">
                     <source src="https://files.pokemon3d.net/video/trailer.mp4" type="video/mp4">
                     @lang('Your browser does not support the video tag.')

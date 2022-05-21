@@ -26,7 +26,7 @@ class PostCommentLikeNotification extends Notification
     {
         $this->comment = $comment;
         $this->liker = $liker;
-        $this->message = trans(':username liked a comment your comment on :title', [
+        $this->message = trans(':username liked your comment on :title', [
             'username' =>
                 '<a class="text-green-400 no-underline hover:underline" href="' .
                 route('member.show', $this->liker->username) .

@@ -39,6 +39,7 @@
         "laravel/sanctum": "^2.14",
         "laravel/socialite": "^5.5",
         "laravel/tinker": "^2.7",
+        "league/html-to-markdown": "^5.1",
         "livewire/livewire": "^2.5",
         "martinbean/socialite-discord-provider": "^1.2",
         "mtownsend/read-time": "^2.0",
@@ -61,6 +62,7 @@
         "symfony/postmark-mailer": "^6.0",
         "torann/geoip": "^3.0",
         "touhidurabir/laravel-multi-key-route-binding": "^1.0",
+        "tumblr/tumblr": "^0.4.1",
         "wire-elements/modal": "^1.0",
         "wire-elements/spotlight": "^1.0",
         "wireui/wireui": "^1.3"

@@ -9,7 +9,7 @@
             </div>
 
             <div class="block pr-4 lg:hidden">
-                <button @click="open = ! open" id="nav-toggle" class="flex items-center px-2 py-1 text-white border border-white rounded appearance-none hover:text-gray-200 hover:border-gray-200 focus:outline-none">
+                <button @click="open = ! open" id="nav-toggle" aria-label="Menu" class="flex items-center px-2 py-1 text-white border border-white rounded appearance-none hover:text-gray-200 hover:border-gray-200 focus:outline-none">
                     <svg class="w-6 h-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                         <path :class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                         <path :class="{'hidden': ! open, 'inline-flex': open }" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -386,13 +386,13 @@
                     </p>
                 </div>
                 <div class="w-full px-4 sm:p-6 sm:w-1/2">
-                    <img src="{{ asset('img/pikachu.png') }}" />
+                    <img src="{{ asset('img/pikachu.png') }}" alt="Pikachu" />
                 </div>
             </div>
 
             <div class="flex flex-col-reverse flex-wrap sm:flex-row">
                 <div class="grid w-full px-4 sm:p-6 sm:mt-6 sm:w-1/2 justify-items-end">
-                    <img src="{{ asset('img/rhydon.png') }}" />
+                    <img src="{{ asset('img/rhydon.png') }}" alt="Rhydon" />
                 </div>
                 <div class="w-full p-6 mt-6 sm:w-1/2">
                     <div class="align-middle">
@@ -420,7 +420,7 @@
                     </p>
                 </div>
                 <div class="w-full px-4 sm:p-6 sm:w-1/2">
-                    <img src="{{ asset('img/scizor.png') }}" />
+                    <img src="{{ asset('img/scizor.png') }}" alt="Scizor" />
                 </div>
             </div>
         </div>

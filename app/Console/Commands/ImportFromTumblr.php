@@ -33,7 +33,12 @@ class ImportFromTumblr extends Command
     {
         $blogName = $this->argument('blogname');
 
-        if(env('TUMBLR_CONSUMER_KEY') == null || env('TUMBLR_CONSUMER_SECRET') == null || env('TUMBLR_OAUTH_TOKEN') == null || env('TUMBLR_OAUTH_TOKEN_SECRET') == null) {
+        if (
+            env('TUMBLR_CONSUMER_KEY') == null ||
+            env('TUMBLR_CONSUMER_SECRET') == null ||
+            env('TUMBLR_OAUTH_TOKEN') == null ||
+            env('TUMBLR_OAUTH_TOKEN_SECRET') == null
+        ) {
             $this->error('Please set the tumblr environment variables.');
             return 1;
         }
@@ -49,13 +54,15 @@ class ImportFromTumblr extends Command
             $posts = $client->getBlogPosts($blogName);
 
             foreach ($posts->posts as $post) {
-                $body = preg_replace("/\r|\n/", "", trim(strip_tags($post->body))); // Clean up the body
+                $body = preg_replace("/\r|\n/", '', trim(strip_tags($post->body))); // Clean up the body
                 $postedBy = substr($body, -30); // Get the last 30 characters of the body
-                if(str_contains($postedBy, '-')) { // If the last 30 characters contain a dash, then it's probably the author
+                if (str_contains($postedBy, '-')) {
+                    // If the last 30 characters contain a dash, then it's probably the author
                     $postedBy = substr($postedBy, strpos($postedBy, '-')); // Get the author
                     $postedBy = trim(str_replace('-', '', $postedBy)); // Remove the dash
                     $postedBy = explode('//', $postedBy)[0]; // Get the first part of the author
-                } elseif(str_contains($postedBy, '//')) { // If the last 30 characters contain a double slash, then it's probably the author
+                } elseif (str_contains($postedBy, '//')) {
+                    // If the last 30 characters contain a double slash, then it's probably the author
                     $postedBy = substr($postedBy, strpos($postedBy, '//')); // Get the author
                     $postedBy = str_replace('/', '', $postedBy); // Remove the slash
                     $postedBy = str_replace('&lsquo;', '', $postedBy); // Remove the left single quote
@@ -66,7 +73,7 @@ class ImportFromTumblr extends Command
                 $title = str_replace('Pokémon3D ', '', $post->title); // Remove the Pokémon3D prefix from the title
                 $title = str_replace('!', '', $title); // Remove the exclamation mark
                 $title = ucfirst($title); // Capitalize the first letter of the title
-                $this->info('Title: '.$title.', Posted by: '.$user->username);
+                $this->info('Title: ' . $title . ', Posted by: ' . $user->username);
                 $converter = new HtmlConverter();
                 $markdown = $converter->convert($post->body);
                 Post::create([

@@ -1,11 +1,9 @@
 <x-guest-layout>
+
+    <x-home.nav-menu />
+
     <div class="p-4">
-        <div class="flex flex-col items-center min-h-screen pt-6 sm:pt-0">
-			<div>
-                <a href="{{ route('home') }}">
-                    <x-logo-small />
-                </a>
-            </div>
+        <div class="flex flex-col items-center pt-6 sm:pt-0">
 
 			<div class="w-full p-6 pt-4 mt-6 mb-10 overflow-hidden rounded-lg shadow-md sm:max-w-2xl bg-gray-50 dark:bg-gray-800">
 

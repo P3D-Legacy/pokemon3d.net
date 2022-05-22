@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Skin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Skin;
+use App\Notifications\Skin\LikeNotification;
 use ByteUnits\Binary;
 use Carbon\Carbon;
 use Exception;
@@ -220,6 +221,9 @@ class SkinController extends Controller
         abort_unless($skin, 404);
         if ($user->gamejolt->id != $skin->owner_id || config('app.debug')) {
             $user->toggleLike($skin);
+            if($user->hasLiked($skin) && $skin->user) {
+                \Notification::send($skin->user, new LikeNotification($skin, $user));
+            }
         }
 
         return redirect()->back();

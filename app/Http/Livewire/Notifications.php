@@ -41,13 +41,13 @@ class Notifications extends Component
     public function dismiss($id)
     {
         $this->user->notifications->find($id)->markAsRead();
-        $this->emit('notificationDismissed');
+        $this->emit('notificationsUpdated');
     }
 
     public function dismissAll()
     {
         $this->user->unreadNotifications->markAsRead();
-        $this->emit('notificationDismissed');
+        $this->emit('notificationsUpdated');
     }
 
     public function render()

@@ -29,13 +29,13 @@ class NotificationList extends Component
         Auth::user()
             ->notifications->find($id)
             ->markAsRead();
-        $this->emit('notificationDismissed');
+        $this->emit('notificationsUpdated');
     }
 
     public function dismissAll()
     {
         Auth::user()->notifications->markAsRead();
-        $this->emit('notificationDismissed');
+        $this->emit('notificationsUpdated');
     }
 
     public function render()

@@ -38,6 +38,8 @@ class CommentModal extends ModalComponent
 
         if ($this->parentComment) {
             Notification::send($this->parentComment->creator, new \App\Notifications\PostCommentReplyNotification($comment));
+        } else {
+            Notification::send($this->post->user, new \App\Notifications\PostCommentNotification($comment));
         }
 
         $this->emit('commentAdded');

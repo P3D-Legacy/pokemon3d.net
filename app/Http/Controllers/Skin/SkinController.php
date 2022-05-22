@@ -218,7 +218,7 @@ class SkinController extends Controller
         $user = Auth::user();
         $skin = Skin::where('uuid', $uuid)->first();
         abort_unless($skin, 404);
-        if ($user->gamejolt->id != $skin->owner_id) {
+        if ($user->gamejolt->id != $skin->owner_id || config('app.debug')) {
             $user->toggleLike($skin);
         }
 

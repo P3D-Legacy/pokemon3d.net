@@ -34,7 +34,7 @@ class CommentLike extends Component
         if ($this->liked) {
             Notification::send(
                 $this->comment->creator,
-                new \App\Notifications\PostCommentLikeNotification($this->comment, $this->user)
+                new \App\Notifications\Post\CommentLikeNotification($this->comment, $this->user)
             );
         }
         return $this->emit('liked');

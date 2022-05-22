@@ -1,14 +1,13 @@
 <?php
 
-namespace App\Notifications;
+namespace App\Notifications\Post;
 
 use App\Models\Comment;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class PostCommentReplyNotification extends Notification
+class CommentReplyNotification extends Notification
 {
     use Queueable;
     private Comment $comment;

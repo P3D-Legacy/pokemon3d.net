@@ -8,7 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class PostCommentNotification extends Notification
+class PostCommentReplyNotification extends Notification
 {
     use Queueable;
     private Comment $comment;

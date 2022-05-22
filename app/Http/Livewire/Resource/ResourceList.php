@@ -24,7 +24,13 @@ class ResourceList extends Component
             $filtered = Resource::all()->filter(function ($resource) {
                 return $resource->hasCategory(Category::where('slug', request()->segment(3))->first());
             });
-            $resources = new LengthAwarePaginator($filtered->slice((LengthAwarePaginator::resolveCurrentPage() * $perPage) - $perPage, $perPage)->all(), count($filtered), $perPage, null, ['path' => '']);
+            $resources = new LengthAwarePaginator(
+                $filtered->slice(LengthAwarePaginator::resolveCurrentPage() * $perPage - $perPage, $perPage)->all(),
+                count($filtered),
+                $perPage,
+                null,
+                ['path' => '']
+            );
         } else {
             $resources = Resource::paginate();
         }

@@ -30,9 +30,11 @@ class PostCommentNotification extends Notification
                 '">' .
                 $this->comment->creator->username .
                 '</a>',
-            'title' => '<a class="text-green-400 no-underline hover:underline" href="' .
+            'title' =>
+                '<a class="text-green-400 no-underline hover:underline" href="' .
                 route('blog.show', $this->comment->commentable->uuid) .
-                '">' . $this->comment->commentable->title .
+                '">' .
+                $this->comment->commentable->title .
                 '</a>',
         ]);
         $this->icon =

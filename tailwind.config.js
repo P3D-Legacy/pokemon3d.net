@@ -9,7 +9,6 @@ module.exports = {
         './resources/views/**/*.blade.php',
         './vendor/power-components/livewire-powergrid/resources/views/**/*.blade.php',
         './vendor/power-components/livewire-powergrid/src/Themes/Tailwind.php',
-        './vendor/wireui/wireui/resources/**/*.blade.php',
     ],
 
     darkMode: 'class',
@@ -34,7 +33,6 @@ module.exports = {
             position: ['top', 'right'],
         },
     },
-    presets: [require('./vendor/wireui/wireui/tailwind.config.js')],
     plugins: [
         require('@tailwindcss/forms')({
             strategy: 'class',

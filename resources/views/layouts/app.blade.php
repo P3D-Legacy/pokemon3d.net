@@ -17,7 +17,6 @@
 
         @livewireStyles
         @powerGridStyles
-        @wireUiScripts
 
         <script src="https://browser.sentry-cdn.com/6.19.7/bundle.min.js" integrity="sha384-KXjn4K+AYjp1cparCXazrB+5HKdi69IUYz8glD3ySH3fnDgMX3Wg6VTMvXUGr4KB" crossorigin="anonymous"></script>
 

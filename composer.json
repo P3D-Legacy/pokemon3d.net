@@ -10,12 +10,6 @@
         "laravel"
     ],
     "license": "gpl-3.0-only",
-    "repositories": {
-        "wireui/wireui": {
-            "type": "git",
-            "url": "https://github.com/DanielRTRD/wireui.git"
-        }
-    },
     "require": {
         "php": "^8.0.2",
         "akaunting/laravel-language": "^1.0",
@@ -70,8 +64,7 @@
         "touhidurabir/laravel-multi-key-route-binding": "^1.0",
         "tumblr/tumblr": "^0.4.1",
         "wire-elements/modal": "^1.0",
-        "wire-elements/spotlight": "^1.0",
-        "wireui/wireui": "dev-modal"
+        "wire-elements/spotlight": "^1.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.6",

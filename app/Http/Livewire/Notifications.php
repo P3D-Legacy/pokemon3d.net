@@ -15,7 +15,7 @@ class Notifications extends Component
     public int $max = 5;
 
     protected $listeners = [
-        'notificationDismissed' => 'update',
+        'notificationsUpdated' => 'update',
     ];
 
     public function mount()

@@ -66,7 +66,7 @@
                     </div>
                 </div>
             @empty
-                <div class="block px-4 py-2 text-sm leading-5 text-gray-700 dark:text-gray-300 focus:outline-none focus:bg-gray-100 transition">
+                <div class="block px-4 py-2 text-sm leading-5 text-gray-400 dark:text-gray-500 focus:outline-none focus:bg-gray-100 transition text-center">
                     @lang('No new notifications')
                 </div>
             @endforelse

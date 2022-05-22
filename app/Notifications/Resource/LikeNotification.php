@@ -62,9 +62,7 @@ class LikeNotification extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage())
-            ->line($this->message)
-            ->action('View', route('resource.uuid', $this->resource->uuid));
+        return (new MailMessage())->line($this->message)->action('View', route('resource.uuid', $this->resource->uuid));
     }
 
     /**

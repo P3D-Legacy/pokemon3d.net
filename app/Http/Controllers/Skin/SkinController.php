@@ -221,7 +221,7 @@ class SkinController extends Controller
         abort_unless($skin, 404);
         if ($user->gamejolt->id != $skin->owner_id || config('app.debug')) {
             $user->toggleLike($skin);
-            if($user->hasLiked($skin) && $skin->user) {
+            if ($user->hasLiked($skin) && $skin->user) {
                 \Notification::send($skin->user, new LikeNotification($skin, $user));
             }
         }

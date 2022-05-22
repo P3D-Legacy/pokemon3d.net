@@ -48,6 +48,6 @@
                 @endforelse
             </div>
         </div>
-        {{ $notifications->links('vendor.pagination.tailwind') }}
+        {{ $notifications->links() }}
     </div>
 </div>

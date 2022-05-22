@@ -18,11 +18,21 @@
             <div class="flex px-4 py-2 gap-2 grid grid-flow-col">
                 @if($this->count > 0)
                     <div>
-                        <x-button xs icon="eye-off" label="{{ trans('Dismiss all notifications') }}" class="w-full" wire:click="dismissAll()" />
+                        <button wire:click="dismissAll()" class="focus:outline-none inline-flex justify-center items-center transition-all ease-in duration-100 focus:ring-2 focus:ring-offset-2 hover:shadow-sm disabled:opacity-80 disabled:cursor-not-allowed rounded gap-x-1 text-xs px-2.5 py-1.5 border text-slate-500 hover:bg-slate-100 ring-slate-200 dark:ring-slate-600 dark:border-slate-500 dark:hover:bg-slate-700 dark:ring-offset-slate-800 dark:text-slate-400 w-full">
+                            <svg class="w-3 h-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"></path>
+                            </svg>
+                            {{ trans('Dismiss all notifications') }}
+                        </button>
                     </div>
                 @endif
                 <div>
-                    <x-button xs icon="collection" label="{{ trans('Show all notifications') }}" class="w-full" href="{{ route('notifications.index') }}" />
+                    <a href="{{ route('notifications.index') }}" class="focus:outline-none inline-flex justify-center items-center transition-all ease-in duration-100 focus:ring-2 focus:ring-offset-2 hover:shadow-sm disabled:opacity-80 disabled:cursor-not-allowed rounded gap-x-1 text-xs px-2.5 py-1.5 border text-slate-500 hover:bg-slate-100 ring-slate-200 dark:ring-slate-600 dark:border-slate-500 dark:hover:bg-slate-700 dark:ring-offset-slate-800 dark:text-slate-400 w-full">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                        </svg>
+                        {{ trans('Show all notifications') }}
+                    </a>
                 </div>
             </div>
             @forelse($this->unreadNotifications as $notification)
@@ -42,8 +52,16 @@
                             </div>
                         </div>
                         <div class="flex ml-1 items-end">
-                            <x-button.circle 2xs icon="external-link" info wire:click="open('{{ $notification->id }}')" class="m-0.5" />
-                            <x-button.circle 2xs icon="eye-off" secondary wire:click="dismiss('{{ $notification->id }}')" class="m-0.5" />
+                            <button wire:click="open('{{ $notification->id }}')" class="outline-none inline-flex justify-center items-center transition-all ease-in duration-150 focus:ring-2 focus:ring-offset-2 hover:shadow-sm disabled:opacity-80 disabled:cursor-not-allowed rounded-full w-5 h-5 ring-blue-500 text-white bg-blue-500 hover:bg-blue-600 hover:ring-blue-600 dark:ring-offset-slate-800 dark:bg-blue-700 dark:ring-blue-700 dark:hover:bg-blue-600 dark:hover:ring-blue-600 m-0.5">
+                                <svg class="w-2 h-2 shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                                </svg>
+                            </button>
+                            <button wire:click="dismiss('{{ $notification->id }}')" class="outline-none inline-flex justify-center items-center transition-all ease-in duration-150 focus:ring-2 focus:ring-offset-2 hover:shadow-sm disabled:opacity-80 disabled:cursor-not-allowed rounded-full w-5 h-5 ring-slate-500 text-white bg-slate-500 hover:bg-slate-600 hover:ring-slate-600 dark:ring-offset-slate-800 dark:bg-slate-700 dark:ring-slate-700 dark:hover:bg-slate-600 dark:hover:ring-slate-600 m-0.5">
+                                <svg class="w-2 h-2 shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"></path>
+                                </svg>
+                            </button>
                         </div>
                     </div>
                 </div>

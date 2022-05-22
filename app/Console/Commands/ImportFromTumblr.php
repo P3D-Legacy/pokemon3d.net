@@ -29,7 +29,7 @@ class ImportFromTumblr extends Command
      *
      * @return int
      */
-    public function handle()
+    public function handle(): int
     {
         $blogName = $this->argument('blogname');
 
@@ -78,7 +78,7 @@ class ImportFromTumblr extends Command
                 $markdown = $converter->convert($post->body);
                 Post::create([
                     'title' => $title,
-                    'body' => $markdown,
+                    'body' => $post->body,
                     'slug' => $post->slug,
                     'published_at' => Carbon::parse($post->date),
                     'user_id' => $user->id,

@@ -15,14 +15,14 @@
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('server.index') }}" :active="request()->routeIs('server.*')">
-                        {{ __('Servers') }}
-                    </x-jet-nav-link>
                     <x-jet-nav-link href="{{ route('resource.index') }}" :active="request()->routeIs('resource.*')">
                         {{ __('Resources') }}
                     </x-jet-nav-link>
                     <x-jet-nav-link href="{{ route('review') }}" :active="request()->routeIs('review')">
                         {{ __('Review') }}
+                    </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('server.index') }}" :active="request()->routeIs('server.*')">
+                        {{ __('Servers') }}
                     </x-jet-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 md:flex">
@@ -293,14 +293,14 @@
             <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-jet-responsive-nav-link>
-            <x-jet-responsive-nav-link href="{{ route('server.index') }}" :active="request()->routeIs('server.*')">
-                {{ __('Servers') }}
-            </x-jet-responsive-nav-link>
             <x-jet-responsive-nav-link href="{{ route('resource.index') }}" :active="request()->routeIs('resource.*')">
                 {{ __('Resources') }}
             </x-jet-responsive-nav-link>
             <x-jet-responsive-nav-link href="{{ route('review') }}" :active="request()->routeIs('review')">
                 {{ __('Reviews') }}
+            </x-jet-responsive-nav-link>
+            <x-jet-responsive-nav-link href="{{ route('server.index') }}" :active="request()->routeIs('server.*')">
+                {{ __('Servers') }}
             </x-jet-responsive-nav-link>
             <x-jet-responsive-nav-link href="{{ route('skin-home') }}" :active="request()->routeIs('skin-home')">
                 {{ __('Skins') }}

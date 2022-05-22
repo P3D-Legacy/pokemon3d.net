@@ -4,27 +4,20 @@ namespace App\Http\Livewire\Blog;
 
 use App\Models\Post;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class PostList extends Component
 {
-    public $posts;
+    use WithPagination;
 
     protected $listeners = [
-        'postUpdated' => 'update',
+        'postUpdated' => '$refresh',
     ];
-
-    public function mount()
-    {
-        $this->posts = Post::all();
-    }
-
-    public function update()
-    {
-        $this->posts = Post::all();
-    }
 
     public function render()
     {
-        return view('livewire.blog.post-list');
+        return view('livewire.blog.post-list', [
+            'posts' => Post::orderBy('published_at', 'desc')->paginate(),
+        ]);
     }
 }

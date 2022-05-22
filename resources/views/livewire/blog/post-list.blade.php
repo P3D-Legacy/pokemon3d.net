@@ -95,4 +95,5 @@
         </table>
 
     </div>
+    {{ $posts->links() }}
 </div>

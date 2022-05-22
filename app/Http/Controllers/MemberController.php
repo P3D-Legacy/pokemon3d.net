@@ -15,7 +15,9 @@ class MemberController extends Controller
      */
     public function show(string $param): View
     {
-        $user = User::where('username', $param)->orWhere('id', $param)->firstOrFail();
+        $user = User::where('username', $param)
+            ->orWhere('id', $param)
+            ->firstOrFail();
         return view('member.show', compact('user'));
     }
 }

@@ -30,7 +30,7 @@ class ResourceLike extends Component
         $this->user->toggleLike($this->resource);
         $this->count = $this->resource->likers()->count();
         $this->liked = $this->resource->isLikedBy($this->user);
-        if($this->liked) {
+        if ($this->liked) {
             Notification::send($this->resource->user, new LikeNotification($this->resource, $this->user));
             $this->emit('notificationsUpdated');
         }

@@ -4,6 +4,26 @@ All notable changes to this project will be documented in this file.
 
 <a name="0.4.0"></a>
 
+## 4.1.0 - 2022-05-22
+
+## What's Changed
+
+- Spotlight by @DanielRTRD in https://github.com/P3D-Legacy/pokemon3d.net/pull/152
+- Update norwegian by @DanielRTRD in https://github.com/P3D-Legacy/pokemon3d.net/pull/155
+- Discord bot settings by @DanielRTRD in https://github.com/P3D-Legacy/pokemon3d.net/pull/157
+- Bump dependabot/fetch-metadata from 1.3.0 to 1.3.1 by @dependabot in https://github.com/P3D-Legacy/pokemon3d.net/pull/159
+- Badge api endpoint by @DanielRTRD in https://github.com/P3D-Legacy/pokemon3d.net/pull/160
+- Added Environment by @Aragas in https://github.com/P3D-Legacy/pokemon3d.net/pull/165
+- Analytics by @DanielRTRD in https://github.com/P3D-Legacy/pokemon3d.net/pull/164
+- Notifications by @DanielRTRD in https://github.com/P3D-Legacy/pokemon3d.net/pull/154
+- Release 4.1.0 by @DanielRTRD in https://github.com/P3D-Legacy/pokemon3d.net/pull/153
+
+## New Contributors
+
+- @Aragas made their first contribution in https://github.com/P3D-Legacy/pokemon3d.net/pull/165
+
+**Full Changelog**: https://github.com/P3D-Legacy/pokemon3d.net/compare/4.0.3...4.1.0
+
 ## 4.0.3 - 2022-04-13
 
 ## What's Changed

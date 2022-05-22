@@ -61,7 +61,7 @@ class CommentReplyNotification extends Notification
     {
         return (new MailMessage())
             ->line($this->message)
-            ->action('View comment', route('blog.show', $this->comment->commentable->uuid));
+            ->action('View', route('blog.show', $this->comment->commentable->uuid));
     }
 
     /**

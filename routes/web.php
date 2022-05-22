@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DownloadController;
+use App\Http\Controllers\NotificationsController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\BlogController;
@@ -23,7 +24,6 @@ use App\Http\Controllers\Auth\FacebookController;
 use App\Http\Controllers\Skin\SkinHomeController;
 use App\Http\Controllers\Skin\PlayerSkinController;
 use App\Http\Controllers\Skin\UploadedSkinController;
-use Spatie\Health\Http\Controllers\HealthCheckResultsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -79,6 +79,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         return view('dashboard');
     })->name('dashboard');
 
+    Route::get('/notifications', \App\Http\Livewire\NotificationList::class)->name('notifications.index');
+
     Route::get('/member/{user}', [MemberController::class, 'show'])->name('member.show');
 
     Route::get('/review', function () {
@@ -105,7 +107,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     });
 
     Route::prefix('skin')
-        ->middleware('gj.account')
+        ->middleware('gj.association')
         ->group(function () {
             Route::get('/', [SkinHomeController::class, 'index'])->name('skin-home');
             Route::get('/my', function () {
@@ -127,7 +129,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
             })->name('skins');
             Route::get('/public/new', [SkinController::class, 'newestpublicskins'])->name('skins-newest');
             Route::get('/public/popular', [SkinController::class, 'popularpublicskins'])->name('skins-popular');
-            Route::get('/public/{uuid}', [SkinController::class, 'show'])->name('skin-show');
+            Route::get('/public/{skin}', [SkinController::class, 'show'])->name('skin-show');
             Route::get('/create', [SkinController::class, 'create'])->name('skin-create');
             Route::post('/create', [SkinController::class, 'store'])->name('skin-store');
             Route::get('/{uuid}/edit', [SkinController::class, 'edit'])->name('skin-edit');
@@ -143,7 +145,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::prefix('admin')
         ->middleware(['role:super-admin|admin'])
         ->group(function () {
-            Route::get('health', HealthCheckResultsController::class);
             Route::resource('users', UserController::class);
             Route::resource('roles', RoleController::class);
             Route::resource('permissions', PermissionController::class);
@@ -151,5 +152,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
             Route::resource('tags', TagController::class);
             Route::resource('stats', StatsController::class);
             Route::view('categories', 'category.index')->name('categories.index');
+            Route::get('/analytics', \App\Http\Livewire\Analytics::class)
+                ->name('analytics')
+                ->middleware(['permission:analytics']);
         });
 });

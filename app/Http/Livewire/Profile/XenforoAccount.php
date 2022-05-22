@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Profile;
 
 use App\Helpers\XenForoHelper;
+use App\Models\ForumAccount;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
@@ -46,10 +47,11 @@ class XenforoAccount extends Component
 
         if (!$this->username && !$this->password) {
             $this->errorBag->add('success', 'Your forum account has now been unlinked.');
-            Auth::user()->forum->delete();
+            if ($user->forum()) {
+                $user->forum()->delete();
+            }
             $this->updated_at = null;
             $this->verified_at = null;
-
             return;
         }
 
@@ -67,14 +69,14 @@ class XenforoAccount extends Component
             'user_id' => $user->id,
         ];
 
-        $forum = \App\Models\ForumAccount::where('user_id', $user->id)
+        $forum = ForumAccount::where('user_id', $user->id)
             ->withTrashed()
             ->first();
         if ($forum !== null) {
             $forum->restore();
             $forum->update($data);
         } else {
-            $forum = \App\Models\ForumAccount::firstOrCreate($data);
+            $forum = ForumAccount::firstOrCreate($data);
         }
 
         $this->username = $forum->username;
@@ -97,8 +99,8 @@ class XenforoAccount extends Component
 
         $user = Auth::user();
 
-        if ($user->forum) {
-            $user->forum->delete();
+        if ($user->forum()) {
+            $user->forum()->delete();
             $this->username = null;
             $this->password = null;
             $this->updated_at = null;
@@ -106,8 +108,6 @@ class XenforoAccount extends Component
         }
 
         $this->emit('refresh');
-
-        return;
     }
 
     public function render()

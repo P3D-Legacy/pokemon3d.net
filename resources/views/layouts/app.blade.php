@@ -18,15 +18,17 @@
         @livewireStyles
         @powerGridStyles
 
+        <script src="https://browser.sentry-cdn.com/6.19.7/bundle.min.js" integrity="sha384-KXjn4K+AYjp1cparCXazrB+5HKdi69IUYz8glD3ySH3fnDgMX3Wg6VTMvXUGr4KB" crossorigin="anonymous"></script>
+
         <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
 
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
-        <script> 
-            var $buoop = {required:{e:-6,f:-6,o:-6,s:-3,c:-6},insecure:true,unsupported:true,api:2021.08 }; 
-            function $buo_f(){ 
-                var e = document.createElement("script"); 
-                e.src = "//browser-update.org/update.min.js"; 
+        <script>
+            var $buoop = {required:{e:-6,f:-6,o:-6,s:-3,c:-6},insecure:true,unsupported:true,api:2021.08 };
+            function $buo_f(){
+                var e = document.createElement("script");
+                e.src = "//browser-update.org/update.min.js";
                 document.body.appendChild(e);
             };
             try {document.addEventListener("DOMContentLoaded", $buo_f,false)}
@@ -92,7 +94,8 @@
 
         @livewireScripts
         @livewire('livewire-ui-modal')
-        
+        @livewire('livewire-ui-spotlight')
+
         <script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.js"></script>
         <script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
 
@@ -128,6 +131,6 @@
                 }
             });
         </script>
-        
+
     </body>
 </html>

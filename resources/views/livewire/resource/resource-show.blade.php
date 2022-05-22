@@ -1,5 +1,5 @@
 <div class="py-10 mx-auto max-w-7xl sm:px-6 lg:px-8">
-    
+
     @component('components.breadcrumb', ['breadcrumbs' => [
         ['url' => route('resource.index'), 'label' => __('Resources')],
         ['url' => route('resource.category', Str::lower($resource->categories()->first()->name)), 'label' => $resource->categories()->first()->name],
@@ -9,7 +9,7 @@
 
     <div class="grid grid-rows-2 gap-4 px-2 mb-4 sm:grid-flow-col sm:grid-rows-none sm:grid-cols-3 sm:px-0">
         <div class="text-2xl sm:col-span-2 dark:text-white">
-            {{ $resource->name }} <span class="text-gray-400 dark:text-gray-500">{{ $resource->updates->first() ? $resource->updates->first()->title : 'Unreleased' }}</span>
+            {{ $resource->name }} <span class="text-gray-400 dark:text-gray-500">{{ $resource->updates->first() ? $resource->updates->first()->title : __('Unreleased') }}</span>
         </div>
         <div class="flex justify-end gap-1">
             @if(auth()->user()->id != $resource->user_id || config('app.debug') == true)
@@ -149,7 +149,7 @@
                             <a href="{{ route('member.show', $review->author) }}" class="mr-2 text-green-400 hover:text-green-500 hover:underline">{{ $review->author->username }}</a> &middot; <x-review-stars :stars="$review->rating" :size="4" /> &middot; {{ $review->created_at->diffForHumans() }}
                         </div>
                         <div class="text-xs text-gray-500 truncate dark:text-gray-300">
-                            
+
                         </div>
                         <div class="py-1 font-medium dark:text-white">
                             {{ $review->review }}

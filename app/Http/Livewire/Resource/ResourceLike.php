@@ -3,7 +3,9 @@
 namespace App\Http\Livewire\Resource;
 
 use App\Models\Resource;
+use App\Notifications\Resource\LikeNotification;
 use Livewire\Component;
+use Notification;
 
 class ResourceLike extends Component
 {
@@ -28,6 +30,10 @@ class ResourceLike extends Component
         $this->user->toggleLike($this->resource);
         $this->count = $this->resource->likers()->count();
         $this->liked = $this->resource->isLikedBy($this->user);
+        if ($this->liked) {
+            Notification::send($this->resource->user, new LikeNotification($this->resource, $this->user));
+            $this->emit('notificationsUpdated');
+        }
     }
 
     public function render()

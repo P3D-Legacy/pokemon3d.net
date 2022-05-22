@@ -26,8 +26,10 @@ class StatsHelper
     {
         try {
             $data = self::sendRequest('/server/status');
-
-            return count($data['players']);
+            if (isset($data['players'])) {
+                return count($data['players']);
+            }
+            return 0;
         } catch (\Exception $exception) {
             report($exception);
             return 0;

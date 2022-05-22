@@ -33,7 +33,6 @@ module.exports = {
             position: ['top', 'right'],
         },
     },
-
     plugins: [
         require('@tailwindcss/forms')({
             strategy: 'class',

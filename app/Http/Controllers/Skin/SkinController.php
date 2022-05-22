@@ -4,8 +4,11 @@ namespace App\Http\Controllers\Skin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Skin;
+use App\Notifications\Skin\LikeNotification;
 use ByteUnits\Binary;
 use Carbon\Carbon;
+use Exception;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -18,9 +21,9 @@ class SkinController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function show($uuid)
+    public function show(Skin $skin)
     {
-        $skin = Skin::where('uuid', $uuid)
+        $skin = Skin::where('uuid', $skin->uuid)
             ->isPublic()
             ->first();
         abort_unless($skin, 404);
@@ -216,8 +219,11 @@ class SkinController extends Controller
         $user = Auth::user();
         $skin = Skin::where('uuid', $uuid)->first();
         abort_unless($skin, 404);
-        if ($user->gamejolt->id != $skin->owner_id) {
+        if ($user->gamejolt->id != $skin->owner_id || config('app.debug')) {
             $user->toggleLike($skin);
+            if ($user->hasLiked($skin) && $skin->user) {
+                \Notification::send($skin->user, new LikeNotification($skin, $user));
+            }
         }
 
         return redirect()->back();
@@ -280,29 +286,35 @@ class SkinController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param $uuid
+     * @return RedirectResponse
      */
-    public function destroy(Request $request, $uuid)
+    public function destroy(Request $request, $uuid): RedirectResponse
     {
-        $gjid = Auth::user()->gamejolt->id;
-        $skin = Skin::where('uuid', $uuid)->first();
-        if ($gjid != $skin->owner_id) {
-            return redirect()
-                ->route('skins')
-                ->with('error', 'You do not own this skin!');
+        try {
+            $gjid = $request->user()->gamejolt->id;
+            $skin = Skin::where('uuid', $uuid)->first();
+            if ($gjid != $skin->gamejoltaccount->id) {
+                session()->flash('flash.bannerStyle', 'warning');
+                session()->flash('flash.banner', 'You do not own this skin!');
+                return redirect()->route('skins-my');
+            }
+            $filename = $skin->uuid . '.png';
+            if (!Storage::disk('skin')->exists($filename)) {
+                session()->flash('flash.bannerStyle', 'warning');
+                session()->flash('flash.banner', 'Skin does not exist!');
+                return redirect()->route('skins-my');
+            }
+            Storage::disk('skin')->delete($filename);
+            $skin->delete();
+            session()->flash('flash.bannerStyle', 'success');
+            session()->flash('flash.banner', 'Skin was deleted!');
+            return redirect()->route('skins-my');
+        } catch (Exception) {
+            session()->flash('flash.bannerStyle', 'danger');
+            session()->flash('flash.banner', 'Something went wrong!');
+            return redirect()->route('skins-my');
         }
-        $filename = $skin->uuid . '.png';
-        if (!Storage::disk('skin')->exists($filename)) {
-            return redirect()
-                ->route('skins')
-                ->with('error', 'Skin was not found!');
-        }
-        Storage::disk('skin')->delete($filename);
-        $skin->delete();
-
-        return redirect()
-            ->route('skins-my')
-            ->with('success', 'Skin was successfully deleted!');
     }
 }

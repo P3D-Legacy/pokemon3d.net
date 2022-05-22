@@ -3,17 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\View\View;
 
 class MemberController extends Controller
 {
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
+     * @param string $param
+     * @return View
      */
-    public function show(User $user)
+    public function show(string $param): View
     {
+        $user = User::where('username', $param)
+            ->orWhere('id', $param)
+            ->firstOrFail();
         return view('member.show', compact('user'));
     }
 }

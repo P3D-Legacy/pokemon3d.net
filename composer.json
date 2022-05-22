@@ -31,6 +31,7 @@
         "guzzlehttp/psr7": "^2.1",
         "harrk/gamejolt-api": "^1.1",
         "intervention/image": "^2.7",
+        "kilobyteno/laravel-plausible": "^0.0.2",
         "kkomelin/laravel-translatable-string-exporter": "^1.16",
         "knuckleswtf/scribe": "^3.23",
         "laravel/framework": "^9.0",
@@ -38,6 +39,7 @@
         "laravel/sanctum": "^2.14",
         "laravel/socialite": "^5.5",
         "laravel/tinker": "^2.7",
+        "league/html-to-markdown": "^5.1",
         "livewire/livewire": "^2.5",
         "martinbean/socialite-discord-provider": "^1.2",
         "mtownsend/read-time": "^2.0",
@@ -49,9 +51,7 @@
         "socialiteproviders/facebook": "^4.1",
         "socialiteproviders/twitch": "^5.3",
         "socialiteproviders/twitter": "^4.1",
-        "spatie/cpu-load-health-check": "^1.0",
         "spatie/laravel-activitylog": "^4.4",
-        "spatie/laravel-health": "^1.8",
         "spatie/laravel-medialibrary": "^10.0",
         "spatie/laravel-permission": "^5.5",
         "spatie/laravel-stats": "^2.0",
@@ -60,7 +60,9 @@
         "symfony/postmark-mailer": "^6.0",
         "torann/geoip": "^3.0",
         "touhidurabir/laravel-multi-key-route-binding": "^1.0",
-        "wire-elements/modal": "^1.0"
+        "tumblr/tumblr": "^0.4.1",
+        "wire-elements/modal": "^1.0",
+        "wire-elements/spotlight": "^1.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.6",

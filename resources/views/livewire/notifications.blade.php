@@ -15,12 +15,16 @@
             </span>
         </x-slot>
         <x-slot name="content">
-            @if($this->count > 0)
-                <div class="flex px-4 py-2 gap-2">
-                    <x-button xs icon="eye-off" label="{{ trans('Dismiss all notifications') }}" class="w-1/2 inline-block" wire:click="dismissAll()" />
-                    <x-button xs icon="collection" label="{{ trans('Show all notifications') }}" class="w-1/2 inline-block" href="{{ route('notifications.index') }}" />
+            <div class="flex px-4 py-2 gap-2 grid grid-flow-col">
+                @if($this->count > 0)
+                    <div>
+                        <x-button xs icon="eye-off" label="{{ trans('Dismiss all notifications') }}" class="w-full" wire:click="dismissAll()" />
+                    </div>
+                @endif
+                <div>
+                    <x-button xs icon="collection" label="{{ trans('Show all notifications') }}" class="w-full" href="{{ route('notifications.index') }}" />
                 </div>
-            @endif
+            </div>
             @forelse($this->unreadNotifications as $notification)
                 <div class="block px-4 py-2 text-sm leading-5 text-gray-700 dark:text-gray-300 transition border-gray-200 dark:border-gray-900 border-b">
                     <div class="flex relative">

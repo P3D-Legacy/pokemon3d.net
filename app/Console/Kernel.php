@@ -12,7 +12,6 @@ use App\Console\Commands\UpdateGamejoltAccountTrophies;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use Spatie\Activitylog\CleanActivitylogCommand;
-use Spatie\Health\Commands\RunHealthChecksCommand;
 
 class Kernel extends ConsoleKernel
 {
@@ -31,7 +30,6 @@ class Kernel extends ConsoleKernel
         $schedule->command(DiscordRoleSync::class)->dailyAt('12:00');
         $schedule->command(DiscordUserRoleSync::class)->dailyAt('12:10');
         $schedule->command(CleanActivitylogCommand::class)->dailyAt('01:00');
-        $schedule->command(RunHealthChecksCommand::class)->everyMinute();
         $schedule->command(NotifyGameUpdate::class)->dailyAt('00:30');
     }
 

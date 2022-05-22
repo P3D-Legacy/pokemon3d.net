@@ -24,7 +24,6 @@ use App\Http\Controllers\Auth\FacebookController;
 use App\Http\Controllers\Skin\SkinHomeController;
 use App\Http\Controllers\Skin\PlayerSkinController;
 use App\Http\Controllers\Skin\UploadedSkinController;
-use Spatie\Health\Http\Controllers\HealthCheckResultsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -146,7 +145,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::prefix('admin')
         ->middleware(['role:super-admin|admin'])
         ->group(function () {
-            Route::get('health', HealthCheckResultsController::class);
             Route::resource('users', UserController::class);
             Route::resource('roles', RoleController::class);
             Route::resource('permissions', PermissionController::class);

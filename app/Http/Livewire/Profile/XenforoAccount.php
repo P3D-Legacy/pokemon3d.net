@@ -79,7 +79,7 @@ class XenforoAccount extends Component
             $forum = ForumAccount::firstOrCreate($data);
         }
 
-        if($this->syncRegisterDate) {
+        if ($this->syncRegisterDate) {
             $register_date = Carbon::parse($auth['user']['register_date']);
             $user->update([
                 'created_at' => $register_date,

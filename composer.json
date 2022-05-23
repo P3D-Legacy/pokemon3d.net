@@ -10,6 +10,12 @@
         "laravel"
     ],
     "license": "gpl-3.0-only",
+    "repositories": {
+        "nova": {
+            "type": "composer",
+            "url": "https://nova.laravel.com"
+        }
+    },
     "require": {
         "php": "^8.0.2",
         "akaunting/laravel-language": "^1.0",
@@ -36,6 +42,7 @@
         "knuckleswtf/scribe": "^3.23",
         "laravel/framework": "^9.0",
         "laravel/jetstream": "^2.6",
+        "laravel/nova": "^4.6",
         "laravel/sanctum": "^2.14",
         "laravel/socialite": "^5.5",
         "laravel/tinker": "^2.7",

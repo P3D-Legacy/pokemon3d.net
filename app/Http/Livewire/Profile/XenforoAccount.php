@@ -12,11 +12,8 @@ use Livewire\Component;
 class XenforoAccount extends Component
 {
     public $username;
-
     public $password;
-
     public $updated_at;
-
     public $verified_at;
 
     public function mount()

@@ -25,8 +25,8 @@ class ResourceFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
-            'brief' => $this->faker->optional()->sentence,
-            'description' => $this->faker->optional()->paragraph,
+            'brief' => $this->faker->sentence(),
+            'description' => $this->faker->paragraph(),
             'user_id' => UserFactory::new(),
         ];
     }

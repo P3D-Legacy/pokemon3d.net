@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Category;
 use App\Models\GameVersion;
 use App\Models\Post;
 use App\Models\Resource;
@@ -30,7 +31,11 @@ class FactorySeeder extends Seeder
         User::factory(10)->create();
         Post::factory(10)->create();
         GameVersion::factory(10)->create();
-        //ResourceUpdate::factory(25)->create();
+        Category::factory(5)->create();
+        Resource::factory(25)
+            ->has(Category::factory()->count(1))
+            ->has(ResourceUpdate::factory()->count(3), 'updates')
+            ->create();
         Server::factory(10)->create();
     }
 }

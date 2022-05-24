@@ -27,7 +27,7 @@ class ResourceUpdateFactory extends Factory
     {
         return [
             'title' => $this->faker->sentence(),
-            'description' => $this->faker->optional()->paragraphs($asText = true),
+            'description' => $this->faker->paragraphs(3 , true),
             'resource_id' => Resource::factory(),
             'game_version_id' => GameVersion::factory(),
             'downloads' => $this->faker->numberBetween(0, 10000),

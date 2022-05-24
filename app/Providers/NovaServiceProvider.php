@@ -18,13 +18,16 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     {
         parent::boot();
         Nova::footer(function ($request) {
-            return Blade::render('
+            return Blade::render(
+                '
             <p class="text-center">Powered by <a class="link-default" href="https://nova.laravel.com">Laravel Nova</a> · v{!! $version !!}</p>
             <p class="text-center">&copy; {!! $year !!} <a class="link-default" href="https://kilobyte.no">Kilobyte AS</a></p>
-        ', [
-                'version' => Nova::version(),
-                'year' => date('Y'),
-            ]);
+        ',
+                [
+                    'version' => Nova::version(),
+                    'year' => date('Y'),
+                ]
+            );
         });
     }
 

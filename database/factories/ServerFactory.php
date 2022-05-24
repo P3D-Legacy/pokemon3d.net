@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Server;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -31,6 +32,7 @@ class ServerFactory extends Factory
             'port' => $this->faker->numberBetween(1, 65535),
             'active' => $this->faker->boolean,
             'last_check_at' => $this->faker->dateTimeBetween($startDate = '-1 years', $endDate = 'now'),
+            'user_id' => UserFactory::new(),
         ];
     }
 }

@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\GameVersion;
+use App\Models\Resource;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -24,10 +26,10 @@ class ResourceUpdateFactory extends Factory
     public function definition()
     {
         return [
-            'title' => $this->faker->title,
-            'description' => $this->faker->optional()->paragraph,
-            'resource_id' => ResourceFactory::new(),
-            'game_version_id' => GameVersionFactory::new(),
+            'title' => $this->faker->sentence(),
+            'description' => $this->faker->optional()->paragraphs($asText = true),
+            'resource_id' => Resource::factory(),
+            'game_version_id' => GameVersion::factory(),
             'downloads' => $this->faker->numberBetween(0, 10000),
         ];
     }

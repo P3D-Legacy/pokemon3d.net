@@ -23,7 +23,7 @@ class GameVersionFactory extends Factory
      */
     public function definition()
     {
-        $version = $this->faker->numberBetween(1, 9).'.'.$this->faker->numberBetween(0, 9).'.'.$this->faker->numberBetween(0, 9);
+        $version = $this->faker->numberBetween(0, 2).'.'.$this->faker->numberBetween(0, 99).'.'.$this->faker->numberBetween(0, 9);
         return [
             'version' => $version,
             'title' => 'Release '.$version,

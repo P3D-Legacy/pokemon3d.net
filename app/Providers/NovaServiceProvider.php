@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Blade;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Nova\Nova;
 use Laravel\Nova\NovaApplicationServiceProvider;
@@ -16,6 +17,15 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     public function boot()
     {
         parent::boot();
+        Nova::footer(function ($request) {
+            return Blade::render('
+            <p class="text-center">Powered by <a class="link-default" href="https://nova.laravel.com">Laravel Nova</a> · v{!! $version !!}</p>
+            <p class="text-center">&copy; {!! $year !!} <a class="link-default" href="https://kilobyte.no">Kilobyte AS</a></p>
+        ', [
+                'version' => Nova::version(),
+                'year' => date('Y'),
+            ]);
+        });
     }
 
     /**

@@ -33,6 +33,8 @@ class ServerFactory extends Factory
             'active' => $this->faker->boolean,
             'last_check_at' => $this->faker->dateTimeBetween($startDate = '-1 years', $endDate = 'now'),
             'user_id' => UserFactory::new(),
+            'ping' => $this->faker->optional()->numberBetween(1, 100),
+            'official' => $this->faker->boolean(10),
         ];
     }
 }

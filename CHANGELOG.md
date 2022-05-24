@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 <a name="0.4.0"></a>
 
+## 4.1.1 - 2022-05-24
+
+## What's Changed
+
+- Fixed refresh for resource list by @DanielRTRD in https://github.com/P3D-Legacy/pokemon3d.net/pull/173
+
+**Full Changelog**: https://github.com/P3D-Legacy/pokemon3d.net/compare/4.1.0...4.1.1
+
 ## 4.1.0 - 2022-05-22
 
 ## What's Changed

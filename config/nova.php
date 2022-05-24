@@ -8,7 +8,6 @@ use Laravel\Nova\Http\Middleware\DispatchServingNovaEvent;
 use Laravel\Nova\Http\Middleware\HandleInertiaRequests;
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Nova License Key
@@ -98,18 +97,9 @@ return [
     |
     */
 
-    'middleware' => [
-        'web',
-        HandleInertiaRequests::class,
-        DispatchServingNovaEvent::class,
-        BootTools::class,
-    ],
+    'middleware' => ['web', HandleInertiaRequests::class, DispatchServingNovaEvent::class, BootTools::class],
 
-    'api_middleware' => [
-        'nova',
-        Authenticate::class,
-        Authorize::class,
-    ],
+    'api_middleware' => ['nova', Authenticate::class, Authorize::class],
 
     /*
     |--------------------------------------------------------------------------
@@ -163,13 +153,13 @@ return [
     */
 
     'brand' => [
-        'logo' => realpath(__DIR__.'/../public/img/pokemon3d_logo.png'),
+        'logo' => realpath(__DIR__ . '/../public/img/pokemon3d_logo.png'),
 
-    //     'colors' => [
-    //         "400" => "24, 182, 155, 0.5",
-    //         "500" => "24, 182, 155",
-    //         "600" => "24, 182, 155, 0.75",
-    //     ]
+        //     'colors' => [
+        //         "400" => "24, 182, 155, 0.5",
+        //         "500" => "24, 182, 155",
+        //         "600" => "24, 182, 155, 0.75",
+        //     ]
     ],
 
     /*

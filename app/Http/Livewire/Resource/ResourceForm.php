@@ -30,6 +30,7 @@ class ResourceForm extends ModalComponent
     {
         $this->validate();
 
+        $this->resource->user_id = auth()->id();
         $this->resource->save();
 
         $category = Category::find($this->category);

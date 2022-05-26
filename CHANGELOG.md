@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 
 <a name="0.4.0"></a>
 
+## 4.1.2 - 2022-05-26
+
+## What's Changed
+
+- Bump guzzlehttp/guzzle from 7.4.2 to 7.4.3 by @dependabot in https://github.com/P3D-Legacy/pokemon3d.net/pull/174
+- Fixed server card list for non-active servers by @DanielRTRD in https://github.com/P3D-Legacy/pokemon3d.net/pull/176
+
+**Full Changelog**: https://github.com/P3D-Legacy/pokemon3d.net/compare/4.1.1...4.1.2
+
 ## 4.1.1 - 2022-05-24
 
 ## What's Changed

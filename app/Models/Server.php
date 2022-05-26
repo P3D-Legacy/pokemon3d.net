@@ -55,7 +55,7 @@ class Server extends BaseModel
      *
      * @var array
      */
-    protected $fillable = ['name', 'description', 'host', 'port', 'active', 'last_check_at', 'user_id'];
+    protected $fillable = ['name', 'description', 'host', 'port', 'active', 'official', 'last_check_at', 'user_id'];
 
     /**
      * The attributes that should be cast to native types.

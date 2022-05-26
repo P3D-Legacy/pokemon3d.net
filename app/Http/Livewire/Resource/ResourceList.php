@@ -14,7 +14,7 @@ class ResourceList extends Component
     use WithPagination;
 
     protected $listeners = [
-        'resourceUpdated' => 'update',
+        'resourceUpdated' => '$refresh',
     ];
 
     public function render()

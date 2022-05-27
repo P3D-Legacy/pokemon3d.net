@@ -29,10 +29,7 @@ class ResourcePack extends Resource
      *
      * @var array
      */
-    public static $search = [
-        'id',
-        'name',
-    ];
+    public static $search = ['id', 'name'];
 
     /**
      * Get the fields displayed by the resource.
@@ -42,12 +39,7 @@ class ResourcePack extends Resource
      */
     public function fields(NovaRequest $request)
     {
-        return [
-            ID::make()->sortable(),
-            Text::make('name')->sortable(),
-            Text::make('breif'),
-            Textarea::make('description'),
-        ];
+        return [ID::make()->sortable(), Text::make('name')->sortable(), Text::make('breif'), Textarea::make('description')];
     }
 
     /**

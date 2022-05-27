@@ -157,4 +157,12 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasOne(TwitchAccount::class);
     }
+
+    /**
+     * Get the resources associated with the user.
+     */
+    public function resources()
+    {
+        return $this->hasMany(Resource::class);
+    }
 }

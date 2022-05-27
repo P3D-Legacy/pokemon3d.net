@@ -37,7 +37,6 @@ class Resource extends BaseModel implements Viewable
 
         self::creating(function ($model) {
             $model->uuid = Str::uuid()->toString();
-            $model->user_id = auth()->id();
             ResourceCreationStats::increase();
         });
 

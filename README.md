@@ -43,6 +43,10 @@ We've made it easy for updating stuff for the application. Running this command 
 ``` bash
 php artisan p3d:update
 ```
+Need a set of test data in the database? Run this command to seed the database with test data.
+``` bash
+php artisan db:seed --class=FactorySeeder
+```
 Start the local development server on Windows:
 ``` bash
 php artisan serve

@@ -29,7 +29,7 @@ class BanReason extends Resource
      *
      * @var array
      */
-    public static $search = ['id'];
+    public static $search = ['name'];
 
     /**
      * Get the fields displayed by the resource.

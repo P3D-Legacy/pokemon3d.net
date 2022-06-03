@@ -28,7 +28,7 @@ class GamejoltAccount extends Resource
      *
      * @var array
      */
-    public static $search = ['id'];
+    public static $search = ['username'];
 
     /**
      * Get the fields displayed by the resource.

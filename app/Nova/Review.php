@@ -31,11 +31,7 @@ class Review extends Resource
      *
      * @var array
      */
-    public static $search = [
-        'id',
-        'review',
-        'rating',
-    ];
+    public static $search = ['id', 'review', 'rating'];
 
     /**
      * Get the fields displayed by the resource.
@@ -48,7 +44,11 @@ class Review extends Resource
         return [
             ID::make()->sortable(),
             Textarea::make('review')->sortable(),
-            Number::make('rating')->min(1)->max(5)->step(1)->sortable(),
+            Number::make('rating')
+                ->min(1)
+                ->max(5)
+                ->step(1)
+                ->sortable(),
             BelongsTo::make('Author', 'author', 'App\Nova\User'),
         ];
     }

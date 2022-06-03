@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "da104fd893833e5ee77d0dd921ef9bdb",
+    "content-hash": "a4b36fbdaf2e3dff7a62db53d2332c4f",
     "packages": [
         {
             "name": "akaunting/laravel-language",
@@ -564,6 +564,54 @@
                 }
             ],
             "time": "2022-04-17T13:03:05+00:00"
+        },
+        {
+            "name": "bolechen/nova-activitylog",
+            "version": "v0.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bolechen/nova-activitylog.git",
+                "reference": "0c620cbea70a2dde5aecd891a2e38eb7f5a999bd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bolechen/nova-activitylog/zipball/0c620cbea70a2dde5aecd891a2e38eb7f5a999bd",
+                "reference": "0c620cbea70a2dde5aecd891a2e38eb7f5a999bd",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/nova": "^4.0",
+                "spatie/laravel-activitylog": "^3.9|^4.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Bolechen\\NovaActivitylog\\ToolServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Bolechen\\NovaActivitylog\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A tool to activity logger to monitor the users of your Laravel Nova.",
+            "keywords": [
+                "activity",
+                "laravel",
+                "log",
+                "nova"
+            ],
+            "support": {
+                "issues": "https://github.com/bolechen/nova-activitylog/issues",
+                "source": "https://github.com/bolechen/nova-activitylog/tree/v0.4.0"
+            },
+            "time": "2022-04-07T09:46:45+00:00"
         },
         {
             "name": "box/spout",

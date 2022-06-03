@@ -17,6 +17,8 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     public function boot()
     {
         parent::boot();
+
+        // FOOTER
         Nova::footer(function ($request) {
             return Blade::render(
                 '
@@ -28,6 +30,23 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                     'year' => date('Y'),
                 ]
             );
+        });
+
+        // USER MENU
+        Nova::userMenu(function ($request, $menu) {
+            $menu->prepend(
+                //
+            );
+
+            return $menu;
+        });
+
+        // MAIN MENU
+        Nova::mainMenu(function ($request, $menu) {
+            $menu->prepend(
+                //
+            );
+            return $menu;
         });
     }
 

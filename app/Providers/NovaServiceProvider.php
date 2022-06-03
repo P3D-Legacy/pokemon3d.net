@@ -77,9 +77,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
      */
     public function tools()
     {
-        return [
-            new \Bolechen\NovaActivitylog\NovaActivitylog(),
-        ];
+        return [new \Bolechen\NovaActivitylog\NovaActivitylog()];
     }
 
     /**

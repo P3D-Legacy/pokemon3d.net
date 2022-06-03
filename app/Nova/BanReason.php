@@ -29,9 +29,7 @@ class BanReason extends Resource
      *
      * @var array
      */
-    public static $search = [
-        'id',
-    ];
+    public static $search = ['id'];
 
     /**
      * Get the fields displayed by the resource.
@@ -41,11 +39,7 @@ class BanReason extends Resource
      */
     public function fields(NovaRequest $request)
     {
-        return [
-            ID::make()->sortable(),
-            Text::make('Name')->sortable(),
-            BelongsTo::make('User'),
-        ];
+        return [ID::make()->sortable(), Text::make('Name')->sortable(), BelongsTo::make('User')];
     }
 
     /**

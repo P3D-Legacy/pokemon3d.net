@@ -34,18 +34,20 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
 
         // USER MENU
         Nova::userMenu(function ($request, $menu) {
-            $menu->prepend(
+            $menu
+                ->prepend
                 //
-            );
+                ();
 
             return $menu;
         });
 
         // MAIN MENU
         Nova::mainMenu(function ($request, $menu) {
-            $menu->prepend(
+            $menu
+                ->prepend
                 //
-            );
+                ();
             return $menu;
         });
     }

@@ -66,6 +66,7 @@
         "spatie/laravel-stats": "^2.0",
         "spatie/laravel-tags": "^4.3",
         "spatie/nova-backup-tool": "^5.0",
+        "spatie/nova-tags-field": "^4.0",
         "symfony/http-client": "^6.0",
         "symfony/postmark-mailer": "^6.0",
         "torann/geoip": "^3.0",

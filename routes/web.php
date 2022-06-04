@@ -145,9 +145,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::prefix('mod')
         ->middleware(['role:super-admin|admin'])
         ->group(function () {
-            Route::resource('users', UserController::class);
-            Route::resource('roles', RoleController::class);
-            Route::resource('permissions', PermissionController::class);
             Route::resource('posts', PostController::class);
             Route::resource('tags', TagController::class);
             Route::resource('stats', StatsController::class);

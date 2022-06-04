@@ -69,8 +69,7 @@ class User extends Resource
                 ->creationRules('required', Rules\Password::defaults())
                 ->updateRules('nullable', Rules\Password::defaults()),
 
-            Date::make('Birthdate')
-                ->sortable(),
+            Date::make('Birthdate')->sortable(),
 
             Select::make('Gender')->options([
                 '0' => 'No selection',
@@ -83,8 +82,7 @@ class User extends Resource
                 ->sortable()
                 ->rules('max:255'),
 
-            Textarea::make('About')
-                ->rules('max:255'),
+            Textarea::make('About')->rules('max:255'),
 
             RoleBooleanGroup::make('Roles'),
         ];

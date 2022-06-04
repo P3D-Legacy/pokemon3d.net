@@ -33,10 +33,7 @@ class Post extends Resource
      *
      * @var array
      */
-    public static $search = [
-        'id',
-        'title'
-    ];
+    public static $search = ['id', 'title'];
 
     /**
      * Get the fields displayed by the resource.
@@ -53,8 +50,7 @@ class Post extends Resource
                 ->sortable()
                 ->rules('required', 'max:255'),
 
-            Markdown::make('Body')
-                ->rules('required'),
+            Markdown::make('Body')->rules('required'),
 
             Date::make('Published At')
                 ->rules('required')
@@ -69,7 +65,6 @@ class Post extends Resource
                 ->hideFromIndex(),
 
             Tags::make('Tags'),
-
         ];
     }
 

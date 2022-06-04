@@ -39,6 +39,7 @@
         "harrk/gamejolt-api": "^1.1",
         "intervention/image": "^2.7",
         "kilobyteno/laravel-plausible": "^0.0.2",
+        "kiritokatklian/nova-permission": "^4.0",
         "kkomelin/laravel-translatable-string-exporter": "^1.16",
         "knuckleswtf/scribe": "^3.23",
         "laravel/framework": "^9.0",

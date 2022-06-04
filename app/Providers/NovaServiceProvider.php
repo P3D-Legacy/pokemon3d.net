@@ -98,7 +98,11 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
      */
     public function tools()
     {
-        return [new \Bolechen\NovaActivitylog\NovaActivitylog(), new \Spatie\BackupTool\BackupTool()];
+        return [
+            new \Bolechen\NovaActivitylog\NovaActivitylog(),
+            new \Spatie\BackupTool\BackupTool(),
+            \Vyuldashev\NovaPermission\NovaPermissionTool::make(),
+        ];
     }
 
     /**

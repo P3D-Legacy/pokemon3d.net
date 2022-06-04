@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "93e4bfea08f8446155c5ea5eeaf4418e",
+    "content-hash": "dc349edaa8c3a12655b6b7596b1b722e",
     "packages": [
         {
             "name": "akaunting/laravel-language",
@@ -3703,6 +3703,57 @@
                 }
             ],
             "time": "2022-04-28T19:43:49+00:00"
+        },
+        {
+            "name": "kiritokatklian/nova-permission",
+            "version": "v4.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kiritokatklian/nova-permission.git",
+                "reference": "3cdfd6dfa3ee90eefcececa623c52ac01d902616"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kiritokatklian/nova-permission/zipball/3cdfd6dfa3ee90eefcececa623c52ac01d902616",
+                "reference": "3cdfd6dfa3ee90eefcececa623c52ac01d902616",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/nova": "^4.0",
+                "php": "^7.4|^8.0|^8.1",
+                "spatie/laravel-permission": "^3.0|^4.0|^5.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Vyuldashev\\NovaPermission\\ToolServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Vyuldashev\\NovaPermission\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova tool for Spatie's Permission library.",
+            "keywords": [
+                "laravel",
+                "nova",
+                "spatie-permission"
+            ],
+            "support": {
+                "issues": "https://github.com/kiritokatklian/nova-permission/issues",
+                "source": "https://github.com/kiritokatklian/nova-permission/tree/v4.0.3"
+            },
+            "time": "2022-05-17T08:54:35+00:00"
         },
         {
             "name": "kkomelin/laravel-translatable-string-exporter",

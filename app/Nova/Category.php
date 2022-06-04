@@ -31,9 +31,7 @@ class Category extends Resource
      *
      * @var array
      */
-    public static $search = [
-        'name',
-    ];
+    public static $search = ['name'];
 
     /**
      * Get the fields displayed by the resource.
@@ -49,7 +47,6 @@ class Category extends Resource
             Text::make('Name')
                 ->sortable()
                 ->rules('required', 'max:255'),
-
         ];
     }
 

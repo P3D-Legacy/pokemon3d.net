@@ -31,9 +31,7 @@ class ResourcePackUpdate extends Resource
      *
      * @var array
      */
-    public static $search = [
-        'title',
-    ];
+    public static $search = ['title'];
 
     /**
      * Get the fields displayed by the resource.

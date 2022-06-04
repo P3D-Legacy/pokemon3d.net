@@ -31,9 +31,7 @@ class GameVersion extends Resource
      *
      * @var array
      */
-    public static $search = [
-        'title',
-    ];
+    public static $search = ['title'];
 
     /**
      * Get the fields displayed by the resource.
@@ -45,11 +43,21 @@ class GameVersion extends Resource
     {
         return [
             ID::make()->sortable(),
-            Text::make('Version')->sortable()->rules('required'),
-            Text::make('Title')->sortable()->rules('required', 'max:255'),
-            Date::make('Release Date')->sortable()->rules('required', 'date'),
-            URL::make('Page URL')->sortable()->rules('required', 'url'),
-            URL::make('Download URL')->sortable()->rules('required', 'url'),
+            Text::make('Version')
+                ->sortable()
+                ->rules('required'),
+            Text::make('Title')
+                ->sortable()
+                ->rules('required', 'max:255'),
+            Date::make('Release Date')
+                ->sortable()
+                ->rules('required', 'date'),
+            URL::make('Page URL')
+                ->sortable()
+                ->rules('required', 'url'),
+            URL::make('Download URL')
+                ->sortable()
+                ->rules('required', 'url'),
             BelongsTo::make('Post', 'post', Post::class)->searchable(),
         ];
     }

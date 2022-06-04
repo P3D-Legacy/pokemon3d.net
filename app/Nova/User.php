@@ -3,11 +3,15 @@
 namespace App\Nova;
 
 use Illuminate\Validation\Rules;
+use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\Gravatar;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Password;
+use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Laravel\Nova\Nova;
 use Vyuldashev\NovaPermission\RoleBooleanGroup;
 
 class User extends Resource
@@ -50,6 +54,10 @@ class User extends Resource
                 ->sortable()
                 ->rules('required', 'max:255'),
 
+            Text::make('Username')
+                ->sortable()
+                ->rules('required', 'max:255'),
+
             Text::make('Email')
                 ->sortable()
                 ->rules('required', 'email', 'max:254')
@@ -60,6 +68,23 @@ class User extends Resource
                 ->onlyOnForms()
                 ->creationRules('required', Rules\Password::defaults())
                 ->updateRules('nullable', Rules\Password::defaults()),
+
+            Date::make('Birthdate')
+                ->sortable(),
+
+            Select::make('Gender')->options([
+                '0' => 'No selection',
+                '1' => 'Male',
+                '2' => 'Female',
+                '3' => 'Genderless',
+            ]),
+
+            Text::make('Location')
+                ->sortable()
+                ->rules('max:255'),
+
+            Textarea::make('About')
+                ->rules('max:255'),
 
             RoleBooleanGroup::make('Roles'),
         ];

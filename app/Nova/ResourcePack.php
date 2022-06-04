@@ -39,7 +39,12 @@ class ResourcePack extends Resource
      */
     public function fields(NovaRequest $request)
     {
-        return [ID::make()->sortable(), Text::make('name')->sortable(), Text::make('breif'), Textarea::make('description')];
+        return [
+            ID::make()->sortable(),
+            Text::make('name')->sortable(),
+            Text::make('brief'),
+            Textarea::make('description'),
+        ];
     }
 
     /**

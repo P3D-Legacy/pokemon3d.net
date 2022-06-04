@@ -97,7 +97,13 @@ return [
     |
     */
 
-    'middleware' => ['web', HandleInertiaRequests::class, DispatchServingNovaEvent::class, BootTools::class, \Vyuldashev\NovaPermission\ForgetCachedPermissions::class,],
+    'middleware' => [
+        'web',
+        HandleInertiaRequests::class,
+        DispatchServingNovaEvent::class,
+        BootTools::class,
+        \Vyuldashev\NovaPermission\ForgetCachedPermissions::class,
+    ],
 
     'api_middleware' => ['nova', Authenticate::class, Authorize::class],
 

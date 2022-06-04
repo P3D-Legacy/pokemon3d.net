@@ -10,6 +10,7 @@ use Laravel\Nova\Fields\Markdown;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Spatie\TagsField\Tags;
 
 class Post extends Resource
 {
@@ -55,17 +56,20 @@ class Post extends Resource
             Markdown::make('Body')
                 ->rules('required'),
 
-            Date::make('Publish Date')
+            Date::make('Published At')
                 ->rules('required')
                 ->sortable(),
 
-            Boolean::make('Draft')
+            Boolean::make('Active')
                 ->rules('required')
                 ->hideFromIndex(),
 
             Boolean::make('Sticky')
                 ->rules('required')
                 ->hideFromIndex(),
+
+            Tags::make('Tags'),
+
         ];
     }
 

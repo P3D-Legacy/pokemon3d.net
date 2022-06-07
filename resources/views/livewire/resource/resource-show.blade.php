@@ -2,7 +2,7 @@
 
     @component('components.breadcrumb', ['breadcrumbs' => [
         ['url' => route('resource.index'), 'label' => __('Resources')],
-        ['url' => route('resource.category', Str::lower($resource->categories()->first()->name)), 'label' => $resource->categories()->first()->name],
+        ['url' => route('resource.category', $resource->categories()->first()->slug), 'label' => $resource->categories()->first()->name],
         ['url' => null, 'label' => $resource->name],
     ]])
     @endcomponent

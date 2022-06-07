@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 <a name="0.4.0"></a>
 
+## 4.1.4 - 2022-06-07
+
+### What's Changed
+
+- Fix spelling in resources by @DanielRTRD in https://github.com/P3D-Legacy/pokemon3d.net/pull/180
+
+**Full Changelog**: https://github.com/P3D-Legacy/pokemon3d.net/compare/4.1.3...4.1.4
+
 ## 4.1.3 - 2022-06-07
 
 ### What's Changed

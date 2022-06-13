@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 <a name="0.4.0"></a>
 
+## 4.1.6 - 2022-06-13
+
+### What's Changed
+
+- Add status to footer by @DanielRTRD in https://github.com/P3D-Legacy/pokemon3d.net/pull/182
+
+**Full Changelog**: https://github.com/P3D-Legacy/pokemon3d.net/compare/4.1.5...4.1.6
+
 ## 4.1.5 - 2022-06-12
 
 ### What's Changed

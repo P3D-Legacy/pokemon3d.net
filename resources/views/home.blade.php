@@ -326,6 +326,7 @@
                     </p>
                     <ul class="mb-6 list-reset">
                         <x-home.footer-link title="{{ __('Official Blog') }}" url="{{ route('blog.index') }}" />
+                        <x-home.footer-link title="{{ __('Status') }}" url="https://status.pokemon3d.net" />
                     </ul>
                 </div>
             </div>

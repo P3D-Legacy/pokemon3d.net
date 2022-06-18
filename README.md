@@ -7,7 +7,7 @@
 <img src="https://img.shields.io/github/contributors/P3D-Legacy/pokemon3d.net" alt="Contributors">
 <img src="https://img.shields.io/github/license/P3D-Legacy/pokemon3d.net" alt="License">
 <a href="https://discordapp.com/invite/EUhwdrq" target="_blank"><img src="https://img.shields.io/discord/299181628188524544" alt="Discord"></a>
-<a href="https://pokemon3d.net" target="_blank"><img src="https://img.shields.io/website?down_color=red&down_message=offline&up_color=green&up_message=online&url=https%3A%2F%2Fnext.pokemon3d.net" alt="Website"></a>
+<a href="https://pokemon3d.net" target="_blank"><img src="https://img.shields.io/website?down_color=red&down_message=offline&up_color=green&up_message=online&url=https%3A%2F%2Fpokemon3d.net" alt="Website"></a>
 </p>
 
 # About

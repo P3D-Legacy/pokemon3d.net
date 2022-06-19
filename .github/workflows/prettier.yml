@@ -13,7 +13,9 @@ jobs:
       - name: Install NPM dependencies
         run: npm install
       - name: Install Composer dependencies
-        run: composer install
+        run: |
+          composer config http-basic.nova.laravel.com ${{ secrets.NOVA_USERNAME }} ${{ secrets.NOVA_PASSWORD }}
+          composer install
       - name: Prettify code
         uses: creyD/prettier_action@v4.2
         with:

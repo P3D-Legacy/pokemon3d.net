@@ -15,7 +15,7 @@
 Our new website is built with Laravel and Tailwind CSS. This new website has replaced the old design from 2014. With the new design, we have a much cleaner and more modern website. And we will more easily be adding more features to the website in the future.
 
 # Contribute
-Want to contribute to the project? Check out [CONTRIBUTING.md](CONTRIBUTING.md) for more info.
+Want to contribute to the project? Check out [CONTRIBUTING.md](.github/CONTRIBUTING.md) for more info.
 
 # Installation
 Want to install the project? Here is a quick guide to installing the project.

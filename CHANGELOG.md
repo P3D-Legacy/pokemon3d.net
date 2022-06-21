@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 <a name="0.4.0"></a>
 
+## 4.1.8 - 2022-06-21
+
+### What's Changed
+
+- Bump guzzlehttp/guzzle from 7.4.4 to 7.4.5 by @dependabot in https://github.com/P3D-Legacy/pokemon3d.net/pull/184
+
+**Full Changelog**: https://github.com/P3D-Legacy/pokemon3d.net/compare/4.1.7...4.1.8
+
 ## 4.1.7 - 2022-06-20
 
 ### What's Changed

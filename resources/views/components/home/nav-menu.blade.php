@@ -1,7 +1,7 @@
 <nav id="header" class="top-0 z-30 w-full py-1 text-white lg:py-6" x-data="{open:false}">
     <div class="container flex flex-wrap items-center justify-between w-full px-2 py-2 mx-auto mt-0 lg:py-6">
         <div class="flex items-center pl-4">
-            <a class="font-mono text-2xl font-bold text-white no-underline hover:no-underline lg:text-4xl" href="#">
+            <a class="font-mono text-2xl font-bold text-white no-underline hover:no-underline lg:text-4xl" href="{{ route('home') }}">
                 <x-logo-small class="" />
             </a>
         </div>

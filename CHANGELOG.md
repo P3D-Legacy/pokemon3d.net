@@ -4,6 +4,32 @@ All notable changes to this project will be documented in this file.
 
 <a name="0.4.0"></a>
 
+## 4.1.9 - 2022-06-25
+
+### What's Changed
+
+- Fixed link on logo for guest view by @DanielRTRD in https://github.com/P3D-Legacy/pokemon3d.net/pull/185
+- Fixed release for download button by @DanielRTRD in https://github.com/P3D-Legacy/pokemon3d.net/pull/186
+
+**Full Changelog**: https://github.com/P3D-Legacy/pokemon3d.net/compare/4.1.8...4.1.9
+
+## 4.1.8 - 2022-06-21
+
+### What's Changed
+
+- Bump guzzlehttp/guzzle from 7.4.4 to 7.4.5 by @dependabot in https://github.com/P3D-Legacy/pokemon3d.net/pull/184
+
+**Full Changelog**: https://github.com/P3D-Legacy/pokemon3d.net/compare/4.1.7...4.1.8
+
+## 4.1.7 - 2022-06-20
+
+### What's Changed
+
+- Bump actions/cache from 3.0.3 to 3.0.4 by @dependabot in https://github.com/P3D-Legacy/pokemon3d.net/pull/183
+- Catch exception on Discord role sync
+
+**Full Changelog**: https://github.com/P3D-Legacy/pokemon3d.net/compare/4.1.6...4.1.7
+
 ## 4.1.6 - 2022-06-13
 
 ### What's Changed

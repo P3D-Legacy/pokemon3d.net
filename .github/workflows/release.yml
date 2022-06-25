@@ -8,7 +8,7 @@ jobs:
   update-changelog:
     runs-on: ubuntu-latest
     environment:
-      name: 'website'
+      name: 'Website'
       url: 'https://pokemon3d.net'
     steps:
       - name: Checkout code

@@ -14,7 +14,7 @@ class DownloadController extends Controller
      */
     public function download(): RedirectResponse
     {
-        $game_version = GameVersion::latest()->first();
+        $game_version = GameVersion::latest();
         if ($game_version) {
             return redirect()->to($game_version->download_url);
         }

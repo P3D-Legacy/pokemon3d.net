@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 
 <a name="0.4.0"></a>
 
+## 4.1.9 - 2022-06-25
+
+### What's Changed
+
+- Fixed link on logo for guest view by @DanielRTRD in https://github.com/P3D-Legacy/pokemon3d.net/pull/185
+- Fixed release for download button by @DanielRTRD in https://github.com/P3D-Legacy/pokemon3d.net/pull/186
+
+**Full Changelog**: https://github.com/P3D-Legacy/pokemon3d.net/compare/4.1.8...4.1.9
+
 ## 4.1.8 - 2022-06-21
 
 ### What's Changed

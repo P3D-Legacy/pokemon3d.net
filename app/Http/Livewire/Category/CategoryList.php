@@ -15,7 +15,7 @@ class CategoryList extends Component
 
     public function mount()
     {
-        $this->categories = Category::all();
+        $this->categories = Category::where('parent_id', null)->get();
     }
 
     public function render()

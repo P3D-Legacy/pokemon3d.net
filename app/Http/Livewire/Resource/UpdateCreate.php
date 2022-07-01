@@ -36,7 +36,7 @@ class UpdateCreate extends ModalComponent
     public function mount($resource_uuid)
     {
         $this->resource = Resource::where('uuid', $resource_uuid)->first();
-        $this->gameversions = GameVersion::all();
+        $this->gameversions = GameVersion::orderBy('release_date', 'desc')->get();
     }
 
     public function save()

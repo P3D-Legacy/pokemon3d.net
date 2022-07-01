@@ -31,14 +31,18 @@
                             <a href="{{ route('resource.index') }}" class="px-4 py-3 text-xs hover:bg-black/10 dark:hover:bg-white/10">@lang('All categories')</a>
                             @foreach ($categories as $category)
                                 <a href="{{ route('resource.category', $category->slug) }}" class="px-4 py-3 text-xs hover:bg-black/10 dark:hover:bg-white/10 {{ $category->slug === request()->segment(3) ? 'bg-green-400/20 font-bold' : '' }}">{{ $category->name }}</a>
+                                @forelse($category->children as $child)
+                                    <a href="{{ route('resource.category', $child->slug) }}" class="px-4 py-3 text-xs hover:bg-black/10 dark:hover:bg-white/10 {{ $child->slug === request()->segment(3) ? 'bg-green-400/20 font-bold' : '' }}">&mdash; {{ $child->name }}</a>
+                                @empty
+                                @endforelse
                             @endforeach
                         </div>
                     </div>
                 </div>
                 <div class="sm:col-span-2 md:col-span-3">
-                    
+
                     @livewire('resource.resource-list')
-                    
+
                 </div>
             </div>
         </div>

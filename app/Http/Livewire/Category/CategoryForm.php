@@ -28,7 +28,7 @@ class CategoryForm extends ModalComponent
         $c = $this->category;
         $this->category->save();
         $parent = null;
-        if($this->parent && $c->children()->count() == 0) {
+        if ($this->parent && $c->children()->count() == 0) {
             $parent = Category::findById($this->parent);
         }
         $parent?->appendNode($c);

@@ -92,7 +92,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::prefix('resource')->group(function () {
         Route::get('/', function () {
             return view('resources.index', [
-                'categories' => Category::all(),
+                'categories' => Category::where('parent_id', null)->get(),
             ]);
         })->name('resource.index');
 
@@ -100,7 +100,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
         Route::get('/category/{name}', function ($name) {
             return view('resources.index', [
-                'categories' => Category::all(),
+                'categories' => Category::where('parent_id', null)->get(),
                 'category' => Category::findByName($name),
             ]);
         })->name('resource.category');

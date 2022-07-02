@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     /*
      * The list of enabled environments for the dynamic favicon
      * generation. You can specify the text to display as well
@@ -14,12 +13,12 @@ return [
         'local' => [
             'text' => 'DEV',
             'color' => '#ffffff',
-            'background_color' => "#ff0000",
+            'background_color' => '#ff0000',
         ],
         'staging' => [
             'text' => 'QA',
             'color' => '#ffffff',
-            'background_color' => "#ff0000",
+            'background_color' => '#ff0000',
         ],
     ],
 
@@ -38,15 +37,15 @@ return [
     'font' => null,
 
     /*
-    * Intervention Image supports "GD Library" and "Imagick" to process images
-    * internally. You may choose one of them according to your PHP
-    * configuration. By default PHP's "GD Library" implementation is used.
-    *
-    * If you want to convert ICO files, you need to use imagick.
-    *
-    * Supported: "gd", "imagick"
-    *
-    */
+     * Intervention Image supports "GD Library" and "Imagick" to process images
+     * internally. You may choose one of them according to your PHP
+     * configuration. By default PHP's "GD Library" implementation is used.
+     *
+     * If you want to convert ICO files, you need to use imagick.
+     *
+     * Supported: "gd", "imagick"
+     *
+     */
     'image_driver' => 'gd',
 
     /*
@@ -60,5 +59,4 @@ return [
      * But you can create your own favicon generator if you want.
      */
     'generator' => \BeyondCode\LaravelFavicon\Generators\EnvironmentGenerator::class,
-
 ];

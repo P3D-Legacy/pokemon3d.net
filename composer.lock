@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "767adf9563c23cca64805f6443290ec6",
+    "content-hash": "662d18c9244edb9ff9b1630ce62e4eec",
     "packages": [
         {
             "name": "akaunting/laravel-language",
@@ -484,6 +484,72 @@
                 "source": "https://github.com/betterapp/laravel-db-encrypter/tree/v1.0.0"
             },
             "time": "2020-08-27T17:17:31+00:00"
+        },
+        {
+            "name": "beyondcode/laravel-favicon",
+            "version": "dev-l9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/DanielRTRD/laravel-favicon.git",
+                "reference": "b7380ee645c9393540337719822e81c965a65ef1"
+            },
+            "require": {
+                "illuminate/http": "5.6.*|5.7.*|5.8.*|6.*|7.*|8.*|9.*",
+                "illuminate/support": "5.6.*|5.7.*|5.8.*|6.*|7.*|8.*|9.*",
+                "intervention/image": "^2.4",
+                "php": "^7.1|^8.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^3.7|^4.0|^5.0|^6.0|^7.0",
+                "phpunit/phpunit": "^7.0|^8.0|^9.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "BeyondCode\\LaravelFavicon\\FaviconServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "BeyondCode\\LaravelFavicon\\": "src"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "BeyondCode\\LaravelFavicon\\Tests\\": "tests"
+                }
+            },
+            "scripts": {
+                "test": [
+                    "vendor/bin/phpunit"
+                ],
+                "test-coverage": [
+                    "vendor/bin/phpunit --coverage-html coverage"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Marcel Pociot",
+                    "email": "marcel@beyondco.de",
+                    "homepage": "https://beyondcode.de",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Create dynamic favicons based on your environment settings.",
+            "homepage": "https://github.com/beyondcode/laravel-favicon",
+            "keywords": [
+                "beyondcode",
+                "laravel-favicon"
+            ],
+            "time": "2022-07-02T09:22:11+00:00"
         },
         {
             "name": "blade-ui-kit/blade-ui-kit",
@@ -16671,6 +16737,7 @@
     "stability-flags": {
         "alibayat/laravel-categorizable": 20,
         "alibayat/laravel-commentable": 20,
+        "beyondcode/laravel-favicon": 20,
         "graham-campbell/markdown": 20,
         "restcord/restcord": 20
     },

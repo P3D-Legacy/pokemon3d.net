@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 <a name="0.4.0"></a>
 
+## 4.1.11 - 2022-07-04
+
+### What's Changed
+
+- Bump dependabot/fetch-metadata from 1.3.1 to 1.3.3 by @dependabot in https://github.com/P3D-Legacy/pokemon3d.net/pull/191
+
+**Full Changelog**: https://github.com/P3D-Legacy/pokemon3d.net/compare/4.1.10...4.1.11
+
 ## 4.1.10 - 2022-07-01
 
 ### What's Changed

@@ -22,7 +22,6 @@ class SkinHomeController extends Controller
             ->gamejolt->skins()
             ->get();
 
-        return view('skin.index')
-            ->with('skins', $skins);
+        return view('skin.index')->with('skins', $skins);
     }
 }

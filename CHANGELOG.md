@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 <a name="0.4.0"></a>
 
+## 4.1.12 - 2022-07-07
+
+### What's Changed
+
+- Fix skin page loading issue by @DanielRTRD in https://github.com/P3D-Legacy/pokemon3d.net/pull/192
+
+**Full Changelog**: https://github.com/P3D-Legacy/pokemon3d.net/compare/4.1.11...4.1.12
+
 ## 4.1.11 - 2022-07-04
 
 ### What's Changed

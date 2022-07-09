@@ -141,7 +141,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::prefix('mod')
         ->middleware(['role:super-admin|admin'])
         ->group(function () {
-            Route::resource('posts', PostController::class);
             Route::resource('tags', TagController::class);
             Route::resource('stats', StatsController::class);
             Route::view('categories', 'category.index')->name('categories.index');

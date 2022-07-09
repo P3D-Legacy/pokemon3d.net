@@ -86,6 +86,7 @@
         "fakerphp/faker": "^1.9.1",
         "laravel-lang/lang": "^10.4",
         "laravel-lang/publisher": "^12.2",
+        "laravel/pint": "^0.2.3",
         "laravel/sail": "^1.13",
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^6.1",

@@ -35,7 +35,7 @@ class Post extends BaseModel implements Viewable
         });
 
         self::updating(function ($model) {
-            if (!$model->uuid) {
+            if (! $model->uuid) {
                 $model->uuid = Str::uuid()->toString();
             }
             $model->slug = Str::slug($model->title);

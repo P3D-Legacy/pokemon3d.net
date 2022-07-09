@@ -26,17 +26,15 @@ class CommentNotification extends Notification
     {
         $this->comment = $comment;
         $this->message = trans(':username commented on your post :title', [
-            'username' =>
-                '<a class="text-green-400 no-underline hover:underline" href="' .
-                route('member.show', $this->comment->creator) .
-                '">' .
-                $this->comment->creator->username .
+            'username' => '<a class="text-green-400 no-underline hover:underline" href="'.
+                route('member.show', $this->comment->creator).
+                '">'.
+                $this->comment->creator->username.
                 '</a>',
-            'title' =>
-                '<a class="text-green-400 no-underline hover:underline" href="' .
-                route('blog.show', $this->comment->commentable->uuid) .
-                '">' .
-                $this->comment->commentable->title .
+            'title' => '<a class="text-green-400 no-underline hover:underline" href="'.
+                route('blog.show', $this->comment->commentable->uuid).
+                '">'.
+                $this->comment->commentable->title.
                 '</a>',
         ]);
         $this->icon =

@@ -49,7 +49,7 @@ class XenforoAccount extends Component
             'syncRegisterDate' => ['boolean'],
         ]);
 
-        if (!$this->username && !$this->password) {
+        if (! $this->username && ! $this->password) {
             $this->errorBag->add('success', 'Your forum account has now been unlinked.');
             if ($user->forum()) {
                 $user->forum()->delete();

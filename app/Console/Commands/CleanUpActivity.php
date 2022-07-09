@@ -39,9 +39,9 @@ class CleanUpActivity extends Command
     public function handle()
     {
         $activities = Activity::all()->where('properties', '{"attributes":[],"old":[]}');
-        $this->info('Entries to delete: ' . $activities->count());
+        $this->info('Entries to delete: '.$activities->count());
         foreach ($activities as $activity) {
-            $this->info('Deleting activity entry #' . $activity->id);
+            $this->info('Deleting activity entry #'.$activity->id);
             $activity->delete();
         }
         $this->info('Done.');

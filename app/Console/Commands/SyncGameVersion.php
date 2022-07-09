@@ -40,12 +40,12 @@ class SyncGameVersion extends Command
     public function handle()
     {
         $api_url = env('GITHUB_API_REPO');
-        if (!$api_url) {
+        if (! $api_url) {
             $this->error('GitHub API URL is not set.');
 
             return 1;
         }
-        $release_url = env('GITHUB_API_REPO') . '/releases';
+        $release_url = env('GITHUB_API_REPO').'/releases';
         try {
             $response = Http::get($release_url)->json();
         } catch (\Exception $exception) {
@@ -65,7 +65,7 @@ class SyncGameVersion extends Command
                 'download_url' => $release['assets'][0]['browser_download_url'],
             ];
             $version = GameVersion::updateOrCreate(['version' => $release['tag_name']], $data);
-            $this->info('Updated or created release: ' . $version->version);
+            $this->info('Updated or created release: '.$version->version);
         }
         $this->info('Done.');
     }

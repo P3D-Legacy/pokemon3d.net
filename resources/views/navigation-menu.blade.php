@@ -176,11 +176,6 @@
                                             {{ __('Analytics') }}
                                         </x-jet-dropdown-link>
                                     @endcanany
-                                    @canany(['categories.create','categories.update','categories.destroy'])
-                                        <x-jet-dropdown-link href="{{ route('categories.index') }}">
-                                            {{ __('Categories') }}
-                                        </x-jet-dropdown-link>
-                                    @endcanany
                                 </div>
                             </x-slot>
                         </x-jet-dropdown>
@@ -314,11 +309,6 @@
                     <div class="block px-4 py-2 text-xs text-gray-400">
                         {{ __('Content') }}
                     </div>
-                    @canany(['categories.create','categories.update','categories.destroy'])
-                        <x-jet-responsive-nav-link href="{{ route('categories.index') }}" :active="request()->routeIs('categories.index')">
-                            {{ __('Categories') }}
-                        </x-jet-responsive-nav-link>
-                    @endcanany
                     @canany(['tags.create','tags.update','tags.destroy'])
                         <x-jet-responsive-nav-link href="{{ route('tags.index') }}" :active="request()->routeIs('tags.index')">
                             {{ __('Tags') }}

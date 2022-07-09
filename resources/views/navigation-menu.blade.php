@@ -314,6 +314,11 @@
                             {{ __('Tags') }}
                         </x-jet-responsive-nav-link>
                     @endcanany
+                    @canany(['analytics'])
+                        <x-jet-responsive-nav-link href="{{ route('analytics') }}" :active="request()->routeIs('analytics')">
+                            {{ __('Analytics') }}
+                        </x-jet-responsive-nav-link>
+                    @endcanany
                 </div>
             </div>
         @endrole

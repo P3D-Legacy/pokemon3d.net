@@ -141,7 +141,6 @@ class ConnectGamejoltAccount extends Component
         }
 
         $this->emit('refresh');
-
     }
 
     /**

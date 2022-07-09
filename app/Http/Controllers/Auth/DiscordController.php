@@ -32,7 +32,7 @@ class DiscordController extends Controller
         try {
             $discordUser = Socialite::driver('discord')->user();
 
-            if (! $discordUser->user['verified']) {
+            if (!$discordUser->user['verified']) {
                 session()->flash('flash.banner', 'Discord user not verified.');
                 session()->flash('flash.bannerStyle', 'danger');
 
@@ -53,7 +53,7 @@ class DiscordController extends Controller
                 ->first();
 
             // if it does not exist and is guest
-            if (! $discordAccount && auth()->guest()) {
+            if (!$discordAccount && auth()->guest()) {
                 session()->flash(
                     'flash.banner',
                     'Discord account association not found with any P3D account. Log in with your P3D account to associate.'
@@ -66,7 +66,7 @@ class DiscordController extends Controller
             $discordAccountHasUser = $discordAccount ? $discordAccount->user : null;
 
             // if discord account is not associated with a user and is guest
-            if (! $discordAccountHasUser && auth()->guest()) {
+            if (!$discordAccountHasUser && auth()->guest()) {
                 session()->flash('flash.banner', 'You are not logged in and user was not found.');
                 session()->flash('flash.bannerStyle', 'danger');
 

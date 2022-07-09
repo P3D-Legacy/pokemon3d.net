@@ -41,7 +41,7 @@ class GiveSuperAdmin extends Command
         $user = User::where('email', getenv('SUPER_ADMIN_EMAIL'))->first();
         if ($user) {
             $user->assignRole('super-admin');
-            $this->info('Super-Admin rights granted to '.$user->email);
+            $this->info('Super-Admin rights granted to ' . $user->email);
         }
     }
 }

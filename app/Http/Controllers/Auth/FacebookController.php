@@ -43,7 +43,7 @@ class FacebookController extends Controller
             $facebookAccount = FacebookAccount::where('id', $facebookUser->id)->first();
 
             // if it does not exist and is guest
-            if (! $facebookAccount && auth()->guest()) {
+            if (!$facebookAccount && auth()->guest()) {
                 session()->flash(
                     'flash.banner',
                     'Discord account association not found with any P3D account. Log in with your P3D account to associate.'
@@ -56,7 +56,7 @@ class FacebookController extends Controller
             $facebookAccountHasUser = $facebookAccount ? $facebookAccount->user : null;
 
             // if account is not associated with a user and is guest
-            if (auth()->guest() && ! $facebookAccountHasUser) {
+            if (auth()->guest() && !$facebookAccountHasUser) {
                 return redirect()
                     ->route('login')
                     ->withError('You are not logged in and user was not found.');

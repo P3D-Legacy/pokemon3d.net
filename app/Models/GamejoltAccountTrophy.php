@@ -21,7 +21,7 @@ class GamejoltAccountTrophy extends BaseModel
         });
 
         self::updating(function ($model) {
-            if (! $model->uuid) {
+            if (!$model->uuid) {
                 $model->uuid = Str::uuid()->toString();
             }
         });

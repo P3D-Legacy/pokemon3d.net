@@ -59,7 +59,7 @@ class GameJolt extends Component
 
         $gamejoltaccount = GamejoltAccount::where('username', $this->username)->first();
 
-        if (! $gamejoltaccount) {
+        if (!$gamejoltaccount) {
             $this->addError('error', 'This Game Jolt Account is not associated with a P3D account yet.');
 
             return;
@@ -67,13 +67,13 @@ class GameJolt extends Component
 
         $user = $gamejoltaccount->user()->first();
 
-        if (! $user) {
+        if (!$user) {
             $this->addError('error', 'Could\'t find the user associated with this Game Jolt Account.');
 
             return;
         }
 
-        if (! Auth::loginUsingId($user->id)) {
+        if (!Auth::loginUsingId($user->id)) {
             $this->addError('error', 'Login failed!');
 
             return;

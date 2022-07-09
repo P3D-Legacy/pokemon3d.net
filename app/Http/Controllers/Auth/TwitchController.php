@@ -44,7 +44,7 @@ class TwitchController extends Controller
             $twitchAccount = TwitchAccount::where('id', $twitchUser->id)->first();
 
             // if it does not exist and is guest
-            if (! $twitchAccount && auth()->guest()) {
+            if (!$twitchAccount && auth()->guest()) {
                 session()->flash(
                     'flash.banner',
                     'Discord account association not found with any P3D account. Log in with your P3D account to associate.'
@@ -57,7 +57,7 @@ class TwitchController extends Controller
             $twitchAccountHasUser = $twitchAccount ? $twitchAccount->user : null;
 
             // if account is not associated with a user and is guest
-            if (auth()->guest() && ! $twitchAccountHasUser) {
+            if (auth()->guest() && !$twitchAccountHasUser) {
                 return redirect()
                     ->route('login')
                     ->withError('You are not logged in and user was not found.');

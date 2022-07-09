@@ -59,7 +59,7 @@ class WikiSearch extends SpotlightCommand
      */
     public function execute(Spotlight $spotlight, $wiki)
     {
-        $spotlight->redirect(config('wiki.base_url').'/index.php?curid='.$wiki);
+        $spotlight->redirect(config('wiki.base_url') . '/index.php?curid=' . $wiki);
     }
 
     /**

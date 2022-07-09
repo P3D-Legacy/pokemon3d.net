@@ -23,7 +23,7 @@ return [
     | file path in JSON format. Use full path to file.
     |
     */
-    'path' => storage_path().'/settings.json',
+    'path' => storage_path() . '/settings.json',
 
     /*
     |--------------------------------------------------------------------------

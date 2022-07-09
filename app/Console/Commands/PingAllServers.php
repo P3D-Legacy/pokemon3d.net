@@ -41,7 +41,7 @@ class PingAllServers extends Command
     {
         $servers = Server::all();
         foreach ($servers as $server) {
-            Artisan::call('server:ping '.$server->uuid);
+            Artisan::call('server:ping ' . $server->uuid);
         }
         $this->info('All servers have been pinged.');
 

@@ -105,11 +105,11 @@ class Skin extends BaseModel
 
     public function path()
     {
-        return $this->uuid.'.png';
+        return $this->uuid . '.png';
     }
 
     public function urlPath()
     {
-        return env('APP_URL').'/img/skin/'.$this->path();
+        return env('APP_URL') . '/img/skin/' . $this->path();
     }
 }

@@ -16,7 +16,7 @@ class GameJoltAssociation
      */
     public function handle(Request $request, Closure $next): mixed
     {
-        if (! $request->user()->gamejolt) {
+        if (!$request->user()->gamejolt) {
             $request->session()->flash('flash.bannerStyle', 'warning');
             $request
                 ->session()

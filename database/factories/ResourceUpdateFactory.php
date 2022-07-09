@@ -26,10 +26,11 @@ class ResourceUpdateFactory extends Factory
     public function definition()
     {
         return [
-            'title' => $this->faker->numberBetween(0, 2).
-                '.'.
-                $this->faker->numberBetween(0, 99).
-                '.'.
+            'title' =>
+                $this->faker->numberBetween(0, 2) .
+                '.' .
+                $this->faker->numberBetween(0, 99) .
+                '.' .
                 $this->faker->numberBetween(0, 9),
             'description' => $this->faker->paragraphs(3, true),
             'resource_id' => Resource::factory(),

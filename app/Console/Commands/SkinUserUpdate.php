@@ -45,11 +45,11 @@ class SkinUserUpdate extends Command
             $gja = GamejoltAccount::where('id', $skin->owner_id)->first();
             if ($gja) {
                 $skin->update(['user_id' => $gja->user_id]);
-                $this->info('Skin #'.$skin->id.' updated.');
-                $rows = DB::select('SELECT * FROM likes WHERE user_id = '.$skin->owner_id);
+                $this->info('Skin #' . $skin->id . ' updated.');
+                $rows = DB::select('SELECT * FROM likes WHERE user_id = ' . $skin->owner_id);
                 foreach ($rows as $row) {
-                    DB::update('UPDATE likes SET user_id = '.$gja->user_id.' WHERE user_id = '.$skin->owner_id);
-                    $this->info('Like #'.$row->id.' updated.');
+                    DB::update('UPDATE likes SET user_id = ' . $gja->user_id . ' WHERE user_id = ' . $skin->owner_id);
+                    $this->info('Like #' . $row->id . ' updated.');
                 }
             }
         }

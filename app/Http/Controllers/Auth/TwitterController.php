@@ -50,7 +50,7 @@ class TwitterController extends Controller
             $twitterAccount = TwitterAccount::where('id', $twitterUser->id)->first();
 
             // if it does not exist and is guest
-            if (! $twitterAccount && auth()->guest()) {
+            if (!$twitterAccount && auth()->guest()) {
                 session()->flash(
                     'flash.banner',
                     'Twitter account association not found with any P3D account. Log in with your P3D account to associate.'
@@ -63,7 +63,7 @@ class TwitterController extends Controller
             $twitterAccountHasUser = $twitterAccount ? $twitterAccount->user : null;
 
             // if account is not associated with a user and is guest
-            if (auth()->guest() && ! $twitterAccountHasUser) {
+            if (auth()->guest() && !$twitterAccountHasUser) {
                 session()->flash('flash.banner', 'You are not logged in and user was not found.');
                 session()->flash('flash.bannerStyle', 'danger');
 

@@ -3,8 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      *
@@ -12,7 +11,7 @@ return new class extends Migration
      */
     public function up()
     {
-        if (! Schema::hasColumn('users', 'timezone')) {
+        if (!Schema::hasColumn('users', 'timezone')) {
             Schema::table('users', function (Blueprint $table) {
                 $table
                     ->string('timezone')

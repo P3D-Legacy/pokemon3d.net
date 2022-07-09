@@ -94,7 +94,7 @@ class UploadedSkinController extends Controller
             'reason' => ['required', 'string'],
         ]);
         $skin = Skin::where('uuid', $uuid)->first();
-        if (! Storage::disk('skin')->exists($skin->path())) {
+        if (!Storage::disk('skin')->exists($skin->path())) {
             return redirect()
                 ->route('uploaded-skins')
                 ->with('error', 'Skin was not found!');

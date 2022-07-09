@@ -46,7 +46,7 @@ class Category extends Resource
                 ->sortable()
                 ->rules('required', 'max:255')
                 ->displayUsing(function ($name, $resource) {
-                    return str_repeat('→&emsp;', $resource->depth) . $name;
+                    return str_repeat('→&emsp;', $resource->depth).$name;
                 })->asHtml()->onlyOnIndex(),
             Select::make('Parent Model', 'parent_id')
                 ->options(function () {
@@ -54,6 +54,7 @@ class Category extends Resource
                         ->get()
                         ->reduce(function ($options, $model) {
                             $options[$model['id']] = $model['name'];
+
                             return $options;
                         }, []);
                 })

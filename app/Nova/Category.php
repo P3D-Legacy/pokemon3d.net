@@ -4,6 +4,7 @@ namespace App\Nova;
 
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
+use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
@@ -43,7 +44,21 @@ class Category extends Resource
 
             Text::make('Name')
                 ->sortable()
-                ->rules('required', 'max:255'),
+                ->rules('required', 'max:255')
+                ->displayUsing(function ($name, $resource) {
+                    return str_repeat('→&emsp;', $resource->depth) . $name;
+                })->asHtml()->onlyOnIndex(),
+            Select::make('Parent Model', 'parent_id')
+                ->options(function () {
+                    return Category::where('id', '!=', $this->id)
+                        ->get()
+                        ->reduce(function ($options, $model) {
+                            $options[$model['id']] = $model['name'];
+                            return $options;
+                        }, []);
+                })
+                ->nullable()
+                ->onlyOnForms(),
         ];
     }
 
@@ -89,5 +104,12 @@ class Category extends Resource
     public function actions(NovaRequest $request)
     {
         return [];
+    }
+
+    public static function indexQuery(NovaRequest $request, $query)
+    {
+        return $request->viaRelationship()
+            ? $query
+            : $query->withDepth()->defaultOrder();
     }
 }

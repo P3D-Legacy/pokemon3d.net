@@ -2,7 +2,6 @@
 
 namespace App\Helpers;
 
-use Illuminate\Support\Facades\Http;
 use RestCord\DiscordClient;
 
 class DiscordHelper

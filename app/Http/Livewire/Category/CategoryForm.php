@@ -2,14 +2,16 @@
 
 namespace App\Http\Livewire\Category;
 
+use AliBayat\LaravelCategorizable\Category;
 use Illuminate\Support\Collection;
 use LivewireUI\Modal\ModalComponent;
-use AliBayat\LaravelCategorizable\Category;
 
 class CategoryForm extends ModalComponent
 {
     public int|Category $category;
+
     public Collection $categories;
+
     public $parent;
 
     protected array $rules = [

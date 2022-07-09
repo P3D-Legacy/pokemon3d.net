@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
-use Illuminate\Http\Request;
 use Digikraaft\ReviewRating\Models\Review;
+use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
@@ -27,6 +27,7 @@ class HomeController extends Controller
             ->get();
         $numberOfReviews = $reviews->count();
         $averageRating = round($reviews->pluck('rating')->avg(), 1);
+
         return view('home', compact('posts', 'reviews', 'averageRating', 'numberOfReviews'));
     }
 }

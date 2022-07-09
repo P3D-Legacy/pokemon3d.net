@@ -7,8 +7,11 @@ use Illuminate\View\Component;
 class Screenshot extends Component
 {
     public $title;
+
     public $path;
+
     public $author;
+
     public $active;
 
     /**

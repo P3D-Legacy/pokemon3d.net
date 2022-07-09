@@ -8,7 +8,9 @@ use Livewire\Component;
 class ResourceCreationStatsGraph extends Component
 {
     public $stats;
+
     public $labels;
+
     public $values;
 
     public function mount()

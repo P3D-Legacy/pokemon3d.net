@@ -2,13 +2,15 @@
 
 namespace App\Http\Livewire\Review;
 
-use Livewire\Component;
 use Digikraaft\ReviewRating\Models\Review;
+use Livewire\Component;
 
 class ReviewList extends Component
 {
     public $reviews;
+
     public $averageRating;
+
     public $numberOfReviews;
 
     protected $listeners = [

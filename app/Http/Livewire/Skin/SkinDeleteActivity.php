@@ -19,8 +19,8 @@ class SkinDeleteActivity extends Component
     public function loadActivity()
     {
         $this->activity = Activity::where('description', 'deleted')
-            ->where('properties', 'LIKE', '%' . Auth::user()->gamejolt->id . '.png%')
-            ->orWhere('properties', 'LIKE', '%gjid":' . Auth::user()->gamejolt->id . ',"reason"%')
+            ->where('properties', 'LIKE', '%'.Auth::user()->gamejolt->id.'.png%')
+            ->orWhere('properties', 'LIKE', '%gjid":'.Auth::user()->gamejolt->id.',"reason"%')
             ->orderBy('id', 'desc')
             ->take(10)
             ->get();

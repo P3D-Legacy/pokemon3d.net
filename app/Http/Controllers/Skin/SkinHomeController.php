@@ -3,11 +3,8 @@
 namespace App\Http\Controllers\Skin;
 
 use App\Http\Controllers\Controller;
-use Harrk\GameJoltApi\GamejoltApi;
-use Harrk\GameJoltApi\GamejoltConfig;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Spatie\Activitylog\Models\Activity;
 
 class SkinHomeController extends Controller
 {

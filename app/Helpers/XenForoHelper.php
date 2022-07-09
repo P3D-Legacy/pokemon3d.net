@@ -21,7 +21,7 @@ class XenForoHelper
             $method = $data;
             $data = [];
         }
-        $url = config('xenforo.base_url') . $endpoint;
+        $url = config('xenforo.base_url').$endpoint;
         $response = Http::withHeaders([
             'XF-Api-Key' => config('xenforo.apikey'),
         ])->$method($url, $data);
@@ -37,8 +37,10 @@ class XenForoHelper
             if (array_key_exists('errors', $data)) {
                 return 0;
             }
+
             return $data['pagination']['total'];
         }
+
         return 0;
     }
 

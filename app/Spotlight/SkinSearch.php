@@ -3,7 +3,6 @@
 namespace App\Spotlight;
 
 use App\Models\Skin;
-use App\Models\User;
 use LivewireUI\Spotlight\Spotlight;
 use LivewireUI\Spotlight\SpotlightCommand;
 use LivewireUI\Spotlight\SpotlightCommandDependencies;

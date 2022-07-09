@@ -38,9 +38,10 @@ class BadgeController extends Controller
             $name = str_replace('_', ' ', $filename);
             $badges[Str::slug($filename, '_')] = [
                 'name' => $name,
-                'image' => url($folder_path . $file->getFilename()),
+                'image' => url($folder_path.$file->getFilename()),
             ];
         }
+
         return response()->json([
             'data' => $badges,
         ]);

@@ -2,21 +2,18 @@
 
 namespace App\Models;
 
-use Spatie\Tags\HasTags;
-use App\Models\BaseModel;
-use Illuminate\Support\Str;
-
-use App\Stats\ResourceCreationStats;
-use Illuminate\Database\Eloquent\Model;
-use Spatie\Activitylog\LogOptions;
-use Overtrue\LaravelLike\Traits\Likeable;
-use Spatie\Activitylog\Traits\LogsActivity;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use AliBayat\LaravelCategorizable\Categorizable;
+use App\Stats\ResourceCreationStats;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Digikraaft\ReviewRating\Traits\HasReviewRating;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Str;
+use Overtrue\LaravelLike\Traits\Likeable;
+use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\Tags\HasTags;
 use Touhidurabir\MultiKyeRouteBinding\HasMultipleRouteBindingKeys;
 
 class Resource extends BaseModel implements Viewable
@@ -41,7 +38,7 @@ class Resource extends BaseModel implements Viewable
         });
 
         self::updating(function ($model) {
-            if (!$model->uuid) {
+            if (! $model->uuid) {
                 $model->uuid = Str::uuid()->toString();
             }
         });

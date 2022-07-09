@@ -2,9 +2,9 @@
 
 namespace App\Actions\Fortify;
 
-use Carbon\Carbon;
 use App\Rules\OlderThan;
 use App\Rules\YoungerThan;
+use Carbon\Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;

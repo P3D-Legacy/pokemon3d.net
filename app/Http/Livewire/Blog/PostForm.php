@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire\Blog;
 
-use AliBayat\LaravelCategorizable\Category;
 use App\Models\Post;
 use App\Models\Tag;
 use LivewireUI\Modal\ModalComponent;
@@ -10,7 +9,9 @@ use LivewireUI\Modal\ModalComponent;
 class PostForm extends ModalComponent
 {
     public int|Post $post;
+
     public $tags;
+
     public array $checked;
 
     protected array $rules = [];
@@ -26,7 +27,7 @@ class PostForm extends ModalComponent
     public function rules()
     {
         return [
-            'post.title' => 'required|string|max:255|unique:posts,title,' . $this->post->id,
+            'post.title' => 'required|string|max:255|unique:posts,title,'.$this->post->id,
             'post.active' => ['required', 'integer'],
             'post.sticky' => ['required', 'integer'],
             'post.published_at' => ['required', 'date_format:Y-m-d H:i:s'],
@@ -46,6 +47,7 @@ class PostForm extends ModalComponent
         $this->emit('postUpdated', $this->post->uuid);
         $this->closeModal();
     }
+
     public function render()
     {
         return view('livewire.blog.post-form');

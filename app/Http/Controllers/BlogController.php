@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
-use Illuminate\Http\Request;
 
 class BlogController extends Controller
 {
@@ -36,7 +35,7 @@ class BlogController extends Controller
             ->orWhere('slug', $param)
             ->where('active', true)
             ->firstOrFail();
-        abort_if(!$post, 404);
+        abort_if(! $post, 404);
         views($post)
             ->cooldown(60)
             ->record();

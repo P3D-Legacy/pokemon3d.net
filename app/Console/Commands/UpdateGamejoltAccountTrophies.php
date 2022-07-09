@@ -2,7 +2,6 @@
 
 namespace App\Console\Commands;
 
-use App\Http\Livewire\Login\GameJolt;
 use App\Models\GamejoltAccount;
 use App\Models\GamejoltAccountTrophy;
 use Harrk\GameJoltApi\Exceptions\TimeOutException;
@@ -50,6 +49,7 @@ class UpdateGamejoltAccountTrophies extends Command
                 $trophies = $api->trophies()->fetch($account->username, $account->token);
                 if (filter_var($trophies['response']['success'], FILTER_VALIDATE_BOOLEAN) === false) {
                     $this->error("No success for {$account->username}");
+
                     return 0;
                 }
                 $trophies = $trophies['response']['trophies'];
@@ -78,6 +78,7 @@ class UpdateGamejoltAccountTrophies extends Command
             }
         }
         $this->info('Done.');
+
         return 0;
     }
 }

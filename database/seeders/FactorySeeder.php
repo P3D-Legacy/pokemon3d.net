@@ -9,7 +9,6 @@ use App\Models\Resource;
 use App\Models\ResourceUpdate;
 use App\Models\Server;
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class FactorySeeder extends Seeder

@@ -42,10 +42,10 @@ class DiscordRoleSync extends Command
         $server_roles = DiscordHelper::getServerRoles();
         foreach ($server_roles as $server_role) {
             if (str_starts_with($server_role->name, '⁣     ^')) {
-                $this->info('Skipping role: ' . $server_role->name);
+                $this->info('Skipping role: '.$server_role->name);
                 continue;
             }
-            $this->info('Syncing role: ' . $server_role->name);
+            $this->info('Syncing role: '.$server_role->name);
             $discord_role = DiscordRole::firstOrNew(['id' => $server_role->id]);
             $discord_role->fill([
                 'color' => $server_role->color,

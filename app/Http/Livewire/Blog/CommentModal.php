@@ -9,7 +9,9 @@ use Notification;
 class CommentModal extends ModalComponent
 {
     public int|Post $post;
+
     public $body;
+
     public $parentComment = null;
 
     public function mount(int|Post $post, $parentComment)

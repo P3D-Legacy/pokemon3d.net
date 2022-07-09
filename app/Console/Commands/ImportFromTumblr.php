@@ -40,6 +40,7 @@ class ImportFromTumblr extends Command
             env('TUMBLR_OAUTH_TOKEN_SECRET') == null
         ) {
             $this->error('Please set the tumblr environment variables.');
+
             return 1;
         }
 
@@ -73,7 +74,7 @@ class ImportFromTumblr extends Command
                 $title = str_replace('Pokémon3D ', '', $post->title); // Remove the Pokémon3D prefix from the title
                 $title = str_replace('!', '', $title); // Remove the exclamation mark
                 $title = ucfirst($title); // Capitalize the first letter of the title
-                $this->info('Title: ' . $title . ', Posted by: ' . $user->username);
+                $this->info('Title: '.$title.', Posted by: '.$user->username);
                 $converter = new HtmlConverter();
                 $markdown = $converter->convert($post->body);
                 Post::create([
@@ -89,6 +90,7 @@ class ImportFromTumblr extends Command
         } catch (\Exception $e) {
             $this->error($e->getMessage());
         }
+
         return 0;
     }
 }

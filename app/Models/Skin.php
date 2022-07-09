@@ -2,13 +2,12 @@
 
 namespace App\Models;
 
-use App\Models\BaseModel;
-use Illuminate\Support\Str;
-use Spatie\Activitylog\LogOptions;
-use Overtrue\LaravelLike\Traits\Likeable;
-use Spatie\Activitylog\Traits\LogsActivity;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Str;
+use Overtrue\LaravelLike\Traits\Likeable;
+use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class Skin extends BaseModel
 {
@@ -106,11 +105,11 @@ class Skin extends BaseModel
 
     public function path()
     {
-        return $this->uuid . '.png';
+        return $this->uuid.'.png';
     }
 
     public function urlPath()
     {
-        return env('APP_URL') . '/img/skin/' . $this->path();
+        return env('APP_URL').'/img/skin/'.$this->path();
     }
 }

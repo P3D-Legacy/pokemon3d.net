@@ -2,7 +2,6 @@
 
 namespace App\Http\Resources\API\v1;
 
-use App\Http\Resources\API\v1\UserResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class GamejoltAccountBanResource extends JsonResource

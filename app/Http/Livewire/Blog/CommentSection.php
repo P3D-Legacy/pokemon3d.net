@@ -8,6 +8,7 @@ use Livewire\Component;
 class CommentSection extends Component
 {
     public int|Post $post;
+
     public $comments;
 
     protected $listeners = [

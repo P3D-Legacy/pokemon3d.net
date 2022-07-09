@@ -7,6 +7,7 @@ use Illuminate\View\Component;
 class ReviewStars extends Component
 {
     public $stars;
+
     public $size;
 
     /**

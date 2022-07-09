@@ -2,11 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Tag;
 use App\Models\Post;
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
 
 class PostController extends Controller
 {

@@ -53,6 +53,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
                 ->prepend
                 //
                 ();
+
             return $menu;
         });
     }

@@ -1,29 +1,25 @@
 <?php
 
-use App\Http\Controllers\DownloadController;
-use App\Http\Controllers\NotificationsController;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\TagController;
-use App\Http\Controllers\BlogController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\PostController;
-use App\Http\Controllers\RoleController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\StatsController;
-use App\Http\Controllers\MemberController;
-use App\Http\Controllers\ServerController;
 use AliBayat\LaravelCategorizable\Category;
-use App\Http\Livewire\Resource\ResourceShow;
-use App\Http\Controllers\Skin\SkinController;
-use App\Http\Controllers\PermissionController;
-use App\Http\Controllers\Auth\TwitchController;
-use App\Http\Controllers\Skin\ImportController;
 use App\Http\Controllers\Auth\DiscordController;
-use App\Http\Controllers\Auth\TwitterController;
 use App\Http\Controllers\Auth\FacebookController;
-use App\Http\Controllers\Skin\SkinHomeController;
+use App\Http\Controllers\Auth\TwitchController;
+use App\Http\Controllers\Auth\TwitterController;
+use App\Http\Controllers\BlogController;
+use App\Http\Controllers\DownloadController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MemberController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\ServerController;
+use App\Http\Controllers\Skin\ImportController;
 use App\Http\Controllers\Skin\PlayerSkinController;
+use App\Http\Controllers\Skin\SkinController;
+use App\Http\Controllers\Skin\SkinHomeController;
 use App\Http\Controllers\Skin\UploadedSkinController;
+use App\Http\Controllers\StatsController;
+use App\Http\Controllers\TagController;
+use App\Http\Livewire\Resource\ResourceShow;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------

@@ -18,6 +18,7 @@ class DownloadController extends Controller
         if ($game_version) {
             return redirect()->to($game_version->download_url);
         }
+
         return response()->redirectTo('/');
     }
 }

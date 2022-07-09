@@ -32,9 +32,10 @@ class DiscordController extends Controller
         try {
             $discordUser = Socialite::driver('discord')->user();
 
-            if (!$discordUser->user['verified']) {
+            if (! $discordUser->user['verified']) {
                 session()->flash('flash.banner', 'Discord user not verified.');
                 session()->flash('flash.bannerStyle', 'danger');
+
                 return redirect()->route('login');
             }
 
@@ -52,25 +53,28 @@ class DiscordController extends Controller
                 ->first();
 
             // if it does not exist and is guest
-            if (!$discordAccount && auth()->guest()) {
+            if (! $discordAccount && auth()->guest()) {
                 session()->flash(
                     'flash.banner',
                     'Discord account association not found with any P3D account. Log in with your P3D account to associate.'
                 );
                 session()->flash('flash.bannerStyle', 'danger');
+
                 return redirect()->route('login');
             }
 
             $discordAccountHasUser = $discordAccount ? $discordAccount->user : null;
 
             // if discord account is not associated with a user and is guest
-            if (!$discordAccountHasUser && auth()->guest()) {
+            if (! $discordAccountHasUser && auth()->guest()) {
                 session()->flash('flash.banner', 'You are not logged in and user was not found.');
                 session()->flash('flash.bannerStyle', 'danger');
+
                 return redirect()->route('login');
             } elseif ($discordAccountHasUser && auth()->guest()) {
                 // if discord account is not associated with a user and is not guest
                 Auth::login($discordAccountHasUser);
+
                 return redirect()->route('dashboard');
             }
 
@@ -80,16 +84,19 @@ class DiscordController extends Controller
                 if (auth()->id() !== $discordAccountHasUser->id) {
                     session()->flash('flash.banner', 'This Discord account is associated with another P3D account.');
                     session()->flash('flash.bannerStyle', 'warning');
+
                     return redirect()->route('profile.show');
                 }
 
                 // check if discord account is deleted then restore
                 if ($discordAccount->trashed()) {
                     $discordAccount->restore();
+
                     return redirect()->route('profile.show');
                 }
 
                 Auth::login($discordAccountHasUser);
+
                 return redirect()->route('dashboard');
             }
 
@@ -105,10 +112,12 @@ class DiscordController extends Controller
         } catch (InvalidStateException $e) {
             session()->flash('flash.banner', 'Something went wrong with Discord login. Please try again.');
             session()->flash('flash.bannerStyle', 'danger');
+
             return redirect()->route('home');
         } catch (ClientException $e) {
             session()->flash('flash.banner', 'Something went wrong with Discord login. Please try again.');
             session()->flash('flash.bannerStyle', 'danger');
+
             return redirect()->route('home');
         }
 

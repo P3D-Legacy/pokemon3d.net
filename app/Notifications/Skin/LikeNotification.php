@@ -11,9 +11,13 @@ use Illuminate\Notifications\Notification;
 class LikeNotification extends Notification
 {
     use Queueable;
+
     private Skin $skin;
+
     private string $message;
+
     private string $icon;
+
     private User $liker;
 
     /**
@@ -26,17 +30,15 @@ class LikeNotification extends Notification
         $this->skin = $skin;
         $this->liker = $liker;
         $this->message = trans(':username liked your skin :title', [
-            'username' =>
-                '<a class="text-green-400 no-underline hover:underline" href="' .
-                route('member.show', $this->liker->username) .
-                '">' .
-                $this->liker->username .
+            'username' => '<a class="text-green-400 no-underline hover:underline" href="'.
+                route('member.show', $this->liker->username).
+                '">'.
+                $this->liker->username.
                 '</a>',
-            'title' =>
-                '<a class="text-green-400 no-underline hover:underline" href="' .
-                route('skin-show', $this->skin->uuid) .
-                '">' .
-                $this->skin->name .
+            'title' => '<a class="text-green-400 no-underline hover:underline" href="'.
+                route('skin-show', $this->skin->uuid).
+                '">'.
+                $this->skin->name.
                 '</a>',
         ]);
         $this->icon =

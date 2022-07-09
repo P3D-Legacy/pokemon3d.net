@@ -10,8 +10,11 @@ use Livewire\Component;
 class Notifications extends Component
 {
     public DatabaseNotificationCollection $unreadNotifications;
+
     public User $user;
+
     public int $count;
+
     public int $max = 5;
 
     protected $listeners = [
@@ -35,6 +38,7 @@ class Notifications extends Component
     {
         $notification = $this->user->notifications->find($id);
         $this->dismiss($id);
+
         return redirect()->to($notification->data['url']);
     }
 

@@ -2,14 +2,16 @@
 
 namespace App\Http\Livewire\Resource;
 
+use AliBayat\LaravelCategorizable\Category;
 use App\Models\Resource;
 use LivewireUI\Modal\ModalComponent;
-use AliBayat\LaravelCategorizable\Category;
 
 class ResourceForm extends ModalComponent
 {
     public int|Resource $resource;
+
     public $categories;
+
     public $category;
 
     protected array $rules = [

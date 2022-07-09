@@ -5,7 +5,8 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Config;
 
-return new class extends Migration {
+return new class extends Migration
+{
     public function __construct()
     {
         if (version_compare(Application::VERSION, '5.0', '>=')) {

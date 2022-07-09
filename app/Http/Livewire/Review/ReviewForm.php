@@ -8,9 +8,13 @@ use LivewireUI\Modal\ModalComponent;
 class ReviewForm extends ModalComponent
 {
     public $body;
+
     public $rating;
+
     public $user;
+
     public $gameversion;
+
     public $gameversions;
 
     public function mount()

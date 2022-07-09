@@ -2,13 +2,15 @@
 
 namespace App\Http\Livewire\Admin;
 
-use Livewire\Component;
 use App\Stats\UserRegistrationStats;
+use Livewire\Component;
 
 class UserRegistrationStatsGraph extends Component
 {
     public $stats;
+
     public $labels;
+
     public $values;
 
     public function mount()

@@ -50,25 +50,28 @@ class TwitterController extends Controller
             $twitterAccount = TwitterAccount::where('id', $twitterUser->id)->first();
 
             // if it does not exist and is guest
-            if (!$twitterAccount && auth()->guest()) {
+            if (! $twitterAccount && auth()->guest()) {
                 session()->flash(
                     'flash.banner',
                     'Twitter account association not found with any P3D account. Log in with your P3D account to associate.'
                 );
                 session()->flash('flash.bannerStyle', 'danger');
+
                 return redirect()->route('login');
             }
 
             $twitterAccountHasUser = $twitterAccount ? $twitterAccount->user : null;
 
             // if account is not associated with a user and is guest
-            if (auth()->guest() && !$twitterAccountHasUser) {
+            if (auth()->guest() && ! $twitterAccountHasUser) {
                 session()->flash('flash.banner', 'You are not logged in and user was not found.');
                 session()->flash('flash.bannerStyle', 'danger');
+
                 return redirect()->route('login');
             } elseif ($twitterAccountHasUser && auth()->guest()) {
                 // if account is not associated with a user and is not guest
                 Auth::login($twitterAccountHasUser);
+
                 return redirect()->route('dashboard');
             }
 
@@ -78,16 +81,19 @@ class TwitterController extends Controller
                 if (auth()->id() !== $twitterAccountHasUser->id) {
                     session()->flash('flash.banner', 'This Twitter account is associated with another P3D account.');
                     session()->flash('flash.bannerStyle', 'warning');
+
                     return redirect()->route('profile.show');
                 }
 
                 // check if account is deleted then restore
                 if ($twitterAccount->trashed()) {
                     $twitterAccount->restore();
+
                     return redirect()->route('profile.show');
                 }
 
                 Auth::login($twitterAccountHasUser);
+
                 return redirect()->route('dashboard');
             }
 

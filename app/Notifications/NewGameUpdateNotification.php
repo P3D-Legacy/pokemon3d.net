@@ -4,15 +4,17 @@ namespace App\Notifications;
 
 use App\Models\GameVersion;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
 class NewGameUpdateNotification extends Notification
 {
     use Queueable;
+
     private string $message;
+
     private string $icon;
+
     private GameVersion $gameVersion;
 
     /**
@@ -48,6 +50,7 @@ class NewGameUpdateNotification extends Notification
     public function toMail($notifiable)
     {
         $btn_text = $this->gameVersion->post ? 'View blog post' : 'View changelog';
+
         return (new MailMessage())
             ->line($this->message)
             ->line($this->gameVersion->title)

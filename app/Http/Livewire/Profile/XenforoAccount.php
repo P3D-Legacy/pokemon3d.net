@@ -12,9 +12,13 @@ use Livewire\Component;
 class XenforoAccount extends Component
 {
     public $username;
+
     public $password;
+
     public $updated_at;
+
     public $verified_at;
+
     public bool $syncRegisterDate;
 
     public function mount()
@@ -45,13 +49,14 @@ class XenforoAccount extends Component
             'syncRegisterDate' => ['boolean'],
         ]);
 
-        if (!$this->username && !$this->password) {
+        if (! $this->username && ! $this->password) {
             $this->errorBag->add('success', 'Your forum account has now been unlinked.');
             if ($user->forum()) {
                 $user->forum()->delete();
             }
             $this->updated_at = null;
             $this->verified_at = null;
+
             return;
         }
 
@@ -59,6 +64,7 @@ class XenforoAccount extends Component
 
         if (isset($auth['error'])) {
             $this->addError('error', $auth['message'] ?? 'An unknown error occurred.');
+
             return;
         }
 

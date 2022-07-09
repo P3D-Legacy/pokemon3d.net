@@ -36,21 +36,21 @@ class Update extends Command
     /**
      * Execute the console command.
      *
-     * @return integer
+     * @return int
      */
     public function handle(): int
     {
         $rev = exec('git rev-parse --short HEAD');
         $branch = exec('git describe --tags --abbrev=0');
-        $ver = $branch . ' (' . $rev . ')';
+        $ver = $branch.' ('.$rev.')';
 
         $this->info('Migrating...');
         Artisan::call('migrate --force');
         $this->info('Updating version...');
         if (Setting::get('APP_VERSION') != $ver) {
-            $this->info('Current version: ' . Setting::get('APP_VERSION'));
+            $this->info('Current version: '.Setting::get('APP_VERSION'));
             Setting::set('APP_VERSION', $ver);
-            $this->info('Updated version to: ' . Setting::get('APP_VERSION'));
+            $this->info('Updated version to: '.Setting::get('APP_VERSION'));
             Setting::save();
         }
         $this->info('Seeding permissions...');
@@ -78,6 +78,7 @@ class Update extends Command
             ]);
         }
         $this->info('Done.');
+
         return 0;
     }
 }

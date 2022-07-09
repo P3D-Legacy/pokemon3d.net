@@ -2,10 +2,7 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\User;
 use Auth;
-use Illuminate\Notifications\DatabaseNotificationCollection;
-use Illuminate\Pagination\LengthAwarePaginator;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -21,6 +18,7 @@ class NotificationList extends Component
     {
         $notification = Auth::user()->notifications->find($id);
         $this->dismiss($id);
+
         return redirect()->to($notification->data['url']);
     }
 

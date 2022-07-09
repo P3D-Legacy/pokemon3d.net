@@ -31,12 +31,13 @@ class DiscordBotSettingController extends Controller
      */
     public function index(Request $request): \Illuminate\Http\JsonResponse
     {
-        if (!$request->user()->tokenCan('read')) {
+        if (! $request->user()->tokenCan('read')) {
             return response()->json([
                 'error' => 'Token does not have access!',
             ]);
         }
         $discordBotSetting = DiscordBotSetting::first(); // Only show first in table
+
         return response()->json($discordBotSetting);
     }
 
@@ -61,7 +62,7 @@ class DiscordBotSettingController extends Controller
      */
     public function update(Request $request, int $id): \Illuminate\Http\JsonResponse
     {
-        if (!$request->user()->tokenCan('update')) {
+        if (! $request->user()->tokenCan('update')) {
             return response()->json([
                 'error' => 'Token does not have access!',
             ]);
@@ -79,6 +80,7 @@ class DiscordBotSettingController extends Controller
         ]);
         $discordBotSetting = DiscordBotSetting::findOrFail($id);
         $discordBotSetting->update($request->all());
+
         return response()->json($discordBotSetting);
     }
 }

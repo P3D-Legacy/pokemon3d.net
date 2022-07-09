@@ -44,25 +44,27 @@ class TwitchController extends Controller
             $twitchAccount = TwitchAccount::where('id', $twitchUser->id)->first();
 
             // if it does not exist and is guest
-            if (!$twitchAccount && auth()->guest()) {
+            if (! $twitchAccount && auth()->guest()) {
                 session()->flash(
                     'flash.banner',
                     'Discord account association not found with any P3D account. Log in with your P3D account to associate.'
                 );
                 session()->flash('flash.bannerStyle', 'danger');
+
                 return redirect()->route('login');
             }
 
             $twitchAccountHasUser = $twitchAccount ? $twitchAccount->user : null;
 
             // if account is not associated with a user and is guest
-            if (auth()->guest() && !$twitchAccountHasUser) {
+            if (auth()->guest() && ! $twitchAccountHasUser) {
                 return redirect()
                     ->route('login')
                     ->withError('You are not logged in and user was not found.');
             } elseif ($twitchAccountHasUser && auth()->guest()) {
                 // if account is not associated with a user and is not guest
                 Auth::login($twitchAccountHasUser);
+
                 return redirect()->route('dashboard');
             }
 
@@ -72,16 +74,19 @@ class TwitchController extends Controller
                 if (auth()->id() !== $twitchAccountHasUser->id) {
                     session()->flash('flash.banner', 'This Twitch account is associated with another P3D account.');
                     session()->flash('flash.bannerStyle', 'warning');
+
                     return redirect()->route('profile.show');
                 }
 
                 // check if discord account is deleted then restore
                 if ($twitchAccount->trashed()) {
                     $twitchAccount->restore();
+
                     return redirect()->route('profile.show');
                 }
 
                 Auth::login($twitchAccountHasUser);
+
                 return redirect()->route('dashboard');
             }
 
@@ -97,10 +102,12 @@ class TwitchController extends Controller
         } catch (InvalidStateException $e) {
             session()->flash('flash.banner', 'Something went wrong with Discord login. Please try again.');
             session()->flash('flash.bannerStyle', 'danger');
+
             return redirect()->route('home');
         } catch (ClientException $e) {
             session()->flash('flash.banner', 'Something went wrong with Discord login. Please try again.');
             session()->flash('flash.bannerStyle', 'danger');
+
             return redirect()->route('home');
         }
 

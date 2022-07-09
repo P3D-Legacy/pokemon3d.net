@@ -9,8 +9,11 @@ use Notification;
 class CommentLike extends Component
 {
     public Comment $comment;
+
     public int $count;
+
     public $user;
+
     public bool $liked;
 
     public function mount(Comment $comment)
@@ -37,6 +40,7 @@ class CommentLike extends Component
                 new \App\Notifications\Post\CommentLikeNotification($this->comment, $this->user)
             );
         }
+
         return $this->emit('liked');
     }
 

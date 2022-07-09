@@ -2,12 +2,11 @@
 
 namespace App\Models;
 
-use App\Models\BaseModel;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class DiscordAccount extends BaseModel
 {
@@ -24,7 +23,7 @@ class DiscordAccount extends BaseModel
         });
 
         self::updating(function ($model) {
-            if (!$model->uuid) {
+            if (! $model->uuid) {
                 $model->uuid = Str::uuid()->toString();
             }
         });

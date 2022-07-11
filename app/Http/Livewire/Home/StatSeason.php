@@ -9,7 +9,7 @@ class StatSeason extends Component
 {
     public $inGameSeason;
 
-    public function mount()
+    public function loadData()
     {
         $this->inGameSeason = ucfirst(StatsHelper::getInGameSeason());
     }

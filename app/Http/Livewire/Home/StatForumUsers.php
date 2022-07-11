@@ -10,7 +10,7 @@ class StatForumUsers extends Component
 {
     public $forumUsers;
 
-    public function mount()
+    public function loadData()
     {
         $this->forumUsers = NumberHelper::nearestK(XenForoHelper::getUserCount());
     }

@@ -30,6 +30,7 @@
             <livewire:home.stat-online-players />
             <livewire:home.stat-users />
             <livewire:home.stat-discord-users />
+            <livewire:home.stat-forum-users />
         </div>
     </section>
 

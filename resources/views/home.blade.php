@@ -25,48 +25,6 @@
 
     <section class="py-12 bg-gray-100 border-b dark:bg-gray-900 dark:border-black">
         <div class="grid items-center justify-between max-w-full grid-flow-row grid-cols-1 gap-4 mx-auto text-4xl font-bold text-gray-900 opacity-75 md:text-5xl sm:grid-flow-auto sm:grid-cols-3 xl:grid-cols-6 dark:text-gray-100">
-
-            <div class="flex flex-col items-center">
-                <div class="flex">
-                    {{ $averageRating }}
-                    <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-auto h-12 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                    </svg>
-                </div>
-                <div class="flex text-lg text-gray-600 md:text-xl dark:text-gray-300">{{ App\Helpers\NumberHelper::nearestK($numberOfReviews) }} @lang('User Reviews')</div>
-                {{-- USER REVIEWS OF THE GAME --}}
-            </div>
-
-            <div class="flex flex-col items-center">
-                <div class="flex">{{ ucfirst(\App\Helpers\StatsHelper::getInGameSeason()) }}</div>
-                <div class="flex text-lg text-gray-600 md:text-xl dark:text-gray-300">@lang('In-Game Season')</div>
-                {{-- CURRENT IN-GAME SEASON --}}
-            </div>
-
-            <div class="flex flex-col items-center">
-                <div class="flex">{{ App\Helpers\NumberHelper::nearestK(\App\Helpers\StatsHelper::countPlayers()) }}</div>
-                <div class="flex text-lg text-gray-600 md:text-xl dark:text-gray-300">@lang('Online Players')</div>
-                {{-- ONLINE USERS FROM THE SERVER --}}
-            </div>
-
-            <div class="flex flex-col items-center">
-                <div class="flex">{{ App\Helpers\NumberHelper::nearestK(App\Models\User::count()) }}</div>
-                <div class="flex text-lg text-gray-600 md:text-xl dark:text-gray-300">@lang('Active Users')</div>
-                {{-- ACTIVE USERS FROM THE WEBSITE --}}
-            </div>
-
-            <div class="flex flex-col items-center">
-                <div class="flex">{{ App\Helpers\NumberHelper::nearestK(\App\Helpers\DiscordHelper::countMembers()) }}</div>
-                <div class="flex text-lg text-gray-600 md:text-xl dark:text-gray-300">@lang('Discord Users')</div>
-                {{-- TOTAL COUNT DISCORD USERS --}}
-            </div>
-
-            <div class="flex flex-col items-center">
-                <div class="flex">{{ App\Helpers\NumberHelper::nearestK(\App\Helpers\StatsHelper::countForumMembers()) }}</div>
-                <div class="flex text-lg text-gray-600 md:text-xl dark:text-gray-300">@lang('Forum Users')</div>
-                {{-- ACTIVE USERS FROM THE FORUM --}}
-            </div>
-
         </div>
     </section>
 

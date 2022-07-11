@@ -29,6 +29,7 @@
             <livewire:home.stat-season />
             <livewire:home.stat-online-players />
             <livewire:home.stat-users />
+            <livewire:home.stat-discord-users />
         </div>
     </section>
 

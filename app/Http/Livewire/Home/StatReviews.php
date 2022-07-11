@@ -10,7 +10,7 @@ class StatReviews extends Component
     public $numberOfReviews;
     public $averageRating;
 
-    public function mount()
+    public function loadData()
     {
         $reviews = Review::where('model_type', 'App\Models\GameVersion')
             ->orderBy('created_at', 'desc')

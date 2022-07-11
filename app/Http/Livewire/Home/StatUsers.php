@@ -10,7 +10,7 @@ class StatUsers extends Component
 {
     public $userCount;
 
-    public function mount()
+    public function loadData()
     {
         $this->userCount = NumberHelper::nearestK(User::all()->count());
     }

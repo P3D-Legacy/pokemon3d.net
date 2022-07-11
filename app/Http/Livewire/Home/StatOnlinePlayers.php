@@ -10,7 +10,7 @@ class StatOnlinePlayers extends Component
 {
     public $playersOnline;
 
-    public function mount()
+    public function loadData()
     {
         $this->playersOnline = NumberHelper::nearestK(StatsHelper::countPlayers());
     }

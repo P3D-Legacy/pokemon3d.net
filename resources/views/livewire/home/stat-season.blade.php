@@ -1,4 +1,4 @@
-<div class="flex flex-col items-center">
+<div class="flex flex-col items-center" wire:init="loadData">
     <div class="flex">
         {{ $inGameSeason }}
         <div wire:loading>

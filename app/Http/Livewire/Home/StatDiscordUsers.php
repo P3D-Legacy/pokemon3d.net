@@ -10,7 +10,7 @@ class StatDiscordUsers extends Component
 {
     public $discordUsers;
 
-    public function mount()
+    public function loadData()
     {
         $this->discordUsers = NumberHelper::nearestK(DiscordHelper::countMembers());
     }

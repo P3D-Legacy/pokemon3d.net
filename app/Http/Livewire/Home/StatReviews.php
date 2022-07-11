@@ -8,6 +8,7 @@ use Livewire\Component;
 class StatReviews extends Component
 {
     public $numberOfReviews;
+
     public $averageRating;
 
     public function mount()

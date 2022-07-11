@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
-use Digikraaft\ReviewRating\Models\Review;
 
 class HomeController extends Controller
 {
@@ -22,6 +21,7 @@ class HomeController extends Controller
             ->withAnyTags(['Website', 'Game'])
             ->take(4)
             ->get();
+
         return view('home', compact('posts'));
     }
 }

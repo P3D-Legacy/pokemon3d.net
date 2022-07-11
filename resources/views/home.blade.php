@@ -27,6 +27,7 @@
         <div class="grid items-center justify-between max-w-full grid-flow-row grid-cols-1 gap-4 mx-auto text-4xl font-bold text-gray-900 opacity-75 md:text-5xl sm:grid-flow-auto sm:grid-cols-3 xl:grid-cols-6 dark:text-gray-100">
             <livewire:home.stat-reviews />
             <livewire:home.stat-season />
+            <livewire:home.stat-online-players />
         </div>
     </section>
 

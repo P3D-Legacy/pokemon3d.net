@@ -28,6 +28,7 @@
             <livewire:home.stat-reviews />
             <livewire:home.stat-season />
             <livewire:home.stat-online-players />
+            <livewire:home.stat-users />
         </div>
     </section>
 

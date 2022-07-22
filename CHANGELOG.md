@@ -4,6 +4,30 @@ All notable changes to this project will be documented in this file.
 
 <a name="0.4.0"></a>
 
+## 4.2.0 - 2022-07-22
+
+### What's Changed
+
+- Sync user creation datetime from xenforo by @dsbilling in https://github.com/P3D-Legacy/pokemon3d.net/pull/170
+- Factory by @dsbilling in https://github.com/P3D-Legacy/pokemon3d.net/pull/172
+- Nova admin panel by @dsbilling in https://github.com/P3D-Legacy/pokemon3d.net/pull/171
+- Add support for subcategories by @dsbilling in https://github.com/P3D-Legacy/pokemon3d.net/pull/190
+- Pint by @dsbilling in https://github.com/P3D-Legacy/pokemon3d.net/pull/193
+- Stat home by @dsbilling in https://github.com/P3D-Legacy/pokemon3d.net/pull/194
+- Bump actions/cache from 3.0.4 to 3.0.5 by @dependabot in https://github.com/P3D-Legacy/pokemon3d.net/pull/195
+- Bump moment from 2.29.3 to 2.29.4 by @dependabot in https://github.com/P3D-Legacy/pokemon3d.net/pull/196
+- Bump terser from 4.8.0 to 4.8.1 by @dependabot in https://github.com/P3D-Legacy/pokemon3d.net/pull/197
+
+Other:
+
+- Added sync of creation date from the forum account
+- Fixed theme toggle icon for mobile
+- Added a new admin panel
+- Added subcategories to categories
+- Other minor fixes and changes
+
+**Full Changelog**: https://github.com/P3D-Legacy/pokemon3d.net/compare/4.1.12...4.2.0
+
 ## 4.1.12 - 2022-07-07
 
 ### What's Changed

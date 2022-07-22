@@ -2,22 +2,22 @@
 
 namespace App\Models;
 
+use Assada\Achievements\Achiever;
 use Carbon\Carbon;
 use DateTimeInterface;
-use Assada\Achievements\Achiever;
-use Laravel\Sanctum\HasApiTokens;
-use Origami\Consent\GivesConsent;
-use Spatie\Activitylog\LogOptions;
-use Laravel\Jetstream\HasProfilePhoto;
-use Overtrue\LaravelLike\Traits\Liker;
-use Spatie\Permission\Traits\HasRoles;
-use Illuminate\Notifications\Notifiable;
-use Spatie\Activitylog\Traits\LogsActivity;
-use Laravel\Fortify\TwoFactorAuthenticatable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Glorand\Model\Settings\Traits\HasSettingsTable;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Fortify\TwoFactorAuthenticatable;
+use Laravel\Jetstream\HasProfilePhoto;
+use Laravel\Sanctum\HasApiTokens;
+use Origami\Consent\GivesConsent;
+use Overtrue\LaravelLike\Traits\Liker;
+use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -49,6 +49,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'birtdate',
         'last_active_at',
         'timezone',
+        'created_at',
     ];
 
     /**
@@ -106,6 +107,7 @@ class User extends Authenticatable implements MustVerifyEmail
     protected function serializeDate(DateTimeInterface $date)
     {
         $carbonInstance = Carbon::instance($date);
+
         return $carbonInstance->toDateTimeString();
     }
 
@@ -155,5 +157,13 @@ class User extends Authenticatable implements MustVerifyEmail
     public function twitch()
     {
         return $this->hasOne(TwitchAccount::class);
+    }
+
+    /**
+     * Get the resources associated with the user.
+     */
+    public function resources()
+    {
+        return $this->hasMany(Resource::class);
     }
 }

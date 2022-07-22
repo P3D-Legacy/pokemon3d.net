@@ -15,7 +15,7 @@
 Our new website is built with Laravel and Tailwind CSS. This new website has replaced the old design from 2014. With the new design, we have a much cleaner and more modern website. And we will more easily be adding more features to the website in the future.
 
 # Contribute
-Want to contribute to the project? Check out [CONTRIBUTING.md](CONTRIBUTING.md) for more info.
+Want to contribute to the project? Check out [CONTRIBUTING.md](.github/CONTRIBUTING.md) for more info.
 
 # Installation
 Want to install the project? Here is a quick guide to installing the project.
@@ -42,6 +42,10 @@ php artisan key:generate
 We've made it easy for updating stuff for the application. Running this command will migrate the database, set settings, seed needed data, update API docs and more.
 ``` bash
 php artisan p3d:update
+```
+Need a set of test data in the database? Run this command to seed the database with test data.
+``` bash
+php artisan db:seed --class=FactorySeeder
 ```
 Start the local development server on Windows:
 ``` bash

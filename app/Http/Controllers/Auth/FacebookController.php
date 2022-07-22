@@ -43,25 +43,27 @@ class FacebookController extends Controller
             $facebookAccount = FacebookAccount::where('id', $facebookUser->id)->first();
 
             // if it does not exist and is guest
-            if (!$facebookAccount && auth()->guest()) {
+            if (! $facebookAccount && auth()->guest()) {
                 session()->flash(
                     'flash.banner',
                     'Discord account association not found with any P3D account. Log in with your P3D account to associate.'
                 );
                 session()->flash('flash.bannerStyle', 'danger');
+
                 return redirect()->route('login');
             }
 
             $facebookAccountHasUser = $facebookAccount ? $facebookAccount->user : null;
 
             // if account is not associated with a user and is guest
-            if (auth()->guest() && !$facebookAccountHasUser) {
+            if (auth()->guest() && ! $facebookAccountHasUser) {
                 return redirect()
                     ->route('login')
                     ->withError('You are not logged in and user was not found.');
             } elseif ($facebookAccountHasUser && auth()->guest()) {
                 // if account is not associated with a user and is not guest
                 Auth::login($facebookAccountHasUser);
+
                 return redirect()->route('dashboard');
             }
 
@@ -71,16 +73,19 @@ class FacebookController extends Controller
                 if (auth()->id() !== $facebookAccountHasUser->id) {
                     session()->flash('flash.banner', 'This Facebook account is associated with another P3D account.');
                     session()->flash('flash.bannerStyle', 'warning');
+
                     return redirect()->route('profile.show');
                 }
 
                 // check if account is deleted then restore
                 if ($facebookAccount->trashed()) {
                     $facebookAccount->restore();
+
                     return redirect()->route('profile.show');
                 }
 
                 Auth::login($facebookAccountHasUser);
+
                 return redirect()->route('dashboard');
             }
 
@@ -96,10 +101,12 @@ class FacebookController extends Controller
         } catch (InvalidStateException $e) {
             session()->flash('flash.banner', 'Something went wrong with Discord login. Please try again.');
             session()->flash('flash.bannerStyle', 'danger');
+
             return redirect()->route('home');
         } catch (ClientException $e) {
             session()->flash('flash.banner', 'Something went wrong with Discord login. Please try again.');
             session()->flash('flash.bannerStyle', 'danger');
+
             return redirect()->route('home');
         }
 

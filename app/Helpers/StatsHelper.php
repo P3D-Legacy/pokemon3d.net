@@ -3,7 +3,6 @@
 namespace App\Helpers;
 
 use Illuminate\Support\Facades\Http;
-use RestCord\DiscordClient;
 
 class StatsHelper
 {
@@ -29,9 +28,11 @@ class StatsHelper
             if (isset($data['players'])) {
                 return count($data['players']);
             }
+
             return 0;
         } catch (\Exception $exception) {
             report($exception);
+
             return 0;
         }
     }
@@ -64,7 +65,7 @@ class StatsHelper
             $data = [];
         }
 
-        $url = config('gameserver.base_url') . $endpoint;
+        $url = config('gameserver.base_url').$endpoint;
         $response = Http::withHeaders([])->$method($url, $data);
         $decodedResponse = json_decode($response, true);
 

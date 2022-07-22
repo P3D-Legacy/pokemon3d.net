@@ -12,14 +12,23 @@ use Livewire\Component;
 class Analytics extends Component
 {
     public string $domain = 'pokemon3d.net';
+
     public string $visitors = '0';
+
     public string $pageviews = '0';
+
     public float $bounceRate = 0.0;
+
     public float $visitDuration = 0.0;
+
     public int $realtimeVisitors = 0;
+
     public array $periods = [];
+
     public string $selectedPeriod = 'month';
+
     public array $labels = [];
+
     public array $data = [];
 
     public function mount()

@@ -2,13 +2,12 @@
 
 namespace App\Models;
 
-use App\Models\BaseModel;
-use Illuminate\Support\Str;
-use Spatie\Activitylog\LogOptions;
-use Overtrue\LaravelLike\Traits\Likeable;
-use Spatie\Activitylog\Traits\LogsActivity;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Str;
+use Overtrue\LaravelLike\Traits\Likeable;
+use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Traits\LogsActivity;
 
 class Server extends BaseModel
 {
@@ -55,7 +54,7 @@ class Server extends BaseModel
      *
      * @var array
      */
-    protected $fillable = ['name', 'description', 'host', 'port', 'active', 'last_check_at', 'user_id'];
+    protected $fillable = ['name', 'description', 'host', 'port', 'active', 'official', 'last_check_at', 'user_id'];
 
     /**
      * The attributes that should be cast to native types.

@@ -21,17 +21,25 @@
                 <x-jet-input id="password" type="password" class="block w-full mt-1" wire:model="password" />
                 <x-jet-input-error for="password" class="mt-2" />
             </div>
+
+            <div class="col-span-6 sm:col-span-4">
+                <label for="syncRegisterDate" class="flex items-center">
+                    <x-jet-checkbox id="syncRegisterDate" wire:model="syncRegisterDate" />
+                    <span class="ml-2 text-sm text-gray-600 dark:text-gray-300">{{ __('Sync your registration date on the forum with this account') }}</span>
+                </label>
+            </div>
+
         @else
             <div class="flex mb-5 text-gray-600 bg-white rounded shadow dark:text-gray-200 dark:bg-black w-max">
                 <div class="self-center w-64 p-2">
                     {{ $username }}
                 </div>
             </div>
-        @endif    
+        @endif
     </x-slot>
 
     <x-slot name="actions">
-        
+
         <x-jet-action-message class="mr-3 text-green-500" on="saved">
             {{ __('Verified and saved.') }}
         </x-jet-action-message>

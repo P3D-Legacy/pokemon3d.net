@@ -1,4 +1,5 @@
 <?php
+
 // config for Kilobyteno/Plausible
 return [
     'api_url' => env('PLAUSIBLE_API_URL', 'https://plausible.io/api/v1'),

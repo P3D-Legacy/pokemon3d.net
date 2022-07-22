@@ -2,12 +2,11 @@
 
 namespace App\Models;
 
-use App\Models\BaseModel;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class GamejoltAccountBan extends BaseModel
 {
@@ -24,7 +23,7 @@ class GamejoltAccountBan extends BaseModel
         });
 
         self::updating(function ($model) {
-            if (!$model->uuid) {
+            if (! $model->uuid) {
                 $model->uuid = Str::uuid()->toString();
             }
         });
@@ -93,7 +92,7 @@ class GamejoltAccountBan extends BaseModel
      */
     public function gamejoltaccount()
     {
-        return $this->hasOne(GamejoltAccount::class, 'id', 'gamejoltaccount_id');
+        return $this->belongsTo(GamejoltAccount::class, 'gamejoltaccount_id');
     }
 
     /**
@@ -101,7 +100,7 @@ class GamejoltAccountBan extends BaseModel
      */
     public function reason()
     {
-        return $this->hasOne(BanReason::class, 'id', 'reason_id');
+        return $this->belongsTo(BanReason::class);
     }
 
     /**
@@ -109,6 +108,6 @@ class GamejoltAccountBan extends BaseModel
      */
     public function banned_by()
     {
-        return $this->hasOne(User::class, 'id', 'banned_by_id');
+        return $this->belongsTo(User::class);
     }
 }

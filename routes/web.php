@@ -1,29 +1,23 @@
 <?php
 
-use App\Http\Controllers\DownloadController;
-use App\Http\Controllers\NotificationsController;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\TagController;
+use AliBayat\LaravelCategorizable\Category;
+use App\Http\Controllers\Auth\DiscordController;
+use App\Http\Controllers\Auth\FacebookController;
+use App\Http\Controllers\Auth\TwitchController;
+use App\Http\Controllers\Auth\TwitterController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\PostController;
-use App\Http\Controllers\RoleController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\StatsController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\ServerController;
-use AliBayat\LaravelCategorizable\Category;
-use App\Http\Livewire\Resource\ResourceShow;
-use App\Http\Controllers\Skin\SkinController;
-use App\Http\Controllers\PermissionController;
-use App\Http\Controllers\Auth\TwitchController;
 use App\Http\Controllers\Skin\ImportController;
-use App\Http\Controllers\Auth\DiscordController;
-use App\Http\Controllers\Auth\TwitterController;
-use App\Http\Controllers\Auth\FacebookController;
-use App\Http\Controllers\Skin\SkinHomeController;
 use App\Http\Controllers\Skin\PlayerSkinController;
+use App\Http\Controllers\Skin\SkinController;
+use App\Http\Controllers\Skin\SkinHomeController;
 use App\Http\Controllers\Skin\UploadedSkinController;
+use App\Http\Controllers\TagController;
+use App\Http\Livewire\Resource\ResourceShow;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -92,7 +86,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::prefix('resource')->group(function () {
         Route::get('/', function () {
             return view('resources.index', [
-                'categories' => Category::all(),
+                'categories' => Category::where('parent_id', null)->get(),
             ]);
         })->name('resource.index');
 
@@ -100,7 +94,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
         Route::get('/category/{name}', function ($name) {
             return view('resources.index', [
-                'categories' => Category::all(),
+                'categories' => Category::where('parent_id', null)->get(),
                 'category' => Category::findByName($name),
             ]);
         })->name('resource.category');
@@ -142,16 +136,10 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
             Route::post('/uploaded/delete/{id}', [UploadedSkinController::class, 'destroy'])->name('uploaded-skin-destroy');
         });
 
-    Route::prefix('admin')
+    Route::prefix('mod')
         ->middleware(['role:super-admin|admin'])
         ->group(function () {
-            Route::resource('users', UserController::class);
-            Route::resource('roles', RoleController::class);
-            Route::resource('permissions', PermissionController::class);
-            Route::resource('posts', PostController::class);
             Route::resource('tags', TagController::class);
-            Route::resource('stats', StatsController::class);
-            Route::view('categories', 'category.index')->name('categories.index');
             Route::get('/analytics', \App\Http\Livewire\Analytics::class)
                 ->name('analytics')
                 ->middleware(['permission:analytics']);

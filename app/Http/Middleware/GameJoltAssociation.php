@@ -10,13 +10,13 @@ class GameJoltAssociation
     /**
      * Handle an incoming request.
      *
-     * @param Request $request
-     * @param Closure $next
+     * @param  Request  $request
+     * @param  Closure  $next
      * @return mixed
      */
     public function handle(Request $request, Closure $next): mixed
     {
-        if (!$request->user()->gamejolt) {
+        if (! $request->user()->gamejolt) {
             $request->session()->flash('flash.bannerStyle', 'warning');
             $request
                 ->session()
@@ -26,6 +26,7 @@ class GameJoltAssociation
                         'Please link your Game Jolt account in the section below, you will be able to use the skin section once this is done'
                     )
                 );
+
             return redirect()->route('profile.show');
         }
 

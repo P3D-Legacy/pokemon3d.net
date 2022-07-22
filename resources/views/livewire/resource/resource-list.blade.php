@@ -12,7 +12,7 @@
                                 {{ $resource->name }} <span class="text-gray-400 dark:text-gray-500">{{ $resource->updates->first() ? $resource->updates->first()->title : __('Unreleased') }}</span>
                             </div>
                             <div class="text-sm text-gray-400 dark:text-gray-200">
-                                {{ $resource->user->username }} &middot; {{ $resource->created_at->diffForHumans() }} &middot; {{ $resource->categories()->first()->name }}
+                                {{ $resource->user->username }} &middot; {{ $resource->created_at->diffForHumans() }} &middot; {{ $resource->categories()->first()->name ?? __('Uncategorized') }}
                             </div>
                             <div class="text-xs text-gray-500 truncate dark:text-gray-300">
                                 {{ $resource->brief }}

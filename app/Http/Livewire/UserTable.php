@@ -5,7 +5,6 @@ namespace App\Http\Livewire;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\QueryException;
-use Illuminate\Support\Carbon;
 use PowerComponents\LivewirePowerGrid\Button;
 use PowerComponents\LivewirePowerGrid\Column;
 use PowerComponents\LivewirePowerGrid\PowerGrid;
@@ -175,7 +174,7 @@ final class UserTable extends PowerGridComponent
     /**
      * PowerGrid User Update.
      *
-     * @param array<string,string> $data
+     * @param  array<string,string>  $data
      */
 
     /*

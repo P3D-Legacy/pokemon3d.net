@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Skin;
 
 use App\Http\Controllers\Controller;
-use App\Models\GJUser;
 use App\Models\Skin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -95,7 +94,7 @@ class UploadedSkinController extends Controller
             'reason' => ['required', 'string'],
         ]);
         $skin = Skin::where('uuid', $uuid)->first();
-        if (!Storage::disk('skin')->exists($skin->path())) {
+        if (! Storage::disk('skin')->exists($skin->path())) {
             return redirect()
                 ->route('uploaded-skins')
                 ->with('error', 'Skin was not found!');

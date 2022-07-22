@@ -3,16 +3,15 @@
 namespace App\Models;
 
 use AliBayat\LaravelCommentable\Commentable;
-use Spatie\Tags\HasTags;
-use App\Models\BaseModel;
-use Illuminate\Support\Str;
-use Spatie\Activitylog\LogOptions;
-use Overtrue\LaravelLike\Traits\Likeable;
-use Spatie\Activitylog\Traits\LogsActivity;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Str;
+use Overtrue\LaravelLike\Traits\Likeable;
+use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\Tags\HasTags;
 
 class Post extends BaseModel implements Viewable
 {
@@ -36,7 +35,7 @@ class Post extends BaseModel implements Viewable
         });
 
         self::updating(function ($model) {
-            if (!$model->uuid) {
+            if (! $model->uuid) {
                 $model->uuid = Str::uuid()->toString();
             }
             $model->slug = Str::slug($model->title);

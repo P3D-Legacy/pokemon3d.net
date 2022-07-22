@@ -10,8 +10,11 @@ use Illuminate\Notifications\Notification;
 class CommentReplyNotification extends Notification
 {
     use Queueable;
+
     private Comment $comment;
+
     private string $message;
+
     private string $icon;
 
     /**
@@ -23,17 +26,15 @@ class CommentReplyNotification extends Notification
     {
         $this->comment = $comment;
         $this->message = trans(':username replied to your comment on :title', [
-            'username' =>
-                '<a class="text-green-400 no-underline hover:underline" href="' .
-                route('member.show', $this->comment->creator) .
-                '">' .
-                $this->comment->creator->username .
+            'username' => '<a class="text-green-400 no-underline hover:underline" href="'.
+                route('member.show', $this->comment->creator).
+                '">'.
+                $this->comment->creator->username.
                 '</a>',
-            'title' =>
-                '<a class="text-green-400 no-underline hover:underline" href="' .
-                route('blog.show', $this->comment->commentable->uuid) .
-                '">' .
-                $this->comment->commentable->title .
+            'title' => '<a class="text-green-400 no-underline hover:underline" href="'.
+                route('blog.show', $this->comment->commentable->uuid).
+                '">'.
+                $this->comment->commentable->title.
                 '</a>',
         ]);
         $this->icon =

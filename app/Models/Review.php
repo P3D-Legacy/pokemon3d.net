@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
+use Digikraaft\ReviewRating\Models\Review as ModelsReview;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
-use Digikraaft\ReviewRating\Models\Review as ModelsReview;
 
 class Review extends ModelsReview
 {

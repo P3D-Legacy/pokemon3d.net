@@ -11,9 +11,13 @@ use Illuminate\Notifications\Notification;
 class LikeNotification extends Notification
 {
     use Queueable;
+
     private Resource $resource;
+
     private string $message;
+
     private string $icon;
+
     private User $liker;
 
     /**
@@ -26,17 +30,15 @@ class LikeNotification extends Notification
         $this->resource = $resource;
         $this->liker = $liker;
         $this->message = trans(':username liked your resource :title', [
-            'username' =>
-                '<a class="text-green-400 no-underline hover:underline" href="' .
-                route('member.show', $this->liker->username) .
-                '">' .
-                $this->liker->username .
+            'username' => '<a class="text-green-400 no-underline hover:underline" href="'.
+                route('member.show', $this->liker->username).
+                '">'.
+                $this->liker->username.
                 '</a>',
-            'title' =>
-                '<a class="text-green-400 no-underline hover:underline" href="' .
-                route('resource.uuid', $this->resource->uuid) .
-                '">' .
-                $this->resource->name .
+            'title' => '<a class="text-green-400 no-underline hover:underline" href="'.
+                route('resource.uuid', $this->resource->uuid).
+                '">'.
+                $this->resource->name.
                 '</a>',
         ]);
         $this->icon =

@@ -10,7 +10,7 @@ class MemberController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param string $param
+     * @param  string  $param
      * @return View
      */
     public function show(string $param): View
@@ -18,6 +18,7 @@ class MemberController extends Controller
         $user = User::where('username', $param)
             ->orWhere('id', $param)
             ->firstOrFail();
+
         return view('member.show', compact('user'));
     }
 }

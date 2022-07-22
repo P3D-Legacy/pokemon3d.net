@@ -5,7 +5,6 @@ namespace App\Http\Livewire\Server;
 use App\Models\Server;
 use App\Rules\IPHostnameARecord;
 use App\Rules\StrNotContain;
-use Illuminate\Support\Facades\Artisan;
 use Livewire\Component;
 
 class ServerCreateForm extends Component

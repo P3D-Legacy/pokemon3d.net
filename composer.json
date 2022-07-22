@@ -10,6 +10,16 @@
         "laravel"
     ],
     "license": "gpl-3.0-only",
+    "repositories": {
+        "nova": {
+            "type": "composer",
+            "url": "https://nova.laravel.com"
+        },
+        "laravel-favicon": {
+            "type": "git",
+            "url": "https://github.com/DanielRTRD/laravel-favicon.git"
+        }
+    },
     "require": {
         "php": "^8.0.2",
         "akaunting/laravel-language": "^1.0",
@@ -18,7 +28,9 @@
         "anlutro/l4-settings": "^1.0",
         "assada/laravel-achievements": "^2.3",
         "betterapp/laravel-db-encrypter": "^1.0",
+        "beyondcode/laravel-favicon": "dev-l9",
         "blade-ui-kit/blade-ui-kit": "^0.3.2",
+        "bolechen/nova-activitylog": "^0.4.0",
         "cyrildewit/eloquent-viewable": "^6.0",
         "digikraaft/laravel-review-rating": "^2.3",
         "doctrine/dbal": "^3.3",
@@ -32,10 +44,12 @@
         "harrk/gamejolt-api": "^1.1",
         "intervention/image": "^2.7",
         "kilobyteno/laravel-plausible": "^0.0.2",
+        "kiritokatklian/nova-permission": "^4.0",
         "kkomelin/laravel-translatable-string-exporter": "^1.16",
         "knuckleswtf/scribe": "^3.23",
         "laravel/framework": "^9.0",
         "laravel/jetstream": "^2.6",
+        "laravel/nova": "^4.6",
         "laravel/sanctum": "^2.14",
         "laravel/socialite": "^5.5",
         "laravel/tinker": "^2.7",
@@ -56,6 +70,8 @@
         "spatie/laravel-permission": "^5.5",
         "spatie/laravel-stats": "^2.0",
         "spatie/laravel-tags": "^4.3",
+        "spatie/nova-backup-tool": "^5.0",
+        "spatie/nova-tags-field": "^4.0",
         "symfony/http-client": "^6.0",
         "symfony/postmark-mailer": "^6.0",
         "torann/geoip": "^3.0",
@@ -70,6 +86,7 @@
         "fakerphp/faker": "^1.9.1",
         "laravel-lang/lang": "^10.4",
         "laravel-lang/publisher": "^12.2",
+        "laravel/pint": "^1.0.0",
         "laravel/sail": "^1.13",
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^6.1",
@@ -119,7 +136,8 @@
             "@php artisan key:generate --ansi"
         ],
         "post-update-cmd": [
-            "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
+            "@php artisan vendor:publish --tag=laravel-assets --ansi --force",
+            "@php artisan nova:publish"
         ]
     }
 }

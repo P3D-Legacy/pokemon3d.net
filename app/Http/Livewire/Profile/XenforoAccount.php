@@ -19,6 +19,8 @@ class XenforoAccount extends Component
 
     public $verified_at;
 
+    public bool $syncRegisterDate;
+
     public function mount()
     {
         $user = Auth::user();
@@ -26,6 +28,7 @@ class XenforoAccount extends Component
         $this->password = $user->forum ? $user->forum->password : null;
         $this->updated_at = $user->forum ? $user->forum->updated_at->diffForHumans() : null;
         $this->verified_at = $user->forum ? $user->forum->verified_at->diffForHumans() : null;
+        $this->syncRegisterDate = false;
     }
 
     /**
@@ -43,15 +46,17 @@ class XenforoAccount extends Component
         $this->validate([
             'username' => ['nullable', Rule::unique('forum_accounts')->ignore($user->id, 'user_id')],
             'password' => ['nullable'],
+            'syncRegisterDate' => ['boolean'],
         ]);
 
-        if (!$this->username && !$this->password) {
+        if (! $this->username && ! $this->password) {
             $this->errorBag->add('success', 'Your forum account has now been unlinked.');
             if ($user->forum()) {
                 $user->forum()->delete();
             }
             $this->updated_at = null;
             $this->verified_at = null;
+
             return;
         }
 
@@ -59,6 +64,7 @@ class XenforoAccount extends Component
 
         if (isset($auth['error'])) {
             $this->addError('error', $auth['message'] ?? 'An unknown error occurred.');
+
             return;
         }
 
@@ -77,6 +83,13 @@ class XenforoAccount extends Component
             $forum->update($data);
         } else {
             $forum = ForumAccount::firstOrCreate($data);
+        }
+
+        if ($this->syncRegisterDate) {
+            $register_date = Carbon::parse($auth['user']['register_date']);
+            $user->update([
+                'created_at' => $register_date,
+            ]);
         }
 
         $this->username = $forum->username;

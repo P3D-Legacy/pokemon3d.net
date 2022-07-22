@@ -21,6 +21,7 @@ class ResourceDelete extends ModalComponent
         $this->emit('resourceAdded');
         session()->flash('flash.bannerStyle', 'success');
         session()->flash('flash.banner', __(':item deleted successfully.', ['item' => __('Resource')]));
+
         return redirect()->route('resource.index');
     }
 

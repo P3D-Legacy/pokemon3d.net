@@ -4,8 +4,8 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use DateTimeInterface;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class BaseModel extends Model
 {
@@ -15,6 +15,7 @@ class BaseModel extends Model
     protected function serializeDate(DateTimeInterface $date)
     {
         $carbonInstance = Carbon::instance($date);
+
         return $carbonInstance->toDateTimeString();
     }
 }

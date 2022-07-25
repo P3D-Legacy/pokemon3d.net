@@ -31,8 +31,6 @@ class StatsHelper
 
             return 0;
         } catch (\Exception $exception) {
-            report($exception);
-
             return 0;
         }
     }

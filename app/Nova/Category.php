@@ -48,6 +48,10 @@ class Category extends Resource
                 ->displayUsing(function ($name, $resource) {
                     return str_repeat('→&emsp;', $resource->depth).$name;
                 })->asHtml()->onlyOnIndex(),
+            Text::make('Name')
+                ->sortable()
+                ->rules('required', 'max:255')
+                ->onlyOnForms(),
             Select::make('Parent Model', 'parent_id')
                 ->options(function () {
                     return Category::where('id', '!=', $this->id)

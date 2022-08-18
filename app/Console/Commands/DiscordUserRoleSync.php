@@ -51,6 +51,7 @@ class DiscordUserRoleSync extends Command
             } catch (\Exception $exception) {
                 $this->error('Error syncing roles for '.$account->username);
                 $this->error($exception->getMessage());
+
                 continue;
             }
         }

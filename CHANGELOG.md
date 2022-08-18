@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 <a name="0.4.0"></a>
 
+## 4.2.2 - 2022-08-18
+
+### What's Changed
+
+- Fixed creating categories in admin panel by @dsbilling in https://github.com/P3D-Legacy/pokemon3d.net/pull/200
+
+**Full Changelog**: https://github.com/P3D-Legacy/pokemon3d.net/compare/4.2.1...4.2.2
+
 ## 4.2.1 - 2022-08-15
 
 ### What's Changed

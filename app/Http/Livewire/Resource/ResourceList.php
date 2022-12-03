@@ -20,7 +20,7 @@ class ResourceList extends Component
     {
         if (request()->is('resource/category/*')) {
             $perPage = 15; // Default for pagination
-            $filtered = Resource::all()->filter(function ($resource) {
+            $filtered = Resource::orderBy('created_at', 'desc')->filter(function ($resource) {
                 return $resource->hasCategory(Category::where('slug', request()->segment(3))->first());
             });
             $resources = new LengthAwarePaginator(
@@ -31,7 +31,7 @@ class ResourceList extends Component
                 ['path' => '']
             );
         } else {
-            $resources = Resource::paginate();
+            $resources = Resource::orderBy('created_at', 'desc')->paginate(15);
         }
 
         return view('livewire.resource.resource-list', [

@@ -4,6 +4,24 @@ All notable changes to this project will be documented in this file.
 
 <a name="0.4.0"></a>
 
+## 4.2.3 - 2022-12-03
+
+### What's Changed
+
+- Bump actions/cache from 3.0.7 to 3.0.8 by @dependabot in https://github.com/P3D-Legacy/pokemon3d.net/pull/201
+- Bump aglipanci/laravel-pint-action from 0.1.0 to 1.0.0 by @dependabot in https://github.com/P3D-Legacy/pokemon3d.net/pull/202
+- Bump actions/checkout from 2 to 3 by @dependabot in https://github.com/P3D-Legacy/pokemon3d.net/pull/203
+- Bump dependabot/fetch-metadata from 1.3.3 to 1.3.4 by @dependabot in https://github.com/P3D-Legacy/pokemon3d.net/pull/204
+- Bump actions/cache from 3.0.8 to 3.0.10 by @dependabot in https://github.com/P3D-Legacy/pokemon3d.net/pull/205
+- Bump actions/cache from 3.0.10 to 3.0.11 by @dependabot in https://github.com/P3D-Legacy/pokemon3d.net/pull/206
+- Bump limitusus/json-syntax-check from 1 to 2 by @dependabot in https://github.com/P3D-Legacy/pokemon3d.net/pull/207
+- Bump dependabot/fetch-metadata from 1.3.4 to 1.3.5 by @dependabot in https://github.com/P3D-Legacy/pokemon3d.net/pull/208
+- Bump loader-utils from 1.4.0 to 1.4.1 by @dependabot in https://github.com/P3D-Legacy/pokemon3d.net/pull/209
+- Bump loader-utils from 1.4.1 to 1.4.2 by @dependabot in https://github.com/P3D-Legacy/pokemon3d.net/pull/210
+- Updated ordering of resources by @dsbilling in https://github.com/P3D-Legacy/pokemon3d.net/pull/212
+
+**Full Changelog**: https://github.com/P3D-Legacy/pokemon3d.net/compare/4.2.2...4.2.3
+
 ## 4.2.2 - 2022-08-18
 
 ### What's Changed

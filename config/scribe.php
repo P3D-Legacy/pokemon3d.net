@@ -170,6 +170,12 @@ return [
          * Middleware to attach to the docs endpoint (if `add_routes` is true).
          */
         'middleware' => [],
+        /*
+         * Directory within `public` in which to store CSS and JS assets.
+         * By default, assets are stored in `public/vendor/scribe`.
+         * If set, assets will be stored in `public/{{assets_directory}}`
+         */
+        'assets_directory' => null,
     ],
 
     'try_it_out' => [

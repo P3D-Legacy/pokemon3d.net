@@ -13,6 +13,10 @@ use Illuminate\Http\Request;
  */
 class PostController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['permission:posts.create'])->only(['store']);
+    }
 
     /**
      * Store a newly created resource in storage.

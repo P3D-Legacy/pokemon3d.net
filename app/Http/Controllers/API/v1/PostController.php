@@ -56,7 +56,7 @@ class PostController extends Controller
             'user_id' => 'required|integer',
         ]);
         $post = Post::create($request->all());
+
         return response()->json($post, 201);
     }
-
 }

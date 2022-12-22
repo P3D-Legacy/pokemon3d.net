@@ -52,4 +52,16 @@ return [
         'client_secret' => env('TWITCH_CLIENT_SECRET'),
         'redirect' => env('TWITCH_REDIRECT_URI', '/login/twitch/callback'),
     ],
+
+    'gamejolt' => [
+        'game_id' => env('GAMEJOLT_GAME_ID'),
+        'private_key' => env('GAMEJOLT_GAME_PRIVATE_KEY'),
+    ],
+
+    'xenforo' => [
+        'api_key' => env('XENFORO_API_KEY'),
+        'base_url' => env('XENFORO_BASE_URL'),
+        'api_url' => config('services.xenforo.base_url').'/api',
+    ],
+
 ];

@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 <a name="0.4.0"></a>
 
+## 4.2.5 - 2022-12-22
+
+### What's Changed
+
+- Added nova to update command by @dsbilling in https://github.com/P3D-Legacy/pokemon3d.net/pull/216
+
+**Full Changelog**: https://github.com/P3D-Legacy/pokemon3d.net/compare/4.2.4...4.2.5
+
 ## 4.2.4 - 2022-12-22
 
 ### What's Changed

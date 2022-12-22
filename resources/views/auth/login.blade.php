@@ -87,7 +87,7 @@
 				</div>
 			</div>
 		</form>
-        @if(!(config('services.xenforo.api_key') and config('services.xenforo.api_url')) and config('services.gamejolt.private_key') and !(config('services.discord.client_id') and config('services.discord.client_secret')) and !(config('services.twitter.client_id') and config('services.twitter.client_secret')) and !(config('services.facebook.client_id') and config('services.facebook.client_secret')) and !(config('services.twitch.client_id') and config('services.twitch.client_secret')))
+        @if((config('services.xenforo.api_key') and config('services.xenforo.api_url')) and config('services.gamejolt.private_key') and (config('services.discord.client_id') and config('services.discord.client_secret')) and (config('services.twitter.client_id') and config('services.twitter.client_secret')) and (config('services.facebook.client_id') and config('services.facebook.client_secret')) and (config('services.twitch.client_id') and config('services.twitch.client_secret')))
             <div class="flex items-center justify-center py-4 text-sm text-gray-400 xl:py-6">
                 <span class="border-b border-gray-300 w-14 dark:border-gray-500"></span>
                 <span class="px-2">{{ __('or log in with') }}</span>

@@ -95,7 +95,7 @@
 				@endforeach
 				@if($posts->hasPages())
 					<div class="p-4 bg-white rounded-lg dark:bg-gray-800">
-						{!! $posts->links() !!}
+						{!! $posts->onEachSide(1)->links() !!}
 					</div>
 				@endif
 			</div>

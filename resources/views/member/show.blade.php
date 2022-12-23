@@ -19,7 +19,7 @@
                         <div class="flex flex-row items-center ml-auto space-x-2">
                             <div>{{ __('Joined') }}: {{ $user->created_at->diffForHumans() }}</div>
                             <div class="w-1 h-1 bg-gray-400 rounded-full"></div>
-                            <div>{{ __('Last online') }}: {{ $user->last_active_at ? $user->last_active_at ->diffForHumans() : 'Never.' }}</div>
+                            <div>{{ __('Last online') }}: {{ $user->last_active_at ? $user->last_active_at ->diffForHumans() : trans('Never') }}</div>
                         </div>
                     </div>
                     <div class="flex gap-2 mt-3">

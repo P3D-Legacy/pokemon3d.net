@@ -22,7 +22,7 @@
 
     <x-slot name="description">
         <span class="inline-block">{{ __('Link your account with your :account account.',  ['account' => 'Discord']) }}</span>
-        <span class="inline-block mt-2">{{ __('Last Updated:') }} {{ $updated_at ?? 'Never.' }} &middot; {{ __('Last Verified:') }} {{ $verified_at ?? 'Never.' }}</span>
+        <span class="inline-block mt-2">{{ __('Last Updated:') }} {{ $updated_at ?? trans('Never') }} &middot; {{ __('Last Verified:') }} {{ $verified_at ?? trans('Never') }}</span>
     </x-slot>
 
     <x-slot name="content">

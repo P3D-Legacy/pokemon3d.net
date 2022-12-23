@@ -14,7 +14,7 @@ class XenForoHelper
 
     public static function sendRequest($endpoint, $data = [], $method = self::METHOD_GET)
     {
-        if (!config('services.xenforo.api_key')) {
+        if (! config('services.xenforo.api_key')) {
             return ['errors' => []];
         }
         if (is_string($data)) {

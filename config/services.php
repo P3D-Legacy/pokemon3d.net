@@ -33,6 +33,9 @@ return [
         'client_id' => env('DISCORD_CLIENT_ID'),
         'client_secret' => env('DISCORD_CLIENT_SECRET'),
         'redirect' => env('DISCORD_REDIRECT_URI', '/login/discord/callback'),
+        'token' => env('DISCORD_TOKEN'),
+        'server_id' => env('DISCORD_SERVER_ID'),
+        'invite_url' => env('DISCORD_INVITE_URL', '#'),
     ],
 
     'twitter' => [

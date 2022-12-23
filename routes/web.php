@@ -49,7 +49,7 @@ Route::prefix('redirect')->group(function () {
     })->name('github');
 
     Route::get('/discord', function () {
-        return redirect(config('discord.invite_url'));
+        return redirect(config('services.discord.invite_url'));
     })->name('discord');
 });
 

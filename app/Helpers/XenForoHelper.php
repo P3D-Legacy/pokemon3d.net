@@ -14,16 +14,16 @@ class XenForoHelper
 
     public static function sendRequest($endpoint, $data = [], $method = self::METHOD_GET)
     {
-        if (config('xenforo.apikey') == null) {
+        if (!config('services.xenforo.api_key')) {
             return ['errors' => []];
         }
         if (is_string($data)) {
             $method = $data;
             $data = [];
         }
-        $url = config('xenforo.base_url').$endpoint;
+        $url = config('services.xenforo.api_url').$endpoint;
         $response = Http::withHeaders([
-            'XF-Api-Key' => config('xenforo.apikey'),
+            'XF-Api-Key' => config('services.xenforo.api_key'),
         ])->$method($url, $data);
         $decodedResponse = json_decode($response, true);
 
@@ -52,14 +52,14 @@ class XenForoHelper
         ];
 
         $client = new Client([
-            'base_uri' => config('xenforo.base_url'),
+            'base_uri' => config('services.xenforo.api_url'),
         ]);
 
         try {
             $response = $client->post('/api/auth', [
                 'form_params' => $credentials,
                 'headers' => [
-                    'XF-Api-Key' => config('xenforo.apikey'),
+                    'XF-Api-Key' => config('services.xenforo.api_key'),
                     'Accept' => 'application/json',
                 ],
             ]);

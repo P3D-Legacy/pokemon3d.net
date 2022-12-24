@@ -23,7 +23,7 @@
     "require": {
         "php": "^8.0.2",
         "akaunting/laravel-language": "^1.0",
-        "alibayat/laravel-categorizable": "1.0.x-dev",
+        "alibayat/laravel-categorizable": "^1.1",
         "alibayat/laravel-commentable": "1.1.x-dev",
         "anlutro/l4-settings": "^1.0",
         "assada/laravel-achievements": "^2.3",

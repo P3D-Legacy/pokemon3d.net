@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 
 <a name="0.4.0"></a>
 
+## 4.2.7 - 2022-12-28
+
+### What's Changed
+
+- Added old blog post message #221 by @dsbilling in https://github.com/P3D-Legacy/pokemon3d.net/pull/222
+- Fixed pagination being too large by @dsbilling in https://github.com/P3D-Legacy/pokemon3d.net/pull/225
+- Refactored config by @dsbilling in https://github.com/P3D-Legacy/pokemon3d.net/pull/226
+- Bump actions/cache from 3.0.11 to 3.2.1 by @dependabot in https://github.com/P3D-Legacy/pokemon3d.net/pull/227
+
+**Full Changelog**: https://github.com/P3D-Legacy/pokemon3d.net/compare/4.2.6...4.2.7
+
 ## 4.2.6 - 2022-12-22
 
 ### What's Changed

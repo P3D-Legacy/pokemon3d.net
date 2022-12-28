@@ -64,12 +64,12 @@ return [
     'xenforo' => [
         'api_key' => env('XENFORO_API_KEY'),
         'base_url' => env('XENFORO_BASE_URL'),
-        'api_url' => config('services.xenforo.base_url').'/api',
+        'api_url' => env('XENFORO_BASE_URL').'/api',
     ],
 
     'wiki' => [
         'base_url' => env('WIKI_BASE_URL'),
-        'api_url' => config('services.wiki.base_url').'/api.php',
+        'api_url' => env('WIKI_BASE_URL').'/api.php',
     ],
 
 ];

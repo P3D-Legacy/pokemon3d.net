@@ -11,15 +11,15 @@ class DiscordHelper
     public function __construct()
     {
         $this->discordClient =
-            config('discord.token') && config('discord.server_id')
-                ? new DiscordClient(['token' => config('discord.token')])
+            config('services.discord.token') && config('services.discord.server_id')
+                ? new DiscordClient(['token' => config('services.discord.token')])
                 : null;
     }
 
     public function getServer()
     {
         return $this->discordClient->guild->getGuild([
-            'guild.id' => config('discord.server_id'),
+            'guild.id' => config('services.discord.server_id'),
             'with_counts' => true,
         ]);
     }
@@ -39,7 +39,7 @@ class DiscordHelper
         $client = new self();
         try {
             return $client->discordClient->guild->getGuildRoles([
-                'guild.id' => config('discord.server_id'),
+                'guild.id' => config('services.discord.server_id'),
             ]);
         } catch (\Exception $exception) {
             return $exception;
@@ -51,7 +51,7 @@ class DiscordHelper
         $client = new self();
         try {
             return $client->discordClient->guild->getGuildMember([
-                'guild.id' => config('discord.server_id'),
+                'guild.id' => config('services.discord.server_id'),
                 'user.id' => $user_id,
             ]);
         } catch (\Exception $exception) {
@@ -64,7 +64,7 @@ class DiscordHelper
         $client = new self();
         try {
             return $client->discordClient->guild->addGuildMemberRole([
-                'guild.id' => config('discord.server_id'),
+                'guild.id' => config('services.discord.server_id'),
                 'user.id' => $user_id,
                 'role.id' => $role_id,
             ]);

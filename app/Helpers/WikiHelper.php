@@ -9,10 +9,10 @@ class WikiHelper
 {
     public static function sendRequest($endpoint)
     {
-        if (config('wiki.api_url') === null) {
+        if (! config('services.wiki.api_url')) {
             return 'Wiki API URL is not set';
         }
-        $url = config('wiki.api_url').'?'.$endpoint;
+        $url = config('services.wiki.api_url').'?'.$endpoint;
         $response = Http::withHeaders([
             'Accept' => 'application/json',
         ])

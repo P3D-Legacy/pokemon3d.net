@@ -33,6 +33,9 @@ return [
         'client_id' => env('DISCORD_CLIENT_ID'),
         'client_secret' => env('DISCORD_CLIENT_SECRET'),
         'redirect' => env('DISCORD_REDIRECT_URI', '/login/discord/callback'),
+        'token' => env('DISCORD_TOKEN'),
+        'server_id' => env('DISCORD_SERVER_ID'),
+        'invite_url' => env('DISCORD_INVITE_URL', '#'),
     ],
 
     'twitter' => [
@@ -61,7 +64,12 @@ return [
     'xenforo' => [
         'api_key' => env('XENFORO_API_KEY'),
         'base_url' => env('XENFORO_BASE_URL'),
-        'api_url' => config('services.xenforo.base_url').'/api',
+        'api_url' => env('XENFORO_BASE_URL').'/api',
+    ],
+
+    'wiki' => [
+        'base_url' => env('WIKI_BASE_URL'),
+        'api_url' => env('WIKI_BASE_URL').'/api.php',
     ],
 
 ];

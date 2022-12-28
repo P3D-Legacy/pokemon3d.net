@@ -5,7 +5,7 @@
 
     <x-slot name="description">
         <span class="inline-block">{{ __('Link your account with Game Jolt to be able to edit your skins for in-game use, and for more features to come.') }}</span>
-        <span class="inline-block mt-2">{{ __('Last Updated:') }} {{ $updated_at ?? 'Never.' }} &middot; {{ __('Last Verified:') }} {{ $verified_at ?? 'Never.' }}</span>
+        <span class="inline-block mt-2">{{ __('Last Updated:') }} {{ $updated_at ?? trans('Never') }} &middot; {{ __('Last Verified:') }} {{ $verified_at ?? trans('Never') }}</span>
         <span class="inline-block mt-4 font-semibold">
             <a href="https://gamejolt.com/help/tokens" target="_blank" class="hover:text-green-700 hover:underline">
                 <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-4 h-4 mr-1" viewBox="0 0 20 20" fill="currentColor">
@@ -38,7 +38,7 @@
     </x-slot>
 
     <x-slot name="actions">
-        
+
         <x-jet-action-message class="mr-3 text-green-500" on="saved">
             {{ __('Verified and saved.') }}
         </x-jet-action-message>

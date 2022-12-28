@@ -13,7 +13,7 @@
                 <x-jet-section-border />
             @endif
 
-            @if(env("GAMEJOLT_GAME_ID") && env("GAMEJOLT_GAME_PRIVATE_KEY"))
+            @if(config("services.gamejolt.game_id") && config("services.gamejolt.private_key"))
                 @livewire('profile.connect-gamejolt-account')
                 <x-jet-section-border />
             @endif

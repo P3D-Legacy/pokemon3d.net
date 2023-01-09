@@ -35,14 +35,16 @@ class SyncGameSave extends Command
     {
         $game_id = config('services.gamejolt.game_id');
         $private_key = config('services.gamejolt.private_key');
-        if (!$game_id || !$private_key) {
+        if (! $game_id || ! $private_key) {
             $this->error('Game ID or private key not set.');
+
             return Command::FAILURE;
         }
         $api = new GamejoltApi(new GamejoltConfig($game_id, $private_key));
         $gamejolt_user_id = $this->argument('gamejolt_user_id');
-        if (!is_numeric($gamejolt_user_id) || $gamejolt_user_id < 1) {
+        if (! is_numeric($gamejolt_user_id) || $gamejolt_user_id < 1) {
             $this->error('GameJolt user ID must be numeric.');
+
             return Command::FAILURE;
         }
         $gja = GamejoltAccount::firstWhere('id', $gamejolt_user_id);
@@ -55,22 +57,24 @@ class SyncGameSave extends Command
                     continue;
                 }
                 $key = 'saveStorageV1|'.$gamejolt_user_id.'|'.$column;
-                $this->info('Getting "' . $key . '" from datastore');
+                $this->info('Getting "'.$key.'" from datastore');
                 $ds_result = $api->dataStore()->fetch($key, $gja->username, $gja->token);
                 $result[$column] = $ds_result['response']['data'];
             }
         } catch (TimeOutException $e) {
             $this->error('Error: '.$e->getMessage());
+
             return Command::FAILURE;
         }
         $game_save = GameSave::where(['user_id' => $gja->user_id])->first();
-        if($game_save) {
+        if ($game_save) {
             $game_save->update($result);
         } else {
             $result['user_id'] = $gja->user_id;
             GameSave::create($result);
         }
         $this->info('Done.');
+
         return Command::SUCCESS;
     }
 }

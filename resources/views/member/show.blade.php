@@ -177,11 +177,11 @@
                                                     <img src="{{ $trophy->image_url }}" alt="{{ $trophy->title }}" title="{{ $trophy->title }}" class="object-cover w-20 h-20 border-2 rounded-md {{ $trophy->difficulty=='Bronze' ? 'border-yellow-800' : '' }}{{ $trophy->difficulty=='Silver' ? 'border-slate-400' : '' }}{{ $trophy->difficulty=='Gold' ? 'border-yellow-500' : '' }}{{ $trophy->difficulty=='Platinum' ? 'border-slate-600' : '' }}">
                                                     <h4 class="my-2 font-bold underline decoration-2 underline-offset-4 {{ $trophy->difficulty=='Bronze' ? 'text-yellow-800' : '' }}{{ $trophy->difficulty=='Silver' ? 'text-slate-400' : '' }}{{ $trophy->difficulty=='Gold' ? 'text-yellow-500' : '' }}{{ $trophy->difficulty=='Platinum' ? 'text-slate-600' : '' }}">
                                                         @if($trophy->achieved)
-                                                            <span class="tooltip">
+                                                            <span class="has-tip">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-5 h-5 text-green-500 dark:text-green-600" viewBox="0 0 20 20" fill="currentColor">
                                                                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
                                                                 </svg>
-                                                                <span class="p-3 -mt-4 -ml-3 text-sm text-gray-900 bg-green-200 rounded tooltip-text">{{ __('Achieved') }}</span>
+                                                                <span class="p-3 -mt-4 -ml-3 text-sm text-gray-900 bg-green-200 rounded tip">{{ __('Achieved') }}</span>
                                                             </span>
                                                         @endif{{ $trophy->title }}
                                                     </h4>

@@ -166,4 +166,12 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(Resource::class);
     }
+
+    /**
+     * Get the gamesave associated with the user.
+     */
+    public function gamesave()
+    {
+        return $this->hasOne(Gamesave::class);
+    }
 }

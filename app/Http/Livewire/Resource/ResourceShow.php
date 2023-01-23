@@ -42,6 +42,7 @@ class ResourceShow extends Component
         } catch (FileNotFoundException) {
             session()->flash('flash.banner', trans('File not found on server!'));
             session()->flash('flash.bannerStyle', 'danger');
+
             return redirect()->route('resource.uuid', $this->resource->uuid);
         }
     }

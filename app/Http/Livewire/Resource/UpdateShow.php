@@ -27,6 +27,7 @@ class UpdateShow extends ModalComponent
         } catch (FileNotFoundException) {
             session()->flash('flash.banner', trans('File not found on server!'));
             session()->flash('flash.bannerStyle', 'danger');
+
             return redirect()->route('resource.uuid', $this->update->resource->uuid);
         }
     }

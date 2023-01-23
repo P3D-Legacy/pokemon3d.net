@@ -65,4 +65,23 @@ class GameSave extends Model
     {
         return $this->hasOne(User::class, 'id', 'user_id');
     }
+
+    public function getPlayerData($key_name = null)
+    {
+        # Explode the player data into an array on each return new line character
+        $playerDataLines = explode("\r\n", $this->player);
+        $playerData = [];
+        foreach ($playerDataLines as $line) {
+            $line = explode('|', $line);
+            $playerData[$line[0]] = $line[1];
+        }
+        return $playerData[$key_name] ?? $playerData;
+    }
+
+    public function getAchievements(): array
+    {
+        $earnedAchievements = $this->getPlayerData('EarnedAchievements');
+        $earnedAchievements = explode(',', $earnedAchievements);
+        return $earnedAchievements;
+    }
 }

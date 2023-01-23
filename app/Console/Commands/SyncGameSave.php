@@ -59,7 +59,14 @@ class SyncGameSave extends Command
                 $key = 'saveStorageV1|'.$gamejolt_user_id.'|'.$column;
                 $this->info('Getting "'.$key.'" from datastore');
                 $ds_result = $api->dataStore()->fetch($key, $gja->username, $gja->token);
-                $result[$column] = $ds_result['response']['data'];
+                $success = $ds_result['response']['success'];
+                if (filter_var($success, FILTER_VALIDATE_BOOLEAN)) {
+                    $result[$column] = $ds_result['response']['data'];
+                } else {
+                    $message = $ds_result['response']['message'];
+                    $this->error($message);
+                    break;
+                }
             }
         } catch (TimeOutException $e) {
             $this->error('Error: '.$e->getMessage());

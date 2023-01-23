@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Resource;
 
 use App\Models\Resource;
 use Livewire\Component;
+use Symfony\Component\HttpFoundation\File\Exception\FileNotFoundException;
 
 class ResourceShow extends Component
 {
@@ -36,7 +37,13 @@ class ResourceShow extends Component
         $update->incrementDownload();
         $mediaItem = $update->getFirstMedia('resource_update_file');
 
-        return response()->download($mediaItem->getPath(), $mediaItem->file_name);
+        try {
+            return response()->download($mediaItem->getPath(), $mediaItem->file_name);
+        } catch (FileNotFoundException) {
+            session()->flash('flash.banner', trans('File not found on server!'));
+            session()->flash('flash.bannerStyle', 'danger');
+            return redirect()->route('resource.uuid', $this->resource->uuid);
+        }
     }
 
     public function render()

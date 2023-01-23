@@ -25,6 +25,33 @@ class SyncGameSaveGamejoltAccountTrophies extends Command
      */
     protected $description = 'Sync the game save achievements with gamejolt account trophies';
 
+    private function handleUser($gamejolt_user_id): void
+    {
+        $gja = GamejoltAccount::firstWhere('id', $gamejolt_user_id);
+        $trophies = $gja->trophies;
+
+        $gamesave = GameSave::firstWhere('user_id', $gja->user_id);
+        if (! $gamesave) {
+            $this->error('Game save not found for user ID '.$gja->user_id);
+
+            return;
+        }
+        $game_save_achievements = $gamesave->getAchievements();
+
+        foreach ($game_save_achievements as $game_save_achievement) {
+            $achievement_name = Str::ucfirst($game_save_achievement);
+            $trophy = $trophies->firstWhere('title', $achievement_name);
+            if ($trophy) {
+                # Set the trophy to achieved
+                $trophy->achieved = true;
+                $trophy->save();
+                $this->info('Trophy "'.$achievement_name.'" has been updated for user ID '.$gja->user_id);
+            } else {
+                $this->warn('Trophy "'.$achievement_name.'" not found for user ID '.$gja->user_id);
+            }
+        }
+    }
+
     /**
      * Execute the console command.
      *
@@ -32,38 +59,22 @@ class SyncGameSaveGamejoltAccountTrophies extends Command
      */
     public function handle()
     {
-        $game_id = config('services.gamejolt.game_id');
-        $private_key = config('services.gamejolt.private_key');
-        if (! $game_id || ! $private_key) {
-            $this->error('Game ID or private key not set.');
-
-            return Command::FAILURE;
-        }
-        $api = new GamejoltApi(new GamejoltConfig($game_id, $private_key));
         $gamejolt_user_id = $this->argument('gamejolt_user_id');
-        if (! is_numeric($gamejolt_user_id) || $gamejolt_user_id < 1) {
-            $this->error('GameJolt user ID must be numeric.');
+        if ($gamejolt_user_id != 'all') {
+            if (! is_numeric($gamejolt_user_id) || $gamejolt_user_id < 1) {
+                $this->error('GameJolt user ID must be numeric.');
 
-            return Command::FAILURE;
+                return Command::FAILURE;
+            }
         }
 
-        $gja = GamejoltAccount::firstWhere('id', $gamejolt_user_id);
-        $trophies = $gja->trophies;
-
-        $game_save_achievements = GameSave::firstWhere('user_id', $gja->user_id)->getAchievements();
-
-        foreach ($game_save_achievements as $game_save_achievement) {
-            $achievement_name = Str::ucfirst($game_save_achievement);
-            $this->info('Checking if "'.$achievement_name.'" is in the trophies list');
-            $trophy = $trophies->firstWhere('title', $achievement_name);
-            if ($trophy) {
-                # Set the trophy to achieved
-                $trophy->achieved = true;
-                $trophy->save();
-                $this->info('Trophy "'.$achievement_name.'" has been updated.');
-            } else {
-                $this->info('Trophy "'.$achievement_name.'" not found.');
+        if ($gamejolt_user_id == 'all') {
+            $gamejolt_accounts = GamejoltAccount::all();
+            foreach ($gamejolt_accounts as $gamejolt_account) {
+                $this->handleUser($gamejolt_account->id);
             }
+        } else {
+            $this->handleUser($gamejolt_user_id);
         }
 
         return Command::SUCCESS;

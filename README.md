@@ -58,6 +58,11 @@ Mac (Requires Laravel Valet):
 valet open
 ```
 
+Run code styling checks:
+``` bash
+vendor/bin/pint 
+```
+
 # Licence
 
 This software is licensed under the GPL-3.0 License. Check out [LICENSE](LICENSE) for more info.

@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Resource;
 
 use App\Models\ResourceUpdate;
 use LivewireUI\Modal\ModalComponent;
+use Symfony\Component\HttpFoundation\File\Exception\FileNotFoundException;
 
 class UpdateShow extends ModalComponent
 {
@@ -21,7 +22,14 @@ class UpdateShow extends ModalComponent
         $this->emit('resourceUpdated', $this->update->resource->uuid);
         $this->closeModal();
 
-        return response()->download($mediaItem->getPath(), $mediaItem->name);
+        try {
+            return response()->download($mediaItem->getPath(), $mediaItem->name);
+        } catch (FileNotFoundException) {
+            session()->flash('flash.banner', trans('File not found on server!'));
+            session()->flash('flash.bannerStyle', 'danger');
+
+            return redirect()->route('resource.uuid', $this->update->resource->uuid);
+        }
     }
 
     public function render()

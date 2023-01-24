@@ -41,7 +41,7 @@ class UpdateLanguageFiles extends Command
     public function handle(): int
     {
         $this->info('Updating language files...');
-        $special_languages = ['cn', 'tw']; // these have a special long format
+        $special_languages = ['cn', 'tw', 'pt-BR']; // these have a special long format
         $languages = Arr::flatten(config('language.allowed')); // get allowed languages
         $all_lang_codes = Arr::pluck(config('language.all'), 'long', 'short'); // get all languages short and long codes from config
         foreach ($languages as $lang) {

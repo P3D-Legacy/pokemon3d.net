@@ -75,7 +75,12 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::get('/notifications', \App\Http\Livewire\NotificationList::class)->name('notifications.index');
 
-    Route::get('/member/{user}', [MemberController::class, 'show'])->name('member.show');
+    Route::get('/members', [MemberController::class, 'index'])->name('member.index');
+    Route::get('/members/{user}', [MemberController::class, 'show'])->name('member.show');
+    // Fallback for old member links
+    Route::get('/member/{user}', function ($user) {
+        return redirect()->route('member.show', $user);
+    });
 
     Route::get('/review', function () {
         return view('review.index');
@@ -135,6 +140,12 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
             Route::get('/uploaded', [UploadedSkinController::class, 'index'])->name('uploaded-skins');
             Route::post('/uploaded/delete/{id}', [UploadedSkinController::class, 'destroy'])->name('uploaded-skin-destroy');
         });
+
+    if (config('app.env') === 'staging' or config('app.env') === 'local') {
+        Route::prefix('save')->middleware('gj.association')->group(function () {
+            Route::get('/', [\App\Http\Controllers\Save\MySaveController::class, 'index'])->name('save.index');
+        });
+    }
 
     Route::prefix('mod')
         ->middleware(['role:super-admin|admin'])

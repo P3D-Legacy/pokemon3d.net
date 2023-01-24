@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Resource;
 use App\Models\GameVersion;
 use App\Models\Resource;
 use App\Models\ResourceUpdate;
+use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
 use LivewireUI\Modal\ModalComponent;
 
@@ -50,10 +51,12 @@ class UpdateCreate extends ModalComponent
             'game_version_id' => $this->gameversion,
         ]);
 
+        $file_name = Str::slug($this->resource->name).'-'.$this->resourceUpdate->title.'.'.$this->file->extension();
+
         $this->resourceUpdate->clearMediaCollection('resource_update_file');
         $this->resourceUpdate
             ->addMedia($this->file->getRealPath())
-            ->usingName($this->file->getClientOriginalName())
+            ->usingName($file_name)
             ->toMediaCollection('resource_update_file');
 
         $this->emit('resourceUpdated', $this->resource->uuid);

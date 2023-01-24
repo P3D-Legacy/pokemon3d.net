@@ -37,7 +37,13 @@ class SyncGameSaveGamejoltAccountTrophies extends Command
         $game_save_achievements = $gamesave->getAchievements();
 
         foreach ($game_save_achievements as $game_save_achievement) {
-            $achievement_name = Str::ucfirst($game_save_achievement);
+            if ($game_save_achievement == 'unodostres') {
+                $achievement_name = 'UnoDosTres';
+            } elseif ($game_save_achievement == 'pokedex') {
+                $achievement_name = 'Pokédex';
+            } else {
+                $achievement_name = Str::headline($game_save_achievement);
+            }
             $trophy = $trophies->firstWhere('title', $achievement_name);
             if ($trophy) {
                 // Set the trophy to achieved

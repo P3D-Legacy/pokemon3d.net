@@ -172,6 +172,6 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     public function gamesave()
     {
-        return $this->hasOne(Gamesave::class);
+        return $this->hasOne(GameSave::class);
     }
 }

@@ -110,7 +110,7 @@
                                         @endif
                                         @if($user->twitch)
                                             <x-profile.user-detail title='Twitch'>
-                                                <a href="https://twitch.tv/{{ $user->discord->username }}" target="_blank" rel="noopener noreferrer" class='hover:text-green-500'>{{ $user->twitch->username }}</a>
+                                                <a href="https://twitch.tv/{{ $user->twitch->username }}" target="_blank" rel="noopener noreferrer" class='hover:text-green-500'>{{ $user->twitch->username }}</a>
                                             </x-profile.user-detail>
                                         @endif
                                         @if($user->facebook)

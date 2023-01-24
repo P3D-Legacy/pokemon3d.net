@@ -26,27 +26,8 @@ class SyncGameSave extends Command
      */
     protected $description = 'Sync a game save from the GameJolt API';
 
-    /**
-     * Execute the console command.
-     *
-     * @return int
-     */
-    public function handle()
+    private function handleGameSave($gamejolt_user_id, $api)
     {
-        $game_id = config('services.gamejolt.game_id');
-        $private_key = config('services.gamejolt.private_key');
-        if (! $game_id || ! $private_key) {
-            $this->error('Game ID or private key not set.');
-
-            return Command::FAILURE;
-        }
-        $api = new GamejoltApi(new GamejoltConfig($game_id, $private_key));
-        $gamejolt_user_id = $this->argument('gamejolt_user_id');
-        if (! is_numeric($gamejolt_user_id) || $gamejolt_user_id < 1) {
-            $this->error('GameJolt user ID must be numeric.');
-
-            return Command::FAILURE;
-        }
         $gja = GamejoltAccount::firstWhere('id', $gamejolt_user_id);
         $new_game_save = new GameSave;
         $columns = Schema::getColumnListing($new_game_save->getTable());
@@ -80,6 +61,41 @@ class SyncGameSave extends Command
             $result['user_id'] = $gja->user_id;
             GameSave::create($result);
         }
+    }
+
+    /**
+     * Execute the console command.
+     *
+     * @return int
+     */
+    public function handle()
+    {
+        $game_id = config('services.gamejolt.game_id');
+        $private_key = config('services.gamejolt.private_key');
+        if (! $game_id || ! $private_key) {
+            $this->error('Game ID or private key not set.');
+
+            return Command::FAILURE;
+        }
+        $api = new GamejoltApi(new GamejoltConfig($game_id, $private_key));
+        $gamejolt_user_id = $this->argument('gamejolt_user_id');
+        if ($gamejolt_user_id != 'all') {
+            if (! is_numeric($gamejolt_user_id) || $gamejolt_user_id < 1) {
+                $this->error('GameJolt user ID must be numeric.');
+
+                return Command::FAILURE;
+            }
+        }
+
+        if ($gamejolt_user_id == 'all') {
+            $gamejolt_accounts = GamejoltAccount::all();
+            foreach ($gamejolt_accounts as $gamejolt_account) {
+                $this->handleGameSave($gamejolt_account->id, $api);
+            }
+        } else {
+            $this->handleGameSave($gamejolt_user_id, $api);
+        }
+
         $this->info('Done.');
 
         return Command::SUCCESS;

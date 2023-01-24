@@ -168,7 +168,7 @@
                                         <div class="w-full mb-2 text-gray-800 dark:text-slate-200">Completed {{ $user->gamejolt->trophies->where('achieved', true)->count() }} of {{ $user->gamejolt->trophies->count() }} trophies</div>
                                         <div class="grid grid-cols-2 gap-4">
                                             @foreach ($user->gamejolt->trophies as $trophy)
-                                                <div class="flex flex-col items-center justify-center p-5 rounded-md shadow bg-gray-50 shrink dark:bg-black">
+                                                <div class="flex flex-col items-center justify-center p-5 rounded-md shadow bg-gray-50 shrink dark:bg-black {{ ($trophy->achieved) ? 'border-2 border-green-500' : '' }}">
                                                     <img src="{{ $trophy->image_url }}" alt="{{ $trophy->title }}" title="{{ $trophy->title }}" class="object-cover w-20 h-20 border-2 rounded-md {{ $trophy->difficulty=='Bronze' ? 'border-yellow-800' : '' }}{{ $trophy->difficulty=='Silver' ? 'border-slate-400' : '' }}{{ $trophy->difficulty=='Gold' ? 'border-yellow-500' : '' }}{{ $trophy->difficulty=='Platinum' ? 'border-slate-600' : '' }}">
                                                     <h4 class="my-2 font-bold underline decoration-2 underline-offset-4 {{ $trophy->difficulty=='Bronze' ? 'text-yellow-800' : '' }}{{ $trophy->difficulty=='Silver' ? 'text-slate-400' : '' }}{{ $trophy->difficulty=='Gold' ? 'text-yellow-500' : '' }}{{ $trophy->difficulty=='Platinum' ? 'text-slate-600' : '' }}">
                                                         @if($trophy->achieved)

@@ -7,6 +7,7 @@ use Illuminate\View\Component;
 class UserDetail extends Component
 {
     public $title;
+
     /**
      * Create a new component instance.
      *

@@ -136,9 +136,11 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
             Route::post('/uploaded/delete/{id}', [UploadedSkinController::class, 'destroy'])->name('uploaded-skin-destroy');
         });
 
-    Route::prefix('save')->middleware('gj.association')->group(function () {
-        Route::get('/', [\App\Http\Controllers\Save\MySaveController::class, 'index'])->name('save.index');
-    });
+    if(config('app.env') === 'staging' or config('app.env') === 'local') {
+        Route::prefix('save')->middleware('gj.association')->group(function () {
+            Route::get('/', [\App\Http\Controllers\Save\MySaveController::class, 'index'])->name('save.index');
+        });
+    }
 
     Route::prefix('mod')
         ->middleware(['role:super-admin|admin'])

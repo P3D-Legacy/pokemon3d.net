@@ -24,8 +24,6 @@
                     <x-jet-nav-link href="{{ route('server.index') }}" :active="request()->routeIs('server.*')">
                         {{ __('Servers') }}
                     </x-jet-nav-link>
-                    <x-jet-nav-link href="{{ route('save.index') }}" :active="request()->routeIs('save.*')">
-                        {{ __('Game Save') }}
                     </x-jet-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 md:flex">

@@ -4,6 +4,28 @@ All notable changes to this project will be documented in this file.
 
 <a name="0.4.0"></a>
 
+## 4.2.8 - 2023-01-24
+
+### What's Changed
+
+- Bump actions/cache from 3.2.1 to 3.2.2 by @dependabot in https://github.com/P3D-Legacy/pokemon3d.net/pull/229
+- Bump aglipanci/laravel-pint-action from 1.0.0 to 2.1.0 by @dependabot in https://github.com/P3D-Legacy/pokemon3d.net/pull/230
+- Bump json5 from 1.0.1 to 1.0.2 by @dependabot in https://github.com/P3D-Legacy/pokemon3d.net/pull/231
+- Update pt-BR.json by @Kamikaze496 in https://github.com/P3D-Legacy/pokemon3d.net/pull/232
+- Update pt_BR.json by @Kamikaze496 in https://github.com/P3D-Legacy/pokemon3d.net/pull/233
+- Bump actions/cache from 3.2.2 to 3.2.3 by @dependabot in https://github.com/P3D-Legacy/pokemon3d.net/pull/236
+- Update pt_BR.json by @Kamikaze496 in https://github.com/P3D-Legacy/pokemon3d.net/pull/235
+- My Save - rev 1 by @dsbilling in https://github.com/P3D-Legacy/pokemon3d.net/pull/237
+- Full redesign of user profile by @dsbilling in https://github.com/P3D-Legacy/pokemon3d.net/pull/238
+- Added members list by @dsbilling in https://github.com/P3D-Legacy/pokemon3d.net/pull/239
+- Release 4.2.8 by @dsbilling in https://github.com/P3D-Legacy/pokemon3d.net/pull/234
+
+### New Contributors
+
+- @Kamikaze496 made their first contribution in https://github.com/P3D-Legacy/pokemon3d.net/pull/232
+
+**Full Changelog**: https://github.com/P3D-Legacy/pokemon3d.net/compare/4.2.7...4.2.8
+
 ## 4.2.7 - 2022-12-28
 
 ### What's Changed

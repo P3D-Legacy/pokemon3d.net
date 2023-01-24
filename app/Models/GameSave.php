@@ -86,4 +86,40 @@ class GameSave extends Model
 
         return $earnedAchievements;
     }
+
+    public function getPokedex()
+    {
+        $pokedex = $this->pokedex;
+        $pokedex = explode("\r\n", $pokedex);
+        $pokedex = array_filter($pokedex);
+        $pokedex = array_map(function($item) {
+            $item = explode('|', $item);
+            return [
+                'id' => str_replace('{', '', $item[0]),
+                'seen' => $item[1] >= 1,
+                'caught' => $item[1] >= 2,
+            ];
+        }, $pokedex);
+        return $pokedex;
+    }
+
+    // Get all seen pokemon in pokedex
+    public function getSeenPokemon()
+    {
+        $pokedex = $this->getPokedex();
+        $seenPokemon = array_filter($pokedex, function($item) {
+            return $item['seen'];
+        });
+        return $seenPokemon;
+    }
+
+    // Get all caught pokemon in pokedex
+    public function getCaughtPokemon()
+    {
+        $pokedex = $this->getPokedex();
+        $caughtPokemon = array_filter($pokedex, function($item) {
+            return $item['caught'];
+        });
+        return $caughtPokemon;
+    }
 }

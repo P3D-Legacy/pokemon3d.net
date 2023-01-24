@@ -49,8 +49,7 @@ class UpdateGamejoltAccountTrophies extends Command
                 $trophies = $api->trophies()->fetch($account->username, $account->token);
                 if (filter_var($trophies['response']['success'], FILTER_VALIDATE_BOOLEAN) === false) {
                     $this->error("No success for {$account->username}");
-
-                    return 0;
+                    continue;
                 }
                 $trophies = $trophies['response']['trophies'];
                 $trophy_count = count($trophies);

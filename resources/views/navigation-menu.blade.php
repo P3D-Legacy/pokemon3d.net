@@ -24,6 +24,8 @@
                     <x-jet-nav-link href="{{ route('server.index') }}" :active="request()->routeIs('server.*')">
                         {{ __('Servers') }}
                     </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('member.index') }}" :active="request()->routeIs('member.*')">
+                        {{ __('Members') }}
                     </x-jet-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 md:flex">

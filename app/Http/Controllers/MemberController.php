@@ -10,11 +10,12 @@ class MemberController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return View
      */
-    public function index()
+    public function index(): View
     {
         $users = User::paginate(10);
+
         return view('member.index', ['users' => $users]);
     }
 

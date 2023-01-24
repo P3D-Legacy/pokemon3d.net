@@ -38,7 +38,7 @@ class ResourceShow extends Component
         $mediaItem = $update->getFirstMedia('resource_update_file');
 
         try {
-            return response()->download($mediaItem->getPath(), $mediaItem->file_name);
+            return response()->download($mediaItem->getPath(), $mediaItem->name);
         } catch (FileNotFoundException) {
             session()->flash('flash.banner', trans('File not found on server!'));
             session()->flash('flash.bannerStyle', 'danger');

@@ -4,8 +4,6 @@ namespace App\Console\Commands;
 
 use App\Models\GamejoltAccount;
 use App\Models\GameSave;
-use Harrk\GameJoltApi\GamejoltApi;
-use Harrk\GameJoltApi\GamejoltConfig;
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
 
@@ -42,7 +40,7 @@ class SyncGameSaveGamejoltAccountTrophies extends Command
             $achievement_name = Str::ucfirst($game_save_achievement);
             $trophy = $trophies->firstWhere('title', $achievement_name);
             if ($trophy) {
-                # Set the trophy to achieved
+                // Set the trophy to achieved
                 $trophy->achieved = true;
                 $trophy->save();
                 $this->info('Trophy "'.$achievement_name.'" has been updated for user ID '.$gja->user_id);

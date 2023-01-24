@@ -25,14 +25,14 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        # Often commands
+        // Often commands
         $schedule->command(PingAllServers::class)->hourly();
         $schedule->command(UpdateGamejoltAccountTrophies::class)->hourly();
         $schedule->command(SkinUserUpdate::class)->hourlyAt(10);
-        # Daily commands
+        // Daily commands
         $schedule->command(DiscordRoleSync::class)->dailyAt('12:00');
         $schedule->command(DiscordUserRoleSync::class)->dailyAt('12:10');
-        # Nightly commands
+        // Nightly commands
         $schedule->command(SyncGameVersion::class)->dailyAt('00:00');
         $schedule->command(NotifyGameUpdate::class)->dailyAt('00:30');
         $schedule->command(CleanActivitylogCommand::class)->dailyAt('01:00');

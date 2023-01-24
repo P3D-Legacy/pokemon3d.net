@@ -68,13 +68,14 @@ class GameSave extends Model
 
     public function getPlayerData($key_name = null)
     {
-        # Explode the player data into an array on each return new line character
+        // Explode the player data into an array on each return new line character
         $playerDataLines = explode("\r\n", $this->player);
         $playerData = [];
         foreach ($playerDataLines as $line) {
             $line = explode('|', $line);
             $playerData[$line[0]] = $line[1];
         }
+
         return $playerData[$key_name] ?? $playerData;
     }
 
@@ -82,6 +83,7 @@ class GameSave extends Model
     {
         $earnedAchievements = $this->getPlayerData('EarnedAchievements');
         $earnedAchievements = explode(',', $earnedAchievements);
+
         return $earnedAchievements;
     }
 }

@@ -92,14 +92,16 @@ class GameSave extends Model
         $pokedex = $this->pokedex;
         $pokedex = explode("\r\n", $pokedex);
         $pokedex = array_filter($pokedex);
-        $pokedex = array_map(function($item) {
+        $pokedex = array_map(function ($item) {
             $item = explode('|', $item);
+
             return [
                 'id' => str_replace('{', '', $item[0]),
                 'seen' => $item[1] >= 1,
                 'caught' => $item[1] >= 2,
             ];
         }, $pokedex);
+
         return $pokedex;
     }
 
@@ -107,9 +109,10 @@ class GameSave extends Model
     public function getSeenPokemon()
     {
         $pokedex = $this->getPokedex();
-        $seenPokemon = array_filter($pokedex, function($item) {
+        $seenPokemon = array_filter($pokedex, function ($item) {
             return $item['seen'];
         });
+
         return $seenPokemon;
     }
 
@@ -117,9 +120,10 @@ class GameSave extends Model
     public function getCaughtPokemon()
     {
         $pokedex = $this->getPokedex();
-        $caughtPokemon = array_filter($pokedex, function($item) {
+        $caughtPokemon = array_filter($pokedex, function ($item) {
             return $item['caught'];
         });
+
         return $caughtPokemon;
     }
 }

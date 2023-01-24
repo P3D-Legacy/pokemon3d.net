@@ -27,7 +27,6 @@ class Kernel extends ConsoleKernel
     {
         // Often commands
         $schedule->command(PingAllServers::class)->hourly();
-        $schedule->command(UpdateGamejoltAccountTrophies::class)->hourly();
         $schedule->command(SkinUserUpdate::class)->hourlyAt(10);
         // Daily commands
         $schedule->command(DiscordRoleSync::class)->dailyAt('12:00');
@@ -36,10 +35,6 @@ class Kernel extends ConsoleKernel
         $schedule->command(SyncGameVersion::class)->dailyAt('00:00');
         $schedule->command(NotifyGameUpdate::class)->dailyAt('00:30');
         $schedule->command(CleanActivitylogCommand::class)->dailyAt('01:00');
-//        $schedule->command(SyncGameSave::class, ['gamejolt_user_id' => 'all'])->dailyAt('02:00');
-//        $schedule->command(SyncGameSaveGamejoltAccountTrophies::class, ['gamejolt_user_id' => 'all'])->dailyAt('02:15');
-        $schedule->command(SyncGameSave::class, ['gamejolt_user_id' => 'all'])->hourly();
-        $schedule->command(SyncGameSaveGamejoltAccountTrophies::class, ['gamejolt_user_id' => 'all'])->hourlyAt(5);
     }
 
     /**

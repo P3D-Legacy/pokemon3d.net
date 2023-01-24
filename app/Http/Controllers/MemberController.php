@@ -8,6 +8,17 @@ use Illuminate\View\View;
 class MemberController extends Controller
 {
     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $users = User::paginate(10);
+        return view('member.index', ['users' => $users]);
+    }
+
+    /**
      * Display the specified resource.
      *
      * @param  string  $param

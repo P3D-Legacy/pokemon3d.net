@@ -8,6 +8,7 @@ use App\Console\Commands\NotifyGameUpdate;
 use App\Console\Commands\PingAllServers;
 use App\Console\Commands\SkinUserUpdate;
 use App\Console\Commands\SyncGameSave;
+use App\Console\Commands\SyncGameSaveGamejoltAccountTrophies;
 use App\Console\Commands\SyncGameVersion;
 use App\Console\Commands\UpdateGamejoltAccountTrophies;
 use Illuminate\Console\Scheduling\Schedule;
@@ -35,6 +36,10 @@ class Kernel extends ConsoleKernel
         $schedule->command(SyncGameVersion::class)->dailyAt('00:00');
         $schedule->command(NotifyGameUpdate::class)->dailyAt('00:30');
         $schedule->command(CleanActivitylogCommand::class)->dailyAt('01:00');
+//        $schedule->command(SyncGameSave::class, ['gamejolt_user_id' => 'all'])->dailyAt('02:00');
+//        $schedule->command(SyncGameSaveGamejoltAccountTrophies::class, ['gamejolt_user_id' => 'all'])->dailyAt('02:15');
+        $schedule->command(SyncGameSave::class, ['gamejolt_user_id' => 'all'])->hourly();
+        $schedule->command(SyncGameSaveGamejoltAccountTrophies::class, ['gamejolt_user_id' => 'all'])->hourlyAt(5);
     }
 
     /**

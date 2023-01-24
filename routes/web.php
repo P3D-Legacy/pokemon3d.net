@@ -75,7 +75,11 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::get('/notifications', \App\Http\Livewire\NotificationList::class)->name('notifications.index');
 
-    Route::get('/member/{user}', [MemberController::class, 'show'])->name('member.show');
+    Route::get('/members/{user}', [MemberController::class, 'show'])->name('member.show');
+    // Fallback for old member links
+    Route::get('/member/{user}', function ($user) {
+        return redirect()->route('member.show', $user);
+    });
 
     Route::get('/review', function () {
         return view('review.index');

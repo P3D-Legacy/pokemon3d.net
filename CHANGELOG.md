@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 
 <a name="0.4.0"></a>
 
+## 4.2.10 - 2023-01-26
+
+### What's Changed
+
+- Added translations by Kamikaze496 and updated my Dutch ones by @JappaWakka in https://github.com/P3D-Legacy/pokemon3d.net/pull/241
+- Updated NL and PT-BR languages by @dsbilling in https://github.com/P3D-Legacy/pokemon3d.net/pull/242
+
+**Full Changelog**: https://github.com/P3D-Legacy/pokemon3d.net/compare/4.2.9...4.2.10
+
 ## 4.2.9 - 2023-01-24
 
 ### What's Changed

@@ -37,7 +37,7 @@ class BlogSearch extends SpotlightCommand
             // In this example we will register a 'team' dependency
             SpotlightCommandDependency::make('post')
                 // The default Spotlight placeholder will be changed to your dependency place holder
-                ->setPlaceholder('For which resource do you want to search?')
+                ->setPlaceholder('For which blog post do you want to search?')
         );
     }
 

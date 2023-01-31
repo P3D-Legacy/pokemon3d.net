@@ -14,13 +14,6 @@
 
                 <div class="flex flex-col p-5 pt-20 bg-white border rounded-b-lg dark:bg-slate-900 border-slate-300 dark:border-slate-800">
                     <div class="text-4xl font-semibold text-gray-800 dark:text-slate-200">{{ $user->username }}</div>
-                    <div class="mt-2 text-sm text-gray-400">
-                        <div class="flex flex-row items-center ml-auto space-x-2">
-                            <div>{{ __('Joined') }}: {{ $user->created_at->diffForHumans() }}</div>
-                            <div class="w-1 h-1 bg-gray-400 rounded-full"></div>
-                            <div>{{ __('Last online') }}: {{ $user->last_active_at ? $user->last_active_at ->diffForHumans() : trans('Never') }}</div>
-                        </div>
-                    </div>
                     <div class="flex gap-2 mt-3">
                         @foreach($user->unlockedAchievements() as $achievement)
                             <x-achievement :achievement="$achievement" />

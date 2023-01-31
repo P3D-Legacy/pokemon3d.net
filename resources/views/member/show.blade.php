@@ -141,7 +141,7 @@
                                 <div x-show="activeTab===1" class="w-full">
                                     @forelse($user->gamesave->getParty() as $pokemon)
                                         <div class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row dark:border-gray-700 dark:bg-gray-800 mb-4">
-                                            <img class="object-cover w-32 h-auto rounded-lg m-4" src="{{ asset('img/missingno.png') }}" alt="">
+                                            <img class="object-cover w-32 h-auto rounded-lg m-4" src="{{ ($pokemon['EggSteps'] > 0) ? asset('img/missingno.png') : asset('img/missingno.png') }}" alt="">
                                             <div class="flex flex-col justify-between p-2 leading-normal">
                                                 <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">
                                                     @if($pokemon['EggSteps'] > 0)
@@ -163,9 +163,9 @@
                                                         <p>{{ trans('Level') }}: {{ $pokemon['Level'] }}</p>
                                                         <p>{{ trans('Experience') }}: {{ $pokemon['Experience'] }}</p>
                                                         <p>{{ trans('Friendship') }}: {{ $pokemon['Friendship'] }}</p>
+                                                        <p>{{ trans('Nature') }}: {{ $pokemon['Nature'] }}</p>
+                                                        <p>{{ trans('Ability') }}: {{ $pokemon['Ability'] }}</p>
                                                     @endif
-                                                    <p>{{ trans('Nature') }}: {{ $pokemon['Nature'] }}</p>
-                                                    <p>{{ trans('Ability') }}: {{ $pokemon['Ability'] }}</p>
                                                     <p>{{ trans('Obtained') }}: {{ ucfirst($pokemon['CatchMethod']) .' '. $pokemon['CatchLocation'] }}</p>
                                                     <p>{{ trans('Catch trainer') }}: {{ $pokemon['CatchTrainer'] }}</p>
                                                     {{-- print_r($pokemon) --}}

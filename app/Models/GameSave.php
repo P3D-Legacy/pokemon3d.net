@@ -133,6 +133,7 @@ class GameSave extends Model
         $statistics = $this->statistics;
         $statistics = explode("\r\n", $statistics);
         $statistics = array_filter($statistics);
+
         return array_map(function ($item) {
             $item = explode(',', $item);
             $name = str_replace('{', '', $item[0]);

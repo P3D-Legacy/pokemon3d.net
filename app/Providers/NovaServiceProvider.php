@@ -20,7 +20,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
 
         // TIMEZONE
         Nova::userTimezone(function ($request) {
-            return $request->user()->timezone;
+            return $request->user() ? $request->user()->timezone : null;
         });
 
         // FOOTER

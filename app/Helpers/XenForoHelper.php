@@ -4,6 +4,7 @@ namespace App\Helpers;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
+use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Support\Facades\Http;
 
 class XenForoHelper
@@ -12,9 +13,9 @@ class XenForoHelper
 
     const METHOD_POST = 'post';
 
-    public static function sendRequest($endpoint, $data = [], $method = self::METHOD_GET)
+    public static function sendRequest($endpoint, $data = [], $method = self::METHOD_GET): array
     {
-        if (! config('services.xenforo.api_key') or ! config('services.xenforo.api_url')) {
+        if (! config('services.xenforo.api_key') or ! config('services.xenforo.api_url') or ! config('services.xenforo.base_url')) {
             return ['errors' => []];
         }
         if (is_string($data)) {
@@ -25,12 +26,11 @@ class XenForoHelper
         $response = Http::withHeaders([
             'XF-Api-Key' => config('services.xenforo.api_key'),
         ])->$method($url, $data);
-        $decodedResponse = json_decode($response, true);
 
-        return $decodedResponse;
+        return json_decode($response, true);
     }
 
-    public static function getUserCount()
+    public static function getUserCount(): int
     {
         $data = self::sendRequest('/users');
         if ($data) {
@@ -44,7 +44,7 @@ class XenForoHelper
         return 0;
     }
 
-    public static function postAuth($login, $password)
+    public static function postAuth($login, $password): array
     {
         $credentials = [
             'login' => $login,
@@ -75,6 +75,11 @@ class XenForoHelper
             return [
                 'error' => true,
                 'message' => $data['errors'][0]['message'] ?? 'Could not find error message.',
+            ];
+        } catch (GuzzleException $e) {
+            return [
+                'error' => true,
+                'message' => $e->getMessage() ?? 'Could not find error message.',
             ];
         }
 

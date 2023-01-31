@@ -144,7 +144,12 @@
                                             <img class="object-cover w-32 h-auto rounded-lg m-4" src="{{ asset('img/missingno.png') }}" alt="">
                                             <div class="flex flex-col justify-between p-2 leading-normal">
                                                 <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">
-                                                    {{ $pokemon['Pokemon'] }}{{ (isset($pokemon['NickName']) && $pokemon['NickName'] != '') ? ' - '.$pokemon['NickName'] : '' }}
+                                                    @if($pokemon['EggSteps'] > 0)
+                                                        <svg fill="currentColor" class="h-5 w-5 inline-block" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32" xml:space="preserve"><g><path d="M16,32C9.319,32,3.883,26.564,3.883,19.884C3.883,13.252,9.122,0,16,0c6.878,0,12.117,13.252,12.117,19.884   C28.115,26.564,22.68,32,16,32z M16,1.988c-5.336,0-10.129,12.155-10.129,17.896c0,5.585,4.544,10.128,10.129,10.128 s10.129-4.543,10.129-10.128C26.129,14.143,21.336,1.988,16,1.988z"/></g></svg>
+                                                        {{ __('Egg') }}
+                                                    @else
+                                                        {{ $pokemon['Pokemon'] }}{{ (isset($pokemon['NickName']) && $pokemon['NickName'] != '') ? ' - '.$pokemon['NickName'] : '' }}
+                                                    @endif
                                                     @if($pokemon['isShiny'])
                                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 inline-block text-yellow-300">
                                                           <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
@@ -152,9 +157,13 @@
                                                     @endif
                                                 </h5>
                                                 <div class="text-gray-700 dark:text-gray-400">
-                                                    <p>{{ trans('Level') }}: {{ $pokemon['Level'] }}</p>
-                                                    <p>{{ trans('Experience') }}: {{ $pokemon['Experience'] }}</p>
-                                                    <p>{{ trans('Friendship') }}: {{ $pokemon['Friendship'] }}</p>
+                                                    @if($pokemon['EggSteps'] > 0)
+                                                        <p>{{ trans('Egg Steps') }}: {{ $pokemon['EggSteps'] }}</p>
+                                                    @else
+                                                        <p>{{ trans('Level') }}: {{ $pokemon['Level'] }}</p>
+                                                        <p>{{ trans('Experience') }}: {{ $pokemon['Experience'] }}</p>
+                                                        <p>{{ trans('Friendship') }}: {{ $pokemon['Friendship'] }}</p>
+                                                    @endif
                                                     <p>{{ trans('Nature') }}: {{ $pokemon['Nature'] }}</p>
                                                     <p>{{ trans('Ability') }}: {{ $pokemon['Ability'] }}</p>
                                                     <p>{{ trans('Obtained') }}: {{ ucfirst($pokemon['CatchMethod']) .' '. $pokemon['CatchLocation'] }}</p>

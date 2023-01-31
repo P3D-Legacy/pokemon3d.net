@@ -82,9 +82,7 @@ class GameSave extends Model
     public function getAchievements(): array
     {
         $earnedAchievements = $this->getPlayerData('EarnedAchievements');
-        $earnedAchievements = explode(',', $earnedAchievements);
-
-        return $earnedAchievements;
+        return explode(',', $earnedAchievements);
     }
 
     public function getPokedex(): array
@@ -92,7 +90,7 @@ class GameSave extends Model
         $pokedex = $this->pokedex;
         $pokedex = explode("\r\n", $pokedex);
         $pokedex = array_filter($pokedex);
-        $pokedex = array_map(function ($item) {
+        return array_map(function ($item) {
             $item = explode('|', $item);
 
             return [
@@ -101,30 +99,24 @@ class GameSave extends Model
                 'caught' => $item[1] >= 2,
             ];
         }, $pokedex);
-
-        return $pokedex;
     }
 
     // Get all seen pokemon in pokedex
     public function getSeenPokemon(): array
     {
         $pokedex = $this->getPokedex();
-        $seenPokemon = array_filter($pokedex, function ($item) {
+        return array_filter($pokedex, function ($item) {
             return $item['seen'];
         });
-
-        return $seenPokemon;
     }
 
     // Get all caught pokemon in pokedex
     public function getCaughtPokemon(): array
     {
         $pokedex = $this->getPokedex();
-        $caughtPokemon = array_filter($pokedex, function ($item) {
+        return array_filter($pokedex, function ($item) {
             return $item['caught'];
         });
-
-        return $caughtPokemon;
     }
 
     // Get statistics

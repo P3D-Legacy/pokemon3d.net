@@ -175,6 +175,9 @@ class GameSave extends Model
                 if ($key == 'Ability') {
                     $value = $this->getAbility($value);
                 }
+                if ($key == 'Pokemon') {
+                    $pokemon['PokemonName'] = $this->getPokemonName($value);
+                }
                 $pokemon[$key] = $value;
             }
 
@@ -415,4 +418,38 @@ class GameSave extends Model
 
         return $abilities[$abilityInt];
     }
+
+    // Get the pokemon name from id
+    public function getPokemonName($id): string
+    {
+        $pokemon_names = [
+            1 => 'Bulbasaur',
+            2 => 'Ivysaur',
+            3 => 'Venusaur',
+            4 => 'Charmander',
+            5 => 'Charmeleon',
+            6 => 'Charizard',
+            7 => 'Squirtle',
+            8 => 'Wartortle',
+            9 => 'Blastoise',
+            10 => 'Caterpie',
+            11 => 'Metapod',
+            12 => 'Butterfree',
+            13 => 'Weedle',
+            14 => 'Kakuna',
+            15 => 'Beedrill',
+            16 => 'Pidgey',
+            17 => 'Pidgeotto',
+            18 => 'Pidgeot',
+            19 => 'Rattata',
+            20 => 'Raticate',
+            21 => 'Spearow',
+            22 => 'Fearow',
+            23 => 'Ekans',
+            24 => 'Arbok',
+
+        ];
+        return $pokemon_names[$id] ?? 'Unknown';
+    }
+
 }

@@ -158,7 +158,7 @@ class GameSave extends Model
         // For each party entry; get the properties and add it to the pokemon in array
         $party = array_map(function ($item) {
             $pokemon = [];
-            $private_keys = ["IDValue"];
+            $private_keys = ['IDValue'];
             foreach ($item as $property) {
                 $property = explode('"[', $property);
                 $key = str_replace('{', '', str_replace('"', '', $property[0]));
@@ -166,13 +166,13 @@ class GameSave extends Model
                 if (in_array($key, $private_keys)) {
                     continue;
                 }
-                if($key == "Experience") {
+                if ($key == 'Experience') {
                     $value = substr(format('locale-number', $value), 0, -3);
                 }
-                if($key == "Nature") {
+                if ($key == 'Nature') {
                     $value = $this->getNature($value);
                 }
-                if($key == "Ability") {
+                if ($key == 'Ability') {
                     $value = $this->getAbility($value);
                 }
                 $pokemon[$key] = $value;
@@ -412,7 +412,7 @@ class GameSave extends Model
             187 => 'Primordial Sea',
             188 => 'Desolate Land',
         ];
+
         return $abilities[$abilityInt];
     }
-
 }

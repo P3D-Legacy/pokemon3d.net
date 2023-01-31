@@ -10,18 +10,16 @@ class StatsHelper
 
     const METHOD_POST = 'post';
 
-    public static function countForumMembers()
+    public static function countForumMembers(): int
     {
         try {
-            $count = XenForoHelper::getUserCount();
-
-            return $count;
+            return XenForoHelper::getUserCount();
         } catch (\Exception $exception) {
             return 0;
         }
     }
 
-    public static function countPlayers()
+    public static function countPlayers(): int
     {
         try {
             $data = self::sendRequest('/server/status');
@@ -35,11 +33,10 @@ class StatsHelper
         }
     }
 
-    public static function getInGameSeason()
+    public static function getInGameSeason(): string
     {
         $season = date('W') % 4;
         $seasonName = 'spring';
-        //echo "Season (WOY % 4): " . $season;
         if ($season == 0) {
             $seasonName = __('fall');
         } elseif ($season == 1) {
@@ -65,8 +62,6 @@ class StatsHelper
 
         $url = config('gameserver.base_url').$endpoint;
         $response = Http::withHeaders([])->$method($url, $data);
-        $decodedResponse = json_decode($response, true);
-
-        return $decodedResponse;
+        return json_decode($response, true);
     }
 }

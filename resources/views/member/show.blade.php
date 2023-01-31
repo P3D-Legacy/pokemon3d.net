@@ -148,7 +148,7 @@
                                                         <svg fill="currentColor" class="h-5 w-5 inline-block" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32" xml:space="preserve"><g><path d="M16,32C9.319,32,3.883,26.564,3.883,19.884C3.883,13.252,9.122,0,16,0c6.878,0,12.117,13.252,12.117,19.884   C28.115,26.564,22.68,32,16,32z M16,1.988c-5.336,0-10.129,12.155-10.129,17.896c0,5.585,4.544,10.128,10.129,10.128 s10.129-4.543,10.129-10.128C26.129,14.143,21.336,1.988,16,1.988z"/></g></svg>
                                                         {{ __('Egg') }}
                                                     @else
-                                                        {{ $pokemon['Pokemon'] }}{{ (isset($pokemon['NickName']) && $pokemon['NickName'] != '') ? ' - '.$pokemon['NickName'] : '' }}
+                                                        {{ $pokemon['PokemonName'] }}{{ (isset($pokemon['NickName']) && $pokemon['NickName'] != '') ? ' - '.$pokemon['NickName'] : '' }}
                                                     @endif
                                                     @if($pokemon['isShiny'])
                                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 inline-block text-yellow-300">

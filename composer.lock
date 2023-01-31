@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "66490d02a60d95fffaf4202f9cfaecca",
+    "content-hash": "db21cc2bd857d4ac20d83c6b59ff94c5",
     "packages": [
         {
             "name": "akaunting/laravel-language",
@@ -5509,6 +5509,166 @@
                 "source": "https://github.com/martinbean/socialite-discord-provider"
             },
             "time": "2020-10-03T12:55:47+00:00"
+        },
+        {
+            "name": "michael-rubel/laravel-enhanced-container",
+            "version": "10.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/michael-rubel/laravel-enhanced-container.git",
+                "reference": "093365948048d4a1a476a455758f81b357e86355"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/michael-rubel/laravel-enhanced-container/zipball/093365948048d4a1a476a455758f81b357e86355",
+                "reference": "093365948048d4a1a476a455758f81b357e86355",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "^9.0",
+                "php": "^8.0",
+                "spatie/laravel-package-tools": "^1.9"
+            },
+            "require-dev": {
+                "brianium/paratest": "^6.3",
+                "laravel/pint": "^0.2.1",
+                "nunomaduro/collision": "^6.0",
+                "nunomaduro/larastan": "^1.0",
+                "orchestra/testbench": "^7.0",
+                "phpunit/phpunit": "^9.5",
+                "roave/backward-compatibility-check": "^7.0|^8.0",
+                "roave/infection-static-analysis-plugin": "^1.25"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "MichaelRubel\\EnhancedContainer\\LecServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/Helpers/helpers.php",
+                    "src/Overrides/Container.php",
+                    "src/Overrides/BoundMethod.php"
+                ],
+                "psr-4": {
+                    "MichaelRubel\\EnhancedContainer\\": "src"
+                },
+                "exclude-from-classmap": [
+                    "vendor/laravel/framework/src/Illuminate/Container/Container.php",
+                    "vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Rubel",
+                    "email": "contact@observer.name",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "This package provides DX tweaks for Service Container in Laravel.",
+            "homepage": "https://github.com/michael-rubel/laravel-enhanced-container",
+            "keywords": [
+                "laravel",
+                "laravel-enhanced-container",
+                "lec",
+                "michael-rubel"
+            ],
+            "support": {
+                "issues": "https://github.com/michael-rubel/laravel-enhanced-container/issues",
+                "source": "https://github.com/michael-rubel/laravel-enhanced-container/tree/10.0.3"
+            },
+            "funding": [
+                {
+                    "url": "https://paypal.com/donate/?hosted_button_id=KHLEL8PFS4AXJ",
+                    "type": "custom"
+                }
+            ],
+            "time": "2022-12-20T09:54:52+00:00"
+        },
+        {
+            "name": "michael-rubel/laravel-formatters",
+            "version": "7.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/michael-rubel/laravel-formatters.git",
+                "reference": "f197f49e14cb05c45fcc33dffa103a55f3821b3e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/michael-rubel/laravel-formatters/zipball/f197f49e14cb05c45fcc33dffa103a55f3821b3e",
+                "reference": "f197f49e14cb05c45fcc33dffa103a55f3821b3e",
+                "shasum": ""
+            },
+            "require": {
+                "ext-intl": "*",
+                "illuminate/contracts": "^9.7|^10.0",
+                "michael-rubel/laravel-enhanced-container": "^10.0|^11.0",
+                "php": "^8.0",
+                "spatie/laravel-package-tools": "^1.12"
+            },
+            "require-dev": {
+                "brianium/paratest": "^6.3",
+                "laravel/pint": "^1.1",
+                "mockery/mockery": "^1.4.4",
+                "nunomaduro/collision": "^6.0",
+                "nunomaduro/larastan": "^2.2",
+                "orchestra/testbench": "^7.0|^8.0",
+                "phpunit/phpunit": "^9.5",
+                "roave/backward-compatibility-check": "^7.0|^8.0",
+                "roave/infection-static-analysis-plugin": "^1.25"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "MichaelRubel\\Formatters\\FormatterServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/Helpers/helpers.php"
+                ],
+                "psr-4": {
+                    "MichaelRubel\\Formatters\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Rubel",
+                    "email": "contact@observer.name",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "This package is a collection of classes you can use to standardize data formats in your Laravel application. It uses the Service Container to easily extend or override the formatter classes.",
+            "homepage": "https://github.com/michael-rubel/laravel-formatters",
+            "keywords": [
+                "laravel",
+                "laravel-formatters",
+                "michael-rubel"
+            ],
+            "support": {
+                "issues": "https://github.com/michael-rubel/laravel-formatters/issues",
+                "source": "https://github.com/michael-rubel/laravel-formatters/tree/7.0.6"
+            },
+            "funding": [
+                {
+                    "url": "https://paypal.com/donate/?hosted_button_id=KHLEL8PFS4AXJ",
+                    "type": "custom"
+                }
+            ],
+            "time": "2023-01-18T14:09:52+00:00"
         },
         {
             "name": "mobiledetect/mobiledetectlib",

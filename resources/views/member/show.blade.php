@@ -140,8 +140,7 @@
                             <div class="flex w-full dark:text-slate-50">
                                 <div x-show="activeTab===1" class="w-full">
                                     @forelse($user->gamesave->getParty() as $pokemon)
-                                        <div class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row hover:bg-gray-100
-                                        dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 mb-4">
+                                        <div class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row dark:border-gray-700 dark:bg-gray-800 mb-4">
                                             <img class="object-cover w-32 h-auto rounded-lg m-4" src="{{ asset('img/missingno.png') }}" alt="">
                                             <div class="flex flex-col justify-between p-2 leading-normal">
                                                 <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">

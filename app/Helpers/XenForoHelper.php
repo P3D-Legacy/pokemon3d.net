@@ -13,7 +13,7 @@ class XenForoHelper
 
     const METHOD_POST = 'post';
 
-    public static function sendRequest($endpoint, $data = [], $method = self::METHOD_GET): object
+    public static function sendRequest($endpoint, $data = [], $method = self::METHOD_GET): array
     {
         if (! config('services.xenforo.api_key') or ! config('services.xenforo.api_url') or ! config('services.xenforo.base_url')) {
             return ['errors' => []];
@@ -26,9 +26,7 @@ class XenForoHelper
         $response = Http::withHeaders([
             'XF-Api-Key' => config('services.xenforo.api_key'),
         ])->$method($url, $data);
-        $decodedResponse = json_decode($response, true);
-
-        return $decodedResponse;
+        return json_decode($response, true);
     }
 
     public static function getUserCount(): int

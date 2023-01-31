@@ -62,6 +62,7 @@ class StatsHelper
 
         $url = config('gameserver.base_url').$endpoint;
         $response = Http::withHeaders([])->$method($url, $data);
+
         return json_decode($response, true);
     }
 }

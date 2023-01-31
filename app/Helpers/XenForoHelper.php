@@ -26,6 +26,7 @@ class XenForoHelper
         $response = Http::withHeaders([
             'XF-Api-Key' => config('services.xenforo.api_key'),
         ])->$method($url, $data);
+
         return json_decode($response, true);
     }
 

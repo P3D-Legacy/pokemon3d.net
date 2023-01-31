@@ -131,12 +131,10 @@
             <div class="w-full">
                 <div class="flex flex-col p-5 bg-white border rounded-lg dark:bg-slate-900 border-slate-300 dark:border-slate-800">
                     <div class="text-4xl font-semibold text-gray-800 dark:text-slate-200">{{ trans('Game Save') }}</div>
-                    @empty($user->gamejolt || $user->gamesave)
-                        <p class='text-gray-500 text-sm pt-2'>{{ trans('User has not connected their Game Jolt account yet') }}</p>
-                    @endempty
                     @if($user->gamejolt and $user->gamesave)
                         <div x-data="{ activeTab:1, tabs: [
                             { id: 1, label: '{{ trans('In-Game Trophies') }} ({{ $user->gamejolt->trophies->where('achieved', true)->count() }}/{{ $user->gamejolt->trophies->count() }})' },
+                            { id: 2, label: '{{ trans('Statistics') }}' },
                         ]}">
                             <ul class="flex items-center w-full my-4">
                                 <template x-for="(tab, tab.id) in tabs" :key="tab.id">
@@ -176,8 +174,21 @@
                                         {{ trans('No Trophies found') }}
                                     @endif
                                 </div>
+                                <div x-show="activeTab===2">
+                                    <div class="overflow-hidden shadow sm:rounded-lg dark:bg-black">
+                                        @forelse($user->gamesave->getStatistics() as $stats)
+                                            <x-profile.user-detail title='{{ $stats["name"] }}'>
+                                                {{ $stats["value"] }}
+                                            </x-profile.user-detail>
+                                        @empty
+                                            {{ trans('No stats found') }}
+                                        @endforelse
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                    @else
+                        <p class='text-gray-500 text-sm pt-2'>{{ trans('User has not connected their Game Jolt account yet') }}</p>
                     @endif
                 </div>
             </div>

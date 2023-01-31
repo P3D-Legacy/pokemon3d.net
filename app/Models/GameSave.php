@@ -126,4 +126,23 @@ class GameSave extends Model
 
         return $caughtPokemon;
     }
+
+    // Get statistics
+    public function getStatistics(): array
+    {
+        $statistics = $this->statistics;
+        $statistics = explode("\r\n", $statistics);
+        $statistics = array_filter($statistics);
+        return array_map(function ($item) {
+            $item = explode(',', $item);
+            $name = str_replace('{', '', $item[0]);
+            // Remove [ and ] and some random number between from the name
+            $name = preg_replace('/\[[0-9]+\]/', '', $name);
+
+            return [
+                'name' => $name,
+                'value' => $item[1],
+            ];
+        }, $statistics);
+    }
 }

@@ -87,7 +87,7 @@ class GameSave extends Model
         return $earnedAchievements;
     }
 
-    public function getPokedex()
+    public function getPokedex(): array
     {
         $pokedex = $this->pokedex;
         $pokedex = explode("\r\n", $pokedex);
@@ -106,7 +106,7 @@ class GameSave extends Model
     }
 
     // Get all seen pokemon in pokedex
-    public function getSeenPokemon()
+    public function getSeenPokemon(): array
     {
         $pokedex = $this->getPokedex();
         $seenPokemon = array_filter($pokedex, function ($item) {
@@ -117,7 +117,7 @@ class GameSave extends Model
     }
 
     // Get all caught pokemon in pokedex
-    public function getCaughtPokemon()
+    public function getCaughtPokemon(): array
     {
         $pokedex = $this->getPokedex();
         $caughtPokemon = array_filter($pokedex, function ($item) {

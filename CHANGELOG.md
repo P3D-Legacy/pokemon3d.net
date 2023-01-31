@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 
 <a name="0.4.0"></a>
 
+## 4.2.12 - 2023-01-31
+
+### What's Changed
+
+- Bump actions/cache from 3.2.3 to 3.2.4 by @dependabot in https://github.com/P3D-Legacy/pokemon3d.net/pull/246
+- Bump dependabot/fetch-metadata from 1.3.5 to 1.3.6 by @dependabot in https://github.com/P3D-Legacy/pokemon3d.net/pull/247
+- Release 4.2.12 by @dsbilling in https://github.com/P3D-Legacy/pokemon3d.net/pull/248
+
+**Full Changelog**: https://github.com/P3D-Legacy/pokemon3d.net/compare/4.2.11...4.2.12
+
 ## 4.2.11 - 2023-01-27
 
 ### What's Changed

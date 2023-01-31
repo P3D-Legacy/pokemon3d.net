@@ -135,10 +135,13 @@ class GameSave extends Model
             $name = str_replace('{', '', $item[0]);
             // Remove [ and ] and some random number between from the name
             $name = preg_replace('/\[[0-9]+\]/', '', $name);
+            $number = format('locale-number', $item[1]);
+            // Remove the last three characters to remove the .00
+            $number = substr($number, 0, -3);
 
             return [
                 'name' => $name,
-                'value' => $item[1],
+                'value' => $number,
             ];
         }, $statistics);
     }

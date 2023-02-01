@@ -128,7 +128,7 @@
                         <p class="text-gray-600 dark:text-slate-400 text-sm">{{ trans('Last synced at') }}: {{ $user->gamesave->updated_at->diffForHumans() }}</p>
                         <div x-data="{ activeTab:1, tabs: [
                             { id: 1, label: '{{ trans('Party') }}' },
-                            { id: 2, label: '{{ trans('Pokédex') }} ({{ trans('Seen') }}: {{ $user->gamesave->getCaughtPokemonCount() }} / {{ trans('Caught') }}: {{$user->gamesave->getSeenPokemonCount() }})' },
+                            { id: 2, label: '{{ trans('Pokédex') }} ({{ trans('Caught') }}: {{ $user->gamesave->getCaughtPokemonCount() }} / {{ trans('Seen') }}: {{$user->gamesave->getSeenPokemonCount() }})' },
                             { id: 5, label: '{{ trans('In-Game Trophies') }} ({{ $user->gamejolt->trophies->where('achieved', true)->count() }}/{{
                             $user->gamejolt->trophies->count() }})' },
                             { id: 6, label: '{{ trans('Statistics') }}' },

@@ -11,6 +11,8 @@ use App\Console\Commands\SyncGameVersion;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use Spatie\Activitylog\CleanActivitylogCommand;
+use Spatie\Health\Commands\RunHealthChecksCommand;
+use Spatie\Health\Commands\ScheduleCheckHeartbeatCommand;
 use Spatie\ScheduleMonitor\Models\MonitoredScheduledTaskLogItem;
 
 class Kernel extends ConsoleKernel
@@ -24,6 +26,8 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // Often commands
+        $schedule->command(RunHealthChecksCommand::class)->everyMinute();
+        $schedule->command(ScheduleCheckHeartbeatCommand::class)->everyMinute();
         $schedule->command(PingAllServers::class)->hourly();
         $schedule->command(SkinUserUpdate::class)->hourlyAt(10);
         // Daily commands

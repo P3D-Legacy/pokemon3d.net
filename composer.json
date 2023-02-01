@@ -67,6 +67,7 @@
         "socialiteproviders/facebook": "^4.1",
         "socialiteproviders/twitch": "^5.3",
         "socialiteproviders/twitter": "^4.1",
+        "spatie/cpu-load-health-check": "^1.0",
         "spatie/laravel-activitylog": "^4.4",
         "spatie/laravel-health": "^1.19",
         "spatie/laravel-medialibrary": "^10.0",

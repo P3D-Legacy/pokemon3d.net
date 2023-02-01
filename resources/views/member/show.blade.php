@@ -41,7 +41,7 @@
                                             {{ $user->created_at->isoFormat('LL') }}
                                         </x-profile.user-detail>
                                         <x-profile.user-detail title='Last online'>
-                                            {{ $user->last_active_at->isoFormat('LL') }}
+                                            {{ now()->subDay(1) > $user->last_active_at ? $user->last_active_at->isoFormat('LL') : $user->last_active_at->diffForHumans() }}
                                         </x-profile.user-detail>
                                         @if($user->birthdate && $user->settings()->get('birthdate') || $user->birthdate && $user->settings()->get('age'))
                                             <x-profile.user-detail title='Birthday'>

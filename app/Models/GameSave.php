@@ -434,34 +434,15 @@ class GameSave extends Model
     // Get the pokemon name from id
     public function getPokemonName($id): string
     {
-        $pokemon_names = [
-            1 => 'Bulbasaur',
-            2 => 'Ivysaur',
-            3 => 'Venusaur',
-            4 => 'Charmander',
-            5 => 'Charmeleon',
-            6 => 'Charizard',
-            7 => 'Squirtle',
-            8 => 'Wartortle',
-            9 => 'Blastoise',
-            10 => 'Caterpie',
-            11 => 'Metapod',
-            12 => 'Butterfree',
-            13 => 'Weedle',
-            14 => 'Kakuna',
-            15 => 'Beedrill',
-            16 => 'Pidgey',
-            17 => 'Pidgeotto',
-            18 => 'Pidgeot',
-            19 => 'Rattata',
-            20 => 'Raticate',
-            21 => 'Spearow',
-            22 => 'Fearow',
-            23 => 'Ekans',
-            24 => 'Arbok',
-
-        ];
-
-        return $pokemon_names[$id] ?? 'Unknown';
+        $filepath = lang_path().'/pokemon_'.app()->getLocale().'.json';
+        // if the file doesn't exist, use the default language
+        if (!file_exists($filepath)) {
+            $filepath = lang_path().'/pokemon_en.json';
+        }
+        // load pokemon names from json file in the lang folder
+        $pokemon_names = json_decode(file_get_contents($filepath), true);
+        // get the pokemon name by the id key in json file
+        $pokemon_names = collect($pokemon_names);
+        return $pokemon_names->get($id-1)['name'];
     }
 }

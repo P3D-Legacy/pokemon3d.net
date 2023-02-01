@@ -7,6 +7,7 @@ use Livewire\Component;
 class Details extends Component
 {
     public $gamesave;
+
     public $details;
 
     public function mount($gamesave)

@@ -73,7 +73,7 @@ class GameSave extends Model
         $playerData = [];
         foreach ($playerDataLines as $line) {
             $line = explode('|', $line);
-            $playerData[$line[0]] = $line[1];
+            $playerData[ucfirst($line[0])] = $line[1];
         }
 
         return $playerData[$key_name] ?? $playerData;

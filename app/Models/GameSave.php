@@ -84,8 +84,14 @@ class GameSave extends Model
         $details = [];
         $allowed_details = ['Name', 'RivalName', 'Location', 'Money', 'HasPokedex', 'HasPokegear', 'SaveCreated', 'Gender', 'OT', 'Points', 'GTSStars'];
         foreach ($allowed_details as $detail) {
+            if ($detail === 'HasPokedex' or $detail === 'HasPokegear') {
+                $details[$detail] = $this->getPlayerData($detail) === '1' ? trans('Yes') : trans('No');
+
+                continue;
+            }
             $details[$detail] = $this->getPlayerData($detail);
         }
+
         return $details;
     }
 

@@ -462,6 +462,6 @@ class GameSave extends Model
         // get the pokemon name by the id key in json file
         $pokemon_names = collect($pokemon_names);
 
-        return isset($pokemon_names->get($id - 1)['name']) ? $pokemon_names->get($id - 1)['name'] : 'Unknown';
+        return isset($pokemon_names->get($id - 1)['name']) ? $pokemon_names->get($id - 1)['name'] : '???';
     }
 }

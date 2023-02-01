@@ -446,6 +446,9 @@ class GameSave extends Model
     // Get the pokemon name from id
     public function getPokemonName($id): string
     {
+        // convert string id to int id
+        $id = (int) $id;
+        // get the language file path
         $filepath = lang_path().'/pokemon_'.app()->getLocale().'.json';
         // if the file doesn't exist, use the default language
         if (! file_exists($filepath)) {
@@ -456,6 +459,6 @@ class GameSave extends Model
         // get the pokemon name by the id key in json file
         $pokemon_names = collect($pokemon_names);
 
-        return $pokemon_names->get($id - 1)['name'];
+        return isset($pokemon_names->get($id - 1)['name']) ? $pokemon_names->get($id - 1)['name'] : 'Unknown';
     }
 }

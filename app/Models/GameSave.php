@@ -96,6 +96,7 @@ class GameSave extends Model
             $item = explode('|', $item);
             $id = str_replace('{', '', $item[0]);
             $status = (int) $item[1];
+
             return [
                 'id' => $id,
                 'name' => $this->getPokemonName($id),

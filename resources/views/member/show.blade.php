@@ -57,20 +57,17 @@
                                         @if($user->gender)
                                             <x-profile.user-detail title='Gender'>
                                                 @switch($user->gender)
-                                                    @case(0)
-                                                        <span>No selection</span>
-                                                        @break
                                                     @case(1)
-                                                        <span>Male</span>
+                                                        <span>{{ trans('Male') }}</span>
                                                         @break
                                                     @case(2)
-                                                        <span>Female</span>
+                                                        <span>{{ trans('Female') }}</span>
                                                         @break
                                                     @case(3)
-                                                        <span>Genderless</span>
+                                                        <span>{{ trans('Genderless') }}</span>
                                                         @break
                                                     @default
-                                                        <span>Unknown</span>
+                                                        <span>{{ trans('Unknown') }}</span>
                                                 @endswitch
                                             </x-profile.user-detail>
                                         @endif

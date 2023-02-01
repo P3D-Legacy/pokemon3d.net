@@ -94,11 +94,13 @@ class GameSave extends Model
 
         return array_map(function ($item) {
             $item = explode('|', $item);
-
+            $id = str_replace('{', '', $item[0]);
+            $status = (int) $item[1];
             return [
-                'id' => str_replace('{', '', $item[0]),
-                'seen' => $item[1] >= 1,
-                'caught' => $item[1] >= 2,
+                'id' => $id,
+                'name' => $this->getPokemonName($id),
+                'seen' => $status >= 1,
+                'caught' => $status >= 2,
             ];
         }, $pokedex);
     }

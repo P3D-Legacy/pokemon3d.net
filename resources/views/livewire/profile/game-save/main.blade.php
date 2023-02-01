@@ -10,8 +10,9 @@
             <p class="text-gray-600 dark:text-slate-400 text-sm">{{ trans('Last synced at') }}: {{ $gamesave->updated_at->diffForHumans() }}</p>
             <div x-data="{ activeTab:1, tabs: [
                 { id: 1, label: '{{ trans('Party') }}' },
-                { id: 2, label: '{{ trans('Pokédex') }}' },
-                { id: 5, label: '{{ trans('In-Game Trophies') }}' },
+                { id: 2, label: '{{ trans('Pokédex') }} ({{ trans('Caught') }}: {{ $gamesave->getCaughtPokemonCount() }} / {{ trans('Seen') }}: {{ $gamesave->getSeenPokemonCount() }})' },
+                { id: 5, label: '{{ trans('In-Game Trophies') }} ({{ $gamejolt->trophies->where('achieved', true)->count() }}/{{
+                            $gamejolt->trophies->count() }})' },
                 { id: 6, label: '{{ trans('Statistics') }}' },
             ]}">
                 <ul class="flex items-center w-full my-4">

@@ -56,8 +56,11 @@ class SyncGameSave extends Command
         }
         $game_save = GameSave::where(['user_id' => $gja->user_id])->first();
         if ($game_save) {
+            $this->info('Updating game save for user '.$gja->username);
             $game_save->update($result);
+            $game_save->touch(); // Update updated_at
         } else {
+            $this->info('Creating game save for user '.$gja->username);
             $result['user_id'] = $gja->user_id;
             GameSave::create($result);
         }

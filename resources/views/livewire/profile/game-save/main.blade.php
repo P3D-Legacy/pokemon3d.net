@@ -10,7 +10,8 @@
             <p class="text-gray-600 dark:text-slate-400 text-sm">{{ trans('Last synced') }}: {{ $gamesave->updated_at->diffForHumans() }}</p>
             <div x-data="{ activeTab:1, tabs: [
                 { id: 1, label: '{{ trans('Party') }}' },
-                { id: 2, label: '{{ trans('Pokédex') }} ({{ trans('Caught') }}: {{ $gamesave->getCaughtPokemonCount() }} / {{ trans('Seen') }}: {{ $gamesave->getSeenPokemonCount() }})' },
+                { id: 2, label: '{{ trans('Details') }}' },
+                { id: 3, label: '{{ trans('Pokédex') }} ({{ trans('Caught') }}: {{ $gamesave->getCaughtPokemonCount() }} / {{ trans('Seen') }}: {{ $gamesave->getSeenPokemonCount() }})' },
                 { id: 5, label: '{{ trans('In-Game Trophies') }} ({{ $gamejolt->trophies->where('achieved', true)->count() }}/{{
                             $gamejolt->trophies->count() }})' },
                 { id: 6, label: '{{ trans('Statistics') }}' },
@@ -25,8 +26,11 @@
                         @livewire('profile.game-save.party', ['gamesave' => $gamesave])
                     </div>
                     <div x-show="activeTab===2" class="w-full">
-                        @livewire('profile.game-save.pokedex', ['gamesave' => $gamesave])
+                        @livewire('profile.game-save.details', ['gamesave' => $gamesave])
                     </div>
+                    </div>
+                    <div x-show="activeTab===3" class="w-full">
+                        @livewire('profile.game-save.pokedex', ['gamesave' => $gamesave])
                     <div x-show="activeTab===5" class="w-full">
                         @livewire('profile.game-save.trophies', ['gamejolt' => $gamejolt])
                     </div>

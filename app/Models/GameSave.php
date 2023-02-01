@@ -79,6 +79,16 @@ class GameSave extends Model
         return $playerData[$key_name] ?? $playerData;
     }
 
+    public function getPlayerDataDetails(): array
+    {
+        $details = [];
+        $allowed_details = ['Name', 'RivalName', 'Location', 'Money', 'HasPokedex', 'HasPokegear', 'SaveCreated', 'Gender', 'OT', 'Points', 'GTSStars'];
+        foreach ($allowed_details as $detail) {
+            $details[$detail] = $this->getPlayerData($detail);
+        }
+        return $details;
+    }
+
     public function getAchievements(): array
     {
         $earnedAchievements = $this->getPlayerData('EarnedAchievements');

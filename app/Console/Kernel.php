@@ -11,6 +11,7 @@ use App\Console\Commands\SyncGameVersion;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use Spatie\Activitylog\CleanActivitylogCommand;
+use Spatie\ScheduleMonitor\Models\MonitoredScheduledTaskLogItem;
 
 class Kernel extends ConsoleKernel
 {
@@ -28,6 +29,7 @@ class Kernel extends ConsoleKernel
         // Daily commands
         $schedule->command(DiscordRoleSync::class)->dailyAt('12:00');
         $schedule->command(DiscordUserRoleSync::class)->dailyAt('12:10');
+        $schedule->command('model:prune', ['--model' => MonitoredScheduledTaskLogItem::class])->daily();
         // Nightly commands
         $schedule->command(SyncGameVersion::class)->dailyAt('00:00');
         $schedule->command(NotifyGameUpdate::class)->dailyAt('00:30');

@@ -436,13 +436,14 @@ class GameSave extends Model
     {
         $filepath = lang_path().'/pokemon_'.app()->getLocale().'.json';
         // if the file doesn't exist, use the default language
-        if (!file_exists($filepath)) {
+        if (! file_exists($filepath)) {
             $filepath = lang_path().'/pokemon_en.json';
         }
         // load pokemon names from json file in the lang folder
         $pokemon_names = json_decode(file_get_contents($filepath), true);
         // get the pokemon name by the id key in json file
         $pokemon_names = collect($pokemon_names);
-        return $pokemon_names->get($id-1)['name'];
+
+        return $pokemon_names->get($id - 1)['name'];
     }
 }

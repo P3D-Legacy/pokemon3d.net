@@ -10,6 +10,12 @@ class Pokedex extends Component
 
     public $gamesave;
 
+    public $amountToLoad = 20;
+
+    protected $listeners = [
+        'loadMorePokedex' => 'loadMore',
+    ];
+
     public function mount($gamesave)
     {
         $this->gamesave = $gamesave;
@@ -18,7 +24,13 @@ class Pokedex extends Component
 
     public function loadData()
     {
-        $this->pokedex = $this->gamesave->getPokedex();
+        $this->pokedex = array_slice($this->gamesave->getPokedex(), 0, $this->amountToLoad);
+    }
+
+    public function loadMore()
+    {
+        $this->amountToLoad += 15;
+        $this->loadData();
     }
 
     public function render()

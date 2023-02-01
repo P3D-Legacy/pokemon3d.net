@@ -125,6 +125,7 @@
                 <div class="flex flex-col p-5 bg-white border rounded-lg dark:bg-slate-900 border-slate-300 dark:border-slate-800">
                     <div class="text-4xl font-semibold text-gray-800 dark:text-slate-200">{{ trans('Game Save') }}</div>
                     @if($user->gamejolt and $user->gamesave)
+                        <p class="text-gray-600 dark:text-slate-400 text-sm">{{ trans('Last synced at') }}: {{ $user->gamesave->updated_at->diffForHumans() }}</p>
                         <div x-data="{ activeTab:1, tabs: [
                             { id: 1, label: '{{ trans('Party') }}' },
                             { id: 2, label: '{{ trans('In-Game Trophies') }} ({{ $user->gamejolt->trophies->where('achieved', true)->count() }}/{{

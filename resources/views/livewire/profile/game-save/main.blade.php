@@ -7,7 +7,7 @@
     </div>
     <div wire:init="loadData">
         @if($gamejolt and $gamesave)
-            <p class="text-gray-600 dark:text-slate-400 text-sm">{{ trans('Last synced at') }}: {{ $gamesave->updated_at->diffForHumans() }}</p>
+            <p class="text-gray-600 dark:text-slate-400 text-sm">{{ trans('Last synced') }}: {{ $gamesave->updated_at->diffForHumans() }}</p>
             <div x-data="{ activeTab:1, tabs: [
                 { id: 1, label: '{{ trans('Party') }}' },
                 { id: 2, label: '{{ trans('Pokédex') }} ({{ trans('Caught') }}: {{ $gamesave->getCaughtPokemonCount() }} / {{ trans('Seen') }}: {{ $gamesave->getSeenPokemonCount() }})' },

@@ -123,6 +123,18 @@ class GameSave extends Model
         });
     }
 
+    // Get count of seen pokemon in pokedex
+    public function getSeenPokemonCount(): int
+    {
+        return count($this->getSeenPokemon());
+    }
+
+    // Get count of caught pokemon in pokedex
+    public function getCaughtPokemonCount(): int
+    {
+        return count($this->getCaughtPokemon());
+    }
+
     // Get statistics
     public function getStatistics(): array
     {

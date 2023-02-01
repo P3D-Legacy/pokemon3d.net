@@ -180,6 +180,18 @@ class GameSave extends Model
                 }
                 $pokemon[$key] = $value;
             }
+            $url = $pokemon['EggSteps'] > 0 ? 'https://raw.githubusercontent.com/P3D-Legacy/P3D-Legacy/master/P3D/Content/Pokemon/Egg/Egg_front.png' : 'https://raw.githubusercontent.com/P3D-Legacy/P3D-Legacy/master/P3D/Content/Pokemon/Sprites/'.$pokemon['Pokemon'].'.png';
+            $image = imagecrop(imagecreatefromstring(file_get_contents($url)), [
+                'x' => 0,
+                'y' => $pokemon['isShiny'] ? 96 : 0,
+                'width' => 96,
+                'height' => 96,
+            ]);
+            ob_start(); // Let's start output buffering
+            imagejpeg($image); // This will normally output the image, but because of ob_start(), it won't
+            $contents = ob_get_contents(); // Instead, output above is saved to $contents
+            ob_end_clean(); // End the output buffer
+            $pokemon['Image'] = 'data:image/png;base64,'.base64_encode($contents);
 
             return $pokemon;
         }, $party);

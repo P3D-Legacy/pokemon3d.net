@@ -142,7 +142,7 @@
                                 <div x-show="activeTab===1" class="w-full">
                                     @forelse($user->gamesave->getParty() as $pokemon)
                                         <div class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row dark:border-gray-700 dark:bg-gray-800 mb-4">
-                                            <img class="object-cover w-32 h-auto rounded-lg m-4" src="{{ ($pokemon['EggSteps'] > 0) ? asset('img/missingno.png') : asset('img/missingno.png') }}" alt="">
+                                            <img class="object-cover w-28 h-auto rounded-lg m-4" src="{{ $pokemon['Image'] }}" alt="{{ $pokemon['Pokemon'] }}">
                                             <div class="flex flex-col justify-between p-2 leading-normal">
                                                 <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">
                                                     @if($pokemon['EggSteps'] > 0)

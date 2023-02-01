@@ -79,7 +79,8 @@
         "touhidurabir/laravel-multi-key-route-binding": "^1.0",
         "tumblr/tumblr": "^0.4.1",
         "wire-elements/modal": "^1.0",
-        "wire-elements/spotlight": "^1.0"
+        "wire-elements/spotlight": "^1.0",
+        "ext-gd": "*"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.6",

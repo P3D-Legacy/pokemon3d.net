@@ -76,6 +76,5 @@ return [
          */
         'send_starting_ping' => env('OH_DEAR_SEND_STARTING_PING', false),
 
-
     ],
 ];

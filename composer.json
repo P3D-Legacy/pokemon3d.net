@@ -56,6 +56,7 @@
         "league/html-to-markdown": "^5.1",
         "livewire/livewire": "^2.5",
         "martinbean/socialite-discord-provider": "^1.2",
+        "michael-rubel/laravel-formatters": "^7.0",
         "mtownsend/read-time": "^2.0",
         "origami/consent": "^2.2",
         "overtrue/laravel-like": "^5.0",
@@ -78,7 +79,8 @@
         "touhidurabir/laravel-multi-key-route-binding": "^1.0",
         "tumblr/tumblr": "^0.4.1",
         "wire-elements/modal": "^1.0",
-        "wire-elements/spotlight": "^1.0"
+        "wire-elements/spotlight": "^1.0",
+        "ext-gd": "*"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.6",

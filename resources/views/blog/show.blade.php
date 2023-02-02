@@ -73,7 +73,7 @@
                     @endforeach
                 </div>
 
-                @if (now()->subYears(1) > $post->published_at)
+                @if (now()->subYears(1) > $post->updated_at)
                     <div class="flex items-center p-2 mt-8 text-sm leading-none bg-orange-600 rounded-lg text-orange-50 lg:rounded-xl lg:inline-flex sm:text-base" role="alert">
                         <span class="flex px-1 py-1 mr-3 text-xs font-bold text-white uppercase bg-orange-400 rounded-full">
                             <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">

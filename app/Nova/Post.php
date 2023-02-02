@@ -3,6 +3,7 @@
 namespace App\Nova;
 
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\ID;
@@ -62,6 +63,8 @@ class Post extends Resource
             Boolean::make('Sticky')
                 ->rules('required')
                 ->hideFromIndex(),
+
+            BelongsTo::make('User', 'user', 'App\Nova\User'),
 
             Tags::make('Tags'),
         ];

@@ -275,6 +275,8 @@
                     <ul class="mb-6 list-reset">
                         <x-home.footer-link title="{{ __('Terms and Conditions') }}" url="{{ route('terms.show') }}" />
                         <x-home.footer-link title="{{ __('Privacy Policy') }}" url="{{ route('policy.show') }}" />
+                        <x-home.footer-link title="{{ __('Legal') }}" url="{{ route('legal') }}" />
+                        <x-home.footer-link title="{{ __('Contact') }}" url="{{ route('contact') }}" />
                     </ul>
                 </div>
                 <div class="flex-1 px-3">

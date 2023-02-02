@@ -55,6 +55,7 @@ Route::prefix('redirect')->group(function () {
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/legal', [HomeController::class, 'legal'])->name('legal');
+Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 Route::resource('blog', BlogController::class);
 Route::get('/download', [DownloadController::class, 'download'])->name('download');
 

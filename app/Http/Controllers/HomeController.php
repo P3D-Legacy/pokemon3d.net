@@ -41,4 +41,19 @@ class HomeController extends Controller
             'legal' => Str::markdown(file_get_contents($localizedMarkdownPath)),
         ]);
     }
+
+    /**
+     * Show the contact information for the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\View\View
+     */
+    public function contact(Request $request): \Illuminate\View\View
+    {
+        $localizedMarkdownPath = Jetstream::localizedMarkdownPath('contact.md');
+
+        return view('contact', [
+            'contact' => Str::markdown(file_get_contents($localizedMarkdownPath)),
+        ]);
+    }
 }

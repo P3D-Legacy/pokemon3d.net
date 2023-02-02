@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Laravel\Jetstream\Jetstream;
 
 class HomeController extends Controller
 {
@@ -23,5 +25,20 @@ class HomeController extends Controller
             ->get();
 
         return view('home', compact('posts'));
+    }
+
+    /**
+     * Show the legal information for the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\View\View
+     */
+    public function legal(Request $request): \Illuminate\View\View
+    {
+        $localizedMarkdownPath = Jetstream::localizedMarkdownPath('legal.md');
+
+        return view('legal', [
+            'legal' => Str::markdown(file_get_contents($localizedMarkdownPath)),
+        ]);
     }
 }

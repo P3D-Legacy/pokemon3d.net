@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 
 <a name="0.4.0"></a>
 
+## 4.2.13 - 2023-02-02
+
+### What's Changed
+
+- Bump symfony/http-kernel from 6.2.2 to 6.2.6 by @dependabot in https://github.com/P3D-Legacy/pokemon3d.net/pull/252
+- Added oh-dear packages to monitor site by @dsbilling in https://github.com/P3D-Legacy/pokemon3d.net/pull/253
+- Added legal and contact page by @dsbilling in https://github.com/P3D-Legacy/pokemon3d.net/pull/254
+
+**Full Changelog**: https://github.com/P3D-Legacy/pokemon3d.net/compare/4.2.12...4.2.13
+
 ## 4.2.12 - 2023-01-31
 
 ### What's Changed

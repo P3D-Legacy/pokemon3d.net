@@ -32,7 +32,7 @@ class GameJolt extends Component
         $this->resetValidation();
 
         $this->validate([
-            'username' => ['required', 'alpha_dash', 'max:30', 'min:4'],
+            'username' => ['required', 'alpha_dash', 'max:30', 'min:3'],
             'token' => ['required', 'alpha_dash', 'max:30', 'min:4'],
         ]);
 

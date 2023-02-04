@@ -49,7 +49,7 @@ class ConnectGamejoltAccount extends Component
                 'nullable',
                 'alpha_dash',
                 'max:30',
-                'min:4',
+                'min:3',
                 Rule::unique('game_jolt_accounts')->ignore($user->id, 'user_id'),
             ],
             'token' => ['nullable', 'alpha_dash', 'max:30', 'min:4'],

@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 
 <a name="0.4.0"></a>
 
+## 4.2.15 - 2023-02-04
+
+### What's Changed
+
+- Fixed wrong formatting in notifications emails by @dsbilling in https://github.com/P3D-Legacy/pokemon3d.net/pull/256
+- Fixes #255 by @dsbilling in https://github.com/P3D-Legacy/pokemon3d.net/pull/257
+
+**Full Changelog**: https://github.com/P3D-Legacy/pokemon3d.net/compare/4.2.14...4.2.15
+
 ## 4.2.14 - 2023-02-02
 
 **Full Changelog**: https://github.com/P3D-Legacy/pokemon3d.net/compare/4.2.13...4.2.14

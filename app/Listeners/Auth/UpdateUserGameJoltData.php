@@ -2,6 +2,7 @@
 
 namespace App\Listeners\Auth;
 
+use App\Jobs\SyncGameSaveForUser;
 use Artisan;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Support\Facades\Auth;
@@ -41,11 +42,11 @@ class UpdateUserGameJoltData
         Artisan::call('gj:update-trophies', [
             'gamejolt_user_id' => $user->gamejolt->id,
         ]);
-        Artisan::call('sync:gamesave', [
-            'gamejolt_user_id' => $user->gamejolt->id,
-        ]);
         Artisan::call('sync:game-save-gamejolt-account-trophies', [
             'gamejolt_user_id' => $user->gamejolt->id,
         ]);
+
+        // Dispatch job to update user data
+        SyncGameSaveForUser::dispatch($user);
     }
 }

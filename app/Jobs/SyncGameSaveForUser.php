@@ -18,6 +18,8 @@ class SyncGameSaveForUser implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
+    private $user;
+
     /**
      * Create a new job instance.
      *
@@ -35,9 +37,10 @@ class SyncGameSaveForUser implements ShouldQueue
      */
     public function handle()
     {
-        
-        $api = new GamejoltApi(new GamejoltConfig(config('services.gamejolt.game_id'), config('services.gamejolt.private_key')));
-        $gamejolt_user_id = $this->user->gamejolt_account->id;
+        $game_id = config('services.gamejolt.game_id');
+        $private_key = config('services.gamejolt.private_key');
+        $api = new GamejoltApi(new GamejoltConfig($game_id, $private_key));
+        $gamejolt_user_id = $this->user->gamejolt->id;
         $gja = GamejoltAccount::firstWhere('id', $gamejolt_user_id);
         $gamesave_model = new GameSave;
         $columns = Schema::getColumnListing($gamesave_model->getTable());

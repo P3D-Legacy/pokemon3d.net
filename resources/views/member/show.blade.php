@@ -1,7 +1,7 @@
 <x-app-layout>
-    <div class='grid grid-cols-6 gap-6 py-10 max-w-7xl mx-auto'>
-        <div class="col-span-2">
-            <div class="max-w-2xl">
+    <div class='grid grid-cols-1 md:grid-cols-6 gap-6 py-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-2 lg:px-0'>
+        <div class="col-span-1 md:col-span-2">
+            <div>
                 <div class="w-full">
                     <div class="w-full h-48 bg-green-600 rounded-t-lg bg-spring"></div>
                     <div class="absolute ml-5 -mt-20">
@@ -13,7 +13,7 @@
 
                 <div class="flex flex-col p-5 pt-20 bg-white border rounded-b-lg dark:bg-slate-900 border-slate-300 dark:border-slate-800">
                     <div class="text-4xl font-semibold text-gray-800 dark:text-slate-200">{{ $user->username }}</div>
-                    <div class="flex gap-2 mt-3">
+                    <div class="gap-2 mt-3 grid grid-cols-6 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8">
                         @foreach($user->unlockedAchievements() as $achievement)
                             <x-achievement :achievement="$achievement" />
                         @endforeach
@@ -116,7 +116,7 @@
             </div>
         </div>
 
-        <div class="col-span-4">
+        <div class="col-span-1 md:col-span-4">
             <div class="w-full">
                 <div class="flex flex-col p-5 bg-white border rounded-lg dark:bg-slate-900 border-slate-300 dark:border-slate-800">
                     <div class="text-4xl font-semibold text-gray-800 dark:text-slate-200">{{ trans('Game Save') }}</div>

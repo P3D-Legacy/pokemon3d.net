@@ -22,7 +22,7 @@
                         { id: 1, label: '{{ trans('About') }}' },
                         { id: 2, label: '{{ trans('Connected Accounts') }}' },
                     ]}">
-                        <ul class="flex items-center w-full my-4">
+                        <ul class="flex items-center w-full my-4 overflow-auto">
                             <template x-for="(tab, tab.id) in tabs" :key="tab.id">
                                 <li class="px-4 py-2 text-gray-500 border-b-2 cursor-pointer dark:border-gray-800"
                                     :class="activeTab===tab.id ? 'text-green-500 border-green-500 dark:border-green-500' : ''" @click="activeTab = tab.id" x-text="tab.label"></li>

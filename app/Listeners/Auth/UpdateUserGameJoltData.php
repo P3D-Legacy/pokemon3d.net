@@ -4,7 +4,6 @@ namespace App\Listeners\Auth;
 
 use App\Jobs\SyncGameSaveForUser;
 use App\Jobs\SyncGameSaveGamejoltAccountTrophies;
-use Artisan;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Support\Facades\Auth;
 

@@ -67,6 +67,7 @@ class SyncGameSaveGamejoltAccountTrophies implements ShouldQueue
         }
         // Then sync all the trophies for the user with the gamesave achievements
         $game_save = $this->user->gamesave;
+        $user_trophies = $this->user->gamejolt->trophies;
         if ($game_save) {
             $game_save_achievements = $game_save->getAchievements();
 
@@ -78,7 +79,7 @@ class SyncGameSaveGamejoltAccountTrophies implements ShouldQueue
                 } else {
                     $achievement_name = Str::headline($game_save_achievement);
                 }
-                $trophy = $trophies->firstWhere('title', $achievement_name);
+                $trophy = $user_trophies->firstWhere('title', $achievement_name);
                 if ($trophy) {
                     $trophy->achieved = true; // Set the trophy to achieved
                     $trophy->save();

@@ -28,9 +28,9 @@
                     <div x-show="activeTab===2" class="w-full">
                         @livewire('profile.game-save.details', ['gamesave' => $gamesave])
                     </div>
-                    </div>
                     <div x-show="activeTab===3" class="w-full">
                         @livewire('profile.game-save.pokedex', ['gamesave' => $gamesave])
+                    </div>
                     <div x-show="activeTab===5" class="w-full">
                         @livewire('profile.game-save.trophies', ['gamejolt' => $gamejolt])
                     </div>

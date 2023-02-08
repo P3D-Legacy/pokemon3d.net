@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Jobs\SyncGameSaveGamejoltAccountTrophies;
 use App\Models\User;
 use Illuminate\Console\Command;
 
@@ -40,7 +41,7 @@ class SyncGameSaveTrophies extends Command
         if ($argument == 'all') {
             $users = User::all();
             foreach ($users as $user) {
-                \App\Jobs\SyncGameSaveGamejoltAccountTrophies::dispatch($user);
+                SyncGameSaveGamejoltAccountTrophies::dispatch($user);
             }
         } else {
             $user = User::find($argument);
@@ -49,7 +50,7 @@ class SyncGameSaveTrophies extends Command
 
                 return Command::FAILURE;
             }
-            \App\Jobs\SyncGameSaveGamejoltAccountTrophies::dispatch($user);
+            SyncGameSaveGamejoltAccountTrophies::dispatch($user);
         }
 
         return Command::SUCCESS;

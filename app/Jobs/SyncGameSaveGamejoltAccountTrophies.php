@@ -2,8 +2,11 @@
 
 namespace App\Jobs;
 
+use App\Models\GamejoltAccount;
 use App\Models\GamejoltAccountTrophy;
 use App\Models\User;
+use Harrk\GameJoltApi\GamejoltApi;
+use Harrk\GameJoltApi\GamejoltConfig;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;

@@ -22,6 +22,7 @@
     },
     "require": {
         "php": "^8.0.2",
+        "ext-gd": "*",
         "akaunting/laravel-language": "^1.0",
         "alibayat/laravel-categorizable": "^1.1",
         "alibayat/laravel-commentable": "1.1.x-dev",
@@ -83,8 +84,7 @@
         "touhidurabir/laravel-multi-key-route-binding": "^1.0",
         "tumblr/tumblr": "^0.4.1",
         "wire-elements/modal": "^1.0",
-        "wire-elements/spotlight": "^1.0",
-        "ext-gd": "*"
+        "wire-elements/spotlight": "^1.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.6",

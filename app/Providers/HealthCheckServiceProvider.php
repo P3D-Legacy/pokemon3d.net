@@ -30,6 +30,11 @@ class HealthCheckServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        // If staging is in app url and in env set expect env to staging
+        $env = 'production';
+        if (config('app.env') == 'staging' and str_contains(config('app.url'), 'staging')) {
+            $env = 'staging';
+        }
         Health::checks([
             UsedDiskSpaceCheck::new(),
             DatabaseCheck::new(),
@@ -37,7 +42,7 @@ class HealthCheckServiceProvider extends ServiceProvider
                 ->failWhenLoadIsHigherInTheLast5Minutes(2.0)
                 ->failWhenLoadIsHigherInTheLast15Minutes(1.5),
             DebugModeCheck::new(),
-            EnvironmentCheck::new(),
+            EnvironmentCheck::new()->expectEnvironment($env),
             ScheduleCheck::new(),
         ]);
     }

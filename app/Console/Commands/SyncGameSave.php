@@ -2,13 +2,9 @@
 
 namespace App\Console\Commands;
 
+use App\Jobs\SyncGameSaveForUser;
 use App\Models\GamejoltAccount;
-use App\Models\GameSave;
-use Harrk\GameJoltApi\Exceptions\TimeOutException;
-use Harrk\GameJoltApi\GamejoltApi;
-use Harrk\GameJoltApi\GamejoltConfig;
 use Illuminate\Console\Command;
-use Schema;
 
 class SyncGameSave extends Command
 {
@@ -26,43 +22,6 @@ class SyncGameSave extends Command
      */
     protected $description = 'Sync a game save from the GameJolt API';
 
-    private function handleGameSave($gamejolt_user_id, $api)
-    {
-        $gja = GamejoltAccount::firstWhere('id', $gamejolt_user_id);
-        $new_game_save = new GameSave;
-        $columns = Schema::getColumnListing($new_game_save->getTable());
-        $result = [];
-        try {
-            foreach ($columns as $column) {
-                if ($column == 'uuid' or $column == 'created_at' or $column == 'updated_at' or $column == 'user_id') {
-                    continue;
-                }
-                $key = 'saveStorageV1|'.$gamejolt_user_id.'|'.$column;
-                $this->info('Getting "'.$key.'" from datastore');
-                $ds_result = $api->dataStore()->fetch($key, $gja->username, $gja->token);
-                $success = $ds_result['response']['success'];
-                if (filter_var($success, FILTER_VALIDATE_BOOLEAN)) {
-                    $result[$column] = $ds_result['response']['data'];
-                } else {
-                    $message = $ds_result['response']['message'];
-                    $this->error($message);
-                    break;
-                }
-            }
-        } catch (TimeOutException $e) {
-            $this->error('Error: '.$e->getMessage());
-
-            return Command::FAILURE;
-        }
-        $game_save = GameSave::where(['user_id' => $gja->user_id])->first();
-        if ($game_save) {
-            $game_save->update($result);
-        } else {
-            $result['user_id'] = $gja->user_id;
-            GameSave::create($result);
-        }
-    }
-
     /**
      * Execute the console command.
      *
@@ -77,7 +36,6 @@ class SyncGameSave extends Command
 
             return Command::FAILURE;
         }
-        $api = new GamejoltApi(new GamejoltConfig($game_id, $private_key));
         $gamejolt_user_id = $this->argument('gamejolt_user_id');
         if ($gamejolt_user_id != 'all') {
             if (! is_numeric($gamejolt_user_id) || $gamejolt_user_id < 1) {
@@ -90,10 +48,11 @@ class SyncGameSave extends Command
         if ($gamejolt_user_id == 'all') {
             $gamejolt_accounts = GamejoltAccount::all();
             foreach ($gamejolt_accounts as $gamejolt_account) {
-                $this->handleGameSave($gamejolt_account->id, $api);
+                SyncGameSaveForUser::dispatch($gamejolt_account->user);
             }
         } else {
-            $this->handleGameSave($gamejolt_user_id, $api);
+            $gamejolt_account = GamejoltAccount::firstWhere('gamejolt_user_id', $gamejolt_user_id);
+            SyncGameSaveForUser::dispatch($gamejolt_account->user);
         }
 
         $this->info('Done.');

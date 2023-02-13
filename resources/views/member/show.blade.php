@@ -1,8 +1,7 @@
 <x-app-layout>
-
-    <div class='grid grid-cols-6 gap-6 py-10 max-w-7xl mx-auto'>
-        <div class="col-span-2">
-            <div class="max-w-2xl">
+    <div class='grid grid-cols-1 md:grid-cols-6 gap-6 py-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-2 lg:px-0'>
+        <div class="col-span-1 md:col-span-2">
+            <div>
                 <div class="w-full">
                     <div class="w-full h-48 bg-green-600 rounded-t-lg bg-spring"></div>
                     <div class="absolute ml-5 -mt-20">
@@ -14,14 +13,7 @@
 
                 <div class="flex flex-col p-5 pt-20 bg-white border rounded-b-lg dark:bg-slate-900 border-slate-300 dark:border-slate-800">
                     <div class="text-4xl font-semibold text-gray-800 dark:text-slate-200">{{ $user->username }}</div>
-                    <div class="mt-2 text-sm text-gray-400">
-                        <div class="flex flex-row items-center ml-auto space-x-2">
-                            <div>{{ __('Joined') }}: {{ $user->created_at->diffForHumans() }}</div>
-                            <div class="w-1 h-1 bg-gray-400 rounded-full"></div>
-                            <div>{{ __('Last online') }}: {{ $user->last_active_at ? $user->last_active_at ->diffForHumans() : trans('Never') }}</div>
-                        </div>
-                    </div>
-                    <div class="flex gap-2 mt-3">
+                    <div class="gap-2 mt-3 grid grid-cols-6 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8">
                         @foreach($user->unlockedAchievements() as $achievement)
                             <x-achievement :achievement="$achievement" />
                         @endforeach
@@ -30,7 +22,7 @@
                         { id: 1, label: '{{ trans('About') }}' },
                         { id: 2, label: '{{ trans('Connected Accounts') }}' },
                     ]}">
-                        <ul class="flex items-center w-full my-4">
+                        <ul class="flex items-center w-full my-4 overflow-auto">
                             <template x-for="(tab, tab.id) in tabs" :key="tab.id">
                                 <li class="px-4 py-2 text-gray-500 border-b-2 cursor-pointer dark:border-gray-800"
                                     :class="activeTab===tab.id ? 'text-green-500 border-green-500 dark:border-green-500' : ''" @click="activeTab = tab.id" x-text="tab.label"></li>
@@ -49,7 +41,7 @@
                                             {{ $user->created_at->isoFormat('LL') }}
                                         </x-profile.user-detail>
                                         <x-profile.user-detail title='Last online'>
-                                            {{ $user->last_active_at->isoFormat('LL') }}
+                                            {{ now()->subDay(1) > $user->last_active_at ? $user->last_active_at->isoFormat('LL') : $user->last_active_at->diffForHumans() }}
                                         </x-profile.user-detail>
                                         @if($user->birthdate && $user->settings()->get('birthdate') || $user->birthdate && $user->settings()->get('age'))
                                             <x-profile.user-detail title='Birthday'>
@@ -65,20 +57,17 @@
                                         @if($user->gender)
                                             <x-profile.user-detail title='Gender'>
                                                 @switch($user->gender)
-                                                    @case(0)
-                                                        <span>No selection</span>
-                                                        @break
                                                     @case(1)
-                                                        <span>Male</span>
+                                                        <span>{{ trans('Male') }}</span>
                                                         @break
                                                     @case(2)
-                                                        <span>Female</span>
+                                                        <span>{{ trans('Female') }}</span>
                                                         @break
                                                     @case(3)
-                                                        <span>Genderless</span>
+                                                        <span>{{ trans('Genderless') }}</span>
                                                         @break
                                                     @default
-                                                        <span>Unknown</span>
+                                                        <span>{{ trans('Unknown') }}</span>
                                                 @endswitch
                                             </x-profile.user-detail>
                                         @endif
@@ -127,58 +116,11 @@
             </div>
         </div>
 
-        <div class="col-span-4">
+        <div class="col-span-1 md:col-span-4">
             <div class="w-full">
                 <div class="flex flex-col p-5 bg-white border rounded-lg dark:bg-slate-900 border-slate-300 dark:border-slate-800">
                     <div class="text-4xl font-semibold text-gray-800 dark:text-slate-200">{{ trans('Game Save') }}</div>
-                    @empty($user->gamejolt || $user->gamesave)
-                        <p class='text-gray-500 text-sm pt-2'>{{ trans('User has not connected their Game Jolt account yet') }}</p>
-                    @endempty
-                    @if($user->gamejolt and $user->gamesave)
-                        <div x-data="{ activeTab:1, tabs: [
-                            { id: 1, label: '{{ trans('In-Game Trophies') }} ({{ $user->gamejolt->trophies->where('achieved', true)->count() }}/{{ $user->gamejolt->trophies->count() }})' },
-                        ]}">
-                            <ul class="flex items-center w-full my-4">
-                                <template x-for="(tab, tab.id) in tabs" :key="tab.id">
-                                <li class="px-4 py-2 text-gray-500 border-b-2 cursor-pointer dark:border-gray-800"
-                                    :class="activeTab===tab.id ? 'text-green-500 border-green-500 dark:border-green-500' : ''" @click="activeTab = tab.id" x-text="tab.label"></li>
-                            </template>
-                            </ul>
-                            <div class="flex w-full dark:text-slate-50">
-                                <div x-show="activeTab===1">
-                                    @if($user->gamejolt->trophies->count() > 0)
-                                        <div class="grid grid-cols-2 gap-4">
-                                            @foreach ($user->gamejolt->trophies as $trophy)
-                                                <div
-                                                    class="flex flex-col items-center justify-center p-5 rounded-md shadow bg-gray-50 shrink dark:bg-black {{ ($trophy->achieved) ? 'border-2 border-green-500' : '' }}">
-                                                    <img src="{{ $trophy->image_url }}" alt="{{ $trophy->title }}" title="{{ $trophy->title }}"
-                                                         class="object-cover w-20 h-20 border-2 rounded-md {{ $trophy->difficulty=='Bronze' ? 'border-yellow-800' : '' }}{{ $trophy->difficulty=='Silver' ? 'border-slate-400' : '' }}{{ $trophy->difficulty=='Gold' ? 'border-yellow-500' : '' }}{{ $trophy->difficulty=='Platinum' ? 'border-slate-600' : '' }} {{ $trophy->achieved ? '' : 'grayscale' }}">
-                                                    <h4 class="my-2 font-bold underline decoration-2 underline-offset-4 {{ $trophy->difficulty=='Bronze' ? 'text-yellow-800' : '' }}{{ $trophy->difficulty=='Silver' ? 'text-slate-400' : '' }}{{ $trophy->difficulty=='Gold' ? 'text-yellow-500' : '' }}{{ $trophy->difficulty=='Platinum' ? 'text-slate-600' : '' }}">
-                                                        @if($trophy->achieved)
-                                                            <span class="has-tip">
-                                                                <svg xmlns="http://www.w3.org/2000/svg"
-                                                                     class="inline-block w-5 h-5 text-green-500 dark:text-green-600" viewBox="0 0 20 20"
-                                                                     fill="currentColor">
-                                                                    <path fill-rule="evenodd"
-                                                                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                                                          clip-rule="evenodd" />
-                                                                </svg>
-                                                                <span
-                                                                    class="p-3 -mt-4 -ml-3 text-sm text-gray-900 bg-green-200 rounded tip">{{ __('Achieved') }}</span>
-                                                            </span>
-                                                        @endif{{ $trophy->title }}
-                                                    </h4>
-                                                    <div class="text-sm text-center">{{ $trophy->description }}</div>
-                                                </div>
-                                            @endforeach
-                                        </div>
-                                    @else
-                                        {{ trans('No Trophies found') }}
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
-                    @endif
+                    @livewire('profile.game-save.main', ['user' => $user])
                 </div>
             </div>
         </div>

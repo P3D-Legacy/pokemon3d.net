@@ -14,7 +14,7 @@ class MemberController extends Controller
      */
     public function index(): View
     {
-        $users = User::paginate(10);
+        $users = User::verified()->paginate(10);
 
         return view('member.index', ['users' => $users]);
     }

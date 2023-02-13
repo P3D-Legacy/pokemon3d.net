@@ -7,12 +7,12 @@
                         <path fill-rule="evenodd" d="M3 6a3 3 0 013-3h10a1 1 0 01.8 1.6L14.25 8l2.55 3.4A1 1 0 0116 13H6a1 1 0 00-1 1v3a1 1 0 11-2 0V6z" clip-rule="evenodd" />
                     </svg>
                 @endif
-                <span class="text-green-700 dark:text-green-200">{{ $post->tags->first()->name }}</span> &mdash; {{ $post->published_at->isoFormat('LL') }}
+                <span class="text-green-800 dark:text-green-200">{{ $post->tags->first()->name }}</span> &mdash; {{ $post->published_at->isoFormat('LL') }}
             </p>
             <div class="w-full px-4 mb-2 text-xl font-bold text-gray-800 sm:truncate dark:text-gray-200">
                 {{ $post->title }}
             </div>
-            <p class="hidden px-4 mb-4 text-sm text-gray-600 dark:text-gray-300 sm:block">
+            <p class="hidden px-4 mb-4 text-sm text-gray-700 dark:text-gray-300 sm:block">
                 {!! strip_tags(Str::of(Str::limit($post->body, 150))->markdown()) !!}
             </p>
         </a>

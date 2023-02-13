@@ -174,4 +174,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasOne(GameSave::class);
     }
+
+    public function scopeVerified($query)
+    {
+        return $query->whereNotNull('email_verified_at');
+    }
 }

@@ -47,7 +47,7 @@ class UserSearch extends SpotlightCommand
      */
     public function searchUser($query)
     {
-        return User::where('username', 'like', "%$query%")
+        return User::where('username', 'like', "%$query%")->verified()
             ->get()
             ->map(function (User $user) {
                 // You must map your search result into SpotlightSearchResult objects

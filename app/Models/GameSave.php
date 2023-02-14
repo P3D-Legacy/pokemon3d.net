@@ -261,6 +261,9 @@ class GameSave extends Model
                     if ($key == 'Pokemon') {
                         $pokemon['PokemonName'] = $this->getPokemonName($value);
                     }
+                    if ($key == 'Friendship') {
+                        $value = round($value / 255 * 100, 0).'%';
+                    }
                     $pokemon[$key] = $value;
                 }
                 $url = $pokemon['EggSteps'] > 0 ? 'https://raw.githubusercontent.com/P3D-Legacy/P3D-Legacy/master/P3D/Content/Pokemon/Egg/Egg_front.png' : 'https://raw.githubusercontent.com/P3D-Legacy/P3D-Legacy/master/P3D/Content/Pokemon/Sprites/'.$pokemon['Pokemon'].'.png';

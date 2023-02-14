@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use Exception;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
 class GameSave extends Model
@@ -68,78 +70,120 @@ class GameSave extends Model
 
     public function getPlayerData($key_name = null)
     {
-        // Explode the player data into an array on each return new line character
-        $playerDataLines = explode("\r\n", $this->player);
-        $playerData = [];
-        foreach ($playerDataLines as $line) {
-            $line = explode('|', $line);
-            $playerData[ucfirst($line[0])] = $line[1];
-        }
+        try {
+            // Explode the player data into an array on each return new line character
+            $playerDataLines = explode("\r\n", $this->player);
+            $playerData = [];
+            foreach ($playerDataLines as $line) {
+                $line = explode('|', $line);
+                $playerData[ucfirst($line[0])] = $line[1];
+            }
 
-        return $playerData[$key_name] ?? $playerData;
+            return $playerData[$key_name] ?? $playerData;
+        } catch (Exception $e) {
+            // If there is an error, return an empty array and log the error
+            Log::error($e->getMessage());
+
+            return [];
+        }
     }
 
     public function getPlayerDataDetails(): array
     {
-        $details = [];
-        $allowed_details = ['Name', 'RivalName', 'Location', 'Money', 'HasPokedex', 'HasPokegear', 'SaveCreated', 'Gender', 'OT', 'Points', 'GTSStars'];
-        foreach ($allowed_details as $detail) {
-            if ($detail === 'HasPokedex' or $detail === 'HasPokegear') {
-                $details[$detail] = $this->getPlayerData($detail) === '1' ? trans('Yes') : trans('No');
+        try {
+            $details = [];
+            $allowed_details = ['Name', 'RivalName', 'Location', 'Money', 'HasPokedex', 'HasPokegear', 'SaveCreated', 'Gender', 'OT', 'Points', 'GTSStars'];
+            foreach ($allowed_details as $detail) {
+                if ($detail === 'HasPokedex' or $detail === 'HasPokegear') {
+                    $details[$detail] = $this->getPlayerData($detail) === '1' ? trans('Yes') : trans('No');
 
-                continue;
+                    continue;
+                }
+                $details[$detail] = $this->getPlayerData($detail);
             }
-            $details[$detail] = $this->getPlayerData($detail);
-        }
 
-        return $details;
+            return $details;
+        } catch (Exception $e) {
+            // If there is an error, return an empty array and log the error
+            Log::error($e->getMessage());
+
+            return [];
+        }
     }
 
     public function getAchievements(): array
     {
-        $earnedAchievements = $this->getPlayerData('EarnedAchievements');
+        try {
+            $earnedAchievements = $this->getPlayerData('EarnedAchievements');
 
-        return explode(',', $earnedAchievements);
+            return explode(',', $earnedAchievements);
+        } catch (Exception $e) {
+            // If there is an error, return an empty array and log the error
+            Log::error($e->getMessage());
+
+            return [];
+        }
     }
 
     public function getPokedex(): array
     {
-        $pokedex = $this->pokedex;
-        $pokedex = explode("\r\n", $pokedex);
-        $pokedex = array_filter($pokedex);
+        try {
+            $pokedex = $this->pokedex;
+            $pokedex = explode("\r\n", $pokedex);
+            $pokedex = array_filter($pokedex);
 
-        return array_map(function ($item) {
-            $item = explode('|', $item);
-            $id = str_replace('{', '', $item[0]);
-            $status = (int) $item[1];
+            return array_map(function ($item) {
+                $item = explode('|', $item);
+                $id = str_replace('{', '', $item[0]);
+                $status = (int) $item[1];
 
-            return [
-                'id' => $id,
-                'name' => $this->getPokemonName($id),
-                'seen' => $status >= 1,
-                'caught' => $status >= 2,
-            ];
-        }, $pokedex);
+                return [
+                    'id' => $id,
+                    'name' => $this->getPokemonName($id),
+                    'seen' => $status >= 1,
+                    'caught' => $status >= 2,
+                ];
+            }, $pokedex);
+        } catch (Exception $e) {
+            // If there is an error, return an empty array and log the error
+            Log::error($e->getMessage());
+
+            return [];
+        }
     }
 
     // Get all seen pokemon in pokedex
     public function getSeenPokemon(): array
     {
-        $pokedex = $this->getPokedex();
+        try {
+            $pokedex = $this->getPokedex();
 
-        return array_filter($pokedex, function ($item) {
-            return $item['seen'];
-        });
+            return array_filter($pokedex, function ($item) {
+                return $item['seen'];
+            });
+        } catch (Exception $e) {
+            // If there is an error, return an empty array and log the error
+            Log::error($e->getMessage());
+
+            return [];
+        }
     }
 
     // Get all caught pokemon in pokedex
     public function getCaughtPokemon(): array
     {
-        $pokedex = $this->getPokedex();
+        try {
+            $pokedex = $this->getPokedex();
 
-        return array_filter($pokedex, function ($item) {
-            return $item['caught'];
-        });
+            return array_filter($pokedex, function ($item) {
+                return $item['caught'];
+            });
+        } catch (Exception $e) {
+            // If there is an error, return an empty array and log the error
+            Log::error($e->getMessage());
+
+            return [];
+        }
     }
 
     // Get count of seen pokemon in pokedex
@@ -157,77 +201,91 @@ class GameSave extends Model
     // Get statistics
     public function getStatistics(): array
     {
-        $statistics = $this->statistics;
-        $statistics = explode("\r\n", $statistics);
-        $statistics = array_filter($statistics);
+        try {
+            $statistics = $this->statistics;
+            $statistics = explode("\r\n", $statistics);
+            $statistics = array_filter($statistics);
 
-        return array_map(function ($item) {
-            $item = explode(',', $item);
-            $name = str_replace('{', '', $item[0]);
-            // Remove [ and ] and some random number between from the name
-            $name = preg_replace('/\[[0-9]+\]/', '', $name);
-            $number = format('locale-number', $item[1]);
-            // Remove the last three characters to remove the .00
-            $number = substr($number, 0, -3);
+            return array_map(function ($item) {
+                $item = explode(',', $item);
+                $name = str_replace('{', '', $item[0]);
+                // Remove [ and ] and some random number between from the name
+                $name = preg_replace('/\[[0-9]+\]/', '', $name);
+                $number = format('locale-number', $item[1]);
+                // Remove the last three characters to remove the .00
+                $number = substr($number, 0, -3);
 
-            return [
-                'name' => $name,
-                'value' => $number,
-            ];
-        }, $statistics);
+                return [
+                    'name' => $name,
+                    'value' => $number,
+                ];
+            }, $statistics);
+        } catch (Exception $e) {
+            // If there is an error, return an empty array and log the error
+            Log::error($e->getMessage());
+
+            return [];
+        }
     }
 
     // Get pokemon in party
     public function getParty(): array
     {
-        $party = $this->party;
-        $party = explode("\r\n", $party);
-        // Split values for party entry into an array
-        $party = array_map(function ($item) {
-            return explode('}{', $item);
-        }, $party);
-        // For each party entry; get the properties and add it to the pokemon in array
-        $party = array_map(function ($item) {
-            $pokemon = [];
-            $private_keys = ['IDValue'];
-            foreach ($item as $property) {
-                $property = explode('"[', $property);
-                $key = str_replace('{', '', str_replace('"', '', $property[0]));
-                $value = str_replace(']', '', str_replace('}', '', $property[1]));
-                if (in_array($key, $private_keys)) {
-                    continue;
+        try {
+            $party = $this->party;
+            $party = explode("\r\n", $party);
+            // Split values for party entry into an array
+            $party = array_map(function ($item) {
+                return explode('}{', $item);
+            }, $party);
+            // For each party entry; get the properties and add it to the pokemon in array
+            $party = array_map(function ($item) {
+                $pokemon = [];
+                $private_keys = ['IDValue'];
+                foreach ($item as $property) {
+                    $property = explode('"[', $property);
+                    $key = str_replace('{', '', str_replace('"', '', $property[0]));
+                    $value = str_replace(']', '', str_replace('}', '', $property[1]));
+                    if (in_array($key, $private_keys)) {
+                        continue;
+                    }
+                    if ($key == 'Experience') {
+                        $value = substr(format('locale-number', $value), 0, -3);
+                    }
+                    if ($key == 'Nature') {
+                        $value = $this->getNature($value);
+                    }
+                    if ($key == 'Ability') {
+                        $value = $this->getAbility($value);
+                    }
+                    if ($key == 'Pokemon') {
+                        $pokemon['PokemonName'] = $this->getPokemonName($value);
+                    }
+                    $pokemon[$key] = $value;
                 }
-                if ($key == 'Experience') {
-                    $value = substr(format('locale-number', $value), 0, -3);
-                }
-                if ($key == 'Nature') {
-                    $value = $this->getNature($value);
-                }
-                if ($key == 'Ability') {
-                    $value = $this->getAbility($value);
-                }
-                if ($key == 'Pokemon') {
-                    $pokemon['PokemonName'] = $this->getPokemonName($value);
-                }
-                $pokemon[$key] = $value;
-            }
-            $url = $pokemon['EggSteps'] > 0 ? 'https://raw.githubusercontent.com/P3D-Legacy/P3D-Legacy/master/P3D/Content/Pokemon/Egg/Egg_front.png' : 'https://raw.githubusercontent.com/P3D-Legacy/P3D-Legacy/master/P3D/Content/Pokemon/Sprites/'.$pokemon['Pokemon'].'.png';
-            $image = imagecrop(imagecreatefromstring(file_get_contents($url)), [
-                'x' => 0,
-                'y' => $pokemon['isShiny'] ? 96 : 0,
-                'width' => 96,
-                'height' => 96,
-            ]);
-            ob_start(); // Let's start output buffering
-            imagejpeg($image); // This will normally output the image, but because of ob_start(), it won't
-            $contents = ob_get_contents(); // Instead, output above is saved to $contents
-            ob_end_clean(); // End the output buffer
-            $pokemon['Image'] = 'data:image/png;base64,'.base64_encode($contents);
+                $url = $pokemon['EggSteps'] > 0 ? 'https://raw.githubusercontent.com/P3D-Legacy/P3D-Legacy/master/P3D/Content/Pokemon/Egg/Egg_front.png' : 'https://raw.githubusercontent.com/P3D-Legacy/P3D-Legacy/master/P3D/Content/Pokemon/Sprites/'.$pokemon['Pokemon'].'.png';
+                $image = imagecrop(imagecreatefromstring(file_get_contents($url)), [
+                    'x' => 0,
+                    'y' => $pokemon['isShiny'] ? 96 : 0,
+                    'width' => 96,
+                    'height' => 96,
+                ]);
+                ob_start(); // Let's start output buffering
+                imagejpeg($image); // This will normally output the image, but because of ob_start(), it won't
+                $contents = ob_get_contents(); // Instead, output above is saved to $contents
+                ob_end_clean(); // End the output buffer
+                $pokemon['Image'] = 'data:image/png;base64,'.base64_encode($contents);
 
-            return $pokemon;
-        }, $party);
+                return $pokemon;
+            }, $party);
 
-        return $party;
+            return $party;
+        } catch (Exception $e) {
+            // If there is an error, return an empty array and log the error
+            Log::error($e->getMessage());
+
+            return [];
+        }
     }
 
     // Get nature from int
@@ -465,19 +523,26 @@ class GameSave extends Model
     // Get the pokemon name from id
     public function getPokemonName($id): string
     {
-        // convert string id to int id
-        $id = (int) $id;
-        // get the language file path
-        $filepath = lang_path().'/pokemon_'.app()->getLocale().'.json';
-        // if the file doesn't exist, use the default language
-        if (! file_exists($filepath)) {
-            $filepath = lang_path().'/pokemon_en.json';
-        }
-        // load pokemon names from json file in the lang folder
-        $pokemon_names = json_decode(file_get_contents($filepath), true);
-        // get the pokemon name by the id key in json file
-        $pokemon_names = collect($pokemon_names);
+        try {
+            // convert string id to int id
+            $id = (int) $id;
+            // get the language file path
+            $filepath = lang_path().'/pokemon_'.app()->getLocale().'.json';
+            // if the file doesn't exist, use the default language
+            if (! file_exists($filepath)) {
+                $filepath = lang_path().'/pokemon_en.json';
+            }
+            // load pokemon names from json file in the lang folder
+            $pokemon_names = json_decode(file_get_contents($filepath), true);
+            // get the pokemon name by the id key in json file
+            $pokemon_names = collect($pokemon_names);
 
-        return isset($pokemon_names->get($id - 1)['name']) ? $pokemon_names->get($id - 1)['name'] : '???';
+            return isset($pokemon_names->get($id - 1)['name']) ? $pokemon_names->get($id - 1)['name'] : '???';
+        } catch (Exception $e) {
+            // If there is an error, return an empty array and log the error
+            Log::error($e->getMessage());
+
+            return '???';
+        }
     }
 }

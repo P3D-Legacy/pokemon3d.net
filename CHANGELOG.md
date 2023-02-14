@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 
 <a name="0.4.0"></a>
 
+## 4.3.0 - 2023-02-13
+
+### What's Changed
+
+- My Save - Rev3 by @dsbilling in https://github.com/P3D-Legacy/pokemon3d.net/pull/249
+- Update nb.json by @dsbilling in https://github.com/P3D-Legacy/pokemon3d.net/pull/250
+- Adding jobs by @dsbilling in https://github.com/P3D-Legacy/pokemon3d.net/pull/258
+- Bump actions/cache from 3.2.4 to 3.2.5 by @dependabot in https://github.com/P3D-Legacy/pokemon3d.net/pull/259
+- Release 4.3.0 by @dsbilling in https://github.com/P3D-Legacy/pokemon3d.net/pull/251
+
+**Full Changelog**: https://github.com/P3D-Legacy/pokemon3d.net/compare/4.2.15...4.3.0
+
 ## 4.2.15 - 2023-02-04
 
 ### What's Changed

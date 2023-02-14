@@ -83,6 +83,7 @@ class GameSave extends Model
         } catch (Exception $e) {
             // If there is an error, return an empty array and log the error
             Log::error($e->getMessage());
+
             return [];
         }
     }
@@ -105,6 +106,7 @@ class GameSave extends Model
         } catch (Exception $e) {
             // If there is an error, return an empty array and log the error
             Log::error($e->getMessage());
+
             return [];
         }
     }
@@ -118,6 +120,7 @@ class GameSave extends Model
         } catch (Exception $e) {
             // If there is an error, return an empty array and log the error
             Log::error($e->getMessage());
+
             return [];
         }
     }
@@ -144,6 +147,7 @@ class GameSave extends Model
         } catch (Exception $e) {
             // If there is an error, return an empty array and log the error
             Log::error($e->getMessage());
+
             return [];
         }
     }
@@ -160,6 +164,7 @@ class GameSave extends Model
         } catch (Exception $e) {
             // If there is an error, return an empty array and log the error
             Log::error($e->getMessage());
+
             return [];
         }
     }
@@ -176,6 +181,7 @@ class GameSave extends Model
         } catch (Exception $e) {
             // If there is an error, return an empty array and log the error
             Log::error($e->getMessage());
+
             return [];
         }
     }
@@ -217,6 +223,7 @@ class GameSave extends Model
         } catch (Exception $e) {
             // If there is an error, return an empty array and log the error
             Log::error($e->getMessage());
+
             return [];
         }
     }
@@ -276,6 +283,7 @@ class GameSave extends Model
         } catch (Exception $e) {
             // If there is an error, return an empty array and log the error
             Log::error($e->getMessage());
+
             return [];
         }
     }
@@ -516,7 +524,7 @@ class GameSave extends Model
     public function getPokemonName($id): string
     {
         try {
-        // convert string id to int id
+            // convert string id to int id
             $id = (int) $id;
             // get the language file path
             $filepath = lang_path().'/pokemon_'.app()->getLocale().'.json';
@@ -533,6 +541,7 @@ class GameSave extends Model
         } catch (Exception $e) {
             // If there is an error, return an empty array and log the error
             Log::error($e->getMessage());
+
             return '???';
         }
     }

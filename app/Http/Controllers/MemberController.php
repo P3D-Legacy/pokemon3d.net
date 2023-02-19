@@ -9,8 +9,6 @@ class MemberController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
-     * @return View
      */
     public function index(): View
     {
@@ -21,9 +19,6 @@ class MemberController extends Controller
 
     /**
      * Display the specified resource.
-     *
-     * @param  string  $param
-     * @return View
      */
     public function show(string $param): View
     {

@@ -9,8 +9,6 @@ class DownloadController extends Controller
 {
     /**
      * Download the latest version of the game
-     *
-     * @return RedirectResponse
      */
     public function download(): RedirectResponse
     {

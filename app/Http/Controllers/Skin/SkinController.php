@@ -82,7 +82,6 @@ class SkinController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -185,7 +184,6 @@ class SkinController extends Controller
     /**
      * Apply the specified resource.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function apply(Request $request, $uuid)
@@ -209,7 +207,6 @@ class SkinController extends Controller
     /**
      * Like the specified resource.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function like(Request $request, $uuid)
@@ -230,7 +227,6 @@ class SkinController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  string  $uuid
      * @return \Illuminate\Http\Response
      */
@@ -250,7 +246,6 @@ class SkinController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -283,10 +278,6 @@ class SkinController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  Request  $request
-     * @param $uuid
-     * @return RedirectResponse
      */
     public function destroy(Request $request, $uuid): RedirectResponse
     {

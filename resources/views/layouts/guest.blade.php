@@ -14,13 +14,13 @@
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
 		<!-- Styles -->
-		<link rel="stylesheet" href="{{ mix('css/app.css') }}">
+		@vite('resources/css/app.css')
         @livewireStyles
 
         <script src="https://browser.sentry-cdn.com/6.19.7/bundle.min.js" integrity="sha384-KXjn4K+AYjp1cparCXazrB+5HKdi69IUYz8glD3ySH3fnDgMX3Wg6VTMvXUGr4KB" crossorigin="anonymous"></script>
 
 		<!-- Scripts -->
-		<script src="{{ mix('js/app.js') }}" defer></script>
+		@vite('resources/js/app.js')
 		<script>
 			var $buoop = {required:{e:-6,f:-6,o:-6,s:-3,c:-6},insecure:true,unsupported:true,api:2021.08 };
 			function $buo_f(){

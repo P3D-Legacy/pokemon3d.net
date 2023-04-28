@@ -24,8 +24,6 @@ class TwitterController extends Controller
 
     /**
      * Obtain the user information from Twitter.
-     *
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function handleProviderCallback(): \Illuminate\Http\RedirectResponse
     {

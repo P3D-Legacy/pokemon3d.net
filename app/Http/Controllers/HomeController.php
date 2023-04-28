@@ -29,9 +29,6 @@ class HomeController extends Controller
 
     /**
      * Show the legal information for the application.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\View\View
      */
     public function legal(Request $request): \Illuminate\View\View
     {
@@ -44,9 +41,6 @@ class HomeController extends Controller
 
     /**
      * Show the contact information for the application.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\View\View
      */
     public function contact(Request $request): \Illuminate\View\View
     {

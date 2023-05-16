@@ -4,6 +4,24 @@ All notable changes to this project will be documented in this file.
 
 <a name="0.4.0"></a>
 
+## 4.3.2 - 2023-05-16
+
+### What's Changed
+
+- Migrate from Laravel Mix to Vite by @dsbilling in https://github.com/P3D-Legacy/pokemon3d.net/pull/262
+- Bump actions/cache from 3.2.5 to 3.2.6 by @dependabot in https://github.com/P3D-Legacy/pokemon3d.net/pull/263
+- Bump dns-packet from 5.3.1 to 5.4.0 by @dependabot in https://github.com/P3D-Legacy/pokemon3d.net/pull/264
+- Bump actions/cache from 3.2.6 to 3.3.1 by @dependabot in https://github.com/P3D-Legacy/pokemon3d.net/pull/265
+- Bump webpack from 5.72.1 to 5.76.1 by @dependabot in https://github.com/P3D-Legacy/pokemon3d.net/pull/266
+- Bump aglipanci/laravel-pint-action from 2.1.0 to 2.2.0 by @dependabot in https://github.com/P3D-Legacy/pokemon3d.net/pull/267
+- Bump guzzlehttp/psr7 from 2.4.3 to 2.4.5 by @dependabot in https://github.com/P3D-Legacy/pokemon3d.net/pull/269
+- Bump nyholm/psr7 from 1.5.1 to 1.7.0 by @dependabot in https://github.com/P3D-Legacy/pokemon3d.net/pull/270
+- Bump dependabot/fetch-metadata from 1.3.6 to 1.4.0 by @dependabot in https://github.com/P3D-Legacy/pokemon3d.net/pull/271
+- Remove Twitter Integration by @dsbilling in https://github.com/P3D-Legacy/pokemon3d.net/pull/272
+- Release 4.3.2 by @dsbilling in https://github.com/P3D-Legacy/pokemon3d.net/pull/273
+
+**Full Changelog**: https://github.com/P3D-Legacy/pokemon3d.net/compare/4.3.1...4.3.2
+
 ## 4.3.1 - 2023-02-14
 
 ### What's Changed

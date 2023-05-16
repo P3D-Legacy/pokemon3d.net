@@ -62,8 +62,8 @@ Route::get('/download', [DownloadController::class, 'download'])->name('download
 Route::prefix('login')->group(function () {
     Route::get('/discord', [DiscordController::class, 'redirectToProvider'])->name('discord.login');
     Route::get('/discord/callback', [DiscordController::class, 'handleProviderCallback']);
-    Route::get('/twitter', [TwitterController::class, 'redirectToProvider'])->name('twitter.login');
-    Route::get('/twitter/callback', [TwitterController::class, 'handleProviderCallback']);
+    // Route::get('/twitter', [TwitterController::class, 'redirectToProvider'])->name('twitter.login');
+    // Route::get('/twitter/callback', [TwitterController::class, 'handleProviderCallback']);
     Route::get('/facebook', [FacebookController::class, 'redirectToProvider'])->name('facebook.login');
     Route::get('/facebook/callback', [FacebookController::class, 'handleProviderCallback']);
     Route::get('/twitch', [TwitchController::class, 'redirectToProvider'])->name('twitch.login');

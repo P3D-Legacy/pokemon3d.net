@@ -117,7 +117,7 @@
                     </svg>
                 </a>
                 @endif
-                @if(config('services.twitter.client_id') and config('services.twitter.client_secret'))
+                {{--@if(config('services.twitter.client_id') and config('services.twitter.client_secret'))
                     <a href="{{ route('twitter.login') }}" class="flex items-center justify-center w-full px-4 py-2 mt-2 text-sm font-semibold tracking-widest text-white transition border border-transparent rounded-md bg-sky-600 hover:bg-sky-700 active:bg-sky-400 focus:outline-none focus:border-sky-900 focus:ring focus:ring-sky-300 disabled:opacity-25">
                         <svg class="inline-block w-auto h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 248 204">
                             <g>
@@ -125,7 +125,7 @@
                             </g>
                         </svg>
                     </a>
-                @endif
+                @endif--}}
                 @if(config('services.facebook.client_id') and config('services.facebook.client_secret'))
                     <a href="{{ route('facebook.login') }}" class="flex items-center justify-center w-full px-4 py-2 mt-2 text-sm font-semibold tracking-widest text-white transition bg-blue-600 border border-transparent rounded-md hover:bg-blue-700 active:bg-blue-400 focus:outline-none focus:border-blue-900 focus:ring focus:ring-blue-300 disabled:opacity-25">
                     <svg class="inline-block w-auto h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14222 14222">

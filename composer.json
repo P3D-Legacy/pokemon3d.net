@@ -48,7 +48,7 @@
         "kiritokatklian/nova-permission": "^4.0",
         "kkomelin/laravel-translatable-string-exporter": "^1.16",
         "knuckleswtf/scribe": "^3.23",
-        "laravel/framework": "^9.0",
+        "laravel/framework": "^9.19",
         "laravel/jetstream": "^2.6",
         "laravel/nova": "^4.6",
         "laravel/sanctum": "^2.14",
@@ -108,7 +108,8 @@
         "allow-plugins": {
             "composer/package-versions-deprecated": true,
             "pestphp/pest-plugin": true,
-            "treeware/plant": true
+            "treeware/plant": true,
+            "php-http/discovery": true
         }
     },
     "extra": {

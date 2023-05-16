@@ -27,10 +27,10 @@
                 <x-jet-section-border />
             @endif
 
-            @if(config("services.twitter.client_id") && config("services.twitter.client_secret"))
+            {{--@if(config("services.twitter.client_id") && config("services.twitter.client_secret"))
                 @livewire('profile.twitter-account')
                 <x-jet-section-border />
-            @endif
+            @endif--}}
 
             @if(config("services.facebook.client_id") && config("services.facebook.client_secret"))
                 @livewire('profile.facebook-account')

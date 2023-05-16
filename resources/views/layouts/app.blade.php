@@ -14,7 +14,7 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
         <!-- Styles -->
-        <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+        @vite('resources/css/app.css')
 
         @livewireStyles
         @powerGridStyles
@@ -24,7 +24,7 @@
         <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
 
         <!-- Scripts -->
-        <script src="{{ mix('js/app.js') }}" defer></script>
+        @vite('resources/js/app.js')
         <script>
             var $buoop = {required:{e:-6,f:-6,o:-6,s:-3,c:-6},insecure:true,unsupported:true,api:2021.08 };
             function $buo_f(){

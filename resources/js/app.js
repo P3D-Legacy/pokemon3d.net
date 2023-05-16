@@ -1,4 +1,4 @@
-require('./bootstrap');
+import './bootstrap';
 
 import Alpine from 'alpinejs';
 window.Alpine = Alpine;
@@ -6,7 +6,7 @@ import './../../vendor/power-components/livewire-powergrid/dist/powergrid';
 Alpine.start();
 
 import flatpickr from 'flatpickr';
-require('flatpickr/dist/themes/dark.css');
+import 'flatpickr/dist/themes/dark.css';
 
 flatpickr('.flatpickrSelector', {
     enableTime: true,

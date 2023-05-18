@@ -29,5 +29,5 @@ flatpickr('.flatpickrBirtdate', {
 
 import 'tw-elements';
 
-import * as EasyMDE from 'easymde';
+import EasyMDE from 'easymde';
 window.EasyMDE = EasyMDE;

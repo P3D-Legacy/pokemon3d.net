@@ -25,6 +25,7 @@ class ResourceList extends Component
                 if (Category::where('slug', request()->segment(3))->first()->children()->count() > 0) {
                     return $resource->hasCategory(Category::where('slug', request()->segment(3))->first()) || $resource->hasCategory(Category::where('slug', request()->segment(3))->first()->children()->get());
                 }
+
                 return $resource->hasCategory(Category::where('slug', request()->segment(3))->first());
             });
             $resources = new LengthAwarePaginator(

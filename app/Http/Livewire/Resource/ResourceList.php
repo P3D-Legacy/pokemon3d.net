@@ -21,6 +21,11 @@ class ResourceList extends Component
         if (request()->is('resource/category/*')) {
             $perPage = 15; // Default for pagination
             $filtered = Resource::orderBy('created_at', 'desc')->get()->filter(function ($resource) {
+                // If the category has one or more children, we want these as well
+                if (Category::where('slug', request()->segment(3))->first()->children()->count() > 0) {
+                    return $resource->hasCategory(Category::where('slug', request()->segment(3))->first()) || $resource->hasCategory(Category::where('slug', request()->segment(3))->first()->children()->get());
+                }
+
                 return $resource->hasCategory(Category::where('slug', request()->segment(3))->first());
             });
             $resources = new LengthAwarePaginator(

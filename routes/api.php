@@ -6,6 +6,7 @@ use App\Http\Controllers\API\v1\DiscordBotSettingController;
 use App\Http\Controllers\API\v1\Game\BadgeController;
 use App\Http\Controllers\API\v1\GamejoltAccountBanController;
 use App\Http\Controllers\API\v1\GamejoltAccountController;
+use App\Http\Controllers\API\v1\OpenAPIController;
 use App\Http\Controllers\API\v1\PostController;
 use App\Http\Controllers\API\v1\UserController;
 use Illuminate\Support\Facades\Route;
@@ -29,4 +30,6 @@ Route::prefix('v1')->group(function () {
     Route::apiResource('bot/discord/settings', DiscordBotSettingController::class);
     Route::apiResource('game/badges', BadgeController::class);
     Route::apiResource('post', PostController::class);
-});
+})->middleware(['api']);
+
+Route::apiResource('openapi-json', OpenAPIController::class)->only('index');

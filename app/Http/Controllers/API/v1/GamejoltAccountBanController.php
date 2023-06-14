@@ -50,9 +50,22 @@ class GamejoltAccountBanController extends Controller
      * @response 201 {
      *       "data": {
      *           "gamejoltaccount_id": 12345,
-     *           "reason_id": 3,
+     *           "reason": {
+     *              "name": "Abusing in-game glitches",
+     *              "created_at": "2022-04-02T18:51:14.000000Z",
+     *              "updated_at": "2022-04-02T18:51:14.000000Z"
+     *            },
      *           "expires_at": "2021-02-01T00:00:00.000000Z",
-     *           "banned_by_id": 1,
+     *           "banned_by": {
+     *              "id": 1,
+     *              "name": "John Doe",
+     *              "email": "john.doe@example.com",
+     *              "username": "john.doe",
+     *              "email_verified_at": "2022-12-21T18:49:11.000000Z",
+     *              "created_at": "2022-04-12T18:48:51.000000Z",
+     *              "updated_at": "2023-06-11T16:45:56.000000Z",
+     *              "profile_photo_url": ""
+     *           },
      *           "uuid": "1830ef92-b58b-4671-9096-2b7741c0b0d8",
      *           "updated_at": "2021-01-01T17:57:10.000000Z",
      *           "created_at": "2021-01-01T17:57:10.000000Z"

@@ -4,6 +4,19 @@ All notable changes to this project will be documented in this file.
 
 <a name="0.4.0"></a>
 
+## 4.3.3 - 2023-06-08
+
+### What's Changed
+
+- Bump dependabot/fetch-metadata from 1.4.0 to 1.5.0 by @dependabot in https://github.com/P3D-Legacy/pokemon3d.net/pull/274
+- Bump aglipanci/laravel-pint-action from 2.2.0 to 2.3.0 by @dependabot in https://github.com/P3D-Legacy/pokemon3d.net/pull/275
+- Bump dependabot/fetch-metadata from 1.5.0 to 1.5.1 by @dependabot in https://github.com/P3D-Legacy/pokemon3d.net/pull/276
+- Bump vite from 3.2.6 to 3.2.7 by @dependabot in https://github.com/P3D-Legacy/pokemon3d.net/pull/277
+- Added support for getting resources from child categories by @dsbilling in https://github.com/P3D-Legacy/pokemon3d.net/pull/279
+- Release 4.3.3 by @dsbilling in https://github.com/P3D-Legacy/pokemon3d.net/pull/280
+
+**Full Changelog**: https://github.com/P3D-Legacy/pokemon3d.net/compare/4.3.2...4.3.3
+
 ## 4.3.2 - 2023-05-16
 
 ### What's Changed

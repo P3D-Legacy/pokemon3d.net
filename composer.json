@@ -47,7 +47,7 @@
         "kilobyteno/laravel-plausible": "^0.0.2",
         "kiritokatklian/nova-permission": "^4.0",
         "kkomelin/laravel-translatable-string-exporter": "^1.16",
-        "knuckleswtf/scribe": "^3.23",
+        "knuckleswtf/scribe": "^4.21.2",
         "laravel/framework": "^9.19",
         "laravel/jetstream": "^2.6",
         "laravel/nova": "^4.6",

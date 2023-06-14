@@ -29,4 +29,4 @@ Route::prefix('v1')->group(function () {
     Route::apiResource('bot/discord/settings', DiscordBotSettingController::class);
     Route::apiResource('game/badges', BadgeController::class);
     Route::apiResource('post', PostController::class);
-});
+})->middleware(['api']);

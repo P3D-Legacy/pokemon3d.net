@@ -38,6 +38,7 @@ class UpdateAPIDocs extends Command
             $openapi = Reader::readFromYamlFile($file_path);
         } catch (IOException|TypeErrorException|UnresolvableReferenceException $e) {
             $this->error($e->getMessage());
+
             return Command::FAILURE;
         }
         $json = Writer::writeToJson($openapi);
@@ -45,6 +46,7 @@ class UpdateAPIDocs extends Command
         $file_path = storage_path('app/scribe/openapi.json');
         file_put_contents($file_path, $json);
         $this->info('API documentation updated.');
+
         return Command::SUCCESS;
     }
 }

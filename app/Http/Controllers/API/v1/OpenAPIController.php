@@ -3,11 +3,6 @@
 namespace App\Http\Controllers\API\v1;
 
 use App\Http\Controllers\Controller;
-use cebe\openapi\exceptions\IOException;
-use cebe\openapi\exceptions\TypeErrorException;
-use cebe\openapi\exceptions\UnresolvableReferenceException;
-use cebe\openapi\Reader;
-use cebe\openapi\Writer;
 
 /**
  * @group OpenAPI
@@ -34,6 +29,7 @@ class OpenAPIController extends Controller
                 'error' => $e->getMessage(),
             ], 500);
         }
+
         return response($json, 200)->header('Content-Type', 'application/json');
     }
 }

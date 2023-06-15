@@ -24,7 +24,7 @@ class GamejoltAccountController extends Controller
      *
      * @urlParam id int required The ID of the Game Jolt Account.
      *
-     * @response {
+     * @jsonresponse {
      *        "data": {
      *           "uuid": "5b52ee9f-2bc8-42a5-891b-27af579ea056",
      *           "id": 94314,
@@ -97,6 +97,11 @@ class GamejoltAccountController extends Controller
      */
     public function show(Request $request, $id)
     {
+        if (! $request->user()) {
+            return response()->json([
+                'error' => 'Token does not have access!',
+            ]);
+        }
         if (! $request->user()->tokenCan('read')) {
             return response()->json([
                 'error' => 'Token does not have access!',

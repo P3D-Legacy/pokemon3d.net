@@ -22,7 +22,7 @@ class BanReasonController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @response {
+     * @jsonresponse {
      *    "data": [
      *        {
      *            "uuid": "1830ef92-b58b-4671-9096-2b7741c0b0d8",
@@ -46,6 +46,11 @@ class BanReasonController extends Controller
      */
     public function index(Request $request)
     {
+        if (! $request->user()) {
+            return response()->json([
+                'error' => 'Token does not have access!',
+            ]);
+        }
         if (! $request->user()->tokenCan('read')) {
             return response()->json([
                 'error' => 'Token does not have access!',
@@ -61,7 +66,7 @@ class BanReasonController extends Controller
      *
      * @urlParam id string required The UUID of the ban reason.
      *
-     * @response {
+     * @jsonresponse {
      *    "data": [
      *        {
      *            "uuid": "1830ef92-b58b-4671-9096-2b7741c0b0d8",
@@ -74,8 +79,13 @@ class BanReasonController extends Controller
      *    ]
      * }
      */
-    public function show(Request $request, $id)
+    public function show(Request $request, $id): BanReasonResource|\Illuminate\Http\JsonResponse
     {
+        if (! $request->user()) {
+            return response()->json([
+                'error' => 'Token does not have access!',
+            ]);
+        }
         if (! $request->user()->tokenCan('read')) {
             return response()->json([
                 'error' => 'Token does not have access!',

@@ -24,10 +24,20 @@ class GamejoltAccountBanController extends Controller
     /**
      * Display a listing of the resources.
      *
-     * @return \Illuminate\Http\Response
+     * @jsonresponse 200 {}
      */
     public function index(Request $request)
     {
+        if (! $request->user()) {
+            return response()->json([
+                'error' => 'Token does not have access!',
+            ]);
+        }
+        if (! $request->user()) {
+            return response()->json([
+                'error' => 'Token does not have access!',
+            ]);
+        }
         if (! $request->user()->tokenCan('read')) {
             return response()->json([
                 'error' => 'Token does not have access!',
@@ -47,7 +57,7 @@ class GamejoltAccountBanController extends Controller
      * @bodyParam banned_by_gamejoltaccount_id int optional The ID of the Game Jolt Account. Cannot be used with banned_by_id. Example: 123456
      * @bodyParam expires_at string optional The expiry of the ban. Example: 2020-01-01
      *
-     * @response 201 {
+     * @jsonresponse 201 {
      *       "data": {
      *           "gamejoltaccount_id": 12345,
      *           "reason": {
@@ -124,7 +134,7 @@ class GamejoltAccountBanController extends Controller
      *
      * @urlParam id int required The ID of the Game Jolt Account.
      *
-     * @response {
+     * @jsonresponse 200 {
      *    "data": [
      *        {
      *            "id": 1,
@@ -142,6 +152,11 @@ class GamejoltAccountBanController extends Controller
      */
     public function show(Request $request, $id)
     {
+        if (! $request->user()) {
+            return response()->json([
+                'error' => 'Token does not have access!',
+            ]);
+        }
         if (! $request->user()->tokenCan('read')) {
             return response()->json([
                 'error' => 'Token does not have access!',
@@ -159,7 +174,7 @@ class GamejoltAccountBanController extends Controller
      *
      * @urlParam id string required The UUID of the _ban_ you would like to remove
      *
-     * @response 202 {
+     * @jsonresponse 202 {
      *  "success": 'Ban was removed!',
      * }
      */

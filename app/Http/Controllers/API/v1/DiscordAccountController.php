@@ -19,7 +19,7 @@ class DiscordAccountController extends Controller
      *
      * @urlParam id int required The ID of the Discord Account.
      *
-     * @response {
+     * @jsonresponse {
      *    "data": [
      *        {
      *            "id": 1,
@@ -37,6 +37,11 @@ class DiscordAccountController extends Controller
      */
     public function show(Request $request, $id)
     {
+        if (! $request->user()) {
+            return response()->json([
+                'error' => 'Token does not have access!',
+            ]);
+        }
         if (! $request->user()->tokenCan('read')) {
             return response()->json([
                 'error' => 'Token does not have access!',

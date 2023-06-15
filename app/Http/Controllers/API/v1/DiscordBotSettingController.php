@@ -16,7 +16,7 @@ class DiscordBotSettingController extends Controller
     /**
      * Display the first resource.
      *
-     * @response {
+     * @jsonresponse {
      *    "data": [
      *        {
      *            "category_id": 1,
@@ -31,6 +31,11 @@ class DiscordBotSettingController extends Controller
      */
     public function index(Request $request): \Illuminate\Http\JsonResponse
     {
+        if (! $request->user()) {
+            return response()->json([
+                'error' => 'Token does not have access!',
+            ]);
+        }
         if (! $request->user()->tokenCan('read')) {
             return response()->json([
                 'error' => 'Token does not have access!',
@@ -51,7 +56,7 @@ class DiscordBotSettingController extends Controller
      * @bodyParam events_id int required The ID of your desired event channel.
      * @bodyParam hide_events json A JSON object.
      *
-     * @response 201 {
+     * @jsonresponse 201 {
      *      "category_id": 1,
      *      "chat_id": 1,
      *      "events_id": 1,

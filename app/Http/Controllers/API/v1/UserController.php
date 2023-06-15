@@ -24,7 +24,7 @@ class UserController extends Controller
      *
      * @urlParam id int required The ID of the user.
      *
-     * @response {
+     * @jsonresponse {
      *        "data": {
      *           "id": 1,
      *           "name": "Daniel S. Billing",
@@ -73,6 +73,11 @@ class UserController extends Controller
      */
     public function show(Request $request, $id)
     {
+        if (! $request->user()) {
+            return response()->json([
+                'error' => 'Token does not have access!',
+            ]);
+        }
         if (! $request->user()->tokenCan('read')) {
             return response()->json([
                 'error' => 'Token does not have access!',

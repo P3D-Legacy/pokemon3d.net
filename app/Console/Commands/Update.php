@@ -62,7 +62,7 @@ class Update extends Command
         $this->info('Running storage:link command...');
         Artisan::call('storage:link');
         $this->info('Generating API Docs...');
-        Artisan::call('scribe:generate');
+        Artisan::call('api:docs');
         $this->info('Getting Github release...');
         Artisan::call('github:syncrelease');
         $this->info('Getting Discord roles...');

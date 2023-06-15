@@ -19,21 +19,21 @@ class OpenAPIController extends Controller
     /**
      * Show the OpenAPI documentation in JSON format.
      *
-     * @response 200 {}
+     * @jsonresponse {}
      *
      * @unauthenticated
      **/
     public function index()
     {
-        // Get YAML from storage
-        $file_path = storage_path('app/scribe/openapi.yaml');
+        // Get and return JSON from storage
+        $file_path = storage_path('app/scribe/openapi.json');
         try {
-            $openapi = Reader::readFromYamlFile($file_path);
-        } catch (IOException|TypeErrorException|UnresolvableReferenceException $e) {
-            return response('', 500)->header('Content-Type', 'application/json');
+            $json = file_get_contents($file_path);
+        } catch (\Exception $e) {
+            return response()->json([
+                'error' => $e->getMessage(),
+            ], 500);
         }
-        $json = Writer::writeToJson($openapi);
-
         return response($json, 200)->header('Content-Type', 'application/json');
     }
 }

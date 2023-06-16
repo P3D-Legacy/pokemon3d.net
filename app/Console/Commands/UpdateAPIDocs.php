@@ -8,6 +8,7 @@ use cebe\openapi\exceptions\UnresolvableReferenceException;
 use cebe\openapi\Reader;
 use cebe\openapi\Writer;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Artisan;
 
 class UpdateAPIDocs extends Command
 {
@@ -32,6 +33,9 @@ class UpdateAPIDocs extends Command
      */
     public function handle()
     {
+        // Generate Scribe API Docs
+        Artisan::call('scribe:generate');
+
         // Get YAML from storage
         $file_path = storage_path('app/scribe/openapi.yaml');
         try {

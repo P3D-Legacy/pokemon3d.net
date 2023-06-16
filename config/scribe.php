@@ -379,7 +379,7 @@ INTRO
          * If an endpoint/subgroup is listed under a group it doesn't belong in, it will be ignored.
          * Note: you must include the initial '/' when writing an endpoint.
          */
-        'order' => null,
+        'order' => [],
     ],
     /**
      * Customize the "Last updated" value displayed in the docs by specifying tokens and formats.

@@ -19,7 +19,7 @@ class DiscordAccountController extends Controller
      *
      * @urlParam id int required The ID of the Discord Account.
      *
-     * @jsonresponse {
+     * @response {
      *    "data": [
      *        {
      *            "id": 1,

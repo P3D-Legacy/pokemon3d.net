@@ -16,7 +16,7 @@ class DiscordBotSettingController extends Controller
     /**
      * Display the first resource.
      *
-     * @jsonresponse {
+     * @response {
      *    "data": [
      *        {
      *            "category_id": 1,
@@ -56,7 +56,7 @@ class DiscordBotSettingController extends Controller
      * @bodyParam events_id int required The ID of your desired event channel.
      * @bodyParam hide_events json A JSON object.
      *
-     * @jsonresponse 201 {
+     * @response 201 {
      *      "category_id": 1,
      *      "chat_id": 1,
      *      "events_id": 1,

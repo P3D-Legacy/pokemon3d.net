@@ -24,7 +24,7 @@ class GamejoltAccountController extends Controller
      *
      * @urlParam id int required The ID of the Game Jolt Account.
      *
-     * @jsonresponse {
+     * @response {
      *        "data": {
      *           "uuid": "5b52ee9f-2bc8-42a5-891b-27af579ea056",
      *           "id": 94314,

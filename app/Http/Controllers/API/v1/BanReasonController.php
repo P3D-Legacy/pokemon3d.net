@@ -22,7 +22,7 @@ class BanReasonController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @jsonresponse {
+     * @response {
      *    "data": [
      *        {
      *            "uuid": "1830ef92-b58b-4671-9096-2b7741c0b0d8",
@@ -66,7 +66,7 @@ class BanReasonController extends Controller
      *
      * @urlParam id string required The UUID of the ban reason.
      *
-     * @jsonresponse {
+     * @response {
      *    "data": [
      *        {
      *            "uuid": "1830ef92-b58b-4671-9096-2b7741c0b0d8",

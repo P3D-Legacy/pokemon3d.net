@@ -28,7 +28,7 @@ class PostController extends Controller
      * @bodyParam user_id int required The ID of the user. Example: 1
      * @bodyParam published_at string optional The date the post was published. Example: 2021-01-01
      *
-     * @jsonresponse 201 {
+     * @response 201 {
      *      "title": "Test",
      *      "body": "Test",
      *      "active": True,

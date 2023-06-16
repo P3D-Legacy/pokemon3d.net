@@ -24,7 +24,7 @@ class UserController extends Controller
      *
      * @urlParam id int required The ID of the user.
      *
-     * @jsonresponse {
+     * @response {
      *        "data": {
      *           "id": 1,
      *           "name": "Daniel S. Billing",

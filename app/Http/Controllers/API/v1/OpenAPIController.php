@@ -14,7 +14,7 @@ class OpenAPIController extends Controller
     /**
      * Show the OpenAPI documentation in JSON format.
      *
-     * @jsonresponse 200 {}
+     * @response 200 {}
      *
      * @unauthenticated
      **/

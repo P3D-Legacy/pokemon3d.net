@@ -20,8 +20,8 @@ class DiscordAccountController extends Controller
      * @urlParam id int required The ID of the Discord Account.
      *
      * @apiResource App\Http\Resources\API\v1\DiscordAccountResource
-     * @apiResourceModel App\Models\DiscordAccount
      *
+     * @apiResourceModel App\Models\DiscordAccount
      */
     public function show(Request $request, $id): \Illuminate\Http\JsonResponse|DiscordAccountResource
     {

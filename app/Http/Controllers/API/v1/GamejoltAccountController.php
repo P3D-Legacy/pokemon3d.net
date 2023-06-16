@@ -25,8 +25,8 @@ class GamejoltAccountController extends Controller
      * @urlParam id int required The ID of the Game Jolt Account.
      *
      * @apiResource App\Http\Resources\API\v1\GamejoltAccountResource
-     * @apiResourceModel App\Models\GamejoltAccount
      *
+     * @apiResourceModel App\Models\GamejoltAccount
      */
     public function show(Request $request, $id): \Illuminate\Http\JsonResponse|GamejoltAccountResource
     {

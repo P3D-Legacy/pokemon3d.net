@@ -14,7 +14,7 @@ class GamejoltAccountResource extends JsonResource
      */
     public function toArray($request)
     {
-        if (!$request->user()) {
+        if (! $request->user()) {
             return [];
         }
         if ($request->user()->can('api.full')) {

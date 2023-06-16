@@ -23,8 +23,8 @@ class BanReasonController extends Controller
      * Display a listing of the resource.
      *
      * @apiResourceCollection App\Http\Resources\API\v1\BanReasonResource
-     * @apiResourceModel App\Models\BanReason
      *
+     * @apiResourceModel App\Models\BanReason
      */
     public function index(Request $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\AnonymousResourceCollection
     {
@@ -49,8 +49,8 @@ class BanReasonController extends Controller
      * @urlParam id string required The UUID of the ban reason.
      *
      * @apiResource App\Http\Resources\API\v1\BanReasonResource
-     * @apiResourceModel App\Models\BanReason
      *
+     * @apiResourceModel App\Models\BanReason
      */
     public function show(Request $request, $id): BanReasonResource|\Illuminate\Http\JsonResponse
     {

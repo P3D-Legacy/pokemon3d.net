@@ -25,8 +25,8 @@ class UserController extends Controller
      * @urlParam id int required The ID of the user.
      *
      * @apiResource App\Http\Resources\API\v1\UserResource
-     * @apiResourceModel App\Models\User
      *
+     * @apiResourceModel App\Models\User
      */
     public function show(Request $request, $id): \Illuminate\Http\JsonResponse|UserResource
     {

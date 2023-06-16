@@ -25,8 +25,8 @@ class GamejoltAccountBanController extends Controller
      * Display a listing of the resources.
      *
      * @apiResourceCollection App\Http\Resources\API\v1\GamejoltAccountBanResource
-     * @apiResourceModel App\Models\GamejoltAccountBan
      *
+     * @apiResourceModel App\Models\GamejoltAccountBan
      */
     public function index(Request $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\AnonymousResourceCollection
     {
@@ -60,8 +60,8 @@ class GamejoltAccountBanController extends Controller
      * @bodyParam expires_at string optional The expiry of the ban. Example: 2020-01-01
      *
      * @apiResource App\Http\Resources\API\v1\GamejoltAccountBanResource
-     * @apiResourceModel App\Models\GamejoltAccountBan
      *
+     * @apiResourceModel App\Models\GamejoltAccountBan
      */
     public function store(Request $request): GamejoltAccountBanResource|\Illuminate\Http\JsonResponse
     {
@@ -116,8 +116,8 @@ class GamejoltAccountBanController extends Controller
      * @urlParam id int required The ID of the Game Jolt Account.
      *
      * @apiResourceCollection App\Http\Resources\API\v1\GamejoltAccountBanResource
-     * @apiResourceModel App\Models\GamejoltAccountBan
      *
+     * @apiResourceModel App\Models\GamejoltAccountBan
      */
     public function show(Request $request, $id): \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\AnonymousResourceCollection
     {
@@ -144,8 +144,8 @@ class GamejoltAccountBanController extends Controller
      * @urlParam id string required The UUID of the _ban_ you would like to remove
      *
      * @apiResource App\Http\Resources\API\v1\GamejoltAccountBanResource
-     * @apiResourceModel App\Models\GamejoltAccountBan
      *
+     * @apiResourceModel App\Models\GamejoltAccountBan
      */
     public function destroy(Request $request, $uuid): \Illuminate\Http\JsonResponse
     {

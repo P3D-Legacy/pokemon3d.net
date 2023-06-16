@@ -14,6 +14,9 @@ class BanReasonResource extends JsonResource
      */
     public function toArray($request)
     {
+        if (!$request->user()) {
+            return [];
+        }
         if ($request->user()->can('api.full')) {
             return parent::toArray($request);
         }

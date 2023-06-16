@@ -62,6 +62,7 @@ return [
              */
             'exclude' => [
                 // '/health', 'admin.*'
+                '/openapi-json',
             ],
 
             /*

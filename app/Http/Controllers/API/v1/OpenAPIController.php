@@ -14,9 +14,10 @@ class OpenAPIController extends Controller
     /**
      * Show the OpenAPI documentation in JSON format.
      *
-     * @response 200 {}
+     * @response {}
      *
      * @unauthenticated
+     *
      **/
     public function index(): \Illuminate\Http\JsonResponse
     {

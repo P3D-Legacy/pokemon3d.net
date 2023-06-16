@@ -24,7 +24,9 @@ class GamejoltAccountBanController extends Controller
     /**
      * Display a listing of the resources.
      *
-     * @response 200 {}
+     * @apiResourceCollection App\Http\Resources\API\v1\GamejoltAccountBanResource
+     * @apiResourceModel App\Models\GamejoltAccountBan
+     *
      */
     public function index(Request $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\AnonymousResourceCollection
     {
@@ -57,30 +59,9 @@ class GamejoltAccountBanController extends Controller
      * @bodyParam banned_by_gamejoltaccount_id int optional The ID of the Game Jolt Account. Cannot be used with banned_by_id. Example: 123456
      * @bodyParam expires_at string optional The expiry of the ban. Example: 2020-01-01
      *
-     * @response 201 {
-     *       "data": {
-     *           "gamejoltaccount_id": 12345,
-     *           "reason": {
-     *              "name": "Abusing in-game glitches",
-     *              "created_at": "2022-04-02T18:51:14.000000Z",
-     *              "updated_at": "2022-04-02T18:51:14.000000Z"
-     *            },
-     *           "expires_at": "2021-02-01T00:00:00.000000Z",
-     *           "banned_by": {
-     *              "id": 1,
-     *              "name": "John Doe",
-     *              "email": "john.doe@example.com",
-     *              "username": "john.doe",
-     *              "email_verified_at": "2022-12-21T18:49:11.000000Z",
-     *              "created_at": "2022-04-12T18:48:51.000000Z",
-     *              "updated_at": "2023-06-11T16:45:56.000000Z",
-     *              "profile_photo_url": ""
-     *           },
-     *           "uuid": "1830ef92-b58b-4671-9096-2b7741c0b0d8",
-     *           "updated_at": "2021-01-01T17:57:10.000000Z",
-     *           "created_at": "2021-01-01T17:57:10.000000Z"
-     *       }
-     *   }
+     * @apiResource App\Http\Resources\API\v1\GamejoltAccountBanResource
+     * @apiResourceModel App\Models\GamejoltAccountBan
+     *
      */
     public function store(Request $request): GamejoltAccountBanResource|\Illuminate\Http\JsonResponse
     {
@@ -134,21 +115,9 @@ class GamejoltAccountBanController extends Controller
      *
      * @urlParam id int required The ID of the Game Jolt Account.
      *
-     * @response 200 {
-     *    "data": [
-     *        {
-     *            "id": 1,
-     *            "uuid": "1830ef92-b58b-4671-9096-2b7741c0b0d8",
-     *            "gamejoltaccount_id": 12345,
-     *            "banned_by_id": 1,
-     *            "reason_id": 1,
-     *            "expire_at": null,
-     *            "created_at": "2021-01-01T17:57:10.000000Z",
-     *            "updated_at": "2021-01-01T17:57:10.000000Z",
-     *            "deleted_at": null
-     *        },
-     *    ]
-     * }
+     * @apiResourceCollection App\Http\Resources\API\v1\GamejoltAccountBanResource
+     * @apiResourceModel App\Models\GamejoltAccountBan
+     *
      */
     public function show(Request $request, $id): \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\AnonymousResourceCollection
     {
@@ -174,9 +143,9 @@ class GamejoltAccountBanController extends Controller
      *
      * @urlParam id string required The UUID of the _ban_ you would like to remove
      *
-     * @response 202 {
-     *  "success": 'Ban was removed!',
-     * }
+     * @apiResource App\Http\Resources\API\v1\GamejoltAccountBanResource
+     * @apiResourceModel App\Models\GamejoltAccountBan
+     *
      */
     public function destroy(Request $request, $uuid): \Illuminate\Http\JsonResponse
     {

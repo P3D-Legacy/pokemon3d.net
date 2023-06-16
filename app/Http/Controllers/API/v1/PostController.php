@@ -28,17 +28,8 @@ class PostController extends Controller
      * @bodyParam user_id int required The ID of the user. Example: 1
      * @bodyParam published_at string optional The date the post was published. Example: 2021-01-01
      *
-     * @response 201 {
-     *      "title": "Test",
-     *      "body": "Test",
-     *      "active": True,
-     *      "sticky": False,
-     *      "user_id": 1,
-     *      "published_at": "2021-12-21T20:59:14.000000Z",
-     *      "created_at": "2021-12-21T20:59:14.000000Z",
-     *      "updated_at": "2021-12-21T20:59:14.000000Z",
-     *      "deleted_at": null,
-     * }
+     * @response {}
+     *
      **/
     public function store(Request $request): \Illuminate\Http\JsonResponse
     {

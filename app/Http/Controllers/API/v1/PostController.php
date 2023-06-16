@@ -40,7 +40,7 @@ class PostController extends Controller
      *      "deleted_at": null,
      * }
      **/
-    public function store(Request $request)
+    public function store(Request $request): \Illuminate\Http\JsonResponse
     {
         if (! $request->user()->tokenCan('create')) {
             return response()->json([

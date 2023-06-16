@@ -26,7 +26,7 @@ class GamejoltAccountBanController extends Controller
      *
      * @jsonresponse 200 {}
      */
-    public function index(Request $request)
+    public function index(Request $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\AnonymousResourceCollection
     {
         if (! $request->user()) {
             return response()->json([
@@ -82,7 +82,7 @@ class GamejoltAccountBanController extends Controller
      *       }
      *   }
      */
-    public function store(Request $request)
+    public function store(Request $request): GamejoltAccountBanResource|\Illuminate\Http\JsonResponse
     {
         if (! $request->user()->tokenCan('create')) {
             return response()->json([
@@ -150,7 +150,7 @@ class GamejoltAccountBanController extends Controller
      *    ]
      * }
      */
-    public function show(Request $request, $id)
+    public function show(Request $request, $id): \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\AnonymousResourceCollection
     {
         if (! $request->user()) {
             return response()->json([
@@ -178,7 +178,7 @@ class GamejoltAccountBanController extends Controller
      *  "success": 'Ban was removed!',
      * }
      */
-    public function destroy(Request $request, $uuid)
+    public function destroy(Request $request, $uuid): \Illuminate\Http\JsonResponse
     {
         if (! $request->user()->tokenCan('delete')) {
             return response()->json([

@@ -44,7 +44,7 @@ class BanReasonController extends Controller
      *    ]
      * }
      */
-    public function index(Request $request)
+    public function index(Request $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\AnonymousResourceCollection
     {
         if (! $request->user()) {
             return response()->json([

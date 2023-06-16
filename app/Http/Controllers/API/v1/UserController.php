@@ -71,7 +71,7 @@ class UserController extends Controller
      *        },
      *   }
      */
-    public function show(Request $request, $id)
+    public function show(Request $request, $id): \Illuminate\Http\JsonResponse|UserResource
     {
         if (! $request->user()) {
             return response()->json([

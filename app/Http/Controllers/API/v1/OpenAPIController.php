@@ -14,11 +14,11 @@ class OpenAPIController extends Controller
     /**
      * Show the OpenAPI documentation in JSON format.
      *
-     * @jsonresponse {}
+     * @jsonresponse 200 {}
      *
      * @unauthenticated
      **/
-    public function index()
+    public function index(): \Illuminate\Http\JsonResponse
     {
         // Get and return JSON from storage
         $file_path = storage_path('app/scribe/openapi.json');
@@ -30,6 +30,6 @@ class OpenAPIController extends Controller
             ], 500);
         }
 
-        return response($json, 200)->header('Content-Type', 'application/json');
+        return response()->json($json, 200);
     }
 }

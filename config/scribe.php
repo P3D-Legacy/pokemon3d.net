@@ -378,37 +378,7 @@ INTRO
          * If an endpoint/subgroup is listed under a group it doesn't belong in, it will be ignored.
          * Note: you must include the initial '/' when writing an endpoint.
          */
-        'order' => [
-            'Ban Reason' => [
-                'Display a listing of the resource.',
-                'Display the specified resource.',
-            ],
-            'Ban Game Jolt Account' => [
-                'Display a listing of the resources.',
-                'Store a newly created resource in storage.',
-                'Display the specified resource.',
-                'Remove the specified resource.',
-            ],
-            'User' => [
-                'Display the specified resource.',
-            ],
-            'Post' => [
-                'Store a newly created resource in storage.',
-            ],
-            'Game Jolt Account' => [
-                'Display the specified resource.',
-            ],
-            'Game - Badges' => [
-                'Display a listing of the resource.',
-            ],
-            'Discord Bot' => [
-                'Display the first resource.',
-                'Update the specified resource in storage.',
-            ],
-            'Discord Account' => [
-                'Display the specified resource.',
-            ],
-        ],
+        'order' => null,
     ],
     /**
      * Customize the "Last updated" value displayed in the docs by specifying tokens and formats.

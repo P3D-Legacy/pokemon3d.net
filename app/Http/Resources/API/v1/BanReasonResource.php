@@ -2,39 +2,22 @@
 
 namespace App\Http\Resources\API\v1;
 
+use Illuminate\Contracts\Support\Arrayable;
+use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use JsonSerializable;
 
 class BanReasonResource extends JsonResource
 {
+
     /**
      * Transform the resource into an array.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array|\Illuminate\Contracts\Support\Arrayable|\JsonSerializable
+     * @param  Request  $request
+     * @return array|Arrayable|JsonSerializable
      */
-    public function toArray($request)
+    public function toArray($request): array|JsonSerializable|Arrayable
     {
-        if (! $request->user()) {
-            return [];
-        }
-        if ($request->user()->can('api.full')) {
-            return parent::toArray($request);
-        }
-        if ($request->user()->can('api.moderate')) {
-            return [
-                'name' => $this->name,
-                'created_at' => $this->created_at,
-                'updated_at' => $this->updated_at,
-            ];
-        }
-        if ($request->user()->can('api.minimal')) {
-            return [
-                'name' => $this->name,
-            ];
-        }
-
-        return [
-            'name' => $this->name,
-        ];
+        return parent::toArray($request);
     }
 }

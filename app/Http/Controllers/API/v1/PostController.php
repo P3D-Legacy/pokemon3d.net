@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API\v1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\API\v1\PostResource;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -28,10 +29,12 @@ class PostController extends Controller
      * @bodyParam user_id int required The ID of the user. Example: 1
      * @bodyParam published_at string optional The date the post was published. Example: 2021-01-01
      *
-     * @response {}
+     * @apiResourceModel App\Models\Post
+     *
+     * @apiResource App\Http\Resources\API\v1\PostResource
      *
      **/
-    public function store(Request $request): \Illuminate\Http\JsonResponse
+    public function store(Request $request): PostResource
     {
         $request->validate([
             'title' => 'required|string',
@@ -43,6 +46,6 @@ class PostController extends Controller
         ]);
         $post = Post::create($request->all());
 
-        return response()->json($post, 201);
+        return new PostResource($post);
     }
 }

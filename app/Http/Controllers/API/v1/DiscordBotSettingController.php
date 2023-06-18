@@ -56,7 +56,7 @@ class DiscordBotSettingController extends Controller
      * @bodyParam events_id int required The ID of your desired event channel.
      * @bodyParam hide_events json A JSON object.
      *
-     * @response 201 {
+     * @jsonresponse 201 {
      *      "category_id": 1,
      *      "chat_id": 1,
      *      "events_id": 1,

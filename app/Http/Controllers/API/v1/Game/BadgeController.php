@@ -17,7 +17,7 @@ class BadgeController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @response {
+     * @jsonresponse {
      *      "boulder": {
      *          "name": "Boulder",
      *          "image": "https://pokemon3d.net/img/badge/Boulder.png"

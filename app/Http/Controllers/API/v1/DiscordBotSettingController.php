@@ -22,7 +22,7 @@ class DiscordBotSettingController extends Controller
     /**
      * Display the first resource.
      *
-     * @response {
+     * @jsonresponse {
      *    "data": [
      *        {
      *            "category_id": 1,

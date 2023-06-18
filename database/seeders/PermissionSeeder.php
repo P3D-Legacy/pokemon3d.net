@@ -61,25 +61,23 @@ class PermissionSeeder extends Seeder
         Permission::firstOrCreate(['name' => 'stats']);
         Permission::firstOrCreate(['name' => 'analytics']);
 
-
         // Get all permissions
-        $permissions = Permission::all();
+        $all_permissions = Permission::all();
 
         // Super Admin permissions
-        $super_admin->givePermissionTo($permissions);
+        $super_admin->givePermissionTo($all_permissions);
 
         // Admin permissions
         // Give all permissions except for permissions containing 'manage'
-        $admin->givePermissionTo($permissions->filter(function ($permission) {
-            return !Str::contains($permission->name, ['manage']);
+        $admin->givePermissionTo($all_permissions->filter(function ($permission) {
+            return ! Str::contains($permission->name, ['manage']);
         }));
 
         // Moderator permissions
         // Give all permissions except for permissions containing 'destroy' and 'manage'
-        $moderator->givePermissionTo($permissions->filter(function ($permission) {
-            return !Str::contains($permission->name, ['destroy', 'manage']);
+        $moderator->givePermissionTo($all_permissions->filter(function ($permission) {
+            return ! Str::contains($permission->name, ['destroy', 'manage']);
         }));
-
 
         $first_user = User::first();
         if ($first_user) {

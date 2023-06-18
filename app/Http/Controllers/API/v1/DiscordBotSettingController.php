@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API\v1;
 
 use App\Http\Controllers\Controller;
 use App\Models\DiscordBotSetting;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 /**
@@ -35,7 +36,7 @@ class DiscordBotSettingController extends Controller
      *    ]
      * }
      */
-    public function index(Request $request): \Illuminate\Http\JsonResponse
+    public function index(Request $request): JsonResponse
     {
         $discordBotSetting = DiscordBotSetting::first(); // Only show first in table
 
@@ -61,7 +62,7 @@ class DiscordBotSettingController extends Controller
      *      "updated_at": "2021-01-01T17:57:10.000000Z",
      * }
      */
-    public function update(Request $request, int $id): \Illuminate\Http\JsonResponse
+    public function update(Request $request, int $id): JsonResponse
     {
         if ($id !== 1) {
             return response()->json([

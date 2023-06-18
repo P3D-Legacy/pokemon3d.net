@@ -7,7 +7,9 @@ use App\Http\Resources\API\v1\GamejoltAccountBanResource;
 use App\Models\GamejoltAccount;
 use App\Models\GamejoltAccountBan;
 use App\Models\User;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 /**
  * @group Ban Game Jolt Account
@@ -30,7 +32,7 @@ class GamejoltAccountBanController extends Controller
      *
      * @apiResourceModel App\Models\GamejoltAccountBan
      */
-    public function index(Request $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\AnonymousResourceCollection
+    public function index(Request $request): JsonResponse|AnonymousResourceCollection
     {
         $resources = GamejoltAccountBan::with(['reason', 'gamejoltaccount'])->get();
 
@@ -50,7 +52,7 @@ class GamejoltAccountBanController extends Controller
      *
      * @apiResourceModel App\Models\GamejoltAccountBan
      */
-    public function store(Request $request): GamejoltAccountBanResource|\Illuminate\Http\JsonResponse
+    public function store(Request $request): GamejoltAccountBanResource|JsonResponse
     {
         $request->validate([
             'gamejoltaccount_id' => 'required|integer',
@@ -101,7 +103,7 @@ class GamejoltAccountBanController extends Controller
      *
      * @apiResourceModel App\Models\GamejoltAccountBan
      */
-    public function show(Request $request, $id): \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\AnonymousResourceCollection
+    public function show(Request $request, $id): JsonResponse|AnonymousResourceCollection
     {
         $resources = GamejoltAccountBan::with(['reason', 'gamejoltaccount', 'banned_by'])
             ->where('gamejoltaccount_id', $id)
@@ -119,7 +121,7 @@ class GamejoltAccountBanController extends Controller
      *
      * @apiResourceModel App\Models\GamejoltAccountBan
      */
-    public function destroy(Request $request, $uuid): \Illuminate\Http\JsonResponse
+    public function destroy(Request $request, $uuid): JsonResponse
     {
         $resource = GamejoltAccountBan::where('uuid', $uuid)->firstOrFail();
         $resource->delete();

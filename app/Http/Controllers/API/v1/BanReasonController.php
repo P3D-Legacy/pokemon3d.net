@@ -16,7 +16,7 @@ class BanReasonController extends Controller
 {
     public function __construct()
     {
-        //$this->middleware(['permission:api']);
+        $this->middleware('permission:ban_reason.show')->only(['index', 'show']);
     }
 
     /**

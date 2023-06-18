@@ -16,7 +16,7 @@ class GamejoltAccountController extends Controller
 {
     public function __construct()
     {
-        //$this->middleware(['permission:api']);
+        $this->middleware('permission:gamejolt_account.show')->only(['show']);
     }
 
     /**

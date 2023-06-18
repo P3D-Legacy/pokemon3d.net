@@ -18,7 +18,9 @@ class GamejoltAccountBanController extends Controller
 {
     public function __construct()
     {
-        //$this->middleware(['permission:api']);
+        $this->middleware('permission:gamejolt_account_ban.show')->only(['index', 'show']);
+        $this->middleware('permission:gamejolt_account_ban.create')->only(['store']);
+        $this->middleware('permission:gamejolt_account_ban.destroy')->only(['destroy']);
     }
 
     /**

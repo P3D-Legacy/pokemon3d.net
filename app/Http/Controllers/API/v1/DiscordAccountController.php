@@ -14,6 +14,11 @@ use Illuminate\Http\Request;
  */
 class DiscordAccountController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:discord_account.show')->only(['show']);
+    }
+
     /**
      * Display the specified resource.
      *

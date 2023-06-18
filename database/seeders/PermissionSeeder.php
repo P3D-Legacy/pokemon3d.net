@@ -47,6 +47,17 @@ class PermissionSeeder extends Seeder
         Permission::firstOrCreate(['name' => 'category.update']);
         Permission::firstOrCreate(['name' => 'category.destroy']);
 
+        Permission::firstOrCreate(['name' => 'gamejolt_account_ban.show']);
+        Permission::firstOrCreate(['name' => 'gamejolt_account_ban.create']);
+        Permission::firstOrCreate(['name' => 'gamejolt_account_ban.destroy']);
+
+        Permission::firstOrCreate(['name' => 'gamejolt_account.show']);
+
+        Permission::firstOrCreate(['name' => 'discord_bot_setting.show']);
+        Permission::firstOrCreate(['name' => 'discord_bot_setting.update']);
+
+        Permission::firstOrCreate(['name' => 'user.show']);
+
         Permission::firstOrCreate(['name' => 'stats']);
         Permission::firstOrCreate(['name' => 'analytics']);
 

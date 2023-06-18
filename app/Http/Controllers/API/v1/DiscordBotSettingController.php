@@ -13,6 +13,12 @@ use Illuminate\Http\Request;
  */
 class DiscordBotSettingController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:discord_bot_setting.show')->only(['index']);
+        $this->middleware('permission:discord_bot_setting.update')->only(['update']);
+    }
+
     /**
      * Display the first resource.
      *

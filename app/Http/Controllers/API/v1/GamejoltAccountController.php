@@ -30,16 +30,6 @@ class GamejoltAccountController extends Controller
      */
     public function show(Request $request, $id): \Illuminate\Http\JsonResponse|GamejoltAccountResource
     {
-        if (! $request->user()) {
-            return response()->json([
-                'error' => 'Token does not have access!',
-            ]);
-        }
-        if (! $request->user()->tokenCan('read')) {
-            return response()->json([
-                'error' => 'Token does not have access!',
-            ]);
-        }
         $gja = GamejoltAccount::with(['user.roles.permissions', 'bans', 'user.discord'])
             ->where('id', $id)
             ->firstOrFail();

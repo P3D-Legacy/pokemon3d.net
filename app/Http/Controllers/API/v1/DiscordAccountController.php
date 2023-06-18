@@ -25,16 +25,6 @@ class DiscordAccountController extends Controller
      */
     public function show(Request $request, $id): \Illuminate\Http\JsonResponse|DiscordAccountResource
     {
-        if (! $request->user()) {
-            return response()->json([
-                'error' => 'Token does not have access!',
-            ]);
-        }
-        if (! $request->user()->tokenCan('read')) {
-            return response()->json([
-                'error' => 'Token does not have access!',
-            ]);
-        }
         $account = DiscordAccount::with(['roles', 'user.roles.permissions'])->findOrFail($id);
 
         return new DiscordAccountResource($account);

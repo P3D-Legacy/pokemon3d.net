@@ -28,16 +28,6 @@ class BanReasonController extends Controller
      */
     public function index(Request $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\AnonymousResourceCollection
     {
-        if (! $request->user()) {
-            return response()->json([
-                'error' => 'Token does not have access!',
-            ]);
-        }
-        if (! $request->user()->tokenCan('read')) {
-            return response()->json([
-                'error' => 'Token does not have access!',
-            ]);
-        }
         $resources = BanReason::all();
 
         return BanReasonResource::collection($resources);
@@ -54,16 +44,6 @@ class BanReasonController extends Controller
      */
     public function show(Request $request, $id): BanReasonResource|\Illuminate\Http\JsonResponse
     {
-        if (! $request->user()) {
-            return response()->json([
-                'error' => 'Token does not have access!',
-            ]);
-        }
-        if (! $request->user()->tokenCan('read')) {
-            return response()->json([
-                'error' => 'Token does not have access!',
-            ]);
-        }
         $resource = BanReason::findOrFail($id);
 
         return new BanReasonResource($resource);

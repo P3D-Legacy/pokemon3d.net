@@ -33,11 +33,6 @@ class PostController extends Controller
      **/
     public function store(Request $request): \Illuminate\Http\JsonResponse
     {
-        if (! $request->user()->tokenCan('create')) {
-            return response()->json([
-                'error' => 'Token does not have access!',
-            ]);
-        }
         $request->validate([
             'title' => 'required|string',
             'body' => 'required|string',

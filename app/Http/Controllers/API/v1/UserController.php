@@ -30,16 +30,6 @@ class UserController extends Controller
      */
     public function show(Request $request, $id): \Illuminate\Http\JsonResponse|UserResource
     {
-        if (! $request->user()) {
-            return response()->json([
-                'error' => 'Token does not have access!',
-            ]);
-        }
-        if (! $request->user()->tokenCan('read')) {
-            return response()->json([
-                'error' => 'Token does not have access!',
-            ]);
-        }
         $user = User::with(['roles.permissions', 'gamejolt', 'forum'])->findOrFail($id);
 
         return new UserResource($user);

@@ -16,6 +16,7 @@ class GamejoltAccountBanResource extends JsonResource
      */
     public function toArray($request): array|JsonSerializable|Arrayable
     {
+        $this->loadMissing(['banned_by', 'reason']); // Eager load relationships
         return parent::toArray($request);
     }
 }

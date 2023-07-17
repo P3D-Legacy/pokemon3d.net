@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API\v1;
 
 use App\Http\Controllers\Controller;
 use App\Models\DiscordBotSetting;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 /**
@@ -13,10 +14,16 @@ use Illuminate\Http\Request;
  */
 class DiscordBotSettingController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:discord_bot_setting.show')->only(['index']);
+        $this->middleware('permission:discord_bot_setting.update')->only(['update']);
+    }
+
     /**
      * Display the first resource.
      *
-     * @response {
+     * @jsonresponse {
      *    "data": [
      *        {
      *            "category_id": 1,
@@ -29,13 +36,8 @@ class DiscordBotSettingController extends Controller
      *    ]
      * }
      */
-    public function index(Request $request): \Illuminate\Http\JsonResponse
+    public function index(Request $request): JsonResponse
     {
-        if (! $request->user()->tokenCan('read')) {
-            return response()->json([
-                'error' => 'Token does not have access!',
-            ]);
-        }
         $discordBotSetting = DiscordBotSetting::first(); // Only show first in table
 
         return response()->json($discordBotSetting);
@@ -51,7 +53,7 @@ class DiscordBotSettingController extends Controller
      * @bodyParam events_id int required The ID of your desired event channel.
      * @bodyParam hide_events json A JSON object.
      *
-     * @response 201 {
+     * @jsonresponse 201 {
      *      "category_id": 1,
      *      "chat_id": 1,
      *      "events_id": 1,
@@ -60,13 +62,8 @@ class DiscordBotSettingController extends Controller
      *      "updated_at": "2021-01-01T17:57:10.000000Z",
      * }
      */
-    public function update(Request $request, int $id): \Illuminate\Http\JsonResponse
+    public function update(Request $request, int $id): JsonResponse
     {
-        if (! $request->user()->tokenCan('update')) {
-            return response()->json([
-                'error' => 'Token does not have access!',
-            ]);
-        }
         if ($id !== 1) {
             return response()->json([
                 'error' => 'Invalid ID!',

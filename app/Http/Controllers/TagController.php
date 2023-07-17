@@ -9,10 +9,10 @@ class TagController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['permission:tags.create|tags.update|tags.destroy'])->only(['index']);
-        $this->middleware(['permission:tags.create'])->only(['create', 'store']);
-        $this->middleware(['permission:tags.update'])->only(['update', 'edit']);
-        $this->middleware(['permission:tags.destroy'])->only(['destroy']);
+        $this->middleware(['permission:tag.create|tag.update|tag.destroy'])->only(['index']);
+        $this->middleware(['permission:tag.create'])->only(['create', 'store']);
+        $this->middleware(['permission:tag.update'])->only(['update', 'edit']);
+        $this->middleware(['permission:tag.destroy'])->only(['destroy']);
     }
 
     /**

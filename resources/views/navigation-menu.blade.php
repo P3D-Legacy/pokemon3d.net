@@ -167,7 +167,7 @@
                                     <div class="block px-4 py-2 text-xs text-gray-400">
                                         {{ __('Content') }}
                                     </div>
-                                    @canany(['tags.create','tags.update','tags.destroy'])
+                                    @canany(['tag.create','tag.update','tag.destroy'])
                                         <x-jet-dropdown-link href="{{ route('tags.index') }}">
                                             {{ __('Tags') }}
                                         </x-jet-dropdown-link>
@@ -310,7 +310,7 @@
                     <div class="block px-4 py-2 text-xs text-gray-400">
                         {{ __('Content') }}
                     </div>
-                    @canany(['tags.create','tags.update','tags.destroy'])
+                    @canany(['tag.create','tag.update','tag.destroy'])
                         <x-jet-responsive-nav-link href="{{ route('tags.index') }}" :active="request()->routeIs('tags.index')">
                             {{ __('Tags') }}
                         </x-jet-responsive-nav-link>

@@ -14,34 +14,22 @@ use Illuminate\Http\Request;
  */
 class DiscordAccountController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:discord_account.show')->only(['show']);
+    }
+
     /**
      * Display the specified resource.
      *
      * @urlParam id int required The ID of the Discord Account.
      *
-     * @response {
-     *    "data": [
-     *        {
-     *            "id": 1,
-     *            "uuid": "1830ef92-b58b-4671-9096-2b7741c0b0d8",
-     *            "id": 1234567890,
-     *            "username": "DanielRTRD",
-     *            "discriminator": 9659,
-     *            "verified_at": "2021-01-01T17:57:10.000000Z",
-     *            "created_at": "2021-01-01T17:57:10.000000Z",
-     *            "updated_at": "2021-01-01T17:57:10.000000Z",
-     *            "deleted_at": null
-     *        },
-     *    ]
-     * }
+     * @apiResource App\Http\Resources\API\v1\DiscordAccountResource
+     *
+     * @apiResourceModel App\Models\DiscordAccount
      */
-    public function show(Request $request, $id)
+    public function show(Request $request, $id): \Illuminate\Http\JsonResponse|DiscordAccountResource
     {
-        if (! $request->user()->tokenCan('read')) {
-            return response()->json([
-                'error' => 'Token does not have access!',
-            ]);
-        }
         $account = DiscordAccount::with(['roles', 'user.roles.permissions'])->findOrFail($id);
 
         return new DiscordAccountResource($account);

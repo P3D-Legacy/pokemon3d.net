@@ -2,7 +2,11 @@
 
 namespace App\Exceptions;
 
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\JsonResponse;
+use Spatie\Permission\Exceptions\UnauthorizedException;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
 
@@ -49,5 +53,18 @@ class Handler extends ExceptionHandler
                 );
             }
         });
+    }
+
+    public function render($request, Throwable $e): \Illuminate\Http\Response|JsonResponse|Response
+    {
+        if ($e instanceof AuthorizationException && $request->expectsJson()) {
+            return response()->json(['error' => 'Unauthorized'], 403);
+        }
+
+        if ($e instanceof UnauthorizedException && $request->expectsJson()) {
+            return response()->json(['error' => 'Unauthorized'], 403);
+        }
+
+        return parent::render($request, $e);
     }
 }

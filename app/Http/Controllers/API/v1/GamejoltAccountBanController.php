@@ -7,7 +7,9 @@ use App\Http\Resources\API\v1\GamejoltAccountBanResource;
 use App\Models\GamejoltAccount;
 use App\Models\GamejoltAccountBan;
 use App\Models\User;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 /**
  * @group Ban Game Jolt Account
@@ -18,21 +20,20 @@ class GamejoltAccountBanController extends Controller
 {
     public function __construct()
     {
-        //$this->middleware(['permission:api']);
+        $this->middleware('permission:gamejolt_account_ban.show')->only(['index', 'show']);
+        $this->middleware('permission:gamejolt_account_ban.create')->only(['store']);
+        $this->middleware('permission:gamejolt_account_ban.destroy')->only(['destroy']);
     }
 
     /**
      * Display a listing of the resources.
      *
-     * @return \Illuminate\Http\Response
+     * @apiResourceCollection App\Http\Resources\API\v1\GamejoltAccountBanResource
+     *
+     * @apiResourceModel App\Models\GamejoltAccountBan
      */
-    public function index(Request $request)
+    public function index(Request $request): JsonResponse|AnonymousResourceCollection
     {
-        if (! $request->user()->tokenCan('read')) {
-            return response()->json([
-                'error' => 'Token does not have access!',
-            ]);
-        }
         $resources = GamejoltAccountBan::with(['reason', 'gamejoltaccount'])->get();
 
         return GamejoltAccountBanResource::collection($resources);
@@ -47,25 +48,12 @@ class GamejoltAccountBanController extends Controller
      * @bodyParam banned_by_gamejoltaccount_id int optional The ID of the Game Jolt Account. Cannot be used with banned_by_id. Example: 123456
      * @bodyParam expires_at string optional The expiry of the ban. Example: 2020-01-01
      *
-     * @response 201 {
-     *       "data": {
-     *           "gamejoltaccount_id": 12345,
-     *           "reason_id": 3,
-     *           "expires_at": "2021-02-01T00:00:00.000000Z",
-     *           "banned_by_id": 1,
-     *           "uuid": "1830ef92-b58b-4671-9096-2b7741c0b0d8",
-     *           "updated_at": "2021-01-01T17:57:10.000000Z",
-     *           "created_at": "2021-01-01T17:57:10.000000Z"
-     *       }
-     *   }
+     * @apiResource App\Http\Resources\API\v1\GamejoltAccountBanResource
+     *
+     * @apiResourceModel App\Models\GamejoltAccountBan
      */
-    public function store(Request $request)
+    public function store(Request $request): GamejoltAccountBanResource|JsonResponse
     {
-        if (! $request->user()->tokenCan('create')) {
-            return response()->json([
-                'error' => 'Token does not have access!',
-            ]);
-        }
         $request->validate([
             'gamejoltaccount_id' => 'required|integer',
             'reason_id' => 'required|integer',
@@ -111,29 +99,12 @@ class GamejoltAccountBanController extends Controller
      *
      * @urlParam id int required The ID of the Game Jolt Account.
      *
-     * @response {
-     *    "data": [
-     *        {
-     *            "id": 1,
-     *            "uuid": "1830ef92-b58b-4671-9096-2b7741c0b0d8",
-     *            "gamejoltaccount_id": 12345,
-     *            "banned_by_id": 1,
-     *            "reason_id": 1,
-     *            "expire_at": null,
-     *            "created_at": "2021-01-01T17:57:10.000000Z",
-     *            "updated_at": "2021-01-01T17:57:10.000000Z",
-     *            "deleted_at": null
-     *        },
-     *    ]
-     * }
+     * @apiResourceCollection App\Http\Resources\API\v1\GamejoltAccountBanResource
+     *
+     * @apiResourceModel App\Models\GamejoltAccountBan
      */
-    public function show(Request $request, $id)
+    public function show(Request $request, $id): JsonResponse|AnonymousResourceCollection
     {
-        if (! $request->user()->tokenCan('read')) {
-            return response()->json([
-                'error' => 'Token does not have access!',
-            ]);
-        }
         $resources = GamejoltAccountBan::with(['reason', 'gamejoltaccount', 'banned_by'])
             ->where('gamejoltaccount_id', $id)
             ->get();
@@ -146,17 +117,12 @@ class GamejoltAccountBanController extends Controller
      *
      * @urlParam id string required The UUID of the _ban_ you would like to remove
      *
-     * @response 202 {
-     *  "success": 'Ban was removed!',
-     * }
+     * @apiResource App\Http\Resources\API\v1\GamejoltAccountBanResource
+     *
+     * @apiResourceModel App\Models\GamejoltAccountBan
      */
-    public function destroy(Request $request, $uuid)
+    public function destroy(Request $request, $uuid): JsonResponse
     {
-        if (! $request->user()->tokenCan('delete')) {
-            return response()->json([
-                'error' => 'Token does not have access!',
-            ]);
-        }
         $resource = GamejoltAccountBan::where('uuid', $uuid)->firstOrFail();
         $resource->delete();
 

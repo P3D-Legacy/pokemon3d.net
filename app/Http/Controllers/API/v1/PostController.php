@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API\v1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\API\v1\PostResource;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,7 @@ class PostController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['permission:posts.create'])->only(['store']);
+        $this->middleware(['permission:post.create'])->only(['store']);
     }
 
     /**
@@ -28,25 +29,13 @@ class PostController extends Controller
      * @bodyParam user_id int required The ID of the user. Example: 1
      * @bodyParam published_at string optional The date the post was published. Example: 2021-01-01
      *
-     * @response 201 {
-     *      "title": "Test",
-     *      "body": "Test",
-     *      "active": True,
-     *      "sticky": False,
-     *      "user_id": 1,
-     *      "published_at": "2021-12-21T20:59:14.000000Z",
-     *      "created_at": "2021-12-21T20:59:14.000000Z",
-     *      "updated_at": "2021-12-21T20:59:14.000000Z",
-     *      "deleted_at": null,
-     * }
+     * @apiResourceModel App\Models\Post
+     *
+     * @apiResource App\Http\Resources\API\v1\PostResource
+     *
      **/
-    public function store(Request $request)
+    public function store(Request $request): PostResource
     {
-        if (! $request->user()->tokenCan('create')) {
-            return response()->json([
-                'error' => 'Token does not have access!',
-            ]);
-        }
         $request->validate([
             'title' => 'required|string',
             'body' => 'required|string',
@@ -57,6 +46,6 @@ class PostController extends Controller
         ]);
         $post = Post::create($request->all());
 
-        return response()->json($post, 201);
+        return new PostResource($post);
     }
 }

@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 
 <a name="0.4.0"></a>
 
+## 4.3.4 - 2023-07-17
+
+### What's Changed
+
+- Add OpenAPI endpoint by @dsbilling in https://github.com/P3D-Legacy/pokemon3d.net/pull/282
+- Bump dependabot/fetch-metadata from 1.5.1 to 1.6.0 by @dependabot in https://github.com/P3D-Legacy/pokemon3d.net/pull/284
+- Release 4.3.4 by @dsbilling in https://github.com/P3D-Legacy/pokemon3d.net/pull/283
+
+**Full Changelog**: https://github.com/P3D-Legacy/pokemon3d.net/compare/4.3.3...4.3.4
+
 ## 4.3.3 - 2023-06-08
 
 ### What's Changed

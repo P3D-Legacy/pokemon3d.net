@@ -6,11 +6,15 @@ use Livewire\Component;
 
 class Pokedex extends Component
 {
-    public $pokedex;
+    public $user_pokedex;
 
     public $gamesave;
 
     public $amountToLoad = 20;
+
+    public $pokedexes;
+
+    public $dex;
 
     protected $listeners = [
         'loadMorePokedex' => 'loadMore',
@@ -19,12 +23,21 @@ class Pokedex extends Component
     public function mount($gamesave)
     {
         $this->gamesave = $gamesave;
-        $this->pokedex = [];
+        $this->user_pokedex = [];
+        $this->pokedexes = [];
+        $this->dex = [];
     }
 
     public function loadData()
     {
-        $this->pokedex = array_slice($this->gamesave->getPokedex(), 0, $this->amountToLoad);
+        //$this->user_pokedex = array_slice($this->gamesave->getPokedex(), 0, $this->amountToLoad);
+        $this->pokedexes = \App\Models\Pokedex::all();
+        // For each of the pokedexes get the pokemon ids and create an collection of the users pokedex
+        foreach ($this->pokedexes as $pokedex) {
+            $pokemon_ids = array_filter(explode(",", str_replace("[", "", str_replace("]", "", str_replace("\"", "", $pokedex->pokemon_ids)))));
+            // Add the dex array to the pokedex collection
+            $this->dex[$pokedex->slug]['entries'] = $this->gamesave->getPokedexByIds($pokemon_ids);
+        }
     }
 
     public function loadMore()

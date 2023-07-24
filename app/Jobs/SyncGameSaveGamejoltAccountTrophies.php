@@ -42,6 +42,11 @@ class SyncGameSaveGamejoltAccountTrophies implements ShouldQueue
         $private_key = config('services.gamejolt.private_key');
         $api = new GamejoltApi(new GamejoltConfig($game_id, $private_key));
 
+        // Check if user has gamejolt account
+        if (! $this->user->gamejolt) {
+            return;
+        }
+
         // First sync all the trophies for the user with the Gamejolt API
         $gamejolt_user_id = $this->user->gamejolt->id;
         $gja = GamejoltAccount::firstWhere('id', $gamejolt_user_id);

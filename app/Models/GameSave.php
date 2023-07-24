@@ -152,6 +152,23 @@ class GameSave extends Model
         }
     }
 
+    // Get only specific ids from pokedex
+    public function getPokedexByIds(array $ids_to_return = []): array
+    {
+        try {
+            $pokedex = $this->getPokedex();
+
+            return array_filter($pokedex, function ($item) use ($ids_to_return) {
+                return in_array($item['id'], $ids_to_return);
+            });
+        } catch (Exception $e) {
+            // If there is an error, return an empty array and log the error
+            Log::error($e->getMessage());
+
+            return [];
+        }
+    }
+
     // Get all seen pokemon in pokedex
     public function getSeenPokemon(): array
     {

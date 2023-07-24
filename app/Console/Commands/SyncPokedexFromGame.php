@@ -76,6 +76,9 @@ class SyncPokedexFromGame extends Command
                         // Add to pokemon ids as string in array
                         $pokemon_ids[] = (string)$i;
                     }
+                } elseif (str_contains($pokemon_id, ";")) {
+                    $split = explode(";", $pokemon_id);
+                    $pokemon_ids[] = $split[0];
                 } else {
                     // Add to pokemon ids as string in array
                     $pokemon_ids[] = $pokemon_id;

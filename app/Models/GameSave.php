@@ -524,11 +524,9 @@ class GameSave extends Model
     }
 
     // Get the pokemon name from id
-    public function getPokemonName($id): string
+    public function getPokemonName(string $id): string
     {
         try {
-            // convert string id to int id
-            $id = (int) $id;
             // get the language file path
             $filepath = lang_path().'/pokemon_'.app()->getLocale().'.json';
             // if the file doesn't exist, use the default language
@@ -539,8 +537,10 @@ class GameSave extends Model
             $pokemon_names = json_decode(file_get_contents($filepath), true);
             // get the pokemon name by the id key in json file
             $pokemon_names = collect($pokemon_names);
-
-            return isset($pokemon_names->get($id - 1)['name']) ? $pokemon_names->get($id - 1)['name'] : '???';
+            // In the collection search for the id in the "id" key for each object and return the name
+            $name = $pokemon_names->where('id', $id)->first()['name'];
+            // If there is no name, return ???
+            return $name ?? '???';
         } catch (Exception $e) {
             // If there is an error, return an empty array and log the error
             Log::error($e->getMessage());

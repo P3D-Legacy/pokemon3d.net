@@ -239,7 +239,7 @@ class GameSave extends Model
                 return explode('}{', $item);
             }, $party);
             // For each party entry; get the properties and add it to the pokemon in array
-            $party = array_map(function ($item) {
+            return array_map(function ($item) {
                 $pokemon = [];
                 $private_keys = ['IDValue'];
                 foreach ($item as $property) {
@@ -266,7 +266,8 @@ class GameSave extends Model
                     }
                     $pokemon[$key] = $value;
                 }
-                $url = $pokemon['EggSteps'] > 0 ? 'https://raw.githubusercontent.com/P3D-Legacy/P3D-Legacy/master/P3D/Content/Pokemon/Egg/Egg_front.png' : 'https://raw.githubusercontent.com/P3D-Legacy/P3D-Legacy/master/P3D/Content/Pokemon/Sprites/'.$pokemon['Pokemon'].'.png';
+                $repo_url = 'https://raw.githubusercontent.com/P3D-Legacy/P3D-Legacy/master';
+                $url = $pokemon['EggSteps'] > 0 ? $repo_url.'/P3D/Content/Pokemon/Egg/Egg_front.png' : $repo_url.'/P3D/Content/Pokemon/Sprites/'.$pokemon['Pokemon'].'.png';
                 $image = imagecrop(imagecreatefromstring(file_get_contents($url)), [
                     'x' => 0,
                     'y' => $pokemon['isShiny'] ? 96 : 0,
@@ -281,8 +282,6 @@ class GameSave extends Model
 
                 return $pokemon;
             }, $party);
-
-            return $party;
         } catch (Exception $e) {
             // If there is an error, return an empty array and log the error
             Log::error($e->getMessage());

@@ -87,7 +87,7 @@ class SyncPokedexFromGame extends Command
             // Convert pokemon ids array to json
             $pokemon_ids = json_encode($pokemon_ids);
             // Create or update pokedex
-            Pokedex::firstOrCreate(
+            Pokedex::updateOrCreate(
                 [
                     'slug' => $slug,
                 ],

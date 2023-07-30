@@ -9,6 +9,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\Save\MySaveController;
 use App\Http\Controllers\ServerController;
 use App\Http\Controllers\Skin\ImportController;
 use App\Http\Controllers\Skin\PlayerSkinController;
@@ -16,6 +17,7 @@ use App\Http\Controllers\Skin\SkinController;
 use App\Http\Controllers\Skin\SkinHomeController;
 use App\Http\Controllers\Skin\UploadedSkinController;
 use App\Http\Controllers\TagController;
+use App\Http\Livewire\Analytics;
 use App\Http\Livewire\NotificationList;
 use App\Http\Livewire\Resource\ResourceShow;
 use Illuminate\Support\Facades\Route;
@@ -146,7 +148,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     if (config('app.env') === 'staging' or config('app.env') === 'local') {
         Route::prefix('save')->middleware('gj.association')->group(function () {
-            Route::get('/', [\App\Http\Controllers\Save\MySaveController::class, 'index'])->name('save.index');
+            Route::get('/', [MySaveController::class, 'index'])->name('save.index');
         });
     }
 
@@ -154,7 +156,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         ->middleware(['role:super-admin|admin'])
         ->group(function () {
             Route::resource('tags', TagController::class);
-            Route::get('/analytics', \App\Http\Livewire\Analytics::class)
+            Route::get('/analytics', Analytics::class)
                 ->name('analytics')
                 ->middleware(['permission:analytics']);
         });

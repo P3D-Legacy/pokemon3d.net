@@ -149,7 +149,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::get('/notifications', NotificationList::class)->name('notifications.index');
 
-
     if (config('app.env') === 'staging' or config('app.env') === 'local') {
         Route::prefix('save')->middleware('gj.association')->group(function () {
             Route::get('/', [MySaveController::class, 'index'])->name('save.index');

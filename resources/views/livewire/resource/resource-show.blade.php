@@ -76,7 +76,7 @@
                 <div class="p-4 bg-gray-100 rounded dark:bg-gray-800">
                     <div class="flex flex-row justify-between">
                         <span>@lang('Author'):</span>
-                        <span><a href="{{ route('member.show', $resource->user) }}" class="text-green-400 hover:text-green-500 hover:underline">{{ $resource->user->username }}</a></span>
+                        <span><a href="{{ route('member.show', $resource->user->username) }}" class="text-green-400 hover:text-green-500 hover:underline">{{ $resource->user->username }}</a></span>
                     </div>
                     <div class="flex flex-row justify-between">
                         <span>@lang('Rating'):</span>

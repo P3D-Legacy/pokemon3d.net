@@ -106,13 +106,9 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::middleware(['auth:sanctum', 'verified'])->group(function () {
-
-    Route::get('/notifications', NotificationList::class)->name('notifications.index');
-
-    Route::prefix('skin')
-        ->middleware('gj.association')
-        ->group(function () {
+Route::prefix('skin')
+    ->group(function () {
+        Route::middleware(['auth:sanctum', 'verified', 'gj.association'])->group(function () {
             Route::get('/', [SkinHomeController::class, 'index'])->name('skin-home');
             Route::get('/my', function () {
                 return redirect()->route('skin-home');
@@ -128,12 +124,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
             );
             Route::get('/player/delete', [PlayerSkinController::class, 'destroy'])->name('player-skin-destroy');
 
-            Route::get('/public', function () {
-                return redirect()->route('skins-newest');
-            })->name('skins');
-            Route::get('/public/new', [SkinController::class, 'newestpublicskins'])->name('skins-newest');
-            Route::get('/public/popular', [SkinController::class, 'popularpublicskins'])->name('skins-popular');
-            Route::get('/public/{skin}', [SkinController::class, 'show'])->name('skin-show');
             Route::get('/create', [SkinController::class, 'create'])->name('skin-create');
             Route::post('/create', [SkinController::class, 'store'])->name('skin-store');
             Route::get('/{uuid}/edit', [SkinController::class, 'edit'])->name('skin-edit');
@@ -145,6 +135,20 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
             Route::get('/uploaded', [UploadedSkinController::class, 'index'])->name('uploaded-skins');
             Route::post('/uploaded/delete/{id}', [UploadedSkinController::class, 'destroy'])->name('uploaded-skin-destroy');
         });
+
+        Route::get('/public', function () {
+            return redirect()->route('skins-newest');
+        })->name('skins');
+        Route::get('/public/new', [SkinController::class, 'newestpublicskins'])->name('skins-newest');
+        Route::get('/public/popular', [SkinController::class, 'popularpublicskins'])->name('skins-popular');
+        Route::get('/public/{skin}', [SkinController::class, 'show'])->name('skin-show');
+
+    });
+
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+
+    Route::get('/notifications', NotificationList::class)->name('notifications.index');
+
 
     if (config('app.env') === 'staging' or config('app.env') === 'local') {
         Route::prefix('save')->middleware('gj.association')->group(function () {

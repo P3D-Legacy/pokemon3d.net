@@ -11,9 +11,11 @@
             @endif
         </h1>
         <p class="mt-2 text-xs text-gray-600 dark:text-gray-200">
-            @if(Auth::user()->gamejolt->id == $skin->owner_id)
-                @lang('Public'): {{ ($skin->public) ? __('Yes') : __('No') }}<br>
-            @endif
+            @auth
+                @if(auth()->user()->gamejolt->id == $skin->owner_id)
+                    @lang('Public'): {{ ($skin->public) ? __('Yes') : __('No') }}<br>
+                @endif
+            @endauth
             @if($skin->user)
                 @lang('Published by'): <a class="text-green-800 hover:text-green-600 dark:text-green-500 dark:hover:text-green-300" href="{{ route('member.show', $skin->user) }}">{{ $skin->user->username }}</a><br>
             @else
@@ -58,43 +60,45 @@
                         @lang('Show')
                     </a>
                 @endif
-                @if(Auth::user()->gamejolt->id != $skin->owner_id || config('app.debug'))
-                    @if($skin->isLikedBy(Auth::user()))
-                        <a class="px-2 py-1 text-xs font-bold uppercase bg-red-800 rounded text-red-50" href="{{ route('skin-like', $skin->uuid) }}">
+                @auth
+                    @if(auth()->user()->gamejolt->id != $skin->owner_id)
+                        @if($skin->isLikedBy(auth()->user()))
+                            <a class="px-2 py-1 text-xs font-bold uppercase bg-red-800 rounded text-red-50" href="{{ route('skin-like', $skin->uuid) }}">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                                </svg>
+                                @lang('Liked')
+                            </a>
+                        @else
+                            <a class="px-2 py-1 text-xs font-bold uppercase bg-red-600 rounded text-red-50" href="{{ route('skin-like', $skin->uuid) }}">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                                </svg>
+                                @lang('Like')
+                            </a>
+                        @endif
+                    @endif
+                    @if(auth()->user()->gamejolt->id == $skin->owner_id)
+                        <a class="px-2 py-1 text-xs font-bold uppercase bg-yellow-600 rounded text-yellow-50" href="{{ route('skin-edit', $skin->uuid) }}">
                             <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                             </svg>
-                            @lang('Liked')
+                            @lang('Edit')
                         </a>
-                    @else
-                        <a class="px-2 py-1 text-xs font-bold uppercase bg-red-600 rounded text-red-50" href="{{ route('skin-like', $skin->uuid) }}">
+                        <a class="px-2 py-1 text-xs font-bold uppercase bg-red-700 rounded text-red-50" href="{{ route('skin-destroy', $skin->uuid) }}">
                             <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                             </svg>
-                            @lang('Like')
+                            @lang('Delete')
                         </a>
                     @endif
-                @endif
-                @if(Auth::user()->gamejolt->id == $skin->owner_id)
-                    <a class="px-2 py-1 text-xs font-bold uppercase bg-yellow-600 rounded text-yellow-50" href="{{ route('skin-edit', $skin->uuid) }}">
+                    <a class="px-2 py-1 text-xs font-bold uppercase bg-gray-800 rounded text-gray-50" href="{{ route('skin-apply', $skin->uuid) }}">
                         <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11.5V14m0-2.5v-6a1.5 1.5 0 113 0m-3 6a1.5 1.5 0 00-3 0v2a7.5 7.5 0 0015 0v-5a1.5 1.5 0 00-3 0m-6-3V11m0-5.5v-1a1.5 1.5 0 013 0v1m0 0V11m0-5.5a1.5 1.5 0 013 0v3m0 0V11" />
                         </svg>
-                        @lang('Edit')
+                        @lang('Apply')
                     </a>
-                    <a class="px-2 py-1 text-xs font-bold uppercase bg-red-700 rounded text-red-50" href="{{ route('skin-destroy', $skin->uuid) }}">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                        </svg>
-                        @lang('Delete')
-                    </a>
-                @endif
-                <a class="px-2 py-1 text-xs font-bold uppercase bg-gray-800 rounded text-gray-50" href="{{ route('skin-apply', $skin->uuid) }}">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11.5V14m0-2.5v-6a1.5 1.5 0 113 0m-3 6a1.5 1.5 0 00-3 0v2a7.5 7.5 0 0015 0v-5a1.5 1.5 0 00-3 0m-6-3V11m0-5.5v-1a1.5 1.5 0 013 0v1m0 0V11m0-5.5a1.5 1.5 0 013 0v3m0 0V11" />
-                    </svg>
-                    @lang('Apply')
-                </a>
+                @endauth
             @endif
         </div>
     </div>

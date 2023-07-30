@@ -27,6 +27,9 @@ class ResourceLike extends Component
 
     public function like()
     {
+        if (!$this->user) {
+            return redirect()->route('login');
+        }
         $this->user->toggleLike($this->resource);
         $this->count = $this->resource->likers()->count();
         $this->liked = $this->resource->isLikedBy($this->user);

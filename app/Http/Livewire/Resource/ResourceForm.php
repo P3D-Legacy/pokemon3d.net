@@ -16,7 +16,7 @@ class ResourceForm extends ModalComponent
 
     protected array $rules = [
         'resource.name' => 'required|min:3|max:255',
-        'resource.description' => 'required|min:3|max:255',
+        'resource.description' => 'required|min:3|max:5120',
         'resource.brief' => 'required|min:3|max:255',
         'category' => 'required|exists:categories,id',
     ];

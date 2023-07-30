@@ -116,6 +116,15 @@ class GameSave extends Model
         try {
             $earnedAchievements = $this->getPlayerData('EarnedAchievements');
 
+            // Verify that it is a string
+            if (! is_string($earnedAchievements)) {
+                Log::error('EarnedAchievements is not a string');
+                Log::error($earnedAchievements);
+                Log::error('User ID: '.$this->user_id);
+
+                return [];
+            }
+
             return explode(',', $earnedAchievements);
         } catch (Exception $e) {
             // If there is an error, return an empty array and log the error

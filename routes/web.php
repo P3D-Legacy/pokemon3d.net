@@ -16,6 +16,7 @@ use App\Http\Controllers\Skin\SkinController;
 use App\Http\Controllers\Skin\SkinHomeController;
 use App\Http\Controllers\Skin\UploadedSkinController;
 use App\Http\Controllers\TagController;
+use App\Http\Livewire\NotificationList;
 use App\Http\Livewire\Resource\ResourceShow;
 use Illuminate\Support\Facades\Route;
 
@@ -70,42 +71,42 @@ Route::prefix('login')->group(function () {
     Route::get('/twitch/callback', [TwitchController::class, 'handleProviderCallback']);
 });
 
+Route::get('/review', function () {
+    return view('review.index');
+})->name('review');
+
+Route::resource('server', ServerController::class);
+
+Route::prefix('resource')->group(function () {
+    Route::get('/', function () {
+        return view('resources.index', [
+            'categories' => Category::where('parent_id', null)->get(),
+        ]);
+    })->name('resource.index');
+
+    Route::get('/{uuid}', ResourceShow::class)->name('resource.uuid');
+
+    Route::get('/category/{name}', function ($name) {
+        return view('resources.index', [
+            'categories' => Category::where('parent_id', null)->get(),
+            'category' => Category::findByName($name),
+        ]);
+    })->name('resource.category');
+});
+Route::get('/members', [MemberController::class, 'index'])->name('member.index');
+Route::get('/members/{user}', [MemberController::class, 'show'])->name('member.show');
+// Fallback for old member links
+Route::get('/member/{user}', function ($user) {
+    return redirect()->route('member.show', $user);
+});
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
+
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
 
-    Route::get('/notifications', \App\Http\Livewire\NotificationList::class)->name('notifications.index');
-
-    Route::get('/members', [MemberController::class, 'index'])->name('member.index');
-    Route::get('/members/{user}', [MemberController::class, 'show'])->name('member.show');
-    // Fallback for old member links
-    Route::get('/member/{user}', function ($user) {
-        return redirect()->route('member.show', $user);
-    });
-
-    Route::get('/review', function () {
-        return view('review.index');
-    })->name('review');
-
-    Route::resource('server', ServerController::class);
-
-    Route::prefix('resource')->group(function () {
-        Route::get('/', function () {
-            return view('resources.index', [
-                'categories' => Category::where('parent_id', null)->get(),
-            ]);
-        })->name('resource.index');
-
-        Route::get('/{uuid}', ResourceShow::class)->name('resource.uuid');
-
-        Route::get('/category/{name}', function ($name) {
-            return view('resources.index', [
-                'categories' => Category::where('parent_id', null)->get(),
-                'category' => Category::findByName($name),
-            ]);
-        })->name('resource.category');
-    });
+    Route::get('/notifications', NotificationList::class)->name('notifications.index');
 
     Route::prefix('skin')
         ->middleware('gj.association')

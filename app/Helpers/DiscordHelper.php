@@ -6,9 +6,9 @@ use RestCord\DiscordClient;
 
 class DiscordHelper
 {
-    private $discordClient;
+    private ?DiscordClient $discordClient;
 
-    private $guildId;
+    private int $guildId;
 
     public function __construct()
     {
@@ -19,7 +19,7 @@ class DiscordHelper
         $this->guildId = intval(config('services.discord.server_id'));
     }
 
-    public function getServer()
+    public function getServer(): \RestCord\Model\Guild\Guild
     {
         return $this->discordClient->guild->getGuild([
             'guild.id' => $this->guildId,
@@ -27,7 +27,7 @@ class DiscordHelper
         ]);
     }
 
-    public static function countMembers()
+    public static function countMembers(): ?int
     {
         $client = new self();
         try {
@@ -39,12 +39,12 @@ class DiscordHelper
         }
     }
 
-    public static function getServerRoles()
+    public static function getServerRoles(): \Exception|array
     {
         $client = new self();
         try {
             return $client->discordClient->guild->getGuildRoles([
-                'guild.id' => $this->guildId,
+                'guild.id' => $client->guildId,
             ]);
         } catch (\Exception $exception) {
             logger()->error($exception->getMessage());
@@ -53,12 +53,12 @@ class DiscordHelper
         }
     }
 
-    public static function getMemberRoles(int $user_id)
+    public static function getMemberRoles(int $user_id): \RestCord\Model\Guild\GuildMember|\Exception
     {
         $client = new self();
         try {
             return $client->discordClient->guild->getGuildMember([
-                'guild.id' => $this->guildId,
+                'guild.id' => $client->guildId,
                 'user.id' => $user_id,
             ]);
         } catch (\Exception $exception) {
@@ -68,16 +68,18 @@ class DiscordHelper
         }
     }
 
-    public static function setMemberRole(int $user_id, int $role_id)
+    public static function setMemberRole(int $user_id, int $role_id): array|string
     {
         $client = new self();
         try {
             return $client->discordClient->guild->addGuildMemberRole([
-                'guild.id' => $this->guildId,
+                'guild.id' => $client->guildId,
                 'user.id' => $user_id,
                 'role.id' => $role_id,
             ]);
         } catch (\Exception $exception) {
+            logger()->error($exception->getMessage());
+
             return $exception->getMessage();
         }
     }

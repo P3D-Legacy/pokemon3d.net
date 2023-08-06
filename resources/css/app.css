@@ -73,3 +73,7 @@
 .has-tip:hover .tip {
     @apply z-50 visible px-2 py-1 -mt-8 text-gray-900 bg-green-200 rounded;
 }
+
+.navigation-menu-icon {
+    @apply h-4 w-4 mr-1 inline-block;
+}

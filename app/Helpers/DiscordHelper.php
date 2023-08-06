@@ -7,6 +7,7 @@ use RestCord\DiscordClient;
 class DiscordHelper
 {
     private $discordClient;
+    private $guildId;
 
     public function __construct()
     {
@@ -14,12 +15,13 @@ class DiscordHelper
             config('services.discord.token') && config('services.discord.server_id')
                 ? new DiscordClient(['token' => config('services.discord.token')])
                 : null;
+        $this->guildId = intval(config('services.discord.server_id'));
     }
 
     public function getServer()
     {
         return $this->discordClient->guild->getGuild([
-            'guild.id' => config('services.discord.server_id'),
+            'guild.id' => $this->guildId,
             'with_counts' => true,
         ]);
     }
@@ -30,6 +32,7 @@ class DiscordHelper
         try {
             return $client->getServer()->approximate_member_count;
         } catch (\Exception $exception) {
+            logger()->error($exception->getMessage());
             return 0;
         }
     }
@@ -39,9 +42,10 @@ class DiscordHelper
         $client = new self();
         try {
             return $client->discordClient->guild->getGuildRoles([
-                'guild.id' => config('services.discord.server_id'),
+                'guild.id' => $this->guildId,
             ]);
         } catch (\Exception $exception) {
+            logger()->error($exception->getMessage());
             return $exception;
         }
     }
@@ -51,10 +55,11 @@ class DiscordHelper
         $client = new self();
         try {
             return $client->discordClient->guild->getGuildMember([
-                'guild.id' => config('services.discord.server_id'),
+                'guild.id' => $this->guildId,
                 'user.id' => $user_id,
             ]);
         } catch (\Exception $exception) {
+            logger()->error($exception->getMessage());
             return $exception;
         }
     }
@@ -64,7 +69,7 @@ class DiscordHelper
         $client = new self();
         try {
             return $client->discordClient->guild->addGuildMemberRole([
-                'guild.id' => config('services.discord.server_id'),
+                'guild.id' => $this->guildId,
                 'user.id' => $user_id,
                 'role.id' => $role_id,
             ]);

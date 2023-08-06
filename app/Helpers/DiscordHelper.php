@@ -7,6 +7,7 @@ use RestCord\DiscordClient;
 class DiscordHelper
 {
     private $discordClient;
+
     private $guildId;
 
     public function __construct()
@@ -33,6 +34,7 @@ class DiscordHelper
             return $client->getServer()->approximate_member_count;
         } catch (\Exception $exception) {
             logger()->error($exception->getMessage());
+
             return 0;
         }
     }
@@ -46,6 +48,7 @@ class DiscordHelper
             ]);
         } catch (\Exception $exception) {
             logger()->error($exception->getMessage());
+
             return $exception;
         }
     }
@@ -60,6 +63,7 @@ class DiscordHelper
             ]);
         } catch (\Exception $exception) {
             logger()->error($exception->getMessage());
+
             return $exception;
         }
     }

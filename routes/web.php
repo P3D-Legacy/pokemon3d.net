@@ -9,6 +9,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\Save\MySaveController;
 use App\Http\Controllers\ServerController;
 use App\Http\Controllers\Skin\ImportController;
 use App\Http\Controllers\Skin\PlayerSkinController;
@@ -16,6 +17,8 @@ use App\Http\Controllers\Skin\SkinController;
 use App\Http\Controllers\Skin\SkinHomeController;
 use App\Http\Controllers\Skin\UploadedSkinController;
 use App\Http\Controllers\TagController;
+use App\Http\Livewire\Analytics;
+use App\Http\Livewire\NotificationList;
 use App\Http\Livewire\Resource\ResourceShow;
 use Illuminate\Support\Facades\Route;
 
@@ -70,46 +73,42 @@ Route::prefix('login')->group(function () {
     Route::get('/twitch/callback', [TwitchController::class, 'handleProviderCallback']);
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+Route::get('/review', function () {
+    return view('review.index');
+})->name('review');
 
-    Route::get('/notifications', \App\Http\Livewire\NotificationList::class)->name('notifications.index');
+Route::resource('server', ServerController::class);
 
-    Route::get('/members', [MemberController::class, 'index'])->name('member.index');
-    Route::get('/members/{user}', [MemberController::class, 'show'])->name('member.show');
-    // Fallback for old member links
-    Route::get('/member/{user}', function ($user) {
-        return redirect()->route('member.show', $user);
-    });
+Route::prefix('resource')->group(function () {
+    Route::get('/', function () {
+        return view('resources.index', [
+            'categories' => Category::where('parent_id', null)->get(),
+        ]);
+    })->name('resource.index');
 
-    Route::get('/review', function () {
-        return view('review.index');
-    })->name('review');
+    Route::get('/{uuid}', ResourceShow::class)->name('resource.uuid');
 
-    Route::resource('server', ServerController::class);
+    Route::get('/category/{name}', function ($name) {
+        return view('resources.index', [
+            'categories' => Category::where('parent_id', null)->get(),
+            'category' => Category::findByName($name),
+        ]);
+    })->name('resource.category');
+});
+Route::get('/members', [MemberController::class, 'index'])->name('member.index');
+Route::get('/members/{user}', [MemberController::class, 'show'])->name('member.show');
+// Fallback for old member links
+Route::get('/member/{user}', function ($user) {
+    return redirect()->route('member.show', $user);
+});
 
-    Route::prefix('resource')->group(function () {
-        Route::get('/', function () {
-            return view('resources.index', [
-                'categories' => Category::where('parent_id', null)->get(),
-            ]);
-        })->name('resource.index');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
 
-        Route::get('/{uuid}', ResourceShow::class)->name('resource.uuid');
-
-        Route::get('/category/{name}', function ($name) {
-            return view('resources.index', [
-                'categories' => Category::where('parent_id', null)->get(),
-                'category' => Category::findByName($name),
-            ]);
-        })->name('resource.category');
-    });
-
-    Route::prefix('skin')
-        ->middleware('gj.association')
-        ->group(function () {
+Route::prefix('skin')
+    ->group(function () {
+        Route::middleware(['auth:sanctum', 'verified', 'gj.association'])->group(function () {
             Route::get('/', [SkinHomeController::class, 'index'])->name('skin-home');
             Route::get('/my', function () {
                 return redirect()->route('skin-home');
@@ -125,12 +124,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
             );
             Route::get('/player/delete', [PlayerSkinController::class, 'destroy'])->name('player-skin-destroy');
 
-            Route::get('/public', function () {
-                return redirect()->route('skins-newest');
-            })->name('skins');
-            Route::get('/public/new', [SkinController::class, 'newestpublicskins'])->name('skins-newest');
-            Route::get('/public/popular', [SkinController::class, 'popularpublicskins'])->name('skins-popular');
-            Route::get('/public/{skin}', [SkinController::class, 'show'])->name('skin-show');
             Route::get('/create', [SkinController::class, 'create'])->name('skin-create');
             Route::post('/create', [SkinController::class, 'store'])->name('skin-store');
             Route::get('/{uuid}/edit', [SkinController::class, 'edit'])->name('skin-edit');
@@ -143,9 +136,22 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
             Route::post('/uploaded/delete/{id}', [UploadedSkinController::class, 'destroy'])->name('uploaded-skin-destroy');
         });
 
+        Route::get('/public', function () {
+            return redirect()->route('skins-newest');
+        })->name('skins');
+        Route::get('/public/new', [SkinController::class, 'newestpublicskins'])->name('skins-newest');
+        Route::get('/public/popular', [SkinController::class, 'popularpublicskins'])->name('skins-popular');
+        Route::get('/public/{skin}', [SkinController::class, 'show'])->name('skin-show');
+
+    });
+
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+
+    Route::get('/notifications', NotificationList::class)->name('notifications.index');
+
     if (config('app.env') === 'staging' or config('app.env') === 'local') {
         Route::prefix('save')->middleware('gj.association')->group(function () {
-            Route::get('/', [\App\Http\Controllers\Save\MySaveController::class, 'index'])->name('save.index');
+            Route::get('/', [MySaveController::class, 'index'])->name('save.index');
         });
     }
 
@@ -153,7 +159,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         ->middleware(['role:super-admin|admin'])
         ->group(function () {
             Route::resource('tags', TagController::class);
-            Route::get('/analytics', \App\Http\Livewire\Analytics::class)
+            Route::get('/analytics', Analytics::class)
                 ->name('analytics')
                 ->middleware(['permission:analytics']);
         });

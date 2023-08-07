@@ -1,5 +1,5 @@
 <div>
-    @if($this->server->active || !$this->server->active && $this->server->user_id == auth()->user()->id)
+    @if($this->server->active)
         <div class="max-w-lg">
             <div class="relative p-4 bg-white rounded-lg shadow-lg dark:bg-black">
                 @if(auth()->user()->id == $this->server->user_id)

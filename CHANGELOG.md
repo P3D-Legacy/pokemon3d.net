@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 
 <a name="0.4.0"></a>
 
+## 4.4.0 - 2023-08-07
+
+### What's Changed
+
+- Forgot to translate a string into Dutch by @JappaWakka in https://github.com/P3D-Legacy/pokemon3d.net/pull/288
+- Allow users to see almost all routes by @dsbilling in https://github.com/P3D-Legacy/pokemon3d.net/pull/290
+- Release 4.4 by @dsbilling in https://github.com/P3D-Legacy/pokemon3d.net/pull/291
+
+**Full Changelog**: https://github.com/P3D-Legacy/pokemon3d.net/compare/4.3.4...4.4.0
+
 ## 4.3.4 - 2023-07-17
 
 ### What's Changed

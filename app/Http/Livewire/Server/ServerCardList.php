@@ -8,7 +8,9 @@ use Livewire\Component;
 class ServerCardList extends Component
 {
     public $servers;
+
     public $my_servers;
+
     public $user;
 
     protected $listeners = [
@@ -30,9 +32,6 @@ class ServerCardList extends Component
         return view('livewire.server.server-card-list');
     }
 
-    /**
-     * @return void
-     */
     private function loadData(): void
     {
         $this->user = auth()->user() ?? null;

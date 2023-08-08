@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 
 <a name="0.4.0"></a>
 
+## 4.4.1 - 2023-08-08
+
+### What's Changed
+
+- Refactored server implementation by @dsbilling in https://github.com/P3D-Legacy/pokemon3d.net/pull/292
+
+### Hotfix
+
+- Fixed username validation
+
+**Full Changelog**: https://github.com/P3D-Legacy/pokemon3d.net/compare/4.4.0...4.4.1
+
 ## 4.4.0 - 2023-08-07
 
 ### What's Changed

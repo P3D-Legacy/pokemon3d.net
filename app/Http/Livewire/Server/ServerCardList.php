@@ -45,6 +45,6 @@ class ServerCardList extends Component
             ->orderBy('last_online_at', 'desc')
             ->orderBy('ping', 'asc')
             ->get();
-        $this->my_servers = $this->user->id ? Server::where('user_id', $this->user->id)->get() : [];
+        $this->my_servers = isset($this->user) ? Server::where('user_id', $this->user->id)->get() : collect();
     }
 }

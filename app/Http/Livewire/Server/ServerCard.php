@@ -17,7 +17,7 @@ class ServerCard extends Component
 
     public function reactivate()
     {
-        Artisan::call('ping:server '.$this->server->uuid.' true');
+        Artisan::call('server:ping '.$this->server->uuid.' true');
         $this->server->active = true;
         $this->server->save();
         $this->emit('serverUpdated');

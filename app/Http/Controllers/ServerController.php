@@ -20,9 +20,9 @@ class ServerController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return Response
+     * @return Application|Factory|View
      */
-    public function index()
+    public function index(): View|Factory|Application
     {
         return view('server.index');
     }
@@ -30,9 +30,9 @@ class ServerController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return Response
+     * @return Application|Factory|View
      */
-    public function create()
+    public function create(): View|Factory|Application
     {
         return view('server.create');
     }
@@ -40,7 +40,7 @@ class ServerController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @return Response
+     * @return void
      */
     public function store(Request $request)
     {
@@ -50,10 +50,10 @@ class ServerController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return Response
+     * @param int $id
+     * @return void
      */
-    public function show($id)
+    public function show(int $id)
     {
         //return redirect()->route('server.index');
     }
@@ -64,7 +64,7 @@ class ServerController extends Controller
      * @param Server $server
      * @return Application|Factory|View
      */
-    public function edit(Server $server)
+    public function edit(Server $server): View|Factory|Application
     {
         abort_if(! $server->user_id == auth()->user()->id, 403);
 
@@ -74,10 +74,11 @@ class ServerController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  int  $id
-     * @return Response
+     * @param Request $request
+     * @param int $id
+     * @return void
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id)
     {
         //
     }
@@ -85,10 +86,10 @@ class ServerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return Response
+     * @param int $id
+     * @return void
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
         //
     }

@@ -17,8 +17,14 @@ class RatingCreate extends ModalComponent
 
     public function mount(int|Resource $resource)
     {
+        if (is_numeric($resource)) {
+            $resource = Resource::find($resource);
+        }
         $this->resource = $resource;
         $this->user = auth()->user();
+        if(!$this->user) {
+            $this->closeModal();
+        }
         if ($this->user == $this->resource->user) {
             $this->closeModal();
         }
@@ -31,11 +37,9 @@ class RatingCreate extends ModalComponent
             'body' => ['required', 'string', 'min:10', 'max:255'],
         ]);
 
-        $resource = Resource::find($this->resource);
+        $this->resource->review($this->body, $this->user, $this->rating);
 
-        $resource->review($this->body, $this->user, $this->rating);
-
-        $this->emit('resourceUpdated', $resource->uuid);
+        $this->emit('resourceUpdated', $this->resource->uuid);
 
         $this->closeModal();
     }

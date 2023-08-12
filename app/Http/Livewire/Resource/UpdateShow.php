@@ -17,8 +17,14 @@ class UpdateShow extends ModalComponent
 
     public function download()
     {
-        $this->update->incrementDownload();
         $mediaItem = $this->update->getFirstMedia('resource_update_file');
+        if (!$mediaItem) {
+            session()->flash('flash.banner', trans('File not found on server!'));
+            session()->flash('flash.bannerStyle', 'danger');
+
+            return redirect()->route('resource.uuid', $this->update->resource->uuid);
+        }
+        $this->update->incrementDownload();
         $this->emit('resourceUpdated', $this->update->resource->uuid);
         $this->closeModal();
 

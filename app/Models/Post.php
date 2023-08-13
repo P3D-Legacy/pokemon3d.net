@@ -25,6 +25,8 @@ class Post extends BaseModel implements Viewable
 
     protected $removeViewsOnDelete = true;
 
+    protected $appends = ['excerpt'];
+
     public static function boot()
     {
         parent::boot();
@@ -83,5 +85,14 @@ class Post extends BaseModel implements Viewable
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Create an excerpt from the body.
+     * @return string
+     */
+    public function getExcerptAttribute(): string
+    {
+        return Str::limit(strip_tags(Str::of($this->body)->markdown()), 175);
     }
 }

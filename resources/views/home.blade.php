@@ -42,31 +42,31 @@
             <div class="w-full mb-4">
                 <div class="w-64 h-1 py-0 mx-auto my-0 bg-black rounded-t opacity-25 dark:bg-white"></div>
             </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2 w-full mx-auto">
-                @forelse ($posts as $post)
+            <div class="grid gap-2 grid-cols-1 grid-flow-row sm:grid-flow-col sm:grid-cols-2 sm:grid-rows-2 lg:grid-cols-4 lg:grid-rows-1 mx-auto">
+                @foreach ($posts as $post)
                     <x-home.article :post="$post" />
-                @empty
-                    <div class="w-full text-xs text-center col-span-1 sm:col-span-2 md:col-span-4">
-                        <p class="mb-1 dark:text-gray-400">{{ __('There is nothing to show') }}...</p>
-                        <a href="{{ route('blog.index') }}" class="rounded-lg bg-green-600 px-5 py-3 text-sm font-medium text-white transition hover:bg-green-700 focus:outline-none focus:ring">
-                            @lang('Go to blog')
-                            <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                            </svg>
-                        </a>
-                    </div>
-                @endforelse
-                @if($posts->count() > 0)
-                    <div class="w-full text-xs text-center mt-8 col-span-1 sm:col-span-2 md:col-span-4">
-                        <a href="{{ route('blog.index') }}" class="rounded-lg bg-green-600 px-5 py-3 text-sm font-medium text-white transition hover:bg-green-700 focus:outline-none focus:ring">
-                            @lang('Read more blog posts')
-                            <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                            </svg>
-                        </a>
-                    </div>
-                @endif
+                @endforeach
             </div>
+            @if($posts->count() > 0)
+                <div class="w-full text-xs text-center mt-8">
+                    <a href="{{ route('blog.index') }}" class="rounded-lg bg-green-600 px-5 py-3 text-sm font-medium text-white transition hover:bg-green-700 focus:outline-none focus:ring">
+                        @lang('Read more blog posts')
+                        <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                        </svg>
+                    </a>
+                </div>
+            @else
+                <div class="w-full text-xs text-center">
+                    <p class="mb-1 dark:text-gray-400">{{ __('There is nothing to show') }}...</p>
+                    <a href="{{ route('blog.index') }}" class="rounded-lg bg-green-600 px-5 py-3 text-sm font-medium text-white transition hover:bg-green-700 focus:outline-none focus:ring">
+                        @lang('Go to blog')
+                        <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                        </svg>
+                    </a>
+                </div>
+            @endif
         </div>
     </section>
 

@@ -1,4 +1,4 @@
-<a href="{{ route('blog.show', $post->uuid) }}" class="relative block overflow-hidden rounded-lg border border-gray-100 p-4 sm:p-6 lg:p-6 dark:border-gray-700 bg-gray-900 justify-between">
+<a href="{{ route('blog.show', $post->uuid) }}" class="relative block overflow-hidden rounded-lg border border-gray-100 p-4 sm:p-6 lg:p-6 bg-gray-50/20 dark:border-gray-700 dark:bg-gray-900 justify-between">
     <span class="absolute inset-x-0 bottom-0 h-2 {{ $post->sticky ? 'bg-red-500' : 'bg-green-600' }}"></span>
 
     <div class="sm:flex sm:justify-between sm:gap-4">
@@ -32,8 +32,8 @@
         </div>
     </div>
 
-    <div class="mt-4 mb-12">
-        <p class="max-w-[40ch] text-sm text-gray-500 dark:text-gray-400">
+    <div class="mt-4 mb-14">
+        <p class="max-w-[40ch] text-sm text-gray-600 dark:text-gray-400">
             {{ $post->excerpt }}
         </p>
     </div>

@@ -3,13 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 
 class BlogController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Application|Factory|View
      */
     public function index()
     {
@@ -25,10 +28,10 @@ class BlogController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Post  $post
-     * @return \Illuminate\Http\Response
+     * @param $param
+     * @return Application|Factory|View
      */
-    public function show($param)
+    public function show($param): Application|Factory|View
     {
         $post = Post::where('uuid', $param)
             ->where('active', true)

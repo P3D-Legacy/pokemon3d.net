@@ -1,9 +1,9 @@
-<a href="{{ route('blog.show', $post->uuid) }}" class="relative block overflow-hidden rounded-lg border border-gray-100 p-4 mx-4 sm:mx-0 sm:p-6 lg:p-6 bg-gray-50/20 dark:border-gray-700 dark:bg-gray-900 justify-between">
+<a href="{{ route('blog.show', $post->uuid) }}" class="relative block overflow-hidden rounded-lg border border-gray-100 p-4 mx-4 sm:mx-0 sm:p-6 lg:p-6 bg-gray-50/20 hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-900 dark:hover:bg-gray-800 justify-between">
     <span class="absolute inset-x-0 bottom-0 h-2 {{ $post->sticky ? 'bg-red-500' : 'bg-green-600' }}"></span>
 
     <div class="sm:flex sm:justify-between sm:gap-4">
         <div>
-            <h3 class="text-lg font-bold text-gray-900 sm:text-xl dark:text-gray-200">
+            <h3 class="text-lg font-bold text-gray-900 sm:text-xl dark:text-gray-100">
                 @if($post->sticky)
                     <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-5 h-5 mr-1 text-red-500" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd" d="M3 6a3 3 0 013-3h10a1 1 0 01.8 1.6L14.25 8l2.55 3.4A1 1 0 0116 13H6a1 1 0 00-1 1v3a1 1 0 11-2 0V6z"
@@ -33,7 +33,7 @@
     </div>
 
     <div class="mt-4 mb-14">
-        <p class="max-w-[40ch] text-sm text-gray-600 dark:text-gray-400">
+        <p class="max-w-[40ch] text-sm text-gray-600 dark:text-gray-200">
             {{ $post->excerpt }}
         </p>
     </div>

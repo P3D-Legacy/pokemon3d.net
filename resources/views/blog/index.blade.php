@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
     <div>
-        <div class="px-4 py-10 mx-auto max-w-7xl sm:px-6 lg:px-8 sm:pb-16">
+        <div class="px-4 py-10 mx-auto max-w-7xl md:px-6 lg:px-8 sm:pb-16">
             @component('components.breadcrumb', ['breadcrumbs' => [
                 ['url' => null, 'label' => __('Blog')],
             ]])
@@ -18,7 +18,7 @@
                     @lang('This is the official blog of the team and developers of the game.')
                 </h4>
             </div>
-            <div class="grid grid-cols-3 gap-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-5 sm:gap-4">
                 @foreach ($posts as $post)
                     <x-home.article :post="$post" />
                 @endforeach

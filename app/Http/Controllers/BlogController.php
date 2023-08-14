@@ -20,7 +20,7 @@ class BlogController extends Controller
             ->where('active', true)
             ->orderBy('sticky', 'desc')
             ->orderByDesc('published_at')
-            ->paginate(5);
+            ->paginate(9);
 
         return view('blog.index', ['posts' => $posts]);
     }

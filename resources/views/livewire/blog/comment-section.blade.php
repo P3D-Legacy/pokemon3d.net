@@ -1,4 +1,4 @@
-<div class="w-full p-6 pt-4 mt-6 mb-10 overflow-hidden bg-white rounded-lg shadow-md sm:max-w-2xl dark:bg-gray-800">
+<div class="w-full p-6 pt-4 mt-6 mb-10 overflow-hidden bg-white rounded-lg shadow-md sm:max-w-3xl dark:bg-gray-900 border border-gray-200 dark:border-gray-700">
 
     <div class="mb-6">
         <h3 class="text-lg font-semibold dark:text-white mb-1">@lang('Comments') ({{ $post->commentCount() }})</h3>
@@ -50,7 +50,7 @@
                 </div>
             </div>
         @empty
-            <p class="text-sm text-gray-600">No comments yet.</p>
+            <p class="text-sm text-gray-600">{{ __('No comments yet') }}.</p>
         @endforelse
     </div>
 </div>

@@ -89,7 +89,6 @@ class Post extends BaseModel implements Viewable
 
     /**
      * Create an excerpt from the body.
-     * @return string
      */
     public function getExcerptAttribute(): string
     {

@@ -27,9 +27,6 @@ class BlogController extends Controller
 
     /**
      * Display the specified resource.
-     *
-     * @param $param
-     * @return Application|Factory|View
      */
     public function show($param): Application|Factory|View
     {

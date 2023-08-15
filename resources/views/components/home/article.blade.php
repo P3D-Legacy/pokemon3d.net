@@ -1,4 +1,4 @@
-<a href="{{ route('blog.show', $post->uuid) }}" class="relative block overflow-hidden rounded-lg border border-gray-100 p-4 mx-4 sm:mx-0 sm:p-6 lg:p-6 bg-gray-50/20 hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-900 dark:hover:bg-gray-800 justify-between">
+<a href="{{ route('blog.show', $post->uuid) }}" class="relative block overflow-hidden rounded-lg border border-gray-200 p-4 mx-4 sm:mx-0 sm:p-6 lg:p-6 bg-white hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-900 dark:hover:bg-gray-800 justify-between shadow-md">
     <span class="absolute inset-x-0 bottom-0 h-2 {{ $post->sticky ? 'bg-red-500' : 'bg-green-600' }}"></span>
 
     <div class="sm:flex sm:justify-between sm:gap-4">

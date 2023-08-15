@@ -4,12 +4,12 @@ namespace App\Http\Livewire;
 
 use App\Models\User;
 use Auth;
-use Illuminate\Notifications\DatabaseNotificationCollection;
+use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
 
 class Notifications extends Component
 {
-    public DatabaseNotificationCollection $unreadNotifications;
+    public Collection $unreadNotifications;
 
     public User $user;
 

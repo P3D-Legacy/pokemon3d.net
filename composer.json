@@ -51,7 +51,7 @@
         "knuckleswtf/scribe": "^4.21.2",
         "laravel/framework": "^9.19",
         "laravel/jetstream": "^2.6",
-        "laravel/nova": "^4.6",
+        "laravel/nova": "4.23.0",
         "laravel/sanctum": "^2.14",
         "laravel/socialite": "^5.5",
         "laravel/tinker": "^2.7",

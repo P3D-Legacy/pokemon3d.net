@@ -45,7 +45,7 @@
         "guzzlehttp/psr7": "^2.1",
         "harrk/gamejolt-api": "^1.1",
         "intervention/image": "^2.7",
-        "kilobyteno/laravel-plausible": "^0.0.2",
+        "kilobyteno/laravel-plausible": "^1.0.0",
         "kiritokatklian/nova-permission": "^4.0",
         "kkomelin/laravel-translatable-string-exporter": "^1.16",
         "knuckleswtf/scribe": "^4.21.2",

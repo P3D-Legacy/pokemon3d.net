@@ -17,7 +17,7 @@
         },
         "laravel-favicon": {
             "type": "git",
-            "url": "https://github.com/DanielRTRD/laravel-favicon.git"
+            "url": "https://github.com/dsbilling/laravel-favicon.git"
         }
     },
     "require": {

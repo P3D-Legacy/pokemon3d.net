@@ -20,7 +20,6 @@
         "vite": "^4.4.9"
     },
     "dependencies": {
-        "@fortawesome/fontawesome-free": "^5.15.4",
         "alpinejs": "^3.12.3",
         "easymde": "^2.18.0",
         "flatpickr": "^4.6.13",

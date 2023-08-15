@@ -44,7 +44,15 @@ class ServerEditForm extends Component
             'description' => ['nullable', 'string'],
         ]);
 
-        Server::find($this->server->uuid)->update([
+        $server = Server::find($this->server->uuid);
+
+        if (!$server) {
+            session()->flash('flash.banner', trans('Server not found.'));
+            session()->flash('flash.bannerStyle', 'danger');
+            return redirect()->route('server.index');
+        }
+
+        $server->update([
             'name' => $this->name,
             'host' => $this->host,
             'port' => $this->port,

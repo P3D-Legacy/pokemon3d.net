@@ -1,10 +1,4 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="text-xl font-semibold leading-tight">
-            @lang('Resources') @auth<button onclick="Livewire.emit('openModal', 'resource.resource-form')" class="px-2 py-1 ml-4 text-sm font-bold text-white bg-green-500 rounded hover:bg-green-700"><svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" /></svg> @lang('Create')</button>@endauth
-        </h2>
-    </x-slot>
-
     <div>
         <div class="px-4 py-10 mx-auto max-w-7xl sm:px-6 lg:px-8">
             @if(Request::is('resource/category/*'))
@@ -40,6 +34,13 @@
                     </div>
                 </div>
                 <div class="sm:col-span-2 md:col-span-3">
+
+                    @auth
+                        <div class="bg-white rounded-lg shadow-md px-6 py-4 mb-6 flex justify-between dark:bg-gray-900">
+                            <span class="font-semibold text-gray-900 dark:text-gray-200">{{ __('Want to add a resource?') }}</span>
+                            <button onclick="Livewire.emit('openModal', 'resource.resource-form')" class="px-2 py-1 text-sm font-bold text-white bg-green-500 rounded hover:bg-green-700"><svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" /></svg> @lang('Create')</button>
+                        </div>
+                    @endauth
 
                     @livewire('resource.resource-list')
 

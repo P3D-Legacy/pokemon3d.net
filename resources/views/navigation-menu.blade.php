@@ -77,7 +77,7 @@
 
             <div class="hidden lg:flex sm:items-center sm:ml-6">
 
-                <div class="relative ml-3">
+                <div class="relative ml-2">
                     <x-jet-dropdown align="right" width="60">
                         <x-slot name="trigger">
                             <span class="inline-flex rounded-md">
@@ -96,7 +96,7 @@
                     @livewire('notifications')
                 @endauth
 
-                <div class="relative ml-3">
+                <div class="relative ml-2">
                     <x-jet-dropdown align="right" width="60">
                         <x-slot name="trigger">
                             <span class="inline-flex rounded-md">
@@ -114,7 +114,7 @@
                     </x-jet-dropdown>
                 </div>
 
-                <div class="relative ml-3">
+                <div class="relative ml-2">
                     <x-jet-dropdown align="right" width="60">
                         <x-slot name="trigger">
                             @include('vendor.language.flag')
@@ -126,7 +126,7 @@
                 </div>
 
                 @role('super-admin|admin')
-                    <div class="relative ml-3">
+                    <div class="relative ml-2">
                         <x-jet-dropdown align="right" width="60">
                             <x-slot name="trigger">
                                 <span class="inline-flex rounded-md">
@@ -158,7 +158,7 @@
                             </x-slot>
                         </x-jet-dropdown>
                     </div>
-                    <div class="relative ml-3">
+                    <div class="relative ml-2">
                         <x-jet-dropdown align="right" width="60">
                             <x-slot name="trigger">
                                 <span class="inline-flex rounded-md">
@@ -171,13 +171,14 @@
                                 </span>
                             </x-slot>
                             <x-slot name="content">
+                                {{----}}
                             </x-slot>
                         </x-jet-dropdown>
                     </div>
                 @endrole
 
                 @guest
-                    <div class="relative ml-3">
+                    <div class="relative ml-2">
                         <x-jet-dropdown align="right" width="60">
                             <x-slot name="trigger">
                                 <span class="inline-flex rounded-md">
@@ -196,7 +197,7 @@
                 @endguest
 
                 <!-- Settings Dropdown -->
-                <div class="relative ml-3">
+                <div class="relative ml-2">
                     @auth
                         <x-jet-dropdown align="right" width="48">
                             <x-slot name="trigger">

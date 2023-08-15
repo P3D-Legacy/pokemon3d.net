@@ -15,7 +15,7 @@
                                 <div class="mb-2 text-xl font-medium text-slate-800 dark:text-white">@lang('Current In-game Skin')</div>
                                 <div class="card-body">
                                     @if(File::exists(public_path('player/'.Auth::user()->gamejolt->id.'.png')))
-                                        <img src="{{ asset('player/'.Auth::user()->gamejolt->id.'.png') }}?r={{ now()->timestamp }}" class="mx-auto my-4">
+                                        <img src="{{ asset('player/'.Auth::user()->gamejolt->id.'.png') }}?r={{ now()->timestamp }}" class="mx-auto my-4" alt="{{ auth()->user()->username }}">
                                     @else
                                         <p class="dark:text-slate-400">@lang('No skins have been added to your account yet.')</p>
                                         @if(Auth::user()->gamejolt->skins()->count() >= env('SKIN_MAX_UPLOAD'))

@@ -6,7 +6,7 @@
         ]])
         @endcomponent
 
-        <div class="rounded-lg bg-white shadow-md dark:bg-slate-900 p-8 border border-slate-200 dark:border-slate-700">
+        <div class="rounded-lg bg-white shadow-md dark:bg-slate-900 p-6 sm:p-8 border border-slate-200 dark:border-slate-700">
             <div class="text-sm leading-6">
                 <dl>
                     <dt class="sr-only">Date</dt>

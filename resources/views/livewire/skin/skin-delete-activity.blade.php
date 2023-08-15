@@ -1,4 +1,4 @@
-<div class="w-full m-auto mt-4 overflow-hidden rounded-lg shadow-lg h-90">
+<div class="w-full m-auto mt-4 overflow-hidden rounded-lg shadow-md h-90">
     <div class="block w-full h-full">
         <div class="w-full p-4 bg-white dark:bg-gray-900">
             <div class="mb-2 text-xl font-medium text-gray-800 dark:text-white">@lang('Admin Skin Deletion Activity')</div>

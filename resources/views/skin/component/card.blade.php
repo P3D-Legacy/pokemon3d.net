@@ -1,4 +1,4 @@
-<div class="flex max-w-md overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-900">
+<div class="flex max-w-md overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-900">
     <div class="items-center justify-center w-1/4 pt-4 pl-4">
         <img class="mx-auto" src="{{ Storage::disk('skin')->exists($skin->path()) ? asset('img/skin/'.$skin->path()) : asset('img/noskin.png') }}" height="128" width="96">
     </div>

@@ -1,5 +1,5 @@
 <div>
-    <div class="flex flex-col items-center justify-center w-full mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-900 dark:shadow-gray-700">
+    <div class="flex flex-col items-center justify-center w-full mx-auto overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-900 dark:shadow-gray-700">
         <div class="flex flex-col w-full divide-y divide dark:divide-gray-700">
             @foreach ($resources as $resource)
                 <a href="{{ route('resource.uuid', $resource->uuid) }}" class="flex hover:bg-green-400/10">

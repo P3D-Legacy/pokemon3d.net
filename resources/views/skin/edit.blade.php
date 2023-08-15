@@ -14,8 +14,8 @@
                 ['label' => $skin->name],
             ]])
             @endcomponent
-            
-            <div class="w-full m-auto overflow-hidden rounded-lg shadow-lg h-90">
+
+            <div class="w-full m-auto overflow-hidden rounded-lg shadow-md h-90">
                 <div class="block w-full h-full">
                     <div class="w-full p-4 bg-white dark:bg-gray-900">
                         <form role="form" action="{{ route('skin-update', $skin->uuid) }}" method="post">

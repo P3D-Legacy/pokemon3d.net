@@ -1,6 +1,6 @@
 <div>
     <div class="max-w-lg">
-        <div class="relative p-4 bg-white rounded-lg shadow-lg dark:bg-black">
+        <div class="relative p-4 bg-white rounded-lg shadow-md dark:bg-black">
             @auth
                 @if(auth()->user()->id == $this->server->user_id)
                     <div x-data="{ dropdownOpen: false }" class="absolute top-2 right-2" x-cloak>
@@ -44,7 +44,7 @@
                     <div x-data="{ tooltip: false }" class="relative z-30 inline-flex">
                         <span x-on:mouseover="tooltip = true" x-on:mouseleave="tooltip = false" class="inline-flex items-center justify-center px-2 py-1 text-sm font-bold leading-none text-indigo-100 uppercase bg-green-700 rounded"><svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-4 h-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" /></svg>{{ __('Official') }}</span>
                         <div class="relative" x-cloak x-show.transition.origin.bottom="tooltip">
-                            <div class="absolute top-0 z-10 w-16 p-2 -mt-1 text-xs leading-tight text-white transform -translate-x-1/2 -translate-y-full bg-green-600 rounded shadow-lg min-w-max">
+                            <div class="absolute top-0 z-10 w-16 p-2 -mt-1 text-xs leading-tight text-white transform -translate-x-1/2 -translate-y-full bg-green-600 rounded shadow-md min-w-max">
                                 {{ __('This means that the server is maintained by the P3D team') }}
                             </div>
                             <svg class="absolute z-10 w-6 h-6 text-green-600 transform -translate-x-12 -translate-y-3 fill-current stroke-current" width="8" height="8">
@@ -57,7 +57,7 @@
                     <div x-data="{ tooltip: false }" class="relative z-30 inline-flex">
                         <span x-on:mouseover="tooltip = true" x-on:mouseleave="tooltip = false" class="inline-flex items-center justify-center px-2 py-1 text-sm font-bold leading-none text-red-100 uppercase bg-red-500 rounded dark:bg-red-700"><svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-4 h-4 mr-1" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M12.395 2.553a1 1 0 00-1.45-.385c-.345.23-.614.558-.822.88-.214.33-.403.713-.57 1.116-.334.804-.614 1.768-.84 2.734a31.365 31.365 0 00-.613 3.58 2.64 2.64 0 01-.945-1.067c-.328-.68-.398-1.534-.398-2.654A1 1 0 005.05 6.05 6.981 6.981 0 003 11a7 7 0 1011.95-4.95c-.592-.591-.98-.985-1.348-1.467-.363-.476-.724-1.063-1.207-2.03zM12.12 15.12A3 3 0 017 13s.879.5 2.5.5c0-1 .5-4 1.25-4.5.5 1 .786 1.293 1.371 1.879A2.99 2.99 0 0113 13a2.99 2.99 0 01-.879 2.121z" clip-rule="evenodd" /></svg>{{ __('New') }}</span>
                         <div class="relative" x-cloak x-show.transition.origin.bottom="tooltip">
-                            <div class="absolute top-0 z-10 w-16 p-2 -mt-1 text-xs leading-tight text-white transform -translate-x-1/2 -translate-y-full bg-red-600 rounded shadow-lg min-w-max">
+                            <div class="absolute top-0 z-10 w-16 p-2 -mt-1 text-xs leading-tight text-white transform -translate-x-1/2 -translate-y-full bg-red-600 rounded shadow-md min-w-max">
                                 {{ __('This server was added in the last seven days') }}
                             </div>
                             <svg class="absolute z-10 w-6 h-6 text-red-600 transform -translate-x-12 -translate-y-3 fill-current stroke-current" width="8" height="8">
@@ -70,7 +70,7 @@
                     <div x-data="{ tooltip: false }" class="relative z-30 inline-flex">
                         <span x-on:mouseover="tooltip = true" x-on:mouseleave="tooltip = false" class="inline-flex items-center justify-center px-2 py-1 text-sm font-bold leading-none text-gray-100 uppercase bg-gray-600 rounded"><svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-4 h-4 mr-1" viewBox="0 0 20 20" fill="currentColor"><path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z" /></svg>{{ $this->server->ping }}</span>
                         <div class="relative" x-cloak x-show.transition.origin.bottom="tooltip">
-                            <div class="absolute top-0 z-10 w-16 p-2 -mt-1 text-xs leading-tight text-white transform -translate-x-1/2 -translate-y-full bg-gray-600 rounded shadow-lg min-w-max">
+                            <div class="absolute top-0 z-10 w-16 p-2 -mt-1 text-xs leading-tight text-white transform -translate-x-1/2 -translate-y-full bg-gray-600 rounded shadow-md min-w-max">
                                 {{ __('The ping relative to the server from this website') }}
                             </div>
                             <svg class="absolute z-10 w-6 h-6 text-gray-600 transform -translate-x-12 -translate-y-3 fill-current stroke-current" width="8" height="8">
@@ -83,7 +83,7 @@
                     <div x-data="{ tooltip: false }" class="relative z-30 inline-flex">
                         <span x-on:mouseover="tooltip = true" x-on:mouseleave="tooltip = false" class="inline-flex items-center justify-center px-2 py-1 text-sm font-bold leading-none text-red-100 uppercase bg-red-600 rounded dark:bg-red-900"><svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-4 h-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636a9 9 0 010 12.728m0 0l-2.829-2.829m2.829 2.829L21 21M15.536 8.464a5 5 0 010 7.072m0 0l-2.829-2.829m-4.243 2.829a4.978 4.978 0 01-1.414-2.83m-1.414 5.658a9 9 0 01-2.167-9.238m7.824 2.167a1 1 0 111.414 1.414m-1.414-1.414L3 3m8.293 8.293l1.414 1.414" /></svg> {{ __('Offline') }}</span>
                         <div class="relative" x-cloak x-show.transition.origin.bottom="tooltip">
-                            <div class="absolute top-0 z-10 w-16 p-2 -mt-1 text-xs leading-tight text-white transform -translate-x-1/2 -translate-y-full bg-red-600 rounded shadow-lg min-w-max">
+                            <div class="absolute top-0 z-10 w-16 p-2 -mt-1 text-xs leading-tight text-white transform -translate-x-1/2 -translate-y-full bg-red-600 rounded shadow-md min-w-max">
                                 {{ __('Last checked: :time', ['time'=>$this->server->last_check_at->diffForHumans()]) }}
                             </div>
                             <svg class="absolute z-10 w-6 h-6 text-red-600 transform -translate-x-12 -translate-y-3 fill-current stroke-current" width="8" height="8">
@@ -97,7 +97,7 @@
                         <div x-data="{ tooltip: false }" class="relative z-30 inline-flex">
                             <span x-on:mouseover="tooltip = true" x-on:mouseleave="tooltip = false" class="inline-flex items-center justify-center px-2 py-1 text-sm font-bold leading-none text-red-100 uppercase bg-red-600 rounded dark:bg-red-900"><svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-4 h-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" /></svg>{{ __('Deactivated') }}</span>
                             <div class="relative" x-cloak x-show.transition.origin.bottom="tooltip">
-                                <div class="absolute top-0 z-10 w-16 p-2 -mt-1 text-xs leading-tight text-white transform -translate-x-1/2 -translate-y-full bg-red-600 rounded shadow-lg min-w-max">
+                                <div class="absolute top-0 z-10 w-16 p-2 -mt-1 text-xs leading-tight text-white transform -translate-x-1/2 -translate-y-full bg-red-600 rounded shadow-md min-w-max">
                                     {{ __('Deactivated because of downtime for the past 24 hours') }}
                                 </div>
                                 <svg class="absolute z-10 w-6 h-6 text-red-600 transform -translate-x-12 -translate-y-3 fill-current stroke-current" width="8" height="8">

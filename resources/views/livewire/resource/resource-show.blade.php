@@ -64,7 +64,7 @@
             @endauth
         </div>
     </div>
-    <div class="w-full p-4 bg-white rounded-lg shadow-lg dark:bg-gray-900 dark:shadow-gray-700">
+    <div class="w-full p-4 bg-white rounded-lg shadow-md dark:bg-gray-900 dark:shadow-gray-700">
         <div class="grid grid-rows-2 gap-4 sm:grid-rows-none sm:grid-cols-4">
             <div class="sm:col-span-3">
                 <div class="mb-4 text-xs text-gray-400">{{ $resource->brief }}</div>
@@ -102,7 +102,7 @@
             </div>
         </div>
     </div>
-    <div class="flex flex-col items-center justify-center w-full mx-auto mt-10 overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-900 dark:shadow-gray-700">
+    <div class="flex flex-col items-center justify-center w-full mx-auto mt-10 overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-900 dark:shadow-gray-700">
         <div class="w-full px-4 py-5 border-b sm:px-6 dark:border-gray-700">
             <h3 class="text-lg font-medium leading-6 text-gray-900 dark:text-white">
                 @lang('Updates')
@@ -136,7 +136,7 @@
             @endforelse
         </div>
     </div>
-    <div class="flex flex-col items-center justify-center w-full mx-auto mt-10 overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-900 dark:shadow-gray-700">
+    <div class="flex flex-col items-center justify-center w-full mx-auto mt-10 overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-900 dark:shadow-gray-700">
         <div class="w-full px-4 py-5 border-b sm:px-6 dark:border-gray-700">
             <h3 class="text-lg font-medium leading-6 text-gray-900 dark:text-white">
                 @lang('Latest reviews')

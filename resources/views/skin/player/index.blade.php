@@ -1,6 +1,6 @@
 @extends('skin-subdomain.layouts.main')
 @section('title', _('Player Skins'))
-     
+
 @section('content')
 <h2 class="text-3xl font-extrabold leading-9 border-b-2 border-gray-100 text-gray-50 mb-4 mt-4 pb-1">
     @lang('Player Skins')
@@ -8,7 +8,7 @@
 
 <div class="gap-4 grid grid-cols-1 grid-flow-row auto-rows-max sm:grid-cols-2 lg:grid-cols-3">
     @foreach($playerskins as $playerskin)
-        <div class="flex max-w-md bg-white shadow-lg rounded-lg overflow-hidden">
+        <div class="flex max-w-md bg-white shadow-md rounded-lg overflow-hidden">
             <div class="w-1/4 items-center justify-center pt-4 pl-4">
                 <img class="mx-auto" src="{{ asset('player/'.$playerskin) }}" height="128" width="96">
             </div>

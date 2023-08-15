@@ -36,13 +36,6 @@
             catch(e){window.attachEvent("onload", $buo_f)}
         </script>
 
-        <script>
-            if (localStorage.theme === 'dark' || (!'theme' in localStorage && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                document.querySelector('html').classList.add('dark')
-            } else if (localStorage.theme === 'dark') {
-                document.querySelector('html').classList.add('dark')
-            }
-        </script>
         @if(env('APP_ENV') != 'local')
             <script defer data-domain="{{ request()->getHost() }}" src="https://plausible.io/js/plausible.js"></script>
         @endif
@@ -99,39 +92,6 @@
 
         <script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.js"></script>
         <script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
-
-        <script>
-            var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
-            var themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
-            document.getElementById('switchTheme').addEventListener('click', function() {
-                let htmlClasses = document.querySelector('html').classList;
-                if(localStorage.theme == 'dark') {
-                    htmlClasses.remove('dark');
-                    localStorage.removeItem('theme');
-                    themeToggleLightIcon.classList.add('hidden');
-                    themeToggleDarkIcon.classList.remove('hidden');
-                } else {
-                    htmlClasses.add('dark');
-                    localStorage.theme = 'dark';
-                    themeToggleLightIcon.classList.remove('hidden');
-                    themeToggleDarkIcon.classList.add('hidden');
-                }
-            });
-            document.getElementById('switchTheme2').addEventListener('click', function() {
-                let htmlClasses = document.querySelector('html').classList;
-                if(localStorage.theme == 'dark') {
-                    htmlClasses.remove('dark');
-                    localStorage.removeItem('theme');
-                    themeToggleLightIcon.classList.add('hidden');
-                    themeToggleDarkIcon.classList.remove('hidden');
-                } else {
-                    htmlClasses.add('dark');
-                    localStorage.theme = 'dark';
-                    themeToggleLightIcon.classList.remove('hidden');
-                    themeToggleDarkIcon.classList.add('hidden');
-                }
-            });
-        </script>
 
     </body>
 </html>

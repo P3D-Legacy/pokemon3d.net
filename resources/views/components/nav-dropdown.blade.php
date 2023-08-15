@@ -29,7 +29,7 @@ switch ($width) {
 
 $classes = ($active ?? false)
             ? 'cursor-pointer relative inline-flex items-center px-1 pt-1 border-b-2 border-green-600 text-sm font-medium leading-5 text-black dark:text-white focus:outline-none focus:border-green-800 transition'
-            : 'cursor-pointer relative inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 dark:text-gray-300 dark:hover:text-gray-400 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition';
+            : 'cursor-pointer relative inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-slate-500 dark:text-slate-300 dark:hover:text-slate-400 hover:text-slate-700 hover:border-slate-300 focus:outline-none focus:text-slate-700 focus:border-slate-300 transition';
 
 @endphp
 
@@ -48,7 +48,7 @@ $classes = ($active ?? false)
             class="absolute z-50 mt-2 {{ $width }} rounded-md shadow-lg {{ $alignmentClasses }} {{ $dropdownClasses }}"
             style="display: none;"
             @click="open = false">
-        <div class="rounded-md ring-1 ring-black ring-opacity-5 dark:bg-gray-800 dark:border dark:border-gray-900 {{ $contentClasses }}">
+        <div class="rounded-md ring-1 ring-black ring-opacity-5 dark:bg-slate-800 dark:border dark:border-slate-900 {{ $contentClasses }}">
             {{ $content }}
         </div>
     </div>

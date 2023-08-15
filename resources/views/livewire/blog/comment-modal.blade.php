@@ -5,7 +5,7 @@
 
     <x-slot name="content">
         <x-text-area id="body" name="body" class="block w-full mt-1" placeholder="{{ __('Leave a comment') }}" autofocus wire:model.defer="body"></x-text-area>
-        <span class="text-xs text-gray-400">@lang('Min characters'): 2 &middot; @lang('Max characters'): 255</span>
+        <span class="text-xs text-slate-400">@lang('Min characters'): 2 &middot; @lang('Max characters'): 255</span>
         <x-jet-input-error for="body" class="mt-2" />
     </x-slot>
 

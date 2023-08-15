@@ -29,7 +29,7 @@
                 <x-jet-input-error for="token" class="mt-2" />
             </div>
         @else
-            <div class="flex mb-5 text-gray-600 bg-white rounded shadow dark:text-gray-200 dark:bg-black w-max">
+            <div class="flex mb-5 text-slate-600 bg-white rounded shadow dark:text-slate-200 dark:bg-black w-max">
                 <div class="self-center w-64 p-2">
                     {{ $username }}
                 </div>

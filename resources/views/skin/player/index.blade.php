@@ -2,7 +2,7 @@
 @section('title', _('Player Skins'))
 
 @section('content')
-<h2 class="text-3xl font-extrabold leading-9 border-b-2 border-gray-100 text-gray-50 mb-4 mt-4 pb-1">
+<h2 class="text-3xl font-extrabold leading-9 border-b-2 border-slate-100 text-slate-50 mb-4 mt-4 pb-1">
     @lang('Player Skins')
 </h2>
 
@@ -14,10 +14,10 @@
             </div>
             <div class="w-3/4 p-4">
                 <div class="card-body">
-                    <h1 class="text-gray-900 font-bold text-2xl">
+                    <h1 class="text-slate-900 font-bold text-2xl">
                         {{ $playerskin }}
                     </h1>
-                    <p class="mt-2 text-gray-600 text-xs">
+                    <p class="mt-2 text-slate-600 text-xs">
                         @lang('Owned by'): {{ App\Models\GJUser::where('gjid', str_replace('.png', '', $playerskin))->first()->gju ?? __('Game Jolt ID') . ': '.str_replace('.png', '', $playerskin) }}<br>
                         @lang('File size'): {{ \ByteUnits\Binary::bytes(Storage::disk('player')->size($playerskin))->format() }}
                     </p>
@@ -29,7 +29,7 @@
                             </svg>
                             @lang('Users will be able to see the reason for the deletion!')
                         </p>
-                        <input class="w-full h-8 px-2 text-sm text-gray-700 placeholder-gray-400 border rounded focus:shadow-outline" type="text" name="reason" placeholder="Add a legit reason here">
+                        <input class="w-full h-8 px-2 text-sm text-slate-700 placeholder-slate-400 border rounded focus:shadow-outline" type="text" name="reason" placeholder="Add a legit reason here">
                         <button class="px-2 py-1 mt-2 bg-red-700 text-red-50 text-xs font-bold uppercase rounded">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />

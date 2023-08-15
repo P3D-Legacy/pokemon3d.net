@@ -5,10 +5,10 @@
         ]])
         @endcomponent
         <div class="pt-5 pb-10">
-            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold leading-7 sm:truncate sm:tracking-tight text-gray-800 dark:text-gray-200">
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold leading-7 sm:truncate sm:tracking-tight text-slate-800 dark:text-slate-200">
                 @lang('Official Blog')
             </h2>
-            <h4 class="mt-1 text-sm text-gray-700 dark:text-gray-400">
+            <h4 class="mt-1 text-sm text-slate-700 dark:text-slate-400">
                 @lang('This is the official blog of the team and developers of the game.')
             </h4>
         </div>
@@ -18,13 +18,13 @@
             @endforeach
         </div>
         @if($posts->hasPages())
-            <div class="p-4 bg-white rounded-lg dark:bg-gray-800">
+            <div class="p-4 bg-white rounded-lg dark:bg-slate-800">
                 {!! $posts->onEachSide(1)->links() !!}
             </div>
         @endif
         @if($posts->isEmpty())
             <div class="w-full text-xs text-center">
-                <p class="mb-1 dark:text-gray-400">{{ __('There is nothing to show') }}...</p>
+                <p class="mb-1 dark:text-slate-400">{{ __('There is nothing to show') }}...</p>
             </div>
         @endif
     </div>

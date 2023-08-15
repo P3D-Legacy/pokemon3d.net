@@ -25,8 +25,8 @@
 				</p>
 			</div>
 
-			<div class="flex items-center justify-center py-4 text-sm text-gray-400 xl:py-6">
-				<span class="w-1/2 border-b border-gray-300 dark:border-gray-500"></span>
+			<div class="flex items-center justify-center py-4 text-sm text-slate-400 xl:py-6">
+				<span class="w-1/2 border-b border-slate-300 dark:border-slate-500"></span>
 			</div>
 		@endif
 
@@ -36,10 +36,10 @@
 			</svg>{{ __('Register') }}
 		</a>
 
-		<div class="flex items-center justify-center py-4 text-sm text-gray-400 xl:py-6">
-			<span class="w-1/12 border-b border-gray-300 sm:w-14 dark:border-gray-500"></span>
+		<div class="flex items-center justify-center py-4 text-sm text-slate-400 xl:py-6">
+			<span class="w-1/12 border-b border-slate-300 sm:w-14 dark:border-slate-500"></span>
 			<span class="px-2">{{ __('or log in with your P3D account') }}</span>
-			<span class="w-1/12 border-b border-gray-300 sm:w-14 dark:border-gray-500"></span>
+			<span class="w-1/12 border-b border-slate-300 sm:w-14 dark:border-slate-500"></span>
 		</div>
 
 		<x-jet-validation-errors class="mb-4" />
@@ -66,14 +66,14 @@
 			<div class="block mt-4">
 				<label for="remember_me" class="flex items-center">
 					<x-jet-checkbox id="remember_me" name="remember" />
-					<span class="ml-2 text-sm text-gray-600 dark:text-gray-300">{{ __('Remember me') }}</span>
+					<span class="ml-2 text-sm text-slate-600 dark:text-slate-300">{{ __('Remember me') }}</span>
 				</label>
 			</div>
 
 			<div class="flex items-center justify-end mt-4">
 				@if (Route::has('password.request'))
 					<div class="w-2/3">
-						<a class="text-sm text-gray-600 underline hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-100" href="{{ route('password.request') }}">
+						<a class="text-sm text-slate-600 underline hover:text-slate-900 dark:text-slate-300 dark:hover:text-slate-100" href="{{ route('password.request') }}">
 							{{ __('Forgot your password?') }}
 						</a>
 					</div>
@@ -88,10 +88,10 @@
 			</div>
 		</form>
         @if((config('services.xenforo.api_key') and config('services.xenforo.api_url')) or config('services.gamejolt.private_key') or (config('services.discord.client_id') and config('services.discord.client_secret')) or (config('services.twitter.client_id') and config('services.twitter.client_secret')) or (config('services.facebook.client_id') and config('services.facebook.client_secret')) or (config('services.twitch.client_id') and config('services.twitch.client_secret')))
-            <div class="flex items-center justify-center py-4 text-sm text-gray-400 xl:py-6">
-                <span class="border-b border-gray-300 w-14 dark:border-gray-500"></span>
+            <div class="flex items-center justify-center py-4 text-sm text-slate-400 xl:py-6">
+                <span class="border-b border-slate-300 w-14 dark:border-slate-500"></span>
                 <span class="px-2">{{ __('or log in with') }}</span>
-                <span class="border-b border-gray-300 w-14 dark:border-gray-500"></span>
+                <span class="border-b border-slate-300 w-14 dark:border-slate-500"></span>
             </div>
 
             @if(config('services.xenforo.api_key') and config('services.xenforo.api_url'))
@@ -145,7 +145,7 @@
                 @endif
 
             </div>
-            <p class="p-0 mx-8 mt-3 text-xs text-center text-gray-400 dark:text-gray-600">{{ __('These login methods requires you to have a P3D account with a association to the social account') }}</p>
+            <p class="p-0 mx-8 mt-3 text-xs text-center text-slate-400 dark:text-slate-600">{{ __('These login methods requires you to have a P3D account with a association to the social account') }}</p>
         @endif
 
 	</x-jet-authentication-card>
@@ -153,7 +153,7 @@
 	<div class="fixed inset-0 z-50 items-center justify-center hidden overflow-x-hidden overflow-y-auto outline-none focus:outline-none" id="xenforo">
 		<div class="relative w-full max-w-2xl mx-auto my-6">
 			<!--content-->
-			<div class="relative flex flex-col w-full bg-white border-0 rounded-lg shadow-lg outline-none dark:bg-gray-800 focus:outline-none">
+			<div class="relative flex flex-col w-full bg-white border-0 rounded-lg shadow-lg outline-none dark:bg-slate-800 focus:outline-none">
 				<!--header-->
 				<div class="flex items-start justify-between rounded-t">
 					<button class="float-right p-3 ml-auto text-3xl font-semibold leading-none text-black bg-transparent border-0 outline-none opacity-50 dark:text-white focus:outline-none" onclick="toggleModal('xenforo')">
@@ -173,7 +173,7 @@
 	<div class="fixed inset-0 z-50 items-center justify-center hidden overflow-x-hidden overflow-y-auto outline-none focus:outline-none" id="gamejolt">
 		<div class="relative w-full max-w-2xl mx-auto my-6">
 			<!--content-->
-			<div class="relative flex flex-col w-full bg-white border-0 rounded-lg shadow-lg outline-none dark:bg-gray-800 focus:outline-none">
+			<div class="relative flex flex-col w-full bg-white border-0 rounded-lg shadow-lg outline-none dark:bg-slate-800 focus:outline-none">
 				<!--header-->
 				<div class="flex items-start justify-between rounded-t">
 					<button class="float-right p-3 ml-auto text-3xl font-semibold leading-none text-black bg-transparent border-0 outline-none opacity-50 dark:text-white focus:outline-none" onclick="toggleModal('gamejolt')">

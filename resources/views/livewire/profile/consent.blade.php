@@ -21,7 +21,7 @@
                     @if($this->consentGiven($consent))
                         {{ (substr($consent, 0, 4) == 'tos.') ? 'bg-green-100 dark:bg-green-200 cursor-not-allowed' : 'bg-green-800 dark:bg-green-600' }}
                     @else
-                        bg-gray-200 dark:bg-gray-300
+                        bg-slate-200 dark:bg-slate-300
                     @endif
                     relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-800"
                     aria-pressed="false"
@@ -30,7 +30,7 @@
                     <span aria-hidden="true" class="{{ ($this->consentGiven($consent)) ? 'translate-x-5' : 'translate-x-0' }} pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow ring-0 transition ease-in-out duration-200"></span>
                 </button>
                 <span class="ml-3">
-                    <span class="text-sm font-medium text-gray-900 dark:text-gray-200">{!! $text !!}</span>
+                    <span class="text-sm font-medium text-slate-900 dark:text-slate-200">{!! $text !!}</span>
                 </span>
             </div>
         @endforeach

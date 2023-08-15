@@ -30,7 +30,7 @@
 
             <div class="col-span-6">
                 <x-jet-label for="description" value="{{ __('Description') }}" />
-                <textarea id="description" wire:model.defer="description" class="block w-full mt-1 px-3 py-1.5 border-gray-300 rounded-md shadow-sm focus:border-green-300 focus:ring focus:ring-green-200 focus:ring-opacity-50 dark:bg-black dark:text-white dark:border-gray-900" placeholder="This is a server for me and my friends."></textarea>
+                <textarea id="description" wire:model.defer="description" class="block w-full mt-1 px-3 py-1.5 border-slate-300 rounded-md shadow-sm focus:border-green-300 focus:ring focus:ring-green-200 focus:ring-opacity-50 dark:bg-black dark:text-white dark:border-slate-900" placeholder="This is a server for me and my friends."></textarea>
                 <x-jet-input-error for="description" class="mt-2"/>
             </div>
 

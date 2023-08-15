@@ -24,13 +24,13 @@
                 Connect with Twitter
             </a>
         @else
-            <div class="flex mb-5 text-gray-600 bg-white rounded shadow dark:text-gray-200 dark:bg-black w-max">
+            <div class="flex mb-5 text-slate-600 bg-white rounded shadow dark:text-slate-200 dark:bg-black w-max">
                 <div class="self-center p-2 pr-1">
                     <img data="picture" class="w-12 h-12 rounded-full" src="{{ $avatar }}" alt="{{ $username }}" />
                 </div>
                 <div class="self-center w-64 p-2">
                     {{ $name }}
-                    <div class="-mt-1 text-sm text-gray-400">{{ '@'.$username }}</div>
+                    <div class="-mt-1 text-sm text-slate-400">{{ '@'.$username }}</div>
                 </div>
             </div>
 

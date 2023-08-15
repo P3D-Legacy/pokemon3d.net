@@ -38,14 +38,14 @@
         </p>
     </div>
 
-    <dl class="mt-6 flex gap-4 sm:gap-6 bottom-0 absolute pb-6">
+    <dl class="mt-6 flex gap-4 xl:gap-6 bottom-0 absolute pb-6">
         <div class="flex flex-col-reverse">
-            <dt class="text-sm font-medium text-slate-600 dark:text-slate-400">{{ __('Published') }}</dt>
+            <dt class="text-sm font-medium text-slate-600 dark:text-slate-400 hidden sm:block">{{ __('Published') }}</dt>
             <dd class="text-xs text-slate-500 dark:text-slate-300">{{ now()->subYear(1) > $post->published_at ? $post->published_at->isoFormat('LL') : $post->published_at->diffForHumans() }}</dd>
         </div>
 
         <div class="flex flex-col-reverse">
-            <dt class="text-sm font-medium text-slate-600 dark:text-slate-400">{{ __('Reading time') }}</dt>
+            <dt class="text-sm font-medium text-slate-600 dark:text-slate-400 hidden sm:block">{{ __('Reading time') }}</dt>
             <dd class="text-xs text-slate-500 dark:text-slate-300">{{ read_time($post->body) }}</dd>
         </div>
     </dl>

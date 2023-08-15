@@ -42,7 +42,7 @@
             <div class="w-full mb-4">
                 <div class="w-64 h-1 py-0 mx-auto my-0 bg-black rounded-t opacity-25 dark:bg-white"></div>
             </div>
-            <div class="grid gap-2 grid-cols-1 grid-flow-row sm:grid-flow-col sm:grid-cols-2 sm:grid-rows-2 lg:grid-cols-4 lg:grid-rows-1 mx-auto">
+            <div class="grid gap-2 grid-cols-1 grid-flow-row sm:grid-flow-col sm:grid-cols-2 sm:grid-rows-2 xl:grid-cols-4 xl:grid-rows-1 mx-auto">
                 @foreach ($posts as $post)
                     <x-home.article :post="$post" />
                 @endforeach

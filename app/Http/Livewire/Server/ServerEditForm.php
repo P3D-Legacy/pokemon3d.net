@@ -46,9 +46,10 @@ class ServerEditForm extends Component
 
         $server = Server::find($this->server->uuid);
 
-        if (!$server) {
+        if (! $server) {
             session()->flash('flash.banner', trans('Server not found.'));
             session()->flash('flash.bannerStyle', 'danger');
+
             return redirect()->route('server.index');
         }
 

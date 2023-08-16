@@ -17,6 +17,9 @@ class CustomRestrictedDocsAccess
      */
     public function handle(Request $request, Closure $next)
     {
+        if (app()->environment(['local', 'staging'])) {
+            return $next($request);
+        }
 
         if (Gate::allows('viewApiDocs')) {
             return $next($request);

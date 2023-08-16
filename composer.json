@@ -34,6 +34,7 @@
         "bolechen/nova-activitylog": "^0.4.0",
         "cebe/php-openapi": "^1.7",
         "cyrildewit/eloquent-viewable": "^6.0",
+        "dedoc/scramble": "^0.8.2",
         "digikraaft/laravel-review-rating": "^2.3",
         "doctrine/dbal": "^3.3",
         "fruitcake/laravel-cors": "^2.0.5",

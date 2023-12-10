@@ -13,8 +13,8 @@ class Server extends BaseModel
 {
     use HasFactory;
     use Likeable;
-    use SoftDeletes;
     use LogsActivity;
+    use SoftDeletes;
 
     protected $primaryKey = 'id';
 

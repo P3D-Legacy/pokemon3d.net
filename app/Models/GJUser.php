@@ -11,9 +11,9 @@ use Spatie\Activitylog\Traits\LogsActivity;
 class GJUser extends BaseModel
 {
     use HasFactory;
-    use SoftDeletes;
-    use LogsActivity;
     use Liker;
+    use LogsActivity;
+    use SoftDeletes;
 
     /**
      * The table associated with the model.

@@ -11,8 +11,8 @@ use Spatie\Activitylog\Traits\LogsActivity;
 class DiscordAccount extends BaseModel
 {
     use HasFactory;
-    use SoftDeletes;
     use LogsActivity;
+    use SoftDeletes;
 
     public static function boot()
     {

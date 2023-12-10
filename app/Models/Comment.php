@@ -8,8 +8,8 @@ use Spatie\Activitylog\Traits\LogsActivity;
 
 class Comment extends \AliBayat\LaravelCommentable\Comment
 {
-    use LogsActivity;
     use Likeable;
+    use LogsActivity;
 
     /**
      * The attributes that should be logged for the user.

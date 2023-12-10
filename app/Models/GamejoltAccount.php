@@ -11,10 +11,10 @@ use Spatie\Activitylog\Traits\LogsActivity;
 
 class GamejoltAccount extends BaseModel
 {
-    use HasFactory;
     use EncryptableDbAttribute;
-    use SoftDeletes;
+    use HasFactory;
     use LogsActivity;
+    use SoftDeletes;
 
     protected $primaryKey = 'aid';
 

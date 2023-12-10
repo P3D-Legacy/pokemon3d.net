@@ -4,16 +4,17 @@ namespace App\Http\Livewire\Login;
 
 use App\Helpers\XenForoHelper;
 use App\Models\ForumAccount;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class Xenforo extends Component
 {
-    public $username;
+    public ?string $username;
 
-    public $password;
+    public ?string $password;
 
-    public function mount()
+    public function mount(): void
     {
         $this->username = null;
         $this->password = null;
@@ -40,15 +41,15 @@ class Xenforo extends Component
             return;
         }
 
-        $forumaccount = ForumAccount::where('username', $this->username)->first();
+        $forum_account = ForumAccount::where('username', $this->username)->first();
 
-        if (! $forumaccount) {
+        if (! $forum_account) {
             $this->addError('error', 'This Forum Account is not associated with a P3D account yet.');
 
             return;
         }
 
-        $user = $forumaccount->user()->first();
+        $user = $forum_account->user()->first();
 
         if (! $user) {
             $this->addError('error', 'Could\'t find the user associated with this Forum Account.');
@@ -61,16 +62,15 @@ class Xenforo extends Component
 
             return;
         } else {
-            $forumaccount->touchVerify();
+            $forum_account->touchVerify();
             request()
                 ->session()
                 ->regenerate();
-
-            return redirect()->intended('dashboard');
         }
+
     }
 
-    public function render()
+    public function render(): View
     {
         return view('livewire.login.xenforo');
     }

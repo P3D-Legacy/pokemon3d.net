@@ -7,13 +7,14 @@ use Harrk\GameJoltApi\Exceptions\TimeOutException;
 use Harrk\GameJoltApi\GamejoltApi;
 use Harrk\GameJoltApi\GamejoltConfig;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
 use Livewire\Component;
 
 class GameJolt extends Component
 {
-    public $username;
+    public ?string $username;
 
-    public $token;
+    public ?string $token;
 
     public function mount()
     {
@@ -81,11 +82,10 @@ class GameJolt extends Component
                 ->session()
                 ->regenerate();
 
-            return redirect()->intended('dashboard');
         }
     }
 
-    public function render()
+    public function render(): View
     {
         return view('livewire.login.game-jolt');
     }

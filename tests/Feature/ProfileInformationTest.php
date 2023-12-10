@@ -9,8 +9,8 @@ test('current profile information is available', function () {
 
     $component = Livewire::test(UpdateProfileInformationForm::class);
 
-    expect($component->state['name'])->toEqual($user->name);
-    expect($component->state['email'])->toEqual($user->email);
+    expect($component->state['name'])->toEqual($user->name)
+        ->and($component->state['email'])->toEqual($user->email);
 });
 
 test('profile information can be updated', function () {

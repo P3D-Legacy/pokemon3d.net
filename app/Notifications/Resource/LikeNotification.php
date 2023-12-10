@@ -47,30 +47,24 @@ class LikeNotification extends Notification
 
     /**
      * Get the notification's delivery channels.
-     *
-     * @param  mixed  $notifiable
      */
-    public function via($notifiable): array
+    public function via(mixed $notifiable): array
     {
         return $notifiable->hasGivenConsent('email.notifications') ? ['mail', 'database'] : ['database'];
     }
 
     /**
      * Get the mail representation of the notification.
-     *
-     * @param  mixed  $notifiable
      */
-    public function toMail($notifiable): MailMessage
+    public function toMail(mixed $notifiable): MailMessage
     {
         return (new MailMessage())->line($this->message)->action('View', route('resource.uuid', $this->resource->uuid));
     }
 
     /**
      * Get the array representation of the notification.
-     *
-     * @param  mixed  $notifiable
      */
-    public function toArray($notifiable): array
+    public function toArray(mixed $notifiable): array
     {
         return [
             'message' => $this->message,

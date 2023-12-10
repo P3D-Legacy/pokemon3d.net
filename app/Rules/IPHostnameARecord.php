@@ -2,9 +2,10 @@
 
 namespace App\Rules;
 
-use Illuminate\Contracts\Validation\Rule;
+use Closure;
+use Illuminate\Contracts\Validation\ValidationRule;
 
-class IPHostnameARecord implements Rule
+class IPHostnameARecord implements ValidationRule
 {
     /**
      * Create a new rule instance.
@@ -17,17 +18,17 @@ class IPHostnameARecord implements Rule
     }
 
     /**
-     * Determine if the validation rule passes.
-     *
-     * @param  mixed  $value
+     * Run the validation rule.
      */
-    public function passes(string $attribute, $value): bool
+    public function validate(string $attribute, mixed $value, Closure $fail): void
     {
         $ipValid = filter_var($value, FILTER_VALIDATE_IP) !== false;
         $domainValid = filter_var($value, FILTER_VALIDATE_DOMAIN) !== false;
         $aRecord = checkdnsrr($value, 'A');
 
-        return $ipValid || ($domainValid && $aRecord) ? true : false;
+        if (! $ipValid && ! $domainValid && ! $aRecord) {
+            $fail($this->message());
+        }
     }
 
     /**

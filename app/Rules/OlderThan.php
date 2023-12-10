@@ -3,32 +3,33 @@
 namespace App\Rules;
 
 use Carbon\Carbon;
-use Illuminate\Contracts\Validation\Rule;
+use Closure;
+use Illuminate\Contracts\Validation\ValidationRule;
 use InvalidArgumentException;
 
-class OlderThan implements Rule
+class OlderThan implements ValidationRule
 {
+    private int $minAge;
+
     /**
      * Create a new rule instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(int $minAge = 13)
     {
-        $this->minAge = 13;
+        $this->minAge = $minAge;
     }
 
     /**
-     * Determine if the validation rule passes.
-     *
-     * @param  mixed  $value
+     * Run the validation rule.
      */
-    public function passes(string $attribute, $value): bool
+    public function validate(string $attribute, mixed $value, Closure $fail): void
     {
         try {
-            return Carbon::now()->diff(Carbon::parse($value))->y >= $this->minAge;
-        } catch (InvalidArgumentException $e) {
-            return false;
+            Carbon::now()->diff(Carbon::parse($value))->y >= $this->minAge;
+        } catch (InvalidArgumentException) {
+            $fail($this->message());
         }
     }
 

@@ -2,30 +2,31 @@
 
 namespace App\Rules;
 
-use Illuminate\Contracts\Validation\Rule;
+use Closure;
+use Illuminate\Contracts\Validation\ValidationRule;
 
-class StrNotContain implements Rule
+class StrNotContain implements ValidationRule
 {
-    public $str;
+    public string $str;
 
     /**
      * Create a new rule instance.
      *
      * @return void
      */
-    public function __construct($str)
+    public function __construct(string $str)
     {
         $this->str = $str;
     }
 
     /**
-     * Determine if the validation rule passes.
-     *
-     * @param  mixed  $value
+     * Run the validation rule.
      */
-    public function passes(string $attribute, $value): bool
+    public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        return ! str_contains(strtolower($value), strtolower($this->str));
+        if (str_contains(strtolower($value), strtolower($this->str))) {
+            $fail($this->message());
+        }
     }
 
     /**

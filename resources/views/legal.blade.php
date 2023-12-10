@@ -3,7 +3,7 @@
         <div class="min-h-screen flex flex-col items-center pt-6 sm:pt-0">
             <div>
                 <a href="{{ route('home') }}">
-                    <x-jet-authentication-card-logo />
+                    <x-authentication-card-logo />
                 </a>
             </div>
 

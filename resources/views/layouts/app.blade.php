@@ -41,7 +41,7 @@
         @endif
     </head>
     <body class="font-sans antialiased {{ config('app.debug') ? 'debug-screens' : '' }}">
-        <x-jet-banner />
+        <x-banner />
 
         @if(Auth::user() && ! Auth::user()->hasGivenConsent(config('app.required_consent')))
             <livewire:new-terms-banner />

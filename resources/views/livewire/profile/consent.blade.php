@@ -1,4 +1,4 @@
-<x-jet-action-section>
+<x-action-section>
     <x-slot name="title">
         {{ __('Consents') }}
     </x-slot>
@@ -36,4 +36,4 @@
         @endforeach
     </x-slot>
 
-</x-jet-action-section>
+</x-action-section>

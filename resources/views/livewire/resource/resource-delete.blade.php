@@ -8,11 +8,11 @@
     </x-slot>
 
     <x-slot name="buttons">
-        <x-jet-danger-button wire:click="delete" wire:loading.attr="disabled">
+        <x-danger-button wire:click="delete" wire:loading.attr="disabled">
             {{ __('Yes') }}
-        </x-jet-danger-button>
-        <x-jet-button wire:click="$emit('closeModal')">
+        </x-danger-button>
+        <x-button wire:click="$emit('closeModal')">
             {{ __('No, do not delete') }}
-        </x-jet-button>
+        </x-button>
     </x-slot>
 </x-modal>

@@ -27,7 +27,7 @@ class SyncGameSaveTrophies extends Command
      *
      * @return int
      */
-    public function handle()
+    public function handle(): int
     {
         $argument = $this->argument('user_id');
         if ($argument != 'all') {

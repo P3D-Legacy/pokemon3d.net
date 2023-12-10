@@ -24,7 +24,7 @@ class Handler extends ExceptionHandler
      *
      * @return void
      */
-    public function register()
+    public function register(): void
     {
         // Sentry Error Reporting
         $this->reportable(function (Throwable $e) {

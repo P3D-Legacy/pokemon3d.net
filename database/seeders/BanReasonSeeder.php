@@ -12,7 +12,7 @@ class BanReasonSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
         $reasons = [
             'Abusing in-game glitches',

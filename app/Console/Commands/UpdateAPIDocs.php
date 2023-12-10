@@ -31,7 +31,7 @@ class UpdateAPIDocs extends Command
      *
      * @return int
      */
-    public function handle()
+    public function handle(): int
     {
         // Generate Scribe API Docs
         Artisan::call('scribe:generate');

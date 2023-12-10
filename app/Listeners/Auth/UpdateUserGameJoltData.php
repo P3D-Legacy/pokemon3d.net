@@ -14,7 +14,7 @@ class UpdateUserGameJoltData
      *
      * @return void
      */
-    public function handle(Login $event)
+    public function handle(Login $event): void
     {
         $user = null;
 

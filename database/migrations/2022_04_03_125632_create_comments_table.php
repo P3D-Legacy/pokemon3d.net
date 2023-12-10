@@ -12,7 +12,7 @@ use Kalnoy\Nestedset\NestedSet;
 
 return new class extends Migration
 {
-    public function up()
+    public function up(): void
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->increments('id');
@@ -26,7 +26,7 @@ return new class extends Migration
         });
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('comments');
     }

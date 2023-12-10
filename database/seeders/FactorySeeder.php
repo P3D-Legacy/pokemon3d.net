@@ -18,7 +18,7 @@ class FactorySeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
         User::factory()->create([
             'name' => 'Admin Lastname',

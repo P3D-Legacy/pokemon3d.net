@@ -36,7 +36,7 @@ class NewGameUpdateNotification extends Notification
      * @param  mixed  $notifiable
      * @return array
      */
-    public function via($notifiable)
+    public function via($notifiable): array
     {
         return $notifiable->hasGivenConsent('email.newsletter') ? ['mail', 'database'] : ['database'];
     }
@@ -47,7 +47,7 @@ class NewGameUpdateNotification extends Notification
      * @param  mixed  $notifiable
      * @return MailMessage
      */
-    public function toMail($notifiable)
+    public function toMail($notifiable): MailMessage
     {
         $btn_text = $this->gameVersion->post ? 'View blog post' : 'View changelog';
 
@@ -68,7 +68,7 @@ class NewGameUpdateNotification extends Notification
      * @param  mixed  $notifiable
      * @return array
      */
-    public function toArray($notifiable)
+    public function toArray($notifiable): array
     {
         return [
             'message' => $this->message,

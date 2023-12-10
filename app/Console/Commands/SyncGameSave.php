@@ -27,7 +27,7 @@ class SyncGameSave extends Command
      *
      * @return int
      */
-    public function handle()
+    public function handle(): int
     {
         $game_id = config('services.gamejolt.game_id');
         $private_key = config('services.gamejolt.private_key');

@@ -35,7 +35,7 @@ class SyncGameSaveForUser implements ShouldQueue
      *
      * @return void
      */
-    public function handle()
+    public function handle(): void
     {
         $game_id = config('services.gamejolt.game_id');
         $private_key = config('services.gamejolt.private_key');

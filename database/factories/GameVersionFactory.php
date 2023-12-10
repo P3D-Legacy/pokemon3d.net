@@ -14,7 +14,7 @@ class GameVersionFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    public function definition()
+    public function definition(): array
     {
         $version =
             $this->faker->numberBetween(0, 2).

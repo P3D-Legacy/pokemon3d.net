@@ -14,7 +14,7 @@ class CommentFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    public function definition()
+    public function definition(): array
     {
         return [
             'commentable_id' => $this->faker->numberBetween(1, 10),

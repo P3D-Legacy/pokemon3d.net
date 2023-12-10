@@ -51,7 +51,7 @@ class LikeNotification extends Notification
      * @param  mixed  $notifiable
      * @return array
      */
-    public function via($notifiable)
+    public function via($notifiable): array
     {
         return $notifiable->hasGivenConsent('email.notifications') ? ['mail', 'database'] : ['database'];
     }
@@ -62,7 +62,7 @@ class LikeNotification extends Notification
      * @param  mixed  $notifiable
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
-    public function toMail($notifiable)
+    public function toMail($notifiable): MailMessage
     {
         return (new MailMessage())->line($this->message)->action('View', route('skin-show', $this->skin->uuid));
     }
@@ -73,7 +73,7 @@ class LikeNotification extends Notification
      * @param  mixed  $notifiable
      * @return array
      */
-    public function toArray($notifiable)
+    public function toArray($notifiable): array
     {
         return [
             'message' => $this->message,

@@ -36,7 +36,7 @@ class PingServer extends Command
      *
      * @return int
      */
-    public function handle()
+    public function handle(): int
     {
         $server_uuid = $this->argument('uuid');
         $reactivate = $this->argument('reactivate');

@@ -37,7 +37,7 @@ class DiscordRoleSync extends Command
      *
      * @return int
      */
-    public function handle()
+    public function handle(): int
     {
         $server_roles = DiscordHelper::getServerRoles();
         foreach ($server_roles as $server_role) {

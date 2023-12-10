@@ -19,8 +19,8 @@
             </svg>
             @lang('Download')
         </button>
-        <x-jet-secondary-button wire:click="$emit('closeModal')">
+        <x-secondary-button wire:click="$emit('closeModal')">
             @lang('Close')
-        </x-jet-secondary-button>
+        </x-secondary-button>
     </x-slot>
 </x-modal>

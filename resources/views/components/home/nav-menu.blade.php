@@ -76,7 +76,7 @@
                     </x-home.responsive-nav-link>
                 @endguest
                 <li class="w-full">
-                    <x-jet-dropdown align="left">
+                    <x-dropdown align="left">
                         <x-slot name="trigger">
                             <div class="flex items-center h-10 px-2 text-white no-underline transition duration-150 rounded-lg shadow max-w-max hover:text-slate-50 hover:text-underline bg-slate-900/40 hover:bg-slate-900/50 border-slate-900/50 backdrop-blur-sm hover:translate-x-1 dark:text-yellow-500 focus:outline-none">
                                 @include('vendor.language.flag')
@@ -85,7 +85,7 @@
                         <x-slot name="content">
                             @include('vendor.language.flags')
                         </x-slot>
-                    </x-jet-dropdown>
+                    </x-dropdown>
                 </li>
             </ul>
         </div>
@@ -157,7 +157,7 @@
                           </svg>
                     </x-slot>
                 </x-home.nav-link> --}}
-                <x-jet-dropdown align="right">
+                <x-dropdown align="right">
                     <x-slot name="trigger">
                         <div class="flex items-center w-10 h-10 text-white max-w-max focus:outline-none">
                             @include('vendor.language.flag')
@@ -166,7 +166,7 @@
                     <x-slot name="content">
                         @include('vendor.language.flags')
                     </x-slot>
-                </x-jet-dropdown>
+                </x-dropdown>
             </ul>
         </div>
     </div>

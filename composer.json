@@ -51,7 +51,7 @@
         "kkomelin/laravel-translatable-string-exporter": "^1.16",
         "knuckleswtf/scribe": "^4.21.2",
         "laravel/framework": "^9.19",
-        "laravel/jetstream": "^2.6",
+        "laravel/jetstream": "^3.0",
         "laravel/nova": "4.23.0",
         "laravel/sanctum": "^2.14",
         "laravel/socialite": "^5.5",

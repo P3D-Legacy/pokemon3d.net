@@ -1,8 +1,8 @@
 <x-guest-layout>
-	<x-jet-authentication-card>
+	<x-authentication-card>
 		<x-slot name="logo">
 			<a href="{{ route('home') }}">
-				<x-jet-authentication-card-logo />
+				<x-authentication-card-logo />
 			</a>
 		</x-slot>
 
@@ -42,7 +42,7 @@
 			<span class="w-1/12 border-b border-slate-300 sm:w-14 dark:border-slate-500"></span>
 		</div>
 
-		<x-jet-validation-errors class="mb-4" />
+		<x-validation-errors class="mb-4" />
 
 		@if (session('status'))
 			<div class="mb-4 text-sm font-medium text-green-600">
@@ -54,18 +54,18 @@
 			@csrf
 
 			<div>
-				<x-jet-label for="username" value="{{ __('Email or Username') }}" />
-				<x-jet-input id="username" class="block w-full mt-1" type="text" name="username" :value="old('username')" required autofocus />
+				<x-label for="username" value="{{ __('Email or Username') }}" />
+				<x-input id="username" class="block w-full mt-1" type="text" name="username" :value="old('username')" required autofocus />
 			</div>
 
 			<div class="mt-4">
-				<x-jet-label for="password" value="{{ __('Password') }}" />
-				<x-jet-input id="password" class="block w-full mt-1" type="password" name="password" required autocomplete="current-password" />
+				<x-label for="password" value="{{ __('Password') }}" />
+				<x-input id="password" class="block w-full mt-1" type="password" name="password" required autocomplete="current-password" />
 			</div>
 
 			<div class="block mt-4">
 				<label for="remember_me" class="flex items-center">
-					<x-jet-checkbox id="remember_me" name="remember" />
+					<x-checkbox id="remember_me" name="remember" />
 					<span class="ml-2 text-sm text-slate-600 dark:text-slate-300">{{ __('Remember me') }}</span>
 				</label>
 			</div>
@@ -79,11 +79,11 @@
 					</div>
 				@endif
 				<div class="w-1/3">
-					<x-jet-button class="flex items-center justify-center w-full px-2 py-1 text-xs sm:text-sm sm:px-4 sm:py-3">
+					<x-button class="flex items-center justify-center w-full px-2 py-1 text-xs sm:text-sm sm:px-4 sm:py-3">
 						<svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-5 h-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
 						</svg>{{ __('Log in') }}
-					</x-jet-button>
+					</x-button>
 				</div>
 			</div>
 		</form>
@@ -148,7 +148,7 @@
             <p class="p-0 mx-8 mt-3 text-xs text-center text-slate-400 dark:text-slate-600">{{ __('These login methods requires you to have a P3D account with a association to the social account') }}</p>
         @endif
 
-	</x-jet-authentication-card>
+	</x-authentication-card>
 
 	<div class="fixed inset-0 z-50 items-center justify-center hidden overflow-x-hidden overflow-y-auto outline-none focus:outline-none" id="xenforo">
 		<div class="relative w-full max-w-2xl mx-auto my-6">

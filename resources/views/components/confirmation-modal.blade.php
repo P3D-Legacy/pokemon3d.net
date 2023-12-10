@@ -1,6 +1,6 @@
 @props(['id' => null, 'maxWidth' => null])
 
-<x-jet-modal :id="$id" :maxWidth="$maxWidth" {{ $attributes }}>
+<x-modal :id="$id" :maxWidth="$maxWidth" {{ $attributes }}>
     <div class="px-4 pt-5 pb-4 bg-white dark:bg-slate-700 sm:p-6 sm:pb-4">
         <div class="sm:flex sm:items-start">
             <div class="flex items-center justify-center flex-shrink-0 w-12 h-12 mx-auto bg-red-100 rounded-full dark:bg-red-600 sm:mx-0 sm:h-10 sm:w-10">
@@ -24,4 +24,4 @@
     <div class="px-6 py-4 text-right bg-slate-100 dark:bg-slate-800">
         {{ $footer }}
     </div>
-</x-jet-modal>
+</x-modal>

@@ -1,5 +1,5 @@
 <div class="relative ml-3">
-    <x-jet-dropdown align="right" width="96">
+    <x-dropdown align="right" width="96">
         <x-slot name="trigger">
             <span class="inline-flex rounded-md">
                 <button class="inline-flex items-center p-2 text-sm font-medium leading-4 text-slate-500 transition bg-transparent border border-transparent rounded-full hover:bg-slate-100 hover:text-slate-700 dark:text-slate-300 dark:hover:bg-slate-800">
@@ -71,5 +71,5 @@
                 </div>
             @endforelse
         </x-slot>
-    </x-jet-dropdown>
+    </x-dropdown>
 </div>

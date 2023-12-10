@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Skin;
 
-use Illuminate\Http\RedirectResponse;
 use App\Http\Controllers\Controller;
 use GuzzleHttp\Client;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\View\View;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\View\View;
 use Laravel\Jetstream\Jetstream;
 
 class HomeController extends Controller
@@ -29,7 +29,7 @@ class HomeController extends Controller
     /**
      * Show the legal information for the application.
      */
-    public function legal(Request $request): \Illuminate\View\View
+    public function legal(Request $request): View
     {
         $localizedMarkdownPath = Jetstream::localizedMarkdownPath('legal.md');
 
@@ -41,7 +41,7 @@ class HomeController extends Controller
     /**
      * Show the contact information for the application.
      */
-    public function contact(Request $request): \Illuminate\View\View
+    public function contact(Request $request): View
     {
         $localizedMarkdownPath = Jetstream::localizedMarkdownPath('contact.md');
 

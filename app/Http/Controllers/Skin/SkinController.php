@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Skin;
 
-use Illuminate\View\View;
 use App\Http\Controllers\Controller;
 use App\Models\Skin;
 use App\Notifications\Skin\LikeNotification;
@@ -13,6 +12,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\View\View;
 use League\Flysystem\FileNotFoundException;
 
 class SkinController extends Controller

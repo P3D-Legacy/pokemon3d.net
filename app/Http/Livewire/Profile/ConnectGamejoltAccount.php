@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire\Profile;
 
-use Illuminate\View\View;
 use App\Achievements\User\AssociatedGamejolt;
 use App\Models\GamejoltAccount;
 use Carbon\Carbon;
@@ -12,6 +11,7 @@ use Harrk\GameJoltApi\GamejoltConfig;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
+use Illuminate\View\View;
 use Livewire\Component;
 
 class ConnectGamejoltAccount extends Component

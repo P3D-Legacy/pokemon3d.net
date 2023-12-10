@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Http\RedirectResponse;
 use App\Achievements\User\AssociatedTwitch;
 use App\Http\Controllers\Controller;
 use App\Models\TwitchAccount;
@@ -27,7 +28,7 @@ class TwitchController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function handleProviderCallback()
+    public function handleProviderCallback(): RedirectResponse
     {
         try {
             $twitchUser = Socialite::driver('twitch')->user();

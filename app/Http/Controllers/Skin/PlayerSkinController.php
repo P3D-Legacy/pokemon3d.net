@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Skin;
 
+use Illuminate\Http\RedirectResponse;
 use App\Http\Controllers\Controller;
 use App\Models\Skin;
 use Illuminate\Http\Request;
@@ -47,7 +48,7 @@ class PlayerSkinController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         $gjid = Auth::user()->gamejolt->id;
 
@@ -69,7 +70,7 @@ class PlayerSkinController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function duplicate(Request $request)
+    public function duplicate(Request $request): RedirectResponse
     {
         $gjid = Auth::user()->gamejolt->id;
         $skincount = Auth::user()
@@ -100,7 +101,7 @@ class PlayerSkinController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(int $id)
     {
         //
     }
@@ -111,7 +112,7 @@ class PlayerSkinController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id)
     {
         //
     }
@@ -122,7 +123,7 @@ class PlayerSkinController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request)
+    public function destroy(Request $request): RedirectResponse
     {
         $gjid = Auth::user()->gamejolt->id;
         $filename = $gjid.'.png';
@@ -144,7 +145,7 @@ class PlayerSkinController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroyAsAdmin(Request $request, $gjid)
+    public function destroyAsAdmin(Request $request, $gjid): RedirectResponse
     {
         $request->validate([
             'reason' => ['required', 'string'],

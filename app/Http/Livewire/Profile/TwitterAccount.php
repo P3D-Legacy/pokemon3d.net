@@ -28,7 +28,7 @@ class TwitterAccount extends Component
      *
      * @return void
      */
-    public function remove()
+    public function remove(): void
     {
         $this->resetErrorBag();
         $this->resetValidation();

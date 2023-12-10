@@ -36,7 +36,7 @@ class XenforoAccount extends Component
      *
      * @return void
      */
-    public function save()
+    public function save(): void
     {
         $this->resetErrorBag();
         $this->resetValidation();
@@ -105,7 +105,7 @@ class XenforoAccount extends Component
      *
      * @return void
      */
-    public function remove()
+    public function remove(): void
     {
         $this->resetErrorBag();
         $this->resetValidation();

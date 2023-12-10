@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Profile;
 
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
@@ -19,7 +20,7 @@ class Consent extends Component
      *
      * @return \Illuminate\Http\Response
      */
-    public function render()
+    public function render(): Response
     {
         return view('livewire.profile.consent');
     }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Skin;
 
+use Illuminate\View\View;
 use App\Http\Controllers\Controller;
 use App\Models\Skin;
 use App\Notifications\Skin\LikeNotification;
@@ -21,7 +22,7 @@ class SkinController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function show(Skin $skin)
+    public function show(Skin $skin): View
     {
         $skin = Skin::where('uuid', $skin->uuid)
             ->isPublic()
@@ -36,7 +37,7 @@ class SkinController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function newestpublicskins()
+    public function newestpublicskins(): View
     {
         $skins = Skin::isPublic()
             ->orderBy('created_at', 'DESC')
@@ -50,7 +51,7 @@ class SkinController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function popularpublicskins()
+    public function popularpublicskins(): View
     {
         $skins = Skin::isPublic()
             ->withCount('likers')
@@ -84,7 +85,7 @@ class SkinController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         $gjid = Auth::user()->gamejolt->id;
         $gju = Auth::user()->gamejolt->username;
@@ -186,7 +187,7 @@ class SkinController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function apply(Request $request, $uuid)
+    public function apply(Request $request, $uuid): RedirectResponse
     {
         $gjid = Auth::user()->gamejolt->id;
         $filename = $gjid.'.png';
@@ -209,7 +210,7 @@ class SkinController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function like(Request $request, $uuid)
+    public function like(Request $request, $uuid): RedirectResponse
     {
         $user = Auth::user();
         $skin = Skin::where('uuid', $uuid)->first();
@@ -230,7 +231,7 @@ class SkinController extends Controller
      * @param  string  $uuid
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request, $uuid)
+    public function edit(Request $request, string $uuid)
     {
         $gjid = Auth::user()->gamejolt->id;
         $skin = Skin::where('uuid', $uuid)->first();
@@ -249,7 +250,7 @@ class SkinController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $uuid)
+    public function update(Request $request, $uuid): RedirectResponse
     {
         $gjid = Auth::user()->gamejolt->id;
         $skin = Skin::where('uuid', $uuid)->first();

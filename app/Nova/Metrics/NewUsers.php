@@ -23,7 +23,7 @@ class NewUsers extends Value
      *
      * @return array
      */
-    public function ranges()
+    public function ranges(): array
     {
         return [
             30 => __('30 Days'),
@@ -51,7 +51,7 @@ class NewUsers extends Value
      *
      * @return string
      */
-    public function uriKey()
+    public function uriKey(): string
     {
         return 'new-users';
     }

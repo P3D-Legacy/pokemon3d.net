@@ -23,7 +23,7 @@ class IPHostnameARecord implements Rule
      * @param  mixed  $value
      * @return bool
      */
-    public function passes($attribute, $value)
+    public function passes(string $attribute, $value): bool
     {
         $ipValid = filter_var($value, FILTER_VALIDATE_IP) !== false;
         $domainValid = filter_var($value, FILTER_VALIDATE_DOMAIN) !== false;
@@ -37,7 +37,7 @@ class IPHostnameARecord implements Rule
      *
      * @return string
      */
-    public function message()
+    public function message(): string
     {
         return ':Attribute does not have a valid hostname/ip format or does not return an A record.';
     }

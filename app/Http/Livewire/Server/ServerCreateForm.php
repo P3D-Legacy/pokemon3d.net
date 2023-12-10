@@ -22,7 +22,7 @@ class ServerCreateForm extends Component
      *
      * @return void
      */
-    public function save()
+    public function save(): void
     {
         $this->resetErrorBag();
         $this->resetValidation();

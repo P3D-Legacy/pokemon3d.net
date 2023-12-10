@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Skin;
 
+use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
 use App\Http\Controllers\Controller;
 use App\Models\Skin;
 use Illuminate\Http\Request;
@@ -20,7 +22,7 @@ class UploadedSkinController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(): View
     {
         $skins = Skin::all();
 
@@ -53,7 +55,7 @@ class UploadedSkinController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(int $id)
     {
         //
     }
@@ -64,7 +66,7 @@ class UploadedSkinController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(int $id)
     {
         //
     }
@@ -75,7 +77,7 @@ class UploadedSkinController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id)
     {
         //
     }
@@ -86,7 +88,7 @@ class UploadedSkinController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, $uuid)
+    public function destroy(Request $request, $uuid): RedirectResponse
     {
         $request->validate([
             'reason' => ['required', 'string'],

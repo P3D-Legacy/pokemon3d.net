@@ -100,7 +100,7 @@ class GamejoltAccount extends BaseModel
      *
      * @return void
      */
-    public static function boot()
+    public static function boot(): void
     {
         parent::boot();
 

@@ -44,7 +44,7 @@ class Server extends BaseModel
      *
      * @return string
      */
-    public function getRouteKeyName()
+    public function getRouteKeyName(): string
     {
         return 'uuid';
     }
@@ -70,7 +70,7 @@ class Server extends BaseModel
      *
      * @return void
      */
-    public static function boot()
+    public static function boot(): void
     {
         parent::boot();
 

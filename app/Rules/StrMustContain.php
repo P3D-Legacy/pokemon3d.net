@@ -25,7 +25,7 @@ class StrMustContain implements Rule
      * @param  mixed  $value
      * @return bool
      */
-    public function passes($attribute, $value)
+    public function passes(string $attribute, $value): bool
     {
         return str_contains($value, $this->str);
     }
@@ -35,7 +35,7 @@ class StrMustContain implements Rule
      *
      * @return string
      */
-    public function message()
+    public function message(): string
     {
         return 'The :attribute must conatin '.$this->str.'.';
     }

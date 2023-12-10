@@ -25,7 +25,7 @@ class OlderThan implements Rule
      * @param  mixed  $value
      * @return bool
      */
-    public function passes($attribute, $value)
+    public function passes(string $attribute, $value): bool
     {
         try {
             return Carbon::now()->diff(Carbon::parse($value))->y >= $this->minAge;
@@ -39,7 +39,7 @@ class OlderThan implements Rule
      *
      * @return string
      */
-    public function message()
+    public function message(): string
     {
         return __('You need to be older than :age years old', ['age' => $this->minAge]);
     }

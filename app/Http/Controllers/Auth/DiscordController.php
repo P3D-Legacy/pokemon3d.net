@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Http\RedirectResponse;
 use App\Achievements\User\AssociatedDiscord;
 use App\Http\Controllers\Controller;
 use App\Models\DiscordAccount;
@@ -27,7 +28,7 @@ class DiscordController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function handleProviderCallback()
+    public function handleProviderCallback(): RedirectResponse
     {
         try {
             $discordUser = Socialite::driver('discord')->user();

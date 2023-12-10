@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Http\RedirectResponse;
 use App\Achievements\User\AssociatedFacebook;
 use App\Http\Controllers\Controller;
 use App\Models\FacebookAccount;
@@ -27,7 +28,7 @@ class FacebookController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function handleProviderCallback()
+    public function handleProviderCallback(): RedirectResponse
     {
         try {
             $facebookUser = Socialite::driver('facebook')->user();

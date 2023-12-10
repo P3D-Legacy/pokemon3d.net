@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Profile;
 
+use Illuminate\View\View;
 use App\Achievements\User\AssociatedGamejolt;
 use App\Models\GamejoltAccount;
 use Carbon\Carbon;
@@ -37,7 +38,7 @@ class ConnectGamejoltAccount extends Component
      *
      * @return void
      */
-    public function save()
+    public function save(): void
     {
         $this->resetErrorBag();
         $this->resetValidation();
@@ -125,7 +126,7 @@ class ConnectGamejoltAccount extends Component
      *
      * @return void
      */
-    public function remove()
+    public function remove(): void
     {
         $this->resetErrorBag();
         $this->resetValidation();
@@ -148,7 +149,7 @@ class ConnectGamejoltAccount extends Component
      *
      * @return \Illuminate\View\View
      */
-    public function render()
+    public function render(): View
     {
         return view('livewire.profile.connect-gamejolt-account');
     }

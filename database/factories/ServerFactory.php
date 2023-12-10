@@ -27,9 +27,9 @@ class ServerFactory extends Factory
         return [
             'name' => $this->faker->name(),
             'description' => $this->faker->optional()->sentence(),
-            'host' => $this->faker->domainName,
+            'host' => $this->faker->domainName(),
             'port' => $this->faker->numberBetween(1, 65535),
-            'active' => $this->faker->boolean,
+            'active' => $this->faker->boolean(),
             'last_check_at' => $this->faker->dateTimeBetween($startDate = '-1 years', $endDate = 'now'),
             'user_id' => UserFactory::new(),
             'ping' => $this->faker->optional()->numberBetween(1, 100),

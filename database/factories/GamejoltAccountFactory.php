@@ -17,9 +17,9 @@ class GamejoltAccountFactory extends Factory
     public function definition()
     {
         return [
-            'id' => $this->faker->uuid,
-            'username' => $this->faker->userName,
-            'token' => $this->faker->uuid,
+            'id' => $this->faker->uuid(),
+            'username' => $this->faker->userName(),
+            'token' => $this->faker->uuid(),
             'verified_at' => $this->faker->dateTime(),
             'user_id' => \App\Models\User::factory(),
         ];

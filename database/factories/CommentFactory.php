@@ -31,7 +31,7 @@ class CommentFactory extends Factory
             ]),
             'creator_id' => $this->faker->numberBetween(1, 10),
             'creator_type' => \App\Models\User::class,
-            'body' => $this->faker->sentence,
+            'body' => $this->faker->sentence(),
         ];
     }
 }

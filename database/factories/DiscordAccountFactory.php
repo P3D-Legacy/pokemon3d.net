@@ -17,9 +17,9 @@ class DiscordAccountFactory extends Factory
     public function definition()
     {
         return [
-            'id' => $this->faker->uuid,
-            'username' => $this->faker->userName,
-            'email' => $this->faker->email,
+            'id' => $this->faker->uuid(),
+            'username' => $this->faker->userName(),
+            'email' => $this->faker->email(),
             'avatar' => $this->faker->imageUrl(),
             'discriminator' => $this->faker->randomNumber(4),
             'verified_at' => $this->faker->dateTime(),

@@ -20,8 +20,8 @@ class EventServiceProvider extends ServiceProvider
             \SocialiteProviders\Twitch\TwitchExtendSocialite::class.'@handle',
         ],
         'Illuminate\Auth\Events\Login' => [
-            'App\Listeners\Auth\UpdateUserTimezone',
-            'App\Listeners\Auth\UpdateUserGameJoltData',
+            \App\Listeners\Auth\UpdateUserTimezone::class,
+            \App\Listeners\Auth\UpdateUserGameJoltData::class,
         ],
     ];
 

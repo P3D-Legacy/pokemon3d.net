@@ -39,9 +39,9 @@ class GamejoltAccountBan extends Resource
     {
         return [
             ID::make()->sortable(),
-            BelongsTo::make('Gamejolt Account', 'gamejoltaccount', 'App\Nova\GamejoltAccount')->searchable(),
-            BelongsTo::make('Banned by', 'banned_by', 'App\Nova\User')->searchable(),
-            BelongsTo::make('Reason', 'reason', 'App\Nova\BanReason'),
+            BelongsTo::make('Gamejolt Account', 'gamejoltaccount', \App\Nova\GamejoltAccount::class)->searchable(),
+            BelongsTo::make('Banned by', 'banned_by', \App\Nova\User::class)->searchable(),
+            BelongsTo::make('Reason', 'reason', \App\Nova\BanReason::class),
         ];
     }
 

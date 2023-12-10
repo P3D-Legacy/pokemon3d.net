@@ -19,7 +19,7 @@ class ReviewList extends Component
 
     public function mount()
     {
-        $this->reviews = Review::where('model_type', '=', 'App\Models\GameVersion')
+        $this->reviews = Review::where('model_type', '=', \App\Models\GameVersion::class)
             ->orderBy('created_at', 'desc')
             ->get();
         $this->numberOfReviews = $this->reviews->count();
@@ -28,7 +28,7 @@ class ReviewList extends Component
 
     public function update()
     {
-        $this->reviews = Review::where('model_type', '=', 'App\Models\GameVersion')
+        $this->reviews = Review::where('model_type', '=', \App\Models\GameVersion::class)
             ->orderBy('created_at', 'desc')
             ->get();
         $this->numberOfReviews = $this->reviews->count();

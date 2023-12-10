@@ -63,7 +63,7 @@ class Post extends Resource
                 ->rules('required')
                 ->hideFromIndex(),
 
-            BelongsTo::make('User', 'user', 'App\Nova\User'),
+            BelongsTo::make('User', 'user', \App\Nova\User::class),
 
             Tags::make('Tags'),
         ];

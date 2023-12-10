@@ -48,8 +48,6 @@ class Skin extends BaseModel
 
     /**
      * Get the route key for the model.
-     *
-     * @return string
      */
     public function getRouteKeyName(): string
     {
@@ -58,8 +56,6 @@ class Skin extends BaseModel
 
     /**
      * The attributes that should be logged for the user.
-     *
-     * @return array
      */
     public function getActivitylogOptions(): LogOptions
     {
@@ -70,8 +66,6 @@ class Skin extends BaseModel
 
     /**
      * The boot method of the model.
-     *
-     * @return void
      */
     public static function boot(): void
     {

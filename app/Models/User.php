@@ -92,8 +92,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
     /**
      * The attributes that should be logged for the user.
-     *
-     * @return array
      */
     public function getActivitylogOptions(): LogOptions
     {

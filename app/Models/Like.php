@@ -11,8 +11,6 @@ class Like extends \Overtrue\LaravelLike\Like
 
     /**
      * The attributes that should be logged for the user.
-     *
-     * @return array
      */
     public function getActivitylogOptions(): LogOptions
     {

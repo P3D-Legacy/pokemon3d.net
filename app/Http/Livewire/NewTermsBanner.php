@@ -18,8 +18,6 @@ class NewTermsBanner extends Component
 
     /**
      * Display a view.
-     *
-     * @return \Illuminate\Http\Response
      */
     public function render(): Response
     {

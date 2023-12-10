@@ -20,8 +20,6 @@ class NewUsers extends Value
 
     /**
      * Get the ranges available for the metric.
-     *
-     * @return array
      */
     public function ranges(): array
     {
@@ -48,8 +46,6 @@ class NewUsers extends Value
 
     /**
      * Get the URI key for the metric.
-     *
-     * @return string
      */
     public function uriKey(): string
     {

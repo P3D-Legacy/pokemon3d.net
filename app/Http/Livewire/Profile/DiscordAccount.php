@@ -25,8 +25,6 @@ class DiscordAccount extends Component
 
     /**
      * Update the user's Discord Account credentials.
-     *
-     * @return void
      */
     public function remove(): void
     {

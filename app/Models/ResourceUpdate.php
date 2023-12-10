@@ -31,8 +31,6 @@ class ResourceUpdate extends BaseModel implements HasMedia
 
     /**
      * The attributes that should be logged for the user.
-     *
-     * @return array
      */
     public function getActivitylogOptions(): LogOptions
     {

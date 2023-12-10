@@ -33,8 +33,6 @@ class XenforoAccount extends Component
 
     /**
      * Update the user's Xenforo Account credentials.
-     *
-     * @return void
      */
     public function save(): void
     {
@@ -102,8 +100,6 @@ class XenforoAccount extends Component
 
     /**
      * Update the user's Xenforo Account credentials.
-     *
-     * @return void
      */
     public function remove(): void
     {

@@ -35,8 +35,6 @@ class ConnectGamejoltAccount extends Component
 
     /**
      * Update the user's Game Jolt Account credentials.
-     *
-     * @return void
      */
     public function save(): void
     {
@@ -123,8 +121,6 @@ class ConnectGamejoltAccount extends Component
 
     /**
      * Update the user's Game Jolt Account credentials.
-     *
-     * @return void
      */
     public function remove(): void
     {
@@ -146,8 +142,6 @@ class ConnectGamejoltAccount extends Component
 
     /**
      * Render the component.
-     *
-     * @return \Illuminate\View\View
      */
     public function render(): View
     {

@@ -29,8 +29,6 @@ class ServerEditForm extends Component
 
     /**
      * Update the server.
-     *
-     * @return void
      */
     public function save(): void
     {

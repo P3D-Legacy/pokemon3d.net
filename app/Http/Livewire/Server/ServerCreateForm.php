@@ -19,8 +19,6 @@ class ServerCreateForm extends Component
 
     /**
      * Create a server.
-     *
-     * @return void
      */
     public function save(): void
     {

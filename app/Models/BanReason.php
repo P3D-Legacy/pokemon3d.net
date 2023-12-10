@@ -53,8 +53,6 @@ class BanReason extends BaseModel
 
     /**
      * The attributes that should be logged for the user.
-     *
-     * @return array
      */
     public function getActivitylogOptions(): LogOptions
     {
@@ -65,8 +63,6 @@ class BanReason extends BaseModel
 
     /**
      * The boot method of the model.
-     *
-     * @return void
      */
     public static function boot(): void
     {

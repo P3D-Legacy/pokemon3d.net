@@ -25,8 +25,6 @@ class DiscordController extends Controller
 
     /**
      * Obtain the user information from Discord.
-     *
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function handleProviderCallback(): RedirectResponse
     {

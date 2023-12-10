@@ -25,8 +25,6 @@ class FacebookController extends Controller
 
     /**
      * Obtain the user information from Facebook.
-     *
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function handleProviderCallback(): RedirectResponse
     {

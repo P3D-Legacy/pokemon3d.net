@@ -77,8 +77,6 @@ class TwitterAccount extends BaseModel
 
     /**
      * The attributes that should be logged for the user.
-     *
-     * @return array
      */
     public function getActivitylogOptions(): LogOptions
     {

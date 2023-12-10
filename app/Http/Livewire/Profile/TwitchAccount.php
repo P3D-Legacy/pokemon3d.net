@@ -25,8 +25,6 @@ class TwitchAccount extends Component
 
     /**
      * Update the user's Twitch Account credentials.
-     *
-     * @return void
      */
     public function remove(): void
     {

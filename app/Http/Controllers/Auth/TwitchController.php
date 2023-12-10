@@ -25,8 +25,6 @@ class TwitchController extends Controller
 
     /**
      * Obtain the user information from Twitch.
-     *
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function handleProviderCallback(): RedirectResponse
     {

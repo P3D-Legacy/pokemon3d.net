@@ -19,8 +19,6 @@ class SkinController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
      */
     public function show(Skin $skin): View
     {
@@ -34,8 +32,6 @@ class SkinController extends Controller
 
     /**
      * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
      */
     public function newestpublicskins(): View
     {
@@ -48,8 +44,6 @@ class SkinController extends Controller
 
     /**
      * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
      */
     public function popularpublicskins(): View
     {
@@ -82,8 +76,6 @@ class SkinController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @return \Illuminate\Http\Response
      */
     public function store(Request $request): RedirectResponse
     {
@@ -184,8 +176,6 @@ class SkinController extends Controller
 
     /**
      * Apply the specified resource.
-     *
-     * @return \Illuminate\Http\Response
      */
     public function apply(Request $request, $uuid): RedirectResponse
     {
@@ -207,8 +197,6 @@ class SkinController extends Controller
 
     /**
      * Like the specified resource.
-     *
-     * @return \Illuminate\Http\Response
      */
     public function like(Request $request, $uuid): RedirectResponse
     {
@@ -228,7 +216,6 @@ class SkinController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  string  $uuid
      * @return \Illuminate\Http\Response
      */
     public function edit(Request $request, string $uuid)
@@ -248,7 +235,6 @@ class SkinController extends Controller
      * Update the specified resource in storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $uuid): RedirectResponse
     {

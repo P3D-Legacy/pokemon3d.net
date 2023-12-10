@@ -10,8 +10,6 @@ class UserInsights extends Dashboard
 {
     /**
      * Get the cards for the dashboard.
-     *
-     * @return array
      */
     public function cards(): array
     {
@@ -20,8 +18,6 @@ class UserInsights extends Dashboard
 
     /**
      * Get the URI key for the dashboard.
-     *
-     * @return string
      */
     public function uriKey(): string
     {

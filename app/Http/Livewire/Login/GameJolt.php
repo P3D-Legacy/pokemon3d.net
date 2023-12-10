@@ -23,8 +23,6 @@ class GameJolt extends Component
 
     /**
      * Update the user's Game Jolt Account credentials.
-     *
-     * @return void
      */
     public function save(): void
     {

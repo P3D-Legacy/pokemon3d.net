@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c50580d9ef7896f417d154434d38759e",
+    "content-hash": "462bd866709327b812bafe9f25983a7e",
     "packages": [
         {
             "name": "akaunting/laravel-language",
@@ -490,13 +490,13 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dsbilling/laravel-favicon.git",
-                "reference": "b7380ee645c9393540337719822e81c965a65ef1"
+                "reference": "dd471a7891b604751caf904773f9cc40134797d4"
             },
             "require": {
-                "illuminate/http": "5.6.*|5.7.*|5.8.*|6.*|7.*|8.*|9.*",
-                "illuminate/support": "5.6.*|5.7.*|5.8.*|6.*|7.*|8.*|9.*",
+                "illuminate/http": "5.6.*|5.7.*|5.8.*|6.*|7.*|8.*|9.*|^10.0",
+                "illuminate/support": "5.6.*|5.7.*|5.8.*|6.*|7.*|8.*|9.*|^10.0",
                 "intervention/image": "^2.4",
-                "php": "^7.1|^8.0"
+                "php": "^7.1|^8.0|^8.1|^8.2"
             },
             "require-dev": {
                 "orchestra/testbench": "^3.7|^4.0|^5.0|^6.0|^7.0",
@@ -548,7 +548,7 @@
                 "beyondcode",
                 "laravel-favicon"
             ],
-            "time": "2022-07-02T09:22:11+00:00"
+            "time": "2023-12-10T14:30:11+00:00"
         },
         {
             "name": "blade-ui-kit/blade-ui-kit",
@@ -3989,21 +3989,21 @@
         },
         {
             "name": "kilobyteno/laravel-plausible",
-            "version": "1.0.0",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kilobyteno/laravel-plausible.git",
-                "reference": "13777d24f23011828b0c23e97de0e6c0fa5cb3d8"
+                "reference": "5e1e4021e0c7085d3be97c6439388349341565ce"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kilobyteno/laravel-plausible/zipball/13777d24f23011828b0c23e97de0e6c0fa5cb3d8",
-                "reference": "13777d24f23011828b0c23e97de0e6c0fa5cb3d8",
+                "url": "https://api.github.com/repos/kilobyteno/laravel-plausible/zipball/5e1e4021e0c7085d3be97c6439388349341565ce",
+                "reference": "5e1e4021e0c7085d3be97c6439388349341565ce",
                 "shasum": ""
             },
             "require": {
-                "illuminate/contracts": "^8.0|^9.0",
-                "php": "^8.0|^8.1",
+                "illuminate/contracts": "^8.0|^9.0|^10.0",
+                "php": "^8.0|^8.1|^8.2",
                 "spatie/laravel-package-tools": "^1.9.2"
             },
             "require-dev": {
@@ -4051,13 +4051,14 @@
             "keywords": [
                 "kilobyteno",
                 "laravel",
-                "laravel-plausible"
+                "laravel-plausible",
+                "plausible"
             ],
             "support": {
                 "issues": "https://github.com/kilobyteno/laravel-plausible/issues",
-                "source": "https://github.com/kilobyteno/laravel-plausible/tree/1.0.0"
+                "source": "https://github.com/kilobyteno/laravel-plausible/tree/1.1.0"
             },
-            "time": "2023-07-19T18:16:29+00:00"
+            "time": "2023-12-10T14:50:29+00:00"
         },
         {
             "name": "kiritokatklian/nova-permission",
@@ -8831,17 +8832,11 @@
         },
         {
             "name": "restcord/restcord",
-            "version": "dev-develop",
+            "version": "dev-patch-1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/restcord/restcord.git",
-                "reference": "7f8e2756dd5b34c215287f400454ffcbc9d4b0d2"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/restcord/restcord/zipball/7f8e2756dd5b34c215287f400454ffcbc9d4b0d2",
-                "reference": "7f8e2756dd5b34c215287f400454ffcbc9d4b0d2",
-                "shasum": ""
+                "url": "https://github.com/Bora-Bora-Community/restcord.git",
+                "reference": "6ecc44be67123171998a6cc42d93bca66bfb5e65"
             },
             "require": {
                 "guzzlehttp/guzzle": "^7.0",
@@ -8860,14 +8855,17 @@
                 "symfony/var-dumper": "^2.6|^3.0|^4.0",
                 "twig/twig": "^1.20|^2.0"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
                     "RestCord\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "autoload-dev": {
+                "psr-4": {
+                    "RestCord\\Test\\": "tests/"
+                }
+            },
             "license": [
                 "MIT"
             ],
@@ -8878,11 +8876,7 @@
                 }
             ],
             "description": "REST Library for the Discord API",
-            "support": {
-                "issues": "https://github.com/restcord/restcord/issues",
-                "source": "https://github.com/restcord/restcord/tree/develop"
-            },
-            "time": "2023-08-19T23:39:13+00:00"
+            "time": "2023-11-08T08:38:20+00:00"
         },
         {
             "name": "sentry/sdk",

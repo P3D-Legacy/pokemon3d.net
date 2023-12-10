@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bf2013a661c57d69e8a5abc2fc6b7af5",
+    "content-hash": "c09f1e4986fa3ace78311d10f4392579",
     "packages": [
         {
             "name": "akaunting/laravel-language",
@@ -8757,14 +8757,8 @@
             "version": "dev-develop",
             "source": {
                 "type": "git",
-                "url": "https://github.com/restcord/restcord.git",
-                "reference": "7f8e2756dd5b34c215287f400454ffcbc9d4b0d2"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/restcord/restcord/zipball/7f8e2756dd5b34c215287f400454ffcbc9d4b0d2",
-                "reference": "7f8e2756dd5b34c215287f400454ffcbc9d4b0d2",
-                "shasum": ""
+                "url": "https://github.com/dsbilling/restcord.git",
+                "reference": "be8dfc66b67de2a7118cb7f69d759993a1f7445e"
             },
             "require": {
                 "guzzlehttp/guzzle": "^7.0",
@@ -8790,7 +8784,11 @@
                     "RestCord\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "autoload-dev": {
+                "psr-4": {
+                    "RestCord\\Test\\": "tests/"
+                }
+            },
             "license": [
                 "MIT"
             ],
@@ -8801,11 +8799,7 @@
                 }
             ],
             "description": "REST Library for the Discord API",
-            "support": {
-                "issues": "https://github.com/restcord/restcord/issues",
-                "source": "https://github.com/restcord/restcord/tree/develop"
-            },
-            "time": "2023-08-19T23:39:13+00:00"
+            "time": "2023-12-10T20:30:02+00:00"
         },
         {
             "name": "sentry/sdk",

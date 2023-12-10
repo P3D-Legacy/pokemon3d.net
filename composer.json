@@ -18,14 +18,22 @@
         "laravel-favicon": {
             "type": "git",
             "url": "https://github.com/dsbilling/laravel-favicon.git"
+        },
+        "laravel-commentable": {
+            "type": "git",
+            "url": "https://github.com/dsbilling/laravel-commentable.git"
+        },
+        "laravel-categorizable": {
+            "type": "git",
+            "url": "https://github.com/dsbilling/laravel-categorizable.git"
         }
     },
     "require": {
         "php": "^8.1",
         "ext-gd": "*",
         "akaunting/laravel-language": "^1.0",
-        "alibayat/laravel-categorizable": "^1.1",
-        "alibayat/laravel-commentable": "1.1.x-dev",
+        "alibayat/laravel-categorizable": "dev-laravel-10",
+        "alibayat/laravel-commentable": "dev-laravel-10",
         "anlutro/l4-settings": "^1.3",
         "assada/laravel-achievements": "^2.3",
         "betterapp/laravel-db-encrypter": "^1.0",
@@ -35,7 +43,7 @@
         "cebe/php-openapi": "^1.7",
         "cyrildewit/eloquent-viewable": "^7.0",
         "dedoc/scramble": "^0.8.2",
-        "digikraaft/laravel-review-rating": "^2.3",
+        "digikraaft/laravel-review-rating": "^3.0",
         "doctrine/dbal": "^3.5",
         "gabrielelana/byte-units": "^0.5.0",
         "glorand/laravel-model-settings": "^6.0",
@@ -45,7 +53,7 @@
         "guzzlehttp/psr7": "^2.1",
         "harrk/gamejolt-api": "^1.1",
         "intervention/image": "^2.7",
-        "kilobyteno/laravel-plausible": "^1.0.0",
+        "kilobyteno/laravel-plausible": "^1.1.0",
         "kiritokatklian/nova-permission": "^4.0",
         "kkomelin/laravel-translatable-string-exporter": "^1.19",
         "knuckleswtf/scribe": "^4.21.2",

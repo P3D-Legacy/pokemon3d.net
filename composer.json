@@ -102,10 +102,9 @@
         "laravel-lang/publisher": "^15.0",
         "laravel/pint": "^1.0.0",
         "mockery/mockery": "^1.4.4",
-        "nunomaduro/collision": "^6.1",
-        "pestphp/pest": "^1.21",
-        "pestphp/pest-plugin-laravel": "^1.2",
-        "phpunit/phpunit": "^9.5.10",
+        "nunomaduro/collision": "^7.0",
+        "pestphp/pest": "^2.0",
+        "pestphp/pest-plugin-laravel": "^2.0",
         "spatie/laravel-ignition": "^2.0"
     },
     "config": {

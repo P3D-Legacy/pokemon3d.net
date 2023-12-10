@@ -37,7 +37,6 @@
         "dedoc/scramble": "^0.8.2",
         "digikraaft/laravel-review-rating": "^2.3",
         "doctrine/dbal": "^3.3",
-        "fruitcake/laravel-cors": "^2.0.5",
         "gabrielelana/byte-units": "^0.5.0",
         "glorand/laravel-model-settings": "^5.0",
         "goldspecdigital/laravel-eloquent-uuid": "^9.0",

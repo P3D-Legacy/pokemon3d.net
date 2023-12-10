@@ -12,13 +12,6 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 class ResourceUpdateFactory extends Factory
 {
     /**
-     * The name of the factory's corresponding model.
-     *
-     * @var string
-     */
-    protected $model = \App\Models\ResourceUpdate::class;
-
-    /**
      * Define the model's default state.
      *
      * @return array<string, mixed>

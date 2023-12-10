@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Server;
 use App\Models\Server;
 use App\Rules\IPHostnameARecord;
 use App\Rules\StrNotContain;
+use Illuminate\Http\RedirectResponse;
 use Livewire\Component;
 
 class ServerCreateForm extends Component
@@ -20,7 +21,7 @@ class ServerCreateForm extends Component
     /**
      * Create a server.
      */
-    public function save(): void
+    public function save(): RedirectResponse
     {
         $this->resetErrorBag();
         $this->resetValidation();

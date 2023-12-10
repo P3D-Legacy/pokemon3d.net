@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-100 dark:bg-black dark:border-gray-800">
+<nav x-data="{ open: false }" class="bg-white border-b border-slate-100 dark:bg-black dark:border-slate-800">
     <!-- Primary Navigation Menu -->
     <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -11,12 +11,18 @@
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 lg:flex">
+                <div class="hidden space-x-4 sm:-my-px sm:ml-10 lg:flex">
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="navigation-menu-icon">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 7.125C2.25 6.504 2.754 6 3.375 6h6c.621 0 1.125.504 1.125 1.125v3.75c0 .621-.504 1.125-1.125 1.125h-6a1.125 1.125 0 01-1.125-1.125v-3.75zM14.25 8.625c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v8.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125 0 01-1.125-1.125v-8.25zM3.75 16.125c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v2.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125 0 01-1.125-1.125v-2.25z" />
                         </svg>
                         {{ __('Dashboard') }}
+                    </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('blog.index') }}" :active="request()->routeIs('blog.*')">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="navigation-menu-icon">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+                        </svg>
+                        {{ __('Blog') }}
                     </x-jet-nav-link>
                     <x-nav-dropdown :active="request()->is('skin*')">
                         <x-slot name="trigger">
@@ -29,7 +35,7 @@
                             <x-jet-dropdown-link href="{{ route('skin-home') }}">
                                 {{ __('My Skins') }}
                             </x-jet-dropdown-link>
-                            <div class="block px-4 py-2 text-xs text-gray-400 cursor-default">
+                            <div class="block px-4 py-2 text-xs text-slate-400 cursor-default">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 inline-block mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                 </svg>{{ __('Public') }}
@@ -70,61 +76,12 @@
             </div>
 
             <div class="hidden lg:flex sm:items-center sm:ml-6">
-                <!-- Teams Dropdown -->
-                @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
-                    <div class="relative ml-3">
-                        <x-jet-dropdown align="right" width="60">
-                            <x-slot name="trigger">
-                                <span class="inline-flex rounded-md">
-                                    <button type="button" class="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-gray-500 transition bg-white border border-transparent rounded-md hover:bg-gray-50 hover:text-gray-700 focus:outline-none focus:bg-gray-50 active:bg-gray-50">
-                                        {{ Auth::user()->currentTeam->name }}
 
-                                        <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                                            <path fill-rule="evenodd" d="M10 3a1 1 0 01.707.293l3 3a1 1 0 01-1.414 1.414L10 5.414 7.707 7.707a1 1 0 01-1.414-1.414l3-3A1 1 0 0110 3zm-3.707 9.293a1 1 0 011.414 0L10 14.586l2.293-2.293a1 1 0 011.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                        </svg>
-                                    </button>
-                                </span>
-                            </x-slot>
-
-                            <x-slot name="content">
-                                <div class="w-60">
-                                    <!-- Team Management -->
-                                    <div class="block px-4 py-2 text-xs text-gray-400">
-                                        {{ __('Manage Team') }}
-                                    </div>
-
-                                    <!-- Team Settings -->
-                                    <x-jet-dropdown-link href="{{ route('teams.show', Auth::user()->currentTeam->id) }}">
-                                        {{ __('Team Settings') }}
-                                    </x-jet-dropdown-link>
-
-                                    @can('create', Laravel\Jetstream\Jetstream::newTeamModel())
-                                        <x-jet-dropdown-link href="{{ route('teams.create') }}">
-                                            {{ __('Create New Team') }}
-                                        </x-jet-dropdown-link>
-                                    @endcan
-
-                                    <div class="border-t border-gray-100"></div>
-
-                                    <!-- Team Switcher -->
-                                    <div class="block px-4 py-2 text-xs text-gray-400">
-                                        {{ __('Switch Teams') }}
-                                    </div>
-
-                                    @foreach (Auth::user()->allTeams() as $team)
-                                        <x-jet-switchable-team :team="$team" />
-                                    @endforeach
-                                </div>
-                            </x-slot>
-                        </x-jet-dropdown>
-                    </div>
-                @endif
-
-                <div class="relative ml-3">
+                <div class="relative ml-2">
                     <x-jet-dropdown align="right" width="60">
                         <x-slot name="trigger">
                             <span class="inline-flex rounded-md">
-                                <button @click="$dispatch('toggle-spotlight')" class="inline-flex items-center p-2 text-sm font-medium leading-4 text-gray-500 transition bg-transparent border border-transparent rounded-full hover:bg-gray-100 hover:text-gray-700 dark:text-gray-300 dark:hover:bg-gray-800">
+                                <button @click="$dispatch('toggle-spotlight')" class="inline-flex items-center p-2 text-sm font-medium leading-4 text-slate-500 transition bg-transparent border border-transparent rounded-full hover:bg-slate-100 hover:text-slate-700 dark:text-slate-300 dark:hover:bg-slate-800">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                       <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                                     </svg>
@@ -139,25 +96,7 @@
                     @livewire('notifications')
                 @endauth
 
-                <div class="relative ml-3">
-                    <x-jet-dropdown align="right" width="60">
-                        <x-slot name="trigger">
-                            <span class="inline-flex rounded-md">
-                                <button id="switchTheme" class="inline-flex items-center p-2 text-sm font-medium leading-4 text-gray-500 transition bg-transparent border border-transparent rounded-full hover:bg-gray-100 hover:text-gray-700 dark:text-gray-300 dark:hover:bg-gray-800">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor" id="theme-toggle-light-icon">
-                                        <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd" />
-                                    </svg>
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="hidden w-5 h-5" viewBox="0 0 20 20" fill="currentColor" id="theme-toggle-dark-icon">
-                                        <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
-                                    </svg>
-                                </button>
-                            </span>
-                        </x-slot>
-                        <x-slot name="content"></x-slot>
-                    </x-jet-dropdown>
-                </div>
-
-                <div class="relative ml-3">
+                <div class="relative ml-2">
                     <x-jet-dropdown align="right" width="60">
                         <x-slot name="trigger">
                             @include('vendor.language.flag')
@@ -169,11 +108,11 @@
                 </div>
 
                 @role('super-admin|admin')
-                    <div class="relative ml-3">
+                    <div class="relative ml-2">
                         <x-jet-dropdown align="right" width="60">
                             <x-slot name="trigger">
                                 <span class="inline-flex rounded-md">
-                                    <button type="button" class="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-gray-500 transition bg-white border border-transparent rounded-md hover:bg-gray-100 hover:text-gray-700 focus:outline-none focus:bg-gray-50 active:bg-gray-50 dark:bg-gray-900 dark:text-gray-200 dark:hover:bg-gray-800">
+                                    <button type="button" class="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-slate-500 transition bg-white border border-transparent rounded-md hover:bg-slate-100 hover:text-slate-700 focus:outline-none focus:bg-slate-50 active:bg-slate-50 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                                         </svg>
@@ -184,7 +123,7 @@
 
                             <x-slot name="content">
                                 <div class="w-60">
-                                    <div class="block px-4 py-2 text-xs text-gray-400">
+                                    <div class="block px-4 py-2 text-xs text-slate-400">
                                         {{ __('Content') }}
                                     </div>
                                     @canany(['tag.create','tag.update','tag.destroy'])
@@ -201,11 +140,11 @@
                             </x-slot>
                         </x-jet-dropdown>
                     </div>
-                    <div class="relative ml-3">
+                    <div class="relative ml-2">
                         <x-jet-dropdown align="right" width="60">
                             <x-slot name="trigger">
                                 <span class="inline-flex rounded-md">
-                                    <a href="{{ route('nova.pages.home') }}" class="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-gray-500 transition bg-white border border-transparent rounded-md hover:bg-gray-100 hover:text-gray-700 focus:outline-none focus:bg-gray-50 active:bg-gray-50 dark:bg-gray-900 dark:text-gray-200 dark:hover:bg-gray-800">
+                                    <a href="{{ route('nova.pages.home') }}" class="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-slate-500 transition bg-white border border-transparent rounded-md hover:bg-slate-100 hover:text-slate-700 focus:outline-none focus:bg-slate-50 active:bg-slate-50 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                                         </svg>
@@ -214,17 +153,18 @@
                                 </span>
                             </x-slot>
                             <x-slot name="content">
+                                {{----}}
                             </x-slot>
                         </x-jet-dropdown>
                     </div>
                 @endrole
 
                 @guest
-                    <div class="relative ml-3">
+                    <div class="relative ml-2">
                         <x-jet-dropdown align="right" width="60">
                             <x-slot name="trigger">
                                 <span class="inline-flex rounded-md">
-                                    <a href="{{ route('login') }}" class="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-gray-500 transition bg-white border border-transparent rounded-md hover:bg-gray-100 hover:text-gray-700 focus:outline-none focus:bg-gray-50 active:bg-gray-50 dark:bg-gray-900 dark:text-gray-200 dark:hover:bg-gray-800">
+                                    <a href="{{ route('login') }}" class="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-slate-500 transition bg-white border border-transparent rounded-md hover:bg-slate-100 hover:text-slate-700 focus:outline-none focus:bg-slate-50 active:bg-slate-50 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 mr-2">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
                                         </svg>
@@ -239,17 +179,17 @@
                 @endguest
 
                 <!-- Settings Dropdown -->
-                <div class="relative ml-3">
+                <div class="relative ml-2">
                     @auth
                         <x-jet-dropdown align="right" width="48">
                             <x-slot name="trigger">
                                 @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
-                                    <button class="flex text-sm transition border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300">
+                                    <button class="flex text-sm transition border-2 border-transparent rounded-full focus:outline-none focus:border-slate-300">
                                         <img class="object-cover w-8 h-8 rounded-full" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
                                     </button>
                                 @else
                                     <span class="inline-flex rounded-md">
-                                        <button type="button" class="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-gray-500 transition bg-white border border-transparent rounded-md hover:text-gray-700 focus:outline-none">
+                                        <button type="button" class="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-slate-500 transition bg-white border border-transparent rounded-md hover:text-slate-700 focus:outline-none">
                                             {{ Auth::user()->name }}
 
                                             <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
@@ -266,7 +206,7 @@
                                 </x-jet-dropdown-link>
 
                                 <!-- Account Management -->
-                                <div class="block px-4 py-2 text-xs text-gray-400">
+                                <div class="block px-4 py-2 text-xs text-slate-400">
                                     {{ __('Manage Account') }}
                                 </div>
 
@@ -280,7 +220,7 @@
                                     </x-jet-dropdown-link>
                                 @endif
 
-                                <div class="border-t border-gray-100 dark:border-gray-900"></div>
+                                <div class="border-t border-slate-100 dark:border-slate-900"></div>
 
                                 <!-- Authentication -->
                                 <form method="POST" action="{{ route('logout') }}">
@@ -300,7 +240,7 @@
 
             <!-- Hamburger -->
             <div class="flex items-center -mr-2 lg:hidden">
-                <button @click="open = ! open" class="inline-flex items-center justify-center p-2 text-gray-400 transition rounded-md hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 dark:focus:bg-gray-800">
+                <button @click="open = ! open" class="inline-flex items-center justify-center p-2 text-slate-400 transition rounded-md hover:text-slate-500 hover:bg-slate-100 focus:outline-none focus:bg-slate-100 focus:text-slate-500 dark:focus:bg-slate-800">
                     <svg class="w-6 h-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                         <path :class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                         <path :class="{'hidden': ! open, 'inline-flex': open }" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -318,6 +258,12 @@
                     <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 7.125C2.25 6.504 2.754 6 3.375 6h6c.621 0 1.125.504 1.125 1.125v3.75c0 .621-.504 1.125-1.125 1.125h-6a1.125 1.125 0 01-1.125-1.125v-3.75zM14.25 8.625c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v8.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125 0 01-1.125-1.125v-8.25zM3.75 16.125c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v2.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125 0 01-1.125-1.125v-2.25z" />
                 </svg>
                 {{ __('Dashboard') }}
+            </x-jet-responsive-nav-link>
+            <x-jet-responsive-nav-link href="{{ route('blog.index') }}" :active="request()->routeIs('blog.*')">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="navigation-menu-icon">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+                </svg>
+                {{ __('Blog') }}
             </x-jet-responsive-nav-link>
             <x-jet-responsive-nav-link href="{{ route('skin-home') }}" :active="request()->routeIs('skin-home')">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="navigation-menu-icon">
@@ -365,9 +311,9 @@
 
         <!-- Mobile admin menu -->
         @role('super-admin|admin')
-            <div class="pt-4 pb-1 border-t border-gray-200 dark:border-gray-700">
+            <div class="pt-4 pb-1 border-t border-slate-200 dark:border-slate-700">
                 <div class="flex items-center px-4">
-                    <div class="text-base font-medium text-gray-800 dark:text-gray-400">
+                    <div class="text-base font-medium text-slate-800 dark:text-slate-400">
                         <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-4 h-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                         </svg>
@@ -375,7 +321,7 @@
                     </div>
                 </div>
                 <div class="mt-3 space-y-1">
-                    <div class="block px-4 py-2 text-xs text-gray-400">
+                    <div class="block px-4 py-2 text-xs text-slate-400">
                         {{ __('Content') }}
                     </div>
                     @canany(['tag.create','tag.update','tag.destroy'])
@@ -392,7 +338,7 @@
             </div>
         @endrole
 
-        <button @click="$dispatch('toggle-spotlight')" class="block w-full py-2 pl-3 pr-4 text-base font-medium text-gray-600 transition border-l-4 border-transparent dark:text-gray-300 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:outline-none focus:text-gray-800 focus:bg-gray-50 focus:border-gray-300 dark:hover:bg-gray-700 dark:hover:border-gray-600">
+        <button @click="$dispatch('toggle-spotlight')" class="block w-full py-2 pl-3 pr-4 text-base font-medium text-slate-600 transition border-l-4 border-transparent dark:text-slate-300 hover:text-slate-800 hover:bg-slate-50 hover:border-slate-300 focus:outline-none focus:text-slate-800 focus:bg-slate-50 focus:border-slate-300 dark:hover:bg-slate-700 dark:hover:border-slate-600">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
             </svg>
@@ -401,15 +347,6 @@
         @auth
             @livewire('notifications')
         @endauth
-
-        <button id="switchTheme2" class="block w-full py-2 pl-3 pr-4 text-base font-medium text-gray-600 transition border-l-4 border-transparent dark:text-gray-300 hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:outline-none focus:text-gray-800 focus:bg-gray-50 focus:border-gray-300 dark:hover:bg-gray-700 dark:hover:border-gray-600">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor" id="theme-toggle-light-icon">
-                <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd" />
-            </svg>
-            <svg xmlns="http://www.w3.org/2000/svg" class="hidden w-5 h-5" viewBox="0 0 20 20" fill="currentColor" id="theme-toggle-dark-icon">
-                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z" />
-            </svg>
-        </button>
 
         <div class="relative ml-2">
             <x-jet-dropdown align="left">
@@ -432,7 +369,7 @@
         @endguest
 
         <!-- Responsive Settings Options -->
-        <div class="pt-4 pb-1 border-t border-gray-200 dark:border-gray-700">
+        <div class="pt-4 pb-1 border-t border-slate-200 dark:border-slate-700">
             @auth
                 <div class="flex items-center px-4">
                     @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
@@ -442,8 +379,8 @@
                     @endif
 
                     <div>
-                        <div class="text-base font-medium text-gray-800 dark:text-gray-200">{{ Auth::user()->name }}</div>
-                        <div class="text-sm font-medium text-gray-500">{{ Auth::user()->email }}</div>
+                        <div class="text-base font-medium text-slate-800 dark:text-slate-200">{{ Auth::user()->name }}</div>
+                        <div class="text-sm font-medium text-slate-500">{{ Auth::user()->email }}</div>
                     </div>
                 </div>
 
@@ -474,36 +411,6 @@
                         </x-jet-responsive-nav-link>
                     </form>
 
-                    <!-- Team Management -->
-                    @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
-                        <div class="border-t border-gray-200"></div>
-
-                        <div class="block px-4 py-2 text-xs text-gray-400">
-                            {{ __('Manage Team') }}
-                        </div>
-
-                        <!-- Team Settings -->
-                        <x-jet-responsive-nav-link href="{{ route('teams.show', Auth::user()->currentTeam->id) }}" :active="request()->routeIs('teams.show')">
-                            {{ __('Team Settings') }}
-                        </x-jet-responsive-nav-link>
-
-                        @can('create', Laravel\Jetstream\Jetstream::newTeamModel())
-                            <x-jet-responsive-nav-link href="{{ route('teams.create') }}" :active="request()->routeIs('teams.create')">
-                                {{ __('Create New Team') }}
-                            </x-jet-responsive-nav-link>
-                        @endcan
-
-                        <div class="border-t border-gray-200"></div>
-
-                        <!-- Team Switcher -->
-                        <div class="block px-4 py-2 text-xs text-gray-400">
-                            {{ __('Switch Teams') }}
-                        </div>
-
-                        @foreach (Auth::user()->allTeams() as $team)
-                            <x-jet-switchable-team :team="$team" component="jet-responsive-nav-link" />
-                        @endforeach
-                    @endif
                 </div>
             @endauth
         </div>

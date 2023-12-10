@@ -65,6 +65,9 @@
     color:#fff;
 }
 
+[x-cloak] {
+    display: none !important;
+}
 
 .tip {
     @apply absolute invisible;

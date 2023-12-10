@@ -9,6 +9,6 @@
 
         <span>@lang('Released') {{ App\Models\GameVersion::latest() ? (now()->subYear(1) > App\Models\GameVersion::latest()->release_date ? App\Models\GameVersion::latest()->release_date->isoFormat('LL') : App\Models\GameVersion::latest()->release_date->diffForHumans()) : 'Never' }}</span>
         <span class="px-2">&mdash;</span>
-        <span><a href="https://wiki.pokemon3d.net/index.php/Pok%C3%A9mon_3D#Requirements" class="hover:text-gray-300"><sup>&dagger;</sup> @lang('Requirements apply')</a></span>
+        <span><a href="https://wiki.pokemon3d.net/index.php/Pok%C3%A9mon_3D#Requirements" class="hover:text-slate-300"><sup>&dagger;</sup> @lang('Requirements apply')</a></span>
     </div>
 </div>

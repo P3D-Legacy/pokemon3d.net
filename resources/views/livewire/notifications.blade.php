@@ -2,7 +2,7 @@
     <x-jet-dropdown align="right" width="96">
         <x-slot name="trigger">
             <span class="inline-flex rounded-md">
-                <button class="inline-flex items-center p-2 text-sm font-medium leading-4 text-gray-500 transition bg-transparent border border-transparent rounded-full hover:bg-gray-100 hover:text-gray-700 dark:text-gray-300 dark:hover:bg-gray-800">
+                <button class="inline-flex items-center p-2 text-sm font-medium leading-4 text-slate-500 transition bg-transparent border border-transparent rounded-full hover:bg-slate-100 hover:text-slate-700 dark:text-slate-300 dark:hover:bg-slate-800">
                     <span class="relative inline-block">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
@@ -36,7 +36,7 @@
                 </div>
             </div>
             @forelse($this->unreadNotifications as $notification)
-                <div class="block px-4 py-2 text-sm leading-5 text-gray-700 dark:text-gray-300 transition border-gray-200 dark:border-gray-900 border-b">
+                <div class="block px-4 py-2 text-sm leading-5 text-slate-700 dark:text-slate-300 transition border-slate-200 dark:border-slate-900 border-b">
                     <div class="flex relative">
                         <div class="flex-shrink-0 inline-flex items-center justify-center text-white relative z-10">
                             @if(isset($notification->data['icon']))
@@ -44,10 +44,10 @@
                             @endif
                         </div>
                         <div class="flex-grow ml-3">
-                            <p class="text-sm leading-5 font-medium text-gray-900 dark:text-gray-200">
+                            <p class="text-sm leading-5 font-medium text-slate-900 dark:text-slate-200">
                                 {!! $notification->data['message'] !!}
                             </p>
-                            <div class="text-sm leading-5 text-gray-500 dark:text-gray-400">
+                            <div class="text-sm leading-5 text-slate-500 dark:text-slate-400">
                                 {{ $notification->created_at->diffForHumans() }}
                             </div>
                         </div>
@@ -66,7 +66,7 @@
                     </div>
                 </div>
             @empty
-                <div class="block px-4 py-2 text-sm leading-5 text-gray-400 dark:text-gray-500 focus:outline-none focus:bg-gray-100 transition text-center">
+                <div class="block px-4 py-2 text-sm leading-5 text-slate-400 dark:text-slate-500 focus:outline-none focus:bg-slate-100 transition text-center">
                     @lang('No new notifications')
                 </div>
             @endforelse

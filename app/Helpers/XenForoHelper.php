@@ -27,6 +27,10 @@ class XenForoHelper
             'XF-Api-Key' => config('services.xenforo.api_key'),
         ])->$method($url, $data);
 
+        if ($response->failed()) {
+            return ['errors' => []];
+        }
+
         return json_decode($response, true);
     }
 

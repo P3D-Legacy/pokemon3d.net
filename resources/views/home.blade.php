@@ -7,7 +7,7 @@
             <h1 class="my-4 text-2xl font-black leading-tight md:text-3xl lg:text-5xl">
                 @lang('Old school Pokémon in a 3D world!')
             </h1>
-            <p class="mb-8 text-base leading-normal text-gray-50 md:text-xl lg:text-2xl">
+            <p class="mb-8 text-base leading-normal text-slate-50 md:text-xl lg:text-2xl">
                 @lang('Bringing the games from the early generation of Pokémon games to the modern era.')
             </p>
             <x-download-button />
@@ -23,8 +23,8 @@
         </div>
     </div>
 
-    <section class="py-12 bg-gray-100 border-b dark:bg-gray-900 dark:border-black">
-        <div class="grid items-center justify-between max-w-full grid-flow-row grid-cols-1 gap-4 mx-auto text-4xl font-bold text-gray-900 opacity-75 md:text-5xl sm:grid-flow-auto sm:grid-cols-3 xl:grid-cols-6 dark:text-gray-100">
+    <section class="py-12 bg-slate-100 border-b dark:bg-slate-900 dark:border-black">
+        <div class="grid items-center justify-between max-w-full grid-flow-row grid-cols-1 gap-4 mx-auto text-4xl font-bold text-slate-900 opacity-75 md:text-5xl sm:grid-flow-auto sm:grid-cols-3 xl:grid-cols-6 dark:text-slate-100">
             <livewire:home.stat-reviews />
             <livewire:home.stat-season />
             <livewire:home.stat-online-players />
@@ -34,31 +34,33 @@
         </div>
     </section>
 
-    <section class="py-8 bg-white border-b dark:bg-gray-800 dark:border-black">
+    <section class="py-8 bg-white border-b dark:bg-slate-800 dark:border-black">
         <div class="container flex flex-wrap pt-4 pb-12 mx-auto">
-            <h2 class="w-full my-2 text-2xl font-black leading-tight text-center text-gray-800 uppercase sm:text-3xl dark:text-gray-200">
+            <h2 class="w-full my-2 text-2xl font-black leading-tight text-center text-slate-800 uppercase sm:text-3xl dark:text-slate-200">
                 @lang('Latest news')
             </h2>
             <div class="w-full mb-4">
                 <div class="w-64 h-1 py-0 mx-auto my-0 bg-black rounded-t opacity-25 dark:bg-white"></div>
             </div>
-            @forelse ($posts as $post)
-                <x-home.article :post="$post" />
-            @empty
-                <div class="w-full text-xs text-center">
-                    <p class="mb-1 dark:text-gray-400">There is nothing to show...</p>
-                    <a href="{{ route('blog.index') }}" class="text-green-500 hover:underline">
-                        @lang('Go to blog')
+            <div class="grid gap-2 grid-cols-1 grid-flow-row sm:grid-flow-col sm:grid-cols-2 sm:grid-rows-2 xl:grid-cols-4 xl:grid-rows-1 mx-auto">
+                @foreach ($posts as $post)
+                    <x-home.article :post="$post" />
+                @endforeach
+            </div>
+            @if($posts->count() > 0)
+                <div class="w-full text-xs text-center mt-8">
+                    <a href="{{ route('blog.index') }}" class="rounded-lg bg-green-600 px-5 py-3 text-sm font-medium text-white transition hover:bg-green-700 focus:outline-none focus:ring">
+                        @lang('Read more blog posts')
                         <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
                         </svg>
                     </a>
                 </div>
-            @endforelse
-            @if($posts->count() > 0)
-                <div class="w-full text-xs text-center mt-6">
-                    <a href="{{ route('blog.index') }}" class="text-green-700 hover:underline font-bold">
-                        @lang('Read more blog posts')
+            @else
+                <div class="w-full text-xs text-center">
+                    <p class="mb-1 dark:text-slate-400">{{ __('There is nothing to show') }}...</p>
+                    <a href="{{ route('blog.index') }}" class="rounded-lg bg-green-600 px-5 py-3 text-sm font-medium text-white transition hover:bg-green-700 focus:outline-none focus:ring">
+                        @lang('Go to blog')
                         <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
                         </svg>
@@ -158,9 +160,9 @@
         </div>
     </section>
 
-    <section class="py-8 bg-white border-b dark:bg-gray-800 dark:border-black">
+    <section class="py-8 bg-white border-b dark:bg-slate-800 dark:border-black">
         <div class="container max-w-5xl m-8 mx-auto">
-            <h2 class="w-full my-2 text-2xl font-black leading-tight text-center text-gray-800 uppercase sm:text-3xl dark:text-gray-200">
+            <h2 class="w-full my-2 text-2xl font-black leading-tight text-center text-slate-800 uppercase sm:text-3xl dark:text-slate-200">
                 @lang('Features')
             </h2>
             <div class="w-full mb-4">
@@ -169,10 +171,10 @@
 
             <div class="flex flex-wrap">
                 <div class="w-5/6 p-6 sm:w-1/2">
-                    <h3 class="mb-3 text-xl font-bold leading-none text-gray-800 sm:text-3xl dark:text-gray-200">
+                    <h3 class="mb-3 text-xl font-bold leading-none text-slate-800 sm:text-3xl dark:text-slate-200">
                         @lang('Nostalgia')
                     </h3>
-                    <p class="text-gray-600 sm:mb-8 dark:text-gray-400">
+                    <p class="text-slate-600 sm:mb-8 dark:text-slate-400">
                         @lang('Remember the old days when you were playing on a GameBoy? If so; you should try out this game and awake your inner child.')
                     </p>
                 </div>
@@ -187,10 +189,10 @@
                 </div>
                 <div class="w-full p-6 mt-6 sm:w-1/2">
                     <div class="align-middle">
-                        <h3 class="mb-3 text-xl font-bold leading-none text-gray-800 sm:text-3xl dark:text-gray-200">
+                        <h3 class="mb-3 text-xl font-bold leading-none text-slate-800 sm:text-3xl dark:text-slate-200">
                             @lang('Most Generations and Regions')
                         </h3>
-                        <p class="mb-8 text-gray-600 dark:text-gray-400">
+                        <p class="mb-8 text-slate-600 dark:text-slate-400">
                             @lang(':game will have support for all generations of Pokémon in the future and all 2D regions will be accessible in the game.', [
                                 'game' => config('app.name'),
                             ])
@@ -201,10 +203,10 @@
 
             <div class="flex flex-wrap">
                 <div class="w-5/6 p-6 sm:w-1/2">
-                    <h3 class="mb-3 text-xl font-bold leading-none text-gray-800 sm:text-3xl dark:text-gray-200">
+                    <h3 class="mb-3 text-xl font-bold leading-none text-slate-800 sm:text-3xl dark:text-slate-200">
                         @lang('A New Experience')
                     </h3>
-                    <p class="text-gray-600 sm:mb-8 dark:text-gray-400">
+                    <p class="text-slate-600 sm:mb-8 dark:text-slate-400">
                         @lang(':game focuses on the strong points of Pokémon Gold and Silver versions and their remakes, and gives players a taste as to how the once 2D world they knew was in 3D. They could even see through the eyes of their trainer.', [
                             'game' => config('app.name'),
                         ])
@@ -243,7 +245,7 @@
             <div class="w-1/6 h-1 py-0 mx-auto my-0 bg-white rounded-t opacity-25"></div>
         </div>
 
-        <h3 class="my-4 text-xl font-extrabold text-gray-100 sm:text-2xl">
+        <h3 class="my-4 text-xl font-extrabold text-slate-100 sm:text-2xl">
             @lang('Go back in time with :game!', [
                 'game' => config('app.name')
             ])
@@ -253,10 +255,10 @@
     </section>
 
     <!--Footer-->
-    <footer class="bg-white dark:bg-gray-800">
+    <footer class="bg-white dark:bg-slate-800">
         <div class="container px-8 mx-auto mt-8">
             <div class="flex flex-col w-full py-6 md:flex-row">
-                <div class="px-3 mb-6 flex-2 text-gray-600 dark:text-gray-200 text-sm">
+                <div class="px-3 mb-6 flex-2 text-slate-600 dark:text-slate-200 text-sm">
                     <x-logo-large class="max-w-xs" />
                     <p class="mt-3">
                         @lang(':game is not affiliated with', ['game' => config('app.name')]) Nintendo, Creatures Inc. or GAME FREAK Inc.
@@ -271,7 +273,7 @@
                     <p class="mt-3 text-xs"><a class="hover:underline" href="https://github.com/P3D-Legacy/pokemon3d.net/blob/main/CHANGELOG.md">{{ setting('APP_VERSION') ?? 'N/A' }}</a></p>
                 </div>
                 <div class="flex-1 px-3">
-                    <p class="font-extrabold text-gray-500 uppercase dark:text-gray-200 md:mb-6">@lang('Legal')</p>
+                    <p class="font-extrabold text-slate-500 uppercase dark:text-slate-200 md:mb-6">@lang('Legal')</p>
                     <ul class="mb-6 list-reset">
                         <x-home.footer-link title="{{ __('Terms and Conditions') }}" url="{{ route('terms.show') }}" />
                         <x-home.footer-link title="{{ __('Privacy Policy') }}" url="{{ route('policy.show') }}" />
@@ -280,14 +282,14 @@
                     </ul>
                 </div>
                 <div class="flex-1 px-3">
-                    <p class="font-extrabold text-gray-500 uppercase dark:text-gray-200 md:mb-6">@lang('Social')</p>
+                    <p class="font-extrabold text-slate-500 uppercase dark:text-slate-200 md:mb-6">@lang('Social')</p>
                     <ul class="mb-6 list-reset">
                         <x-home.footer-link title="Discord" url="{{ route('discord') }}" />
                         <x-home.footer-link title="Github" url="{{ route('github') }}" />
                     </ul>
                 </div>
                 <div class="flex-1 px-3">
-                    <p class="font-extrabold text-gray-500 uppercase dark:text-gray-200 md:mb-6">
+                    <p class="font-extrabold text-slate-500 uppercase dark:text-slate-200 md:mb-6">
                         {{ config('app.name') }}
                     </p>
                     <ul class="mb-6 list-reset">

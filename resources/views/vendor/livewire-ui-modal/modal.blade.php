@@ -29,7 +29,7 @@
                     x-transition:leave-end="opacity-0"
                     class="fixed inset-0 transition-all transform"
             >
-                <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+                <div class="absolute inset-0 bg-slate-500 opacity-75"></div>
             </div>
 
             <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>

@@ -12,9 +12,9 @@ use Spatie\Activitylog\Traits\LogsActivity;
 class Skin extends BaseModel
 {
     use HasFactory;
-    use SoftDeletes;
     use Likeable;
     use LogsActivity;
+    use SoftDeletes;
 
     protected $primaryKey = 'id';
 

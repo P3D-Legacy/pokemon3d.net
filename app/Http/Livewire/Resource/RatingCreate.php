@@ -22,7 +22,7 @@ class RatingCreate extends ModalComponent
         }
         $this->resource = $resource;
         $this->user = auth()->user();
-        if(!$this->user) {
+        if (! $this->user) {
             $this->closeModal();
         }
         if ($this->user == $this->resource->user) {

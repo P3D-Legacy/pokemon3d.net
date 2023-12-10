@@ -17,7 +17,7 @@
         },
         "laravel-favicon": {
             "type": "git",
-            "url": "https://github.com/DanielRTRD/laravel-favicon.git"
+            "url": "https://github.com/dsbilling/laravel-favicon.git"
         }
     },
     "require": {
@@ -34,6 +34,7 @@
         "bolechen/nova-activitylog": "^0.4.0",
         "cebe/php-openapi": "^1.7",
         "cyrildewit/eloquent-viewable": "^6.0",
+        "dedoc/scramble": "^0.8.2",
         "digikraaft/laravel-review-rating": "^2.3",
         "doctrine/dbal": "^3.3",
         "fruitcake/laravel-cors": "^2.0.5",
@@ -45,13 +46,13 @@
         "guzzlehttp/psr7": "^2.1",
         "harrk/gamejolt-api": "^1.1",
         "intervention/image": "^2.7",
-        "kilobyteno/laravel-plausible": "^0.0.2",
+        "kilobyteno/laravel-plausible": "^1.0.0",
         "kiritokatklian/nova-permission": "^4.0",
         "kkomelin/laravel-translatable-string-exporter": "^1.16",
         "knuckleswtf/scribe": "^4.21.2",
         "laravel/framework": "^9.19",
         "laravel/jetstream": "^2.6",
-        "laravel/nova": "^4.6",
+        "laravel/nova": "4.23.0",
         "laravel/sanctum": "^2.14",
         "laravel/socialite": "^5.5",
         "laravel/tinker": "^2.7",

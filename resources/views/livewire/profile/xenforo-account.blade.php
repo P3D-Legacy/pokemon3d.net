@@ -25,12 +25,12 @@
             <div class="col-span-6 sm:col-span-4">
                 <label for="syncRegisterDate" class="flex items-center">
                     <x-jet-checkbox id="syncRegisterDate" wire:model="syncRegisterDate" />
-                    <span class="ml-2 text-sm text-gray-600 dark:text-gray-300">{{ __('Sync your registration date on the forum with this account') }}</span>
+                    <span class="ml-2 text-sm text-slate-600 dark:text-slate-300">{{ __('Sync your registration date on the forum with this account') }}</span>
                 </label>
             </div>
 
         @else
-            <div class="flex mb-5 text-gray-600 bg-white rounded shadow dark:text-gray-200 dark:bg-black w-max">
+            <div class="flex mb-5 text-slate-600 bg-white rounded shadow dark:text-slate-200 dark:bg-black w-max">
                 <div class="self-center w-64 p-2">
                     {{ $username }}
                 </div>

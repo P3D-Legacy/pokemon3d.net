@@ -18,15 +18,15 @@ use Touhidurabir\MultiKyeRouteBinding\HasMultipleRouteBindingKeys;
 
 class Resource extends BaseModel implements Viewable
 {
+    use Categorizable;
     use HasFactory;
+    use HasMultipleRouteBindingKeys;
+    use HasReviewRating;
+    use HasTags;
     use InteractsWithViews;
     use Likeable;
-    use SoftDeletes;
-    use HasTags;
-    use HasMultipleRouteBindingKeys;
-    use Categorizable;
-    use HasReviewRating;
     use LogsActivity;
+    use SoftDeletes;
 
     public static function boot()
     {

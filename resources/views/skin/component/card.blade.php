@@ -1,16 +1,16 @@
-<div class="flex max-w-md overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-900">
+<div class="flex max-w-md overflow-hidden bg-white rounded-lg shadow-md dark:bg-slate-900">
     <div class="items-center justify-center w-1/4 pt-4 pl-4">
         <img class="mx-auto" src="{{ Storage::disk('skin')->exists($skin->path()) ? asset('img/skin/'.$skin->path()) : asset('img/noskin.png') }}" height="128" width="96">
     </div>
     <div class="w-3/4 p-4">
-        <h1 class="text-2xl font-bold text-gray-900 break-all dark:text-gray-100">
+        <h1 class="text-2xl font-bold text-slate-900 break-all dark:text-slate-100">
             @if($skin->public)
                 <a href="{{ route('skin-show', $skin->uuid) }}">{{ $skin->name }}</a>
             @else
                 {{ $skin->name }}
             @endif
         </h1>
-        <p class="mt-2 text-xs text-gray-600 dark:text-gray-200">
+        <p class="mt-2 text-xs text-slate-600 dark:text-slate-200">
             @auth
                 @if(auth()->user()->gamejolt)
                     @if(auth()->user()->gamejolt->id == $skin->owner_id)
@@ -44,7 +44,7 @@
                         </svg>
                         @lang('Users will be able to see the reason for the deletion!')
                     </p>
-                    <input class="w-full h-8 px-2 text-sm text-gray-700 placeholder-gray-400 border rounded focus:shadow-outline" type="text" name="reason" placeholder="Add a legit reason here">
+                    <input class="w-full h-8 px-2 text-sm text-slate-700 placeholder-slate-400 border rounded focus:shadow-outline" type="text" name="reason" placeholder="Add a legit reason here">
                     <button class="px-2 py-1 mt-2 text-xs font-bold uppercase bg-red-700 rounded text-red-50">
                         <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -96,7 +96,7 @@
                             </a>
                         @endif
                     @endif
-                    <a class="px-2 py-1 text-xs font-bold uppercase bg-gray-800 rounded text-gray-50" href="{{ route('skin-apply', $skin->uuid) }}">
+                    <a class="px-2 py-1 text-xs font-bold uppercase bg-slate-800 rounded text-slate-50" href="{{ route('skin-apply', $skin->uuid) }}">
                         <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 11.5V14m0-2.5v-6a1.5 1.5 0 113 0m-3 6a1.5 1.5 0 00-3 0v2a7.5 7.5 0 0015 0v-5a1.5 1.5 0 00-3 0m-6-3V11m0-5.5v-1a1.5 1.5 0 013 0v1m0 0V11m0-5.5a1.5 1.5 0 013 0v3m0 0V11" />
                         </svg>

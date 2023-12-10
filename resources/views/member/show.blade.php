@@ -5,14 +5,14 @@
                 <div class="w-full">
                     <div class="w-full h-48 bg-green-600 rounded-t-lg bg-spring"></div>
                     <div class="absolute ml-5 -mt-20">
-                        <div class="overflow-hidden bg-gray-200 border rounded-lg shadow-md shadow-black/25 w-36 h-36 border-gray-400">
+                        <div class="overflow-hidden bg-slate-200 border rounded-lg shadow-md shadow-black/25 w-36 h-36 border-slate-400">
                             <img class="object-cover w-full h-full" src="{{ $user->profile_photo_url }}" alt="{{ $user->name }}" />
                         </div>
                     </div>
                 </div>
 
                 <div class="flex flex-col p-5 pt-20 bg-white border rounded-b-lg dark:bg-slate-900 border-slate-300 dark:border-slate-800">
-                    <div class="text-4xl font-semibold text-gray-800 dark:text-slate-200">{{ $user->username }}</div>
+                    <div class="text-4xl font-semibold text-slate-800 dark:text-slate-200">{{ $user->username }}</div>
                     <div class="gap-2 mt-3 grid grid-cols-6 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8">
                         @foreach($user->unlockedAchievements() as $achievement)
                             <x-achievement :achievement="$achievement" />
@@ -24,7 +24,7 @@
                     ]}">
                         <ul class="flex items-center w-full my-4 overflow-auto">
                             <template x-for="(tab, tab.id) in tabs" :key="tab.id">
-                                <li class="px-4 py-2 text-gray-500 border-b-2 cursor-pointer dark:border-gray-800"
+                                <li class="px-4 py-2 text-slate-500 border-b-2 cursor-pointer dark:border-slate-800"
                                     :class="activeTab===tab.id ? 'text-green-500 border-green-500 dark:border-green-500' : ''" @click="activeTab = tab.id" x-text="tab.label"></li>
                             </template>
                         </ul>
@@ -119,7 +119,7 @@
         <div class="col-span-1 md:col-span-4">
             <div class="w-full">
                 <div class="flex flex-col p-5 bg-white border rounded-lg dark:bg-slate-900 border-slate-300 dark:border-slate-800">
-                    <div class="text-4xl font-semibold text-gray-800 dark:text-slate-200">{{ trans('Game Save') }}</div>
+                    <div class="text-4xl font-semibold text-slate-800 dark:text-slate-200">{{ trans('Game Save') }}</div>
                     @livewire('profile.game-save.main', ['user' => $user])
                 </div>
             </div>

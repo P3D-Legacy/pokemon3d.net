@@ -21,6 +21,6 @@
         x-ref="input"
         x-bind:value="value"
         type="text"
-        {{ $attributes->merge(['class' => 'w-full h-10 px-3 mb-2 text-base text-gray-800 placeholder-gray-600 border rounded-lg focus:shadow-outline']) }}
+        {{ $attributes->merge(['class' => 'w-full h-10 px-3 mb-2 text-base text-slate-800 placeholder-slate-600 border rounded-lg focus:shadow-outline']) }}
     />
 </div>

@@ -15,15 +15,17 @@ use Spatie\Tags\HasTags;
 
 class Post extends BaseModel implements Viewable
 {
+    use Commentable;
     use HasFactory;
+    use HasTags;
     use InteractsWithViews;
     use Likeable;
-    use SoftDeletes;
-    use HasTags;
     use LogsActivity;
-    use Commentable;
+    use SoftDeletes;
 
     protected $removeViewsOnDelete = true;
+
+    protected $appends = ['excerpt'];
 
     public static function boot()
     {
@@ -83,5 +85,13 @@ class Post extends BaseModel implements Viewable
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Create an excerpt from the body.
+     */
+    public function getExcerptAttribute(): string
+    {
+        return Str::limit(strip_tags(Str::of($this->body)->markdown()), 175);
     }
 }

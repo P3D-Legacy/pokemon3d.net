@@ -1,13 +1,13 @@
 <x-guest-layout>
     <main class="relative overflow-hidden">
         <div class="container z-10 flex items-center justify-between h-screen px-6 pt-32 mx-auto md:pt-0">
-            <div class="container relative flex flex-col-reverse items-center justify-between h-screen px-6 mx-auto bg-white lg:flex-row dark:bg-gray-800 max-h-96 rounded-xl">
+            <div class="container relative flex flex-col-reverse items-center justify-between h-screen px-6 mx-auto bg-white lg:flex-row dark:bg-slate-800 max-h-96 rounded-xl">
                 <div class="w-full mb-16 text-center md:mb-8 lg:text-left">
-                    <h1 class="mt-12 font-sans text-5xl font-light text-center text-gray-700 lg:text-left lg:text-8xl md:mt-0 dark:text-gray-300">
+                    <h1 class="mt-12 font-sans text-5xl font-light text-center text-slate-700 lg:text-left lg:text-8xl md:mt-0 dark:text-slate-300">
                         @lang('Server Error')
                     </h1>
                     @if(app()->bound('sentry') && app('sentry')->getLastEventId())
-                        <div class="text-gray-400">Error ID: {{ app('sentry')->getLastEventId() }}</div>
+                        <div class="text-slate-400">Error ID: {{ app('sentry')->getLastEventId() }}</div>
                         <script>
                             Sentry.init({ dsn: '{{ config('sentry.dsn') }}' });
                             Sentry.showReportDialog({

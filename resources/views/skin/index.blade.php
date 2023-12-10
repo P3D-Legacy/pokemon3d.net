@@ -1,10 +1,4 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="text-xl font-semibold leading-tight text-gray-800 dark:text-gray-200">
-            {{ __('My Skins') }} <a href="{{ route('skin-create') }}" class="px-2 py-1 ml-4 text-sm font-bold text-white bg-green-500 rounded hover:bg-green-700"><svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" /></svg> {{ __('Create') }}</a>
-        </h2>
-    </x-slot>
-
     <div class="py-12">
         <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
 
@@ -15,18 +9,21 @@
 
             <div class="grid grid-flow-col grid-cols-3 gap-4">
                 <div>
-                    <div class="w-full m-auto overflow-hidden rounded-lg shadow-lg h-90">
+                    <div class="w-full m-auto overflow-hidden rounded-lg shadow-md h-90">
                         <div class="block w-full h-full">
-                            <div class="w-full p-4 bg-white dark:bg-gray-900">
-                                <div class="mb-2 text-xl font-medium text-gray-800 dark:text-white">@lang('Current In-game Skin')</div>
+                            <div class="w-full p-4 bg-white dark:bg-slate-900">
+                                <div class="mb-2 text-xl font-medium text-slate-800 dark:text-white">@lang('Current In-game Skin')</div>
                                 <div class="card-body">
                                     @if(File::exists(public_path('player/'.Auth::user()->gamejolt->id.'.png')))
-                                        <img src="{{ asset('player/'.Auth::user()->gamejolt->id.'.png') }}?r={{ now()->timestamp }}" class="mx-auto my-4">
+                                        <img src="{{ asset('player/'.Auth::user()->gamejolt->id.'.png') }}?r={{ now()->timestamp }}" class="mx-auto my-4" alt="{{ auth()->user()->username }}">
                                     @else
-                                        <p class="dark:text-gray-400">@lang('No skins have been added to your account yet.')</p>
+                                        <p class="dark:text-slate-400">@lang('No skins have been added to your account yet.')</p>
                                         @if(Auth::user()->gamejolt->skins()->count() >= env('SKIN_MAX_UPLOAD'))
                                             <div class="px-4 py-3 mt-4 text-sm leading-normal text-blue-800 bg-blue-300 rounded-lg">
-                                                <i class="mr-2 fas fa-info-circle" aria-hidden="true"></i> @lang('Your slots are full. You cannot import from the old site unless you delete one of the slots.')
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 mr-1 inline-block">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
+                                                </svg>
+                                                @lang('Your slots are full. You cannot import from the old site unless you delete one of the slots.')
                                             </div>
                                         @else
                                             <p class="mt-3 text-sm">
@@ -62,34 +59,37 @@
                         </div>
                     </div>
                     <livewire:skin.skin-delete-activity />
-                    <div class="w-full m-auto mt-4 overflow-hidden rounded-lg shadow-lg h-90">
+                    <div class="w-full m-auto mt-4 overflow-hidden rounded-lg shadow-md h-90">
                         <div class="block w-full h-full">
-                            <div class="w-full p-4 bg-white dark:bg-gray-900">
-                                <div class="mb-2 text-xl font-medium text-gray-800 dark:text-white">@lang('Skin Information')</div>
-                                <div class="font-light text-gray-800 dark:text-gray-300 text-md">
+                            <div class="w-full p-4 bg-white dark:bg-slate-900">
+                                <div class="mb-2 text-xl font-medium text-slate-800 dark:text-white">@lang('Skin Information')</div>
+                                <div class="font-light text-slate-800 dark:text-slate-300 text-md">
                                     <p>Want to make your own skin? <a href="{{ asset('img/template.png') }}" class="text-green-500">Download this template</a> to get started.</p>
-                                    <h6 class="mt-1 font-bold text-gray-700 dark:text-gray-200">File Validation</h6>
+                                    <h6 class="mt-1 font-bold text-slate-700 dark:text-slate-200">File Validation</h6>
                                     <ul class="pl-6 list-disc">
                                         <li>Less than 2MB</li>
                                         <li>Has to be a PNG-file</li>
                                         <li>Dimensions ratio of 3/4</li>
                                     </ul>
-                                    <h6 class="mt-1 font-bold text-gray-700 dark:text-gray-200">Rules</h6>
+                                    <h6 class="mt-1 font-bold text-slate-700 dark:text-slate-200">Rules</h6>
                                     <ul class="pl-6 list-disc">
                                         <li>Every part (for a 96x128 sprite, every 32x32 portion) of the skin has to contain at least one pixel that is not transparent.</li>
                                         <li>You have to own the rights to use the image you upload.</li>
                                         <li>The image must not contain any sexual or harassing content.</li>
                                     </ul>
-                                    <p class="mt-2 text-sm text-gray-500">If all of the above rules apply to your skin and you upload it, you transfer all rights to the P3D Team. We can alter and delete your skin as long as it stays on our servers.</p>
+                                    <p class="mt-2 text-sm text-slate-500">If all of the above rules apply to your skin and you upload it, you transfer all rights to the P3D Team. We can alter and delete your skin as long as it stays on our servers.</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-span-2">
-                    <h1 class="pb-1 mb-4 text-xl font-semibold leading-tight text-gray-800 border-b dark:text-white dark:border-gray-600">
-                        {{ __('Slots') }}: {{ Auth::user()->gamejolt->skins()->count() }} / {{ env('SKIN_MAX_UPLOAD') }}
-                    </h1>
+
+                    <div class="bg-white rounded-lg shadow-md px-6 py-4 mb-6 flex justify-between dark:bg-slate-900">
+                        <span class="font-semibold text-slate-900 dark:text-slate-200">{{ __('Slots') }}: {{ Auth::user()->gamejolt->skins()->count() }} / {{ env('SKIN_MAX_UPLOAD') }}</span>
+                        <a href="{{ route('skin-create') }}" class="px-2 py-1 ml-4 text-sm font-bold text-white bg-green-500 rounded hover:bg-green-700"><svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" /></svg> {{ __('Create') }}</a>
+                    </div>
+
                     <div class="grid grid-flow-row grid-cols-1 gap-4 auto-rows-max sm:grid-cols-2">
                         @foreach($skins as $skin)
                             @include('skin.component.card', ['skin' => $skin])

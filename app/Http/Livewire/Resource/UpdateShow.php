@@ -18,7 +18,7 @@ class UpdateShow extends ModalComponent
     public function download()
     {
         $mediaItem = $this->update->getFirstMedia('resource_update_file');
-        if (!$mediaItem) {
+        if (! $mediaItem) {
             session()->flash('flash.banner', trans('File not found on server!'));
             session()->flash('flash.bannerStyle', 'danger');
 

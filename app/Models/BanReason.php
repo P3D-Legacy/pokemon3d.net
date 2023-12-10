@@ -11,8 +11,8 @@ use Spatie\Activitylog\Traits\LogsActivity;
 class BanReason extends BaseModel
 {
     use HasFactory;
-    use SoftDeletes;
     use LogsActivity;
+    use SoftDeletes;
 
     protected $primaryKey = 'id';
 

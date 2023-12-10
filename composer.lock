@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a5e27a5ea17a6e0363a1406628d3ac52",
+    "content-hash": "c7447b69519f6e7482d53df8c9c4b9dd",
     "packages": [
         {
             "name": "akaunting/laravel-language",
@@ -9387,56 +9387,6 @@
                 "source": "https://github.com/SocialiteProviders/Twitch/tree/5.3.1"
             },
             "time": "2020-12-01T23:10:59+00:00"
-        },
-        {
-            "name": "socialiteproviders/twitter",
-            "version": "4.1.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/SocialiteProviders/Twitter.git",
-                "reference": "54ddc36c1475bbdc111a89edee1468e3c9cf1229"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/SocialiteProviders/Twitter/zipball/54ddc36c1475bbdc111a89edee1468e3c9cf1229",
-                "reference": "54ddc36c1475bbdc111a89edee1468e3c9cf1229",
-                "shasum": ""
-            },
-            "require": {
-                "ext-json": "*",
-                "php": "^7.4 || ^8.0",
-                "socialiteproviders/manager": "~4.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "SocialiteProviders\\Twitter\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Brian Faust",
-                    "email": "hello@brianfaust.de"
-                }
-            ],
-            "description": "Twitter OAuth1 Provider for Laravel Socialite",
-            "keywords": [
-                "laravel",
-                "oauth",
-                "provider",
-                "socialite",
-                "twitter"
-            ],
-            "support": {
-                "docs": "https://socialiteproviders.com/twitter",
-                "issues": "https://github.com/socialiteproviders/providers/issues",
-                "source": "https://github.com/socialiteproviders/providers"
-            },
-            "time": "2023-05-25T23:12:53+00:00"
         },
         {
             "name": "spatie/cpu-load-health-check",

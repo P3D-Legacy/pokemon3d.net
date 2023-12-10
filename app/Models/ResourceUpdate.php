@@ -46,7 +46,7 @@ class ResourceUpdate extends BaseModel implements HasMedia
         return $this->belongsTo(Resource::class);
     }
 
-    public function registerMediaCollections(?Media $media = null): void
+    public function registerMediaCollections(Media $media = null): void
     {
         $this->addMediaCollection('resource_update_file')->singleFile();
     }

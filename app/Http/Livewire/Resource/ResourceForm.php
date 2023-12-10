@@ -21,7 +21,7 @@ class ResourceForm extends ModalComponent
         'category' => 'required|exists:categories,id',
     ];
 
-    public function mount(int|Resource|null $resource = null)
+    public function mount(int|Resource $resource = null)
     {
         $this->resource = $resource ? Resource::find($resource) : new Resource();
         $this->category = $this->resource->categories->first()->id ?? 0;

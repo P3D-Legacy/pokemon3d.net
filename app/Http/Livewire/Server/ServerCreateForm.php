@@ -5,30 +5,31 @@ namespace App\Http\Livewire\Server;
 use App\Models\Server;
 use App\Rules\IPHostnameARecord;
 use App\Rules\StrNotContain;
-use Illuminate\Http\RedirectResponse;
+use Illuminate\Contracts\View\View;
 use Livewire\Component;
+use Livewire\Redirector;
 
 class ServerCreateForm extends Component
 {
-    public $name;
+    public string $name;
 
-    public $host;
+    public string $host;
 
-    public $port;
+    public int $port;
 
-    public $description;
+    public string $description;
 
     /**
      * Create a server.
      */
-    public function save(): RedirectResponse
+    public function save(): Redirector
     {
         $this->resetErrorBag();
         $this->resetValidation();
 
         $this->validate([
             'name' => ['required', 'string', new StrNotContain('official')],
-            'host' => ['required', new StrNotContain('pokemon3d.net'), new IPHostnameARecord()],
+            'host' => ['required', new StrNotContain('pokemon3d.net'), new IPHostnameARecord(), 'lowercase'],
             'port' => ['required', 'integer', 'min:10', 'max:99999'],
             'description' => ['nullable', 'string'],
         ]);
@@ -45,7 +46,7 @@ class ServerCreateForm extends Component
         return redirect()->route('server.index');
     }
 
-    public function render()
+    public function render(): View
     {
         return view('livewire.server.server-create-form');
     }

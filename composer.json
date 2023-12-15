@@ -26,10 +26,6 @@
         "laravel-categorizable": {
             "type": "git",
             "url": "https://github.com/dsbilling/laravel-categorizable.git"
-        },
-        "restcord": {
-            "type": "git",
-            "url": "https://github.com/dsbilling/restcord.git"
         }
     },
     "require": {

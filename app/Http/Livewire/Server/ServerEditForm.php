@@ -5,23 +5,25 @@ namespace App\Http\Livewire\Server;
 use App\Models\Server;
 use App\Rules\IPHostnameARecord;
 use App\Rules\StrNotContain;
-use Illuminate\Http\RedirectResponse;
+use Illuminate\Contracts\View\View;
 use Livewire\Component;
+use Livewire\Redirector;
 
 class ServerEditForm extends Component
 {
-    public $server;
+    public Server $server;
 
-    public $name;
+    public string $name;
 
-    public $host;
+    public string $host;
 
-    public $port;
+    public int $port;
 
-    public $description;
+    public string $description;
 
-    public function mount()
+    public function mount(Server $server): void
     {
+        $this->server = $server;
         $this->name = $this->server->name;
         $this->host = $this->server->host;
         $this->port = $this->server->port;
@@ -31,28 +33,19 @@ class ServerEditForm extends Component
     /**
      * Update the server.
      */
-    public function save(): RedirectResponse
+    public function save(): Redirector
     {
         $this->resetErrorBag();
         $this->resetValidation();
 
         $this->validate([
             'name' => ['required', 'string', new StrNotContain('official')],
-            'host' => ['required', new StrNotContain('pokemon3d.net'), new IPHostnameARecord()],
+            'host' => ['required', new StrNotContain('pokemon3d.net'), new IPHostnameARecord(), 'lowercase'],
             'port' => ['required', 'integer', 'min:10', 'max:99999'],
             'description' => ['nullable', 'string'],
         ]);
 
-        $server = Server::find($this->server->uuid);
-
-        if (! $server) {
-            session()->flash('flash.banner', trans('Server not found.'));
-            session()->flash('flash.bannerStyle', 'danger');
-
-            return redirect()->route('server.index');
-        }
-
-        $server->update([
+        $this->server->update([
             'name' => $this->name,
             'host' => $this->host,
             'port' => $this->port,
@@ -64,7 +57,7 @@ class ServerEditForm extends Component
         return redirect()->route('server.index');
     }
 
-    public function render()
+    public function render(): View
     {
         return view('livewire.server.server-edit-form');
     }

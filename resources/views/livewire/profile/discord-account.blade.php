@@ -1,4 +1,4 @@
-<x-jet-action-section>
+<x-action-section>
     <x-slot name="title">
         <svg class="w-auto h-10" viewBox="0 0 292 80" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g clip-path="url(#clip0)">
@@ -44,11 +44,11 @@
             </div>
 
             <div class="mt-4">
-                <x-jet-danger-button wire:click="remove" wire:loading.attr="disabled">
+                <x-danger-button wire:click="remove" wire:loading.attr="disabled">
                     {{ __('Remove Association') }}
-                </x-jet-danger-button>
+                </x-danger-button>
             </div>
         @endif
     </x-slot>
 
-</x-jet-form-section>
+</x-form-section>

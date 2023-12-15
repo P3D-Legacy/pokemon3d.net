@@ -57,7 +57,7 @@
             </div>
         @endif
 
-        <x-jet-banner />
+        <x-banner />
 
 		{{ $slot }}
 

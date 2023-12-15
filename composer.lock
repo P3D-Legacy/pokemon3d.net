@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a5e27a5ea17a6e0363a1406628d3ac52",
+    "content-hash": "c50580d9ef7896f417d154434d38759e",
     "packages": [
         {
             "name": "akaunting/laravel-language",
@@ -490,13 +490,13 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/dsbilling/laravel-favicon.git",
-                "reference": "b7380ee645c9393540337719822e81c965a65ef1"
+                "reference": "dd471a7891b604751caf904773f9cc40134797d4"
             },
             "require": {
-                "illuminate/http": "5.6.*|5.7.*|5.8.*|6.*|7.*|8.*|9.*",
-                "illuminate/support": "5.6.*|5.7.*|5.8.*|6.*|7.*|8.*|9.*",
+                "illuminate/http": "5.6.*|5.7.*|5.8.*|6.*|7.*|8.*|9.*|^10.0",
+                "illuminate/support": "5.6.*|5.7.*|5.8.*|6.*|7.*|8.*|9.*|^10.0",
                 "intervention/image": "^2.4",
-                "php": "^7.1|^8.0"
+                "php": "^7.1|^8.0|^8.1|^8.2"
             },
             "require-dev": {
                 "orchestra/testbench": "^3.7|^4.0|^5.0|^6.0|^7.0",
@@ -548,7 +548,7 @@
                 "beyondcode",
                 "laravel-favicon"
             ],
-            "time": "2022-07-02T09:22:11+00:00"
+            "time": "2023-12-10T14:30:11+00:00"
         },
         {
             "name": "blade-ui-kit/blade-ui-kit",
@@ -868,16 +868,16 @@
         },
         {
             "name": "carbonphp/carbon-doctrine-types",
-            "version": "2.0.0",
+            "version": "2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/CarbonPHP/carbon-doctrine-types.git",
-                "reference": "67a77972b9f398ae7068dabacc39c08aeee170d5"
+                "reference": "99f76ffa36cce3b70a4a6abce41dba15ca2e84cb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/CarbonPHP/carbon-doctrine-types/zipball/67a77972b9f398ae7068dabacc39c08aeee170d5",
-                "reference": "67a77972b9f398ae7068dabacc39c08aeee170d5",
+                "url": "https://api.github.com/repos/CarbonPHP/carbon-doctrine-types/zipball/99f76ffa36cce3b70a4a6abce41dba15ca2e84cb",
+                "reference": "99f76ffa36cce3b70a4a6abce41dba15ca2e84cb",
                 "shasum": ""
             },
             "require": {
@@ -917,7 +917,7 @@
             ],
             "support": {
                 "issues": "https://github.com/CarbonPHP/carbon-doctrine-types/issues",
-                "source": "https://github.com/CarbonPHP/carbon-doctrine-types/tree/2.0.0"
+                "source": "https://github.com/CarbonPHP/carbon-doctrine-types/tree/2.1.0"
             },
             "funding": [
                 {
@@ -933,7 +933,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-10-01T14:29:01+00:00"
+            "time": "2023-12-11T17:09:12+00:00"
         },
         {
             "name": "cebe/php-openapi",
@@ -3989,21 +3989,21 @@
         },
         {
             "name": "kilobyteno/laravel-plausible",
-            "version": "1.0.0",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kilobyteno/laravel-plausible.git",
-                "reference": "13777d24f23011828b0c23e97de0e6c0fa5cb3d8"
+                "reference": "5e1e4021e0c7085d3be97c6439388349341565ce"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kilobyteno/laravel-plausible/zipball/13777d24f23011828b0c23e97de0e6c0fa5cb3d8",
-                "reference": "13777d24f23011828b0c23e97de0e6c0fa5cb3d8",
+                "url": "https://api.github.com/repos/kilobyteno/laravel-plausible/zipball/5e1e4021e0c7085d3be97c6439388349341565ce",
+                "reference": "5e1e4021e0c7085d3be97c6439388349341565ce",
                 "shasum": ""
             },
             "require": {
-                "illuminate/contracts": "^8.0|^9.0",
-                "php": "^8.0|^8.1",
+                "illuminate/contracts": "^8.0|^9.0|^10.0",
+                "php": "^8.0|^8.1|^8.2",
                 "spatie/laravel-package-tools": "^1.9.2"
             },
             "require-dev": {
@@ -4051,13 +4051,14 @@
             "keywords": [
                 "kilobyteno",
                 "laravel",
-                "laravel-plausible"
+                "laravel-plausible",
+                "plausible"
             ],
             "support": {
                 "issues": "https://github.com/kilobyteno/laravel-plausible/issues",
-                "source": "https://github.com/kilobyteno/laravel-plausible/tree/1.0.0"
+                "source": "https://github.com/kilobyteno/laravel-plausible/tree/1.1.0"
             },
-            "time": "2023-07-19T18:16:29+00:00"
+            "time": "2023-12-10T14:50:29+00:00"
         },
         {
             "name": "kiritokatklian/nova-permission",
@@ -4272,16 +4273,16 @@
         },
         {
             "name": "laravel/fortify",
-            "version": "v1.19.0",
+            "version": "v1.19.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/fortify.git",
-                "reference": "2da721fead1f3bc18af983e4903c4e1df67177e7"
+                "reference": "1dde858a520f679b4a2f453fa68f8a0e98751875"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/fortify/zipball/2da721fead1f3bc18af983e4903c4e1df67177e7",
-                "reference": "2da721fead1f3bc18af983e4903c4e1df67177e7",
+                "url": "https://api.github.com/repos/laravel/fortify/zipball/1dde858a520f679b4a2f453fa68f8a0e98751875",
+                "reference": "1dde858a520f679b4a2f453fa68f8a0e98751875",
                 "shasum": ""
             },
             "require": {
@@ -4332,7 +4333,7 @@
                 "issues": "https://github.com/laravel/fortify/issues",
                 "source": "https://github.com/laravel/fortify"
             },
-            "time": "2023-11-27T22:01:18+00:00"
+            "time": "2023-12-11T16:16:45+00:00"
         },
         {
             "name": "laravel/framework",
@@ -4534,16 +4535,16 @@
         },
         {
             "name": "laravel/jetstream",
-            "version": "v2.16.2",
+            "version": "v3.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/jetstream.git",
-                "reference": "1b95df05aac85caffdbba9aeb6d22a49fc598dff"
+                "reference": "2af8f166436bf73c946f7187055d2df317d3e981"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/jetstream/zipball/1b95df05aac85caffdbba9aeb6d22a49fc598dff",
-                "reference": "1b95df05aac85caffdbba9aeb6d22a49fc598dff",
+                "url": "https://api.github.com/repos/laravel/jetstream/zipball/2af8f166436bf73c946f7187055d2df317d3e981",
+                "reference": "2af8f166436bf73c946f7187055d2df317d3e981",
                 "shasum": ""
             },
             "require": {
@@ -4560,14 +4561,16 @@
             "require-dev": {
                 "inertiajs/inertia-laravel": "^0.6.5",
                 "laravel/sanctum": "^3.0",
+                "livewire/livewire": "^2.12",
                 "mockery/mockery": "^1.0",
                 "orchestra/testbench": "^7.0|^8.0",
+                "phpstan/phpstan": "^1.10",
                 "phpunit/phpunit": "^9.3"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.x-dev"
+                    "dev-master": "3.x-dev"
                 },
                 "laravel": {
                     "providers": [
@@ -4600,7 +4603,7 @@
                 "issues": "https://github.com/laravel/jetstream/issues",
                 "source": "https://github.com/laravel/jetstream"
             },
-            "time": "2023-02-14T19:28:38+00:00"
+            "time": "2023-03-01T19:31:53+00:00"
         },
         {
             "name": "laravel/nova",
@@ -6676,16 +6679,16 @@
         },
         {
             "name": "nikic/php-parser",
-            "version": "v4.17.1",
+            "version": "v4.18.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "a6303e50c90c355c7eeee2c4a8b27fe8dc8fef1d"
+                "reference": "1bcbb2179f97633e98bbbc87044ee2611c7d7999"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/a6303e50c90c355c7eeee2c4a8b27fe8dc8fef1d",
-                "reference": "a6303e50c90c355c7eeee2c4a8b27fe8dc8fef1d",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/1bcbb2179f97633e98bbbc87044ee2611c7d7999",
+                "reference": "1bcbb2179f97633e98bbbc87044ee2611c7d7999",
                 "shasum": ""
             },
             "require": {
@@ -6726,9 +6729,9 @@
             ],
             "support": {
                 "issues": "https://github.com/nikic/PHP-Parser/issues",
-                "source": "https://github.com/nikic/PHP-Parser/tree/v4.17.1"
+                "source": "https://github.com/nikic/PHP-Parser/tree/v4.18.0"
             },
-            "time": "2023-08-13T19:53:39+00:00"
+            "time": "2023-12-10T21:03:43+00:00"
         },
         {
             "name": "nova-kit/nova-packages-tool",
@@ -8833,12 +8836,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/restcord/restcord.git",
-                "reference": "7f8e2756dd5b34c215287f400454ffcbc9d4b0d2"
+                "reference": "8619e1a05e4df994c15bd457562eddbf99dea35f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/restcord/restcord/zipball/7f8e2756dd5b34c215287f400454ffcbc9d4b0d2",
-                "reference": "7f8e2756dd5b34c215287f400454ffcbc9d4b0d2",
+                "url": "https://api.github.com/repos/restcord/restcord/zipball/8619e1a05e4df994c15bd457562eddbf99dea35f",
+                "reference": "8619e1a05e4df994c15bd457562eddbf99dea35f",
                 "shasum": ""
             },
             "require": {
@@ -8880,7 +8883,7 @@
                 "issues": "https://github.com/restcord/restcord/issues",
                 "source": "https://github.com/restcord/restcord/tree/develop"
             },
-            "time": "2023-08-19T23:39:13+00:00"
+            "time": "2023-12-11T22:06:27+00:00"
         },
         {
             "name": "sentry/sdk",
@@ -9389,56 +9392,6 @@
             "time": "2020-12-01T23:10:59+00:00"
         },
         {
-            "name": "socialiteproviders/twitter",
-            "version": "4.1.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/SocialiteProviders/Twitter.git",
-                "reference": "54ddc36c1475bbdc111a89edee1468e3c9cf1229"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/SocialiteProviders/Twitter/zipball/54ddc36c1475bbdc111a89edee1468e3c9cf1229",
-                "reference": "54ddc36c1475bbdc111a89edee1468e3c9cf1229",
-                "shasum": ""
-            },
-            "require": {
-                "ext-json": "*",
-                "php": "^7.4 || ^8.0",
-                "socialiteproviders/manager": "~4.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "SocialiteProviders\\Twitter\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Brian Faust",
-                    "email": "hello@brianfaust.de"
-                }
-            ],
-            "description": "Twitter OAuth1 Provider for Laravel Socialite",
-            "keywords": [
-                "laravel",
-                "oauth",
-                "provider",
-                "socialite",
-                "twitter"
-            ],
-            "support": {
-                "docs": "https://socialiteproviders.com/twitter",
-                "issues": "https://github.com/socialiteproviders/providers/issues",
-                "source": "https://github.com/socialiteproviders/providers"
-            },
-            "time": "2023-05-25T23:12:53+00:00"
-        },
-        {
             "name": "spatie/cpu-load-health-check",
             "version": "1.0.4",
             "source": {
@@ -9632,16 +9585,16 @@
         },
         {
             "name": "spatie/eloquent-sortable",
-            "version": "4.0.2",
+            "version": "4.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/eloquent-sortable.git",
-                "reference": "74994d10a17d15d2cdb319d6b2ad7cb6fa067c0a"
+                "reference": "960ee1c888171f77cba9e3108da69c00a0d02e9c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/eloquent-sortable/zipball/74994d10a17d15d2cdb319d6b2ad7cb6fa067c0a",
-                "reference": "74994d10a17d15d2cdb319d6b2ad7cb6fa067c0a",
+                "url": "https://api.github.com/repos/spatie/eloquent-sortable/zipball/960ee1c888171f77cba9e3108da69c00a0d02e9c",
+                "reference": "960ee1c888171f77cba9e3108da69c00a0d02e9c",
                 "shasum": ""
             },
             "require": {
@@ -9690,7 +9643,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/eloquent-sortable/issues",
-                "source": "https://github.com/spatie/eloquent-sortable/tree/4.0.2"
+                "source": "https://github.com/spatie/eloquent-sortable/tree/4.1.0"
             },
             "funding": [
                 {
@@ -9702,7 +9655,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-01-23T08:34:14+00:00"
+            "time": "2023-12-11T16:39:58+00:00"
         },
         {
             "name": "spatie/enum",
@@ -10438,16 +10391,16 @@
         },
         {
             "name": "spatie/laravel-schedule-monitor",
-            "version": "3.4.1",
+            "version": "3.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-schedule-monitor.git",
-                "reference": "d5d24aa9b6b6f2422cc420cd90f78778cd382e98"
+                "reference": "0a0b7993563091837acacd65404e693066e8f3bb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-schedule-monitor/zipball/d5d24aa9b6b6f2422cc420cd90f78778cd382e98",
-                "reference": "d5d24aa9b6b6f2422cc420cd90f78778cd382e98",
+                "url": "https://api.github.com/repos/spatie/laravel-schedule-monitor/zipball/0a0b7993563091837acacd65404e693066e8f3bb",
+                "reference": "0a0b7993563091837acacd65404e693066e8f3bb",
                 "shasum": ""
             },
             "require": {
@@ -10505,7 +10458,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/laravel-schedule-monitor/issues",
-                "source": "https://github.com/spatie/laravel-schedule-monitor/tree/3.4.1"
+                "source": "https://github.com/spatie/laravel-schedule-monitor/tree/3.4.2"
             },
             "funding": [
                 {
@@ -10513,7 +10466,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-11-29T09:15:27+00:00"
+            "time": "2023-12-14T22:34:35+00:00"
         },
         {
             "name": "spatie/laravel-signal-aware-command",
@@ -18137,5 +18090,5 @@
         "ext-gd": "*"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.6.0"
+    "plugin-api-version": "2.3.0"
 }

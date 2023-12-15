@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 <a name="0.4.0"></a>
 
+## 4.5.1 - 2023-12-15
+
+### What's Changed
+
+* Release 4.5.1 by @dsbilling in https://github.com/P3D-Legacy/pokemon3d.net/pull/301
+
+**Full Changelog**: https://github.com/P3D-Legacy/pokemon3d.net/compare/4.5.0...4.5.1
+
 ## 4.5.0 - 2023-12-10
 
 ### What's Changed

@@ -18,10 +18,6 @@
         "laravel-favicon": {
             "type": "git",
             "url": "https://github.com/dsbilling/laravel-favicon.git"
-        },
-        "restcord": {
-            "type": "git",
-            "url": "https://github.com/dsbilling/restcord.git"
         }
     },
     "require": {

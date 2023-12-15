@@ -4,6 +4,20 @@ All notable changes to this project will be documented in this file.
 
 <a name="0.4.0"></a>
 
+## 4.5.0 - 2023-12-10
+
+### What's Changed
+
+* Bump actions/checkout from 3 to 4 by @dependabot in https://github.com/P3D-Legacy/pokemon3d.net/pull/294
+* Bump actions/cache from 3.3.1 to 3.3.2 by @dependabot in https://github.com/P3D-Legacy/pokemon3d.net/pull/295
+* Bump postcss from 8.4.23 to 8.4.31 by @dependabot in https://github.com/P3D-Legacy/pokemon3d.net/pull/296
+* Bump stefanzweifel/git-auto-commit-action from 4 to 5 by @dependabot in https://github.com/P3D-Legacy/pokemon3d.net/pull/297
+* Bump axios from 0.26.1 to 1.6.0 by @dependabot in https://github.com/P3D-Legacy/pokemon3d.net/pull/298
+* Release 4.5 by @dsbilling in https://github.com/P3D-Legacy/pokemon3d.net/pull/293
+* Bump vite from 4.4.9 to 4.4.12 by @dependabot in https://github.com/P3D-Legacy/pokemon3d.net/pull/299
+
+**Full Changelog**: https://github.com/P3D-Legacy/pokemon3d.net/compare/4.4.1...4.5.0
+
 ## 4.4.1 - 2023-08-08
 
 ### What's Changed

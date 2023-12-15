@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ecdbb27ebda152ebe2fd52b191ff0255",
+    "content-hash": "c50580d9ef7896f417d154434d38759e",
     "packages": [
         {
             "name": "akaunting/laravel-language",
@@ -868,16 +868,16 @@
         },
         {
             "name": "carbonphp/carbon-doctrine-types",
-            "version": "2.0.0",
+            "version": "2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/CarbonPHP/carbon-doctrine-types.git",
-                "reference": "67a77972b9f398ae7068dabacc39c08aeee170d5"
+                "reference": "99f76ffa36cce3b70a4a6abce41dba15ca2e84cb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/CarbonPHP/carbon-doctrine-types/zipball/67a77972b9f398ae7068dabacc39c08aeee170d5",
-                "reference": "67a77972b9f398ae7068dabacc39c08aeee170d5",
+                "url": "https://api.github.com/repos/CarbonPHP/carbon-doctrine-types/zipball/99f76ffa36cce3b70a4a6abce41dba15ca2e84cb",
+                "reference": "99f76ffa36cce3b70a4a6abce41dba15ca2e84cb",
                 "shasum": ""
             },
             "require": {
@@ -917,7 +917,7 @@
             ],
             "support": {
                 "issues": "https://github.com/CarbonPHP/carbon-doctrine-types/issues",
-                "source": "https://github.com/CarbonPHP/carbon-doctrine-types/tree/2.0.0"
+                "source": "https://github.com/CarbonPHP/carbon-doctrine-types/tree/2.1.0"
             },
             "funding": [
                 {
@@ -933,7 +933,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-10-01T14:29:01+00:00"
+            "time": "2023-12-11T17:09:12+00:00"
         },
         {
             "name": "cebe/php-openapi",
@@ -4273,16 +4273,16 @@
         },
         {
             "name": "laravel/fortify",
-            "version": "v1.19.0",
+            "version": "v1.19.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/fortify.git",
-                "reference": "2da721fead1f3bc18af983e4903c4e1df67177e7"
+                "reference": "1dde858a520f679b4a2f453fa68f8a0e98751875"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/fortify/zipball/2da721fead1f3bc18af983e4903c4e1df67177e7",
-                "reference": "2da721fead1f3bc18af983e4903c4e1df67177e7",
+                "url": "https://api.github.com/repos/laravel/fortify/zipball/1dde858a520f679b4a2f453fa68f8a0e98751875",
+                "reference": "1dde858a520f679b4a2f453fa68f8a0e98751875",
                 "shasum": ""
             },
             "require": {
@@ -4333,7 +4333,7 @@
                 "issues": "https://github.com/laravel/fortify/issues",
                 "source": "https://github.com/laravel/fortify"
             },
-            "time": "2023-11-27T22:01:18+00:00"
+            "time": "2023-12-11T16:16:45+00:00"
         },
         {
             "name": "laravel/framework",
@@ -6679,16 +6679,16 @@
         },
         {
             "name": "nikic/php-parser",
-            "version": "v4.17.1",
+            "version": "v4.18.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "a6303e50c90c355c7eeee2c4a8b27fe8dc8fef1d"
+                "reference": "1bcbb2179f97633e98bbbc87044ee2611c7d7999"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/a6303e50c90c355c7eeee2c4a8b27fe8dc8fef1d",
-                "reference": "a6303e50c90c355c7eeee2c4a8b27fe8dc8fef1d",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/1bcbb2179f97633e98bbbc87044ee2611c7d7999",
+                "reference": "1bcbb2179f97633e98bbbc87044ee2611c7d7999",
                 "shasum": ""
             },
             "require": {
@@ -6729,9 +6729,9 @@
             ],
             "support": {
                 "issues": "https://github.com/nikic/PHP-Parser/issues",
-                "source": "https://github.com/nikic/PHP-Parser/tree/v4.17.1"
+                "source": "https://github.com/nikic/PHP-Parser/tree/v4.18.0"
             },
-            "time": "2023-08-13T19:53:39+00:00"
+            "time": "2023-12-10T21:03:43+00:00"
         },
         {
             "name": "nova-kit/nova-packages-tool",
@@ -8835,8 +8835,14 @@
             "version": "dev-develop",
             "source": {
                 "type": "git",
-                "url": "https://github.com/dsbilling/restcord.git",
-                "reference": "be8dfc66b67de2a7118cb7f69d759993a1f7445e"
+                "url": "https://github.com/restcord/restcord.git",
+                "reference": "8619e1a05e4df994c15bd457562eddbf99dea35f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/restcord/restcord/zipball/8619e1a05e4df994c15bd457562eddbf99dea35f",
+                "reference": "8619e1a05e4df994c15bd457562eddbf99dea35f",
+                "shasum": ""
             },
             "require": {
                 "guzzlehttp/guzzle": "^7.0",
@@ -8862,11 +8868,7 @@
                     "RestCord\\": "src/"
                 }
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "RestCord\\Test\\": "tests/"
-                }
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -8877,7 +8879,11 @@
                 }
             ],
             "description": "REST Library for the Discord API",
-            "time": "2023-12-10T20:30:02+00:00"
+            "support": {
+                "issues": "https://github.com/restcord/restcord/issues",
+                "source": "https://github.com/restcord/restcord/tree/develop"
+            },
+            "time": "2023-12-11T22:06:27+00:00"
         },
         {
             "name": "sentry/sdk",
@@ -9579,16 +9585,16 @@
         },
         {
             "name": "spatie/eloquent-sortable",
-            "version": "4.0.2",
+            "version": "4.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/eloquent-sortable.git",
-                "reference": "74994d10a17d15d2cdb319d6b2ad7cb6fa067c0a"
+                "reference": "960ee1c888171f77cba9e3108da69c00a0d02e9c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/eloquent-sortable/zipball/74994d10a17d15d2cdb319d6b2ad7cb6fa067c0a",
-                "reference": "74994d10a17d15d2cdb319d6b2ad7cb6fa067c0a",
+                "url": "https://api.github.com/repos/spatie/eloquent-sortable/zipball/960ee1c888171f77cba9e3108da69c00a0d02e9c",
+                "reference": "960ee1c888171f77cba9e3108da69c00a0d02e9c",
                 "shasum": ""
             },
             "require": {
@@ -9637,7 +9643,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/eloquent-sortable/issues",
-                "source": "https://github.com/spatie/eloquent-sortable/tree/4.0.2"
+                "source": "https://github.com/spatie/eloquent-sortable/tree/4.1.0"
             },
             "funding": [
                 {
@@ -9649,7 +9655,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-01-23T08:34:14+00:00"
+            "time": "2023-12-11T16:39:58+00:00"
         },
         {
             "name": "spatie/enum",
@@ -10385,16 +10391,16 @@
         },
         {
             "name": "spatie/laravel-schedule-monitor",
-            "version": "3.4.1",
+            "version": "3.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-schedule-monitor.git",
-                "reference": "d5d24aa9b6b6f2422cc420cd90f78778cd382e98"
+                "reference": "0a0b7993563091837acacd65404e693066e8f3bb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-schedule-monitor/zipball/d5d24aa9b6b6f2422cc420cd90f78778cd382e98",
-                "reference": "d5d24aa9b6b6f2422cc420cd90f78778cd382e98",
+                "url": "https://api.github.com/repos/spatie/laravel-schedule-monitor/zipball/0a0b7993563091837acacd65404e693066e8f3bb",
+                "reference": "0a0b7993563091837acacd65404e693066e8f3bb",
                 "shasum": ""
             },
             "require": {
@@ -10452,7 +10458,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/laravel-schedule-monitor/issues",
-                "source": "https://github.com/spatie/laravel-schedule-monitor/tree/3.4.1"
+                "source": "https://github.com/spatie/laravel-schedule-monitor/tree/3.4.2"
             },
             "funding": [
                 {
@@ -10460,7 +10466,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-11-29T09:15:27+00:00"
+            "time": "2023-12-14T22:34:35+00:00"
         },
         {
             "name": "spatie/laravel-signal-aware-command",
@@ -18084,5 +18090,5 @@
         "ext-gd": "*"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.6.0"
+    "plugin-api-version": "2.3.0"
 }

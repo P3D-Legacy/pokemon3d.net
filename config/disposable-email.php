@@ -16,7 +16,7 @@ return [
     */
 
     'sources' => [
-        'https://cdn.jsdelivr.net/gh/disposable/disposable-email-domains@master/domains.json'
+        'https://cdn.jsdelivr.net/gh/disposable/disposable-email-domains@master/domains.json',
     ],
 
     /*

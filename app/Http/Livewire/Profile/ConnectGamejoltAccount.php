@@ -106,6 +106,7 @@ class ConnectGamejoltAccount extends Component
         }
 
         // Update the user's (and other user's) Game Jolt Account skin link.
+        // TODO: This should be done in a queue
         Artisan::call('p3d:skinuserupdate');
 
         // Unlock achievement

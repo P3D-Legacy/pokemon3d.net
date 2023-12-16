@@ -5,6 +5,7 @@ namespace App\Models;
 use Exception;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
@@ -63,7 +64,7 @@ class GameSave extends Model
         });
     }
 
-    public function user()
+    public function user(): HasOne
     {
         return $this->hasOne(User::class, 'id', 'user_id');
     }
@@ -81,16 +82,17 @@ class GameSave extends Model
 
             return $playerData[$key_name] ?? $playerData;
         } catch (Exception $e) {
-            // If there is an error, return an empty array and log the error
             Log::error($e->getMessage());
-
-            return [];
         }
+        return [];
     }
 
     public function getPlayerDataDetails(): array
     {
         try {
+            if (! $this->getPlayerData()) {
+                return [];
+            }
             $details = [];
             $allowed_details = ['Name', 'RivalName', 'Location', 'Money', 'HasPokedex', 'HasPokegear', 'SaveCreated', 'Gender', 'OT', 'Points', 'GTSStars'];
             foreach ($allowed_details as $detail) {
@@ -104,11 +106,9 @@ class GameSave extends Model
 
             return $details;
         } catch (Exception $e) {
-            // If there is an error, return an empty array and log the error
             Log::error($e->getMessage());
-
-            return [];
         }
+        return [];
     }
 
     public function getAchievements(): array

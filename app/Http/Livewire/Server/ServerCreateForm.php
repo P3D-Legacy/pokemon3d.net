@@ -28,7 +28,7 @@ class ServerCreateForm extends Component
         $this->resetValidation();
 
         $this->validate([
-            'name' => ['required', 'string', new StrNotContain('official')],
+            'name' => ['required', 'string', new StrNotContain('official'), 'ascii'],
             'host' => ['required', new StrNotContain('pokemon3d.net'), new IPHostnameARecord(), 'lowercase'],
             'port' => ['required', 'integer', 'min:10', 'max:99999'],
             'description' => ['nullable', 'string'],

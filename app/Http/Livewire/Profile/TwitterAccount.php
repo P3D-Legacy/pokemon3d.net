@@ -25,10 +25,8 @@ class TwitterAccount extends Component
 
     /**
      * Update the user's Twitter Account credentials.
-     *
-     * @return void
      */
-    public function remove()
+    public function remove(): void
     {
         $this->resetErrorBag();
         $this->resetValidation();

@@ -33,10 +33,8 @@ class GiveSuperAdmin extends Command
 
     /**
      * Execute the console command.
-     *
-     * @return int
      */
-    public function handle()
+    public function handle(): int
     {
         $user = User::where('email', getenv('SUPER_ADMIN_EMAIL'))->first();
         if ($user) {

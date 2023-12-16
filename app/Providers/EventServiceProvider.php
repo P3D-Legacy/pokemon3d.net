@@ -20,18 +20,24 @@ class EventServiceProvider extends ServiceProvider
             \SocialiteProviders\Twitch\TwitchExtendSocialite::class.'@handle',
         ],
         'Illuminate\Auth\Events\Login' => [
-            'App\Listeners\Auth\UpdateUserTimezone',
-            'App\Listeners\Auth\UpdateUserGameJoltData',
+            \App\Listeners\Auth\UpdateUserTimezone::class,
+            \App\Listeners\Auth\UpdateUserGameJoltData::class,
         ],
     ];
 
     /**
      * Register any events for your application.
-     *
-     * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         //
+    }
+
+    /**
+     * Determine if events and listeners should be automatically discovered.
+     */
+    public function shouldDiscoverEvents(): bool
+    {
+        return false;
     }
 }

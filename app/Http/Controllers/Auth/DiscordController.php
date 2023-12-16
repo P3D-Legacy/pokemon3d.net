@@ -6,6 +6,7 @@ use App\Achievements\User\AssociatedDiscord;
 use App\Http\Controllers\Controller;
 use App\Models\DiscordAccount;
 use GuzzleHttp\Exception\ClientException;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 use Laravel\Socialite\Two\InvalidStateException;
@@ -24,10 +25,8 @@ class DiscordController extends Controller
 
     /**
      * Obtain the user information from Discord.
-     *
-     * @return \Illuminate\Http\RedirectResponse
      */
-    public function handleProviderCallback()
+    public function handleProviderCallback(): RedirectResponse
     {
         try {
             $discordUser = Socialite::driver('discord')->user();

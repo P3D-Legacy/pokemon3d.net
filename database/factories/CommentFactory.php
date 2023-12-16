@@ -10,18 +10,11 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 class CommentFactory extends Factory
 {
     /**
-     * The name of the factory's corresponding model.
-     *
-     * @var string
-     */
-    protected $model = \App\Models\Comment::class;
-
-    /**
      * Define the model's default state.
      *
      * @return array<string, mixed>
      */
-    public function definition()
+    public function definition(): array
     {
         return [
             'commentable_id' => $this->faker->numberBetween(1, 10),
@@ -31,7 +24,7 @@ class CommentFactory extends Factory
             ]),
             'creator_id' => $this->faker->numberBetween(1, 10),
             'creator_type' => \App\Models\User::class,
-            'body' => $this->faker->sentence,
+            'body' => $this->faker->sentence(),
         ];
     }
 }

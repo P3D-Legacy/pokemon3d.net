@@ -13,7 +13,7 @@ class StatReviews extends Component
 
     public function loadData()
     {
-        $reviews = Review::where('model_type', 'App\Models\GameVersion')
+        $reviews = Review::where('model_type', \App\Models\GameVersion::class)
             ->orderBy('created_at', 'desc')
             ->get();
         $this->numberOfReviews = $reviews->count();

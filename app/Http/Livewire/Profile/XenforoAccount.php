@@ -33,10 +33,8 @@ class XenforoAccount extends Component
 
     /**
      * Update the user's Xenforo Account credentials.
-     *
-     * @return void
      */
-    public function save()
+    public function save(): void
     {
         $this->resetErrorBag();
         $this->resetValidation();
@@ -102,10 +100,8 @@ class XenforoAccount extends Component
 
     /**
      * Update the user's Xenforo Account credentials.
-     *
-     * @return void
      */
-    public function remove()
+    public function remove(): void
     {
         $this->resetErrorBag();
         $this->resetValidation();

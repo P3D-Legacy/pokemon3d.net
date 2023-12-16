@@ -34,10 +34,8 @@ class SyncGameVersion extends Command
 
     /**
      * Execute the console command.
-     *
-     * @return int
      */
-    public function handle()
+    public function handle(): int
     {
         $api_url = env('GITHUB_API_REPO');
         if (! $api_url) {

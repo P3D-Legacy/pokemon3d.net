@@ -11,6 +11,7 @@ use Harrk\GameJoltApi\GamejoltConfig;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
+use Illuminate\View\View;
 use Livewire\Component;
 
 class ConnectGamejoltAccount extends Component
@@ -34,10 +35,8 @@ class ConnectGamejoltAccount extends Component
 
     /**
      * Update the user's Game Jolt Account credentials.
-     *
-     * @return void
      */
-    public function save()
+    public function save(): void
     {
         $this->resetErrorBag();
         $this->resetValidation();
@@ -107,6 +106,7 @@ class ConnectGamejoltAccount extends Component
         }
 
         // Update the user's (and other user's) Game Jolt Account skin link.
+        // TODO: This should be done in a queue
         Artisan::call('p3d:skinuserupdate');
 
         // Unlock achievement
@@ -122,10 +122,8 @@ class ConnectGamejoltAccount extends Component
 
     /**
      * Update the user's Game Jolt Account credentials.
-     *
-     * @return void
      */
-    public function remove()
+    public function remove(): void
     {
         $this->resetErrorBag();
         $this->resetValidation();
@@ -145,10 +143,8 @@ class ConnectGamejoltAccount extends Component
 
     /**
      * Render the component.
-     *
-     * @return \Illuminate\View\View
      */
-    public function render()
+    public function render(): View
     {
         return view('livewire.profile.connect-gamejolt-account');
     }

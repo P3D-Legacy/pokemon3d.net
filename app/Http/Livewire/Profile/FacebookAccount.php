@@ -22,10 +22,8 @@ class FacebookAccount extends Component
 
     /**
      * Update the user's Facebook Account credentials.
-     *
-     * @return void
      */
-    public function remove()
+    public function remove(): void
     {
         $this->resetErrorBag();
         $this->resetValidation();

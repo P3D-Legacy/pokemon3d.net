@@ -4,7 +4,6 @@ use AliBayat\LaravelCategorizable\Category;
 use App\Http\Controllers\Auth\DiscordController;
 use App\Http\Controllers\Auth\FacebookController;
 use App\Http\Controllers\Auth\TwitchController;
-use App\Http\Controllers\Auth\TwitterController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\HomeController;

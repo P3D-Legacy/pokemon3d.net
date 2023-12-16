@@ -65,6 +65,7 @@
         "laravel/tinker": "^2.8",
         "league/html-to-markdown": "^5.1",
         "livewire/livewire": "^2.11",
+        "martian/spammailchecker": "^2.0",
         "martinbean/socialite-discord-provider": "^1.2",
         "michael-rubel/laravel-formatters": "^7.0",
         "mtownsend/read-time": "^2.0",

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c09f1e4986fa3ace78311d10f4392579",
+    "content-hash": "7f30a112be08a05a713a2c0fd70f2fca",
     "packages": [
         {
             "name": "akaunting/laravel-language",
@@ -5790,6 +5790,80 @@
             "time": "2023-06-21T14:59:35+00:00"
         },
         {
+            "name": "martian/spammailchecker",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hendurhance/laravel-spam-email.git",
+                "reference": "701cb8eb34dd466f89b921b1d4cdf65cb0c9e498"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hendurhance/laravel-spam-email/zipball/701cb8eb34dd466f89b921b1d4cdf65cb0c9e498",
+                "reference": "701cb8eb34dd466f89b921b1d4cdf65cb0c9e498",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^6.0|^7.0",
+                "illuminate/support": "^8.0|^9.0|^10.0",
+                "laravel/framework": "^5.0|^6.0|^7.0|^8.0|^9.0|^10.0",
+                "php": "^7.2|^7.4|^8.0",
+                "quickemailverification/quickemailverification": "*"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^6.0",
+                "phpunit/phpunit": "^9.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Martian\\SpamMailChecker\\Providers\\SpamMailCheckerServiceProvider"
+                    ],
+                    "aliases": {
+                        "SpamMailChecker": "Martian\\SpamMailChecker\\Facades\\SpamMailCheckerFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Martian\\SpamMailChecker\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Josiah Endurance",
+                    "email": "hendurhance.dev@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A laravel package that protect users from entering non-existing/spam email addresses.",
+            "homepage": "https://github.com/hendurhance/laravel-spam-email",
+            "keywords": [
+                "checker",
+                "email",
+                "github",
+                "laravel",
+                "martian",
+                "package",
+                "php",
+                "security",
+                "spam",
+                "spamfree",
+                "spammailchecker",
+                "validation"
+            ],
+            "support": {
+                "issues": "https://github.com/hendurhance/laravel-spam-email/issues",
+                "source": "https://github.com/hendurhance/laravel-spam-email/tree/2.0.0"
+            },
+            "time": "2023-08-02T22:49:36+00:00"
+        },
+        {
             "name": "martinbean/socialite-discord-provider",
             "version": "1.2.0",
             "source": {
@@ -8456,6 +8530,66 @@
                 "source": "https://github.com/bobthecow/psysh/tree/v0.11.22"
             },
             "time": "2023-10-14T21:56:36+00:00"
+        },
+        {
+            "name": "quickemailverification/quickemailverification",
+            "version": "1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/quickemailverification/quickemailverification-php.git",
+                "reference": "c22a6fecee195d5c10c1c292b351630e2743e7b5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/quickemailverification/quickemailverification-php/zipball/c22a6fecee195d5c10c1c292b351630e2743e7b5",
+                "reference": "c22a6fecee195d5c10c1c292b351630e2743e7b5",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "guzzlehttp/guzzle": "^7.0.1"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.3",
+                "phpunit/phpunit": "^4.8 || ^5.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "QuickEmailVerification\\": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "quickemailverification",
+                    "email": "support@quickemailverification.com",
+                    "homepage": "https://quickemailverification.com"
+                }
+            ],
+            "description": "Official QuickEmailVerification API library client for PHP",
+            "homepage": "https://quickemailverification.com",
+            "keywords": [
+                "api",
+                "client",
+                "email",
+                "email verification api",
+                "free",
+                "library",
+                "quickemailverification",
+                "sandbox api",
+                "validation",
+                "verification",
+                "verify"
+            ],
+            "support": {
+                "issues": "https://github.com/quickemailverification/quickemailverification-php/issues",
+                "source": "https://github.com/quickemailverification/quickemailverification-php/tree/v1.0.3"
+            },
+            "time": "2022-06-14T10:07:08+00:00"
         },
         {
             "name": "ralouphie/getallheaders",
@@ -18511,5 +18645,5 @@
         "ext-gd": "*"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.6.0"
+    "plugin-api-version": "2.3.0"
 }

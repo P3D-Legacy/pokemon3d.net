@@ -84,6 +84,7 @@ class GameSave extends Model
         } catch (Exception $e) {
             Log::error($e->getMessage());
         }
+
         return [];
     }
 
@@ -108,6 +109,7 @@ class GameSave extends Model
         } catch (Exception $e) {
             Log::error($e->getMessage());
         }
+
         return [];
     }
 

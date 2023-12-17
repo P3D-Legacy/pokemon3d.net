@@ -2,15 +2,15 @@
 
 namespace App\Http\Livewire\Profile;
 
-use Illuminate\Http\Response;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class Consent extends Component
 {
-    public $consents = [];
+    public array $consents = [];
 
-    public function mount()
+    public function mount(): void
     {
         $this->consents = config('app.consents');
     }
@@ -18,7 +18,7 @@ class Consent extends Component
     /**
      * Display a view.
      */
-    public function render(): Response
+    public function render(): View
     {
         return view('livewire.profile.consent');
     }

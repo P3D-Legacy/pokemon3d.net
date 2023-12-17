@@ -54,5 +54,7 @@ class DiscordUserRoleSync extends Command
             }
         }
         $this->info('Done!');
+
+        return Command::SUCCESS;
     }
 }

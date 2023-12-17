@@ -47,7 +47,7 @@ class PingServer extends Command
         }
 
         $starttime = microtime(true);
-        // supress error messages with @
+        // Suppress error messages with @
         $connection = @fsockopen($server->host, $server->port, $errno, $errstr, 2);
         $stoptime = microtime(true);
         $ping = 0;
@@ -71,6 +71,6 @@ class PingServer extends Command
         $server->save();
         $this->info('Name: '.$server->name.' - Ping: '.$ping.'ms');
 
-        return 0;
+        return Command::SUCCESS;
     }
 }

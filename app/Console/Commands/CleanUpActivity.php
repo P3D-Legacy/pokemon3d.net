@@ -43,5 +43,7 @@ class CleanUpActivity extends Command
             $activity->delete();
         }
         $this->info('Done.');
+
+        return Command::SUCCESS;
     }
 }

@@ -51,5 +51,8 @@ class SkinUserUpdate extends Command
                 }
             }
         }
+        $this->info('All done!');
+
+        return Command::SUCCESS;
     }
 }

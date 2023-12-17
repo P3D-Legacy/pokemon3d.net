@@ -43,6 +43,6 @@ class PingAllServers extends Command
         }
         $this->info('All servers have been pinged.');
 
-        return 0;
+        return Command::SUCCESS;
     }
 }

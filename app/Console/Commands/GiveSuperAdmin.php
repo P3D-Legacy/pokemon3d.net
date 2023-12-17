@@ -41,5 +41,7 @@ class GiveSuperAdmin extends Command
             $user->assignRole('super-admin');
             $this->info('Super-Admin rights granted to '.$user->email);
         }
+
+        return Command::SUCCESS;
     }
 }

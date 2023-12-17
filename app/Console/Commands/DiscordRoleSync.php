@@ -58,5 +58,7 @@ class DiscordRoleSync extends Command
             $discord_role->save();
         }
         $this->info('Discord roles synced.');
+
+        return Command::SUCCESS;
     }
 }

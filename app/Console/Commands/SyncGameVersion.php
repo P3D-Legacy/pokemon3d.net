@@ -66,5 +66,7 @@ class SyncGameVersion extends Command
             $this->info('Updated or created release: '.$version->version);
         }
         $this->info('Done.');
+
+        return Command::SUCCESS;
     }
 }

@@ -79,6 +79,6 @@ class UpdateLanguageFiles extends Command
         }
         $this->info('Language files updated!');
 
-        return 0;
+        return Command::SUCCESS;
     }
 }

@@ -16,6 +16,15 @@
                         </time>
                     </dd>
                 </dl>
+                @if($post->updated_at)
+                    <dl class="text-xs mt-2">
+                        <dt class="sr-only">Author</dt>
+                        <dd class="text-slate-700 dark:text-slate-400">
+                            <span>{{ __('Updated') }}:</span>
+                            <time datetime="{{ $post->updated_at }}">{{ $post->updated_at->isoFormat('LLLL') }}</time>
+                        </dd>
+                    </dl>
+                @endif
             </div>
             <h1 class="text-2xl font-extrabold tracking-tight mt-8 text-slate-900 dark:text-slate-200 md:text-3xl break-words">
                 @if($post->sticky)

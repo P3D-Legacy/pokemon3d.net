@@ -7,10 +7,10 @@
         @endcomponent
 
         <div class="rounded-lg bg-white shadow-md dark:bg-slate-900 p-6 sm:p-8 border border-slate-200 dark:border-slate-700">
-            <div class="text-sm leading-6">
+            <div class="text-base leading-6">
                 <dl>
                     <dt class="sr-only">Date</dt>
-                    <dd class="text-slate-700 dark:text-slate-400">
+                    <dd class="text-slate-700 dark:text-slate-300 font-semibold">
                         <time datetime="{{ $post->published_at }}">
                             {{ $post->published_at->isoFormat('LLLL') }}
                         </time>
@@ -40,7 +40,7 @@
                 {{ App\Helpers\NumberHelper::nearestK(views($post)->count()) }} {{ __('Views') }} &middot;
                 {{ read_time($post->body) }} &middot;
                 {{ App\Helpers\NumberHelper::nearestK($post->commentCount()) }} {{ __('Comments') }}
-                @if($post->tags->count() > 0)
+                @if($post->tags->isNotEmpty())
                     &middot;
                     @foreach ($post->tags as $tag)
                         <span class="inline-block items-center justify-center">

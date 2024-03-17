@@ -7,7 +7,7 @@
 
 		<title>{{ config('app.name', 'Pokémon 3D') }}</title>
 
-        <link rel="icon" type="image/png" sizes="32x32" href="{{ favicon(asset('img/favicon.png')) }}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{{ favicon('img/favicon.png') }}">
 		<link rel="shortcut icon" href="{{ favicon('img/favicon.png') }}">
 
 		<!-- Fonts -->

@@ -77,7 +77,7 @@
 
         <div class="col-span-6 sm:col-span-4">
             <x-label for="birthdate" value="{{ __('Birthdate') }}" />
-            <x-input id="birthdate" type="text" class="block w-full mt-1 flatpickrBirtdate" wire:model.defer="state.birthdate" />
+            <x-input id="birthdate" type="text" class="block w-full mt-1 flatpickrBirthdate" wire:model.defer="state.birthdate" />
             <x-input-error for="birthdate" class="mt-2" />
         </div>
 

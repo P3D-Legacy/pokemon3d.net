@@ -26,7 +26,5 @@ flatpickr('.flatpickrBirthdate', {
     maxDate: date_max,
 });
 
-import 'tw-elements';
-
 import EasyMDE from 'easymde';
 window.EasyMDE = EasyMDE;

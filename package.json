@@ -22,7 +22,6 @@
     "dependencies": {
         "alpinejs": "^3.13.7",
         "easymde": "^2.18.0",
-        "flatpickr": "^4.6.13",
-        "tw-elements": "1.0.0-alpha13"
+        "flatpickr": "^4.6.13"
     }
 }

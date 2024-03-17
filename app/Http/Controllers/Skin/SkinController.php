@@ -12,16 +12,15 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\View\View;
 use League\Flysystem\FileNotFoundException;
 
 class SkinController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function show(Skin $skin)
+    public function show(Skin $skin): View
     {
         $skin = Skin::where('uuid', $skin->uuid)
             ->isPublic()
@@ -33,10 +32,8 @@ class SkinController extends Controller
 
     /**
      * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function newestpublicskins()
+    public function newestpublicskins(): View
     {
         $skins = Skin::isPublic()
             ->orderBy('created_at', 'DESC')
@@ -47,10 +44,8 @@ class SkinController extends Controller
 
     /**
      * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function popularpublicskins()
+    public function popularpublicskins(): View
     {
         $skins = Skin::isPublic()
             ->withCount('likers')
@@ -81,10 +76,8 @@ class SkinController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         $gjid = Auth::user()->gamejolt->id;
         $gju = Auth::user()->gamejolt->username;
@@ -183,10 +176,8 @@ class SkinController extends Controller
 
     /**
      * Apply the specified resource.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function apply(Request $request, $uuid)
+    public function apply(Request $request, $uuid): RedirectResponse
     {
         $gjid = Auth::user()->gamejolt->id;
         $filename = $gjid.'.png';
@@ -206,10 +197,8 @@ class SkinController extends Controller
 
     /**
      * Like the specified resource.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function like(Request $request, $uuid)
+    public function like(Request $request, $uuid): RedirectResponse
     {
         $user = Auth::user();
         $skin = Skin::where('uuid', $uuid)->first();
@@ -227,10 +216,9 @@ class SkinController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  string  $uuid
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request, $uuid)
+    public function edit(Request $request, string $uuid)
     {
         $gjid = Auth::user()->gamejolt->id;
         $skin = Skin::where('uuid', $uuid)->first();
@@ -247,9 +235,8 @@ class SkinController extends Controller
      * Update the specified resource in storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $uuid)
+    public function update(Request $request, $uuid): RedirectResponse
     {
         $gjid = Auth::user()->gamejolt->id;
         $skin = Skin::where('uuid', $uuid)->first();

@@ -33,10 +33,8 @@ class CleanUpActivity extends Command
 
     /**
      * Execute the console command.
-     *
-     * @return int
      */
-    public function handle()
+    public function handle(): int
     {
         $activities = Activity::all()->where('properties', '{"attributes":[],"old":[]}');
         $this->info('Entries to delete: '.$activities->count());
@@ -45,5 +43,7 @@ class CleanUpActivity extends Command
             $activity->delete();
         }
         $this->info('Done.');
+
+        return Command::SUCCESS;
     }
 }

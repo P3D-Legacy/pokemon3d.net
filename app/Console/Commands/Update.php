@@ -83,6 +83,6 @@ class Update extends Command
         $this->call('schedule-monitor:sync');
         $this->info('Done.');
 
-        return 0;
+        return Command::SUCCESS;
     }
 }

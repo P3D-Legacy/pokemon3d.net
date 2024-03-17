@@ -14,10 +14,10 @@ class BanReasonFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    public function definition()
+    public function definition(): array
     {
         return [
-            'name' => $this->faker->sentence,
+            'name' => $this->faker->sentence(),
             'user_id' => \App\Models\User::factory(),
         ];
     }

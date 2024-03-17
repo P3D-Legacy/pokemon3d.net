@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Blog;
 
 use App\Models\Post;
+//use Debugbar;
 use Livewire\Component;
 
 class LikeButton extends Component
@@ -15,12 +16,14 @@ class LikeButton extends Component
 
     public bool $liked;
 
+    public $listeners = ['refresh' => '$refresh'];
+
     public function mount(Post $post)
     {
         $this->post = $post;
         $this->user = auth()->user();
         $this->count = $this->post->likers()->count();
-        $this->liked = $this->user ? $this->post->isLikedBy($this->user) : false;
+        $this->liked = $this->user && $this->post->isLikedBy($this->user) ? true : false;
     }
 
     public function like()
@@ -32,7 +35,13 @@ class LikeButton extends Component
         // else if user; like
         $this->user->toggleLike($this->post);
         $this->count = $this->post->likers()->count();
-        $this->liked = $this->post->isLikedBy($this->user);
+        $this->liked = $this->post->isLikedBy($this->user) ?? false;
+
+        // Refresh the data
+        //Debugbar::info('Like button refreshed');
+        //Debugbar::info('Like: ' . $this->liked);
+        $this->emit('refresh');
+
     }
 
     public function render()

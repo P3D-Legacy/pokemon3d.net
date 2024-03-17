@@ -10,6 +10,7 @@ use App\Console\Commands\SkinUserUpdate;
 use App\Console\Commands\SyncGameVersion;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Propaganistas\LaravelDisposableEmail\Console\UpdateDisposableDomainsCommand;
 use Spatie\Health\Commands\RunHealthChecksCommand;
 use Spatie\Health\Commands\ScheduleCheckHeartbeatCommand;
 use Spatie\ScheduleMonitor\Models\MonitoredScheduledTaskLogItem;
@@ -18,10 +19,8 @@ class Kernel extends ConsoleKernel
 {
     /**
      * Define the application's command schedule.
-     *
-     * @return void
      */
-    protected function schedule(Schedule $schedule)
+    protected function schedule(Schedule $schedule): void
     {
         // Often commands
         $schedule->command(RunHealthChecksCommand::class)->everyMinute();
@@ -35,14 +34,14 @@ class Kernel extends ConsoleKernel
         // Nightly commands
         $schedule->command(SyncGameVersion::class)->dailyAt('00:00');
         $schedule->command(NotifyGameUpdate::class)->dailyAt('00:30');
+        // Weekly commands
+        $schedule->command(UpdateDisposableDomainsCommand::class)->weekly();
     }
 
     /**
      * Register the commands for the application.
-     *
-     * @return void
      */
-    protected function commands()
+    protected function commands(): void
     {
         $this->load(__DIR__.'/Commands');
 

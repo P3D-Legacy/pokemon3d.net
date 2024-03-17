@@ -11,7 +11,7 @@
         <x-danger-button wire:click="delete" wire:loading.attr="disabled">
             {{ __('Yes') }}
         </x-danger-button>
-        <x-button wire:click="$emit('closeModal')">
+        <x-button wire:click="$dispatch('closeModal')">
             {{ __('No, do not delete') }}
         </x-button>
     </x-slot>

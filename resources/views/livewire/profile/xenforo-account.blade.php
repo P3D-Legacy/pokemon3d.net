@@ -12,19 +12,19 @@
         @if (!isset($verified_at))
             <div class="col-span-6 sm:col-span-4">
                 <x-label for="username" value="{{ __('Username') }}" />
-                <x-input id="username" type="text" class="block w-full mt-1" wire:model="username" />
+                <x-input id="username" type="text" class="block w-full mt-1" wire:model.live="username" />
                 <x-input-error for="username" class="mt-2" />
             </div>
 
             <div class="col-span-6 sm:col-span-4">
                 <x-label for="password" value="{{ __('Password') }}" />
-                <x-input id="password" type="password" class="block w-full mt-1" wire:model="password" />
+                <x-input id="password" type="password" class="block w-full mt-1" wire:model.live="password" />
                 <x-input-error for="password" class="mt-2" />
             </div>
 
             <div class="col-span-6 sm:col-span-4">
                 <label for="syncRegisterDate" class="flex items-center">
-                    <x-checkbox id="syncRegisterDate" wire:model="syncRegisterDate" />
+                    <x-checkbox id="syncRegisterDate" wire:model.live="syncRegisterDate" />
                     <span class="ml-2 text-sm text-slate-600 dark:text-slate-300">{{ __('Sync your registration date on the forum with this account') }}</span>
                 </label>
             </div>

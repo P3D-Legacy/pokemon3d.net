@@ -15,7 +15,7 @@
             @auth
                 @if(auth()->user()->id != $resource->user_id || config('app.debug') == true)
                     @livewire('resource.resource-like', ['resource' => $resource])
-                    <button onclick="Livewire.emit('openModal', 'resource.rating-create', {{ json_encode(['resource' => $resource->id]) }})" class="px-2 py-1 transition-colors duration-150 rounded-md text-sky-100 bg-sky-600 focus:shadow-outline hover:bg-sky-700">
+                    <button onclick="$dispatch('openModal', {component: 'resource.rating-create', arguments: {{ json_encode(['resource' => $resource->id]) }} } })" class="px-2 py-1 transition-colors duration-150 rounded-md text-sky-100 bg-sky-600 focus:shadow-outline hover:bg-sky-700">
                         <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
                         </svg>
@@ -40,19 +40,19 @@
                             </svg>
                         </button>
                         <div x-show="dropdownOpen" @click.away="dropdownOpen = false" class="absolute z-10 w-48 py-2 mt-2 bg-white border border-slate-200 rounded-md shadow-md dark:bg-slate-900 dark:border-slate-800">
-                            <button onclick="Livewire.emit('openModal', 'resource.update-create', {{ json_encode(['resource_uuid' => $resource->uuid]) }})" class="block w-full px-4 py-2 text-sm text-left text-slate-700 dark:text-slate-300 hover:bg-green-700 hover:text-white">
+                            <button onclick="$dispatch('openModal', {component: 'resource.update-create', arguments: {{ json_encode(['resource_uuid' => $resource->uuid]) }} } })" class="block w-full px-4 py-2 text-sm text-left text-slate-700 dark:text-slate-300 hover:bg-green-700 hover:text-white">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                                 </svg>
                                 @lang('Post an update')
                             </button>
-                            <button onclick="Livewire.emit('openModal', 'resource.resource-form', {{ json_encode(['resource' => $resource->id]) }})" class="block w-full px-4 py-2 text-sm text-left text-slate-700 dark:text-slate-300 hover:bg-green-700 hover:text-white">
+                            <button onclick="$dispatch('openModal', {component: 'resource.resource-form', arguments: {{ json_encode(['resource' => $resource->id]) }} } })" class="block w-full px-4 py-2 text-sm text-left text-slate-700 dark:text-slate-300 hover:bg-green-700 hover:text-white">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                                 </svg>
                                 @lang('Edit')
                             </button>
-                            <button onclick="Livewire.emit('openModal', 'resource.resource-delete', {{ json_encode(['resource' => $resource->id]) }})" class="block w-full px-4 py-2 text-sm text-left text-slate-700 dark:text-slate-300 hover:bg-green-700 hover:text-white">
+                            <button onclick="$dispatch('openModal', {component: 'resource.resource-delete', arguments: {{ json_encode(['resource' => $resource->id]) }} } })" class="block w-full px-4 py-2 text-sm text-left text-slate-700 dark:text-slate-300 hover:bg-green-700 hover:text-white">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                                 </svg>
@@ -112,7 +112,7 @@
             @forelse ($resource->updates as $update)
                 <div class="flex items-center justify-between w-full gap-6 p-4 dark:text-white">
                     <div class="flex">
-                        <span onclick="Livewire.emit('openModal', 'resource.update-show', {{ json_encode(['update' => $update->id]) }})" class="text-green-400 cursor-pointer hover:underline">{{ $update->title }}</span>
+                        <span onclick="$dispatch('openModal', {component: 'resource.update-show', arguments: {{ json_encode(['update' => $update->id]) }} } })" class="text-green-400 cursor-pointer hover:underline">{{ $update->title }}</span>
                     </div>
                     <div class="flex-1 text-slate-400">
                         {!! strip_tags(Str::of(Str::limit($update->description, 80))->markdown()) !!}

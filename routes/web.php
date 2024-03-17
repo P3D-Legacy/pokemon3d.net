@@ -16,9 +16,9 @@ use App\Http\Controllers\Skin\SkinController;
 use App\Http\Controllers\Skin\SkinHomeController;
 use App\Http\Controllers\Skin\UploadedSkinController;
 use App\Http\Controllers\TagController;
-use App\Http\Livewire\Analytics;
-use App\Http\Livewire\NotificationList;
-use App\Http\Livewire\Resource\ResourceShow;
+use App\Livewire\Analytics;
+use App\Livewire\NotificationList;
+use App\Livewire\Resource\ResourceShow;
 use Illuminate\Support\Facades\Route;
 
 /*

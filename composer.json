@@ -46,13 +46,13 @@
         "kkomelin/laravel-translatable-string-exporter": "^1.19",
         "knuckleswtf/scribe": "^4.21.2",
         "laravel/framework": "^10.35",
-        "laravel/jetstream": "^3.0",
+        "laravel/jetstream": "^4.0",
         "laravel/nova": "4.23.0",
         "laravel/sanctum": "^3.2",
         "laravel/socialite": "^5.6",
         "laravel/tinker": "^2.8",
         "league/html-to-markdown": "^5.1",
-        "livewire/livewire": "^2.11",
+        "livewire/livewire": "^3.0",
         "martian/spammailchecker": "^2.0",
         "martinbean/socialite-discord-provider": "^1.2",
         "michael-rubel/laravel-formatters": "^7.0",
@@ -80,8 +80,8 @@
         "torann/geoip": "^3.0",
         "touhidurabir/laravel-multi-key-route-binding": "^1.0",
         "tumblr/tumblr": "^0.4.1",
-        "wire-elements/modal": "^1.0",
-        "wire-elements/spotlight": "^1.0"
+        "wire-elements/modal": "^2.0",
+        "wire-elements/spotlight": "^2.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.8",

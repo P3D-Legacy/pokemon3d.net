@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Console\Commands\CleanUpActivity;
 use App\Console\Commands\DiscordRoleSync;
 use App\Console\Commands\DiscordUserRoleSync;
 use App\Console\Commands\NotifyGameUpdate;
@@ -36,6 +37,7 @@ class Kernel extends ConsoleKernel
         $schedule->command(NotifyGameUpdate::class)->dailyAt('00:30');
         // Weekly commands
         $schedule->command(UpdateDisposableDomainsCommand::class)->weekly();
+        $schedule->command(CleanUpActivity::class)->weekly();
     }
 
     /**

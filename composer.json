@@ -33,6 +33,7 @@
         "dedoc/scramble": "^0.8.2",
         "digikraaft/laravel-review-rating": "^3.0",
         "doctrine/dbal": "^3.5",
+        "filament/filament": "^3.2",
         "gabrielelana/byte-units": "^0.5.0",
         "glorand/laravel-model-settings": "^6.0",
         "goldspecdigital/laravel-eloquent-uuid": "^10.0",
@@ -129,7 +130,8 @@
     "scripts": {
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover --ansi"
+            "@php artisan package:discover --ansi",
+            "@php artisan filament:upgrade"
         ],
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""

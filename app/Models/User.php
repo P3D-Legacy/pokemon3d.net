@@ -90,7 +90,7 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
      *
      * @var array
      */
-    protected $routeBindingKeys = ['username'];
+    protected array $routeBindingKeys = ['username'];
 
     /**
      * The attributes that should be logged for the user.
@@ -104,7 +104,7 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
     }
 
     // Overrides datetime object serialization
-    protected function serializeDate(DateTimeInterface $date)
+    protected function serializeDate(DateTimeInterface $date): string
     {
         $carbonInstance = Carbon::instance($date);
 

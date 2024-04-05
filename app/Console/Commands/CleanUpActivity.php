@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
 use Spatie\Activitylog\Models\Activity;
 
 class CleanUpActivity extends Command
@@ -36,7 +37,7 @@ class CleanUpActivity extends Command
      */
     public function handle(): int
     {
-        $activities = Activity::all()->where('properties', '{"attributes":[],"old":[]}');
+        $activities = Activity::where('properties', 'like', '{"old": [], "attributes": []}')->orWhere('properties', 'like', '[]')->orWhere('properties', 'like', '{"ip": "127.0.0.1", "old": [], "attributes": []}')->get();
         $this->info('Entries to delete: '.$activities->count());
         foreach ($activities as $activity) {
             $this->info('Deleting activity entry #'.$activity->id);

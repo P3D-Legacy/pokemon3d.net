@@ -87,8 +87,6 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
 
     /**
      * The attributes that will be used for multiple key binding on route models
-     *
-     * @var array
      */
     protected array $routeBindingKeys = ['username'];
 

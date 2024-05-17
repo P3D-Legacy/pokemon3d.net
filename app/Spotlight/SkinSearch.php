@@ -43,7 +43,7 @@ class SkinSearch extends SpotlightCommand
      */
     public function searchSkin($query)
     {
-        return Skin::where('name', 'like', "%$query%")
+        return Skin::where('name', 'like', "%$query%")->isPublic()
             ->get()
             ->map(function (Skin $skin) {
                 // You must map your search result into SpotlightSearchResult objects

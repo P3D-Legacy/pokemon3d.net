@@ -5,7 +5,6 @@ namespace App\Console\Commands;
 use anlutro\LaravelSettings\Facade as Setting;
 use App\Models\DiscordBotSetting;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Artisan;
 
 class Update extends Command
 {
@@ -43,7 +42,7 @@ class Update extends Command
         $ver = $branch.' ('.$rev.')';
 
         $this->info('Migrating...');
-        Artisan::call('migrate --force');
+        $this->call('migrate --force');
         $this->info('Updating version...');
         if (Setting::get('APP_VERSION') != $ver) {
             $this->info('Current version: '.Setting::get('APP_VERSION'));
@@ -52,23 +51,23 @@ class Update extends Command
             Setting::save();
         }
         $this->info('Seeding permissions...');
-        Artisan::call('db:seed --class=PermissionSeeder --force');
+        $this->call('db:seed --class=PermissionSeeder --force');
         $this->info('Seeding ban reasons...');
-        Artisan::call('db:seed --class=BanReasonSeeder --force');
+        $this->call('db:seed --class=BanReasonSeeder --force');
         $this->info('Giving SA...');
-        Artisan::call('p3d:givesa');
+        $this->call('p3d:givesa');
         $this->info('Running SkinUserUpdate command...');
-        Artisan::call('p3d:skinuserupdate');
+        $this->call('p3d:skinuserupdate');
         $this->info('Running storage:link command...');
-        Artisan::call('storage:link');
+        $this->call('storage:link');
         $this->info('Generating API Docs...');
-        Artisan::call('api:docs');
+        $this->call('api:docs');
         $this->info('Getting Github release...');
-        Artisan::call('github:syncrelease');
+        $this->call('github:syncrelease');
         $this->info('Getting Discord roles...');
-        Artisan::call('discord:syncroles');
+        $this->call('discord:syncroles');
         $this->info('Getting Discord user roles...');
-        Artisan::call('discord:syncuserroles');
+        $this->call('discord:syncuserroles');
         $this->info('Saving DiscordBotSetting...');
         if (DiscordBotSetting::first() === null) {
             DiscordBotSetting::create([
@@ -76,9 +75,9 @@ class Update extends Command
             ]);
         }
         $this->info('Publishing nova assets...');
-        Artisan::call('nova:publish');
+        $this->call('nova:publish');
         $this->info('Clear views...');
-        Artisan::call('view:clear');
+        $this->call('view:clear');
         if (config('app.env') == 'production') {
             $this->info('Sync schedule monitor...');
             $this->call('schedule-monitor:sync');

@@ -14,7 +14,7 @@ class BlogController extends Controller
      *
      * @return Application|Factory|View
      */
-    public function index()
+    public function index(): \Illuminate\View\View
     {
         $posts = Post::where('published_at', '<=', now())
             ->where('active', true)

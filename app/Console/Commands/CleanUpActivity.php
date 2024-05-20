@@ -33,17 +33,17 @@ class CleanUpActivity extends Command
 
     /**
      * Execute the console command.
-     *
-     * @return int
      */
-    public function handle()
+    public function handle(): int
     {
-        $activities = Activity::all()->where('properties', '{"attributes":[],"old":[]}');
+        $activities = Activity::where('properties', 'like', '{"old": [], "attributes": []}')->orWhere('properties', 'like', '[]')->orWhere('properties', 'like', '{"ip": "127.0.0.1", "old": [], "attributes": []}')->get();
         $this->info('Entries to delete: '.$activities->count());
         foreach ($activities as $activity) {
             $this->info('Deleting activity entry #'.$activity->id);
             $activity->delete();
         }
         $this->info('Done.');
+
+        return Command::SUCCESS;
     }
 }

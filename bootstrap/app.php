@@ -14,7 +14,29 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        //
+        $middleware->redirectGuestsTo(fn () => route('login'));
+        $middleware->redirectUsersTo(RouteServiceProvider::HOME);
+
+        $middleware->web([
+            \Laravel\Jetstream\Http\Middleware\AuthenticateSession::class,
+            \App\Http\Middleware\UpdateLastActiveAt::class,
+            \Akaunting\Language\Middleware\SetLocale::class,
+        ]);
+
+        $middleware->throttleApi();
+        $middleware->api([
+            'api.json',
+            'auth:sanctum',
+            'permission:api',
+        ]);
+
+        $middleware->alias([
+            'api.json' => \App\Http\Middleware\ApiJsonMiddleware::class,
+            'gj.association' => \App\Http\Middleware\GameJoltAssociation::class,
+            'permission' => \Spatie\Permission\Middlewares\PermissionMiddleware::class,
+            'role' => \Spatie\Permission\Middlewares\RoleMiddleware::class,
+            'role_or_permission' => \Spatie\Permission\Middlewares\RoleOrPermissionMiddleware::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

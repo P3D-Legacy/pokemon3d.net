@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use betterapp\LaravelDbEncrypter\Traits\EncryptableDbAttribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -114,7 +115,7 @@ class ForumAccount extends BaseModel
     /**
      * Get the user associated with the gamejolt account.
      */
-    public function user()
+    public function user(): HasOne
     {
         return $this->hasOne(User::class, 'id', 'user_id');
     }

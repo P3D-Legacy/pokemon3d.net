@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use AliBayat\LaravelCategorizable\Categorizable;
 use App\Stats\ResourceCreationStats;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
@@ -75,7 +77,7 @@ class Resource extends BaseModel implements Viewable
     /**
      * Get the user that made this post.
      */
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
@@ -83,7 +85,7 @@ class Resource extends BaseModel implements Viewable
     /**
      * Get the updates related to this resource.
      */
-    public function updates()
+    public function updates(): HasMany
     {
         return $this->hasMany(ResourceUpdate::class)->orderBy('created_at', 'desc');
     }

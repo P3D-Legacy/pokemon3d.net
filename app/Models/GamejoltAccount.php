@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use betterapp\LaravelDbEncrypter\Traits\EncryptableDbAttribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -118,7 +120,7 @@ class GamejoltAccount extends BaseModel
     /**
      * Get the user associated with the gamejolt account.
      */
-    public function user()
+    public function user(): HasOne
     {
         return $this->hasOne(User::class, 'id', 'user_id');
     }
@@ -126,7 +128,7 @@ class GamejoltAccount extends BaseModel
     /**
      * Get the skins that the user owns.
      */
-    public function skins()
+    public function skins(): HasMany
     {
         return $this->hasMany(Skin::class, 'owner_id', 'id');
     }
@@ -134,7 +136,7 @@ class GamejoltAccount extends BaseModel
     /**
      * Get the skins that the user owns.
      */
-    public function publicSkins()
+    public function publicSkins(): HasMany
     {
         return $this->hasMany(Skin::class, 'owner_id', 'id')->isPublic();
     }
@@ -142,7 +144,7 @@ class GamejoltAccount extends BaseModel
     /**
      * Get the bans that the user has.
      */
-    public function bans()
+    public function bans(): HasMany
     {
         return $this->hasMany(GamejoltAccountBan::class, 'gamejoltaccount_id', 'id');
     }
@@ -150,7 +152,7 @@ class GamejoltAccount extends BaseModel
     /**
      * Get the trophies that the user has.
      */
-    public function trophies()
+    public function trophies(): HasMany
     {
         return $this->hasMany(GamejoltAccountTrophy::class, 'gamejolt_account_id', 'id')->orderBy('title', 'asc');
     }

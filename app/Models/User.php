@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Assada\Achievements\Achiever;
 use Carbon\Carbon;
 use DateTimeInterface;
@@ -120,7 +122,7 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
     /**
      * Get the gamejolt account associated with the user.
      */
-    public function gamejolt()
+    public function gamejolt(): HasOne
     {
         return $this->hasOne(GamejoltAccount::class);
     }
@@ -128,7 +130,7 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
     /**
      * Get the discord account associated with the user.
      */
-    public function discord()
+    public function discord(): HasOne
     {
         return $this->hasOne(DiscordAccount::class);
     }
@@ -136,7 +138,7 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
     /**
      * Get the forum account associated with the user.
      */
-    public function forum()
+    public function forum(): HasOne
     {
         return $this->hasOne(ForumAccount::class);
     }
@@ -144,7 +146,7 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
     /**
      * Get the twitter account associated with the user.
      */
-    public function twitter()
+    public function twitter(): HasOne
     {
         return $this->hasOne(TwitterAccount::class);
     }
@@ -152,7 +154,7 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
     /**
      * Get the facebook account associated with the user.
      */
-    public function facebook()
+    public function facebook(): HasOne
     {
         return $this->hasOne(FacebookAccount::class);
     }
@@ -160,7 +162,7 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
     /**
      * Get the facebook account associated with the user.
      */
-    public function twitch()
+    public function twitch(): HasOne
     {
         return $this->hasOne(TwitchAccount::class);
     }
@@ -168,7 +170,7 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
     /**
      * Get the resources associated with the user.
      */
-    public function resources()
+    public function resources(): HasMany
     {
         return $this->hasMany(Resource::class);
     }
@@ -176,7 +178,7 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
     /**
      * Get the gamesave associated with the user.
      */
-    public function gamesave()
+    public function gamesave(): HasOne
     {
         return $this->hasOne(GameSave::class);
     }

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Str;
 use Spatie\Activitylog\LogOptions;
@@ -91,7 +92,7 @@ class GamejoltAccountTrophy extends BaseModel
     /**
      * Get the gamejolt account associated with the gamejolt account ban.
      */
-    public function account()
+    public function account(): HasOne
     {
         return $this->hasOne(GamejoltAccount::class, 'id', 'gamejolt_account_id');
     }

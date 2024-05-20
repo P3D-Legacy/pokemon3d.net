@@ -62,17 +62,6 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
     protected $hidden = ['password', 'remember_token', 'two_factor_recovery_codes', 'two_factor_secret'];
 
     /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-        'last_active_at' => 'datetime',
-        'birthdate' => 'date:d-m-Y',
-    ];
-
-    /**
      * The accessors to append to the model's array form.
      *
      * @var array
@@ -89,6 +78,20 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
      * The attributes that will be used for multiple key binding on route models
      */
     protected array $routeBindingKeys = ['username'];
+
+    /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [
+            'email_verified_at' => 'datetime',
+            'last_active_at' => 'datetime',
+            'birthdate' => 'date:d-m-Y',
+        ];
+    }
 
     /**
      * The attributes that should be logged for the user.

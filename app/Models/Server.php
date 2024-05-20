@@ -55,13 +55,16 @@ class Server extends BaseModel
     protected $fillable = ['name', 'description', 'host', 'port', 'active', 'official', 'last_check_at', 'user_id'];
 
     /**
-     * The attributes that should be cast to native types.
+     * Get the attributes that should be cast.
      *
-     * @var array
+     * @return array<string, string>
      */
-    protected $casts = [
-        'last_check_at' => 'datetime',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'last_check_at' => 'datetime',
+        ];
+    }
 
     /**
      * The boot method of the model.

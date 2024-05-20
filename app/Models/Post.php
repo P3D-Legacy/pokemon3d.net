@@ -59,13 +59,16 @@ class Post extends BaseModel implements Viewable
     protected $fillable = ['title', 'slug', 'body', 'active', 'sticky', 'published_at', 'user_id'];
 
     /**
-     * The attributes that should be cast to native types.
+     * Get the attributes that should be cast.
      *
-     * @var array
+     * @return array<string, string>
      */
-    protected $casts = [
-        'published_at' => 'datetime',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'published_at' => 'datetime',
+        ];
+    }
 
     /**
      * The attributes that should be logged for the user.

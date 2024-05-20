@@ -61,15 +61,6 @@ class GamejoltAccount extends BaseModel
     protected $fillable = ['id', 'username', 'token', 'verified_at', 'user_id'];
 
     /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'verified_at' => 'datetime',
-    ];
-
-    /**
      * The attributes that should be encrypted/decrypted
      *
      * @var array
@@ -82,6 +73,18 @@ class GamejoltAccount extends BaseModel
      * @var array
      */
     protected $hidden = ['token', 'aid'];
+
+    /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [
+            'verified_at' => 'datetime',
+        ];
+    }
 
     /**
      * The attributes that should be logged for the user.

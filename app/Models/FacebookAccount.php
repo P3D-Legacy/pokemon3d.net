@@ -67,13 +67,16 @@ class FacebookAccount extends BaseModel
     protected $fillable = ['id', 'name', 'email', 'avatar', 'verified_at', 'user_id'];
 
     /**
-     * The attributes that should be cast to native types.
+     * Get the attributes that should be cast.
      *
-     * @var array
+     * @return array<string, string>
      */
-    protected $casts = [
-        'verified_at' => 'datetime',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'verified_at' => 'datetime',
+        ];
+    }
 
     /**
      * The attributes that should be hidden

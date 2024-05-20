@@ -67,13 +67,16 @@ class GamejoltAccountBan extends BaseModel
     protected $fillable = ['gamejoltaccount_id', 'banned_by_id', 'reason_id', 'expire_at'];
 
     /**
-     * The attributes that should be cast to native types.
+     * Get the attributes that should be cast.
      *
-     * @var array
+     * @return array<string, string>
      */
-    protected $casts = [
-        'expire_at' => 'datetime',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'expire_at' => 'datetime',
+        ];
+    }
 
     /**
      * The attributes that should be logged for the user.

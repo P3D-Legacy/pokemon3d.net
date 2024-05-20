@@ -19,7 +19,6 @@ Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->purpose('Display an inspiring quote')->hourly();
 
-
 // Often commands
 Schedule::command(RunHealthChecksCommand::class)->everyMinute();
 Schedule::command(ScheduleCheckHeartbeatCommand::class)->everyMinute();

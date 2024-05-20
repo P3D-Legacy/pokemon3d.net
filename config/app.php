@@ -1,8 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Facade;
-use Illuminate\Support\ServiceProvider;
-
 return [
 
     'lang_contribution_url' => env('LANG_CONTRIBUTION_URL', '/'),
@@ -14,6 +11,5 @@ return [
     ],
 
     'required_consent' => 'tos.1',
-
 
 ];

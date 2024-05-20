@@ -79,8 +79,10 @@ class Update extends Command
         Artisan::call('nova:publish');
         $this->info('Clear views...');
         Artisan::call('view:clear');
-        $this->info('Sync schedule monitor...');
-        $this->call('schedule-monitor:sync');
+        if (config('app.env') == 'production') {
+            $this->info('Sync schedule monitor...');
+            $this->call('schedule-monitor:sync');
+        }
         $this->info('Done.');
 
         return Command::SUCCESS;

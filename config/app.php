@@ -15,24 +15,5 @@ return [
 
     'required_consent' => 'tos.1',
 
-    'providers' => ServiceProvider::defaultProviders()->merge([
-        /*
-         * Package Service Providers...
-         */
-
-        /*
-         * Application Service Providers...
-         */
-        App\Providers\AppServiceProvider::class,
-        App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
-        App\Providers\NovaServiceProvider::class,
-        App\Providers\Filament\AdminPanelProvider::class,
-        App\Providers\RouteServiceProvider::class,
-        App\Providers\FortifyServiceProvider::class,
-        App\Providers\JetstreamServiceProvider::class,
-        App\Providers\HealthCheckServiceProvider::class,
-    ])->toArray(),
 
 ];

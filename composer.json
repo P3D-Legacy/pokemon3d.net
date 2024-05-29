@@ -9,13 +9,8 @@
         "pokemon3d",
         "laravel"
     ],
-    "license": "gpl-3.0-only",
-    "repositories": {
-        "nova": {
-            "type": "composer",
-            "url": "https://nova.laravel.com"
         }
-    },
+    "license": "gpl-3.0-only",
     "require": {
         "php": "^8.2",
         "ext-gd": "*",
@@ -27,7 +22,6 @@
         "betterapp/laravel-db-encrypter": "^1.0",
         "beyondcode/laravel-favicon": "^1.5.0",
         "blade-ui-kit/blade-ui-kit": "^0.5",
-        "bolechen/nova-activitylog": "^0.4.0",
         "cebe/php-openapi": "^1.7",
         "cyrildewit/eloquent-viewable": "^7.0",
         "dedoc/scramble": "^0.9",
@@ -42,12 +36,10 @@
         "harrk/gamejolt-api": "^1.1",
         "intervention/image": "^2.7",
         "kilobyteno/laravel-plausible": "^1.1.0",
-        "kiritokatklian/nova-permission": "^4.0",
         "kkomelin/laravel-translatable-string-exporter": "^1.22",
         "knuckleswtf/scribe": "^4.33",
         "laravel/framework": "^11.7",
         "laravel/jetstream": "^5.0",
-        "laravel/nova": "4.23.0",
         "laravel/sanctum": "^4.0",
         "laravel/socialite": "^5.11",
         "laravel/tinker": "^2.9",
@@ -74,8 +66,6 @@
         "spatie/laravel-schedule-monitor": "^3.7",
         "spatie/laravel-stats": "^2.3",
         "spatie/laravel-tags": "^4.6",
-        "spatie/nova-backup-tool": "^5.0",
-        "spatie/nova-tags-field": "^4.0",
         "symfony/http-client": "^7.0",
         "symfony/postmark-mailer": "^7.0",
         "torann/geoip": "^3.0",

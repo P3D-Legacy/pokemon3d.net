@@ -10,6 +10,8 @@ use Filament\Panel;
 use Glorand\Model\Settings\Traits\HasSettingsTable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
@@ -62,17 +64,6 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
     protected $hidden = ['password', 'remember_token', 'two_factor_recovery_codes', 'two_factor_secret'];
 
     /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-        'last_active_at' => 'datetime',
-        'birthdate' => 'date:d-m-Y',
-    ];
-
-    /**
      * The accessors to append to the model's array form.
      *
      * @var array
@@ -89,6 +80,20 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
      * The attributes that will be used for multiple key binding on route models
      */
     protected array $routeBindingKeys = ['username'];
+
+    /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [
+            'email_verified_at' => 'datetime',
+            'last_active_at' => 'datetime',
+            'birthdate' => 'date:d-m-Y',
+        ];
+    }
 
     /**
      * The attributes that should be logged for the user.
@@ -117,7 +122,7 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
     /**
      * Get the gamejolt account associated with the user.
      */
-    public function gamejolt()
+    public function gamejolt(): HasOne
     {
         return $this->hasOne(GamejoltAccount::class);
     }
@@ -125,7 +130,7 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
     /**
      * Get the discord account associated with the user.
      */
-    public function discord()
+    public function discord(): HasOne
     {
         return $this->hasOne(DiscordAccount::class);
     }
@@ -133,7 +138,7 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
     /**
      * Get the forum account associated with the user.
      */
-    public function forum()
+    public function forum(): HasOne
     {
         return $this->hasOne(ForumAccount::class);
     }
@@ -141,7 +146,7 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
     /**
      * Get the twitter account associated with the user.
      */
-    public function twitter()
+    public function twitter(): HasOne
     {
         return $this->hasOne(TwitterAccount::class);
     }
@@ -149,7 +154,7 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
     /**
      * Get the facebook account associated with the user.
      */
-    public function facebook()
+    public function facebook(): HasOne
     {
         return $this->hasOne(FacebookAccount::class);
     }
@@ -157,7 +162,7 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
     /**
      * Get the facebook account associated with the user.
      */
-    public function twitch()
+    public function twitch(): HasOne
     {
         return $this->hasOne(TwitchAccount::class);
     }
@@ -165,7 +170,7 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
     /**
      * Get the resources associated with the user.
      */
-    public function resources()
+    public function resources(): HasMany
     {
         return $this->hasMany(Resource::class);
     }
@@ -173,7 +178,7 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
     /**
      * Get the gamesave associated with the user.
      */
-    public function gamesave()
+    public function gamesave(): HasOne
     {
         return $this->hasOne(GameSave::class);
     }

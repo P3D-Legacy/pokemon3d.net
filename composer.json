@@ -17,13 +17,17 @@
         {
             "type": "vcs",
             "url": "https://github.com/dsbilling/origami-consent"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/dsbilling/laravel-language"
         }
     ],
     "license": "gpl-3.0-only",
     "require": {
         "php": "^8.2",
         "ext-gd": "*",
-        "akaunting/laravel-language": "^1.0",
+        "akaunting/laravel-language": "dev-fix-agent-dependency",
         "alibayat/laravel-categorizable": "dev-master",
         "alibayat/laravel-commentable": "dev-master",
         "anlutro/l4-settings": "^1.4",

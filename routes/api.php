@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('v1')->group(function () {
     Route::apiResource('user', UserController::class)->only('show');
     Route::apiResource('gamejoltaccount', GamejoltAccountController::class)->only('show');
-    Route::apiResource('ban/gamejoltaccount', GamejoltAccountBanController::class)->only(['index', 'show', 'destroy']);
+    Route::apiResource('ban/gamejoltaccount', GamejoltAccountBanController::class)->only(['index', 'store', 'show', 'destroy']);
     Route::apiResource('banreason', BanReasonController::class)->only(['index', 'show']);
     Route::apiResource('discordaccount', DiscordAccountController::class)->only('show');
     Route::apiResource('bot/discord/settings', DiscordBotSettingController::class)->only(['index', 'update']);

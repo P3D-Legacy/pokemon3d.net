@@ -4,7 +4,9 @@ namespace App\Helpers;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
+use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Exception\GuzzleException;
+use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Support\Facades\Http;
 
 class XenForoHelper
@@ -23,12 +25,14 @@ class XenForoHelper
             $data = [];
         }
         $url = config('services.xenforo.api_url').$endpoint;
-        $response = Http::withHeaders([
-            'XF-Api-Key' => config('services.xenforo.api_key'),
-        ])->$method($url, $data);
-
-        if ($response->failed()) {
-            return ['errors' => []];
+        try {
+            $response = Http::withHeaders([
+                'XF-Api-Key' => config('services.xenforo.api_key'),
+            ])->$method($url, $data);
+        } catch (ConnectException|ConnectionException $e) {
+            return ['errors' => [
+                'message' => $e->getMessage(),
+            ]];
         }
 
         return json_decode($response, true);

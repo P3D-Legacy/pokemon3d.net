@@ -5,6 +5,8 @@ namespace App\Models;
 use Assada\Achievements\Achiever;
 use Carbon\Carbon;
 use DateTimeInterface;
+use Filament\Models\Contracts\FilamentUser;
+use Filament\Panel;
 use Glorand\Model\Settings\Traits\HasSettingsTable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -19,7 +21,7 @@ use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable implements MustVerifyEmail
+class User extends Authenticatable implements FilamentUser, MustVerifyEmail
 {
     use Achiever;
     use GivesConsent;
@@ -85,15 +87,11 @@ class User extends Authenticatable implements MustVerifyEmail
 
     /**
      * The attributes that will be used for multiple key binding on route models
-     *
-     * @var array
      */
-    protected $routeBindingKeys = ['username'];
+    protected array $routeBindingKeys = ['username'];
 
     /**
      * The attributes that should be logged for the user.
-     *
-     * @return array
      */
     public function getActivitylogOptions(): LogOptions
     {
@@ -104,11 +102,16 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     // Overrides datetime object serialization
-    protected function serializeDate(DateTimeInterface $date)
+    protected function serializeDate(DateTimeInterface $date): string
     {
         $carbonInstance = Carbon::instance($date);
 
         return $carbonInstance->toDateTimeString();
+    }
+
+    public function canAccessPanel(Panel $panel): bool
+    {
+        return $this->hasRole('moderator') || $this->hasRole('admin') || $this->hasRole('super-admin') && $this->hasVerifiedEmail();
     }
 
     /**

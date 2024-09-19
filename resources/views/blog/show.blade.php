@@ -7,15 +7,24 @@
         @endcomponent
 
         <div class="rounded-lg bg-white shadow-md dark:bg-slate-900 p-6 sm:p-8 border border-slate-200 dark:border-slate-700">
-            <div class="text-sm leading-6">
+            <div class="text-base leading-6">
                 <dl>
                     <dt class="sr-only">Date</dt>
-                    <dd class="text-slate-700 dark:text-slate-400">
+                    <dd class="text-slate-700 dark:text-slate-300 font-semibold">
                         <time datetime="{{ $post->published_at }}">
                             {{ $post->published_at->isoFormat('LLLL') }}
                         </time>
                     </dd>
                 </dl>
+                @if($post->updated_at)
+                    <dl class="text-xs mt-2">
+                        <dt class="sr-only">Author</dt>
+                        <dd class="text-slate-700 dark:text-slate-400">
+                            <span>{{ __('Updated') }}:</span>
+                            <time datetime="{{ $post->updated_at }}">{{ $post->updated_at->isoFormat('LLLL') }}</time>
+                        </dd>
+                    </dl>
+                @endif
             </div>
             <h1 class="text-2xl font-extrabold tracking-tight mt-8 text-slate-900 dark:text-slate-200 md:text-3xl break-words">
                 @if($post->sticky)
@@ -31,7 +40,7 @@
                 {{ App\Helpers\NumberHelper::nearestK(views($post)->count()) }} {{ __('Views') }} &middot;
                 {{ read_time($post->body) }} &middot;
                 {{ App\Helpers\NumberHelper::nearestK($post->commentCount()) }} {{ __('Comments') }}
-                @if($post->tags->count() > 0)
+                @if($post->tags->isNotEmpty())
                     &middot;
                     @foreach ($post->tags as $tag)
                         <span class="inline-block items-center justify-center">
@@ -56,13 +65,19 @@
             </div>
 
             @if (now()->subYears(1) > $post->updated_at)
-                <div class="flex items-center p-2 mt-8 text-sm leading-4 bg-orange-600 rounded-lg text-orange-50 lg:rounded-xl lg:inline-flex sm:text-base" role="alert">
-                    <span class="flex px-1 py-1 mr-3 text-xs font-bold text-white uppercase bg-orange-400 rounded-full">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                    </span>
-                    <span class="flex-auto mr-2 font-semibold text-left">{{ __('Please be aware that this article is over a year old, and some of the information it contains may no longer be up-to-date. While we strive to keep our content as current and accurate as possible, we recommend double-checking any important details before relying on them.') }}</span>
+                <div class="rounded-md bg-blue-50 dark:bg-blue-700 p-4 mt-8">
+                    <div class="flex">
+                        <div class="flex-shrink-0">
+                            <svg class="h-5 w-5 text-blue-400 dark:text-blue-100" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <path fill-rule="evenodd"
+                                      d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a.75.75 0 000 1.5h.253a.25.25 0 01.244.304l-.459 2.066A1.75 1.75 0 0010.747 15H11a.75.75 0 000-1.5h-.253a.25.25 0 01-.244-.304l.459-2.066A1.75 1.75 0 009.253 9H9z"
+                                      clip-rule="evenodd"/>
+                            </svg>
+                        </div>
+                        <div class="ml-3 flex-1 md:flex md:justify-between">
+                            <p class="text-sm text-blue-700 dark:text-blue-100 font-semibold">{{ __('Note: This article was published over a year ago. Information within may have changed since then. While efforts are made to keep content current, please verify critical details before making decisions based on this information.') }}</p>
+                        </div>
+                    </div>
                 </div>
             @endif
 

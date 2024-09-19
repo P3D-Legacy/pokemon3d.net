@@ -1,8 +1,9 @@
 import './bootstrap';
 
 import Alpine from 'alpinejs';
+import focus from '@alpinejs/focus';
 window.Alpine = Alpine;
-import './../../vendor/power-components/livewire-powergrid/dist/powergrid';
+Alpine.plugin(focus);
 Alpine.start();
 
 import flatpickr from 'flatpickr';
@@ -20,14 +21,12 @@ date_max.setFullYear(date_max.getFullYear() - 13);
 var date_min = new Date();
 date_min.setFullYear(date_min.getFullYear() - 90);
 
-flatpickr('.flatpickrBirtdate', {
+flatpickr('.flatpickrBirthdate', {
     enableTime: false,
     dateFormat: 'd-m-Y',
     minDate: date_min,
     maxDate: date_max,
 });
-
-import 'tw-elements';
 
 import EasyMDE from 'easymde';
 window.EasyMDE = EasyMDE;

@@ -18,7 +18,7 @@
             <div x-data="{photoName: null, photoPreview: null}" class="col-span-6 sm:col-span-4">
                 <!-- Profile Photo File Input -->
                 <input type="file" class="hidden"
-                            wire:model="photo"
+                            wire:model.live="photo"
                             x-ref="photo"
                             x-on:change="
                                     photoName = $refs.photo.files[0].name;
@@ -59,31 +59,31 @@
 
         <div class="col-span-6 sm:col-span-4">
             <x-label for="name" value="{{ __('Name') }}" />
-            <x-input id="name" type="text" class="block w-full mt-1" wire:model.defer="state.name" autocomplete="name" />
+            <x-input id="name" type="text" class="block w-full mt-1" wire:model="state.name" autocomplete="name" />
             <x-input-error for="name" class="mt-2" />
         </div>
 
         <div class="col-span-6 sm:col-span-4">
             <x-label for="username" value="{{ __('Username') }}" />
-            <x-input id="username" type="text" class="block w-full mt-1 bg-slate-200" wire:model.defer="state.username" disabled />
+            <x-input id="username" type="text" class="block w-full mt-1 bg-slate-200" wire:model="state.username" disabled />
             <x-input-error for="username" class="mt-2" />
         </div>
 
         <div class="col-span-6 sm:col-span-4">
             <x-label for="email" value="{{ __('Email') }}" />
-            <x-input id="email" type="email" class="block w-full mt-1" wire:model.defer="state.email" />
+            <x-input id="email" type="email" class="block w-full mt-1" wire:model="state.email" />
             <x-input-error for="email" class="mt-2" />
         </div>
 
         <div class="col-span-6 sm:col-span-4">
             <x-label for="birthdate" value="{{ __('Birthdate') }}" />
-            <x-input id="birthdate" type="text" class="block w-full mt-1 flatpickrBirtdate" wire:model.defer="state.birthdate" />
+            <x-input id="birthdate" type="text" class="block w-full mt-1 flatpickrBirthdate" wire:model="state.birthdate" />
             <x-input-error for="birthdate" class="mt-2" />
         </div>
 
         <div class="col-span-6 sm:col-span-4">
             <x-label for="gender" value="{{ __('Gender') }}" />
-            <select id="gender" class="form-select appearance-none block w-full px-3 py-1.5 border-slate-300 focus:border-green-300 focus:ring focus:ring-green-200 focus:ring-opacity-50 rounded-md shadow-sm disabled:opacity-50 disabled:cursor-not-allowed dark:bg-black dark:text-white dark:border-slate-900 mt-1" wire:model.defer="state.gender">
+            <select id="gender" class="form-select appearance-none block w-full px-3 py-1.5 border-slate-300 focus:border-green-300 focus:ring focus:ring-green-200 focus:ring-opacity-50 rounded-md shadow-sm disabled:opacity-50 disabled:cursor-not-allowed dark:bg-black dark:text-white dark:border-slate-900 mt-1" wire:model="state.gender">
                 <option value="0" {{ $this->user->gender == 0 ? 'selected' : '' }}>No selection</option>
                 <option value="1" {{ $this->user->gender == 1 ? 'selected' : '' }}>Male</option>
                 <option value="2" {{ $this->user->gender == 2 ? 'selected' : '' }}>Female</option>
@@ -94,13 +94,13 @@
 
         <div class="col-span-6 sm:col-span-4">
             <x-label for="location" value="{{ __('Location') }}" />
-            <x-input id="location" type="text" class="block w-full mt-1" wire:model.defer="state.location" />
+            <x-input id="location" type="text" class="block w-full mt-1" wire:model="state.location" />
             <x-input-error for="location" class="mt-2" />
         </div>
 
         <div class="col-span-6 sm:col-span-4">
             <x-label for="about" value="{{ __('About') }}" />
-            <x-text-area id="about" class="block w-full mt-1" wire:model.defer="state.about" />
+            <x-text-area id="about" class="block w-full mt-1" wire:model="state.about" />
             <x-input-error for="about" class="mt-2" />
         </div>
     </x-slot>

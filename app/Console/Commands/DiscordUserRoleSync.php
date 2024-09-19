@@ -35,10 +35,8 @@ class DiscordUserRoleSync extends Command
 
     /**
      * Execute the console command.
-     *
-     * @return int
      */
-    public function handle()
+    public function handle(): int
     {
         $this->info('Getting Discord roles...');
         Artisan::call('discord:syncroles');
@@ -56,5 +54,7 @@ class DiscordUserRoleSync extends Command
             }
         }
         $this->info('Done!');
+
+        return Command::SUCCESS;
     }
 }

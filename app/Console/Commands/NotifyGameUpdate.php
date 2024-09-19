@@ -43,6 +43,6 @@ class NotifyGameUpdate extends Command
             $this->info('No new update found to notify about.');
         }
 
-        return 0;
+        return Command::SUCCESS;
     }
 }

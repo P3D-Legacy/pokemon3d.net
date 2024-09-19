@@ -108,7 +108,7 @@
                     @endif
                 @endauth
             </div>
-            <p class="text-slate-600">{{ $this->server->description }}</p>
+            <p class="my-2 text-slate-600 dark:text-slate-200">{{ $this->server->description }}</p>
             <p class="font-semibold text-green-600 dark:text-green-300">{{ $this->server->host }}:{{ $this->server->port }}</p>
             @auth
                 @if ($this->server->user_id == auth()->user()->id && !$this->server->active)

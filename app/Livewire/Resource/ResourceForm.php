@@ -23,7 +23,7 @@ class ResourceForm extends ModalComponent
 
     public function mount(int|Resource|null $resource = null)
     {
-        $this->resource = $resource ? Resource::find($resource) : new Resource();
+        $this->resource = $resource ? Resource::find($resource) : new Resource;
         $this->category = $this->resource->categories->first()->id ?? 0;
         $this->categories = Category::all();
     }

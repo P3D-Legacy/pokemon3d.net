@@ -105,7 +105,7 @@ class DiscordController extends Controller
             DiscordAccount::create($userProfile);
             auth()
                 ->user()
-                ->unlock(new AssociatedDiscord());
+                ->unlock(new AssociatedDiscord);
 
             return redirect()->route('profile.show');
         } catch (InvalidStateException $e) {

@@ -95,7 +95,7 @@ class TwitchController extends Controller
             TwitchAccount::create($userProfile);
             auth()
                 ->user()
-                ->unlock(new AssociatedTwitch());
+                ->unlock(new AssociatedTwitch);
 
             return redirect()->route('profile.show');
         } catch (InvalidStateException $e) {

@@ -4,6 +4,8 @@ namespace App\Models;
 
 use betterapp\LaravelDbEncrypter\Traits\EncryptableDbAttribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
 use Spatie\Activitylog\LogOptions;
@@ -61,15 +63,6 @@ class GamejoltAccount extends BaseModel
     protected $fillable = ['id', 'username', 'token', 'verified_at', 'user_id'];
 
     /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'verified_at' => 'datetime',
-    ];
-
-    /**
      * The attributes that should be encrypted/decrypted
      *
      * @var array
@@ -82,6 +75,18 @@ class GamejoltAccount extends BaseModel
      * @var array
      */
     protected $hidden = ['token', 'aid'];
+
+    /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [
+            'verified_at' => 'datetime',
+        ];
+    }
 
     /**
      * The attributes that should be logged for the user.
@@ -115,7 +120,7 @@ class GamejoltAccount extends BaseModel
     /**
      * Get the user associated with the gamejolt account.
      */
-    public function user()
+    public function user(): HasOne
     {
         return $this->hasOne(User::class, 'id', 'user_id');
     }
@@ -123,7 +128,7 @@ class GamejoltAccount extends BaseModel
     /**
      * Get the skins that the user owns.
      */
-    public function skins()
+    public function skins(): HasMany
     {
         return $this->hasMany(Skin::class, 'owner_id', 'id');
     }
@@ -131,7 +136,7 @@ class GamejoltAccount extends BaseModel
     /**
      * Get the skins that the user owns.
      */
-    public function publicSkins()
+    public function publicSkins(): HasMany
     {
         return $this->hasMany(Skin::class, 'owner_id', 'id')->isPublic();
     }
@@ -139,7 +144,7 @@ class GamejoltAccount extends BaseModel
     /**
      * Get the bans that the user has.
      */
-    public function bans()
+    public function bans(): HasMany
     {
         return $this->hasMany(GamejoltAccountBan::class, 'gamejoltaccount_id', 'id');
     }
@@ -147,7 +152,7 @@ class GamejoltAccount extends BaseModel
     /**
      * Get the trophies that the user has.
      */
-    public function trophies()
+    public function trophies(): HasMany
     {
         return $this->hasMany(GamejoltAccountTrophy::class, 'gamejolt_account_id', 'id')->orderBy('title', 'asc');
     }

@@ -110,7 +110,7 @@ class ConnectGamejoltAccount extends Component
         Artisan::call('p3d:skinuserupdate');
 
         // Unlock achievement
-        $user->unlock(new AssociatedGamejolt());
+        $user->unlock(new AssociatedGamejolt);
 
         $this->username = $gamejolt->username;
         $this->token = $gamejolt->token;

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
 use Overtrue\LaravelLike\Traits\Likeable;
@@ -79,7 +80,7 @@ class Skin extends BaseModel
     /**
      * Get the user that owns the skin.
      */
-    public function gamejoltaccount()
+    public function gamejoltaccount(): BelongsTo
     {
         return $this->belongsTo(GamejoltAccount::class, 'owner_id', 'id');
     }
@@ -87,7 +88,7 @@ class Skin extends BaseModel
     /**
      * Get the user that owns the skin.
      */
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }

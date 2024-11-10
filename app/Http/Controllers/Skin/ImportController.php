@@ -31,7 +31,7 @@ class ImportController extends Controller
         }
         $url = 'https://pokemon3d.net/skin/data/'.$id.'.png';
         $valid_types = ['image/png']; // Valid file types
-        $client = new Client();
+        $client = new Client;
         try {
             $response = $client->get($url);
             if (

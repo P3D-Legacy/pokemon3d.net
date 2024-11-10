@@ -58,7 +58,7 @@ class CommentLikeNotification extends Notification
      */
     public function toMail(mixed $notifiable): MailMessage
     {
-        return (new MailMessage())
+        return (new MailMessage)
             ->line($this->message)
             ->action('View', route('blog.show', $this->comment->commentable->uuid));
     }

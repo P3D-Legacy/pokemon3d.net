@@ -12,14 +12,6 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "https://github.com/dsbilling/laravel-review-rating"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/dsbilling/origami-consent"
-        },
-        {
-            "type": "vcs",
             "url": "https://github.com/dsbilling/laravel-language"
         }
     ],
@@ -38,7 +30,7 @@
         "cebe/php-openapi": "^1.7",
         "cyrildewit/eloquent-viewable": "^7.0",
         "dedoc/scramble": "^0.9",
-        "digikraaft/laravel-review-rating": "dev-laravel11",
+        "digikraaft/laravel-review-rating": "^3.1",
         "doctrine/dbal": "^3.5",
         "filament/filament": "^3.2",
         "gabrielelana/byte-units": "^0.5.0",
@@ -63,7 +55,7 @@
         "michael-rubel/laravel-formatters": "^8.0",
         "mtownsend/read-time": "^2.0",
         "ohdearapp/ohdear-php-sdk": "^3.5",
-        "origami/consent": "dev-laravel11",
+        "origami/consent": "^2.4.0",
         "overtrue/laravel-like": "^5.3",
         "propaganistas/laravel-disposable-email": "^2.3",
         "pxlrbt/filament-activity-log": "^1.1",

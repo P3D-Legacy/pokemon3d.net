@@ -13,6 +13,10 @@ return Application::configure(basePath: dirname(__DIR__))
         commands: __DIR__.'/../routes/console.php',
         // channels: __DIR__.'/../routes/channels.php',
         health: '/up',
+        then: function () { // Include custom route files
+            require __DIR__.'/../routes/fortify.php';
+            require __DIR__.'/../routes/jetstream.php';
+        }
     )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->redirectGuestsTo(fn () => route('login'));

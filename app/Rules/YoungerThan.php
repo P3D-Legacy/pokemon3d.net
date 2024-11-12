@@ -3,43 +3,40 @@
 namespace App\Rules;
 
 use Carbon\Carbon;
-use Illuminate\Contracts\Validation\Rule;
+use Closure;
+use Illuminate\Contracts\Validation\ValidationRule;
 use InvalidArgumentException;
 
-class YoungerThan implements Rule
+class YoungerThan implements ValidationRule
 {
+    private int $maxAge;
+
     /**
      * Create a new rule instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(int $maxAge = 90)
     {
-        $this->maxAge = 90;
+        $this->maxAge = $maxAge;
     }
 
     /**
-     * Determine if the validation rule passes.
-     *
-     * @param  string  $attribute
-     * @param  mixed  $value
-     * @return bool
+     * Run the validation rule.
      */
-    public function passes($attribute, $value)
+    public function validate(string $attribute, mixed $value, Closure $fail): void
     {
         try {
-            return Carbon::now()->diff(Carbon::parse($value))->y < $this->maxAge;
-        } catch (InvalidArgumentException $e) {
-            return false;
+            Carbon::now()->diff(Carbon::parse($value))->y < $this->maxAge;
+        } catch (InvalidArgumentException) {
+            $fail($this->message());
         }
     }
 
     /**
      * Get the validation error message.
-     *
-     * @return string
      */
-    public function message()
+    public function message(): string
     {
         return __('You need to be younger than :age years old', ['age' => $this->maxAge]);
     }

@@ -9,10 +9,8 @@ class UpdateUserTimezone
 {
     /**
      * Handle the event.
-     *
-     * @return void
      */
-    public function handle(Login $event)
+    public function handle(Login $event): void
     {
         $user = null;
 

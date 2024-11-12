@@ -32,10 +32,8 @@ class SyncGameSaveGamejoltAccountTrophies implements ShouldQueue
 
     /**
      * Execute the job.
-     *
-     * @return void
      */
-    public function handle()
+    public function handle(): void
     {
         // Set up the Gamejolt API
         $game_id = config('services.gamejolt.game_id');

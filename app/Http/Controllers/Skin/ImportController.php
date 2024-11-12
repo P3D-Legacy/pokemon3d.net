@@ -4,13 +4,14 @@ namespace App\Http\Controllers\Skin;
 
 use App\Http\Controllers\Controller;
 use GuzzleHttp\Client;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class ImportController extends Controller
 {
-    public function import(Request $request, $id)
+    public function import(Request $request, $id): RedirectResponse
     {
         $gjid = Auth::user()->gamejolt->id;
         if ($id != $gjid) {
@@ -30,7 +31,7 @@ class ImportController extends Controller
         }
         $url = 'https://pokemon3d.net/skin/data/'.$id.'.png';
         $valid_types = ['image/png']; // Valid file types
-        $client = new Client();
+        $client = new Client;
         try {
             $response = $client->get($url);
             if (

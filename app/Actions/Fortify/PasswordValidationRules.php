@@ -8,15 +8,13 @@ trait PasswordValidationRules
 {
     /**
      * Get the validation rules used to validate passwords.
-     *
-     * @return array
      */
-    protected function passwordRules()
+    protected function passwordRules(): array
     {
         return [
             'required',
             'string',
-            (new Password())
+            (new Password)
                 ->length(10)
                 ->requireUppercase()
                 ->requireNumeric()

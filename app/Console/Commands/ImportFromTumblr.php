@@ -73,7 +73,7 @@ class ImportFromTumblr extends Command
                 $title = str_replace('!', '', $title); // Remove the exclamation mark
                 $title = ucfirst($title); // Capitalize the first letter of the title
                 $this->info('Title: '.$title.', Posted by: '.$user->username);
-                $converter = new HtmlConverter();
+                $converter = new HtmlConverter;
                 $markdown = $converter->convert($post->body);
                 Post::create([
                     'title' => $title,
@@ -89,6 +89,6 @@ class ImportFromTumblr extends Command
             $this->error($e->getMessage());
         }
 
-        return 0;
+        return Command::SUCCESS;
     }
 }

@@ -6,6 +6,7 @@ use App\Achievements\User\AssociatedTwitch;
 use App\Http\Controllers\Controller;
 use App\Models\TwitchAccount;
 use GuzzleHttp\Exception\ClientException;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 use Laravel\Socialite\Two\InvalidStateException;
@@ -24,10 +25,8 @@ class TwitchController extends Controller
 
     /**
      * Obtain the user information from Twitch.
-     *
-     * @return \Illuminate\Http\RedirectResponse
      */
-    public function handleProviderCallback()
+    public function handleProviderCallback(): RedirectResponse
     {
         try {
             $twitchUser = Socialite::driver('twitch')->user();
@@ -96,7 +95,7 @@ class TwitchController extends Controller
             TwitchAccount::create($userProfile);
             auth()
                 ->user()
-                ->unlock(new AssociatedTwitch());
+                ->unlock(new AssociatedTwitch);
 
             return redirect()->route('profile.show');
         } catch (InvalidStateException $e) {

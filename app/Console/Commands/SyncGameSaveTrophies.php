@@ -24,10 +24,8 @@ class SyncGameSaveTrophies extends Command
 
     /**
      * Execute the console command.
-     *
-     * @return int
      */
-    public function handle()
+    public function handle(): int
     {
         $argument = $this->argument('user_id');
         if ($argument != 'all') {

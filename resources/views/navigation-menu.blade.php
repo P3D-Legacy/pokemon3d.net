@@ -140,6 +140,23 @@
                             </x-slot>
                         </x-dropdown>
                     </div>
+                    <div class="relative ml-2">
+                        <x-dropdown align="right" width="60">
+                            <x-slot name="trigger">
+                                <span class="inline-flex rounded-md">
+                                    <a href="{{ route('nova.pages.home') }}" class="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-slate-500 transition bg-white border border-transparent rounded-md hover:bg-slate-100 hover:text-slate-700 focus:outline-none focus:bg-slate-50 active:bg-slate-50 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                        </svg>
+                                        {{ __('Admin') }}
+                                    </a>
+                                </span>
+                            </x-slot>
+                            <x-slot name="content">
+                                {{----}}
+                            </x-slot>
+                        </x-dropdown>
+                    </div>
                 @endrole
 
                 @guest

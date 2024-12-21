@@ -51,7 +51,7 @@ class NewGameUpdateNotification extends Notification
     {
         $btn_text = $this->gameVersion->post ? 'View blog post' : 'View changelog';
 
-        return (new MailMessage())
+        return (new MailMessage)
             ->line($this->message)
             ->line($this->gameVersion->title)
             ->action(

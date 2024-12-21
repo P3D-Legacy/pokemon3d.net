@@ -60,7 +60,7 @@ class CommentNotification extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage())
+        return (new MailMessage)
             ->line($this->message)
             ->action('View', route('blog.show', $this->comment->commentable->uuid));
     }

@@ -92,7 +92,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
      */
     protected function dashboards()
     {
-        return [new \App\Nova\Dashboards\Main(), new \App\Nova\Dashboards\UserInsights()];
+        return [new \App\Nova\Dashboards\Main, new \App\Nova\Dashboards\UserInsights];
     }
 
     /**
@@ -103,8 +103,8 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     public function tools()
     {
         return [
-            new \Bolechen\NovaActivitylog\NovaActivitylog(),
-            new \Spatie\BackupTool\BackupTool(),
+            new \Bolechen\NovaActivitylog\NovaActivitylog,
+            new \Spatie\BackupTool\BackupTool,
             \Vyuldashev\NovaPermission\NovaPermissionTool::make(),
         ];
     }

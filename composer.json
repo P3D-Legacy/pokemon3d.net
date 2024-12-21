@@ -14,10 +14,6 @@
         "nova": {
             "type": "composer",
             "url": "https://nova.laravel.com"
-        },
-        "laravel-favicon": {
-            "type": "git",
-            "url": "https://github.com/dsbilling/laravel-favicon.git"
         }
     },
     "require": {
@@ -29,7 +25,7 @@
         "anlutro/l4-settings": "^1.0",
         "assada/laravel-achievements": "^2.3",
         "betterapp/laravel-db-encrypter": "^1.0",
-        "beyondcode/laravel-favicon": "dev-l9",
+        "beyondcode/laravel-favicon": "^1.0",
         "blade-ui-kit/blade-ui-kit": "^0.3.2",
         "bolechen/nova-activitylog": "^0.4.0",
         "cebe/php-openapi": "^1.7",
@@ -91,8 +87,8 @@
         "barryvdh/laravel-debugbar": "^3.6",
         "barryvdh/laravel-ide-helper": "^2.12",
         "fakerphp/faker": "^1.9.1",
-        "laravel-lang/lang": "^10.4",
-        "laravel-lang/publisher": "^12.2",
+        "laravel-lang/lang": "^14.0",
+        "laravel-lang/publisher": "^14.0",
         "laravel/pint": "^1.0.0",
         "laravel/sail": "^1.13",
         "mockery/mockery": "^1.4.4",

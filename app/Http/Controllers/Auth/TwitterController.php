@@ -101,7 +101,7 @@ class TwitterController extends Controller
             TwitterAccount::create($userProfile);
             auth()
                 ->user()
-                ->unlock(new AssociatedTwitter());
+                ->unlock(new AssociatedTwitter);
 
             return redirect()->route('profile.show');
         } catch (InvalidStateException $e) {

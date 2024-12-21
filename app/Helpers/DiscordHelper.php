@@ -29,7 +29,7 @@ class DiscordHelper
 
     public static function countMembers(): ?int
     {
-        $client = new self();
+        $client = new self;
         try {
             return $client->getServer()->approximate_member_count;
         } catch (\Exception $exception) {
@@ -41,7 +41,7 @@ class DiscordHelper
 
     public static function getServerRoles(): \Exception|array
     {
-        $client = new self();
+        $client = new self;
         try {
             return $client->discordClient->guild->getGuildRoles([
                 'guild.id' => $client->guildId,
@@ -55,7 +55,7 @@ class DiscordHelper
 
     public static function getMemberRoles(int $user_id): \RestCord\Model\Guild\GuildMember|\Exception
     {
-        $client = new self();
+        $client = new self;
         try {
             return $client->discordClient->guild->getGuildMember([
                 'guild.id' => $client->guildId,
@@ -70,7 +70,7 @@ class DiscordHelper
 
     public static function setMemberRole(int $user_id, int $role_id): array|string
     {
-        $client = new self();
+        $client = new self;
         try {
             return $client->discordClient->guild->addGuildMemberRole([
                 'guild.id' => $client->guildId,

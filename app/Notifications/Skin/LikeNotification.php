@@ -64,7 +64,7 @@ class LikeNotification extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage())->line($this->message)->action('View', route('skin-show', $this->skin->uuid));
+        return (new MailMessage)->line($this->message)->action('View', route('skin-show', $this->skin->uuid));
     }
 
     /**

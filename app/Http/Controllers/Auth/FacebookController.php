@@ -95,7 +95,7 @@ class FacebookController extends Controller
             FacebookAccount::create($userProfile);
             auth()
                 ->user()
-                ->unlock(new AssociatedFacebook());
+                ->unlock(new AssociatedFacebook);
 
             return redirect()->route('profile.show');
         } catch (InvalidStateException $e) {

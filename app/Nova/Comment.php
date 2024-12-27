@@ -34,56 +34,46 @@ class Comment extends Resource
 
     /**
      * Get the fields displayed by the resource.
-     *
-     * @return array
      */
-    public function fields(NovaRequest $request)
+    public function fields(NovaRequest $request): array
     {
         return [
             ID::make()->sortable(),
             Text::make('Body'),
             Boolean::make('Active'),
-            BelongsTo::make('User', 'creator', 'App\Nova\User'),
-            BelongsTo::make('Post', 'commentable', 'App\Nova\Post'),
+            BelongsTo::make('User', 'creator', \App\Nova\User::class),
+            BelongsTo::make('Post', 'commentable', \App\Nova\Post::class),
         ];
     }
 
     /**
      * Get the cards available for the request.
-     *
-     * @return array
      */
-    public function cards(NovaRequest $request)
+    public function cards(NovaRequest $request): array
     {
         return [];
     }
 
     /**
      * Get the filters available for the resource.
-     *
-     * @return array
      */
-    public function filters(NovaRequest $request)
+    public function filters(NovaRequest $request): array
     {
         return [];
     }
 
     /**
      * Get the lenses available for the resource.
-     *
-     * @return array
      */
-    public function lenses(NovaRequest $request)
+    public function lenses(NovaRequest $request): array
     {
         return [];
     }
 
     /**
      * Get the actions available for the resource.
-     *
-     * @return array
      */
-    public function actions(NovaRequest $request)
+    public function actions(NovaRequest $request): array
     {
         return [];
     }

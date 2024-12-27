@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
 
@@ -43,8 +44,6 @@ class DiscordRole extends BaseModel
 
     /**
      * The attributes that should be logged for the user.
-     *
-     * @return array
      */
     public function getActivitylogOptions(): LogOptions
     {
@@ -53,7 +52,7 @@ class DiscordRole extends BaseModel
             ->logOnlyDirty();
     }
 
-    public function accounts()
+    public function accounts(): BelongsToMany
     {
         return $this->belongsToMany(DiscordAccount::class);
     }

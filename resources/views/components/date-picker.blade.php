@@ -11,7 +11,7 @@
 <div wire:ignore>
     <input
         x-data="{
-             value: @entangle($attributes->wire('model')),
+             value: @entangle($attributes->wire('model')).live,
              instance: undefined,
              init() {
                  $watch('value', value => this.instance.setDate(value, false));

@@ -7,8 +7,6 @@ module.exports = {
         './vendor/laravel/jetstream/**/*.blade.php',
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php',
-        './vendor/power-components/livewire-powergrid/resources/views/**/*.blade.php',
-        './vendor/power-components/livewire-powergrid/src/Themes/Tailwind.php',
     ],
 
     theme: {
@@ -46,6 +44,5 @@ module.exports = {
         require('@tailwindcss/typography'),
         require('@tailwindcss/aspect-ratio'),
         require('tailwindcss-debug-screens'),
-        require('tw-elements/dist/plugin'),
     ],
 };

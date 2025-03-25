@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
 use Spatie\Activitylog\LogOptions;
@@ -67,18 +68,19 @@ class GamejoltAccountBan extends BaseModel
     protected $fillable = ['gamejoltaccount_id', 'banned_by_id', 'reason_id', 'expire_at'];
 
     /**
-     * The attributes that should be cast to native types.
+     * Get the attributes that should be cast.
      *
-     * @var array
+     * @return array<string, string>
      */
-    protected $casts = [
-        'expire_at' => 'datetime',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'expire_at' => 'datetime',
+        ];
+    }
 
     /**
      * The attributes that should be logged for the user.
-     *
-     * @return array
      */
     public function getActivitylogOptions(): LogOptions
     {
@@ -90,7 +92,7 @@ class GamejoltAccountBan extends BaseModel
     /**
      * Get the gamejolt account associated with the gamejolt account ban.
      */
-    public function gamejoltaccount()
+    public function gamejoltaccount(): BelongsTo
     {
         return $this->belongsTo(GamejoltAccount::class, 'gamejoltaccount_id');
     }
@@ -98,7 +100,7 @@ class GamejoltAccountBan extends BaseModel
     /**
      * Get the reason associated with the gamejolt account ban.
      */
-    public function reason()
+    public function reason(): BelongsTo
     {
         return $this->belongsTo(BanReason::class);
     }
@@ -106,7 +108,7 @@ class GamejoltAccountBan extends BaseModel
     /**
      * Get the user associated with the gamejolt account ban.
      */
-    public function banned_by()
+    public function banned_by(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }

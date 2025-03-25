@@ -3,7 +3,7 @@
 namespace App\Livewire\Blog;
 
 use App\Models\Post;
-//use Debugbar;
+// use Debugbar;
 use Livewire\Component;
 
 class LikeButton extends Component
@@ -38,8 +38,8 @@ class LikeButton extends Component
         $this->liked = $this->post->isLikedBy($this->user) ?? false;
 
         // Refresh the data
-        //Debugbar::info('Like button refreshed');
-        //Debugbar::info('Like: ' . $this->liked);
+        // Debugbar::info('Like button refreshed');
+        // Debugbar::info('Like: ' . $this->liked);
         $this->dispatch('refresh');
 
     }

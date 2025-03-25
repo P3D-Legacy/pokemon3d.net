@@ -30,7 +30,7 @@ class UpdateCreate extends ModalComponent
     protected array $rules = [
         'version' => ['required', 'string', 'max:255'],
         'description' => ['required', 'string', 'max:5120'],
-        'file' => ['required', 'file', 'mimes:zip', 'max:100000'], //100mb
+        'file' => ['required', 'file', 'mimes:zip', 'max:100000'], // 100mb
         'gameversion' => ['required'],
     ];
 

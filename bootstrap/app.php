@@ -1,10 +1,18 @@
 <?php
 
+use Akaunting\Language\Middleware\SetLocale;
+use App\Http\Middleware\ApiJsonMiddleware;
+use App\Http\Middleware\GameJoltAssociation;
+use App\Http\Middleware\UpdateLastActiveAt;
 use App\Providers\AppServiceProvider;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
+use Laravel\Jetstream\Http\Middleware\AuthenticateSession;
 use Sentry\Laravel\Integration;
+use Spatie\Permission\Middleware\PermissionMiddleware;
+use Spatie\Permission\Middleware\RoleMiddleware;
+use Spatie\Permission\Middleware\RoleOrPermissionMiddleware;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withProviders()
@@ -24,9 +32,9 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->redirectUsersTo(AppServiceProvider::HOME);
 
         $middleware->web([
-            \Laravel\Jetstream\Http\Middleware\AuthenticateSession::class,
-            \App\Http\Middleware\UpdateLastActiveAt::class,
-            \Akaunting\Language\Middleware\SetLocale::class,
+            AuthenticateSession::class,
+            UpdateLastActiveAt::class,
+            SetLocale::class,
         ]);
 
         $middleware->throttleApi();
@@ -37,11 +45,11 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
 
         $middleware->alias([
-            'api.json' => \App\Http\Middleware\ApiJsonMiddleware::class,
-            'gj.association' => \App\Http\Middleware\GameJoltAssociation::class,
-            'permission' => \Spatie\Permission\Middlewares\PermissionMiddleware::class,
-            'role' => \Spatie\Permission\Middlewares\RoleMiddleware::class,
-            'role_or_permission' => \Spatie\Permission\Middlewares\RoleOrPermissionMiddleware::class,
+            'api.json' => ApiJsonMiddleware::class,
+            'gj.association' => GameJoltAssociation::class,
+            'permission' => PermissionMiddleware::class,
+            'role' => RoleMiddleware::class,
+            'role_or_permission' => RoleOrPermissionMiddleware::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

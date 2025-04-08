@@ -26,7 +26,7 @@
         "assada/laravel-achievements": "^2.3",
         "betterapp/laravel-db-encrypter": "^1.0",
         "beyondcode/laravel-favicon": "^1.6.0",
-        "blade-ui-kit/blade-ui-kit": "^0.5",
+        "blade-ui-kit/blade-ui-kit": "^0.6",
         "cebe/php-openapi": "^1.7",
         "cyrildewit/eloquent-viewable": "^7.0",
         "dedoc/scramble": "^0.9",

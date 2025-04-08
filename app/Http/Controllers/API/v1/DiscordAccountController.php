@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\API\v1;
 
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\API\v1\DiscordAccountResource;
 use App\Models\DiscordAccount;
@@ -12,11 +14,13 @@ use Illuminate\Http\Request;
  *
  * APIs for getting Discord accounts.
  */
-class DiscordAccountController extends Controller
+class DiscordAccountController extends Controller implements HasMiddleware
 {
-    public function __construct()
+    public static function middleware(): array
     {
-        $this->middleware('permission:discord_account.show')->only(['show']);
+        return [
+            new Middleware('permission:discord_account.show', only: ['show']),
+        ];
     }
 
     /**

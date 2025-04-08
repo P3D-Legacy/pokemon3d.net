@@ -2,17 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 use App\Models\Server;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
-class ServerController extends Controller
+class ServerController extends Controller implements HasMiddleware
 {
-    public function __construct()
+    public static function middleware(): array
     {
-        $this->middleware(['auth', 'verified'])->only(['edit', 'update', 'destroy']);
+        return [
+            new Middleware(['auth', 'verified'], only: ['edit', 'update', 'destroy']),
+        ];
     }
 
     /**

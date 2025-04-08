@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\API\v1;
 
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\API\v1\PostResource;
 use App\Models\Post;
@@ -12,11 +14,13 @@ use Illuminate\Http\Request;
  *
  * APIs for posts.
  */
-class PostController extends Controller
+class PostController extends Controller implements HasMiddleware
 {
-    public function __construct()
+    public static function middleware(): array
     {
-        $this->middleware(['permission:post.create'])->only(['store']);
+        return [
+            new Middleware(['permission:post.create'], only: ['store']),
+        ];
     }
 
     /**

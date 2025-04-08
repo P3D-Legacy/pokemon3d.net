@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\API\v1;
 
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\API\v1\GamejoltAccountBanResource;
 use App\Models\GamejoltAccount;
@@ -16,13 +18,15 @@ use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
  *
  * APIs for getting, creating, updating and deleting Game Jolt Account Bans.
  */
-class GamejoltAccountBanController extends Controller
+class GamejoltAccountBanController extends Controller implements HasMiddleware
 {
-    public function __construct()
+    public static function middleware(): array
     {
-        $this->middleware('permission:gamejolt_account_ban.show')->only(['index', 'show']);
-        $this->middleware('permission:gamejolt_account_ban.create')->only(['store']);
-        $this->middleware('permission:gamejolt_account_ban.destroy')->only(['destroy']);
+        return [
+            new Middleware('permission:gamejolt_account_ban.show', only: ['index', 'show']),
+            new Middleware('permission:gamejolt_account_ban.create', only: ['store']),
+            new Middleware('permission:gamejolt_account_ban.destroy', only: ['destroy']),
+        ];
     }
 
     /**

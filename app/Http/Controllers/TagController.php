@@ -2,19 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 use App\Models\Tag;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
-class TagController extends Controller
+class TagController extends Controller implements HasMiddleware
 {
-    public function __construct()
+    public static function middleware(): array
     {
-        $this->middleware(['permission:tag.create|tag.update|tag.destroy'])->only(['index']);
-        $this->middleware(['permission:tag.create'])->only(['create', 'store']);
-        $this->middleware(['permission:tag.update'])->only(['update', 'edit']);
-        $this->middleware(['permission:tag.destroy'])->only(['destroy']);
+        return [
+            new Middleware(['permission:tag.create|tag.update|tag.destroy'], only: ['index']),
+            new Middleware(['permission:tag.create'], only: ['create', 'store']),
+            new Middleware(['permission:tag.update'], only: ['update', 'edit']),
+            new Middleware(['permission:tag.destroy'], only: ['destroy']),
+        ];
     }
 
     /**

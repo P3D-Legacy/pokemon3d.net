@@ -90,7 +90,8 @@
         "nunomaduro/collision": "^8.0",
         "pestphp/pest": "^2.23",
         "pestphp/pest-plugin-laravel": "^2.2",
-        "spatie/laravel-ignition": "^2.4"
+        "spatie/laravel-ignition": "^2.4",
+        "laravel/pail": "^1.2.2"
     },
     "config": {
         "optimize-autoloader": true,
@@ -136,6 +137,10 @@
         ],
         "post-update-cmd": [
             "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
+        ],
+        "dev": [
+            "Composer\\Config::disableProcessTimeout",
+            "npx concurrently -c \"#93c5fd,#c4b5fd,#fb7185,#fdba74\" \"php artisan serve\" \"php artisan queue:listen --tries=1\" \"php artisan pail --timeout=0\" \"npm run dev\" --names=server,queue,logs,vite"
         ]
     }
 }

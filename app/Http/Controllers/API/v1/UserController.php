@@ -6,17 +6,21 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\API\v1\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
 /**
  * @group User
  *
  * APIs for getting Users.
  */
-class UserController extends Controller
+class UserController extends Controller implements HasMiddleware
 {
-    public function __construct()
+    public static function middleware(): array
     {
-        $this->middleware('permission:user.show')->only(['show']);
+        return [
+            new Middleware('permission:user.show', only: ['show']),
+        ];
     }
 
     /**

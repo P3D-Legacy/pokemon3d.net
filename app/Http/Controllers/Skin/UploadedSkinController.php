@@ -6,15 +6,18 @@ use App\Http\Controllers\Controller;
 use App\Models\Skin;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
-class UploadedSkinController extends Controller
+class UploadedSkinController extends Controller implements HasMiddleware
 {
-    public function __construct()
+    public static function middleware(): array
     {
-        $this->middleware(['permission:skin-player-destroy']);
+        return [
+            ['permission:skin-player-destroy'],
+        ];
     }
 
     /**

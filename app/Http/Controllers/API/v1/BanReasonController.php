@@ -6,17 +6,21 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\API\v1\BanReasonResource;
 use App\Models\BanReason;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
 /**
  * @group Ban Reason
  *
  * APIs for getting ban reasons.
  */
-class BanReasonController extends Controller
+class BanReasonController extends Controller implements HasMiddleware
 {
-    public function __construct()
+    public static function middleware(): array
     {
-        $this->middleware('permission:ban_reason.show')->only(['index', 'show']);
+        return [
+            new Middleware('permission:ban_reason.show', only: ['index', 'show']),
+        ];
     }
 
     /**

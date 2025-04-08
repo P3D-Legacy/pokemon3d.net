@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\API\v1;
 
-use Illuminate\Routing\Controllers\HasMiddleware;
-use Illuminate\Routing\Controllers\Middleware;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\API\v1\GamejoltAccountResource;
 use App\Models\GamejoltAccount;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
 /**
  * @group Game Jolt Account

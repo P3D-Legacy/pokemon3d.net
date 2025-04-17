@@ -5,12 +5,12 @@
 
     <x-slot name="content">
         <x-label for="version" value="{{ __('Version Title') }}" />
-        <x-input id="version" type="text" class="block w-full mt-1" wire:model.defer="version" autocomplete="version" placeholder="1.2.3" />
+        <x-input id="version" type="text" class="block w-full mt-1" wire:model="version" autocomplete="version" placeholder="1.2.3" />
         <x-input-error for="version" class="mt-2" />
 
         <x-label for="gameversion" class="mt-4" value="{{ __('Latest supported version') }}" />
         <div class="relative inline-block w-full">
-            <select class="w-full h-10 pl-3 pr-6 text-base text-slate-800 placeholder-slate-600 border rounded-lg appearance-none focus:shadow-outline" id="gameversion" name="gameversion" wire:model.defer="gameversion">
+            <select class="w-full h-10 pl-3 pr-6 text-base text-slate-800 placeholder-slate-600 border rounded-lg appearance-none focus:shadow-outline" id="gameversion" name="gameversion" wire:model="gameversion">
                 <option value="">@lang('Select a game version')</option>
                 @foreach ($gameversions as $game_version)
                     <option value="{{ $game_version->id }}" {{ $game_version->id == $gameversion ? 'selected="selected"' : '' }}>{{ $game_version->version }}</option>
@@ -62,7 +62,7 @@
         <x-button wire:click="save" wire:loading.attr="disabled">
             {{ __('Save') }}
         </x-button>
-        <x-secondary-button wire:click="$emit('closeModal')">
+        <x-secondary-button wire:click="$dispatch('closeModal')">
             {{ __('Cancel') }}
         </x-secondary-button>
     </x-slot>

@@ -5,9 +5,13 @@ namespace App\Models;
 use Assada\Achievements\Achiever;
 use Carbon\Carbon;
 use DateTimeInterface;
+use Filament\Models\Contracts\FilamentUser;
+use Filament\Panel;
 use Glorand\Model\Settings\Traits\HasSettingsTable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
@@ -19,7 +23,7 @@ use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable implements MustVerifyEmail
+class User extends Authenticatable implements FilamentUser, MustVerifyEmail
 {
     use Achiever;
     use GivesConsent;
@@ -60,17 +64,6 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $hidden = ['password', 'remember_token', 'two_factor_recovery_codes', 'two_factor_secret'];
 
     /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-        'last_active_at' => 'datetime',
-        'birthdate' => 'date:d-m-Y',
-    ];
-
-    /**
      * The accessors to append to the model's array form.
      *
      * @var array
@@ -85,15 +78,25 @@ class User extends Authenticatable implements MustVerifyEmail
 
     /**
      * The attributes that will be used for multiple key binding on route models
-     *
-     * @var array
      */
-    protected $routeBindingKeys = ['username'];
+    protected array $routeBindingKeys = ['username'];
+
+    /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [
+            'email_verified_at' => 'datetime',
+            'last_active_at' => 'datetime',
+            'birthdate' => 'date:d-m-Y',
+        ];
+    }
 
     /**
      * The attributes that should be logged for the user.
-     *
-     * @return array
      */
     public function getActivitylogOptions(): LogOptions
     {
@@ -104,17 +107,22 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     // Overrides datetime object serialization
-    protected function serializeDate(DateTimeInterface $date)
+    protected function serializeDate(DateTimeInterface $date): string
     {
         $carbonInstance = Carbon::instance($date);
 
         return $carbonInstance->toDateTimeString();
     }
 
+    public function canAccessPanel(Panel $panel): bool
+    {
+        return $this->hasRole('moderator') || $this->hasRole('admin') || $this->hasRole('super-admin') && $this->hasVerifiedEmail();
+    }
+
     /**
      * Get the gamejolt account associated with the user.
      */
-    public function gamejolt()
+    public function gamejolt(): HasOne
     {
         return $this->hasOne(GamejoltAccount::class);
     }
@@ -122,7 +130,7 @@ class User extends Authenticatable implements MustVerifyEmail
     /**
      * Get the discord account associated with the user.
      */
-    public function discord()
+    public function discord(): HasOne
     {
         return $this->hasOne(DiscordAccount::class);
     }
@@ -130,7 +138,7 @@ class User extends Authenticatable implements MustVerifyEmail
     /**
      * Get the forum account associated with the user.
      */
-    public function forum()
+    public function forum(): HasOne
     {
         return $this->hasOne(ForumAccount::class);
     }
@@ -138,7 +146,7 @@ class User extends Authenticatable implements MustVerifyEmail
     /**
      * Get the twitter account associated with the user.
      */
-    public function twitter()
+    public function twitter(): HasOne
     {
         return $this->hasOne(TwitterAccount::class);
     }
@@ -146,7 +154,7 @@ class User extends Authenticatable implements MustVerifyEmail
     /**
      * Get the facebook account associated with the user.
      */
-    public function facebook()
+    public function facebook(): HasOne
     {
         return $this->hasOne(FacebookAccount::class);
     }
@@ -154,7 +162,7 @@ class User extends Authenticatable implements MustVerifyEmail
     /**
      * Get the facebook account associated with the user.
      */
-    public function twitch()
+    public function twitch(): HasOne
     {
         return $this->hasOne(TwitchAccount::class);
     }
@@ -162,7 +170,7 @@ class User extends Authenticatable implements MustVerifyEmail
     /**
      * Get the resources associated with the user.
      */
-    public function resources()
+    public function resources(): HasMany
     {
         return $this->hasMany(Resource::class);
     }
@@ -170,7 +178,7 @@ class User extends Authenticatable implements MustVerifyEmail
     /**
      * Get the gamesave associated with the user.
      */
-    public function gamesave()
+    public function gamesave(): HasOne
     {
         return $this->hasOne(GameSave::class);
     }

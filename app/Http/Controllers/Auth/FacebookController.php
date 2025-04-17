@@ -6,6 +6,7 @@ use App\Achievements\User\AssociatedFacebook;
 use App\Http\Controllers\Controller;
 use App\Models\FacebookAccount;
 use GuzzleHttp\Exception\ClientException;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 use Laravel\Socialite\Two\InvalidStateException;
@@ -24,10 +25,8 @@ class FacebookController extends Controller
 
     /**
      * Obtain the user information from Facebook.
-     *
-     * @return \Illuminate\Http\RedirectResponse
      */
-    public function handleProviderCallback()
+    public function handleProviderCallback(): RedirectResponse
     {
         try {
             $facebookUser = Socialite::driver('facebook')->user();

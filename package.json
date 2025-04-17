@@ -6,23 +6,24 @@
     },
     "devDependencies": {
         "@tailwindcss/aspect-ratio": "^0.4.2",
-        "@tailwindcss/forms": "^0.5.4",
-        "@tailwindcss/typography": "^0.5.9",
-        "alpinejs": "^3.12.3",
-        "autoprefixer": "^10.4.15",
-        "axios": "^1.8.2",
+        "@tailwindcss/forms": "^0.5.10",
+        "@tailwindcss/typography": "^0.5.16",
+        "alpinejs": "^3.14.9",
+        "autoprefixer": "^10.4.21",
+        "axios": "^1.8.4",
         "laravel-vite-plugin": "^1.2.0",
         "lodash": "^4.17.21",
-        "postcss": "^8.4.47",
-        "postcss-import": "^15.1.0",
-        "tailwindcss": "^3.3.3",
+        "postcss": "^8.5.3",
+        "postcss-import": "^16.1.0",
         "tailwindcss-debug-screens": "^2.2.1",
+        "tailwindcss": "^3.4.17",
         "vite": "^6.2.6"
     },
     "dependencies": {
-        "alpinejs": "^3.12.3",
-        "easymde": "^2.18.0",
-        "flatpickr": "^4.6.13",
-        "tw-elements": "1.0.0-alpha13"
-    }
+        "@alpinejs/focus": "^3.14.9",
+        "alpinejs": "^3.14.9",
+        "easymde": "^2.20.0",
+        "flatpickr": "^4.6.13"
+    },
+    "type": "module"
 }

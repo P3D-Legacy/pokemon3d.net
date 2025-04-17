@@ -19,13 +19,13 @@
         @if (!isset($verified_at))
             <div class="col-span-6 sm:col-span-4">
                 <x-label for="username" value="{{ __('Username') }}" />
-                <x-input id="username" type="text" class="block w-full mt-1" wire:model="username" />
+                <x-input id="username" type="text" class="block w-full mt-1" wire:model.live="username" />
                 <x-input-error for="username" class="mt-2" />
             </div>
 
             <div class="col-span-6 sm:col-span-4">
                 <x-label for="token" value="{{ __('Token') }}" />
-                <x-input id="token" type="password" class="block w-full mt-1" wire:model="token" />
+                <x-input id="token" type="password" class="block w-full mt-1" wire:model.live="token" />
                 <x-input-error for="token" class="mt-2" />
             </div>
         @else

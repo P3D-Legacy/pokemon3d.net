@@ -2,9 +2,10 @@
 
 namespace App\Rules;
 
-use Illuminate\Contracts\Validation\Rule;
+use Closure;
+use Illuminate\Contracts\Validation\ValidationRule;
 
-class IPHostnameARecord implements Rule
+class IPHostnameARecord implements ValidationRule
 {
     /**
      * Create a new rule instance.
@@ -17,27 +18,23 @@ class IPHostnameARecord implements Rule
     }
 
     /**
-     * Determine if the validation rule passes.
-     *
-     * @param  string  $attribute
-     * @param  mixed  $value
-     * @return bool
+     * Run the validation rule.
      */
-    public function passes($attribute, $value)
+    public function validate(string $attribute, mixed $value, Closure $fail): void
     {
         $ipValid = filter_var($value, FILTER_VALIDATE_IP) !== false;
         $domainValid = filter_var($value, FILTER_VALIDATE_DOMAIN) !== false;
         $aRecord = checkdnsrr($value, 'A');
 
-        return $ipValid || ($domainValid && $aRecord) ? true : false;
+        if (! $ipValid && ! $domainValid && ! $aRecord) {
+            $fail($this->message());
+        }
     }
 
     /**
      * Get the validation error message.
-     *
-     * @return string
      */
-    public function message()
+    public function message(): string
     {
         return ':Attribute does not have a valid hostname/ip format or does not return an A record.';
     }

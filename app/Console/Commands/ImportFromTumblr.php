@@ -89,6 +89,6 @@ class ImportFromTumblr extends Command
             $this->error($e->getMessage());
         }
 
-        return 0;
+        return Command::SUCCESS;
     }
 }

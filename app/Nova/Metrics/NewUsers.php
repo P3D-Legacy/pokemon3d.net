@@ -20,10 +20,8 @@ class NewUsers extends Value
 
     /**
      * Get the ranges available for the metric.
-     *
-     * @return array
      */
-    public function ranges()
+    public function ranges(): array
     {
         return [
             30 => __('30 Days'),
@@ -48,10 +46,8 @@ class NewUsers extends Value
 
     /**
      * Get the URI key for the metric.
-     *
-     * @return string
      */
-    public function uriKey()
+    public function uriKey(): string
     {
         return 'new-users';
     }

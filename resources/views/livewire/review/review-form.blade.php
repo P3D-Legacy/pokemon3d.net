@@ -39,13 +39,13 @@
                     </template>
                 </div>
             </div>
-            <input class="hidden" type="number" id="rating" wire:model.defer="rating" />
+            <input class="hidden" type="number" id="rating" wire:model="rating" />
             <x-input-error for="rating" class="mt-2" />
         </div>
 
         <x-label for="gameversion" class="mt-4" value="{{ __('Game version reviewed') }}" />
         <div class="relative inline-block w-full">
-            <select class="w-full h-10 pl-3 pr-6 text-base text-slate-800 placeholder-slate-600 border rounded-lg appearance-none focus:shadow-outline dark:bg-black dark:text-slate-400 dark:border-slate-800" id="gameversion" name="gameversion" wire:model.defer="gameversion">
+            <select class="w-full h-10 pl-3 pr-6 text-base text-slate-800 placeholder-slate-600 border rounded-lg appearance-none focus:shadow-outline dark:bg-black dark:text-slate-400 dark:border-slate-800" id="gameversion" name="gameversion" wire:model="gameversion">
                 <option value="">@lang('Select a game version')</option>
                 @foreach ($gameversions as $game_version)
                     <option value="{{ $game_version->id }}" {{ $game_version->id == $gameversion ? 'selected="selected"' : '' }}>{{ $game_version->version }}</option>
@@ -58,7 +58,7 @@
         <x-input-error for="gameversion" class="mt-2" />
 
         <x-label for="body" class="mt-4" value="{{ __('Your review of this game') }}" />
-        <x-text-area id="body" name="body" class="block w-full mt-1" placeholder="{{ __('Your review of this game') }}" autofocus wire:model.defer="body"></x-text-area>
+        <x-text-area id="body" name="body" class="block w-full mt-1" placeholder="{{ __('Your review of this game') }}" autofocus wire:model="body"></x-text-area>
         <span class="text-xs text-slate-400">@lang('Min characters'): 10 &middot; @lang('Max characters'): 255</span>
         <x-input-error for="body" class="mt-2" />
     </x-slot>
@@ -67,7 +67,7 @@
         <x-button wire:click="save" wire:loading.attr="disabled">
             {{ __('Save') }}
         </x-button>
-        <x-secondary-button wire:click="$emit('closeModal')">
+        <x-secondary-button wire:click="$dispatch('closeModal')">
             {{ __('Cancel') }}
         </x-secondary-button>
     </x-slot>

@@ -19,7 +19,7 @@
             </svg>
             @lang('Download')
         </button>
-        <x-secondary-button wire:click="$emit('closeModal')">
+        <x-secondary-button wire:click="$dispatch('closeModal')">
             @lang('Close')
         </x-secondary-button>
     </x-slot>

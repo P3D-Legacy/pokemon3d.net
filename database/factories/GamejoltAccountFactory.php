@@ -14,12 +14,12 @@ class GamejoltAccountFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    public function definition()
+    public function definition(): array
     {
         return [
-            'id' => $this->faker->uuid,
-            'username' => $this->faker->userName,
-            'token' => $this->faker->uuid,
+            'id' => $this->faker->uuid(),
+            'username' => $this->faker->userName(),
+            'token' => $this->faker->uuid(),
             'verified_at' => $this->faker->dateTime(),
             'user_id' => \App\Models\User::factory(),
         ];

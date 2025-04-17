@@ -48,7 +48,7 @@ class ServerController extends Controller
      */
     public function show(int $id)
     {
-        //return redirect()->route('server.index');
+        // return redirect()->route('server.index');
     }
 
     /**

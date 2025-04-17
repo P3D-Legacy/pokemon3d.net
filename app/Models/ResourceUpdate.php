@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\MediaLibrary\HasMedia;
@@ -31,8 +33,6 @@ class ResourceUpdate extends BaseModel implements HasMedia
 
     /**
      * The attributes that should be logged for the user.
-     *
-     * @return array
      */
     public function getActivitylogOptions(): LogOptions
     {
@@ -41,7 +41,7 @@ class ResourceUpdate extends BaseModel implements HasMedia
             ->logOnlyDirty();
     }
 
-    public function resource()
+    public function resource(): BelongsTo
     {
         return $this->belongsTo(Resource::class);
     }
@@ -60,7 +60,7 @@ class ResourceUpdate extends BaseModel implements HasMedia
     /**
      * Get the game_version related to this resource.
      */
-    public function game_version()
+    public function game_version(): HasOne
     {
         return $this->hasOne(GameVersion::class, 'id', 'game_version_id');
     }

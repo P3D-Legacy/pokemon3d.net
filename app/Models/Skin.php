@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
 use Overtrue\LaravelLike\Traits\Likeable;
@@ -48,18 +49,14 @@ class Skin extends BaseModel
 
     /**
      * Get the route key for the model.
-     *
-     * @return string
      */
-    public function getRouteKeyName()
+    public function getRouteKeyName(): string
     {
         return 'uuid';
     }
 
     /**
      * The attributes that should be logged for the user.
-     *
-     * @return array
      */
     public function getActivitylogOptions(): LogOptions
     {
@@ -70,10 +67,8 @@ class Skin extends BaseModel
 
     /**
      * The boot method of the model.
-     *
-     * @return void
      */
-    public static function boot()
+    public static function boot(): void
     {
         parent::boot();
 
@@ -85,7 +80,7 @@ class Skin extends BaseModel
     /**
      * Get the user that owns the skin.
      */
-    public function gamejoltaccount()
+    public function gamejoltaccount(): BelongsTo
     {
         return $this->belongsTo(GamejoltAccount::class, 'owner_id', 'id');
     }
@@ -93,7 +88,7 @@ class Skin extends BaseModel
     /**
      * Get the user that owns the skin.
      */
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }

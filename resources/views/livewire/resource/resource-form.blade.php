@@ -5,16 +5,16 @@
 
     <x-slot name="content">
         <x-label for="resource.name" value="{{ __('Name') }}" />
-        <x-input id="resource.name" type="text" class="block w-full mt-1" wire:model.defer="resource.name" autocomplete="name" />
+        <x-input id="resource.name" type="text" class="block w-full mt-1" wire:model="resource.name" autocomplete="name" />
         <x-input-error for="resource.name" class="mt-2" />
 
         <x-label for="resource.brief" class="mt-4" value="{{ __('Brief') }}" />
-        <x-input id="resource.brief" type="text" name="resource.brief" class="block w-full mt-1" placeholder="A brief one-line description for My Resource Pack" autofocus wire:model.defer="resource.brief" />
+        <x-input id="resource.brief" type="text" name="resource.brief" class="block w-full mt-1" placeholder="A brief one-line description for My Resource Pack" autofocus wire:model="resource.brief" />
         <x-input-error for="resource.brief" class="mt-2" />
 
         <x-label for="category" class="mt-4" value="{{ __('Category') }}" />
         <div class="relative inline-block w-full">
-            <select class="w-full h-10 pl-3 pr-6 text-base text-slate-800 placeholder-slate-600 border rounded-lg appearance-none focus:shadow-outline" id="category" name="category" wire:model.defer="category">
+            <select class="w-full h-10 pl-3 pr-6 text-base text-slate-800 placeholder-slate-600 border rounded-lg appearance-none focus:shadow-outline" id="category" name="category" wire:model="category">
                 <option value="">@lang('Select a category')</option>
                 @foreach ($categories as $c)
                     <option value="{{ $c->id }}" {{ $c->id == $category ? 'selected="selected"' : '' }}>{{ $c->name }}</option>
@@ -28,7 +28,7 @@
 
         <x-label for="resource.description" class="mt-4" value="{{ __('Description') }}" />
         <div wire:ignore>
-            <x-easy-mde-editor name="resource.description" wire:model.defer="resource.description" :options="['hideIcons' => ['side-by-side','fullscreen',]]">
+            <x-easy-mde-editor name="resource.description" wire:model="resource.description" :options="['hideIcons' => ['side-by-side','fullscreen',]]">
                 <x-slot name="script">
                     easyMDE.codemirror.on('change', function () {
                         @this.set('resource.description', easyMDE.value())
@@ -44,7 +44,7 @@
         <x-button wire:click="save" wire:loading.attr="disabled">
             {{ __('Save') }}
         </x-button>
-        <x-secondary-button wire:click="$emit('closeModal')">
+        <x-secondary-button wire:click="$dispatch('closeModal')">
             {{ __('Cancel') }}
         </x-secondary-button>
     </x-slot>

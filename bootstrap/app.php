@@ -1,44 +1,57 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Create The Application
-|--------------------------------------------------------------------------
-|
-| The first thing we will do is create a new Laravel application instance
-| which serves as the "glue" for all the components of Laravel, and is
-| the IoC container for the system binding all of the various parts.
-|
-*/
+use Akaunting\Language\Middleware\SetLocale;
+use App\Http\Middleware\ApiJsonMiddleware;
+use App\Http\Middleware\GameJoltAssociation;
+use App\Http\Middleware\UpdateLastActiveAt;
+use App\Providers\AppServiceProvider;
+use Illuminate\Foundation\Application;
+use Illuminate\Foundation\Configuration\Exceptions;
+use Illuminate\Foundation\Configuration\Middleware;
+use Laravel\Jetstream\Http\Middleware\AuthenticateSession;
+use Sentry\Laravel\Integration;
+use Spatie\Permission\Middleware\PermissionMiddleware;
+use Spatie\Permission\Middleware\RoleMiddleware;
+use Spatie\Permission\Middleware\RoleOrPermissionMiddleware;
 
-$app = new Illuminate\Foundation\Application($_ENV['APP_BASE_PATH'] ?? dirname(__DIR__));
+return Application::configure(basePath: dirname(__DIR__))
+    ->withProviders()
+    ->withRouting(
+        web: __DIR__.'/../routes/web.php',
+        api: __DIR__.'/../routes/api.php',
+        commands: __DIR__.'/../routes/console.php',
+        // channels: __DIR__.'/../routes/channels.php',
+        health: '/up',
+        then: function () { // Include custom route files
+            require __DIR__.'/../routes/fortify.php';
+            require __DIR__.'/../routes/jetstream.php';
+        }
+    )
+    ->withMiddleware(function (Middleware $middleware) {
+        $middleware->redirectGuestsTo(fn () => route('login'));
+        $middleware->redirectUsersTo(AppServiceProvider::HOME);
 
-/*
-|--------------------------------------------------------------------------
-| Bind Important Interfaces
-|--------------------------------------------------------------------------
-|
-| Next, we need to bind some important interfaces into the container so
-| we will be able to resolve them when needed. The kernels serve the
-| incoming requests to this application from both the web and CLI.
-|
-*/
+        $middleware->web([
+            AuthenticateSession::class,
+            UpdateLastActiveAt::class,
+            SetLocale::class,
+        ]);
 
-$app->singleton(Illuminate\Contracts\Http\Kernel::class, App\Http\Kernel::class);
+        $middleware->throttleApi();
+        $middleware->api([
+            'api.json',
+            'auth:sanctum',
+            'permission:api',
+        ]);
 
-$app->singleton(Illuminate\Contracts\Console\Kernel::class, App\Console\Kernel::class);
-
-$app->singleton(Illuminate\Contracts\Debug\ExceptionHandler::class, App\Exceptions\Handler::class);
-
-/*
-|--------------------------------------------------------------------------
-| Return The Application
-|--------------------------------------------------------------------------
-|
-| This script returns the application instance. The instance is given to
-| the calling script so we can separate the building of the instances
-| from the actual running of the application and sending responses.
-|
-*/
-
-return $app;
+        $middleware->alias([
+            'api.json' => ApiJsonMiddleware::class,
+            'gj.association' => GameJoltAssociation::class,
+            'permission' => PermissionMiddleware::class,
+            'role' => RoleMiddleware::class,
+            'role_or_permission' => RoleOrPermissionMiddleware::class,
+        ]);
+    })
+    ->withExceptions(function (Exceptions $exceptions) {
+        Integration::handles($exceptions);
+    })->create();

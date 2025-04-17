@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Skin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Skin;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -12,7 +13,7 @@ class PlayerSkinController extends Controller
 {
     public function __construct()
     {
-        //$this->middleware(['gj.admin'])->only(['index']);
+        // $this->middleware(['gj.admin'])->only(['index']);
     }
 
     /**
@@ -44,10 +45,8 @@ class PlayerSkinController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         $gjid = Auth::user()->gamejolt->id;
 
@@ -66,10 +65,8 @@ class PlayerSkinController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @return \Illuminate\Http\Response
      */
-    public function duplicate(Request $request)
+    public function duplicate(Request $request): RedirectResponse
     {
         $gjid = Auth::user()->gamejolt->id;
         $skincount = Auth::user()
@@ -97,10 +94,9 @@ class PlayerSkinController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(int $id)
     {
         //
     }
@@ -108,10 +104,9 @@ class PlayerSkinController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id)
     {
         //
     }
@@ -120,9 +115,8 @@ class PlayerSkinController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request)
+    public function destroy(Request $request): RedirectResponse
     {
         $gjid = Auth::user()->gamejolt->id;
         $filename = $gjid.'.png';
@@ -142,9 +136,8 @@ class PlayerSkinController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
-    public function destroyAsAdmin(Request $request, $gjid)
+    public function destroyAsAdmin(Request $request, $gjid): RedirectResponse
     {
         $request->validate([
             'reason' => ['required', 'string'],

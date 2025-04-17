@@ -34,10 +34,8 @@ class PingAllServers extends Command
 
     /**
      * Execute the console command.
-     *
-     * @return int
      */
-    public function handle()
+    public function handle(): int
     {
         $servers = Server::all();
         foreach ($servers as $server) {
@@ -45,6 +43,6 @@ class PingAllServers extends Command
         }
         $this->info('All servers have been pinged.');
 
-        return 0;
+        return Command::SUCCESS;
     }
 }

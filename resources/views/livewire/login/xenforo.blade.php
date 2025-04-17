@@ -12,13 +12,13 @@
     <x-slot name="form">
         <div class="col-span-6">
             <x-label for="username" value="{{ __('Email or Username') }}" />
-            <x-input id="username" type="text" class="block w-full mt-1" wire:model="username" />
+            <x-input id="username" type="text" class="block w-full mt-1" wire:model.live="username" />
             <x-input-error for="username" class="mt-2" />
         </div>
 
         <div class="col-span-6">
             <x-label for="password" value="{{ __('Password') }}" />
-            <x-input id="password" type="password" class="block w-full mt-1" wire:model="password" />
+            <x-input id="password" type="password" class="block w-full mt-1" wire:model.live="password" />
             <x-input-error for="password" class="mt-2" />
         </div>
     </x-slot>

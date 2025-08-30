@@ -4,45 +4,111 @@ namespace App\Livewire\Resource;
 
 use AliBayat\LaravelCategorizable\Category;
 use App\Models\Resource;
-use LivewireUI\Modal\ModalComponent;
+use Livewire\Component;
 
-class ResourceForm extends ModalComponent
+class ResourceForm extends Component
 {
-    public int|Resource $resource;
+    public $name;
+
+    public $brief;
+
+    public $description;
 
     public $categories;
 
     public $category;
 
+    public $isSubmitting = false;
+
+    public $resourceId = null;
+
     protected array $rules = [
-        'resource.name' => 'required|min:3|max:255',
-        'resource.description' => 'required|min:3|max:5120',
-        'resource.brief' => 'required|min:3|max:255',
+        'name' => 'required|min:3|max:255',
+        'description' => 'required|min:3|max:5120',
+        'brief' => 'required|min:3|max:255',
         'category' => 'required|exists:categories,id',
     ];
 
     public function mount(int|Resource|null $resource = null)
     {
-        $this->resource = $resource ? Resource::find($resource) : new Resource;
-        $this->category = $this->resource->categories->first()->id ?? 0;
+        if ($resource) {
+            // Handle both Resource model instances and IDs
+            if (is_numeric($resource)) {
+                $resource = Resource::find($resource);
+            }
+
+            $this->resourceId = $resource->id;
+            $this->name = $resource->name;
+            $this->brief = $resource->brief;
+            $this->description = $resource->description;
+            $this->category = $resource->categories->first()->id ?? 0;
+        } else {
+            $this->resourceId = null;
+            $this->name = '';
+            $this->brief = '';
+            $this->description = '';
+            $this->category = 0;
+        }
+
         $this->categories = Category::all();
     }
 
     public function save()
     {
-        $this->validate();
-
-        $this->resource->user_id = auth()->id();
-        $this->resource->save();
-
-        $category = Category::find($this->category);
-        if ($category) {
-            $this->resource->syncCategories($category);
+        // Prevent duplicate submissions
+        if ($this->isSubmitting) {
+            return;
         }
 
-        $this->dispatch('resourceUpdated', $this->resource->uuid);
-        // $this->dispatch('openModal', component: component: 'resource.update-create', arguments: json_encode(['resource_uuid' => $this->resource->uuid]));
-        $this->closeModal();
+        $this->isSubmitting = true;
+
+        try {
+            $this->validate();
+
+            if ($this->resourceId) {
+                // Update existing resource
+                $resource = Resource::findOrFail($this->resourceId);
+
+                // Check ownership
+                if ($resource->user_id !== auth()->id()) {
+                    abort(403);
+                }
+
+                $resource->update([
+                    'name' => $this->name,
+                    'brief' => $this->brief,
+                    'description' => $this->description,
+                ]);
+
+                $successMessage = __(':item updated successfully.', ['item' => __('Resource')]);
+                $redirectRoute = route('resource.uuid', $resource->uuid);
+            } else {
+                // Create new resource
+                $resource = Resource::create([
+                    'name' => $this->name,
+                    'brief' => $this->brief,
+                    'description' => $this->description,
+                    'user_id' => auth()->id(),
+                ]);
+
+                $successMessage = __(':item created successfully.', ['item' => __('Resource')]);
+                $redirectRoute = route('resource.index');
+            }
+
+            $category = Category::find($this->category);
+            if ($category) {
+                $resource->syncCategories($category);
+            }
+
+            session()->flash('flash.bannerStyle', 'success');
+            session()->flash('flash.banner', $successMessage);
+
+            return redirect($redirectRoute);
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            // Reset submission flag on validation error
+            $this->isSubmitting = false;
+            throw $e;
+        }
     }
 
     public function render()

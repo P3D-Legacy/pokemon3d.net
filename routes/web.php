@@ -83,6 +83,60 @@ Route::prefix('resource')->group(function () {
         ]);
     })->name('resource.index');
 
+    Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+        Route::get('/create', function () {
+            return view('resources.create');
+        })->name('resource.create');
+
+        Route::get('/{uuid}/edit', function ($uuid) {
+            $resource = \App\Models\Resource::where('uuid', $uuid)->firstOrFail();
+
+            // Check if user owns the resource
+            if (auth()->id() !== $resource->user_id) {
+                abort(403);
+            }
+
+            return view('resources.edit', compact('resource'));
+        })->name('resource.edit');
+
+        Route::get('/{uuid}/delete', function ($uuid) {
+            $resource = \App\Models\Resource::where('uuid', $uuid)->firstOrFail();
+
+            // Check if user owns the resource
+            if (auth()->id() !== $resource->user_id) {
+                abort(403);
+            }
+
+            return view('resources.delete', compact('resource'));
+        })->name('resource.delete');
+
+        Route::get('/{uuid}/update', function ($uuid) {
+            $resource = \App\Models\Resource::where('uuid', $uuid)->firstOrFail();
+
+            // Check if user owns the resource
+            if (auth()->id() !== $resource->user_id) {
+                abort(403);
+            }
+
+            return view('resources.update', compact('resource'));
+        })->name('resource.update');
+
+        Route::get('/{uuid}/rate', function ($uuid) {
+            $resource = \App\Models\Resource::where('uuid', $uuid)->firstOrFail();
+
+            // Check if user is authenticated and not the owner
+            if (! auth()->check()) {
+                abort(403);
+            }
+
+            if (auth()->id() === $resource->user_id) {
+                abort(403, 'You cannot rate your own resource.');
+            }
+
+            return view('resources.rate', compact('resource'));
+        })->name('resource.rate');
+    });
+
     Route::get('/{uuid}', ResourceShow::class)->name('resource.uuid');
 
     Route::get('/category/{name}', function ($name) {

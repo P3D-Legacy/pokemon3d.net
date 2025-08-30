@@ -222,9 +222,8 @@ class GameSave extends Model
                 $name = str_replace('{', '', $item[0]);
                 // Remove [ and ] and some random number between from the name
                 $name = preg_replace('/\[[0-9]+\]/', '', $name);
-                $number = format('locale-number', $item[1]);
                 // Remove the last three characters to remove the .00
-                $number = substr($number, 0, -3);
+                $number = substr($item[1], 0, -3);
 
                 return [
                     'name' => $name,
@@ -261,7 +260,7 @@ class GameSave extends Model
                         continue;
                     }
                     if ($key == 'Experience') {
-                        $value = substr(format('locale-number', $value), 0, -3);
+                        $value = substr($value, 0, -3);
                     }
                     if ($key == 'Nature') {
                         $value = $this->getNature($value);

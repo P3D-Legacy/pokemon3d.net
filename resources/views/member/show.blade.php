@@ -86,11 +86,6 @@
                                                 <a href="https://gamejolt.com/{{ '@'.$user->gamejolt->username }}" target="_blank" rel="noopener noreferrer" class='hover:text-green-500'>{{ $user->gamejolt->username }}</a>
                                             </x-profile.user-detail>
                                         @endif
-                                        @if($user->twitter)
-                                            <x-profile.user-detail title='Twitter'>
-                                                <a href="https://twitter.com/{{ $user->twitter->username }}" target="_blank" rel="noopener noreferrer" class='hover:text-green-500'>{{ $user->twitter->username }}</a>
-                                            </x-profile.user-detail>
-                                        @endif
                                         @if($user->discord)
                                             <x-profile.user-detail title='Discord'>
                                                 <a href="https://discord.com/users/{{ $user->discord->id }}" target="_blank" rel="noopener noreferrer" class='hover:text-green-500'>{{ $user->discord->username }}#{{ $user->discord->discriminator }}</a>

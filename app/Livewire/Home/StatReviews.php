@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Home;
 
+use App\Models\GameVersion;
 use Digikraaft\ReviewRating\Models\Review;
 use Livewire\Component;
 
@@ -13,7 +14,7 @@ class StatReviews extends Component
 
     public function loadData()
     {
-        $reviews = Review::where('model_type', \App\Models\GameVersion::class)
+        $reviews = Review::where('model_type', GameVersion::class)
             ->orderBy('created_at', 'desc')
             ->get();
         $this->numberOfReviews = $reviews->count();

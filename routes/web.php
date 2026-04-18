@@ -19,6 +19,7 @@ use App\Http\Controllers\TagController;
 use App\Livewire\Analytics;
 use App\Livewire\NotificationList;
 use App\Livewire\Resource\ResourceShow;
+use App\Models\Resource;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -89,7 +90,7 @@ Route::prefix('resource')->group(function () {
         })->name('resource.create');
 
         Route::get('/{uuid}/edit', function ($uuid) {
-            $resource = \App\Models\Resource::where('uuid', $uuid)->firstOrFail();
+            $resource = App\Models\Resource::where('uuid', $uuid)->firstOrFail();
 
             // Check if user owns the resource
             if (auth()->id() !== $resource->user_id) {
@@ -100,7 +101,7 @@ Route::prefix('resource')->group(function () {
         })->name('resource.edit');
 
         Route::get('/{uuid}/delete', function ($uuid) {
-            $resource = \App\Models\Resource::where('uuid', $uuid)->firstOrFail();
+            $resource = App\Models\Resource::where('uuid', $uuid)->firstOrFail();
 
             // Check if user owns the resource
             if (auth()->id() !== $resource->user_id) {
@@ -111,7 +112,7 @@ Route::prefix('resource')->group(function () {
         })->name('resource.delete');
 
         Route::get('/{uuid}/update', function ($uuid) {
-            $resource = \App\Models\Resource::where('uuid', $uuid)->firstOrFail();
+            $resource = App\Models\Resource::where('uuid', $uuid)->firstOrFail();
 
             // Check if user owns the resource
             if (auth()->id() !== $resource->user_id) {
@@ -122,7 +123,7 @@ Route::prefix('resource')->group(function () {
         })->name('resource.update');
 
         Route::get('/{uuid}/rate', function ($uuid) {
-            $resource = \App\Models\Resource::where('uuid', $uuid)->firstOrFail();
+            $resource = App\Models\Resource::where('uuid', $uuid)->firstOrFail();
 
             // Check if user is authenticated and not the owner
             if (! auth()->check()) {

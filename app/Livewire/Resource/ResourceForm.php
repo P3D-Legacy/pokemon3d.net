@@ -4,6 +4,7 @@ namespace App\Livewire\Resource;
 
 use AliBayat\LaravelCategorizable\Category;
 use App\Models\Resource;
+use Illuminate\Validation\ValidationException;
 use Livewire\Component;
 
 class ResourceForm extends Component
@@ -104,7 +105,7 @@ class ResourceForm extends Component
             session()->flash('flash.banner', $successMessage);
 
             return redirect($redirectRoute);
-        } catch (\Illuminate\Validation\ValidationException $e) {
+        } catch (ValidationException $e) {
             // Reset submission flag on validation error
             $this->isSubmitting = false;
             throw $e;

@@ -2,10 +2,12 @@
 
 namespace Database\Factories;
 
+use App\Models\GamejoltAccount;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\GamejoltAccount>
+ * @extends Factory<GamejoltAccount>
  */
 class GamejoltAccountFactory extends Factory
 {
@@ -21,7 +23,7 @@ class GamejoltAccountFactory extends Factory
             'username' => $this->faker->userName(),
             'token' => $this->faker->uuid(),
             'verified_at' => $this->faker->dateTime(),
-            'user_id' => \App\Models\User::factory(),
+            'user_id' => User::factory(),
         ];
     }
 }

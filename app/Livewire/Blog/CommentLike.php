@@ -3,6 +3,7 @@
 namespace App\Livewire\Blog;
 
 use App\Models\Comment;
+use App\Notifications\Post\CommentLikeNotification;
 use Livewire\Component;
 use Notification;
 
@@ -37,7 +38,7 @@ class CommentLike extends Component
         if ($this->liked) {
             Notification::send(
                 $this->comment->creator,
-                new \App\Notifications\Post\CommentLikeNotification($this->comment, $this->user)
+                new CommentLikeNotification($this->comment, $this->user)
             );
         }
 

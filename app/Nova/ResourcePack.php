@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use App\Models\Resource;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Text;

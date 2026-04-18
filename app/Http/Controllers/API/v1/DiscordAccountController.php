@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API\v1;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\API\v1\DiscordAccountResource;
 use App\Models\DiscordAccount;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 /**
@@ -28,7 +29,7 @@ class DiscordAccountController extends Controller
      *
      * @apiResourceModel App\Models\DiscordAccount
      */
-    public function show(Request $request, $id): \Illuminate\Http\JsonResponse|DiscordAccountResource
+    public function show(Request $request, $id): JsonResponse|DiscordAccountResource
     {
         $account = DiscordAccount::with(['roles', 'user.roles.permissions'])->findOrFail($id);
 

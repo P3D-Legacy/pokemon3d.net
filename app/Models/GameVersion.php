@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Digikraaft\ReviewRating\Traits\HasReviewRating;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
 
@@ -39,7 +40,7 @@ class GameVersion extends BaseModel
             ->first();
     }
 
-    public function post(): \Illuminate\Database\Eloquent\Relations\HasOne
+    public function post(): HasOne
     {
         return $this->hasOne(Post::class, 'id', 'post_id');
     }

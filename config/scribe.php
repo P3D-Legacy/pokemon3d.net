@@ -1,6 +1,7 @@
 <?php
 
 use Knuckles\Scribe\Extracting\Strategies;
+use Knuckles\Scribe\Matching\RouteMatcher;
 
 return [
     'theme' => 'default',
@@ -357,7 +358,7 @@ INTRO
      * [Advanced] Custom implementation of RouteMatcherInterface to customise how routes are matched
      *
      */
-    'routeMatcher' => \Knuckles\Scribe\Matching\RouteMatcher::class,
+    'routeMatcher' => RouteMatcher::class,
 
     /**
      * For response calls, API resource responses and transformer responses,

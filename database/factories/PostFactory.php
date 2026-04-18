@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class PostFactory extends Factory
@@ -18,7 +19,7 @@ class PostFactory extends Factory
             'active' => $this->faker->boolean(90),
             'sticky' => $this->faker->boolean(10),
             'published_at' => $this->faker->dateTimeBetween($startDate = '-1 years', $endDate = '+30 days'),
-            'user_id' => \App\Models\User::factory(),
+            'user_id' => User::factory(),
         ];
     }
 }

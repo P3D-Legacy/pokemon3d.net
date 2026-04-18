@@ -5,7 +5,9 @@ namespace App\Http\Controllers\API\v1;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\API\v1\BanReasonResource;
 use App\Models\BanReason;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 /**
  * @group Ban Reason
@@ -26,7 +28,7 @@ class BanReasonController extends Controller
      *
      * @apiResourceModel App\Models\BanReason
      */
-    public function index(Request $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\AnonymousResourceCollection
+    public function index(Request $request): JsonResponse|AnonymousResourceCollection
     {
         $resources = BanReason::all();
 
@@ -42,7 +44,7 @@ class BanReasonController extends Controller
      *
      * @apiResourceModel App\Models\BanReason
      */
-    public function show(Request $request, $id): BanReasonResource|\Illuminate\Http\JsonResponse
+    public function show(Request $request, $id): BanReasonResource|JsonResponse
     {
         $resource = BanReason::findOrFail($id);
 

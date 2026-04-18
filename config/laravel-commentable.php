@@ -1,6 +1,7 @@
 <?php
 
 declare(strict_types=1);
+use App\Models\Comment;
 
 /**
  * Laravel Commentable Package by Ali Bayat.
@@ -13,5 +14,5 @@ return [
     |--------------------------------------------------------------------------
     */
 
-    'model' => \App\Models\Comment::class,
+    'model' => Comment::class,
 ];

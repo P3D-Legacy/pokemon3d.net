@@ -6,6 +6,7 @@ use App\Models\GameVersion;
 use App\Models\Resource;
 use App\Models\ResourceUpdate;
 use Illuminate\Support\Str;
+use Illuminate\Validation\ValidationException;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -84,7 +85,7 @@ class UpdateCreate extends Component
             session()->flash('flash.banner', __('Update posted successfully!'));
 
             return redirect()->route('resource.uuid', $this->resource->uuid);
-        } catch (\Illuminate\Validation\ValidationException $e) {
+        } catch (ValidationException $e) {
             // Reset submission flag on validation error
             $this->isSubmitting = false;
             throw $e;

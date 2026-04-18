@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Like;
+
 return [
     /**
      * Use uuid as primary key.
@@ -19,5 +21,5 @@ return [
     /*
      * Model name for like record.
      */
-    'like_model' => \App\Models\Like::class,
+    'like_model' => Like::class,
 ];

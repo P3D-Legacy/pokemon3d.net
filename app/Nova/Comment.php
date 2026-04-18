@@ -41,8 +41,8 @@ class Comment extends Resource
             ID::make()->sortable(),
             Text::make('Body'),
             Boolean::make('Active'),
-            BelongsTo::make('User', 'creator', \App\Nova\User::class),
-            BelongsTo::make('Post', 'commentable', \App\Nova\Post::class),
+            BelongsTo::make('User', 'creator', User::class),
+            BelongsTo::make('Post', 'commentable', Post::class),
         ];
     }
 

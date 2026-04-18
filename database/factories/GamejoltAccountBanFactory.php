@@ -2,7 +2,10 @@
 
 namespace Database\Factories;
 
+use App\Models\BanReason;
+use App\Models\GamejoltAccount;
 use App\Models\GamejoltAccountBan;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,9 +21,9 @@ class GamejoltAccountBanFactory extends Factory
     public function definition(): array
     {
         return [
-            'gamejoltaccount_id' => \App\Models\GamejoltAccount::factory(),
-            'banned_by_id' => \App\Models\User::factory(),
-            'reason_id' => \App\Models\BanReason::factory(),
+            'gamejoltaccount_id' => GamejoltAccount::factory(),
+            'banned_by_id' => User::factory(),
+            'reason_id' => BanReason::factory(),
             'expires_at' => $this->faker->dateTime(),
         ];
     }

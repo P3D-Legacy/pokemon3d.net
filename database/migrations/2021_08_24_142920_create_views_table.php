@@ -9,7 +9,7 @@ return new class extends Migration
     /**
      * The database schema.
      *
-     * @var \Illuminate\Support\Facades\Schema
+     * @var Schema
      */
     protected $schema;
 

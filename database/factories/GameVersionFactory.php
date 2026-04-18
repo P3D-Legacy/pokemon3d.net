@@ -2,10 +2,11 @@
 
 namespace Database\Factories;
 
+use App\Models\GameVersion;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\GameVersion>
+ * @extends Factory<GameVersion>
  */
 class GameVersionFactory extends Factory
 {

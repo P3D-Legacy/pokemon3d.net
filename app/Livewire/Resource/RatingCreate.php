@@ -3,6 +3,7 @@
 namespace App\Livewire\Resource;
 
 use App\Models\Resource;
+use Illuminate\Validation\ValidationException;
 use Livewire\Component;
 
 class RatingCreate extends Component
@@ -60,7 +61,7 @@ class RatingCreate extends Component
             session()->flash('flash.banner', __('Thank you for your review!'));
 
             return redirect()->route('resource.uuid', $this->resource->uuid);
-        } catch (\Illuminate\Validation\ValidationException $e) {
+        } catch (ValidationException $e) {
             // Reset submission flag on validation error
             $this->isSubmitting = false;
             throw $e;

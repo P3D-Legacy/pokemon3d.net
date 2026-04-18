@@ -2,7 +2,10 @@
 
 namespace App\Livewire\Blog;
 
+use AliBayat\LaravelCommentable\Comment;
 use App\Models\Post;
+use App\Notifications\Post\CommentNotification;
+use App\Notifications\Post\CommentReplyNotification;
 use LivewireUI\Modal\ModalComponent;
 use Notification;
 
@@ -33,7 +36,7 @@ class CommentModal extends ModalComponent
         ];
 
         if ($this->parentComment) {
-            $this->parentComment = \AliBayat\LaravelCommentable\Comment::find($this->parentComment);
+            $this->parentComment = Comment::find($this->parentComment);
         }
 
         $comment = $this->post->comment($commentData, auth()->user(), $this->parentComment);
@@ -41,10 +44,10 @@ class CommentModal extends ModalComponent
         if ($this->parentComment) {
             Notification::send(
                 $this->parentComment->creator,
-                new \App\Notifications\Post\CommentReplyNotification($comment)
+                new CommentReplyNotification($comment)
             );
         } else {
-            Notification::send($this->post->user, new \App\Notifications\Post\CommentNotification($comment));
+            Notification::send($this->post->user, new CommentNotification($comment));
         }
 
         $this->dispatch('commentAdded');

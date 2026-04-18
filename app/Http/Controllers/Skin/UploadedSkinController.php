@@ -8,6 +8,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
@@ -17,7 +18,7 @@ class UploadedSkinController extends Controller implements HasMiddleware
     public static function middleware(): array
     {
         return [
-            ['permission:skin-player-destroy'],
+            new Middleware('permission:skin-player-destroy'),
         ];
     }
 

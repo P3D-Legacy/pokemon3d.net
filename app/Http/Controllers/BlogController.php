@@ -30,12 +30,12 @@ class BlogController extends Controller
      */
     public function show($param): Application|Factory|View
     {
-        $post = Post::where('uuid', $param)
+        $post = Post::query()
             ->where('active', true)
-            ->orWhere('slug', $param)
-            ->where('active', true)
+            ->where(function ($query) use ($param): void {
+                $query->where('uuid', $param)->orWhere('slug', $param);
+            })
             ->firstOrFail();
-        abort_if(! $post, 404);
         views($post)
             ->cooldown(60)
             ->record();

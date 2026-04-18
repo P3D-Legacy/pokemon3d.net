@@ -2,7 +2,7 @@
 
 namespace App\Livewire;
 
-use Illuminate\Http\Response;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
@@ -19,7 +19,7 @@ class NewTermsBanner extends Component
     /**
      * Display a view.
      */
-    public function render(): Response
+    public function render(): View
     {
         return view('livewire.new-terms-banner');
     }

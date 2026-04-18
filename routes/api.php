@@ -36,7 +36,7 @@ Route::prefix('v1')->group(function () {
     Route::apiResource('discordaccount', DiscordAccountController::class)->only('show');
     Route::apiResource('bot/discord/settings', DiscordBotSettingController::class)->only(['index', 'update']);
     Route::apiResource('game/badges', BadgeController::class)->only('index');
-    Route::apiResource('post', PostController::class)->only('post');
+    Route::apiResource('post', PostController::class)->only(['store']);
 })->middleware(['api']);
 
 Route::apiResource('openapi-json', OpenAPIController::class)->only('index');

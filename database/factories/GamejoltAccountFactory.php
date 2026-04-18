@@ -19,7 +19,7 @@ class GamejoltAccountFactory extends Factory
     public function definition(): array
     {
         return [
-            'id' => $this->faker->uuid(),
+            'id' => $this->faker->unique()->numberBetween(100_000, 999_999_999),
             'username' => $this->faker->userName(),
             'token' => $this->faker->uuid(),
             'verified_at' => $this->faker->dateTime(),

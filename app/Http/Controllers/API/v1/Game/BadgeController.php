@@ -32,7 +32,13 @@ class BadgeController extends Controller
     {
         $badges = [];
         $folder_path = 'img/badge/';
-        $files = File::allFiles(public_path($folder_path));
+        $full_path = public_path($folder_path);
+        if (! File::isDirectory($full_path)) {
+            return response()->json([
+                'data' => $badges,
+            ]);
+        }
+        $files = File::allFiles($full_path);
         foreach ($files as $file) {
             $filename = str_replace('.png', '', $file->getFilename());
             $name = str_replace('_', ' ', $filename);

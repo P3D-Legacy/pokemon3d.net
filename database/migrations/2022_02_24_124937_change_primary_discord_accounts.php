@@ -12,6 +12,10 @@ return new class extends Migration
      */
     public function up(): void
     {
+        if (Schema::getConnection()->getDriverName() === 'sqlite') {
+            return;
+        }
+
         $duplicateRecords = DB::table('discord_accounts')
             ->selectRaw('id, count(`id`) as `occurences`')
             ->groupBy('id')

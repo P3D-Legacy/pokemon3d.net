@@ -24,7 +24,7 @@ class GamejoltAccountBanFactory extends Factory
             'gamejoltaccount_id' => GamejoltAccount::factory(),
             'banned_by_id' => User::factory(),
             'reason_id' => BanReason::factory(),
-            'expires_at' => $this->faker->dateTime(),
+            'expire_at' => $this->faker->dateTime(),
         ];
     }
 }

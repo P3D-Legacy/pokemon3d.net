@@ -54,6 +54,8 @@ class PermissionSeeder extends Seeder
         Permission::firstOrCreate(['name' => 'discord_bot_setting.show']);
         Permission::firstOrCreate(['name' => 'discord_bot_setting.update']);
 
+        Permission::firstOrCreate(['name' => 'discord_account.show']);
+
         Permission::firstOrCreate(['name' => 'user.show']);
 
         Permission::firstOrCreate(['name' => 'stats']);

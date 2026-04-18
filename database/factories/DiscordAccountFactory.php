@@ -19,7 +19,7 @@ class DiscordAccountFactory extends Factory
     public function definition(): array
     {
         return [
-            'id' => $this->faker->uuid(),
+            'id' => $this->faker->unique()->numberBetween(10_000_000_000_000_000, 9_999_999_999_999_999),
             'username' => $this->faker->userName(),
             'email' => $this->faker->email(),
             'avatar' => $this->faker->imageUrl(),

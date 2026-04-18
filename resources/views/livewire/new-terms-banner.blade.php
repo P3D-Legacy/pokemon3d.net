@@ -1,3 +1,4 @@
+<div>
 <div class="fixed z-50 top-0 inset-x-0 pb-2 sm:pb-5">
     <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
         <div class="p-2 rounded-b-lg bg-green-600/80 shadow-xl sm:p-3">
@@ -22,3 +23,4 @@
     </div>
 </div>
 <div class="fixed top-0 left-0 h-full w-full bg-black/80 z-40 backdrop-blur-sm"></div>
+</div>

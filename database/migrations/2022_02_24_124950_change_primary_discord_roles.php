@@ -11,6 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
+        if (Schema::getConnection()->getDriverName() === 'sqlite') {
+            return;
+        }
+
         Schema::table('discord_roles', function (Blueprint $table) {
             $table->dropColumn('aid');
             $table->primary('id');

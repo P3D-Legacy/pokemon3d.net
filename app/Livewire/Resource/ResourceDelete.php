@@ -3,22 +3,31 @@
 namespace App\Livewire\Resource;
 
 use App\Models\Resource;
-use LivewireUI\Modal\ModalComponent;
+use Livewire\Component;
 
-class ResourceDelete extends ModalComponent
+class ResourceDelete extends Component
 {
-    public int|Resource $resource;
+    public Resource $resource;
 
-    public function mount()
+    public function mount(Resource $resource)
     {
-        $this->resource = Resource::find($this->resource);
+        $this->resource = $resource;
+
+        // Check ownership
+        if ($resource->user_id !== auth()->id()) {
+            abort(403);
+        }
     }
 
     public function delete()
     {
+        // Double check ownership before deletion
+        if ($this->resource->user_id !== auth()->id()) {
+            abort(403);
+        }
+
         $this->resource->delete();
-        $this->closeModal();
-        $this->dispatch('resourceAdded');
+
         session()->flash('flash.bannerStyle', 'success');
         session()->flash('flash.banner', __(':item deleted successfully.', ['item' => __('Resource')]));
 

@@ -2,10 +2,12 @@
 
 namespace Database\Factories;
 
+use App\Models\BanReason;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\BanReason>
+ * @extends Factory<BanReason>
  */
 class BanReasonFactory extends Factory
 {
@@ -18,7 +20,7 @@ class BanReasonFactory extends Factory
     {
         return [
             'name' => $this->faker->sentence(),
-            'user_id' => \App\Models\User::factory(),
+            'user_id' => User::factory(),
         ];
     }
 }

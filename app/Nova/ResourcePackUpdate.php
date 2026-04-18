@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use App\Models\ResourceUpdate;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\ID;
@@ -16,7 +17,7 @@ class ResourcePackUpdate extends Resource
      *
      * @var string
      */
-    public static $model = \App\Models\ResourceUpdate::class;
+    public static $model = ResourceUpdate::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.

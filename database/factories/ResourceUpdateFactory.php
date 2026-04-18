@@ -4,10 +4,11 @@ namespace Database\Factories;
 
 use App\Models\GameVersion;
 use App\Models\Resource;
+use App\Models\ResourceUpdate;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\ResourceUpdate>
+ * @extends Factory<ResourceUpdate>
  */
 class ResourceUpdateFactory extends Factory
 {

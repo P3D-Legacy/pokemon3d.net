@@ -1,12 +1,14 @@
 <?php
 
+use App\Models\Review;
+
 return [
     /*
      * The class name of the review model that holds all reviews.
      *
      * The model must be or extend `Digikraaft\ReviewRating\Review`.
      */
-    'review_model' => App\Models\Review::class,
+    'review_model' => Review::class,
 
     /*
      * The name of the column which holds the ID of the model related to the reviews.

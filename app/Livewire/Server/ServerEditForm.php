@@ -27,7 +27,7 @@ class ServerEditForm extends Component
         $this->name = $this->server->name;
         $this->host = $this->server->host;
         $this->port = $this->server->port;
-        $this->description = $this->server->description;
+        $this->description = $this->server->description ?? '';
     }
 
     /**

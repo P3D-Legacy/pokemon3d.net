@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Review;
 
+use App\Models\GameVersion;
 use Digikraaft\ReviewRating\Models\Review;
 use Livewire\Component;
 
@@ -19,7 +20,7 @@ class ReviewList extends Component
 
     public function mount()
     {
-        $this->reviews = Review::where('model_type', '=', \App\Models\GameVersion::class)
+        $this->reviews = Review::where('model_type', '=', GameVersion::class)
             ->orderBy('created_at', 'desc')
             ->get();
         $this->numberOfReviews = $this->reviews->count();
@@ -28,7 +29,7 @@ class ReviewList extends Component
 
     public function update()
     {
-        $this->reviews = Review::where('model_type', '=', \App\Models\GameVersion::class)
+        $this->reviews = Review::where('model_type', '=', GameVersion::class)
             ->orderBy('created_at', 'desc')
             ->get();
         $this->numberOfReviews = $this->reviews->count();

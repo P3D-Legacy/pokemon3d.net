@@ -45,7 +45,7 @@ class Review extends Resource
                 ->max(5)
                 ->step(1)
                 ->sortable(),
-            BelongsTo::make('Author', 'author', \App\Nova\User::class),
+            BelongsTo::make('Author', 'author', User::class),
         ];
     }
 

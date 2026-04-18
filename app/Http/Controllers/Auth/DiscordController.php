@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\DiscordAccount;
 use GuzzleHttp\Exception\ClientException;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 use Laravel\Socialite\Two\InvalidStateException;
@@ -16,7 +17,7 @@ class DiscordController extends Controller
     /**
      * Redirect the user to the Discord authentication page.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function redirectToProvider()
     {

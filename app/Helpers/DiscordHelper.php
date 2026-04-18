@@ -3,6 +3,8 @@
 namespace App\Helpers;
 
 use RestCord\DiscordClient;
+use RestCord\Model\Guild\Guild;
+use RestCord\Model\Guild\GuildMember;
 
 class DiscordHelper
 {
@@ -19,7 +21,7 @@ class DiscordHelper
         $this->guildId = intval(config('services.discord.server_id'));
     }
 
-    public function getServer(): \RestCord\Model\Guild\Guild
+    public function getServer(): Guild
     {
         return $this->discordClient->guild->getGuild([
             'guild.id' => $this->guildId,
@@ -53,7 +55,7 @@ class DiscordHelper
         }
     }
 
-    public static function getMemberRoles(int $user_id): \RestCord\Model\Guild\GuildMember|\Exception
+    public static function getMemberRoles(int $user_id): GuildMember|\Exception
     {
         $client = new self;
         try {

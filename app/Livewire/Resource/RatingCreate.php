@@ -3,17 +3,20 @@
 namespace App\Livewire\Resource;
 
 use App\Models\Resource;
-use LivewireUI\Modal\ModalComponent;
+use Illuminate\Validation\ValidationException;
+use Livewire\Component;
 
-class RatingCreate extends ModalComponent
+class RatingCreate extends Component
 {
-    public int|Resource $resource;
+    public Resource $resource;
 
     public $body;
 
     public $rating;
 
     public $user;
+
+    public $isSubmitting = false;
 
     public function mount(int|Resource $resource)
     {
@@ -22,26 +25,47 @@ class RatingCreate extends ModalComponent
         }
         $this->resource = $resource;
         $this->user = auth()->user();
+
         if (! $this->user) {
-            $this->closeModal();
+            abort(403, 'You must be logged in to rate resources.');
         }
-        if ($this->user == $this->resource->user) {
-            $this->closeModal();
+
+        if ($this->user->id == $this->resource->user_id) {
+            abort(403, 'You cannot rate your own resource.');
         }
     }
 
     public function save()
     {
-        $this->validate([
-            'rating' => ['digits_between:1,5'],
-            'body' => ['required', 'string', 'min:10', 'max:255'],
-        ]);
+        // Prevent duplicate submissions
+        if ($this->isSubmitting) {
+            return;
+        }
 
-        $this->resource->review($this->body, $this->user, $this->rating);
+        $this->isSubmitting = true;
 
-        $this->dispatch('resourceUpdated', $this->resource->uuid);
+        try {
+            // Double check permissions
+            if (! $this->user || $this->user->id == $this->resource->user_id) {
+                abort(403);
+            }
 
-        $this->closeModal();
+            $this->validate([
+                'rating' => ['required', 'digits_between:1,5'],
+                'body' => ['required', 'string', 'min:10', 'max:255'],
+            ]);
+
+            $this->resource->review($this->body, $this->user, $this->rating);
+
+            session()->flash('flash.bannerStyle', 'success');
+            session()->flash('flash.banner', __('Thank you for your review!'));
+
+            return redirect()->route('resource.uuid', $this->resource->uuid);
+        } catch (ValidationException $e) {
+            // Reset submission flag on validation error
+            $this->isSubmitting = false;
+            throw $e;
+        }
     }
 
     public function render()

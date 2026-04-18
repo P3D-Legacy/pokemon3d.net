@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "62a4dc5ca8d126d5232001fe7906aa30",
+    "content-hash": "ae40802a89bcbb205ed778efabfce780",
     "packages": [
         {
             "name": "akaunting/laravel-language",
@@ -1609,21 +1609,21 @@
         },
         {
             "name": "digikraaft/laravel-review-rating",
-            "version": "dev-laravel12",
+            "version": "v3.2.0",
             "source": {
                 "type": "git",
-                "url": "git@github.com:dsbilling/laravel-review-rating.git",
-                "reference": "e7fdc13346ac0d9f6fe6b1da0e6ae56a43b6fd20"
+                "url": "https://github.com/digikraaft/laravel-review-rating.git",
+                "reference": "0a772fbcecc5089f6fd9928aec6aad7dbb91f12d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dsbilling/laravel-review-rating/zipball/e7fdc13346ac0d9f6fe6b1da0e6ae56a43b6fd20",
-                "reference": "e7fdc13346ac0d9f6fe6b1da0e6ae56a43b6fd20",
+                "url": "https://api.github.com/repos/digikraaft/laravel-review-rating/zipball/0a772fbcecc5089f6fd9928aec6aad7dbb91f12d",
+                "reference": "0a772fbcecc5089f6fd9928aec6aad7dbb91f12d",
                 "shasum": ""
             },
             "require": {
                 "laravel/framework": "^11.0|^12.0",
-                "php": "^8.1"
+                "php": "^8.2"
             },
             "require-dev": {
                 "orchestra/testbench": "^8.0|^9.0",
@@ -1643,19 +1643,7 @@
                     "Digikraaft\\ReviewRating\\": "src"
                 }
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "Digikraaft\\ReviewRating\\Tests\\": "tests"
-                }
-            },
-            "scripts": {
-                "test": [
-                    "vendor/bin/phpunit"
-                ],
-                "test-coverage": [
-                    "vendor/bin/phpunit --coverage-html coverage"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -1675,7 +1663,11 @@
                 "ratings",
                 "reviews"
             ],
-            "time": "2025-04-08T20:55:28+00:00"
+            "support": {
+                "issues": "https://github.com/digikraaft/laravel-review-rating/issues",
+                "source": "https://github.com/digikraaft/laravel-review-rating/tree/v3.2.0"
+            },
+            "time": "2025-09-04T20:40:07+00:00"
         },
         {
             "name": "doctrine/dbal",
@@ -6390,38 +6382,38 @@
         },
         {
             "name": "martian/spammailchecker",
-            "version": "dev-laravel12",
+            "version": "2.1.0",
             "source": {
                 "type": "git",
-                "url": "git@github.com:dsbilling/laravel-spam-email.git",
-                "reference": "ba09332986bcbce46972e683dfc36a473cdd1b0a"
+                "url": "https://github.com/hendurhance/laravel-spam-email.git",
+                "reference": "09f6308e0c9e9c347bb06c452628db581562fa8d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dsbilling/laravel-spam-email/zipball/ba09332986bcbce46972e683dfc36a473cdd1b0a",
-                "reference": "ba09332986bcbce46972e683dfc36a473cdd1b0a",
+                "url": "https://api.github.com/repos/hendurhance/laravel-spam-email/zipball/09f6308e0c9e9c347bb06c452628db581562fa8d",
+                "reference": "09f6308e0c9e9c347bb06c452628db581562fa8d",
                 "shasum": ""
             },
             "require": {
-                "guzzlehttp/guzzle": "^6.0|^7.0",
+                "guzzlehttp/guzzle": "^7.0",
                 "illuminate/support": "^10.0|^11.0|^12.0",
                 "laravel/framework": "^10.0|^11.0|^12.0",
                 "php": "^8.1|^8.2|^8.3|^8.4",
-                "quickemailverification/quickemailverification": "^1.0"
+                "quickemailverification/quickemailverification": "*"
             },
             "require-dev": {
                 "orchestra/testbench": "^8.0|^9.0|^10.0",
-                "phpunit/phpunit": "^10.0|^11.0|^12.0"
+                "phpunit/phpunit": "^9.0|^10.0|^11.0"
             },
             "type": "library",
             "extra": {
                 "laravel": {
-                    "providers": [
-                        "Martian\\SpamMailChecker\\Providers\\SpamMailCheckerServiceProvider"
-                    ],
                     "aliases": {
                         "SpamMailChecker": "Martian\\SpamMailChecker\\Facades\\SpamMailCheckerFacade"
-                    }
+                    },
+                    "providers": [
+                        "Martian\\SpamMailChecker\\Providers\\SpamMailCheckerServiceProvider"
+                    ]
                 }
             },
             "autoload": {
@@ -6429,19 +6421,7 @@
                     "Martian\\SpamMailChecker\\": "src"
                 }
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "Martian\\SpamMailChecker\\Tests\\": "tests"
-                }
-            },
-            "scripts": {
-                "test": [
-                    "vendor/bin/phpunit"
-                ],
-                "test-coverage": [
-                    "vendor/bin/phpunit --coverage-html coverage"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -6459,7 +6439,6 @@
                 "email",
                 "github",
                 "laravel",
-                "laravel",
                 "martian",
                 "package",
                 "php",
@@ -6469,7 +6448,21 @@
                 "spammailchecker",
                 "validation"
             ],
-            "time": "2025-04-08T21:22:42+00:00"
+            "support": {
+                "issues": "https://github.com/hendurhance/laravel-spam-email/issues",
+                "source": "https://github.com/hendurhance/laravel-spam-email/tree/2.1.0"
+            },
+            "funding": [
+                {
+                    "url": "https://www.buymeacoffee.com/hendurhance",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/hendurhance",
+                    "type": "github"
+                }
+            ],
+            "time": "2025-07-09T14:28:08+00:00"
         },
         {
             "name": "martinbean/socialite-discord-provider",
@@ -19760,8 +19753,6 @@
         "akaunting/laravel-language": 20,
         "alibayat/laravel-categorizable": 20,
         "alibayat/laravel-commentable": 20,
-        "digikraaft/laravel-review-rating": 20,
-        "martian/spammailchecker": 20,
         "restcord/restcord": 20
     },
     "prefer-stable": true,

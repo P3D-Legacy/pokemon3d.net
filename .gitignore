@@ -3,6 +3,7 @@
 !/public/build
 /public/storage
 /storage/*.key
+/storage/pail
 /vendor
 .env
 .env.backup
@@ -21,4 +22,6 @@ public/vendor/scribe/
 .vscode/
 .idea/
 auth.json
+/.nova
 /.phpunit.cache
+/storage/framework/testing-disks

@@ -6,18 +6,22 @@ use App\Http\Controllers\Controller;
 use App\Models\DiscordBotSetting;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
 /**
  * @group Discord Bot
  *
  * APIs for usage towards the Discord bot.
  */
-class DiscordBotSettingController extends Controller
+class DiscordBotSettingController extends Controller implements HasMiddleware
 {
-    public function __construct()
+    public static function middleware(): array
     {
-        $this->middleware('permission:discord_bot_setting.show')->only(['index']);
-        $this->middleware('permission:discord_bot_setting.update')->only(['update']);
+        return [
+            new Middleware('permission:discord_bot_setting.show', only: ['index']),
+            new Middleware('permission:discord_bot_setting.update', only: ['update']),
+        ];
     }
 
     /**

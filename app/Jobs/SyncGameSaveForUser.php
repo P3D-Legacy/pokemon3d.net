@@ -12,7 +12,6 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Schema;
 
 class SyncGameSaveForUser implements ShouldQueue
 {
@@ -41,7 +40,12 @@ class SyncGameSaveForUser implements ShouldQueue
         $gamejolt_user_id = $this->user->gamejolt->id;
         $gja = GamejoltAccount::firstWhere('id', $gamejolt_user_id);
         $gamesave_model = new GameSave;
-        $columns = Schema::getColumnListing($gamesave_model->getTable());
+        // Laravel 12 multi-schema inspection changes apply to getTables, getViews, getTypes,
+        // and getTableListing only—not getColumnListing. Use the model connection so listing
+        // matches where GameSave rows are read/written below.
+        $columns = $gamesave_model->getConnection()
+            ->getSchemaBuilder()
+            ->getColumnListing($gamesave_model->getTable());
         $result = [];
         $remove_columns = ['uuid', 'created_at', 'updated_at', 'user_id'];
         foreach ($columns as $column) {

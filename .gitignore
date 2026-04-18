@@ -24,3 +24,4 @@ public/vendor/scribe/
 auth.json
 /.nova
 /.phpunit.cache
+/storage/framework/testing-disks

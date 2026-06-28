@@ -7,7 +7,7 @@ jobs:
   jsoncheck:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - name: json-syntax-check
         uses: limitusus/json-syntax-check@v2
         with:

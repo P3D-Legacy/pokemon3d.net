@@ -25,3 +25,4 @@ auth.json
 /.nova
 /.phpunit.cache
 /storage/framework/testing-disks
+.DS_Store

@@ -21,3 +21,6 @@ public/vendor/scribe/
 .vscode/
 .idea/
 auth.json
+.DS_Store
+/.phpunit.cache
+/storage/framework/testing-disks

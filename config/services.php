@@ -9,6 +9,11 @@ return [
         'scheme' => 'https',
     ],
 
+    'lettermint' => [
+        'token' => env('LETTERMINT_PROJECT_TOKEN', env('LETTERMINT_TOKEN')),
+        'api_token' => env('LETTERMINT_TEAM_TOKEN'),
+    ],
+
     'discord' => [
         'client_id' => env('DISCORD_CLIENT_ID'),
         'client_secret' => env('DISCORD_CLIENT_SECRET'),

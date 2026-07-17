@@ -1,13 +1,109 @@
 @import 'easymde/dist/easymde.min.css';
+@import 'tailwindcss';
+@import 'tw-animate-css';
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@plugin '@tailwindcss/forms' {
+    strategy: class;
+}
+@plugin '@tailwindcss/typography';
 
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../vendor/laravel/jetstream/**/*.blade.php';
+@source '../views/**/*.blade.php';
+@source '../js/**/*.{js,ts,jsx,tsx}';
 
-/* Browser mockup code
-* Contribute: https://gist.github.com/jarthod/8719db9fef8deb937f4f
-*/
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    --font-sans: 'Nunito', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+
+    --color-gamejolt-green: #ccff00;
+    --color-gamejolt-dark-green: #2f7f6f;
+
+    --background-image-spring: url('/img/spring.png');
+    --background-image-summer: url('/img/summer.png');
+    --background-image-fall: url('/img/fall.png');
+    --background-image-winter: url('/img/winter.png');
+
+    --radius-lg: var(--radius);
+    --radius-md: calc(var(--radius) - 2px);
+    --radius-sm: calc(var(--radius) - 4px);
+
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --color-card: var(--card);
+    --color-card-foreground: var(--card-foreground);
+    --color-popover: var(--popover);
+    --color-popover-foreground: var(--popover-foreground);
+    --color-primary: var(--primary);
+    --color-primary-foreground: var(--primary-foreground);
+    --color-secondary: var(--secondary);
+    --color-secondary-foreground: var(--secondary-foreground);
+    --color-muted: var(--muted);
+    --color-muted-foreground: var(--muted-foreground);
+    --color-accent: var(--accent);
+    --color-accent-foreground: var(--accent-foreground);
+    --color-destructive: var(--destructive);
+    --color-border: var(--border);
+    --color-input: var(--input);
+    --color-ring: var(--ring);
+}
+
+:root {
+    --background: oklch(1 0 0);
+    --foreground: oklch(0.145 0 0);
+    --card: oklch(1 0 0);
+    --card-foreground: oklch(0.145 0 0);
+    --popover: oklch(1 0 0);
+    --popover-foreground: oklch(0.145 0 0);
+    --primary: oklch(0.45 0.12 155);
+    --primary-foreground: oklch(0.985 0 0);
+    --secondary: oklch(0.97 0 0);
+    --secondary-foreground: oklch(0.205 0 0);
+    --muted: oklch(0.97 0 0);
+    --muted-foreground: oklch(0.556 0 0);
+    --accent: oklch(0.97 0 0);
+    --accent-foreground: oklch(0.205 0 0);
+    --destructive: oklch(0.577 0.245 27.325);
+    --border: oklch(0.922 0 0);
+    --input: oklch(0.922 0 0);
+    --ring: oklch(0.55 0.12 155);
+    --radius: 0.625rem;
+}
+
+.dark {
+    --background: oklch(0.205 0.02 260);
+    --foreground: oklch(0.985 0 0);
+    --card: oklch(0.25 0.02 260);
+    --card-foreground: oklch(0.985 0 0);
+    --popover: oklch(0.25 0.02 260);
+    --popover-foreground: oklch(0.985 0 0);
+    --primary: oklch(0.65 0.14 155);
+    --primary-foreground: oklch(0.145 0 0);
+    --secondary: oklch(0.269 0 0);
+    --secondary-foreground: oklch(0.985 0 0);
+    --muted: oklch(0.269 0 0);
+    --muted-foreground: oklch(0.708 0 0);
+    --accent: oklch(0.269 0 0);
+    --accent-foreground: oklch(0.985 0 0);
+    --destructive: oklch(0.396 0.141 25.723);
+    --border: oklch(0.269 0 0);
+    --input: oklch(0.269 0 0);
+    --ring: oklch(0.55 0.12 155);
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+
+    body {
+        @apply bg-background text-foreground;
+    }
+}
+
+/* Browser mockup */
 .browser-mockup {
     border-top: 2em solid rgba(230, 230, 230, 0.8);
 }
@@ -17,13 +113,16 @@
 .browser-mockup:before {
     display: block;
     position: absolute;
-    content: "";
+    content: '';
     top: -1.4em;
     right: 3.6em;
     width: 0.8em;
     height: 0.8em;
     background-color: rgb(184, 184, 184);
-    box-shadow: 0 0 0 2px rgb(184, 184, 184), 1.5em 0 0 2px rgb(184, 184, 184), 3em 0 0 2px  #f44;
+    box-shadow:
+        0 0 0 2px rgb(184, 184, 184),
+        1.5em 0 0 2px rgb(184, 184, 184),
+        3em 0 0 2px #f44;
     z-index: 10;
 }
 .browser-mockup > * {
@@ -36,16 +135,16 @@
     top: -1.8em;
     left: 0.5em;
     width: calc(100% - 6em);
-    height: 1.0em;
+    height: 1em;
     border-radius: 2px;
     text-align: center;
-    color:#CCC;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    color: #ccc;
+    font-family:
+        ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
 }
 .dark .browser-mockup.with-url:after {
-    color:#777;
+    color: #777;
 }
-/** END BROWSER MOCKUP **/
 
 .editor-toolbar {
     background-color: #fff;
@@ -56,13 +155,14 @@
     border-color: #333;
 }
 
-.dark .editor-toolbar button.active, .dark .editor-toolbar button:hover {
+.dark .editor-toolbar button.active,
+.dark .editor-toolbar button:hover {
     background: #222;
     border-color: #444;
 }
 
 .dark .editor-toolbar button {
-    color:#fff;
+    color: #fff;
 }
 
 [x-cloak] {
@@ -74,9 +174,9 @@
 }
 
 .has-tip:hover .tip {
-    @apply z-50 visible px-2 py-1 -mt-8 text-gray-900 bg-green-200 rounded;
+    @apply z-50 -mt-8 visible rounded bg-green-200 px-2 py-1 text-gray-900;
 }
 
 .navigation-menu-icon {
-    @apply h-4 w-4 mr-1 inline-block;
+    @apply mr-1 inline-block h-4 w-4;
 }

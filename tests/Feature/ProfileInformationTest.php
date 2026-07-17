@@ -1,32 +1,36 @@
 <?php
 
 use App\Models\User;
-use Laravel\Jetstream\Http\Livewire\UpdateProfileInformationForm;
-use Livewire\Livewire;
+use Inertia\Testing\AssertableInertia as Assert;
 
 test('current profile information is available', function () {
-    $this->actingAs($user = User::factory()->create());
+    $user = User::factory()->create();
 
-    $component = Livewire::test(UpdateProfileInformationForm::class);
-
-    expect($component->state['name'])->toEqual($user->name)
-        ->and($component->state['email'])->toEqual($user->email);
+    $this->actingAs($user)
+        ->get(route('profile.show'))
+        ->assertOk()
+        ->assertInertia(fn (Assert $page) => $page
+            ->component('profile/edit')
+            ->where('profile.name', $user->name)
+            ->where('profile.email', $user->email));
 });
 
 test('profile information can be updated', function () {
-    $this->actingAs($user = User::factory()->create());
+    $user = User::factory()->create([
+        'username' => 'trainerone',
+    ]);
 
-    Livewire::test(UpdateProfileInformationForm::class)
-        ->set('state', [
+    $this->actingAs($user)
+        ->put(route('user-profile-information.update'), [
             'name' => 'Test Name',
-            'username' => 'testname',
+            'username' => 'trainerone',
             'email' => 'test@example.com',
             'gender' => 0,
             'location' => 'Test Location',
             'about' => 'Test About',
             'birthdate' => '01-01-2000',
         ])
-        ->call('updateProfileInformation');
+        ->assertRedirect();
 
     expect($user->fresh())
         ->name->toEqual('Test Name')

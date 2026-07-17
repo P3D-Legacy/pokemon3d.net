@@ -1,13 +1,14 @@
 <?php
 
 use App\Providers\AppServiceProvider;
+use Inertia\Testing\AssertableInertia as Assert;
 use Laravel\Fortify\Features;
 use Laravel\Jetstream\Jetstream;
 
 test('registration screen can be rendered', function () {
-    $response = $this->get('/register');
-
-    $response->assertStatus(200);
+    $this->get('/register')
+        ->assertOk()
+        ->assertInertia(fn (Assert $page) => $page->component('auth/register'));
 })->skip(function () {
     return ! Features::enabled(Features::registration());
 }, 'Registration support is not enabled.');

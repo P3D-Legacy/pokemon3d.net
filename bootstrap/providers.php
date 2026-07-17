@@ -8,6 +8,6 @@ use App\Providers\JetstreamServiceProvider;
 return [
     AppServiceProvider::class,
     AdminPanelProvider::class,
-    FortifyServiceProvider::class,
     JetstreamServiceProvider::class,
+    FortifyServiceProvider::class,
 ];

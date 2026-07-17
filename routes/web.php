@@ -5,9 +5,11 @@ use App\Http\Controllers\Auth\DiscordController;
 use App\Http\Controllers\Auth\FacebookController;
 use App\Http\Controllers\Auth\TwitchController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\Save\MySaveController;
 use App\Http\Controllers\ServerController;
 use App\Http\Controllers\Skin\ImportController;
@@ -17,7 +19,6 @@ use App\Http\Controllers\Skin\SkinHomeController;
 use App\Http\Controllers\Skin\UploadedSkinController;
 use App\Http\Controllers\TagController;
 use App\Livewire\Analytics;
-use App\Livewire\NotificationList;
 use App\Livewire\Resource\ResourceShow;
 use App\Models\Resource;
 use Illuminate\Support\Facades\Route;
@@ -154,9 +155,9 @@ Route::get('/member/{user}', function ($user) {
     return redirect()->route('member.show', $user);
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+Route::get('/dashboard', DashboardController::class)
+    ->middleware(['auth:sanctum', 'verified'])
+    ->name('dashboard');
 
 Route::prefix('skin')
     ->group(function () {
@@ -199,7 +200,10 @@ Route::prefix('skin')
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
-    Route::get('/notifications', NotificationList::class)->name('notifications.index');
+    Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications.index');
+    Route::post('/notifications/{id}/open', [NotificationController::class, 'open'])->name('notifications.open');
+    Route::post('/notifications/{id}/dismiss', [NotificationController::class, 'dismiss'])->name('notifications.dismiss');
+    Route::post('/notifications/dismiss-all', [NotificationController::class, 'dismissAll'])->name('notifications.dismiss-all');
 
     if (config('app.env') === 'staging' or config('app.env') === 'local') {
         Route::prefix('save')->middleware('gj.association')->group(function () {

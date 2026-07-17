@@ -2,49 +2,49 @@
 
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
-use Laravel\Jetstream\Http\Livewire\UpdatePasswordForm;
-use Livewire\Livewire;
 
 test('password can be updated', function () {
-    $this->actingAs($user = User::factory()->create());
+    $user = User::factory()->create();
 
-    Livewire::test(UpdatePasswordForm::class)
-        ->set('state', [
+    $this->actingAs($user)
+        ->put(route('user-password.update'), [
             'current_password' => 'password',
             'password' => 'SuperSecretPassword123!',
             'password_confirmation' => 'SuperSecretPassword123!',
         ])
-        ->call('updatePassword');
+        ->assertRedirect();
 
     expect(Hash::check('SuperSecretPassword123!', $user->fresh()->password))->toBeTrue();
 });
 
 test('current password must be correct', function () {
-    $this->actingAs($user = User::factory()->create());
+    $user = User::factory()->create();
 
-    Livewire::test(UpdatePasswordForm::class)
-        ->set('state', [
+    $this->actingAs($user)
+        ->from(route('profile.show'))
+        ->put(route('user-password.update'), [
             'current_password' => 'wrong-password',
             'password' => 'new-password',
             'password_confirmation' => 'new-password',
         ])
-        ->call('updatePassword')
-        ->assertHasErrors(['current_password']);
+        ->assertRedirect(route('profile.show'))
+        ->assertSessionHasErrors('current_password', errorBag: 'updatePassword');
 
     expect(Hash::check('password', $user->fresh()->password))->toBeTrue();
 });
 
 test('new passwords must match', function () {
-    $this->actingAs($user = User::factory()->create());
+    $user = User::factory()->create();
 
-    Livewire::test(UpdatePasswordForm::class)
-        ->set('state', [
+    $this->actingAs($user)
+        ->from(route('profile.show'))
+        ->put(route('user-password.update'), [
             'current_password' => 'password',
             'password' => 'new-password',
             'password_confirmation' => 'wrong-password',
         ])
-        ->call('updatePassword')
-        ->assertHasErrors(['password']);
+        ->assertRedirect(route('profile.show'))
+        ->assertSessionHasErrors('password', errorBag: 'updatePassword');
 
     expect(Hash::check('password', $user->fresh()->password))->toBeTrue();
 });

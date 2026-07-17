@@ -3,6 +3,7 @@
 use Akaunting\Language\Middleware\SetLocale;
 use App\Http\Middleware\ApiJsonMiddleware;
 use App\Http\Middleware\GameJoltAssociation;
+use App\Http\Middleware\HandleInertiaRequests;
 use App\Http\Middleware\UpdateLastActiveAt;
 use App\Providers\AppServiceProvider;
 use Illuminate\Foundation\Application;
@@ -35,6 +36,7 @@ return Application::configure(basePath: dirname(__DIR__))
             AuthenticateSession::class,
             UpdateLastActiveAt::class,
             SetLocale::class,
+            HandleInertiaRequests::class,
         ]);
 
         $middleware->throttleApi();

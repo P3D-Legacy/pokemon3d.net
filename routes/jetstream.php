@@ -1,12 +1,15 @@
 <?php
 
+use App\Http\Controllers\ApiTokenController;
+use App\Http\Controllers\CurrentUserController;
+use App\Http\Controllers\OtherBrowserSessionsController;
+use App\Http\Controllers\Profile\ConsentController;
+use App\Http\Controllers\Profile\PreferenceController;
+use App\Http\Controllers\Profile\SocialAccountController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use Laravel\Jetstream\Http\Controllers\CurrentTeamController;
-use Laravel\Jetstream\Http\Controllers\Livewire\ApiTokenController;
 use Laravel\Jetstream\Http\Controllers\Livewire\PrivacyPolicyController;
-use Laravel\Jetstream\Http\Controllers\Livewire\TeamController;
 use Laravel\Jetstream\Http\Controllers\Livewire\TermsOfServiceController;
-use Laravel\Jetstream\Http\Controllers\TeamInvitationController;
 use Laravel\Jetstream\Jetstream;
 
 Route::middleware(config('jetstream.middleware', ['web']))->group(function () {
@@ -16,28 +19,24 @@ Route::middleware(config('jetstream.middleware', ['web']))->group(function () {
     }
 
     Route::middleware('auth', 'verified')->group(function () {
-        // User & Profile...
-        Route::get('/user/edit/profile', function () {
-            return view('profile.edit', [
-                'request' => request(),
-                'user' => request()->user(),
-            ]);
-        })->name('profile.show');
+        Route::get('/user/edit/profile', [ProfileController::class, 'show'])->name('profile.show');
 
-        // API...
-        if (Jetstream::hasApiFeatures()) {
-            Route::get('/user/api-tokens', [ApiTokenController::class, 'index'])->name('api-tokens.index');
+        Route::delete('/user/other-browser-sessions', [OtherBrowserSessionsController::class, 'destroy'])
+            ->name('other-browser-sessions.destroy');
+
+        if (Jetstream::hasAccountDeletionFeatures()) {
+            Route::delete('/user', [CurrentUserController::class, 'destroy'])->name('current-user.destroy');
         }
 
-        // Teams...
-        if (Jetstream::hasTeamFeatures()) {
-            Route::get('/teams/create', [TeamController::class, 'create'])->name('teams.create');
-            Route::get('/teams/{team}', [TeamController::class, 'show'])->name('teams.show');
-            Route::put('/current-team', [CurrentTeamController::class, 'update'])->name('current-team.update');
+        Route::patch('/user/preferences', [PreferenceController::class, 'update'])->name('profile.preferences.update');
+        Route::patch('/user/consents', [ConsentController::class, 'update'])->name('profile.consents.update');
+        Route::delete('/user/social-accounts', [SocialAccountController::class, 'destroy'])->name('profile.social.destroy');
 
-            Route::get('/team-invitations/{invitation}', [TeamInvitationController::class, 'accept'])
-                ->middleware(['signed'])
-                ->name('team-invitations.accept');
+        if (Jetstream::hasApiFeatures()) {
+            Route::get('/user/api-tokens', [ApiTokenController::class, 'index'])->name('api-tokens.index');
+            Route::post('/user/api-tokens', [ApiTokenController::class, 'store'])->name('api-tokens.store');
+            Route::put('/user/api-tokens/{token}', [ApiTokenController::class, 'update'])->name('api-tokens.update');
+            Route::delete('/user/api-tokens/{token}', [ApiTokenController::class, 'destroy'])->name('api-tokens.destroy');
         }
     });
 });

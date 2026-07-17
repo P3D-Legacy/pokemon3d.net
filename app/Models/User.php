@@ -9,11 +9,13 @@ use Filament\Models\Contracts\FilamentUser;
 use Filament\Panel;
 use Glorand\Model\Settings\Traits\HasSettingsTable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Storage;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
@@ -22,6 +24,7 @@ use Overtrue\LaravelLike\Traits\Liker;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Permission\Traits\HasRoles;
+use Throwable;
 
 class User extends Authenticatable implements FilamentUser, MustVerifyEmail
 {
@@ -117,6 +120,35 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
     public function canAccessPanel(Panel $panel): bool
     {
         return $this->hasRole('moderator') || $this->hasRole('admin') || $this->hasRole('super-admin') && $this->hasVerifiedEmail();
+    }
+
+    /**
+     * Get the URL to the user's profile photo.
+     *
+     * Prefer the configured public disk URL so pages do not need a fully
+     * initialised S3 client just to render an avatar. Fall back to the default
+     * avatar when object storage is misconfigured.
+     */
+    protected function profilePhotoUrl(): Attribute
+    {
+        return Attribute::get(function (): string {
+            if (! $this->profile_photo_path) {
+                return $this->defaultProfilePhotoUrl();
+            }
+
+            $disk = $this->profilePhotoDisk();
+            $baseUrl = config("filesystems.disks.{$disk}.url");
+
+            if (filled($baseUrl)) {
+                return rtrim($baseUrl, '/').'/'.ltrim($this->profile_photo_path, '/');
+            }
+
+            try {
+                return Storage::disk($disk)->url($this->profile_photo_path);
+            } catch (Throwable) {
+                return $this->defaultProfilePhotoUrl();
+            }
+        });
     }
 
     /**

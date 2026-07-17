@@ -77,10 +77,6 @@ class Update extends Command
         }
         $this->info('Clear views...');
         Artisan::call('view:clear');
-        if (config('app.env') == 'production') {
-            $this->info('Sync schedule monitor...');
-            Artisan::call('schedule-monitor:sync');
-        }
         $this->info('Done.');
 
         return Command::SUCCESS;

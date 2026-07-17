@@ -23,6 +23,6 @@ public/vendor/scribe/
 .idea/
 auth.json
 /.nova
+.DS_Store
 /.phpunit.cache
 /storage/framework/testing-disks
-.DS_Store

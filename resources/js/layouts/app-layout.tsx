@@ -158,9 +158,17 @@ export default function AppLayout({ children, title }: PropsWithChildren<{ title
                                                 Notifications
                                             </Link>
                                             {auth.user.is_admin && (
-                                                <a href="/filament" className="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 dark:text-slate-200 dark:hover:bg-slate-800">
-                                                    Admin
-                                                </a>
+                                                <>
+                                                    <Link href="/mod/tags" className="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 dark:text-slate-200 dark:hover:bg-slate-800">
+                                                        Tags
+                                                    </Link>
+                                                    <Link href="/mod/analytics" className="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 dark:text-slate-200 dark:hover:bg-slate-800">
+                                                        Analytics
+                                                    </Link>
+                                                    <a href="/filament" className="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 dark:text-slate-200 dark:hover:bg-slate-800">
+                                                        Admin
+                                                    </a>
+                                                </>
                                             )}
                                             <Link
                                                 href={logout()}

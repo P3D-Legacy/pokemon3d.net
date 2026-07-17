@@ -2,20 +2,19 @@
 
 use App\Http\Controllers\ApiTokenController;
 use App\Http\Controllers\CurrentUserController;
+use App\Http\Controllers\LegalController;
 use App\Http\Controllers\OtherBrowserSessionsController;
 use App\Http\Controllers\Profile\ConsentController;
 use App\Http\Controllers\Profile\PreferenceController;
 use App\Http\Controllers\Profile\SocialAccountController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use Laravel\Jetstream\Http\Controllers\Livewire\PrivacyPolicyController;
-use Laravel\Jetstream\Http\Controllers\Livewire\TermsOfServiceController;
 use Laravel\Jetstream\Jetstream;
 
 Route::middleware(config('jetstream.middleware', ['web']))->group(function () {
     if (Jetstream::hasTermsAndPrivacyPolicyFeature()) {
-        Route::get('/terms', [TermsOfServiceController::class, 'show'])->name('terms.show');
-        Route::get('/privacy', [PrivacyPolicyController::class, 'show'])->name('policy.show');
+        Route::get('/terms', [LegalController::class, 'terms'])->name('terms.show');
+        Route::get('/privacy', [LegalController::class, 'policy'])->name('policy.show');
     }
 
     Route::middleware('auth', 'verified')->group(function () {

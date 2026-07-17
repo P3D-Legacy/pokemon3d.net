@@ -1,0 +1,115 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Http\Requests\StoreResourceUpdateRequest;
+use App\Models\GameVersion;
+use App\Models\Resource;
+use App\Models\ResourceUpdate;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Str;
+use Inertia\Inertia;
+use Inertia\Response;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Symfony\Component\HttpFoundation\File\Exception\FileNotFoundException;
+
+class ResourceUpdateController extends Controller
+{
+    public function create(string $uuid): Response
+    {
+        $resource = $this->findResource($uuid);
+        $this->authorize('postUpdate', $resource);
+
+        return Inertia::render('resources/updates/create', [
+            'resource' => [
+                'uuid' => $resource->uuid,
+                'name' => $resource->name,
+            ],
+            'gameVersions' => GameVersion::query()
+                ->orderByDesc('release_date')
+                ->get(['id', 'version'])
+                ->map(fn (GameVersion $version): array => [
+                    'id' => $version->id,
+                    'version' => $version->version,
+                ])
+                ->values()
+                ->all(),
+            'copy' => [
+                'resources' => __('Resources'),
+                'title' => __('Post an update'),
+                'versionTitle' => __('Version Title'),
+                'gameVersion' => __('Latest supported version'),
+                'selectGameVersion' => __('Select a game version'),
+                'description' => __('Description'),
+                'file' => __('Resource File (ZIP)'),
+                'cancel' => __('Cancel'),
+                'submit' => __('Post Update'),
+            ],
+        ]);
+    }
+
+    public function store(StoreResourceUpdateRequest $request, string $uuid): RedirectResponse
+    {
+        $resource = $this->findResource($uuid);
+        $this->authorize('postUpdate', $resource);
+
+        $validated = $request->validated();
+
+        $resourceUpdate = ResourceUpdate::create([
+            'title' => $validated['version'],
+            'description' => $validated['description'],
+            'resource_id' => $resource->id,
+            'game_version_id' => $validated['gameversion'],
+        ]);
+
+        $file = $request->file('file');
+        $fileName = Str::slug($resource->name).'-'.$resourceUpdate->title.'.'.$file->extension();
+
+        $resourceUpdate->clearMediaCollection('resource_update_file');
+        $resourceUpdate
+            ->addMedia($file)
+            ->usingName($fileName)
+            ->toMediaCollection('resource_update_file');
+
+        session()->flash('flash.bannerStyle', 'success');
+        session()->flash('flash.banner', __('Update posted successfully!'));
+
+        return redirect()->route('resource.uuid', $resource->uuid);
+    }
+
+    public function download(string $uuid, ResourceUpdate $update): BinaryFileResponse|RedirectResponse
+    {
+        $resource = $this->findResource($uuid);
+
+        if ((int) $update->resource_id !== (int) $resource->id) {
+            abort(404);
+        }
+
+        $mediaItem = $update->getFirstMedia('resource_update_file');
+
+        if (! $mediaItem) {
+            session()->flash('flash.banner', trans('File not found on server!'));
+            session()->flash('flash.bannerStyle', 'danger');
+
+            return redirect()->route('resource.uuid', $resource->uuid);
+        }
+
+        $update->incrementDownload();
+
+        try {
+            return response()->download($mediaItem->getPath(), $mediaItem->name);
+        } catch (FileNotFoundException) {
+            session()->flash('flash.banner', trans('File not found on server!'));
+            session()->flash('flash.bannerStyle', 'danger');
+
+            return redirect()->route('resource.uuid', $resource->uuid);
+        }
+    }
+
+    protected function findResource(string $uuid): Resource
+    {
+        return Resource::query()
+            ->where('uuid', $uuid)
+            ->firstOrFail();
+    }
+}

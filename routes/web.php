@@ -1,6 +1,6 @@
 <?php
 
-use AliBayat\LaravelCategorizable\Category;
+use App\Http\Controllers\AnalyticsController;
 use App\Http\Controllers\Auth\DiscordController;
 use App\Http\Controllers\Auth\FacebookController;
 use App\Http\Controllers\Auth\TwitchController;
@@ -10,6 +10,9 @@ use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\ResourceController;
+use App\Http\Controllers\ResourceUpdateController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\Save\MySaveController;
 use App\Http\Controllers\ServerController;
 use App\Http\Controllers\Skin\ImportController;
@@ -18,9 +21,6 @@ use App\Http\Controllers\Skin\SkinController;
 use App\Http\Controllers\Skin\SkinHomeController;
 use App\Http\Controllers\Skin\UploadedSkinController;
 use App\Http\Controllers\TagController;
-use App\Livewire\Analytics;
-use App\Livewire\Resource\ResourceShow;
-use App\Models\Resource;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -72,81 +72,43 @@ Route::prefix('login')->group(function () {
     Route::get('/twitch/callback', [TwitchController::class, 'handleProviderCallback']);
 });
 
-Route::get('/review', function () {
-    return view('review.index');
-})->name('review');
+Route::get('/review', [ReviewController::class, 'index'])->name('review');
+Route::post('/review', [ReviewController::class, 'store'])
+    ->middleware(['auth:sanctum', 'verified'])
+    ->name('review.store');
 
 Route::resource('server', ServerController::class);
+Route::post('/server/{server}/reactivate', [ServerController::class, 'reactivate'])
+    ->middleware(['auth', 'verified'])
+    ->name('server.reactivate');
 
 Route::prefix('resource')->group(function () {
-    Route::get('/', function () {
-        return view('resources.index', [
-            'categories' => Category::where('parent_id', null)->get(),
-        ]);
-    })->name('resource.index');
+    Route::get('/', [ResourceController::class, 'index'])->name('resource.index');
+    Route::get('/category/{name}', [ResourceController::class, 'index'])->name('resource.category');
 
     Route::middleware(['auth:sanctum', 'verified'])->group(function () {
-        Route::get('/create', function () {
-            return view('resources.create');
-        })->name('resource.create');
+        Route::get('/create', [ResourceController::class, 'create'])->name('resource.create');
+        Route::post('/', [ResourceController::class, 'store'])->name('resource.store');
 
-        Route::get('/{uuid}/edit', function ($uuid) {
-            $resource = App\Models\Resource::where('uuid', $uuid)->firstOrFail();
+        Route::get('/{uuid}/edit', [ResourceController::class, 'edit'])->name('resource.edit');
+        Route::put('/{uuid}', [ResourceController::class, 'update'])->name('resource.update');
+        Route::patch('/{uuid}', [ResourceController::class, 'update']);
 
-            // Check if user owns the resource
-            if (auth()->id() !== $resource->user_id) {
-                abort(403);
-            }
+        Route::get('/{uuid}/delete', [ResourceController::class, 'delete'])->name('resource.delete');
+        Route::delete('/{uuid}', [ResourceController::class, 'destroy'])->name('resource.destroy');
 
-            return view('resources.edit', compact('resource'));
-        })->name('resource.edit');
+        Route::get('/{uuid}/updates/create', [ResourceUpdateController::class, 'create'])->name('resource.updates.create');
+        Route::post('/{uuid}/updates', [ResourceUpdateController::class, 'store'])->name('resource.updates.store');
 
-        Route::get('/{uuid}/delete', function ($uuid) {
-            $resource = App\Models\Resource::where('uuid', $uuid)->firstOrFail();
+        Route::get('/{uuid}/rate', [ResourceController::class, 'rate'])->name('resource.rate');
+        Route::post('/{uuid}/rate', [ResourceController::class, 'storeRating'])->name('resource.rate.store');
 
-            // Check if user owns the resource
-            if (auth()->id() !== $resource->user_id) {
-                abort(403);
-            }
-
-            return view('resources.delete', compact('resource'));
-        })->name('resource.delete');
-
-        Route::get('/{uuid}/update', function ($uuid) {
-            $resource = App\Models\Resource::where('uuid', $uuid)->firstOrFail();
-
-            // Check if user owns the resource
-            if (auth()->id() !== $resource->user_id) {
-                abort(403);
-            }
-
-            return view('resources.update', compact('resource'));
-        })->name('resource.update');
-
-        Route::get('/{uuid}/rate', function ($uuid) {
-            $resource = App\Models\Resource::where('uuid', $uuid)->firstOrFail();
-
-            // Check if user is authenticated and not the owner
-            if (! auth()->check()) {
-                abort(403);
-            }
-
-            if (auth()->id() === $resource->user_id) {
-                abort(403, 'You cannot rate your own resource.');
-            }
-
-            return view('resources.rate', compact('resource'));
-        })->name('resource.rate');
+        Route::post('/{uuid}/like', [ResourceController::class, 'like'])->name('resource.like');
     });
 
-    Route::get('/{uuid}', ResourceShow::class)->name('resource.uuid');
-
-    Route::get('/category/{name}', function ($name) {
-        return view('resources.index', [
-            'categories' => Category::where('parent_id', null)->get(),
-            'category' => Category::findByName($name),
-        ]);
-    })->name('resource.category');
+    Route::get('/{uuid}/updates/{update}/download', [ResourceUpdateController::class, 'download'])
+        ->name('resource.updates.download');
+    Route::get('/{uuid}', [ResourceController::class, 'show'])->name('resource.uuid');
 });
 Route::get('/members', [MemberController::class, 'index'])->name('member.index');
 Route::get('/members/{user}', [MemberController::class, 'show'])->name('member.show');
@@ -167,26 +129,27 @@ Route::prefix('skin')
                 return redirect()->route('skin-home');
             })->name('skins-my');
 
-            Route::get('/import/{id}', [ImportController::class, 'import'])->name('import');
+            Route::post('/import/{id}', [ImportController::class, 'import'])->name('import');
 
             Route::get('/player', [PlayerSkinController::class, 'index'])->name('player-skins');
             Route::post('/player/create', [PlayerSkinController::class, 'store'])->name('player-skin-store');
-            Route::get('/player/duplicate', [PlayerSkinController::class, 'duplicate'])->name('player-skin-duplicate');
-            Route::post('/player/delete/{id}', [PlayerSkinController::class, 'destroyAsAdmin'])->name(
+            Route::post('/player/duplicate', [PlayerSkinController::class, 'duplicate'])->name('player-skin-duplicate');
+            Route::delete('/player/delete/{id}', [PlayerSkinController::class, 'destroyAsAdmin'])->name(
                 'player-skin-destroy-admin'
             );
-            Route::get('/player/delete', [PlayerSkinController::class, 'destroy'])->name('player-skin-destroy');
+            Route::delete('/player/delete', [PlayerSkinController::class, 'destroy'])->name('player-skin-destroy');
 
             Route::get('/create', [SkinController::class, 'create'])->name('skin-create');
             Route::post('/create', [SkinController::class, 'store'])->name('skin-store');
-            Route::get('/{uuid}/edit', [SkinController::class, 'edit'])->name('skin-edit');
-            Route::post('/{uuid}/edit', [SkinController::class, 'update'])->name('skin-update');
-            Route::get('/{uuid}/delete', [SkinController::class, 'destroy'])->name('skin-destroy');
-            Route::get('/{uuid}/apply', [SkinController::class, 'apply'])->name('skin-apply');
-            Route::get('/{uuid}/like', [SkinController::class, 'like'])->name('skin-like');
 
             Route::get('/uploaded', [UploadedSkinController::class, 'index'])->name('uploaded-skins');
-            Route::post('/uploaded/delete/{id}', [UploadedSkinController::class, 'destroy'])->name('uploaded-skin-destroy');
+            Route::delete('/uploaded/delete/{id}', [UploadedSkinController::class, 'destroy'])->name('uploaded-skin-destroy');
+
+            Route::get('/{uuid}/edit', [SkinController::class, 'edit'])->name('skin-edit');
+            Route::post('/{uuid}/edit', [SkinController::class, 'update'])->name('skin-update');
+            Route::delete('/{uuid}/delete', [SkinController::class, 'destroy'])->name('skin-destroy');
+            Route::post('/{uuid}/apply', [SkinController::class, 'apply'])->name('skin-apply');
+            Route::post('/{uuid}/like', [SkinController::class, 'like'])->name('skin-like');
         });
 
         Route::get('/public', function () {
@@ -195,7 +158,6 @@ Route::prefix('skin')
         Route::get('/public/new', [SkinController::class, 'newestpublicskins'])->name('skins-newest');
         Route::get('/public/popular', [SkinController::class, 'popularpublicskins'])->name('skins-popular');
         Route::get('/public/{skin}', [SkinController::class, 'show'])->name('skin-show');
-
     });
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
@@ -215,7 +177,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         ->middleware(['role:super-admin|admin'])
         ->group(function () {
             Route::resource('tags', TagController::class);
-            Route::get('/analytics', Analytics::class)
+            Route::get('/analytics', AnalyticsController::class)
                 ->name('analytics')
                 ->middleware(['permission:analytics']);
         });

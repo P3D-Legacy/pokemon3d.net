@@ -1,0 +1,217 @@
+<?php
+
+use AliBayat\LaravelCategorizable\Category;
+use App\Models\GameVersion;
+use App\Models\Resource;
+use App\Models\User;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
+use Inertia\Testing\AssertableInertia as Assert;
+
+function createResourceCategory(string $name = 'Maps'): Category
+{
+    $category = new Category([
+        'name' => $name,
+        'type' => 'default',
+    ]);
+    $category->saveAsRoot();
+
+    return $category;
+}
+
+test('resource index is rendered with inertia', function () {
+    $category = createResourceCategory();
+    $resource = Resource::factory()->create();
+    $resource->syncCategories($category);
+
+    $this->get(route('resource.index'))
+        ->assertOk()
+        ->assertInertia(fn (Assert $page) => $page
+            ->component('resources/index')
+            ->has('resources.data')
+            ->has('categories')
+            ->has('copy'));
+});
+
+test('resource category page is rendered with inertia', function () {
+    $category = createResourceCategory('Textures');
+    $resource = Resource::factory()->create();
+    $resource->syncCategories($category);
+
+    $this->get(route('resource.category', $category->slug))
+        ->assertOk()
+        ->assertInertia(fn (Assert $page) => $page
+            ->component('resources/index')
+            ->where('selectedCategory.slug', $category->slug)
+            ->has('resources.data', 1));
+});
+
+test('resource show is rendered with inertia', function () {
+    $category = createResourceCategory();
+    $resource = Resource::factory()->create([
+        'description' => '# Hello resource',
+    ]);
+    $resource->syncCategories($category);
+
+    $this->get(route('resource.uuid', $resource->uuid))
+        ->assertOk()
+        ->assertInertia(fn (Assert $page) => $page
+            ->component('resources/show')
+            ->where('resource.name', $resource->name)
+            ->where('resource.uuid', $resource->uuid)
+            ->has('copy'));
+});
+
+test('guests are redirected from resource create', function () {
+    $this->get(route('resource.create'))->assertRedirect(route('login'));
+});
+
+test('authenticated users can open resource create', function () {
+    $user = User::factory()->create();
+
+    $this->actingAs($user)
+        ->get(route('resource.create'))
+        ->assertOk()
+        ->assertInertia(fn (Assert $page) => $page
+            ->component('resources/create')
+            ->has('categories')
+            ->has('copy'));
+});
+
+test('owner can open edit and delete pages', function () {
+    $owner = User::factory()->create();
+    $category = createResourceCategory();
+    $resource = Resource::factory()->create(['user_id' => $owner->id]);
+    $resource->syncCategories($category);
+
+    $this->actingAs($owner)
+        ->get(route('resource.edit', $resource->uuid))
+        ->assertOk()
+        ->assertInertia(fn (Assert $page) => $page
+            ->component('resources/edit')
+            ->where('resource.uuid', $resource->uuid));
+
+    $this->actingAs($owner)
+        ->get(route('resource.delete', $resource->uuid))
+        ->assertOk()
+        ->assertInertia(fn (Assert $page) => $page
+            ->component('resources/delete')
+            ->where('resource.uuid', $resource->uuid));
+});
+
+test('non owner cannot edit delete or post updates', function () {
+    $owner = User::factory()->create();
+    $other = User::factory()->create();
+    $resource = Resource::factory()->create(['user_id' => $owner->id]);
+
+    $this->actingAs($other)
+        ->get(route('resource.edit', $resource->uuid))
+        ->assertForbidden();
+
+    $this->actingAs($other)
+        ->get(route('resource.delete', $resource->uuid))
+        ->assertForbidden();
+
+    $this->actingAs($other)
+        ->get(route('resource.updates.create', $resource->uuid))
+        ->assertForbidden();
+
+    $this->actingAs($other)
+        ->put(route('resource.update', $resource->uuid), [
+            'name' => 'Hacked',
+            'brief' => 'Hacked brief text',
+            'description' => 'Hacked description text',
+            'category' => 1,
+        ])
+        ->assertForbidden();
+});
+
+test('owner can update resource metadata', function () {
+    $owner = User::factory()->create();
+    $category = createResourceCategory();
+    $resource = Resource::factory()->create(['user_id' => $owner->id]);
+    $resource->syncCategories($category);
+
+    $this->actingAs($owner)
+        ->put(route('resource.update', $resource->uuid), [
+            'name' => 'Updated Resource',
+            'brief' => 'Updated brief content',
+            'description' => 'Updated description content',
+            'category' => $category->id,
+        ])
+        ->assertRedirect(route('resource.uuid', $resource->uuid));
+
+    expect($resource->fresh()->name)->toBe('Updated Resource');
+});
+
+test('owner can post a resource update with zip file', function () {
+    Storage::fake('public');
+
+    $owner = User::factory()->create();
+    $resource = Resource::factory()->create(['user_id' => $owner->id]);
+    $gameVersion = GameVersion::factory()->create();
+    $file = UploadedFile::fake()->create('pack.zip', 100, 'application/zip');
+
+    $this->actingAs($owner)
+        ->get(route('resource.updates.create', $resource->uuid))
+        ->assertOk()
+        ->assertInertia(fn (Assert $page) => $page->component('resources/updates/create'));
+
+    $this->actingAs($owner)
+        ->post(route('resource.updates.store', $resource->uuid), [
+            'version' => '1.0.0',
+            'description' => 'First release of the pack',
+            'gameversion' => $gameVersion->id,
+            'file' => $file,
+        ])
+        ->assertRedirect(route('resource.uuid', $resource->uuid));
+
+    expect($resource->updates()->count())->toBe(1);
+});
+
+test('non owner can rate a resource and owner cannot', function () {
+    $owner = User::factory()->create();
+    $rater = User::factory()->create();
+    $resource = Resource::factory()->create(['user_id' => $owner->id]);
+
+    $this->actingAs($owner)
+        ->get(route('resource.rate', $resource->uuid))
+        ->assertForbidden();
+
+    $this->actingAs($rater)
+        ->get(route('resource.rate', $resource->uuid))
+        ->assertOk()
+        ->assertInertia(fn (Assert $page) => $page->component('resources/rate'));
+
+    $this->actingAs($rater)
+        ->post(route('resource.rate.store', $resource->uuid), [
+            'rating' => 5,
+            'body' => 'This resource is excellent.',
+        ])
+        ->assertRedirect(route('resource.uuid', $resource->uuid));
+
+    expect($resource->fresh()->numberOfReviews())->toBe(1);
+});
+
+test('authenticated users can toggle likes', function () {
+    $owner = User::factory()->create();
+    $liker = User::factory()->create();
+    $resource = Resource::factory()->create(['user_id' => $owner->id]);
+
+    $this->actingAs($liker)
+        ->post(route('resource.like', $resource->uuid))
+        ->assertRedirect();
+
+    expect($resource->fresh()->isLikedBy($liker))->toBeTrue();
+});
+
+test('owner can delete their resource', function () {
+    $owner = User::factory()->create();
+    $resource = Resource::factory()->create(['user_id' => $owner->id]);
+
+    $this->actingAs($owner)
+        ->delete(route('resource.destroy', $resource->uuid))
+        ->assertRedirect(route('resource.index'));
+
+    $this->assertSoftDeleted($resource);
+});

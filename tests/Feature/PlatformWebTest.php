@@ -7,6 +7,7 @@ use App\Models\Resource;
 use App\Models\Skin;
 use App\Models\User;
 use Illuminate\Support\Facades\File;
+use Inertia\Testing\AssertableInertia as Assert;
 
 test('public pages respond successfully', function () {
     foreach ([
@@ -88,7 +89,10 @@ test('public skin show renders', function () {
     $skin = Skin::factory()->create();
     File::put($root.'/'.$skin->path(), 'fake');
 
-    $this->get(route('skin-show', $skin))->assertOk();
+    $this->get(route('skin-show', $skin))
+        ->assertOk()
+        ->assertInertia(fn (Assert $page) => $page
+            ->component('skins/show'));
 });
 
 test('guests are redirected from authenticated routes', function () {
@@ -107,10 +111,28 @@ test('authenticated user without gamejolt is redirected from skin home', functio
 });
 
 test('authenticated user with gamejolt can open skin home', function () {
+    $root = storage_path('framework/testing-disks/player');
+    File::ensureDirectoryExists($root);
+    config([
+        'filesystems.disks.player' => [
+            'driver' => 'local',
+            'root' => $root,
+            'throw' => false,
+        ],
+        'filesystems.disks.skin' => [
+            'driver' => 'local',
+            'root' => storage_path('framework/testing-disks/skin'),
+            'throw' => false,
+        ],
+    ]);
+    File::ensureDirectoryExists(storage_path('framework/testing-disks/skin'));
+
     $user = User::factory()->create();
     GamejoltAccount::factory()->create(['user_id' => $user->id]);
 
     $this->actingAs($user)
         ->get(route('skin-home'))
-        ->assertOk();
+        ->assertOk()
+        ->assertInertia(fn (Assert $page) => $page
+            ->component('skins/home'));
 });

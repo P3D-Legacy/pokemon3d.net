@@ -7,7 +7,8 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
-use Illuminate\View\View;
+use Inertia\Inertia;
+use Inertia\Response;
 
 class TagController extends Controller implements HasMiddleware
 {
@@ -24,19 +25,25 @@ class TagController extends Controller implements HasMiddleware
     /**
      * Display a listing of the resource.
      */
-    public function index(): View
+    public function index(): Response
     {
-        $tags = Tag::orderBy('created_at', 'desc')->paginate(10);
-
-        return view('tag.index', compact('tags'));
+        return Inertia::render('mod/tags/index', [
+            'tags' => Tag::query()
+                ->orderByDesc('created_at')
+                ->paginate(10)
+                ->through(fn (Tag $tag): array => [
+                    'id' => $tag->id,
+                    'name' => $tag->name,
+                ]),
+        ]);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create(): View
+    public function create(): Response
     {
-        return view('tag.create');
+        return Inertia::render('mod/tags/create');
     }
 
     /**
@@ -44,14 +51,18 @@ class TagController extends Controller implements HasMiddleware
      */
     public function store(Request $request): RedirectResponse
     {
-        $validatedData = $request->validate([
+        $validated = $request->validate([
             'name' => ['string', 'required'],
         ]);
-        $tag = Tag::create($validatedData);
+
+        $tag = Tag::create($validated);
+
         foreach (config('language.allowed') as $lang) {
             $tag->setTranslation('name', $lang, $request->input('name'));
         }
+
         $tag->save();
+
         session()->flash('flash.banner', 'Created Tag!');
         session()->flash('flash.bannerStyle', 'success');
 
@@ -60,39 +71,47 @@ class TagController extends Controller implements HasMiddleware
 
     /**
      * Display the specified resource.
-     *
-     * @param  int  $id
      */
-    public function show(Tag $tag): View
+    public function show(Tag $tag): Response
     {
-        return view('tag.show', compact('tag'));
+        return Inertia::render('mod/tags/show', [
+            'tag' => [
+                'id' => $tag->id,
+                'name' => $tag->name,
+            ],
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
      */
-    public function edit(Tag $tag): View
+    public function edit(Tag $tag): Response
     {
-        return view('tag.edit', compact('tag'));
+        return Inertia::render('mod/tags/edit', [
+            'tag' => [
+                'id' => $tag->id,
+                'name' => $tag->name,
+            ],
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param  int  $id
      */
     public function update(Request $request, Tag $tag): RedirectResponse
     {
-        $validatedData = $request->validate([
+        $validated = $request->validate([
             'name' => ['string', 'required'],
         ]);
-        $tag->update($validatedData);
+
+        $tag->update($validated);
+
         foreach (config('language.allowed') as $lang) {
             $tag->setTranslation('name', $lang, $request->input('name'));
         }
+
         $tag->save();
+
         session()->flash('flash.banner', 'Updated Tag!');
         session()->flash('flash.bannerStyle', 'success');
 
@@ -101,12 +120,11 @@ class TagController extends Controller implements HasMiddleware
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  int  $id
      */
     public function destroy(Tag $tag): RedirectResponse
     {
         $tag->delete();
+
         session()->flash('flash.banner', 'Deleted Tag!');
         session()->flash('flash.bannerStyle', 'success');
 

@@ -25,11 +25,6 @@ export type ShellNavItem = {
     children?: ShellNavItem[];
 };
 
-export type ShellNavGroup = {
-    title: string;
-    items: ShellNavItem[];
-};
-
 export type ShellUser = {
     name: string;
     email: string;
@@ -54,7 +49,7 @@ type ApplicationShell3Props = PropsWithChildren<{
         title: string;
         href: string;
     };
-    navGroups: ShellNavGroup[];
+    navItems: ShellNavItem[];
     user?: ShellUser | null;
     userMenuItems?: ShellUserMenuItem[];
     loginHref?: string;
@@ -70,47 +65,44 @@ function initials(name: string): string {
         .toUpperCase();
 }
 
-function NavDropdown({ group }: { group: ShellNavGroup }) {
-    const groupActive = group.items.some(
-        (item) => item.isActive || item.children?.some((child) => child.isActive),
+function NavLink({ item }: { item: ShellNavItem }) {
+    const Icon = item.icon;
+
+    return (
+        <Button asChild variant="ghost" className={cn(item.isActive && 'bg-muted font-medium')}>
+            <Link href={item.href} className="gap-1">
+                {Icon ? <Icon /> : null}
+                {item.label}
+            </Link>
+        </Button>
     );
+}
+
+function NavDropdown({ item }: { item: ShellNavItem }) {
+    const Icon = item.icon;
+    const groupActive =
+        item.isActive || item.children?.some((child) => child.isActive) === true;
 
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
-                <Button
-                    variant="ghost"
-                    className={cn('gap-1', groupActive && 'bg-muted font-medium')}
-                >
-                    {group.title}
+                <Button variant="ghost" className={cn('gap-1', groupActive && 'bg-muted font-medium')}>
+                    {Icon ? <Icon /> : null}
+                    {item.label}
                     <CaretDownIcon data-icon="inline-end" />
                 </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="start" className="w-48">
-                {group.items.map((item) => {
-                    const Icon = item.icon;
+                {item.children?.map((child) => {
+                    const ChildIcon = child.icon;
 
                     return (
-                        <Fragment key={item.label}>
-                            <DropdownMenuItem asChild>
-                                <Link href={item.href} className="flex items-center gap-2">
-                                    {Icon ? <Icon /> : null}
-                                    {item.label}
-                                </Link>
-                            </DropdownMenuItem>
-                            {item.children?.map((child) => {
-                                const ChildIcon = child.icon;
-
-                                return (
-                                    <DropdownMenuItem key={child.label} asChild className="pl-6">
-                                        <Link href={child.href} className="flex items-center gap-2">
-                                            {ChildIcon ? <ChildIcon /> : null}
-                                            {child.label}
-                                        </Link>
-                                    </DropdownMenuItem>
-                                );
-                            })}
-                        </Fragment>
+                        <DropdownMenuItem key={child.label} asChild>
+                            <Link href={child.href} className="flex items-center gap-2">
+                                {ChildIcon ? <ChildIcon /> : null}
+                                {child.label}
+                            </Link>
+                        </DropdownMenuItem>
                     );
                 })}
             </DropdownMenuContent>
@@ -118,12 +110,20 @@ function NavDropdown({ group }: { group: ShellNavGroup }) {
     );
 }
 
+function DesktopNavItem({ item }: { item: ShellNavItem }) {
+    if (item.children?.length) {
+        return <NavDropdown item={item} />;
+    }
+
+    return <NavLink item={item} />;
+}
+
 function MobileNav({
     logo,
-    navGroups,
+    navItems,
 }: {
     logo: ApplicationShell3Props['logo'];
-    navGroups: ShellNavGroup[];
+    navItems: ShellNavItem[];
 }) {
     const [open, setOpen] = useState(false);
 
@@ -143,53 +143,53 @@ function MobileNav({
                     </SheetTitle>
                 </SheetHeader>
                 <ScrollArea className="min-h-0 flex-1">
-                    <nav className="flex flex-col gap-4 px-4 py-4">
-                        {navGroups.map((group) => (
-                            <div key={group.title}>
-                                <div className="mb-2 text-xs font-medium tracking-wider text-muted-foreground uppercase">
-                                    {group.title}
-                                </div>
-                                <div className="flex flex-col gap-1">
-                                    {group.items.map((item) => {
-                                        const Icon = item.icon;
+                    <nav className="flex flex-col gap-1 px-4 py-4">
+                        {navItems.map((item) => {
+                            const Icon = item.icon;
 
-                                        return (
-                                            <Fragment key={item.label}>
+                            if (item.children?.length) {
+                                return (
+                                    <Fragment key={item.label}>
+                                        <div className="mt-2 mb-1 text-xs font-medium tracking-wider text-muted-foreground uppercase">
+                                            {item.label}
+                                        </div>
+                                        {item.children.map((child) => {
+                                            const ChildIcon = child.icon;
+
+                                            return (
                                                 <Link
-                                                    href={item.href}
+                                                    key={child.label}
+                                                    href={child.href}
                                                     onClick={() => setOpen(false)}
                                                     className={cn(
                                                         'flex items-center gap-2 rounded-md px-2 py-1.5 text-sm hover:bg-muted',
-                                                        item.isActive && 'bg-muted font-medium',
+                                                        child.isActive && 'bg-muted font-medium',
                                                     )}
                                                 >
-                                                    {Icon ? <Icon className="size-4" /> : null}
-                                                    {item.label}
+                                                    {ChildIcon ? <ChildIcon className="size-4" /> : null}
+                                                    {child.label}
                                                 </Link>
-                                                {item.children?.map((child) => {
-                                                    const ChildIcon = child.icon;
+                                            );
+                                        })}
+                                    </Fragment>
+                                );
+                            }
 
-                                                    return (
-                                                        <Link
-                                                            key={child.label}
-                                                            href={child.href}
-                                                            onClick={() => setOpen(false)}
-                                                            className={cn(
-                                                                'flex items-center gap-2 rounded-md py-1.5 pr-2 pl-8 text-sm hover:bg-muted',
-                                                                child.isActive && 'bg-muted font-medium',
-                                                            )}
-                                                        >
-                                                            {ChildIcon ? <ChildIcon className="size-4" /> : null}
-                                                            {child.label}
-                                                        </Link>
-                                                    );
-                                                })}
-                                            </Fragment>
-                                        );
-                                    })}
-                                </div>
-                            </div>
-                        ))}
+                            return (
+                                <Link
+                                    key={item.label}
+                                    href={item.href}
+                                    onClick={() => setOpen(false)}
+                                    className={cn(
+                                        'flex items-center gap-2 rounded-md px-2 py-1.5 text-sm hover:bg-muted',
+                                        item.isActive && 'bg-muted font-medium',
+                                    )}
+                                >
+                                    {Icon ? <Icon className="size-4" /> : null}
+                                    {item.label}
+                                </Link>
+                            );
+                        })}
                     </nav>
                 </ScrollArea>
             </SheetContent>
@@ -282,7 +282,7 @@ export function ApplicationShell3({
     className,
     title,
     logo,
-    navGroups,
+    navItems,
     user,
     userMenuItems = [],
     loginHref,
@@ -290,8 +290,8 @@ export function ApplicationShell3({
     return (
         <div className={cn('flex min-h-svh flex-col bg-background', className)}>
             <header className="sticky top-0 z-50 border-b bg-background">
-                <div className="flex h-14 items-center gap-4 px-4 lg:px-6">
-                    <MobileNav logo={logo} navGroups={navGroups} />
+                <div className="mx-auto flex h-14 max-w-7xl items-center gap-4 px-4 sm:px-6 lg:px-8">
+                    <MobileNav logo={logo} navItems={navItems} />
 
                     <Link href={logo.href} className="flex items-center gap-2">
                         <img src={logo.src} alt={logo.alt} className="h-8 w-auto" />
@@ -299,8 +299,8 @@ export function ApplicationShell3({
                     </Link>
 
                     <nav className="ml-4 hidden items-center gap-1 md:flex">
-                        {navGroups.map((group) => (
-                            <NavDropdown key={group.title} group={group} />
+                        {navItems.map((item) => (
+                            <DesktopNavItem key={item.label} item={item} />
                         ))}
                     </nav>
 
@@ -318,7 +318,7 @@ export function ApplicationShell3({
 
             {title ? (
                 <div className="border-b bg-background">
-                    <div className="px-4 py-6 lg:px-6">
+                    <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
                         <h1 className="text-xl font-semibold leading-tight text-foreground">{title}</h1>
                     </div>
                 </div>

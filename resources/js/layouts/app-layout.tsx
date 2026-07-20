@@ -18,7 +18,7 @@ import type { PropsWithChildren } from 'react';
 
 import {
     ApplicationShell3,
-    type ShellNavGroup,
+    type ShellNavItem,
     type ShellUserMenuItem,
 } from '@/components/application-shell3';
 import { dashboard, home, login, logout, review, skinHome, skinsNewest, skinsPopular } from '@/routes';
@@ -36,33 +36,25 @@ export default function AppLayout({ children, title }: PropsWithChildren<{ title
     const { auth, appName } = page.props;
     const path = page.url.split('?')[0] ?? '';
 
-    const navGroups: ShellNavGroup[] = [
+    const navItems: ShellNavItem[] = [
         {
-            title: 'Main',
-            items: [
-                {
-                    label: 'Dashboard',
-                    href: dashboard.url(),
-                    icon: LayoutIcon,
-                    isActive: path.startsWith('/dashboard'),
-                },
-                {
-                    label: 'Blog',
-                    href: blogIndex.url(),
-                    icon: NewspaperIcon,
-                    isActive: path.startsWith('/blog'),
-                },
-                {
-                    label: 'Review',
-                    href: review.url(),
-                    icon: StarIcon,
-                    isActive: path.startsWith('/review'),
-                },
-            ],
+            label: 'Dashboard',
+            href: dashboard.url(),
+            icon: LayoutIcon,
+            isActive: path.startsWith('/dashboard'),
         },
         {
-            title: 'Skins',
-            items: [
+            label: 'Blog',
+            href: blogIndex.url(),
+            icon: NewspaperIcon,
+            isActive: path.startsWith('/blog'),
+        },
+        {
+            label: 'Skins',
+            href: skinHome.url(),
+            icon: SmileyIcon,
+            isActive: path.startsWith('/skin'),
+            children: [
                 {
                     label: 'My Skins',
                     href: skinHome.url(),
@@ -84,27 +76,28 @@ export default function AppLayout({ children, title }: PropsWithChildren<{ title
             ],
         },
         {
-            title: 'Explore',
-            items: [
-                {
-                    label: 'Resources',
-                    href: resourceIndex.url(),
-                    icon: BooksIcon,
-                    isActive: path.startsWith('/resource'),
-                },
-                {
-                    label: 'Servers',
-                    href: serverIndex.url(),
-                    icon: HardDrivesIcon,
-                    isActive: path.startsWith('/server'),
-                },
-                {
-                    label: 'Members',
-                    href: memberIndex.url(),
-                    icon: UsersIcon,
-                    isActive: path.startsWith('/member'),
-                },
-            ],
+            label: 'Resources',
+            href: resourceIndex.url(),
+            icon: BooksIcon,
+            isActive: path.startsWith('/resource'),
+        },
+        {
+            label: 'Servers',
+            href: serverIndex.url(),
+            icon: HardDrivesIcon,
+            isActive: path.startsWith('/server'),
+        },
+        {
+            label: 'Members',
+            href: memberIndex.url(),
+            icon: UsersIcon,
+            isActive: path.startsWith('/member'),
+        },
+        {
+            label: 'Review',
+            href: review.url(),
+            icon: StarIcon,
+            isActive: path.startsWith('/review'),
         },
     ];
 
@@ -167,7 +160,7 @@ export default function AppLayout({ children, title }: PropsWithChildren<{ title
                 title: appName,
                 href: home.url(),
             }}
-            navGroups={navGroups}
+            navItems={navItems}
             user={
                 auth.user
                     ? {

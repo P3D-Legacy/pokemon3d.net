@@ -24,6 +24,7 @@
     },
     "dependencies": {
         "@alpinejs/focus": "^3.14.9",
+        "@fontsource-variable/oxanium": "^5.3.0",
         "@inertiajs/react": "^3.6.1",
         "@inertiajs/vite": "^3.6.1",
         "@laravel/vite-plugin-wayfinder": "^0.1.7",

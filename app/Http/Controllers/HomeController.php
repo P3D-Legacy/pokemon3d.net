@@ -7,10 +7,8 @@ use App\Models\Post;
 use App\Support\HomeStats;
 use App\Support\PostPresenter;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 use Inertia\Inertia;
 use Inertia\Response;
-use Laravel\Jetstream\Jetstream;
 
 class HomeController extends Controller
 {
@@ -65,7 +63,7 @@ class HomeController extends Controller
                 'history' => [
                     __(':game is a video game originally created by :author. It is heavily inspired by Minecraft, and the Pokémon series.', [
                         'game' => config('app.name'),
-                        'author' => '<a href="https://github.com/nilllzz" class="text-green-100 hover:underline hover:text-white">Nilllzz</a>',
+                        'author' => '<a href="https://github.com/nilllzz">Nilllzz</a>',
                     ]),
                     __(':game focuses on the strong points of Pokémon Gold and Silver versions and their remakes, and gives players a taste as to how the once 2D world they knew was in 3D. They could even see through the eyes of their trainer.', [
                         'game' => config('app.name'),
@@ -89,30 +87,6 @@ class HomeController extends Controller
                 'releasedLabel' => __('Released'),
                 'requirementsLabel' => __('Requirements apply'),
             ],
-        ]);
-    }
-
-    /**
-     * Show the legal information for the application.
-     */
-    public function legal(Request $request): Response
-    {
-        $localizedMarkdownPath = Jetstream::localizedMarkdownPath('legal.md');
-
-        return Inertia::render('legal', [
-            'html' => Str::markdown(file_get_contents($localizedMarkdownPath)),
-        ]);
-    }
-
-    /**
-     * Show the contact information for the application.
-     */
-    public function contact(Request $request): Response
-    {
-        $localizedMarkdownPath = Jetstream::localizedMarkdownPath('contact.md');
-
-        return Inertia::render('contact', [
-            'html' => Str::markdown(file_get_contents($localizedMarkdownPath)),
         ]);
     }
 }

@@ -20,7 +20,11 @@ test('legal page is rendered with inertia', function () {
         ->assertOk()
         ->assertInertia(fn (Assert $page) => $page
             ->component('legal')
-            ->has('html'));
+            ->where('title', 'Legal')
+            ->where('category', 'Legal')
+            ->has('updatedAt')
+            ->has('readTime')
+            ->missing('html'));
 });
 
 test('contact page is rendered with inertia', function () {
@@ -28,7 +32,11 @@ test('contact page is rendered with inertia', function () {
         ->assertOk()
         ->assertInertia(fn (Assert $page) => $page
             ->component('contact')
-            ->has('html'));
+            ->where('title', 'Contact')
+            ->where('category', 'Contact')
+            ->has('updatedAt')
+            ->has('readTime')
+            ->missing('html'));
 });
 
 test('blog index is rendered with inertia', function () {

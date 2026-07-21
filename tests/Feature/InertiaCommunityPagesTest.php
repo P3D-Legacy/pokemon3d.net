@@ -15,7 +15,7 @@ test('terms page is rendered with inertia', function () {
             ->where('category', 'Legal')
             ->has('updatedAt')
             ->has('readTime')
-            ->has('html'));
+            ->missing('html'));
 })->skip(fn () => ! Jetstream::hasTermsAndPrivacyPolicyFeature(), 'Terms feature disabled.');
 
 test('privacy policy page is rendered with inertia', function () {
@@ -27,7 +27,7 @@ test('privacy policy page is rendered with inertia', function () {
             ->where('category', 'Legal')
             ->has('updatedAt')
             ->has('readTime')
-            ->has('html'));
+            ->missing('html'));
 })->skip(fn () => ! Jetstream::hasTermsAndPrivacyPolicyFeature(), 'Privacy feature disabled.');
 
 test('members index is rendered with inertia', function () {

@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 use Inertia\Inertia;
 use Inertia\Response;
-use Laravel\Jetstream\Jetstream;
 
 class LegalController extends Controller
 {
@@ -16,8 +14,9 @@ class LegalController extends Controller
     public function terms(Request $request): Response
     {
         return Inertia::render('terms', $this->legalDocument(
-            markdown: 'terms.md',
+            markdown: 'terms.mdx',
             title: 'Terms and Conditions',
+            category: 'Legal',
             updatedAt: '2022-03-24',
         ));
     }
@@ -28,28 +27,50 @@ class LegalController extends Controller
     public function policy(Request $request): Response
     {
         return Inertia::render('policy', $this->legalDocument(
-            markdown: 'policy.md',
+            markdown: 'policy.mdx',
             title: 'Privacy Policy',
+            category: 'Legal',
             updatedAt: '2022-03-24',
         ));
     }
 
     /**
-     * @return array{title: string, category: string, updatedAt: string, readTime: string, html: string}
+     * Show the legal information for the application.
      */
-    private function legalDocument(string $markdown, string $title, string $updatedAt): array
+    public function legal(Request $request): Response
     {
-        $path = Jetstream::localizedMarkdownPath($markdown);
+        return Inertia::render('legal', $this->legalDocument(
+            markdown: 'legal.mdx',
+            title: 'Legal',
+            category: 'Legal',
+        ));
+    }
+
+    /**
+     * Show the contact information for the application.
+     */
+    public function contact(Request $request): Response
+    {
+        return Inertia::render('contact', $this->legalDocument(
+            markdown: 'contact.mdx',
+            title: 'Contact',
+            category: 'Contact',
+        ));
+    }
+
+    /**
+     * @return array{title: string, category: string, updatedAt: string, readTime: string}
+     */
+    private function legalDocument(string $markdown, string $title, string $category, ?string $updatedAt = null): array
+    {
+        $path = resource_path('markdown/'.$markdown);
         $contents = file_get_contents($path);
-        $html = Str::markdown($contents);
-        $html = preg_replace('/<h1[^>]*>.*?<\/h1>\s*/s', '', $html, 1) ?? $html;
 
         return [
             'title' => $title,
-            'category' => 'Legal',
-            'updatedAt' => $updatedAt,
+            'category' => $category,
+            'updatedAt' => $updatedAt ?? date('Y-m-d', filemtime($path)),
             'readTime' => (string) read_time($contents),
-            'html' => $html,
         ];
     }
 }

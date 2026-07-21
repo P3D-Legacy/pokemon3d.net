@@ -10,10 +10,11 @@ type Blogpost10Props = {
     pubDate?: Date | string;
     readTime?: string;
     children?: ReactNode;
+    header?: ReactNode;
     html?: string;
 };
 
-const Blogpost10 = ({ className, title, category, pubDate, readTime, children, html }: Blogpost10Props) => {
+const Blogpost10 = ({ className, title, category, pubDate, readTime, children, header, html }: Blogpost10Props) => {
     const [progress, setProgress] = useState(0);
     const date = pubDate ? (pubDate instanceof Date ? pubDate : new Date(pubDate)) : null;
 
@@ -32,12 +33,15 @@ const Blogpost10 = ({ className, title, category, pubDate, readTime, children, h
     }, []);
 
     return (
-        <section className={cn('relative min-h-screen bg-background py-32', className)}>
-            <div className="fixed top-0 right-0 left-0 z-50 h-1 bg-muted" aria-hidden="true">
-                <div className="h-full bg-primary transition-[width] duration-150" style={{ width: `${progress}%` }} />
+        <section className={cn('relative min-h-screen bg-background', className)}>
+            <div className="sticky top-0 z-40">
+                {header}
+                <div className="h-1 bg-muted" aria-hidden="true">
+                    <div className="h-full bg-primary transition-[width] duration-150" style={{ width: `${progress}%` }} />
+                </div>
             </div>
 
-            <div className="container">
+            <div className="container py-16 md:py-24">
                 <div className="mx-auto max-w-xl">
                     {category ? (
                         <p className="text-xs font-medium tracking-widest text-muted-foreground uppercase">{category}</p>

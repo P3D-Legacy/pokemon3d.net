@@ -1,27 +1,31 @@
-import { Head, Link } from '@inertiajs/react';
+import { Head } from '@inertiajs/react';
 
-import { home } from '@/routes';
+import { Blogpost10 } from '@/components/blogpost10';
+import { Footer59 } from '@/components/footer59';
+import { Navbar17 } from '@/components/navbar17';
+import LegalContent from '@markdown/legal.mdx';
 
 type Props = {
-    html: string;
+    title: string;
+    category: string;
+    updatedAt: string;
+    readTime: string;
 };
 
-export default function Legal({ html }: Props) {
+export default function Legal({ title, category, updatedAt, readTime }: Props) {
     return (
         <>
-            <Head title="Legal" />
-
-            <div className="bg-slate-100 pt-4">
-                <div className="flex min-h-screen flex-col items-center pt-6 sm:pt-0">
-                    <Link href={home()}>
-                        <img src="/img/pokemon3d_logo.png" alt="Pokémon 3D" className="h-16 w-auto" />
-                    </Link>
-                    <div
-                        className="prose mt-6 mb-10 w-full overflow-hidden bg-white p-6 shadow-md sm:max-w-2xl sm:rounded-lg"
-                        dangerouslySetInnerHTML={{ __html: html }}
-                    />
-                </div>
-            </div>
+            <Head title={title} />
+            <Blogpost10
+                title={title}
+                category={category}
+                pubDate={updatedAt}
+                readTime={readTime}
+                header={<Navbar17 variant="light" />}
+            >
+                <LegalContent />
+            </Blogpost10>
+            <Footer59 />
         </>
     );
 }

@@ -10,6 +10,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LegalController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ResourceController;
@@ -60,8 +61,8 @@ Route::prefix('redirect')->group(function () {
 });
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/legal', [HomeController::class, 'legal'])->name('legal');
-Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
+Route::get('/legal', [LegalController::class, 'legal'])->name('legal');
+Route::get('/contact', [LegalController::class, 'contact'])->name('contact');
 Route::resource('blog', BlogController::class);
 Route::get('/download', [DownloadController::class, 'download'])->name('download');
 

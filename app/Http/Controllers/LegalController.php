@@ -15,11 +15,11 @@ class LegalController extends Controller
      */
     public function terms(Request $request): Response
     {
-        $path = Jetstream::localizedMarkdownPath('terms.md');
-
-        return Inertia::render('terms', [
-            'html' => Str::markdown(file_get_contents($path)),
-        ]);
+        return Inertia::render('terms', $this->legalDocument(
+            markdown: 'terms.md',
+            title: 'Terms and Conditions',
+            updatedAt: '2022-03-24',
+        ));
     }
 
     /**
@@ -27,10 +27,29 @@ class LegalController extends Controller
      */
     public function policy(Request $request): Response
     {
-        $path = Jetstream::localizedMarkdownPath('policy.md');
+        return Inertia::render('policy', $this->legalDocument(
+            markdown: 'policy.md',
+            title: 'Privacy Policy',
+            updatedAt: '2022-03-24',
+        ));
+    }
 
-        return Inertia::render('policy', [
-            'html' => Str::markdown(file_get_contents($path)),
-        ]);
+    /**
+     * @return array{title: string, category: string, updatedAt: string, readTime: string, html: string}
+     */
+    private function legalDocument(string $markdown, string $title, string $updatedAt): array
+    {
+        $path = Jetstream::localizedMarkdownPath($markdown);
+        $contents = file_get_contents($path);
+        $html = Str::markdown($contents);
+        $html = preg_replace('/<h1[^>]*>.*?<\/h1>\s*/s', '', $html, 1) ?? $html;
+
+        return [
+            'title' => $title,
+            'category' => 'Legal',
+            'updatedAt' => $updatedAt,
+            'readTime' => (string) read_time($contents),
+            'html' => $html,
+        ];
     }
 }

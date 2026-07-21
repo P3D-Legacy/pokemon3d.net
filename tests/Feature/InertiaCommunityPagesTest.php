@@ -9,13 +9,25 @@ use Laravel\Jetstream\Jetstream;
 test('terms page is rendered with inertia', function () {
     $this->get(route('terms.show'))
         ->assertOk()
-        ->assertInertia(fn (Assert $page) => $page->component('terms')->has('html'));
+        ->assertInertia(fn (Assert $page) => $page
+            ->component('terms')
+            ->where('title', 'Terms and Conditions')
+            ->where('category', 'Legal')
+            ->has('updatedAt')
+            ->has('readTime')
+            ->has('html'));
 })->skip(fn () => ! Jetstream::hasTermsAndPrivacyPolicyFeature(), 'Terms feature disabled.');
 
 test('privacy policy page is rendered with inertia', function () {
     $this->get(route('policy.show'))
         ->assertOk()
-        ->assertInertia(fn (Assert $page) => $page->component('policy')->has('html'));
+        ->assertInertia(fn (Assert $page) => $page
+            ->component('policy')
+            ->where('title', 'Privacy Policy')
+            ->where('category', 'Legal')
+            ->has('updatedAt')
+            ->has('readTime')
+            ->has('html'));
 })->skip(fn () => ! Jetstream::hasTermsAndPrivacyPolicyFeature(), 'Privacy feature disabled.');
 
 test('members index is rendered with inertia', function () {

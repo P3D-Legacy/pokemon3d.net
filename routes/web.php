@@ -3,7 +3,9 @@
 use App\Http\Controllers\AnalyticsController;
 use App\Http\Controllers\Auth\DiscordController;
 use App\Http\Controllers\Auth\FacebookController;
+use App\Http\Controllers\Auth\GameJoltLoginController;
 use App\Http\Controllers\Auth\TwitchController;
+use App\Http\Controllers\Auth\XenforoLoginController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DownloadController;
@@ -70,6 +72,15 @@ Route::prefix('login')->group(function () {
     Route::get('/facebook/callback', [FacebookController::class, 'handleProviderCallback']);
     Route::get('/twitch', [TwitchController::class, 'redirectToProvider'])->name('twitch.login');
     Route::get('/twitch/callback', [TwitchController::class, 'handleProviderCallback']);
+
+    Route::middleware('guest')->group(function () {
+        Route::post('/gamejolt', [GameJoltLoginController::class, 'store'])
+            ->middleware('throttle:login')
+            ->name('gamejolt.login');
+        Route::post('/forum', [XenforoLoginController::class, 'store'])
+            ->middleware('throttle:login')
+            ->name('forum.login');
+    });
 });
 
 Route::get('/review', [ReviewController::class, 'index'])->name('review');

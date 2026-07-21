@@ -1,8 +1,9 @@
-import { Form, Head } from '@inertiajs/react';
+import { Form, Head, Link } from '@inertiajs/react';
+import { PaperPlaneTiltIcon } from '@phosphor-icons/react';
 
 import { store } from '@/actions/Laravel/Fortify/Http/Controllers/PasswordResetLinkController';
 import InputError from '@/components/input-error';
-import TextLink from '@/components/text-link';
+import { Login7 } from '@/components/login7';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -17,30 +18,54 @@ export default function ForgotPassword({ status }: Props) {
         <>
             <Head title="Forgot password" />
 
-            <div className="mb-4 text-sm text-slate-600 dark:text-slate-300">
-                Forgot your password? Enter your email and we will email you a password reset link.
-            </div>
+            <Login7
+                footer={
+                    <div className="mx-auto flex gap-1 text-sm">
+                        <p>Remember your password?</p>
+                        <Link href={login()} className="underline">
+                            Log in
+                        </Link>
+                    </div>
+                }
+            >
+                <div className="grid gap-4">
+                    <p className="text-sm text-muted-foreground">
+                        Forgot your password? Enter your email and we will email you a password reset link.
+                    </p>
 
-            {status && <div className="mb-4 text-sm font-medium text-green-600">{status}</div>}
+                    {status && <div className="text-sm font-medium text-green-600">{status}</div>}
 
-            <Form {...store.form()} className="flex flex-col gap-4">
-                {({ processing, errors }) => (
-                    <>
-                        <div className="grid gap-2">
-                            <Label htmlFor="email">Email</Label>
-                            <Input id="email" type="email" name="email" required autoFocus autoComplete="email" />
-                            <InputError message={errors.email} />
-                        </div>
+                    <Form {...store.form()} className="grid gap-4">
+                        {({ processing, errors }) => (
+                            <>
+                                <div className="grid gap-2">
+                                    <Label htmlFor="email">Email</Label>
+                                    <Input
+                                        id="email"
+                                        type="email"
+                                        name="email"
+                                        placeholder="ash.ketchum@example.com"
+                                        required
+                                        autoFocus
+                                        autoComplete="email"
+                                    />
+                                    <InputError message={errors.email} />
+                                </div>
 
-                        <div className="flex items-center justify-between">
-                            <TextLink href={login()}>Back to login</TextLink>
-                            <Button type="submit" variant="brand" disabled={processing}>
-                                Email password reset link
-                            </Button>
-                        </div>
-                    </>
-                )}
-            </Form>
+                                <Button type="submit" className="w-full" disabled={processing}>
+                                    <PaperPlaneTiltIcon data-icon="inline-start" />
+                                    Email password reset link
+                                </Button>
+                            </>
+                        )}
+                    </Form>
+                </div>
+            </Login7>
         </>
     );
 }
+
+/**
+ * Login 7 supplies its own page chrome, so skip the shared auth card layout.
+ */
+ForgotPassword.layout = () => null;

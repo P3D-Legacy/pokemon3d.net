@@ -91,7 +91,7 @@ export default function Register({ hasTermsAndPrivacyPolicyFeature }: Props) {
                                     id="email"
                                     type="email"
                                     name="email"
-                                    placeholder="m@example.com"
+                                    placeholder="ash.ketchum@example.com"
                                     required
                                     autoComplete="email"
                                     aria-invalid={errors.email ? true : undefined}

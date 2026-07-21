@@ -41,3 +41,21 @@ test('forgot password screen is rendered with inertia', function () {
         ->assertOk()
         ->assertInertia(fn (Assert $page) => $page->component('auth/forgot-password'));
 })->skip(fn () => ! Features::enabled(Features::resetPasswords()), 'Password updates are not enabled.');
+
+test('confirm password screen is rendered with inertia', function () {
+    $user = User::factory()->create();
+
+    $this->actingAs($user)
+        ->get(route('password.confirm'))
+        ->assertOk()
+        ->assertInertia(fn (Assert $page) => $page->component('auth/confirm-password'));
+});
+
+test('email verification prompt is rendered with inertia', function () {
+    $user = User::factory()->unverified()->create();
+
+    $this->actingAs($user)
+        ->get(route('verification.notice'))
+        ->assertOk()
+        ->assertInertia(fn (Assert $page) => $page->component('auth/verify-email'));
+})->skip(fn () => ! Features::enabled(Features::emailVerification()), 'Email verification is not enabled.');

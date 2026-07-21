@@ -99,7 +99,7 @@ export default function Login({ canResetPassword, status }: Props) {
                                         id="username"
                                         name="username"
                                         type="text"
-                                        placeholder="m@example.com"
+                                        placeholder="ash.ketchum@example.com"
                                         required
                                         autoFocus
                                         autoComplete="username"

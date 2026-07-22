@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\GamejoltAccount;
+use App\Models\GamejoltAccountTrophy;
 use App\Models\GameSave;
 use App\Models\User;
 use App\Support\GameSavePresenter;
@@ -78,4 +79,92 @@ test('members show includes pokedex entries when a game save is available', func
             ->where('member.gameSave.pokedex.0.caught', true)
             ->where('member.gameSave.pokedex.1.id', '4')
             ->where('member.gameSave.pokedex.1.caught', false));
+});
+
+test('game save presenter returns trophy details including difficulty and image', function () {
+    $user = User::factory()->create();
+
+    $gamejolt = GamejoltAccount::factory()->create([
+        'user_id' => $user->id,
+    ]);
+
+    GameSave::factory()->create([
+        'user_id' => $user->id,
+    ]);
+
+    GamejoltAccountTrophy::factory()->achieved()->create([
+        'gamejolt_account_id' => $gamejolt->id,
+        'id' => 101,
+        'title' => 'Pokédex',
+        'difficulty' => 'Gold',
+        'description' => 'Catch them all.',
+        'image_url' => 'https://example.com/pokedex.png',
+    ]);
+
+    GamejoltAccountTrophy::factory()->create([
+        'gamejolt_account_id' => $gamejolt->id,
+        'id' => 102,
+        'title' => 'UnoDosTres',
+        'difficulty' => 'Bronze',
+        'description' => 'Start your journey.',
+        'image_url' => 'https://example.com/uno.png',
+        'achieved' => false,
+    ]);
+
+    $payload = GameSavePresenter::forUser($user->fresh());
+
+    expect($payload['trophies']['achieved'])->toBe(1)
+        ->and($payload['trophies']['total'])->toBe(2)
+        ->and($payload['trophies']['items'])->toHaveCount(2)
+        ->and($payload['trophies']['items'][0])->toMatchArray([
+            'id' => 101,
+            'title' => 'Pokédex',
+            'difficulty' => 'Gold',
+            'description' => 'Catch them all.',
+            'image_url' => 'https://example.com/pokedex.png',
+            'achieved' => true,
+        ])
+        ->and($payload['trophies']['items'][1])->toMatchArray([
+            'id' => 102,
+            'title' => 'UnoDosTres',
+            'difficulty' => 'Bronze',
+            'achieved' => false,
+        ]);
+});
+
+test('members show includes trophy cards payload when a game save is available', function () {
+    $user = User::factory()->create([
+        'username' => 'trophytrainer',
+    ]);
+
+    $gamejolt = GamejoltAccount::factory()->create([
+        'user_id' => $user->id,
+    ]);
+
+    GameSave::factory()->create([
+        'user_id' => $user->id,
+    ]);
+
+    GamejoltAccountTrophy::factory()->achieved()->create([
+        'gamejolt_account_id' => $gamejolt->id,
+        'id' => 201,
+        'title' => 'Pokédex',
+        'difficulty' => 'Silver',
+        'description' => 'Fill the Pokédex.',
+        'image_url' => 'https://example.com/trophy.png',
+    ]);
+
+    $this->get(route('member.show', $user->username))
+        ->assertOk()
+        ->assertInertia(fn (Assert $page) => $page
+            ->component('members/show')
+            ->where('member.gameSave.available', true)
+            ->where('member.gameSave.trophies.achieved', 1)
+            ->where('member.gameSave.trophies.total', 1)
+            ->has('member.gameSave.trophies.items', 1)
+            ->where('member.gameSave.trophies.items.0.id', 201)
+            ->where('member.gameSave.trophies.items.0.title', 'Pokédex')
+            ->where('member.gameSave.trophies.items.0.difficulty', 'Silver')
+            ->where('member.gameSave.trophies.items.0.image_url', 'https://example.com/trophy.png')
+            ->where('member.gameSave.trophies.items.0.achieved', true));
 });

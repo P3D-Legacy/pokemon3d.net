@@ -2,6 +2,7 @@ import { Head, usePage } from '@inertiajs/react';
 import { useState } from 'react';
 
 import { PokedexPanel, type PokedexEntry } from '@/components/pokedex-panel';
+import { TrophiesPanel, type TrophyItem } from '@/components/trophies-panel';
 import { Badge } from '@/components/ui/badge';
 import { UserProfile12 } from '@/components/user-profile12';
 import { show as profileShow } from '@/routes/profile';
@@ -41,7 +42,7 @@ type Props = {
             trophies?: {
                 achieved: number;
                 total: number;
-                items: Array<{ title: string; achieved: boolean; description?: string | null }>;
+                items: TrophyItem[];
             };
         };
     };
@@ -202,10 +203,7 @@ export default function MembersShow({ member }: Props) {
                                         ['party', 'Party'],
                                         ['details', 'Details'],
                                         ['pokedex', 'Pokédex'],
-                                        [
-                                            'trophies',
-                                            `In-Game Trophies (${member.gameSave.trophies?.achieved}/${member.gameSave.trophies?.total})`,
-                                        ],
+                                        ['trophies', 'Trophies'],
                                         ['statistics', 'Statistics'],
                                     ].map(([key, label]) => (
                                         <button
@@ -229,13 +227,11 @@ export default function MembersShow({ member }: Props) {
                                         />
                                     )}
                                     {saveTab === 'trophies' && (
-                                        <ul className="flex flex-col gap-2">
-                                            {member.gameSave.trophies?.items.map((trophy) => (
-                                                <li key={trophy.title} className={trophy.achieved ? 'text-green-600' : 'text-slate-400'}>
-                                                    {trophy.title}
-                                                </li>
-                                            ))}
-                                        </ul>
+                                        <TrophiesPanel
+                                            trophies={member.gameSave.trophies?.items ?? []}
+                                            achievedCount={member.gameSave.trophies?.achieved ?? 0}
+                                            totalCount={member.gameSave.trophies?.total ?? 0}
+                                        />
                                     )}
                                     {saveTab === 'statistics' && <JsonBlock value={member.gameSave.statistics} />}
                                 </div>

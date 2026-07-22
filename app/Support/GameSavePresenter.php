@@ -38,9 +38,12 @@ class GameSavePresenter
                 'achieved' => $trophies->where('achieved', true)->count(),
                 'total' => $trophies->count(),
                 'items' => $trophies->map(fn ($trophy): array => [
+                    'id' => (int) $trophy->id,
                     'title' => $trophy->title ?? $trophy->name ?? 'Trophy',
-                    'achieved' => (bool) ($trophy->achieved ?? false),
+                    'difficulty' => $trophy->difficulty ?? null,
                     'description' => $trophy->description ?? null,
+                    'image_url' => $trophy->image_url ?? null,
+                    'achieved' => (bool) ($trophy->achieved ?? false),
                 ])->values()->all(),
             ],
         ];

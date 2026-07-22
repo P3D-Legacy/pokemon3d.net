@@ -38,7 +38,7 @@ const StatsCard5 = ({ title, value, subtitle, iconKey, className }: StatsCard5Pr
         <Card className={cn('w-full', className)}>
             <CardHeader className="flex flex-row items-center justify-between pb-2">
                 <CardTitle className="text-sm font-medium text-muted-foreground">{title}</CardTitle>
-                <div className="rounded-md bg-primary/10 p-2">
+                <div className="bg-primary/10 p-2">
                     <Icon className="size-4 text-primary" />
                 </div>
             </CardHeader>

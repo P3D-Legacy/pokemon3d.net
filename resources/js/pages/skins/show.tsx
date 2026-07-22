@@ -1,7 +1,10 @@
-import { Head, usePage } from '@inertiajs/react';
+import { Head, Link, usePage } from '@inertiajs/react';
+import { ArrowLeftIcon, PaintBrushIcon } from '@phosphor-icons/react';
 
-import SkinCard, { type SkinCardData } from '@/components/skin-card';
-import type { SharedPageProps } from '@/types';
+import SkinCard from '@/components/skin-card';
+import { Button } from '@/components/ui/button';
+import { skinsNewest } from '@/routes';
+import type { SharedPageProps, SkinCardData } from '@/types';
 
 type Props = {
     skin: SkinCardData;
@@ -12,13 +15,30 @@ export default function SkinsShow({ skin }: Props) {
 
     return (
         <>
-            <Head title={`Public Skins: ${skin.name}`} />
+            <Head title={`Skin: ${skin.name}`} />
 
-            <div className="py-12">
-                <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
-                    <div className="mb-6 text-sm text-slate-500 dark:text-slate-400">Skins / Public / {skin.name}</div>
-                    <SkinCard skin={skin} mode="detail" authenticated={Boolean(auth.user)} />
+            <div className="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+                <div className="mb-8 flex flex-col gap-4">
+                    <Button variant="ghost" size="sm" className="w-fit px-0" asChild>
+                        <Link href={skinsNewest.url()}>
+                            <ArrowLeftIcon className="size-4" />
+                            Back to public skins
+                        </Link>
+                    </Button>
+                    <div className="flex flex-col gap-2">
+                        <div className="flex items-center gap-2 text-muted-foreground">
+                            <PaintBrushIcon className="size-5" weight="fill" />
+                            <span className="text-sm">Public skin</span>
+                        </div>
+                        <h1 className="text-3xl font-semibold tracking-tight">{skin.name}</h1>
+                        <p className="text-sm text-muted-foreground">
+                            Uploaded {skin.uploaded_at}
+                            {skin.publisher ? ` by ${skin.publisher.username}` : ''}
+                        </p>
+                    </div>
                 </div>
+
+                <SkinCard skin={skin} mode="detail" authenticated={Boolean(auth.user)} />
             </div>
         </>
     );

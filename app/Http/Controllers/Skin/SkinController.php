@@ -6,16 +6,19 @@ use App\Http\Controllers\Controller;
 use App\Models\Skin;
 use App\Notifications\Skin\LikeNotification;
 use App\Support\SkinPresenter;
+use App\Support\SkinStorage;
 use ByteUnits\Binary;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Notification;
 use Inertia\Inertia;
 use Inertia\Response;
 use League\Flysystem\UnableToReadFile;
+use RuntimeException;
 
 class SkinController extends Controller
 {
@@ -42,40 +45,12 @@ class SkinController extends Controller
 
     public function newestpublicskins(Request $request): Response
     {
-        $user = $request->user();
-        $skins = Skin::query()
-            ->isPublic()
-            ->with('user')
-            ->withCount('likers')
-            ->orderByDesc('created_at')
-            ->paginate(9);
-
-        if ($user) {
-            $user->attachLikeStatus($skins);
-        }
-
-        return Inertia::render('skins/public/newest', [
-            'skins' => $skins->through(fn (Skin $skin): array => SkinPresenter::card($skin, $user)),
-        ]);
+        return $this->publicIndex($request, 'newest');
     }
 
     public function popularpublicskins(Request $request): Response
     {
-        $user = $request->user();
-        $skins = Skin::query()
-            ->isPublic()
-            ->with('user')
-            ->withCount('likers')
-            ->orderByDesc('likers_count')
-            ->paginate(9);
-
-        if ($user) {
-            $user->attachLikeStatus($skins);
-        }
-
-        return Inertia::render('skins/public/popular', [
-            'skins' => $skins->through(fn (Skin $skin): array => SkinPresenter::card($skin, $user)),
-        ]);
+        return $this->publicIndex($request, 'popular');
     }
 
     public function create(Request $request): Response|RedirectResponse
@@ -84,13 +59,20 @@ class SkinController extends Controller
             ->gamejolt->skins()
             ->count();
 
-        if ($skincount >= env('SKIN_MAX_UPLOAD')) {
+        if ($skincount >= config('skins.max_upload')) {
             return redirect()
                 ->route('skins-my')
                 ->with('warning', 'You have reached the maximum amount of skins you can upload.');
         }
 
-        return Inertia::render('skins/create');
+        return Inertia::render('skins/create', [
+            'slots' => [
+                'used' => $skincount,
+                'max' => (int) config('skins.max_upload'),
+            ],
+            'width' => (int) config('skins.width'),
+            'height' => (int) config('skins.height'),
+        ]);
     }
 
     public function store(Request $request): RedirectResponse
@@ -103,21 +85,21 @@ class SkinController extends Controller
             ->gamejolt->skins()
             ->count();
 
-        if ($skincount >= env('SKIN_MAX_UPLOAD')) {
+        if ($skincount >= config('skins.max_upload')) {
             return redirect()
                 ->route('skins-my')
                 ->with('warning', 'You have reached the maximum amount of skins you can upload.');
         }
 
         $request->validate([
-            'image' => ['required', 'image', 'max:2000', 'mimes:png', 'dimensions:ratio=3/4'],
+            'image' => SkinStorage::imageValidationRules(),
             'name' => ['required', 'string', 'max:48'],
             'public' => [''],
             'rules' => ['accepted'],
         ]);
 
         $public = $request->boolean('public');
-        $name = $request->get('name');
+        $name = $request->string('name')->toString();
 
         $skin = Skin::create([
             'owner_id' => $gjid,
@@ -126,49 +108,19 @@ class SkinController extends Controller
             'name' => $name,
         ]);
 
-        $filename = $skin->uuid.'.png';
-        $request->file('image')->storeAs(null, $filename, 'skin');
+        try {
+            SkinStorage::storeLibrary($request->file('image'), $skin->uuid);
+        } catch (RuntimeException) {
+            $skin->forceDelete();
 
-        if (env('DISCORD_SKIN_UPLOAD_WEBHOOK') && $public) {
-            $webhookurl = env('DISCORD_SKIN_UPLOAD_WEBHOOK');
-            $json_data = json_encode(
-                [
-                    'content' => $gju.
-                        ' uploaded a new skin for the public to use! Check it out here: '.
-                        route('skin-show', $skin->uuid),
-                    'tts' => false,
-                    'embeds' => [
-                        [
-                            'title' => $name,
-                            'type' => 'rich',
-                            'description' => 'File size: '.Binary::bytes(Storage::disk('skin')->size($skin->path()))->format(),
-                            'url' => route('skin-show', $skin->uuid),
-                            'timestamp' => Carbon::now()->toIso8601String(),
-                            'color' => hexdec('198754'),
-                            'footer' => [
-                                'text' => $gju,
-                                'icon_url' => $gjau,
-                            ],
-                            'thumbnail' => [
-                                'url' => $skin->urlPath(),
-                            ],
-                            'author' => [
-                                'name' => $gju.' uploaded a skin',
-                            ],
-                        ],
-                    ],
-                ],
-                JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE
-            );
-            $ch = curl_init($webhookurl);
-            curl_setopt($ch, CURLOPT_HTTPHEADER, ['Content-type: application/json']);
-            curl_setopt($ch, CURLOPT_POST, 1);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $json_data);
-            curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-            curl_setopt($ch, CURLOPT_HEADER, 0);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-            curl_exec($ch);
-            curl_close($ch);
+            return redirect()
+                ->route('skin-create')
+                ->with('error', 'Could not store the skin file. Please try again.');
+        }
+
+        $webhook = config('skins.discord_webhook');
+        if ($webhook && $public) {
+            $this->notifyDiscordWebhook($webhook, $skin, $name, $gju, $gjau);
         }
 
         return redirect()
@@ -179,12 +131,12 @@ class SkinController extends Controller
     public function apply(Request $request, string $uuid): RedirectResponse
     {
         $gjid = Auth::user()->gamejolt->id;
-        $filename = $gjid.'.png';
-        $skin = Skin::where('uuid', $uuid)->first();
+        $skin = Skin::query()->where('uuid', $uuid)->first();
         abort_unless($skin, 404);
+        abort_unless($this->viewerCanAccessSkin($skin), 403);
 
         try {
-            Storage::disk('player')->put($filename, Storage::disk('skin')->get($skin->path()));
+            SkinStorage::copyLibraryToPlayer($skin->uuid, $gjid);
         } catch (UnableToReadFile|Exception) {
             return redirect()
                 ->route('skins-my')
@@ -199,13 +151,14 @@ class SkinController extends Controller
     public function like(Request $request, string $uuid): RedirectResponse
     {
         $user = Auth::user();
-        $skin = Skin::where('uuid', $uuid)->first();
+        $skin = Skin::query()->where('uuid', $uuid)->first();
         abort_unless($skin, 404);
+        abort_unless($this->viewerCanAccessSkin($skin), 403);
 
         if ($user->gamejolt->id != $skin->owner_id || config('app.debug')) {
             $user->toggleLike($skin);
             if ($user->hasLiked($skin) && $skin->user) {
-                \Notification::send($skin->user, new LikeNotification($skin, $user));
+                Notification::send($skin->user, new LikeNotification($skin, $user));
             }
         }
 
@@ -215,7 +168,7 @@ class SkinController extends Controller
     public function edit(Request $request, string $uuid): Response|RedirectResponse
     {
         $gjid = Auth::user()->gamejolt->id;
-        $skin = Skin::where('uuid', $uuid)->first();
+        $skin = Skin::query()->where('uuid', $uuid)->first();
         abort_unless($skin, 404);
 
         if ($gjid != $skin->owner_id) {
@@ -229,6 +182,10 @@ class SkinController extends Controller
                 'uuid' => $skin->uuid,
                 'name' => $skin->name,
                 'public' => (bool) $skin->public,
+                'image_url' => SkinStorage::urlLibrary(
+                    $skin->uuid,
+                    $skin->updated_at?->timestamp ?? now()->timestamp
+                ),
             ],
         ]);
     }
@@ -236,7 +193,7 @@ class SkinController extends Controller
     public function update(Request $request, string $uuid): RedirectResponse
     {
         $gjid = Auth::user()->gamejolt->id;
-        $skin = Skin::where('uuid', $uuid)->first();
+        $skin = Skin::query()->where('uuid', $uuid)->first();
         abort_unless($skin, 404);
 
         if ($gjid != $skin->owner_id) {
@@ -252,7 +209,7 @@ class SkinController extends Controller
 
         $skin->update([
             'public' => $request->boolean('public'),
-            'name' => $request->get('name'),
+            'name' => $request->string('name')->toString(),
         ]);
 
         return redirect()
@@ -264,26 +221,19 @@ class SkinController extends Controller
     {
         try {
             $gjid = $request->user()->gamejolt->id;
-            $skin = Skin::where('uuid', $uuid)->first();
+            $skin = Skin::query()->where('uuid', $uuid)->first();
             abort_unless($skin, 404);
 
-            if ($gjid != $skin->gamejoltaccount->id) {
+            if ($gjid != $skin->owner_id) {
                 session()->flash('flash.bannerStyle', 'warning');
                 session()->flash('flash.banner', 'You do not own this skin!');
 
                 return redirect()->route('skins-my');
             }
 
-            $filename = $skin->uuid.'.png';
-            if (! Storage::disk('skin')->exists($filename)) {
-                session()->flash('flash.bannerStyle', 'warning');
-                session()->flash('flash.banner', 'Skin does not exist!');
-
-                return redirect()->route('skins-my');
-            }
-
-            Storage::disk('skin')->delete($filename);
+            SkinStorage::deleteLibrary($skin->uuid);
             $skin->delete();
+
             session()->flash('flash.bannerStyle', 'success');
             session()->flash('flash.banner', 'Skin was deleted!');
 
@@ -293,6 +243,86 @@ class SkinController extends Controller
             session()->flash('flash.banner', 'Something went wrong!');
 
             return redirect()->route('skins-my');
+        }
+    }
+
+    private function publicIndex(Request $request, string $sort): Response
+    {
+        $user = $request->user();
+        $query = Skin::query()
+            ->isPublic()
+            ->with('user')
+            ->withCount('likers');
+
+        if ($sort === 'popular') {
+            $query->orderByDesc('likers_count');
+        } else {
+            $query->orderByDesc('created_at');
+        }
+
+        $skins = $query->paginate(9);
+
+        if ($user) {
+            $user->attachLikeStatus($skins);
+        }
+
+        return Inertia::render('skins/public/index', [
+            'skins' => $skins->through(fn (Skin $skin): array => SkinPresenter::card($skin, $user)),
+            'sort' => $sort,
+        ]);
+    }
+
+    private function viewerCanAccessSkin(Skin $skin): bool
+    {
+        if ($skin->public) {
+            return true;
+        }
+
+        $viewerGamejoltId = Auth::user()?->gamejolt?->id;
+
+        return $viewerGamejoltId !== null && (int) $viewerGamejoltId === (int) $skin->owner_id;
+    }
+
+    private function notifyDiscordWebhook(
+        string $webhookurl,
+        Skin $skin,
+        string $name,
+        string $gju,
+        mixed $gjau,
+    ): void {
+        $payload = [
+            'content' => $gju.
+                ' uploaded a new skin for the public to use! Check it out here: '.
+                route('skin-show', $skin->uuid),
+            'tts' => false,
+            'embeds' => [
+                [
+                    'title' => $name,
+                    'type' => 'rich',
+                    'description' => 'File size: '.(($size = SkinStorage::sizeLibrary($skin->uuid)) !== null
+                        ? Binary::bytes($size)->format()
+                        : 'N/A'),
+                    'url' => route('skin-show', $skin->uuid),
+                    'timestamp' => Carbon::now()->toIso8601String(),
+                    'color' => hexdec('198754'),
+                    'footer' => [
+                        'text' => $gju,
+                        'icon_url' => $gjau,
+                    ],
+                    'thumbnail' => [
+                        'url' => $skin->urlPath(),
+                    ],
+                    'author' => [
+                        'name' => $gju.' uploaded a skin',
+                    ],
+                ],
+            ],
+        ];
+
+        try {
+            Http::timeout(5)->post($webhookurl, $payload);
+        } catch (Exception) {
+            // Webhook failure must not block the upload response.
         }
     }
 }

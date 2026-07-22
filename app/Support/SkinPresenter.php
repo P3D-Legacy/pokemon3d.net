@@ -5,7 +5,6 @@ namespace App\Support;
 use App\Models\Skin;
 use App\Models\User;
 use ByteUnits\Binary;
-use Illuminate\Support\Facades\Storage;
 
 class SkinPresenter
 {
@@ -14,20 +13,21 @@ class SkinPresenter
      */
     public static function card(Skin $skin, ?User $viewer = null): array
     {
-        $exists = Storage::disk('skin')->exists($skin->path());
         $viewerGamejoltId = $viewer?->gamejolt?->id;
         $timezone = $viewer?->timezone ?? config('app.timezone');
+        $fileSize = SkinStorage::sizeLibrary($skin->uuid);
 
         return [
             'uuid' => $skin->uuid,
             'name' => $skin->name,
             'public' => (bool) $skin->public,
             'owner_id' => $skin->owner_id,
-            'image_url' => $exists
-                ? asset('img/skin/'.$skin->path()).'?r='.($skin->updated_at?->timestamp ?? now()->timestamp)
-                : asset('img/noskin.png'),
-            'file_size' => $exists
-                ? Binary::bytes(Storage::disk('skin')->size($skin->path()))->format()
+            'image_url' => SkinStorage::urlLibrary(
+                $skin->uuid,
+                $skin->updated_at?->timestamp ?? now()->timestamp
+            ),
+            'file_size' => $fileSize !== null
+                ? Binary::bytes($fileSize)->format()
                 : 'N/A',
             'likes_count' => (int) ($skin->likers_count ?? $skin->likers()->count()),
             'liked' => (bool) ($skin->has_liked ?? ($viewer ? $skin->isLikedBy($viewer) : false)),

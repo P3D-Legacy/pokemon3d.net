@@ -12,7 +12,7 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
+import { cn, paginationLabel } from '@/lib/utils';
 import type { Paginated } from '@/types';
 
 type Member = {
@@ -42,15 +42,6 @@ function initials(name: string | null, username: string): string {
         .join('')
         .toUpperCase()
         .slice(0, 2);
-}
-
-function paginationLabel(label: string): string {
-    return label
-        .replace(/&laquo;/g, '«')
-        .replace(/&raquo;/g, '»')
-        .replace(/&nbsp;/g, ' ')
-        .replace(/<[^>]*>/g, '')
-        .trim();
 }
 
 export default function MembersIndex({ members }: Props) {

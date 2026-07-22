@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Support\SkinStorage;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -98,13 +99,13 @@ class Skin extends BaseModel
         return $query->where('public', 1);
     }
 
-    public function path()
+    public function path(): string
     {
-        return $this->uuid.'.png';
+        return SkinStorage::libraryPath($this->uuid);
     }
 
-    public function urlPath()
+    public function urlPath(): string
     {
-        return env('APP_URL').'/img/skin/'.$this->path();
+        return SkinStorage::urlLibrary($this->uuid, $this->updated_at?->timestamp);
     }
 }

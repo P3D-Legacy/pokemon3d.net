@@ -1,4 +1,11 @@
 import { Form, Link, router } from '@inertiajs/react';
+import {
+    EyeIcon,
+    FloppyDiskIcon,
+    HeartIcon,
+    PencilSimpleIcon,
+    TrashIcon,
+} from '@phosphor-icons/react';
 import { useState } from 'react';
 
 import {
@@ -9,80 +16,83 @@ import {
     show,
 } from '@/actions/App/Http/Controllers/Skin/SkinController';
 import { destroy as destroyUploaded } from '@/actions/App/Http/Controllers/Skin/UploadedSkinController';
+import SkinImage from '@/components/skin-image';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-
-export type SkinCardData = {
-    uuid: string;
-    name: string;
-    public: boolean;
-    owner_id: number;
-    image_url: string;
-    file_size: string;
-    likes_count: number;
-    liked: boolean;
-    is_owner: boolean;
-    uploaded_at: string;
-    publisher: { username: string; url: string } | null;
-    show_url: string | null;
-};
+import { cn } from '@/lib/utils';
+import type { SkinCardData } from '@/types';
 
 type Props = {
     skin: SkinCardData;
     mode?: 'default' | 'admin' | 'detail';
     authenticated?: boolean;
+    className?: string;
 };
 
-export default function SkinCard({ skin, mode = 'default', authenticated = false }: Props) {
+export default function SkinCard({ skin, mode = 'default', authenticated = false, className }: Props) {
     const [reason, setReason] = useState('');
+    const [processing, setProcessing] = useState(false);
+
+    const runAction = (action: () => void) => {
+        if (processing) {
+            return;
+        }
+
+        setProcessing(true);
+        action();
+    };
 
     return (
-        <div className="flex max-w-md overflow-hidden rounded-lg bg-white shadow-md dark:bg-slate-900">
-            <div className="w-1/4 items-center justify-center pt-4 pl-4">
-                <img className="mx-auto h-32 w-24 object-contain" src={skin.image_url} alt={skin.name} width={96} height={128} />
+        <div
+            className={cn(
+                'flex max-w-md gap-4 border border-border bg-card p-4 transition-colors',
+                mode === 'detail' && 'max-w-2xl',
+                className,
+            )}
+        >
+            <div className="flex shrink-0 items-start justify-center">
+                <SkinImage
+                    className={mode === 'detail' ? 'h-64 w-48' : 'h-32 w-24'}
+                    src={skin.image_url}
+                    alt={skin.name}
+                    width={mode === 'detail' ? 192 : 96}
+                    height={mode === 'detail' ? 256 : 128}
+                />
             </div>
-            <div className="w-3/4 p-4">
-                <h1 className="break-all text-2xl font-bold text-slate-900 dark:text-slate-100">
+            <div className="min-w-0 flex-1">
+                <h2 className="break-all text-lg font-semibold tracking-tight text-foreground">
                     {skin.public && skin.show_url ? (
-                        <Link href={skin.show_url}>{skin.name}</Link>
+                        <Link href={skin.show_url} className="hover:text-primary">
+                            {skin.name}
+                        </Link>
                     ) : (
                         skin.name
                     )}
-                </h1>
-                <p className="mt-2 text-xs text-slate-600 dark:text-slate-200">
-                    {skin.is_owner && (
-                        <>
-                            Public: {skin.public ? 'Yes' : 'No'}
-                            <br />
-                        </>
-                    )}
+                </h2>
+                <div className="mt-2 space-y-1 text-xs text-muted-foreground">
+                    {skin.is_owner && <p>Public: {skin.public ? 'Yes' : 'No'}</p>}
                     {skin.publisher ? (
-                        <>
+                        <p>
                             Published by:{' '}
-                            <Link className="text-green-800 hover:text-green-600 dark:text-green-500 dark:hover:text-green-300" href={skin.publisher.url}>
+                            <Link className="text-primary hover:underline" href={skin.publisher.url}>
                                 {skin.publisher.username}
                             </Link>
-                            <br />
-                        </>
+                        </p>
                     ) : (
-                        <>
-                            Game Jolt ID: {skin.owner_id}
-                            <br />
-                        </>
+                        <p>Game Jolt ID: {skin.owner_id}</p>
                     )}
-                    Uploaded: {skin.uploaded_at}
-                    <br />
-                    File size: {skin.file_size}
-                </p>
-                <div className="item-center mt-2 flex text-sm text-black dark:text-white">
-                    <p>{skin.likes_count} likes</p>
+                    <p>Uploaded: {skin.uploaded_at}</p>
+                    <p>File size: {skin.file_size}</p>
+                    <p className="text-sm text-foreground">{skin.likes_count} likes</p>
                 </div>
 
                 {mode === 'admin' ? (
                     <Form {...destroyUploaded.form(skin.uuid)} className="mt-3 w-full" onSuccess={() => setReason('')}>
-                        {({ processing }) => (
+                        {({ processing: formProcessing }) => (
                             <>
-                                <p className="my-2 m-0 text-xs text-blue-500">Users will be able to see the reason for the deletion!</p>
+                                <p className="mb-2 text-xs text-muted-foreground">
+                                    Users will be able to see the reason for the deletion.
+                                </p>
                                 <Input
                                     name="reason"
                                     value={reason}
@@ -90,60 +100,86 @@ export default function SkinCard({ skin, mode = 'default', authenticated = false
                                     placeholder="Add a legit reason here"
                                     required
                                 />
-                                <Button type="submit" variant="destructive" size="sm" className="mt-2" disabled={processing}>
+                                <Button type="submit" variant="destructive" size="sm" className="mt-2" disabled={formProcessing}>
+                                    <TrashIcon data-icon="inline-start" weight="bold" />
                                     Delete
                                 </Button>
                             </>
                         )}
                     </Form>
                 ) : (
-                    <div className="item-center mt-3 flex flex-wrap gap-2">
+                    <div className="mt-3 flex flex-wrap gap-2">
                         {mode !== 'detail' && skin.public && skin.show_url && (
-                            <Link
-                                href={show.url(skin.uuid)}
-                                className="rounded bg-blue-800 px-2 py-1 text-xs font-bold uppercase text-blue-50"
-                            >
-                                Show
-                            </Link>
+                            <Button variant="outline" size="sm" asChild>
+                                <Link href={show.url(skin.uuid)}>
+                                    <EyeIcon data-icon="inline-start" weight="bold" />
+                                    Show
+                                </Link>
+                            </Button>
                         )}
                         {authenticated && ! skin.is_owner && (
-                            <button
+                            <Button
                                 type="button"
-                                className={`rounded px-2 py-1 text-xs font-bold uppercase ${skin.liked ? 'bg-red-800 text-red-50' : 'bg-red-600 text-red-50'}`}
-                                onClick={() => router.post(like.url(skin.uuid))}
+                                size="sm"
+                                variant={skin.liked ? 'secondary' : 'default'}
+                                disabled={processing}
+                                onClick={() =>
+                                    runAction(() =>
+                                        router.post(like.url(skin.uuid), {}, {
+                                            onFinish: () => setProcessing(false),
+                                        }),
+                                    )
+                                }
                             >
+                                <HeartIcon data-icon="inline-start" weight="fill" />
                                 {skin.liked ? 'Liked' : 'Like'}
-                            </button>
+                            </Button>
                         )}
                         {authenticated && skin.is_owner && (
                             <>
-                                <Link
-                                    href={edit.url(skin.uuid)}
-                                    className="rounded bg-yellow-600 px-2 py-1 text-xs font-bold uppercase text-yellow-50"
-                                >
-                                    Edit
-                                </Link>
-                                <button
+                                <Button variant="outline" size="sm" asChild>
+                                    <Link href={edit.url(skin.uuid)}>
+                                        <PencilSimpleIcon data-icon="inline-start" weight="bold" />
+                                        Edit
+                                    </Link>
+                                </Button>
+                                <Button
                                     type="button"
-                                    className="rounded bg-red-700 px-2 py-1 text-xs font-bold uppercase text-red-50"
+                                    size="sm"
+                                    variant="destructive"
+                                    disabled={processing}
                                     onClick={() => {
                                         if (confirm('Delete this skin?')) {
-                                            router.delete(destroy.url(skin.uuid));
+                                            runAction(() =>
+                                                router.delete(destroy.url(skin.uuid), {
+                                                    onFinish: () => setProcessing(false),
+                                                }),
+                                            );
                                         }
                                     }}
                                 >
+                                    <TrashIcon data-icon="inline-start" weight="bold" />
                                     Delete
-                                </button>
+                                </Button>
                             </>
                         )}
                         {authenticated && (
-                            <button
+                            <Button
                                 type="button"
-                                className="rounded bg-slate-800 px-2 py-1 text-xs font-bold uppercase text-slate-50"
-                                onClick={() => router.post(apply.url(skin.uuid))}
+                                size="sm"
+                                variant="secondary"
+                                disabled={processing}
+                                onClick={() =>
+                                    runAction(() =>
+                                        router.post(apply.url(skin.uuid), {}, {
+                                            onFinish: () => setProcessing(false),
+                                        }),
+                                    )
+                                }
                             >
+                                <FloppyDiskIcon data-icon="inline-start" weight="bold" />
                                 Apply
-                            </button>
+                            </Button>
                         )}
                     </div>
                 )}

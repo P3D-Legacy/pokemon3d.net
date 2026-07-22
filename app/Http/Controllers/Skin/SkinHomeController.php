@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Skin;
 
 use App\Http\Controllers\Controller;
 use App\Support\SkinPresenter;
+use App\Support\SkinStorage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 use Inertia\Response;
 use Spatie\Activitylog\Models\Activity;
@@ -21,10 +21,9 @@ class SkinHomeController extends Controller
 
         $user->attachLikeStatus($skins);
 
-        $playerFilename = $gamejolt->id.'.png';
-        $hasCurrentSkin = Storage::disk('player')->exists($playerFilename);
+        $hasCurrentSkin = SkinStorage::existsPlayer($gamejolt->id);
         $skinCount = $skins->count();
-        $maxUpload = (int) env('SKIN_MAX_UPLOAD', 10);
+        $maxUpload = (int) config('skins.max_upload');
 
         $deleteActivity = Activity::query()
             ->where('description', 'deleted')
@@ -52,7 +51,7 @@ class SkinHomeController extends Controller
             'currentSkin' => [
                 'exists' => $hasCurrentSkin,
                 'image_url' => $hasCurrentSkin
-                    ? asset('player/'.$playerFilename).'?r='.now()->timestamp
+                    ? SkinStorage::urlPlayer($gamejolt->id)
                     : null,
             ],
             'slots' => [
@@ -63,7 +62,8 @@ class SkinHomeController extends Controller
             'importUrl' => route('import', $gamejolt->id),
             'templateUrl' => asset('img/template.png'),
             'deleteActivity' => $deleteActivity,
-            'gamejoltId' => $gamejolt->id,
+            'width' => (int) config('skins.width'),
+            'height' => (int) config('skins.height'),
         ]);
     }
 }

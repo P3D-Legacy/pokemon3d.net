@@ -3,28 +3,52 @@
 use App\Models\GamejoltAccount;
 use App\Models\Skin;
 use App\Models\User;
+use App\Support\SkinPresenter;
+use App\Support\SkinStorage;
+use Database\Seeders\PermissionSeeder;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\File;
 use Inertia\Testing\AssertableInertia as Assert;
 
 function configureSkinDisk(): string
 {
-    $root = storage_path('framework/testing-disks/skin');
-    File::ensureDirectoryExists($root);
+    $skinRoot = storage_path('framework/testing-disks/skin');
+    $playerRoot = storage_path('framework/testing-disks/player');
+    File::ensureDirectoryExists($skinRoot);
+    File::ensureDirectoryExists($playerRoot);
+
     config([
         'filesystems.disks.skin' => [
             'driver' => 'local',
-            'root' => $root,
+            'root' => $skinRoot,
+            'url' => 'http://skin.test',
             'throw' => false,
         ],
         'filesystems.disks.player' => [
             'driver' => 'local',
-            'root' => storage_path('framework/testing-disks/player'),
+            'root' => $playerRoot,
+            'url' => 'http://player.test',
             'throw' => false,
         ],
+        'skins.max_upload' => 10,
+        'skins.width' => 96,
+        'skins.height' => 128,
     ]);
-    File::ensureDirectoryExists(storage_path('framework/testing-disks/player'));
 
-    return $root;
+    return $skinRoot;
+}
+
+function createVerifiedUserWithGamejolt(): array
+{
+    $user = User::factory()->create();
+    $gamejolt = GamejoltAccount::factory()->create(['user_id' => $user->id]);
+
+    return [$user, $gamejolt];
+}
+
+function fakeSkinPng(int $width = 96, int $height = 128): UploadedFile
+{
+    return UploadedFile::fake()->image('skin.png', $width, $height);
 }
 
 test('public skins newest and popular render with inertia', function () {
@@ -33,13 +57,15 @@ test('public skins newest and popular render with inertia', function () {
     $this->get(route('skins-newest'))
         ->assertOk()
         ->assertInertia(fn (Assert $page) => $page
-            ->component('skins/public/newest')
+            ->component('skins/public/index')
+            ->where('sort', 'newest')
             ->has('skins.data'));
 
     $this->get(route('skins-popular'))
         ->assertOk()
         ->assertInertia(fn (Assert $page) => $page
-            ->component('skins/public/popular')
+            ->component('skins/public/index')
+            ->where('sort', 'popular')
             ->has('skins.data'));
 });
 
@@ -71,8 +97,7 @@ test('authenticated user without gamejolt is redirected from skin home', functio
 
 test('authenticated user with gamejolt can open skin home with inertia', function () {
     configureSkinDisk();
-    $user = User::factory()->create();
-    GamejoltAccount::factory()->create(['user_id' => $user->id]);
+    [$user] = createVerifiedUserWithGamejolt();
 
     $this->actingAs($user)
         ->get(route('skin-home'))
@@ -83,12 +108,13 @@ test('authenticated user with gamejolt can open skin home with inertia', functio
             ->has('currentSkin')
             ->has('slots')
             ->has('deleteActivity')
-            ->has('canImport'));
+            ->has('canImport')
+            ->has('width')
+            ->has('height'));
 });
 
 test('skin mutating routes reject get requests', function () {
-    $user = User::factory()->create();
-    GamejoltAccount::factory()->create(['user_id' => $user->id]);
+    [$user] = createVerifiedUserWithGamejolt();
     $skin = Skin::factory()->create();
 
     $this->actingAs($user)
@@ -110,4 +136,137 @@ test('skin mutating routes reject get requests', function () {
     $this->actingAs($user)
         ->get(route('player-skin-duplicate'))
         ->assertMethodNotAllowed();
+});
+
+test('user can upload a valid library skin', function () {
+    configureSkinDisk();
+    [$user, $gamejolt] = createVerifiedUserWithGamejolt();
+
+    $this->actingAs($user)
+        ->post(route('skin-store'), [
+            'name' => 'Test Skin',
+            'image' => fakeSkinPng(),
+            'public' => '1',
+            'rules' => '1',
+        ])
+        ->assertRedirect(route('skins-my'));
+
+    $skin = Skin::query()->where('owner_id', $gamejolt->id)->first();
+    expect($skin)->not->toBeNull()
+        ->and($skin->name)->toBe('Test Skin')
+        ->and(SkinStorage::existsLibrary($skin->uuid))->toBeTrue();
+});
+
+test('skin upload rejects wrong dimensions', function () {
+    configureSkinDisk();
+    [$user] = createVerifiedUserWithGamejolt();
+
+    $this->actingAs($user)
+        ->post(route('skin-store'), [
+            'name' => 'Bad Skin',
+            'image' => fakeSkinPng(64, 64),
+            'rules' => '1',
+        ])
+        ->assertSessionHasErrors('image');
+
+    expect(Skin::query()->count())->toBe(0);
+});
+
+test('owner can delete a skin even when the file is missing', function () {
+    configureSkinDisk();
+    [$user, $gamejolt] = createVerifiedUserWithGamejolt();
+    $skin = Skin::factory()->create([
+        'owner_id' => $gamejolt->id,
+        'user_id' => $user->id,
+    ]);
+
+    expect(SkinStorage::existsLibrary($skin->uuid))->toBeFalse();
+
+    $this->actingAs($user)
+        ->delete(route('skin-destroy', $skin->uuid))
+        ->assertRedirect(route('skins-my'));
+
+    expect(Skin::query()->whereKey($skin->id)->exists())->toBeFalse();
+});
+
+test('apply copies a public skin to the player disk', function () {
+    configureSkinDisk();
+    [$user, $gamejolt] = createVerifiedUserWithGamejolt();
+    $skin = Skin::factory()->create(['public' => true]);
+    SkinStorage::storeLibrary(fakeSkinPng(), $skin->uuid);
+
+    $this->actingAs($user)
+        ->post(route('skin-apply', $skin->uuid))
+        ->assertRedirect(route('skin-home'));
+
+    expect(SkinStorage::existsPlayer($gamejolt->id))->toBeTrue();
+});
+
+test('apply rejects private skins the viewer does not own', function () {
+    configureSkinDisk();
+    [$user] = createVerifiedUserWithGamejolt();
+    $skin = Skin::factory()->create(['public' => false]);
+    SkinStorage::storeLibrary(fakeSkinPng(), $skin->uuid);
+
+    $this->actingAs($user)
+        ->post(route('skin-apply', $skin->uuid))
+        ->assertForbidden();
+});
+
+test('like rejects private skins the viewer does not own', function () {
+    configureSkinDisk();
+    [$user] = createVerifiedUserWithGamejolt();
+    $skin = Skin::factory()->create(['public' => false]);
+
+    $this->actingAs($user)
+        ->post(route('skin-like', $skin->uuid))
+        ->assertForbidden();
+});
+
+test('player skins admin routes require permission', function () {
+    configureSkinDisk();
+    $this->seed(PermissionSeeder::class);
+    [$user] = createVerifiedUserWithGamejolt();
+
+    $this->actingAs($user)
+        ->get(route('player-skins'))
+        ->assertForbidden();
+
+    $user->givePermissionTo('skin-player-destroy');
+
+    $this->actingAs($user)
+        ->get(route('player-skins'))
+        ->assertOk()
+        ->assertInertia(fn (Assert $page) => $page->component('skins/player'));
+});
+
+test('skin presenter uses storage disk urls', function () {
+    configureSkinDisk();
+    $skin = Skin::factory()->create();
+    SkinStorage::storeLibrary(fakeSkinPng(), $skin->uuid);
+
+    $card = SkinPresenter::card($skin);
+
+    expect($card['image_url'])->toStartWith('http://skin.test/')
+        ->and($card['image_url'])->toContain($skin->uuid.'.png')
+        ->and($card['image_url'])->not->toContain('/img/skin/');
+});
+
+test('skin storage existence check does not throw when the disk fails', function () {
+    config([
+        'filesystems.disks.skin' => [
+            'driver' => 's3',
+            'key' => 'invalid',
+            'secret' => 'invalid',
+            'region' => 'auto',
+            'bucket' => 'invalid-bucket',
+            'endpoint' => 'https://example.invalid',
+            'use_path_style_endpoint' => true,
+            'throw' => false,
+            'root' => 'skin',
+        ],
+    ]);
+
+    expect(SkinStorage::existsLibrary('9f788b03-65d5-4420-90e8-d71e80f69fa7'))->toBeFalse()
+        ->and(SkinStorage::sizeLibrary('9f788b03-65d5-4420-90e8-d71e80f69fa7'))->toBeNull();
 });

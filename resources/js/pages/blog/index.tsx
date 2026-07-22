@@ -3,7 +3,7 @@ import { NewspaperIcon } from '@phosphor-icons/react';
 
 import { BlogPostCard } from '@/components/blog-post-card';
 import { Button } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
+import { cn, paginationLabel } from '@/lib/utils';
 import type { Paginated, PostCard } from '@/types';
 
 type Props = {
@@ -17,15 +17,6 @@ type Props = {
         comments: string;
     };
 };
-
-function paginationLabel(label: string): string {
-    return label
-        .replace(/&laquo;/g, '«')
-        .replace(/&raquo;/g, '»')
-        .replace(/&nbsp;/g, ' ')
-        .replace(/<[^>]*>/g, '')
-        .trim();
-}
 
 export default function BlogIndex({ posts, copy }: Props) {
     return (

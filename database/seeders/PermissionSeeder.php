@@ -61,6 +61,8 @@ class PermissionSeeder extends Seeder
         Permission::firstOrCreate(['name' => 'stats']);
         Permission::firstOrCreate(['name' => 'analytics']);
 
+        Permission::firstOrCreate(['name' => 'skin-player-destroy']);
+
         // Get all permissions
         $all_permissions = Permission::all();
 

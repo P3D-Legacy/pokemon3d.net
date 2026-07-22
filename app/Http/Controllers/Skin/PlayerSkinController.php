@@ -5,20 +5,31 @@ namespace App\Http\Controllers\Skin;
 use App\Http\Controllers\Controller;
 use App\Models\GamejoltAccount;
 use App\Models\Skin;
+use App\Support\SkinStorage;
 use ByteUnits\Binary;
+use Exception;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 use Inertia\Response;
+use League\Flysystem\UnableToReadFile;
+use RuntimeException;
 
-class PlayerSkinController extends Controller
+class PlayerSkinController extends Controller implements HasMiddleware
 {
+    public static function middleware(): array
+    {
+        return [
+            new Middleware('permission:skin-player-destroy', only: ['index', 'destroyAsAdmin']),
+        ];
+    }
+
     public function index(): Response
     {
-        $playerskins = collect(Storage::disk('player')->files())
-            ->filter(fn (string $item): bool => str_contains($item, '.png'))
+        $playerskins = collect(SkinStorage::playerFiles())
             ->map(function (string $playerskin): array {
                 $gjid = (int) str_replace('.png', '', basename($playerskin));
                 $account = GamejoltAccount::query()->find($gjid);
@@ -27,8 +38,10 @@ class PlayerSkinController extends Controller
                     'filename' => basename($playerskin),
                     'gjid' => $gjid,
                     'owner_label' => $account?->username ?? __('Game Jolt ID').': '.$gjid,
-                    'image_url' => asset('player/'.basename($playerskin)).'?r='.now()->timestamp,
-                    'file_size' => Binary::bytes(Storage::disk('player')->size($playerskin))->format(),
+                    'image_url' => SkinStorage::urlPlayer($gjid),
+                    'file_size' => ($size = SkinStorage::sizePlayer($gjid)) !== null
+                        ? Binary::bytes($size)->format()
+                        : 'N/A',
                 ];
             })
             ->values()
@@ -44,12 +57,17 @@ class PlayerSkinController extends Controller
         $gjid = Auth::user()->gamejolt->id;
 
         $request->validate([
-            'image' => ['required', 'image', 'max:2000', 'mimes:png', 'dimensions:ratio=3/4'],
+            'image' => SkinStorage::imageValidationRules(),
             'rules' => ['accepted'],
         ]);
 
-        $filename = $gjid.'.png';
-        $request->file('image')->storeAs(null, $filename, 'player');
+        try {
+            SkinStorage::storePlayer($request->file('image'), $gjid);
+        } catch (RuntimeException) {
+            return redirect()
+                ->route('skin-home')
+                ->with('error', 'Could not store the skin file. Please try again.');
+        }
 
         session()->flash('flash.bannerStyle', 'success');
         session()->flash('flash.banner', 'Skin was successfully uploaded! Not seeing it? Refresh the page again.');
@@ -64,20 +82,33 @@ class PlayerSkinController extends Controller
             ->gamejolt->skins()
             ->count();
 
-        if ($skincount >= env('SKIN_MAX_UPLOAD')) {
+        if ($skincount >= config('skins.max_upload')) {
             return redirect()
                 ->route('skins-my')
                 ->with('warning', 'You have reached the maximum amount of skins you can upload.');
         }
 
-        $old_filename = $gjid.'.png';
+        if (! SkinStorage::existsPlayer($gjid)) {
+            return redirect()
+                ->route('skin-home')
+                ->with('error', 'Skin was not found!');
+        }
+
         $skin = Skin::create([
             'owner_id' => $gjid,
-            'user_id' => auth()->user()->id,
+            'user_id' => auth()->id(),
             'name' => 'Import: '.$gjid,
         ]);
-        $new_filename = $skin->uuid.'.png';
-        Storage::disk('skin')->put($new_filename, Storage::disk('player')->get($old_filename));
+
+        try {
+            SkinStorage::copyPlayerToLibrary($gjid, $skin->uuid);
+        } catch (UnableToReadFile|Exception|RuntimeException) {
+            $skin->forceDelete();
+
+            return redirect()
+                ->route('skins-my')
+                ->with('error', 'Could not duplicate skin.');
+        }
 
         return redirect()
             ->route('skins-my')
@@ -87,15 +118,14 @@ class PlayerSkinController extends Controller
     public function destroy(Request $request): RedirectResponse
     {
         $gjid = Auth::user()->gamejolt->id;
-        $filename = $gjid.'.png';
 
-        if (! Storage::disk('player')->exists($filename)) {
+        if (! SkinStorage::existsPlayer($gjid)) {
             return redirect()
                 ->route('skin-home')
                 ->with('error', 'Skin was not found!');
         }
 
-        Storage::disk('player')->delete($filename);
+        SkinStorage::deletePlayer($gjid);
 
         return redirect()
             ->route('skins-my')
@@ -108,8 +138,7 @@ class PlayerSkinController extends Controller
             'reason' => ['required', 'string'],
         ]);
 
-        $filename = $id.'.png';
-        if (! Storage::disk('player')->exists($filename)) {
+        if (! SkinStorage::existsPlayer($id)) {
             return redirect()
                 ->route('player-skins')
                 ->with('error', 'Skin was not found!');
@@ -118,13 +147,13 @@ class PlayerSkinController extends Controller
         activity()
             ->causedBy(Auth::user()->gamejolt)
             ->withProperties([
-                'filename' => $filename,
+                'filename' => SkinStorage::playerPath($id),
                 'gjid' => $id,
-                'reason' => $request->reason,
+                'reason' => $request->string('reason')->toString(),
             ])
             ->log('deleted');
 
-        Storage::disk('player')->delete($filename);
+        SkinStorage::deletePlayer($id);
 
         return redirect()
             ->route('player-skins')

@@ -58,6 +58,21 @@ export type PostCard = {
     url: string;
 };
 
+export type SkinCardData = {
+    uuid: string;
+    name: string;
+    public: boolean;
+    owner_id: number;
+    image_url: string;
+    file_size: string;
+    likes_count: number;
+    liked: boolean;
+    is_owner: boolean;
+    uploaded_at: string;
+    publisher: { username: string; url: string } | null;
+    show_url: string | null;
+};
+
 export type Paginated<T> = {
     data: T[];
     links: Array<{

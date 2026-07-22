@@ -49,7 +49,7 @@ class SyncGameSave extends Command
                 SyncGameSaveForUser::dispatch($gamejolt_account->user);
             }
         } else {
-            $gamejolt_account = GamejoltAccount::firstWhere('gamejolt_user_id', $gamejolt_user_id);
+            $gamejolt_account = GamejoltAccount::firstWhere('id', $gamejolt_user_id);
             SyncGameSaveForUser::dispatch($gamejolt_account->user);
         }
 

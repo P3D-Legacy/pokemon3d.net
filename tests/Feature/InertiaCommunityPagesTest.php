@@ -31,13 +31,27 @@ test('privacy policy page is rendered with inertia', function () {
 })->skip(fn () => ! Jetstream::hasTermsAndPrivacyPolicyFeature(), 'Privacy feature disabled.');
 
 test('members index is rendered with inertia', function () {
-    User::factory()->create();
+    User::factory()->create([
+        'username' => 'listedtrainer',
+        'location' => 'Pallet Town',
+        'last_active_at' => now()->subHour(),
+    ]);
 
     $this->get(route('member.index'))
         ->assertOk()
         ->assertInertia(fn (Assert $page) => $page
             ->component('members/index')
-            ->has('members.data'));
+            ->has('members.data', 1)
+            ->where('members.data.0.username', 'listedtrainer')
+            ->where('members.data.0.location', 'Pallet Town')
+            ->has('members.data.0.joined')
+            ->has('members.data.0.last_online')
+            ->where('members.data.0.has_game_save', false)
+            ->where('members.data.0.has_gamejolt', false)
+            ->has('members.data.0.profile_photo_url')
+            ->has('members.data.0.url')
+            ->has('members.links')
+            ->where('members.per_page', 24));
 });
 
 test('members show is rendered with inertia', function () {

@@ -16,7 +16,10 @@ class MemberController extends Controller
     {
         return Inertia::render('members/index', [
             'members' => User::verified()
-                ->paginate(10)
+                ->with(['gamesave', 'gamejolt'])
+                ->latest('last_active_at')
+                ->paginate(24)
+                ->withQueryString()
                 ->through(fn (User $user): array => MemberPresenter::card($user)),
         ]);
     }

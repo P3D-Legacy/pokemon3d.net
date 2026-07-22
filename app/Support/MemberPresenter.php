@@ -11,11 +11,22 @@ class MemberPresenter
      */
     public static function card(User $user): array
     {
+        $settings = $user->settings();
+
         return [
             'id' => $user->id,
             'username' => $user->username,
-            'name' => $user->name,
+            'name' => $settings->get('name') ? $user->name : null,
             'profile_photo_url' => $user->profile_photo_url,
+            'location' => $user->location,
+            'joined' => $user->created_at?->isoFormat('LL'),
+            'last_online' => $user->last_active_at
+                ? (now()->subDay()->greaterThan($user->last_active_at)
+                    ? $user->last_active_at->isoFormat('LL')
+                    : $user->last_active_at->diffForHumans())
+                : null,
+            'has_game_save' => $user->gamesave !== null,
+            'has_gamejolt' => $user->gamejolt !== null,
             'url' => route('member.show', $user->username),
         ];
     }

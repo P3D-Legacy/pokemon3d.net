@@ -124,7 +124,7 @@ export function DetailsPanel({ details }: DetailsPanelProps) {
     }
 
     return (
-        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+        <div className="grid w-full min-w-0 grid-cols-1 gap-3 sm:grid-cols-2">
             {rows.map((row) => {
                 const Icon = row.key === 'Gender' ? genderIcon(row.value) : row.icon;
 

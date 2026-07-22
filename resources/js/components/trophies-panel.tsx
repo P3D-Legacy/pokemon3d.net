@@ -81,7 +81,7 @@ export function TrophiesPanel({ trophies, achievedCount, totalCount }: TrophiesP
     });
 
     return (
-        <div className="flex flex-col gap-4">
+        <div className="flex w-full min-w-0 flex-col gap-4">
             <div className="flex flex-col gap-3">
                 <div className="flex flex-wrap items-end justify-between gap-3">
                     <div className="flex flex-wrap gap-4 text-sm">

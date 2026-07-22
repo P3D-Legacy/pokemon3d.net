@@ -95,6 +95,26 @@ it('skips unsuccessful datastore keys that are not known hard failures', functio
         ->and($gameSave->apricorns)->toBe('');
 });
 
+it('aborts without retrying when stored GameJolt credentials are rejected', function () {
+    $user = User::factory()->create();
+    GamejoltAccount::factory()->create(['user_id' => $user->id]);
+
+    $this->mock(GameJoltDataStoreGateway::class, function (MockInterface $mock) {
+        $mock->shouldReceive('fetch')
+            ->once()
+            ->andReturn([
+                'response' => [
+                    'success' => 'false',
+                    'message' => 'No such user with the credentials passed in could be found.',
+                ],
+            ]);
+    });
+
+    SyncGameSaveForUser::dispatchSync($user->fresh());
+
+    expect(GameSave::where('user_id', $user->id)->exists())->toBeFalse();
+});
+
 it('throws on hard GameJolt datastore failures', function () {
     $user = User::factory()->create();
     GamejoltAccount::factory()->create(['user_id' => $user->id]);
@@ -105,7 +125,7 @@ it('throws on hard GameJolt datastore failures', function () {
             ->andReturn([
                 'response' => [
                     'success' => 'false',
-                    'message' => 'Invalid user token.',
+                    'message' => 'Game ID is invalid or not specified.',
                 ],
             ]);
     });

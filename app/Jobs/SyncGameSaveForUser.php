@@ -125,6 +125,19 @@ class SyncGameSaveForUser implements ShouldBeUnique, ShouldQueue
 
             $apiMessage = $this->responseMessage($response);
 
+            if ($this->isCredentialFailureResponse($response)) {
+                Log::warning('Game save sync aborted: stored GameJolt credentials were rejected.', [
+                    'column' => $column,
+                    'datastore_key' => $datastoreKey,
+                    'gamejolt_user_id' => $gamejoltUserId,
+                    'gamejolt_username' => $gamejoltAccount->username,
+                    'api_message' => $apiMessage,
+                    'raw_result' => $dsResult,
+                ]);
+
+                return;
+            }
+
             // Datastore keys are optional per player. Only known auth/config errors are hard failures.
             if ($this->isHardFailureResponse($response)) {
                 Log::warning('Game save datastore fetch failed with a hard error.', [
@@ -231,9 +244,46 @@ class SyncGameSaveForUser implements ShouldBeUnique, ShouldQueue
     /**
      * @param  array<string, mixed>  $response
      */
+    private function isCredentialFailureResponse(array $response): bool
+    {
+        if ($this->isSuccessfulResponse($response)) {
+            return false;
+        }
+
+        $message = strtolower($this->responseMessage($response) ?? '');
+
+        if ($message === '') {
+            return false;
+        }
+
+        $credentialFailureNeedles = [
+            'no such user with the credentials passed in could be found',
+            'invalid user token',
+            'incorrect credentials',
+            'incorrect user credentials',
+            'the user could not be found',
+            'user could not be found',
+        ];
+
+        foreach ($credentialFailureNeedles as $needle) {
+            if (str_contains($message, $needle)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * @param  array<string, mixed>  $response
+     */
     private function isHardFailureResponse(array $response): bool
     {
-        if ($this->isSuccessfulResponse($response) || $this->isMissingKeyResponse($response)) {
+        if (
+            $this->isSuccessfulResponse($response)
+            || $this->isMissingKeyResponse($response)
+            || $this->isCredentialFailureResponse($response)
+        ) {
             return false;
         }
 
@@ -244,11 +294,6 @@ class SyncGameSaveForUser implements ShouldBeUnique, ShouldQueue
         }
 
         $hardFailureNeedles = [
-            'invalid user token',
-            'incorrect credentials',
-            'incorrect user credentials',
-            'the user could not be found',
-            'user could not be found',
             'game id is invalid',
             'no game found',
             'must enter a valid',

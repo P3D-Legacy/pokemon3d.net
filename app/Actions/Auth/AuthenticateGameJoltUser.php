@@ -10,6 +10,8 @@ use Harrk\GameJoltApi\GamejoltConfig;
 
 class AuthenticateGameJoltUser
 {
+    public function __construct(private readonly ?GamejoltApi $api = null) {}
+
     /**
      * Authenticate a user via Game Jolt credentials.
      *
@@ -17,7 +19,7 @@ class AuthenticateGameJoltUser
      */
     public function __invoke(string $username, string $token): User|string
     {
-        $api = new GamejoltApi(new GamejoltConfig(
+        $api = $this->api ?? new GamejoltApi(new GamejoltConfig(
             (string) config('services.gamejolt.game_id'),
             (string) config('services.gamejolt.private_key'),
         ));
@@ -50,7 +52,11 @@ class AuthenticateGameJoltUser
             return 'Could not find the user associated with this Game Jolt Account.';
         }
 
-        $gamejoltAccount->touchVerify();
+        // Persist the credentials that just authenticated so queued sync jobs use a valid token.
+        $gamejoltAccount->username = $username;
+        $gamejoltAccount->token = $token;
+        $gamejoltAccount->verified_at = $gamejoltAccount->freshTimestamp();
+        $gamejoltAccount->save();
 
         return $user;
     }

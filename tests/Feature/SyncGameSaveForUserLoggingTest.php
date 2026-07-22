@@ -8,7 +8,7 @@ use App\Models\User;
 it('aborts without writing a game save when the user has no linked GameJolt account', function () {
     $user = User::factory()->create();
 
-    (new SyncGameSaveForUser($user))->handle();
+    SyncGameSaveForUser::dispatchSync($user);
 
     expect(GameSave::where('user_id', $user->id)->exists())->toBeFalse();
 });
@@ -22,7 +22,7 @@ it('aborts without writing a game save when GameJolt credentials are missing', f
     $user = User::factory()->create();
     GamejoltAccount::factory()->create(['user_id' => $user->id]);
 
-    (new SyncGameSaveForUser($user->fresh()))->handle();
+    SyncGameSaveForUser::dispatchSync($user->fresh());
 
     expect(GameSave::where('user_id', $user->id)->exists())->toBeFalse();
 });

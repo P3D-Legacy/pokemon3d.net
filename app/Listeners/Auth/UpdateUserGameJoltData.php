@@ -6,6 +6,7 @@ use App\Jobs\SyncGameSaveForUser;
 use App\Jobs\SyncGameSaveGamejoltAccountTrophies;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Bus;
 
 class UpdateUserGameJoltData
 {
@@ -35,8 +36,9 @@ class UpdateUserGameJoltData
             return;
         }
 
-        // Dispatch job to update user data
-        SyncGameSaveForUser::dispatch($user);
-        SyncGameSaveGamejoltAccountTrophies::dispatch($user);
+        Bus::chain([
+            new SyncGameSaveForUser($user),
+            new SyncGameSaveGamejoltAccountTrophies($user),
+        ])->dispatch();
     }
 }

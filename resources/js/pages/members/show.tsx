@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 import { DetailsPanel, type PlayerDetails } from '@/components/details-panel';
 import { PartyPanel, type PartyMember } from '@/components/party-panel';
-import { PokedexPanel, type PokedexEntry } from '@/components/pokedex-panel';
+import { PokedexPanel, type PokedexDefinition } from '@/components/pokedex-panel';
 import { StatisticsPanel, type StatisticItem } from '@/components/statistics-panel';
 import { TrophiesPanel, type TrophyItem } from '@/components/trophies-panel';
 import { Badge } from '@/components/ui/badge';
@@ -40,7 +40,7 @@ type Props = {
             seen_count?: number;
             party?: PartyMember[];
             details?: PlayerDetails;
-            pokedex?: PokedexEntry[];
+            pokedexes?: PokedexDefinition[];
             statistics?: StatisticItem[];
             trophies?: {
                 achieved: number;
@@ -222,11 +222,7 @@ export default function MembersShow({ member }: Props) {
                                     {saveTab === 'party' && <PartyPanel party={member.gameSave.party ?? []} />}
                                     {saveTab === 'details' && <DetailsPanel details={member.gameSave.details ?? {}} />}
                                     {saveTab === 'pokedex' && (
-                                        <PokedexPanel
-                                            pokedex={member.gameSave.pokedex ?? []}
-                                            caughtCount={member.gameSave.caught_count ?? 0}
-                                            seenCount={member.gameSave.seen_count ?? 0}
-                                        />
+                                        <PokedexPanel pokedexes={member.gameSave.pokedexes ?? []} />
                                     )}
                                     {saveTab === 'trophies' && (
                                         <TrophiesPanel

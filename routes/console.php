@@ -7,6 +7,7 @@ use App\Console\Commands\NotifyGameUpdate;
 use App\Console\Commands\PingAllServers;
 use App\Console\Commands\SkinUserUpdate;
 use App\Console\Commands\SyncGameVersion;
+use App\Console\Commands\SyncPokedexFromGame;
 use Illuminate\Queue\Console\PruneBatchesCommand;
 use Illuminate\Queue\Console\PruneFailedJobsCommand;
 use Illuminate\Support\Facades\Schedule;
@@ -24,3 +25,4 @@ Schedule::command('disposable:update')->daily();
 // Weekly commands
 Schedule::command(PruneFailedJobsCommand::class)->weekly();
 Schedule::command(CleanUpActivity::class)->weekly();
+Schedule::command(SyncPokedexFromGame::class)->weekly();

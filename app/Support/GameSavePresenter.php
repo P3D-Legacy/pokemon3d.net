@@ -2,6 +2,7 @@
 
 namespace App\Support;
 
+use App\Models\Pokedex;
 use App\Models\User;
 
 class GameSavePresenter
@@ -24,6 +25,24 @@ class GameSavePresenter
         }
 
         $trophies = $gamejolt->trophies ?? collect();
+        $pokedexes = Pokedex::query()
+            ->orderBy('id')
+            ->get()
+            ->map(function (Pokedex $pokedex) use ($gamesave): array {
+                $entries = $gamesave->getPokedexByIds($pokedex->pokemon_ids ?? []);
+                $caughtCount = count(array_filter($entries, fn (array $entry): bool => $entry['caught']));
+                $seenCount = count(array_filter($entries, fn (array $entry): bool => $entry['seen']));
+
+                return [
+                    'slug' => $pokedex->slug,
+                    'name' => $pokedex->name,
+                    'caught_count' => $caughtCount,
+                    'seen_count' => $seenCount,
+                    'entries' => $entries,
+                ];
+            })
+            ->values()
+            ->all();
 
         return [
             'available' => true,
@@ -32,7 +51,7 @@ class GameSavePresenter
             'seen_count' => $gamesave->getSeenPokemonCount(),
             'party' => array_values($gamesave->getParty()),
             'details' => $gamesave->getPlayerDataDetails(),
-            'pokedex' => array_values($gamesave->getPokedex()),
+            'pokedexes' => $pokedexes,
             'statistics' => array_values($gamesave->getStatistics()),
             'trophies' => [
                 'achieved' => $trophies->where('achieved', true)->count(),

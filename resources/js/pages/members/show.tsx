@@ -84,7 +84,6 @@ export default function MembersShow({ member }: Props) {
                             username: `@${member.username}`,
                             avatar: member.profile_photo_url,
                             bio: member.about.about ?? undefined,
-                            verified: member.achievements.length > 0,
                         }}
                         stats={stats}
                     >

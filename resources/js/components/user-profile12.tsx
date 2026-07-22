@@ -1,5 +1,5 @@
 import { Link } from '@inertiajs/react';
-import { ChatCircleIcon, PencilSimpleIcon, PlusIcon, SealCheckIcon } from '@phosphor-icons/react';
+import { ChatCircleIcon, PencilSimpleIcon, PlusIcon } from '@phosphor-icons/react';
 import type { ReactNode } from 'react';
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -18,11 +18,10 @@ interface User {
     avatar?: string;
     coverImage?: string;
     bio?: string;
-    verified?: boolean;
 }
 
 interface UserProfile12Props {
-    user?: User;
+    user: User;
     stats?: Stat[];
     className?: string;
     coverClassName?: string;
@@ -32,26 +31,15 @@ interface UserProfile12Props {
 }
 
 const UserProfile12 = ({
-    user = {
-        name: 'Alex Morgan',
-        username: '@Alex_Morgan',
-        avatar: 'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/avatar/avatar8.jpg',
-        coverImage:
-            'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/photos/pawel-czerwinski-O4fAgtXLRwI-unsplash.jpg',
-        bio: 'Full-stack developer passionate about building beautiful, performant web applications. Open source contributor and TypeScript enthusiast.',
-        verified: true,
-    },
-    stats = [
-        { label: 'Posts', value: '847' },
-        { label: 'Following', value: '312' },
-        { label: 'Followers', value: '89k' },
-    ],
+    user,
+    stats,
     className,
     coverClassName,
-    editHref = null,
-    showFollowActions = true,
+    editHref,
+    showFollowActions,
     children,
 }: UserProfile12Props) => {
+    const profileStats = stats ?? [];
     const initials = user.name
         .split(' ')
         .filter(Boolean)
@@ -85,10 +73,7 @@ const UserProfile12 = ({
                 ) : null}
 
                 <div className="mt-3">
-                    <div className="flex items-center gap-2">
-                        <h2 className="text-2xl font-bold">{user.name}</h2>
-                        {user.verified ? <SealCheckIcon className="size-6 text-primary" weight="fill" /> : null}
-                    </div>
+                    <h2 className="text-2xl font-bold">{user.name}</h2>
                     <p className="text-muted-foreground">{user.username}</p>
                 </div>
 
@@ -106,9 +91,9 @@ const UserProfile12 = ({
 
                 {user.bio ? <p className="mt-5 text-sm text-muted-foreground">{user.bio}</p> : null}
 
-                {stats.length > 0 ? (
+                {profileStats.length > 0 ? (
                     <div className="mt-6 flex items-center justify-between border-t pt-6">
-                        {stats.map((stat) => (
+                        {profileStats.map((stat) => (
                             <div key={stat.label} className="text-center">
                                 <div className="text-2xl font-bold">{stat.value}</div>
                                 <div className="text-sm text-muted-foreground">{stat.label}</div>

@@ -85,7 +85,8 @@ test('servers index is rendered with inertia', function () {
         ->assertInertia(fn (Assert $page) => $page
             ->component('servers/index')
             ->has('servers')
-            ->has('myServers'));
+            ->has('myServers')
+            ->has('canCreate'));
 });
 
 test('authenticated users can create a server', function () {

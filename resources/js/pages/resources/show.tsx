@@ -1,7 +1,36 @@
 import { Form, Head, Link, usePage } from '@inertiajs/react';
-import { useState } from 'react';
+import {
+    BooksIcon,
+    DownloadSimpleIcon,
+    DotsThreeIcon,
+    EyeIcon,
+    HeartIcon,
+    PencilSimpleIcon,
+    PlusIcon,
+    StarIcon,
+    TrashIcon,
+} from '@phosphor-icons/react';
+import { useState, type ReactNode } from 'react';
 
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogFooter,
+    DialogHeader,
+    DialogTitle,
+} from '@/components/ui/dialog';
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+import { cn } from '@/lib/utils';
 import { deleteMethod, edit, like, rate, index as resourceIndex } from '@/routes/resource';
 import { create as createUpdate } from '@/routes/resource/updates';
 import type { SharedPageProps } from '@/types';
@@ -68,23 +97,35 @@ type Props = {
     };
 };
 
-function Stars({ count }: { count: number }) {
+function Stars({ count, size = 'size-3.5' }: { count: number; size?: string }) {
     return (
-        <span className="inline-flex text-yellow-500" aria-hidden>
+        <span className="inline-flex items-center gap-0.5" aria-label={`${count} out of 5 stars`}>
             {Array.from({ length: 5 }, (_, index) => (
-                <span key={index} className={index < count ? 'opacity-100' : 'opacity-30'}>
-                    ★
-                </span>
+                <StarIcon
+                    key={index}
+                    className={cn(size, index < count ? 'text-amber-500' : 'text-muted-foreground/35')}
+                    weight="fill"
+                />
             ))}
         </span>
     );
 }
 
+function initials(name: string): string {
+    return name
+        .split(' ')
+        .filter(Boolean)
+        .map((part) => part[0] ?? '')
+        .join('')
+        .toUpperCase()
+        .slice(0, 2);
+}
+
 export default function ResourceShow({ resource, copy }: Props) {
     const { auth } = usePage<SharedPageProps>().props;
-    const [menuOpen, setMenuOpen] = useState(false);
     const [activeUpdate, setActiveUpdate] = useState<(typeof resource.updates)[number] | null>(null);
-    const latestUpdate = resource.updates.find((update) => update.id === resource.latest_update_id) ?? resource.updates[0];
+    const latestUpdate =
+        resource.updates.find((update) => update.id === resource.latest_update_id) ?? resource.updates[0];
     const isOwner =
         resource.permissions.can_update || resource.permissions.can_delete || resource.permissions.can_post_update;
 
@@ -92,234 +133,261 @@ export default function ResourceShow({ resource, copy }: Props) {
         <>
             <Head title={resource.name} />
 
-            <div className="mx-auto max-w-7xl py-10 sm:px-6 lg:px-8">
-                <nav className="mb-6 px-2 text-sm text-slate-500 sm:px-0">
-                    <Link href={resourceIndex.url()} className="hover:underline">
+            <div className="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+                <nav className="mb-6 flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
+                    <Link href={resourceIndex.url()} className="hover:text-foreground">
                         {copy.resources}
                     </Link>
-                    {resource.category && (
+                    {resource.category ? (
                         <>
-                            <span className="mx-2">/</span>
-                            <Link href={resource.category.url} className="hover:underline">
+                            <span>/</span>
+                            <Link href={resource.category.url} className="hover:text-foreground">
                                 {resource.category.name}
                             </Link>
                         </>
-                    )}
-                    <span className="mx-2">/</span>
-                    <span className="text-slate-700 dark:text-slate-300">{resource.name}</span>
+                    ) : null}
+                    <span>/</span>
+                    <span className="text-foreground">{resource.name}</span>
                 </nav>
 
-                <div className="mb-4 grid grid-rows-2 gap-4 px-2 sm:grid-flow-col sm:grid-cols-3 sm:grid-rows-none sm:px-0">
-                    <div className="text-2xl sm:col-span-2 dark:text-white">
-                        {resource.name} <span className="text-slate-400 dark:text-slate-500">{resource.version}</span>
+                <div className="mb-6 flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+                    <div className="flex min-w-0 flex-col gap-2">
+                        <div className="flex items-center gap-2 text-muted-foreground">
+                            <BooksIcon className="size-5" weight="fill" />
+                            <span className="text-sm">{copy.resources}</span>
+                        </div>
+                        <h1 className="flex flex-wrap items-center gap-2 text-3xl font-semibold tracking-tight">
+                            <span>{resource.name}</span>
+                            <Badge variant="secondary">{resource.version}</Badge>
+                        </h1>
+                        <p className="text-sm text-muted-foreground">{resource.brief}</p>
                     </div>
-                    <div className="flex justify-end gap-1">
-                        {auth.user && resource.permissions.can_like && (
+
+                    <div className="flex flex-wrap items-center gap-2">
+                        {auth.user && resource.permissions.can_like ? (
                             <Form {...like.form(resource.uuid)}>
                                 {({ processing }) => (
-                                    <Button type="submit" variant="secondary" size="sm" disabled={processing}>
+                                    <Button type="submit" variant="outline" size="sm" disabled={processing}>
+                                        <HeartIcon
+                                            data-icon="inline-start"
+                                            weight={resource.likes.liked ? 'fill' : 'regular'}
+                                        />
                                         {resource.likes.liked ? copy.unlike : copy.like} ({resource.likes.count})
                                     </Button>
                                 )}
                             </Form>
-                        )}
-                        {auth.user && resource.permissions.can_rate && (
-                            <Button asChild size="sm" className="bg-sky-600 text-sky-100 hover:bg-sky-700">
-                                <Link href={rate.url(resource.uuid)}>{copy.leaveRating}</Link>
+                        ) : null}
+                        {auth.user && resource.permissions.can_rate ? (
+                            <Button size="sm" variant="secondary" asChild>
+                                <Link href={rate.url(resource.uuid)}>
+                                    <StarIcon data-icon="inline-start" weight="fill" />
+                                    {copy.leaveRating}
+                                </Link>
                             </Button>
-                        )}
-                        {latestUpdate && (
-                            <Button asChild variant="brand" size="sm">
-                                <a href={latestUpdate.download_url}>{copy.download}</a>
+                        ) : null}
+                        {latestUpdate ? (
+                            <Button size="sm" asChild>
+                                <a href={latestUpdate.download_url}>
+                                    <DownloadSimpleIcon data-icon="inline-start" weight="fill" />
+                                    {copy.download}
+                                </a>
                             </Button>
-                        )}
-                        {auth.user && isOwner && (
-                            <div className="relative">
-                                <Button type="button" variant="secondary" size="sm" onClick={() => setMenuOpen((value) => ! value)}>
-                                    ⋯
-                                </Button>
-                                {menuOpen && (
-                                    <div className="absolute right-0 z-10 mt-2 w-48 rounded-md border border-slate-200 bg-white py-2 shadow-md dark:border-slate-800 dark:bg-slate-900">
-                                        {resource.permissions.can_post_update && (
-                                            <Link
-                                                href={createUpdate.url(resource.uuid)}
-                                                className="block px-4 py-2 text-sm text-slate-700 hover:bg-green-700 hover:text-white dark:text-slate-300"
-                                            >
+                        ) : null}
+                        {auth.user && isOwner ? (
+                            <DropdownMenu>
+                                <DropdownMenuTrigger asChild>
+                                    <Button type="button" variant="outline" size="icon-sm" aria-label="Manage resource">
+                                        <DotsThreeIcon weight="bold" />
+                                    </Button>
+                                </DropdownMenuTrigger>
+                                <DropdownMenuContent align="end">
+                                    {resource.permissions.can_post_update ? (
+                                        <DropdownMenuItem asChild>
+                                            <Link href={createUpdate.url(resource.uuid)}>
+                                                <PlusIcon />
                                                 {copy.postUpdate}
                                             </Link>
-                                        )}
-                                        {resource.permissions.can_update && (
-                                            <Link
-                                                href={edit.url(resource.uuid)}
-                                                className="block px-4 py-2 text-sm text-slate-700 hover:bg-green-700 hover:text-white dark:text-slate-300"
-                                            >
+                                        </DropdownMenuItem>
+                                    ) : null}
+                                    {resource.permissions.can_update ? (
+                                        <DropdownMenuItem asChild>
+                                            <Link href={edit.url(resource.uuid)}>
+                                                <PencilSimpleIcon />
                                                 {copy.edit}
                                             </Link>
-                                        )}
-                                        {resource.permissions.can_delete && (
-                                            <Link
-                                                href={deleteMethod.url(resource.uuid)}
-                                                className="block px-4 py-2 text-sm text-slate-700 hover:bg-red-700 hover:text-white dark:text-slate-300"
-                                            >
+                                        </DropdownMenuItem>
+                                    ) : null}
+                                    {resource.permissions.can_delete ? (
+                                        <DropdownMenuItem asChild variant="destructive">
+                                            <Link href={deleteMethod.url(resource.uuid)}>
+                                                <TrashIcon />
                                                 {copy.delete}
                                             </Link>
-                                        )}
-                                    </div>
-                                )}
-                            </div>
-                        )}
+                                        </DropdownMenuItem>
+                                    ) : null}
+                                </DropdownMenuContent>
+                            </DropdownMenu>
+                        ) : null}
                     </div>
                 </div>
 
-                <div className="w-full rounded-lg bg-white p-4 shadow-md dark:bg-slate-900 dark:shadow-slate-700">
-                    <div className="grid grid-rows-2 gap-4 sm:grid-cols-4 sm:grid-rows-none">
-                        <div className="sm:col-span-3">
-                            <div className="mb-4 text-xs text-slate-400">{resource.brief}</div>
+                <div className="mb-8 grid grid-cols-1 gap-4 lg:grid-cols-3">
+                    <Card className="lg:col-span-2">
+                        <CardContent className="pt-(--card-spacing)">
                             <div
                                 className="prose dark:prose-invert max-w-none"
                                 dangerouslySetInnerHTML={{ __html: resource.description_html }}
                             />
-                        </div>
-                        <div className="flex text-xs text-slate-500 sm:flex-col sm:justify-center dark:text-slate-300">
-                            <div className="rounded bg-slate-100 p-4 dark:bg-slate-800">
-                                <div className="flex justify-between">
-                                    <span>{copy.author}:</span>
-                                    <Link href={resource.author.url} className="text-green-400 hover:underline">
-                                        {resource.author.username}
-                                    </Link>
-                                </div>
-                                <div className="flex justify-between">
-                                    <span>{copy.rating}:</span>
-                                    <span className="flex items-center gap-1">
-                                        <Stars count={resource.rating.stars} />
-                                        {resource.rating.average} ({resource.rating.count})
-                                    </span>
-                                </div>
-                                <div className="flex justify-between">
-                                    <span>{copy.downloads}:</span>
-                                    <span>{resource.downloads}</span>
-                                </div>
-                                <div className="flex justify-between">
-                                    <span>{copy.views}:</span>
-                                    <span>{resource.views}</span>
-                                </div>
-                                <div className="flex justify-between">
-                                    <span>{copy.created}:</span>
-                                    <span>{resource.created_at}</span>
-                                </div>
-                                <div className="flex justify-between">
-                                    <span>{copy.updated}:</span>
-                                    <span>{resource.updated_at}</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                        </CardContent>
+                    </Card>
+
+                    <Card>
+                        <CardHeader>
+                            <CardTitle className="text-sm font-medium text-muted-foreground">Details</CardTitle>
+                        </CardHeader>
+                        <CardContent className="flex flex-col gap-3 text-sm">
+                            <DetailRow label={copy.author}>
+                                <Link href={resource.author.url} className="font-medium text-primary hover:underline">
+                                    {resource.author.username}
+                                </Link>
+                            </DetailRow>
+                            <DetailRow label={copy.rating}>
+                                <span className="inline-flex items-center gap-1.5">
+                                    <Stars count={resource.rating.stars} />
+                                    {resource.rating.average} ({resource.rating.count})
+                                </span>
+                            </DetailRow>
+                            <DetailRow label={copy.downloads}>{resource.downloads}</DetailRow>
+                            <DetailRow label={copy.views}>
+                                <span className="inline-flex items-center gap-1.5">
+                                    <EyeIcon className="size-3.5 text-muted-foreground" weight="fill" />
+                                    {resource.views}
+                                </span>
+                            </DetailRow>
+                            <DetailRow label={copy.created}>{resource.created_at}</DetailRow>
+                            <DetailRow label={copy.updated}>{resource.updated_at}</DetailRow>
+                        </CardContent>
+                    </Card>
                 </div>
 
-                <div className="mx-auto mt-10 flex w-full flex-col overflow-hidden rounded-lg bg-white shadow-md dark:bg-slate-900 dark:shadow-slate-700">
-                    <div className="w-full border-b px-4 py-5 sm:px-6 dark:border-slate-700">
-                        <h3 className="text-lg font-medium text-slate-900 dark:text-white">{copy.updates}</h3>
-                    </div>
-                    <div className="flex w-full flex-col divide-y dark:divide-slate-700">
-                        {resource.updates.length > 0 ? (
-                            resource.updates.map((update) => (
-                                <div key={update.id} className="flex w-full items-center justify-between gap-6 p-4 dark:text-white">
-                                    <button
-                                        type="button"
-                                        className="text-left text-green-400 hover:underline"
-                                        onClick={() => setActiveUpdate(update)}
-                                    >
-                                        {update.title}
-                                    </button>
-                                    <div className="flex-1 text-slate-400">{update.description_excerpt}</div>
-                                    <div className="text-sm">{update.game_version}</div>
-                                    <div className="text-sm">{update.created_at}</div>
-                                    <div className="text-sm">
-                                        {update.downloads} {copy.downloads.toLowerCase()}
+                <section className="mb-8 flex flex-col gap-4">
+                    <h2 className="text-lg font-semibold tracking-tight">{copy.updates}</h2>
+                    {resource.updates.length === 0 ? (
+                        <div className="border border-border bg-muted/20 px-6 py-10 text-center text-sm text-muted-foreground">
+                            {copy.nothingFound}
+                        </div>
+                    ) : (
+                        <div className="flex flex-col gap-3">
+                            {resource.updates.map((update) => (
+                                <button
+                                    key={update.id}
+                                    type="button"
+                                    onClick={() => setActiveUpdate(update)}
+                                    className="flex min-w-0 flex-col gap-2 border border-border bg-card p-4 text-left transition-colors hover:border-primary hover:bg-primary/5 sm:flex-row sm:items-center sm:justify-between"
+                                >
+                                    <div className="min-w-0 flex-1">
+                                        <div className="font-medium text-primary">{update.title}</div>
+                                        <p className="mt-1 line-clamp-2 text-sm text-muted-foreground">
+                                            {update.description_excerpt}
+                                        </p>
                                     </div>
-                                </div>
-                            ))
-                        ) : (
-                            <div className="flex w-full items-center justify-center p-4">
-                                <p className="text-slate-400">{copy.nothingFound}</p>
-                            </div>
-                        )}
-                    </div>
-                </div>
+                                    <div className="flex flex-wrap items-center gap-2 text-xs text-muted-foreground sm:justify-end">
+                                        {update.game_version ? <Badge variant="outline">{update.game_version}</Badge> : null}
+                                        <span>{update.created_at}</span>
+                                        <span>
+                                            {update.downloads} {copy.downloads.toLowerCase()}
+                                        </span>
+                                    </div>
+                                </button>
+                            ))}
+                        </div>
+                    )}
+                </section>
 
-                <div className="mx-auto mt-10 flex w-full flex-col overflow-hidden rounded-lg bg-white shadow-md dark:bg-slate-900 dark:shadow-slate-700">
-                    <div className="w-full border-b px-4 py-5 sm:px-6 dark:border-slate-700">
-                        <h3 className="text-lg font-medium text-slate-900 dark:text-white">{copy.latestReviews}</h3>
-                    </div>
-                    <div className="flex w-full flex-col divide-y dark:divide-slate-700">
-                        {resource.reviews.length > 0 ? (
-                            resource.reviews.map((review) => (
-                                <div key={review.id} className="flex w-full items-center p-4">
-                                    <div className="mr-4 flex h-10 w-10 flex-col items-center justify-center">
-                                        {review.author.url ? (
-                                            <Link href={review.author.url}>
-                                                <img
-                                                    alt={review.author.username ?? ''}
+                <section className="flex flex-col gap-4">
+                    <h2 className="text-lg font-semibold tracking-tight">{copy.latestReviews}</h2>
+                    {resource.reviews.length === 0 ? (
+                        <div className="border border-border bg-muted/20 px-6 py-10 text-center text-sm text-muted-foreground">
+                            {copy.nothingFound}
+                        </div>
+                    ) : (
+                        <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
+                            {resource.reviews.map((review) => {
+                                const displayName = review.author.username || 'Anonymous';
+
+                                return (
+                                    <Card key={review.id}>
+                                        <CardHeader className="flex flex-row items-start gap-3">
+                                            <Avatar className="size-10">
+                                                <AvatarImage
                                                     src={review.author.profile_photo_url}
-                                                    className="mx-auto h-10 w-10 rounded-full object-cover"
+                                                    alt={displayName}
                                                 />
-                                            </Link>
-                                        ) : (
-                                            <img
-                                                alt=""
-                                                src={review.author.profile_photo_url}
-                                                className="mx-auto h-10 w-10 rounded-full object-cover"
-                                            />
-                                        )}
-                                    </div>
-                                    <div className="flex-1 pl-1">
-                                        <div className="flex items-center text-sm text-slate-400 dark:text-slate-200">
-                                            {review.author.url ? (
-                                                <Link href={review.author.url} className="mr-2 text-green-400 hover:underline">
-                                                    {review.author.username}
-                                                </Link>
-                                            ) : (
-                                                <span className="mr-2">{review.author.username}</span>
-                                            )}
-                                            · <Stars count={review.rating} /> · {review.created_at}
-                                        </div>
-                                        <div className="py-1 font-medium dark:text-white">{review.body}</div>
-                                    </div>
-                                </div>
-                            ))
-                        ) : (
-                            <div className="flex w-full items-center justify-center p-4">
-                                <p className="text-slate-400">{copy.nothingFound}</p>
-                            </div>
-                        )}
-                    </div>
-                </div>
+                                                <AvatarFallback>{initials(displayName)}</AvatarFallback>
+                                            </Avatar>
+                                            <div className="min-w-0 flex-1">
+                                                {review.author.url ? (
+                                                    <Link
+                                                        href={review.author.url}
+                                                        className="text-sm font-medium hover:text-primary"
+                                                    >
+                                                        {displayName}
+                                                    </Link>
+                                                ) : (
+                                                    <div className="text-sm font-medium">{displayName}</div>
+                                                )}
+                                                <div className="mt-1 flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
+                                                    <Stars count={review.rating} />
+                                                    <span>{review.created_at}</span>
+                                                </div>
+                                            </div>
+                                        </CardHeader>
+                                        <CardContent>
+                                            <p className="text-sm leading-relaxed text-muted-foreground">{review.body}</p>
+                                        </CardContent>
+                                    </Card>
+                                );
+                            })}
+                        </div>
+                    )}
+                </section>
             </div>
 
-            {activeUpdate && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
-                    <div className="max-h-[80vh] w-full max-w-xl overflow-y-auto rounded-lg bg-white p-6 shadow-xl dark:bg-slate-900">
-                        <div className="mb-4 flex items-start justify-between gap-4">
-                            <div>
-                                <h3 className="text-lg font-semibold dark:text-white">{activeUpdate.title}</h3>
-                                <p className="text-sm text-slate-500">
-                                    {activeUpdate.game_version} · {activeUpdate.created_at}
-                                </p>
-                            </div>
-                            <Button type="button" variant="ghost" size="sm" onClick={() => setActiveUpdate(null)}>
-                                Close
-                            </Button>
-                        </div>
-                        <div
-                            className="prose dark:prose-invert mb-6 max-w-none"
-                            dangerouslySetInnerHTML={{ __html: activeUpdate.description_html }}
-                        />
-                        <Button asChild variant="brand">
-                            <a href={activeUpdate.download_url}>{copy.download}</a>
-                        </Button>
-                    </div>
-                </div>
-            )}
+            <Dialog open={activeUpdate !== null} onOpenChange={(open) => ! open && setActiveUpdate(null)}>
+                <DialogContent className="sm:max-w-xl" showCloseButton>
+                    {activeUpdate ? (
+                        <>
+                            <DialogHeader>
+                                <DialogTitle>{activeUpdate.title}</DialogTitle>
+                                <DialogDescription>
+                                    {[activeUpdate.game_version, activeUpdate.created_at].filter(Boolean).join(' · ')}
+                                </DialogDescription>
+                            </DialogHeader>
+                            <div
+                                className="prose dark:prose-invert max-h-[50vh] max-w-none overflow-y-auto"
+                                dangerouslySetInnerHTML={{ __html: activeUpdate.description_html }}
+                            />
+                            <DialogFooter>
+                                <Button asChild>
+                                    <a href={activeUpdate.download_url}>
+                                        <DownloadSimpleIcon data-icon="inline-start" weight="fill" />
+                                        {copy.download}
+                                    </a>
+                                </Button>
+                            </DialogFooter>
+                        </>
+                    ) : null}
+                </DialogContent>
+            </Dialog>
         </>
+    );
+}
+
+function DetailRow({ label, children }: { label: string; children: ReactNode }) {
+    return (
+        <div className="flex items-start justify-between gap-3">
+            <span className="text-muted-foreground">{label}</span>
+            <div className="text-right font-medium">{children}</div>
+        </div>
     );
 }

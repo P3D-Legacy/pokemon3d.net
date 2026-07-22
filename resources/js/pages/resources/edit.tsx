@@ -1,10 +1,13 @@
 import { Form, Head, Link } from '@inertiajs/react';
+import { ArrowLeftIcon, BooksIcon } from '@phosphor-icons/react';
 
 import InputError from '@/components/input-error';
 import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { index as resourceIndex, update, uuid as resourceShow } from '@/routes/resource';
+import { Textarea } from '@/components/ui/textarea';
+import { update, uuid as resourceShow } from '@/routes/resource';
 
 type Props = {
     resource: {
@@ -29,43 +32,56 @@ type Props = {
     };
 };
 
+const selectClassName =
+    'border-input h-8 w-full rounded-none border bg-transparent px-2.5 text-xs outline-none focus-visible:border-ring focus-visible:ring-1 focus-visible:ring-ring/50 dark:bg-input/30';
+
 export default function ResourceEdit({ resource, categories, copy }: Props) {
     return (
         <>
             <Head title={copy.title} />
 
-            <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-                <nav className="mb-6 text-sm text-slate-500">
-                    <Link href={resourceIndex.url()} className="hover:underline">
-                        {copy.resources}
-                    </Link>
-                    <span className="mx-2">/</span>
-                    <Link href={resourceShow.url(resource.uuid)} className="hover:underline">
-                        {resource.name}
-                    </Link>
-                    <span className="mx-2">/</span>
-                    <span className="text-slate-700 dark:text-slate-300">{copy.title}</span>
-                </nav>
-
-                <div className="mx-auto max-w-4xl">
-                    <div className="rounded-lg bg-white px-6 py-6 shadow-md dark:bg-slate-900">
-                        <div className="mb-6 flex items-center justify-between">
-                            <h1 className="text-2xl font-bold text-slate-900 dark:text-white">{copy.title}</h1>
-                            <Link href={resourceShow.url(resource.uuid)} className="text-slate-400 hover:text-slate-600">
-                                {copy.cancel}
-                            </Link>
+            <div className="mx-auto w-full max-w-3xl px-4 py-10 sm:px-6 lg:px-8">
+                <div className="mb-8 flex flex-col gap-3">
+                    <Button variant="ghost" size="sm" className="w-fit px-0" asChild>
+                        <Link href={resourceShow.url(resource.uuid)}>
+                            <ArrowLeftIcon data-icon="inline-start" />
+                            Back to {resource.name}
+                        </Link>
+                    </Button>
+                    <div className="flex flex-col gap-2">
+                        <div className="flex items-center gap-2 text-muted-foreground">
+                            <BooksIcon className="size-5" weight="fill" />
+                            <span className="text-sm">{copy.resources}</span>
                         </div>
+                        <h1 className="text-3xl font-semibold tracking-tight">{copy.title}</h1>
+                        <p className="text-sm text-muted-foreground">
+                            Update the listing for <span className="font-medium text-foreground">{resource.name}</span>.
+                        </p>
+                    </div>
+                </div>
 
-                        <Form {...update.form(resource.uuid)} className="space-y-4">
+                <Card>
+                    <CardHeader>
+                        <CardTitle className="text-base font-semibold">Resource details</CardTitle>
+                        <CardDescription>Changes are visible on the resource page once saved.</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                        <Form {...update.form(resource.uuid)} className="flex flex-col gap-4">
                             {({ processing, errors }) => (
                                 <>
-                                    <div className="grid gap-2">
+                                    <div className="flex flex-col gap-2">
                                         <Label htmlFor="name">{copy.name}</Label>
-                                        <Input id="name" name="name" required autoFocus defaultValue={resource.name} />
+                                        <Input
+                                            id="name"
+                                            name="name"
+                                            required
+                                            autoFocus
+                                            defaultValue={resource.name}
+                                        />
                                         <InputError message={errors.name} />
                                     </div>
 
-                                    <div className="grid gap-2">
+                                    <div className="flex flex-col gap-2">
                                         <Label htmlFor="brief">{copy.brief}</Label>
                                         <Input
                                             id="brief"
@@ -77,13 +93,13 @@ export default function ResourceEdit({ resource, categories, copy }: Props) {
                                         <InputError message={errors.brief} />
                                     </div>
 
-                                    <div className="grid gap-2">
+                                    <div className="flex flex-col gap-2">
                                         <Label htmlFor="category">{copy.category}</Label>
                                         <select
                                             id="category"
                                             name="category"
                                             required
-                                            className="h-10 w-full rounded-lg border border-slate-300 bg-white px-3 text-slate-800 dark:border-slate-600 dark:bg-slate-800 dark:text-white"
+                                            className={selectClassName}
                                             defaultValue={resource.category_id ?? ''}
                                         >
                                             <option value="" disabled>
@@ -98,32 +114,31 @@ export default function ResourceEdit({ resource, categories, copy }: Props) {
                                         <InputError message={errors.category} />
                                     </div>
 
-                                    <div className="grid gap-2">
+                                    <div className="flex flex-col gap-2">
                                         <Label htmlFor="description">{copy.description}</Label>
-                                        <textarea
+                                        <Textarea
                                             id="description"
                                             name="description"
                                             required
-                                            rows={10}
                                             defaultValue={resource.description}
-                                            className="w-full rounded-md border border-slate-300 bg-transparent px-3 py-2 text-sm dark:border-slate-600 dark:text-white"
+                                            className="min-h-40"
                                         />
                                         <InputError message={errors.description} />
                                     </div>
 
-                                    <div className="flex justify-end gap-3">
-                                        <Button asChild variant="outline">
+                                    <div className="flex flex-wrap justify-end gap-2">
+                                        <Button type="button" variant="outline" asChild>
                                             <Link href={resourceShow.url(resource.uuid)}>{copy.cancel}</Link>
                                         </Button>
-                                        <Button type="submit" variant="brand" disabled={processing}>
+                                        <Button type="submit" disabled={processing}>
                                             {copy.submit}
                                         </Button>
                                     </div>
                                 </>
                             )}
                         </Form>
-                    </div>
-                </div>
+                    </CardContent>
+                </Card>
             </div>
         </>
     );

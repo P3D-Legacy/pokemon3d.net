@@ -1,10 +1,13 @@
 import { Form, Head, Link } from '@inertiajs/react';
+import { ArrowLeftIcon, BooksIcon } from '@phosphor-icons/react';
 
 import InputError from '@/components/input-error';
 import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { index as resourceIndex, uuid as resourceShow } from '@/routes/resource';
+import { Textarea } from '@/components/ui/textarea';
+import { uuid as resourceShow } from '@/routes/resource';
 import { store as storeUpdate } from '@/routes/resource/updates';
 
 type Props = {
@@ -26,44 +29,69 @@ type Props = {
     };
 };
 
+const selectClassName =
+    'border-input h-8 w-full rounded-none border bg-transparent px-2.5 text-xs outline-none focus-visible:border-ring focus-visible:ring-1 focus-visible:ring-ring/50 dark:bg-input/30';
+
 export default function ResourceUpdateCreate({ resource, gameVersions, copy }: Props) {
     return (
         <>
             <Head title={copy.title} />
 
-            <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-                <nav className="mb-6 text-sm text-slate-500">
-                    <Link href={resourceIndex.url()} className="hover:underline">
-                        {copy.resources}
-                    </Link>
-                    <span className="mx-2">/</span>
-                    <Link href={resourceShow.url(resource.uuid)} className="hover:underline">
-                        {resource.name}
-                    </Link>
-                    <span className="mx-2">/</span>
-                    <span className="text-slate-700 dark:text-slate-300">{copy.title}</span>
-                </nav>
+            <div className="mx-auto w-full max-w-3xl px-4 py-10 sm:px-6 lg:px-8">
+                <div className="mb-8 flex flex-col gap-3">
+                    <Button variant="ghost" size="sm" className="w-fit px-0" asChild>
+                        <Link href={resourceShow.url(resource.uuid)}>
+                            <ArrowLeftIcon data-icon="inline-start" />
+                            Back to {resource.name}
+                        </Link>
+                    </Button>
+                    <div className="flex flex-col gap-2">
+                        <div className="flex items-center gap-2 text-muted-foreground">
+                            <BooksIcon className="size-5" weight="fill" />
+                            <span className="text-sm">{copy.resources}</span>
+                        </div>
+                        <h1 className="text-3xl font-semibold tracking-tight">{copy.title}</h1>
+                        <p className="text-sm text-muted-foreground">
+                            Publish a new update for{' '}
+                            <span className="font-medium text-foreground">{resource.name}</span>.
+                        </p>
+                    </div>
+                </div>
 
-                <div className="mx-auto max-w-4xl">
-                    <div className="rounded-lg bg-white px-6 py-6 shadow-md dark:bg-slate-900">
-                        <h1 className="mb-6 text-2xl font-bold text-slate-900 dark:text-white">{copy.title}</h1>
-
-                        <Form {...storeUpdate.form(resource.uuid)} encType="multipart/form-data" className="space-y-4">
+                <Card>
+                    <CardHeader>
+                        <CardTitle className="text-base font-semibold">Update details</CardTitle>
+                        <CardDescription>
+                            Include a version number, compatible game version, changelog, and zip file.
+                        </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                        <Form
+                            {...storeUpdate.form(resource.uuid)}
+                            encType="multipart/form-data"
+                            className="flex flex-col gap-4"
+                        >
                             {({ processing, errors }) => (
                                 <>
-                                    <div className="grid gap-2">
+                                    <div className="flex flex-col gap-2">
                                         <Label htmlFor="version">{copy.versionTitle}</Label>
-                                        <Input id="version" name="version" required autoFocus placeholder="1.2.3" />
+                                        <Input
+                                            id="version"
+                                            name="version"
+                                            required
+                                            autoFocus
+                                            placeholder="1.2.3"
+                                        />
                                         <InputError message={errors.version} />
                                     </div>
 
-                                    <div className="grid gap-2">
+                                    <div className="flex flex-col gap-2">
                                         <Label htmlFor="gameversion">{copy.gameVersion}</Label>
                                         <select
                                             id="gameversion"
                                             name="gameversion"
                                             required
-                                            className="h-10 w-full rounded-lg border border-slate-300 bg-white px-3 text-slate-800 dark:border-slate-600 dark:bg-slate-800 dark:text-white"
+                                            className={selectClassName}
                                             defaultValue=""
                                         >
                                             <option value="" disabled>
@@ -78,37 +106,42 @@ export default function ResourceUpdateCreate({ resource, gameVersions, copy }: P
                                         <InputError message={errors.gameversion} />
                                     </div>
 
-                                    <div className="grid gap-2">
+                                    <div className="flex flex-col gap-2">
                                         <Label htmlFor="description">{copy.description}</Label>
-                                        <textarea
+                                        <Textarea
                                             id="description"
                                             name="description"
                                             required
-                                            rows={8}
-                                            className="w-full rounded-md border border-slate-300 bg-transparent px-3 py-2 text-sm dark:border-slate-600 dark:text-white"
+                                            className="min-h-36"
                                         />
                                         <InputError message={errors.description} />
                                     </div>
 
-                                    <div className="grid gap-2">
+                                    <div className="flex flex-col gap-2">
                                         <Label htmlFor="file">{copy.file}</Label>
-                                        <Input id="file" name="file" type="file" accept=".zip,application/zip" required />
+                                        <Input
+                                            id="file"
+                                            name="file"
+                                            type="file"
+                                            accept=".zip,application/zip"
+                                            required
+                                        />
                                         <InputError message={errors.file} />
                                     </div>
 
-                                    <div className="flex justify-end gap-3">
-                                        <Button asChild variant="outline">
+                                    <div className="flex flex-wrap justify-end gap-2">
+                                        <Button type="button" variant="outline" asChild>
                                             <Link href={resourceShow.url(resource.uuid)}>{copy.cancel}</Link>
                                         </Button>
-                                        <Button type="submit" variant="brand" disabled={processing}>
+                                        <Button type="submit" disabled={processing}>
                                             {copy.submit}
                                         </Button>
                                     </div>
                                 </>
                             )}
                         </Form>
-                    </div>
-                </div>
+                    </CardContent>
+                </Card>
             </div>
         </>
     );

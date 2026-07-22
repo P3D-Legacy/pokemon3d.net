@@ -1,9 +1,12 @@
 import { Form, Head, Link } from '@inertiajs/react';
+import { ArrowLeftIcon, BooksIcon } from '@phosphor-icons/react';
 
 import InputError from '@/components/input-error';
 import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { Textarea } from '@/components/ui/textarea';
 import { index as resourceIndex, store } from '@/routes/resource';
 
 type Props = {
@@ -21,46 +24,69 @@ type Props = {
     };
 };
 
+const selectClassName =
+    'border-input h-8 w-full rounded-none border bg-transparent px-2.5 text-xs outline-none focus-visible:border-ring focus-visible:ring-1 focus-visible:ring-ring/50 dark:bg-input/30';
+
 export default function ResourceCreate({ categories, copy }: Props) {
     return (
         <>
             <Head title={copy.title} />
 
-            <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-                <nav className="mb-6 text-sm text-slate-500">
-                    <Link href={resourceIndex.url()} className="hover:underline">
-                        {copy.resources}
-                    </Link>
-                    <span className="mx-2">/</span>
-                    <span className="text-slate-700 dark:text-slate-300">{copy.title}</span>
-                </nav>
+            <div className="mx-auto w-full max-w-3xl px-4 py-10 sm:px-6 lg:px-8">
+                <div className="mb-8 flex flex-col gap-3">
+                    <Button variant="ghost" size="sm" className="w-fit px-0" asChild>
+                        <Link href={resourceIndex.url()}>
+                            <ArrowLeftIcon data-icon="inline-start" />
+                            Back to {copy.resources.toLowerCase()}
+                        </Link>
+                    </Button>
+                    <div className="flex flex-col gap-2">
+                        <div className="flex items-center gap-2 text-muted-foreground">
+                            <BooksIcon className="size-5" weight="fill" />
+                            <span className="text-sm">{copy.resources}</span>
+                        </div>
+                        <h1 className="text-3xl font-semibold tracking-tight">{copy.title}</h1>
+                        <p className="text-sm text-muted-foreground">
+                            Share a mod, tool, or other resource with the community.
+                        </p>
+                    </div>
+                </div>
 
-                <div className="mx-auto max-w-4xl">
-                    <div className="rounded-lg bg-white px-6 py-6 shadow-md dark:bg-slate-900">
-                        <h1 className="mb-6 text-2xl font-bold text-slate-900 dark:text-white">{copy.title}</h1>
-
-                        <Form {...store.form()} className="space-y-4">
+                <Card>
+                    <CardHeader>
+                        <CardTitle className="text-base font-semibold">Resource details</CardTitle>
+                        <CardDescription>
+                            Add a clear name, short summary, and full description so others know what to expect.
+                        </CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                        <Form {...store.form()} className="flex flex-col gap-4">
                             {({ processing, errors }) => (
                                 <>
-                                    <div className="grid gap-2">
+                                    <div className="flex flex-col gap-2">
                                         <Label htmlFor="name">{copy.name}</Label>
                                         <Input id="name" name="name" required autoFocus />
                                         <InputError message={errors.name} />
                                     </div>
 
-                                    <div className="grid gap-2">
+                                    <div className="flex flex-col gap-2">
                                         <Label htmlFor="brief">{copy.brief}</Label>
-                                        <Input id="brief" name="brief" required placeholder={copy.briefPlaceholder} />
+                                        <Input
+                                            id="brief"
+                                            name="brief"
+                                            required
+                                            placeholder={copy.briefPlaceholder}
+                                        />
                                         <InputError message={errors.brief} />
                                     </div>
 
-                                    <div className="grid gap-2">
+                                    <div className="flex flex-col gap-2">
                                         <Label htmlFor="category">{copy.category}</Label>
                                         <select
                                             id="category"
                                             name="category"
                                             required
-                                            className="h-10 w-full rounded-lg border border-slate-300 bg-white px-3 text-slate-800 dark:border-slate-600 dark:bg-slate-800 dark:text-white"
+                                            className={selectClassName}
                                             defaultValue=""
                                         >
                                             <option value="" disabled>
@@ -75,28 +101,25 @@ export default function ResourceCreate({ categories, copy }: Props) {
                                         <InputError message={errors.category} />
                                     </div>
 
-                                    <div className="grid gap-2">
+                                    <div className="flex flex-col gap-2">
                                         <Label htmlFor="description">{copy.description}</Label>
-                                        <textarea
-                                            id="description"
-                                            name="description"
-                                            required
-                                            rows={10}
-                                            className="w-full rounded-md border border-slate-300 bg-transparent px-3 py-2 text-sm dark:border-slate-600 dark:text-white"
-                                        />
+                                        <Textarea id="description" name="description" required className="min-h-40" />
                                         <InputError message={errors.description} />
                                     </div>
 
-                                    <div className="flex justify-end">
-                                        <Button type="submit" variant="brand" disabled={processing}>
+                                    <div className="flex flex-wrap justify-end gap-2">
+                                        <Button type="button" variant="outline" asChild>
+                                            <Link href={resourceIndex.url()}>Cancel</Link>
+                                        </Button>
+                                        <Button type="submit" disabled={processing}>
                                             {copy.submit}
                                         </Button>
                                     </div>
                                 </>
                             )}
                         </Form>
-                    </div>
-                </div>
+                    </CardContent>
+                </Card>
             </div>
         </>
     );

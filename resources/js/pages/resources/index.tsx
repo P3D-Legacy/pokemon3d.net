@@ -1,6 +1,19 @@
 import { Head, Link } from '@inertiajs/react';
+import {
+    BooksIcon,
+    CaretRightIcon,
+    DownloadSimpleIcon,
+    HeartIcon,
+    PlusIcon,
+    StarIcon,
+} from '@phosphor-icons/react';
+import type { ReactNode } from 'react';
 
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { cn } from '@/lib/utils';
 import { create, index as resourceIndex } from '@/routes/resource';
 import type { Paginated } from '@/types';
 
@@ -55,14 +68,35 @@ type Props = {
 
 function Stars({ count }: { count: number }) {
     return (
-        <span className="inline-flex text-yellow-500" aria-hidden>
+        <span className="inline-flex items-center gap-0.5" aria-label={`${count} out of 5 stars`}>
             {Array.from({ length: 5 }, (_, index) => (
-                <span key={index} className={index < count ? 'opacity-100' : 'opacity-30'}>
-                    ★
-                </span>
+                <StarIcon
+                    key={index}
+                    className={cn('size-3.5', index < count ? 'text-amber-500' : 'text-muted-foreground/35')}
+                    weight="fill"
+                />
             ))}
         </span>
     );
+}
+
+function initials(name: string): string {
+    return name
+        .split(' ')
+        .filter(Boolean)
+        .map((part) => part[0] ?? '')
+        .join('')
+        .toUpperCase()
+        .slice(0, 2);
+}
+
+function paginationLabel(label: string): string {
+    return label
+        .replace(/&laquo;/g, '«')
+        .replace(/&raquo;/g, '»')
+        .replace(/&nbsp;/g, ' ')
+        .replace(/<[^>]*>/g, '')
+        .trim();
 }
 
 export default function ResourcesIndex({ resources, categories, selectedCategory, canCreate, copy }: Props) {
@@ -70,147 +104,196 @@ export default function ResourcesIndex({ resources, categories, selectedCategory
         <>
             <Head title={copy.title} />
 
-            <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-                <nav className="mb-6 text-sm text-slate-500">
-                    {selectedCategory ? (
-                        <>
-                            <Link href={resourceIndex.url()} className="hover:underline">
-                                {copy.title}
+            <div className="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+                <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
+                    <div className="flex flex-col gap-2">
+                        <div className="flex items-center gap-2 text-muted-foreground">
+                            <BooksIcon className="size-5" weight="fill" />
+                            <span className="text-sm">Community</span>
+                        </div>
+                        <h1 className="text-3xl font-semibold tracking-tight">{copy.title}</h1>
+                        <p className="text-sm text-muted-foreground">
+                            {selectedCategory
+                                ? `Browsing ${selectedCategory.name}.`
+                                : 'Browse mods, tools, and other community resources.'}
+                        </p>
+                    </div>
+                    {canCreate ? (
+                        <Button asChild>
+                            <Link href={create.url()}>
+                                <PlusIcon data-icon="inline-start" weight="bold" />
+                                {copy.create}
                             </Link>
-                            <span className="mx-2">/</span>
-                            <span className="text-slate-700 dark:text-slate-300">{selectedCategory.name}</span>
-                        </>
-                    ) : (
-                        <span className="text-slate-700 dark:text-slate-300">{copy.title}</span>
-                    )}
-                </nav>
+                        </Button>
+                    ) : null}
+                </div>
 
-                <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 md:grid-cols-4">
-                    <aside>
-                        <div className="overflow-hidden rounded-lg bg-white shadow-md dark:bg-slate-900 dark:shadow-slate-700">
-                            <div className="border-b px-4 py-3 dark:border-slate-700">
-                                <h3 className="font-medium text-slate-900 dark:text-white">{copy.categories}</h3>
-                            </div>
-                            <div className="flex flex-col divide-y text-slate-900 dark:divide-slate-700 dark:text-white">
-                                <Link
-                                    href={resourceIndex.url()}
-                                    className={`px-4 py-3 text-xs hover:bg-black/10 dark:hover:bg-white/10 ${! selectedCategory ? 'bg-green-400/20 font-bold' : ''}`}
-                                >
+                <div className="grid grid-cols-1 gap-6 lg:grid-cols-4">
+                    <aside className="lg:col-span-1">
+                        <Card>
+                            <CardHeader className="border-b">
+                                <CardTitle className="text-sm font-medium">{copy.categories}</CardTitle>
+                            </CardHeader>
+                            <CardContent className="flex flex-col gap-0.5 p-2">
+                                <CategoryLink href={resourceIndex.url()} active={! selectedCategory}>
                                     {copy.allCategories}
-                                </Link>
+                                </CategoryLink>
                                 {categories.map((item) => (
-                                    <div key={item.id}>
-                                        <Link
-                                            href={item.url}
-                                            className={`block px-4 py-3 text-xs hover:bg-black/10 dark:hover:bg-white/10 ${item.active ? 'bg-green-400/20 font-bold' : ''}`}
-                                        >
+                                    <div key={item.id} className="flex flex-col gap-0.5">
+                                        <CategoryLink href={item.url} active={item.active}>
                                             {item.name}
-                                        </Link>
+                                        </CategoryLink>
                                         {item.children.map((child) => (
-                                            <Link
+                                            <CategoryLink
                                                 key={child.id}
                                                 href={child.url}
-                                                className={`block px-4 py-3 text-xs hover:bg-black/10 dark:hover:bg-white/10 ${child.active ? 'bg-green-400/20 font-bold' : ''}`}
+                                                active={child.active}
+                                                nested
                                             >
-                                                - {child.name}
-                                            </Link>
+                                                {child.name}
+                                            </CategoryLink>
                                         ))}
                                     </div>
                                 ))}
-                            </div>
-                        </div>
+                            </CardContent>
+                        </Card>
                     </aside>
 
-                    <div className="sm:col-span-2 md:col-span-3">
-                        {canCreate && (
-                            <div className="mb-6 flex items-center justify-between rounded-lg bg-white px-6 py-4 shadow-md dark:bg-slate-900">
-                                <span className="font-semibold text-slate-900 dark:text-slate-200">{copy.wantToAdd}</span>
-                                <Button asChild variant="brand" size="sm">
-                                    <Link href={create.url()}>{copy.create}</Link>
+                    <div className="flex min-w-0 flex-col gap-4 lg:col-span-3">
+                        {canCreate ? (
+                            <div className="flex flex-wrap items-center justify-between gap-3 border border-border bg-muted/20 px-4 py-3">
+                                <p className="text-sm text-muted-foreground">{copy.wantToAdd}</p>
+                                <Button size="sm" asChild>
+                                    <Link href={create.url()}>
+                                        <PlusIcon data-icon="inline-start" weight="bold" />
+                                        {copy.create}
+                                    </Link>
                                 </Button>
+                            </div>
+                        ) : null}
+
+                        {resources.data.length === 0 ? (
+                            <div className="flex flex-col items-center justify-center gap-3 border border-border bg-muted/20 px-6 py-16 text-center">
+                                <BooksIcon className="size-10 text-muted-foreground" weight="fill" />
+                                <div className="text-lg font-medium">{copy.nothingFound}</div>
+                            </div>
+                        ) : (
+                            <div className="flex flex-col gap-3">
+                                {resources.data.map((resource) => (
+                                    <Link
+                                        key={resource.uuid}
+                                        href={resource.url}
+                                        className="group flex min-w-0 flex-col gap-3 border border-border bg-card p-4 transition-colors hover:border-primary hover:bg-primary/5 sm:flex-row sm:items-center"
+                                    >
+                                        <Avatar className="size-11 shrink-0">
+                                            <AvatarImage
+                                                src={resource.author.profile_photo_url}
+                                                alt={resource.author.username}
+                                            />
+                                            <AvatarFallback>
+                                                {initials(resource.author.name || resource.author.username)}
+                                            </AvatarFallback>
+                                        </Avatar>
+
+                                        <div className="min-w-0 flex-1">
+                                            <div className="flex flex-wrap items-center gap-2">
+                                                <span className="truncate font-medium">{resource.name}</span>
+                                                <Badge variant="secondary">{resource.version}</Badge>
+                                                <Badge variant="outline">{resource.category}</Badge>
+                                            </div>
+                                            <p className="mt-1 truncate text-sm text-muted-foreground">
+                                                {resource.author.username} · {resource.created_at}
+                                            </p>
+                                            <p className="mt-1 line-clamp-2 text-sm text-muted-foreground">
+                                                {resource.brief}
+                                            </p>
+                                        </div>
+
+                                        <div className="flex shrink-0 flex-col gap-1.5 text-xs text-muted-foreground sm:items-end">
+                                            <div className="flex items-center gap-1.5">
+                                                <Stars count={resource.rating.stars} />
+                                                <span>
+                                                    {resource.rating.average} ({resource.rating.count})
+                                                </span>
+                                            </div>
+                                            <div className="flex items-center gap-1.5">
+                                                <HeartIcon className="size-3.5" weight="fill" />
+                                                <span>
+                                                    {resource.likes} {copy.likes.toLowerCase()}
+                                                </span>
+                                            </div>
+                                            <div className="flex items-center gap-1.5">
+                                                <DownloadSimpleIcon className="size-3.5" weight="fill" />
+                                                <span>
+                                                    {resource.downloads} {copy.downloads.toLowerCase()}
+                                                </span>
+                                            </div>
+                                            <span>
+                                                {copy.updated} {resource.updated_at}
+                                            </span>
+                                        </div>
+
+                                        <CaretRightIcon className="hidden size-4 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-primary sm:block" />
+                                    </Link>
+                                ))}
                             </div>
                         )}
 
-                        <div className="overflow-hidden rounded-lg bg-white shadow-md dark:bg-slate-900 dark:shadow-slate-700">
-                            <div className="flex flex-col divide-y dark:divide-slate-700">
-                                {resources.data.map((resource) => (
-                                    <Link key={resource.uuid} href={resource.url} className="flex hover:bg-green-400/10">
-                                        <div className="grid w-full grid-rows-2 items-center gap-4 p-3 md:flex md:grid-rows-none md:gap-0 sm:p-4">
-                                            <div className="mr-4 hidden h-10 w-10 flex-col items-center justify-center md:flex">
-                                                <img
-                                                    alt={resource.author.name}
-                                                    src={resource.author.profile_photo_url}
-                                                    className="mx-auto h-10 w-10 rounded-full object-cover"
-                                                />
-                                            </div>
-                                            <div className="flex-1 md:mr-16 md:pl-1">
-                                                <div className="font-medium dark:text-white">
-                                                    {resource.name}{' '}
-                                                    <span className="text-slate-400 dark:text-slate-500">{resource.version}</span>
-                                                </div>
-                                                <div className="text-sm text-slate-400 dark:text-slate-200">
-                                                    {resource.author.username} · {resource.created_at} · {resource.category}
-                                                </div>
-                                                <div className="truncate text-xs text-slate-500 dark:text-slate-300">
-                                                    {resource.brief}
-                                                </div>
-                                            </div>
-                                            <div className="flex flex-col justify-center text-xs text-slate-400">
-                                                <div className="flex flex-row justify-between gap-4">
-                                                    <span>{copy.rating}:</span>
-                                                    <span className="flex items-center gap-1">
-                                                        <Stars count={resource.rating.stars} />
-                                                        {resource.rating.average} ({resource.rating.count})
-                                                    </span>
-                                                </div>
-                                                <div className="flex flex-row justify-between gap-4">
-                                                    <span>{copy.likes}:</span>
-                                                    <span>{resource.likes}</span>
-                                                </div>
-                                                <div className="flex flex-row justify-between gap-4">
-                                                    <span>{copy.downloads}:</span>
-                                                    <span>{resource.downloads}</span>
-                                                </div>
-                                                <div className="flex flex-row justify-between gap-4">
-                                                    <span>{copy.updated}:</span>
-                                                    <span>{resource.updated_at}</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </Link>
-                                ))}
-
-                                {resources.data.length === 0 && (
-                                    <div className="flex w-full items-center justify-center p-4">
-                                        <p className="text-center text-slate-400">{copy.nothingFound}</p>
-                                    </div>
-                                )}
-                            </div>
-                        </div>
-
-                        {resources.links.length > 3 && (
-                            <div className="mt-5 flex flex-wrap justify-center gap-2 rounded-lg bg-white p-4 dark:bg-slate-800">
+                        {resources.links.length > 3 ? (
+                            <div className="flex flex-wrap items-center justify-center gap-2">
                                 {resources.links.map((link, index) =>
                                     link.url ? (
-                                        <Link
+                                        <Button
                                             key={`${link.label}-${index}`}
-                                            href={link.url}
-                                            className={`rounded px-3 py-1 text-sm ${link.active ? 'bg-green-600 text-white' : 'text-slate-700 hover:bg-slate-100 dark:text-slate-200'}`}
-                                            dangerouslySetInnerHTML={{ __html: link.label }}
-                                        />
+                                            variant={link.active ? 'default' : 'outline'}
+                                            size="sm"
+                                            asChild
+                                        >
+                                            <Link
+                                                href={link.url}
+                                                className={cn(! link.active && 'text-muted-foreground')}
+                                            >
+                                                {paginationLabel(link.label)}
+                                            </Link>
+                                        </Button>
                                     ) : (
-                                        <span
-                                            key={`${link.label}-${index}`}
-                                            className="rounded px-3 py-1 text-sm text-slate-400"
-                                            dangerouslySetInnerHTML={{ __html: link.label }}
-                                        />
+                                        <Button key={`${link.label}-${index}`} variant="outline" size="sm" disabled>
+                                            {paginationLabel(link.label)}
+                                        </Button>
                                     ),
                                 )}
                             </div>
-                        )}
+                        ) : null}
                     </div>
                 </div>
             </div>
         </>
+    );
+}
+
+function CategoryLink({
+    href,
+    active,
+    nested = false,
+    children,
+}: {
+    href: string;
+    active: boolean;
+    nested?: boolean;
+    children: ReactNode;
+}) {
+    return (
+        <Link
+            href={href}
+            className={cn(
+                'px-3 py-2 text-sm transition-colors',
+                nested && 'pl-6 text-muted-foreground',
+                active
+                    ? 'bg-primary/10 font-medium text-foreground'
+                    : 'text-muted-foreground hover:bg-muted hover:text-foreground',
+            )}
+        >
+            {children}
+        </Link>
     );
 }

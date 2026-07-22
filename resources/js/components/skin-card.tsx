@@ -119,7 +119,7 @@ export default function SkinCard({
                 ) : (
                     <div className="mt-3 flex flex-wrap gap-2">
                         {mode !== 'detail' && skin.public && skin.show_url && (
-                            <Button variant="default" size="sm" asChild>
+                            <Button variant="outline" size="sm" asChild>
                                 <Link href={show.url(skin.uuid)}>
                                     <EyeIcon data-icon="inline-start" weight="bold" />
                                     Show
@@ -130,7 +130,7 @@ export default function SkinCard({
                             <Button
                                 type="button"
                                 size="sm"
-                                variant="default"
+                                variant={skin.liked ? 'secondary' : 'default'}
                                 disabled={processing}
                                 onClick={() =>
                                     runAction(() =>
@@ -146,7 +146,7 @@ export default function SkinCard({
                         )}
                         {authenticated && skin.is_owner && (
                             <>
-                                <Button variant="default" size="sm" asChild>
+                                <Button variant="outline" size="sm" asChild>
                                     <Link href={edit.url(skin.uuid)}>
                                         <PencilSimpleIcon data-icon="inline-start" weight="bold" />
                                         Edit
@@ -176,7 +176,7 @@ export default function SkinCard({
                             <Button
                                 type="button"
                                 size="sm"
-                                variant="default"
+                                variant="secondary"
                                 disabled={processing}
                                 onClick={() =>
                                     runAction(() =>

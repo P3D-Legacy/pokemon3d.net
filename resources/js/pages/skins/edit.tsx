@@ -71,7 +71,7 @@ export default function SkinsEdit({ skin }: Props) {
                                     </label>
                                 </div>
                                 <InputError message={errors.public} />
-                                <Button type="submit" variant="default" disabled={processing}>
+                                <Button type="submit" variant="brand" disabled={processing}>
                                     <FloppyDiskIcon data-icon="inline-start" weight="bold" />
                                     Save
                                 </Button>

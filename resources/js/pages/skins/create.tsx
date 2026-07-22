@@ -111,7 +111,7 @@ export default function SkinsCreate({ slots, width, height }: Props) {
                                     </label>
                                 </div>
                                 <InputError message={errors.rules} />
-                                <Button type="submit" variant="default" disabled={processing}>
+                                <Button type="submit" variant="brand" disabled={processing}>
                                     <UploadSimpleIcon data-icon="inline-start" weight="bold" />
                                     Upload
                                 </Button>

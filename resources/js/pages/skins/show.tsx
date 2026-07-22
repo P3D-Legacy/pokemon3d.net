@@ -20,9 +20,9 @@ export default function SkinsShow({ skin }: Props) {
 
             <div className="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
                 <div className="mb-8 flex flex-col gap-4">
-                    <Button variant="default" size="sm" asChild>
+                    <Button variant="ghost" size="sm" className="w-fit px-0" asChild>
                         <Link href={skinsNewest.url()}>
-                            <ArrowLeftIcon data-icon="inline-start" weight="bold" />
+                            <ArrowLeftIcon className="size-4" />
                             Back to public skins
                         </Link>
                     </Button>

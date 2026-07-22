@@ -68,7 +68,7 @@ export default function SkinsHome({
                         <span className="text-sm text-muted-foreground">
                             Slots: <span className="font-semibold text-foreground">{slots.used}</span> / {slots.max}
                         </span>
-                        <Button variant="default" size="sm" asChild>
+                        <Button variant="brand" size="sm" asChild>
                             <Link href={create.url()}>
                                 <PlusIcon data-icon="inline-start" weight="bold" />
                                 Create
@@ -91,7 +91,7 @@ export default function SkinsHome({
                                         height={128}
                                     />
                                     <div className="mt-2 flex flex-wrap gap-2">
-                                        <Button type="button" variant="default" size="sm" onClick={() => router.post(duplicate.url())}>
+                                        <Button type="button" size="sm" onClick={() => router.post(duplicate.url())}>
                                             <FloppyDiskIcon data-icon="inline-start" weight="bold" />
                                             Save to My skins
                                         </Button>
@@ -123,7 +123,7 @@ export default function SkinsHome({
                                         <Button
                                             type="button"
                                             className="mt-3 w-full"
-                                            variant="default"
+                                            variant="secondary"
                                             onClick={() => router.post(importUrl)}
                                         >
                                             <DownloadSimpleIcon data-icon="inline-start" weight="bold" />
@@ -195,7 +195,7 @@ export default function SkinsHome({
                                 <p className="max-w-md text-sm text-muted-foreground">
                                     Upload a skin to fill one of your {slots.max} slots.
                                 </p>
-                                <Button variant="default" size="sm" asChild>
+                                <Button variant="brand" size="sm" asChild>
                                     <Link href={create.url()}>
                                         <PlusIcon data-icon="inline-start" weight="bold" />
                                         Create skin

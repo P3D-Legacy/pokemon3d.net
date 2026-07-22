@@ -1,4 +1,5 @@
 import { Head, usePage } from '@inertiajs/react';
+import { CaretLeftIcon, CaretRightIcon } from '@phosphor-icons/react';
 import { useState } from 'react';
 
 import { Blog34 } from '@/components/blog34';
@@ -94,7 +95,7 @@ export default function Home({ posts, stats, screenshots, download: downloadInfo
                     <div className="mb-4 w-full">
                         <div className="mx-auto my-0 h-1 w-64 rounded-t bg-white py-0 opacity-25" />
                     </div>
-                    <div className="relative w-full overflow-hidden rounded-xl shadow-xl shadow-black/50">
+                    <div className="relative w-full overflow-hidden shadow-md">
                         <img
                             src={`/${screenshots[activeScreenshot]?.path}`}
                             alt={screenshots[activeScreenshot]?.title}
@@ -103,24 +104,26 @@ export default function Home({ posts, stats, screenshots, download: downloadInfo
                         <div className="absolute inset-x-0 bottom-0 flex items-center justify-between bg-black/50 px-4 py-3 text-sm">
                             <div>
                                 <div className="font-semibold">{screenshots[activeScreenshot]?.title}</div>
-                                <div className="opacity-80">{screenshots[activeScreenshot]?.author}</div>
+                                <div className="opacity-80">Screenshot by {screenshots[activeScreenshot]?.author}</div>
                             </div>
                             <div className="flex gap-2">
                                 <button
                                     type="button"
-                                    className="rounded bg-white/20 px-3 py-1"
+                                    className="inline-flex items-center gap-1 rounded bg-white/20 px-3 py-1"
                                     onClick={() =>
                                         setActiveScreenshot((current) => (current === 0 ? screenshots.length - 1 : current - 1))
                                     }
                                 >
-                                    Prev
+                                    <CaretLeftIcon className="size-4" />
+                                    Previous
                                 </button>
                                 <button
                                     type="button"
-                                    className="rounded bg-white/20 px-3 py-1"
+                                    className="inline-flex items-center gap-1 rounded bg-white/20 px-3 py-1"
                                     onClick={() => setActiveScreenshot((current) => (current + 1) % screenshots.length)}
                                 >
                                     Next
+                                    <CaretRightIcon className="size-4" />
                                 </button>
                             </div>
                         </div>

@@ -29,6 +29,7 @@ Route::middleware(config('jetstream.middleware', ['web']))->group(function () {
 
         Route::patch('/user/preferences', [PreferenceController::class, 'update'])->name('profile.preferences.update');
         Route::patch('/user/consents', [ConsentController::class, 'update'])->name('profile.consents.update');
+        Route::post('/user/social-accounts/gamejolt', [SocialAccountController::class, 'store'])->name('profile.social.gamejolt.store');
         Route::delete('/user/social-accounts', [SocialAccountController::class, 'destroy'])->name('profile.social.destroy');
 
         if (Jetstream::hasApiFeatures()) {

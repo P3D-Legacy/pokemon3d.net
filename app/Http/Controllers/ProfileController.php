@@ -70,6 +70,7 @@ class ProfileController extends Controller
                     'connected' => (bool) $user->gamejolt,
                     'label' => $user->gamejolt?->username,
                     'connect_url' => null,
+                    'uses_credentials' => true,
                 ],
             ],
             'features' => [

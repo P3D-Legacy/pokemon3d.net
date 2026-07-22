@@ -1,10 +1,19 @@
 import { Form, Head, Link, router, usePage } from '@inertiajs/react';
+import { useState } from 'react';
 
 import { update as updatePassword } from '@/actions/Laravel/Fortify/Http/Controllers/PasswordController';
 import { update as updateProfile } from '@/actions/Laravel/Fortify/Http/Controllers/ProfileInformationController';
 import InputError from '@/components/input-error';
 import SettingsSection from '@/components/settings-section';
 import { Button } from '@/components/ui/button';
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogFooter,
+    DialogHeader,
+    DialogTitle,
+} from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { destroy as destroyUser } from '@/routes/current-user';
@@ -12,6 +21,7 @@ import { destroy as destroySessions } from '@/routes/other-browser-sessions';
 import { update as updateConsents } from '@/routes/profile/consents';
 import { update as updatePreferences } from '@/routes/profile/preferences';
 import { destroy as destroySocial } from '@/routes/profile/social';
+import { store as storeGamejoltSocial } from '@/routes/profile/social/gamejolt';
 import type { SharedPageProps } from '@/types';
 
 type Props = {
@@ -40,7 +50,13 @@ type Props = {
     consents: Array<{ key: string; text: string; given: boolean }>;
     socialAccounts: Record<
         string,
-        { enabled: boolean; connected: boolean; label: string | null; connect_url: string | null }
+        {
+            enabled: boolean;
+            connected: boolean;
+            label: string | null;
+            connect_url: string | null;
+            uses_credentials?: boolean;
+        }
     >;
     features: {
         canUpdateProfileInformation: boolean;
@@ -62,6 +78,7 @@ export default function ProfileEdit({
     status,
 }: Props) {
     const { flash } = usePage<SharedPageProps>().props;
+    const [gamejoltOpen, setGamejoltOpen] = useState(false);
 
     return (
         <>
@@ -203,20 +220,81 @@ export default function ProfileEdit({
                                             >
                                                 Disconnect
                                             </Button>
+                                        ) : account.uses_credentials ? (
+                                            <Button type="button" variant="default" onClick={() => setGamejoltOpen(true)}>
+                                                Connect
+                                            </Button>
                                         ) : account.connect_url ? (
                                             <a href={account.connect_url}>
                                                 <Button type="button" variant="default">
                                                     Connect
                                                 </Button>
                                             </a>
-                                        ) : (
-                                            <span className="text-xs text-slate-400">Connect via classic profile widgets later</span>
-                                        )}
+                                        ) : null}
                                     </div>
                                 );
                             })}
                         </div>
                     </SettingsSection>
+
+                    <Dialog open={gamejoltOpen} onOpenChange={setGamejoltOpen}>
+                        <DialogContent>
+                            <DialogHeader>
+                                <DialogTitle>Connect Game Jolt</DialogTitle>
+                                <DialogDescription>
+                                    Link your Game Jolt username and token to this account.{' '}
+                                    <a
+                                        href="https://gamejolt.com/help/tokens"
+                                        target="_blank"
+                                        rel="noreferrer"
+                                        className="underline"
+                                    >
+                                        What&apos;s my token?
+                                    </a>
+                                </DialogDescription>
+                            </DialogHeader>
+                            <Form
+                                action={storeGamejoltSocial.url()}
+                                method="post"
+                                options={{ preserveScroll: true }}
+                                className="grid gap-4"
+                                onSuccess={() => setGamejoltOpen(false)}
+                            >
+                                {({ processing, errors }) => (
+                                    <>
+                                        <div className="grid gap-2">
+                                            <Label htmlFor="profile-gamejolt-username">Username</Label>
+                                            <Input
+                                                id="profile-gamejolt-username"
+                                                name="username"
+                                                type="text"
+                                                required
+                                                autoComplete="username"
+                                            />
+                                            <InputError message={errors.username} />
+                                        </div>
+                                        <div className="grid gap-2">
+                                            <Label htmlFor="profile-gamejolt-token">Token</Label>
+                                            <Input
+                                                id="profile-gamejolt-token"
+                                                name="token"
+                                                type="password"
+                                                required
+                                                autoComplete="current-password"
+                                            />
+                                            <InputError message={errors.token} />
+                                        </div>
+                                        {errors.error && <InputError message={errors.error} />}
+                                        <DialogFooter>
+                                            <Button type="submit" disabled={processing}>
+                                                Connect
+                                            </Button>
+                                        </DialogFooter>
+                                    </>
+                                )}
+                            </Form>
+                        </DialogContent>
+                    </Dialog>
 
                     <SettingsSection title="Preferences" description="Choose what to share on your public profile.">
                         <div className="space-y-3">

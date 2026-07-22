@@ -71,7 +71,12 @@ export default function SkinCard({
             )}
         >
             {! hideImage && (
-                <div className="flex shrink-0 items-start justify-center">
+                <div
+                    className={cn(
+                        'flex shrink-0 items-center justify-center',
+                        mode === 'detail' ? 'h-64 w-48' : 'h-32 w-24',
+                    )}
+                >
                     {showAnimator ? (
                         <SkinAnimator
                             src={skin.image_url}

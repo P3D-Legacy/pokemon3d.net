@@ -7,15 +7,9 @@ use App\Console\Commands\NotifyGameUpdate;
 use App\Console\Commands\PingAllServers;
 use App\Console\Commands\SkinUserUpdate;
 use App\Console\Commands\SyncGameVersion;
-use Illuminate\Foundation\Inspiring;
 use Illuminate\Queue\Console\PruneBatchesCommand;
 use Illuminate\Queue\Console\PruneFailedJobsCommand;
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Schedule;
-
-Artisan::command('inspire', function () {
-    $this->comment(Inspiring::quote());
-})->purpose('Display an inspiring quote')->hourly();
 
 // Often commands
 Schedule::command(PingAllServers::class)->hourly();

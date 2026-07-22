@@ -17,7 +17,7 @@ export default function TagsShow({ tag }: Props) {
                 <p className="mb-6 text-sm text-slate-500">ID: {tag.id}</p>
                 <div className="flex gap-3">
                     <Link href={edit.url(tag.id)}>
-                        <Button variant="brand">Edit</Button>
+                        <Button variant="default">Edit</Button>
                     </Link>
                     <Link href={index.url()}>
                         <Button variant="outline">Back</Button>

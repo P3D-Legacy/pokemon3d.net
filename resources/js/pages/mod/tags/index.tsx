@@ -17,7 +17,7 @@ export default function TagsIndex({ tags }: Props) {
                 <div className="mb-6 flex items-center justify-between">
                     <h1 className="text-xl font-semibold">Tags</h1>
                     <Link href={create.url()}>
-                        <Button variant="brand">Create</Button>
+                        <Button variant="default">Create</Button>
                     </Link>
                 </div>
 

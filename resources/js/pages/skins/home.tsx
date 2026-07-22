@@ -68,7 +68,7 @@ export default function SkinsHome({
                         <span className="text-sm text-muted-foreground">
                             Slots: <span className="font-semibold text-foreground">{slots.used}</span> / {slots.max}
                         </span>
-                        <Button variant="brand" size="sm" asChild>
+                        <Button variant="default" size="sm" asChild>
                             <Link href={create.url()}>
                                 <PlusIcon data-icon="inline-start" weight="bold" />
                                 Create
@@ -195,7 +195,7 @@ export default function SkinsHome({
                                 <p className="max-w-md text-sm text-muted-foreground">
                                     Upload a skin to fill one of your {slots.max} slots.
                                 </p>
-                                <Button variant="brand" size="sm" asChild>
+                                <Button variant="default" size="sm" asChild>
                                     <Link href={create.url()}>
                                         <PlusIcon data-icon="inline-start" weight="bold" />
                                         Create skin

@@ -86,7 +86,7 @@ export default function ApiTokensIndex({
                                     </div>
 
                                     <div className="flex justify-end">
-                                        <Button type="submit" variant="brand" disabled={processing}>
+                                        <Button type="submit" variant="default" disabled={processing}>
                                             Create
                                         </Button>
                                     </div>

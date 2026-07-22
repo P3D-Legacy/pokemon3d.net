@@ -165,7 +165,7 @@ export default function ProfileEdit({
                                         </div>
 
                                         <div className="flex justify-end">
-                                            <Button type="submit" variant="brand" disabled={processing}>
+                                            <Button type="submit" variant="default" disabled={processing}>
                                                 Save
                                             </Button>
                                         </div>
@@ -205,7 +205,7 @@ export default function ProfileEdit({
                                             </Button>
                                         ) : account.connect_url ? (
                                             <a href={account.connect_url}>
-                                                <Button type="button" variant="brand">
+                                                <Button type="button" variant="default">
                                                     Connect
                                                 </Button>
                                             </a>
@@ -280,7 +280,7 @@ export default function ProfileEdit({
                                             <InputError message={errors.password_confirmation} />
                                         </div>
                                         <div className="flex justify-end">
-                                            <Button type="submit" variant="brand" disabled={processing}>
+                                            <Button type="submit" variant="default" disabled={processing}>
                                                 Save
                                             </Button>
                                         </div>

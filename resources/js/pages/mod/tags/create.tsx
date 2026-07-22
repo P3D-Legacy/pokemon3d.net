@@ -27,7 +27,7 @@ export default function TagsCreate() {
                                         Cancel
                                     </Button>
                                 </Link>
-                                <Button type="submit" variant="brand" disabled={processing}>
+                                <Button type="submit" variant="default" disabled={processing}>
                                     Create
                                 </Button>
                             </div>

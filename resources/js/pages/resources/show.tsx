@@ -167,7 +167,12 @@ export default function ResourceShow({ resource, copy }: Props) {
                         {auth.user && resource.permissions.can_like ? (
                             <Form {...like.form(resource.uuid)}>
                                 {({ processing }) => (
-                                    <Button type="submit" variant="outline" size="sm" disabled={processing}>
+                                    <Button
+                                        type="submit"
+                                        variant={resource.likes.liked ? 'like' : 'outline'}
+                                        size="sm"
+                                        disabled={processing}
+                                    >
                                         <HeartIcon
                                             data-icon="inline-start"
                                             weight={resource.likes.liked ? 'fill' : 'regular'}

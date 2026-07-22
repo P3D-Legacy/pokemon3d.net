@@ -31,7 +31,7 @@ export default function TagsEdit({ tag }: Props) {
                                         Cancel
                                     </Button>
                                 </Link>
-                                <Button type="submit" variant="brand" disabled={processing}>
+                                <Button type="submit" variant="default" disabled={processing}>
                                     Save
                                 </Button>
                             </div>

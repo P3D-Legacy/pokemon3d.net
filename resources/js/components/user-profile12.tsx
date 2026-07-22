@@ -58,7 +58,7 @@ const UserProfile12 = ({
             />
 
             <CardContent className="relative px-6 pb-6">
-                <Avatar className="-mt-14 size-28 border-4 border-card shadow-lg">
+                <Avatar className="-mt-14 size-28 border-4 border-card shadow">
                     <AvatarImage src={user.avatar} alt={user.name} className="object-cover" />
                     <AvatarFallback className="text-2xl font-semibold">{initials}</AvatarFallback>
                 </Avatar>

@@ -132,6 +132,33 @@ test('game save presenter returns trophy details including difficulty and image'
         ]);
 });
 
+test('game save presenter returns structured player details', function () {
+    $user = User::factory()->create();
+
+    GamejoltAccount::factory()->create([
+        'user_id' => $user->id,
+    ]);
+
+    GameSave::factory()->create([
+        'user_id' => $user->id,
+    ]);
+
+    $payload = GameSavePresenter::forUser($user->fresh());
+
+    expect($payload['details'])->toMatchArray([
+        'Name' => 'Red',
+        'RivalName' => 'Blue',
+        'Location' => 'Pallet Town',
+        'Money' => '3000',
+        'HasPokedex' => 'Yes',
+        'HasPokegear' => 'No',
+        'Gender' => 'Male',
+        'OT' => '12345',
+        'Points' => '150',
+        'GTSStars' => '3',
+    ]);
+});
+
 test('members show includes trophy cards payload when a game save is available', function () {
     $user = User::factory()->create([
         'username' => 'trophytrainer',

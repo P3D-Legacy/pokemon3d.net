@@ -1,6 +1,7 @@
 import { Head, usePage } from '@inertiajs/react';
 import { useState } from 'react';
 
+import { DetailsPanel, type PlayerDetails } from '@/components/details-panel';
 import { PokedexPanel, type PokedexEntry } from '@/components/pokedex-panel';
 import { TrophiesPanel, type TrophyItem } from '@/components/trophies-panel';
 import { Badge } from '@/components/ui/badge';
@@ -36,7 +37,7 @@ type Props = {
             caught_count?: number;
             seen_count?: number;
             party?: unknown;
-            details?: Record<string, unknown> | unknown[];
+            details?: PlayerDetails;
             pokedex?: PokedexEntry[];
             statistics?: Record<string, unknown> | unknown[];
             trophies?: {
@@ -218,7 +219,7 @@ export default function MembersShow({ member }: Props) {
                                 </div>
                                 <div className="mt-4 text-sm text-slate-700 dark:text-slate-200">
                                     {saveTab === 'party' && <JsonBlock value={member.gameSave.party} />}
-                                    {saveTab === 'details' && <JsonBlock value={member.gameSave.details} />}
+                                    {saveTab === 'details' && <DetailsPanel details={member.gameSave.details ?? {}} />}
                                     {saveTab === 'pokedex' && (
                                         <PokedexPanel
                                             pokedex={member.gameSave.pokedex ?? []}

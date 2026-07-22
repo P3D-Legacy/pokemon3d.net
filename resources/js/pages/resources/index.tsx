@@ -118,14 +118,6 @@ export default function ResourcesIndex({ resources, categories, selectedCategory
                                 : 'Browse mods, tools, and other community resources.'}
                         </p>
                     </div>
-                    {canCreate ? (
-                        <Button asChild>
-                            <Link href={create.url()}>
-                                <PlusIcon data-icon="inline-start" weight="bold" />
-                                {copy.create}
-                            </Link>
-                        </Button>
-                    ) : null}
                 </div>
 
                 <div className="grid grid-cols-1 gap-6 lg:grid-cols-4">

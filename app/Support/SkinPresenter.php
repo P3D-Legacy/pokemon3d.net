@@ -4,7 +4,6 @@ namespace App\Support;
 
 use App\Models\Skin;
 use App\Models\User;
-use ByteUnits\Binary;
 
 class SkinPresenter
 {
@@ -15,7 +14,6 @@ class SkinPresenter
     {
         $viewerGamejoltId = $viewer?->gamejolt?->id;
         $timezone = $viewer?->timezone ?? config('app.timezone');
-        $fileSize = SkinStorage::sizeLibrary($skin->uuid);
 
         return [
             'uuid' => $skin->uuid,
@@ -26,9 +24,7 @@ class SkinPresenter
                 $skin->uuid,
                 $skin->updated_at?->timestamp ?? now()->timestamp
             ),
-            'file_size' => $fileSize !== null
-                ? Binary::bytes($fileSize)->format()
-                : 'N/A',
+            'file_size' => 'N/A',
             'likes_count' => (int) ($skin->likers_count ?? $skin->likers()->count()),
             'liked' => (bool) ($skin->has_liked ?? ($viewer ? $skin->isLikedBy($viewer) : false)),
             'is_owner' => $viewerGamejoltId !== null && (int) $viewerGamejoltId === (int) $skin->owner_id,

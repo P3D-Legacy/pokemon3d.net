@@ -8,9 +8,10 @@ use App\Support\SkinStorage;
 use Database\Seeders\PermissionSeeder;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Http;
 use Inertia\Testing\AssertableInertia as Assert;
 
-function configureSkinDisk(): string
+function configureSkinDisk(): array
 {
     $skinRoot = storage_path('framework/testing-disks/skin');
     $playerRoot = storage_path('framework/testing-disks/player');
@@ -22,20 +23,20 @@ function configureSkinDisk(): string
             'driver' => 'local',
             'root' => $skinRoot,
             'url' => 'http://skin.test',
-            'throw' => false,
+            'throw' => true,
         ],
         'filesystems.disks.player' => [
             'driver' => 'local',
             'root' => $playerRoot,
-            'url' => 'http://player.test',
-            'throw' => false,
+            'url' => rtrim((string) config('app.url'), '/').'/player',
+            'throw' => true,
         ],
         'skins.max_upload' => 10,
         'skins.width' => 96,
         'skins.height' => 128,
     ]);
 
-    return $skinRoot;
+    return [$skinRoot, $playerRoot];
 }
 
 function createVerifiedUserWithGamejolt(): array
@@ -70,7 +71,7 @@ test('public skins newest and popular render with inertia', function () {
 });
 
 test('public skin show renders with inertia', function () {
-    $root = configureSkinDisk();
+    [$root] = configureSkinDisk();
     $skin = Skin::factory()->create();
     File::put($root.'/'.$skin->path(), 'fake');
 
@@ -199,7 +200,9 @@ test('apply copies a public skin to the player disk', function () {
         ->post(route('skin-apply', $skin->uuid))
         ->assertRedirect(route('skin-home'));
 
-    expect(SkinStorage::existsPlayer($gamejolt->id))->toBeTrue();
+    expect(SkinStorage::existsPlayer($gamejolt->id))->toBeTrue()
+        ->and(SkinStorage::urlPlayer($gamejolt->id, 1))
+        ->toContain('/player/'.$gamejolt->id.'.png');
 });
 
 test('apply rejects private skins the viewer does not own', function () {
@@ -240,7 +243,7 @@ test('player skins admin routes require permission', function () {
         ->assertInertia(fn (Assert $page) => $page->component('skins/player'));
 });
 
-test('skin presenter uses storage disk urls', function () {
+test('skin presenter uses storage disk urls without size lookups', function () {
     configureSkinDisk();
     $skin = Skin::factory()->create();
     SkinStorage::storeLibrary(fakeSkinPng(), $skin->uuid);
@@ -249,7 +252,8 @@ test('skin presenter uses storage disk urls', function () {
 
     expect($card['image_url'])->toStartWith('http://skin.test/')
         ->and($card['image_url'])->toContain($skin->uuid.'.png')
-        ->and($card['image_url'])->not->toContain('/img/skin/');
+        ->and($card['image_url'])->not->toContain('/img/skin/')
+        ->and($card['file_size'])->toBe('N/A');
 });
 
 test('skin storage existence check does not throw when the disk fails', function () {
@@ -260,9 +264,10 @@ test('skin storage existence check does not throw when the disk fails', function
             'secret' => 'invalid',
             'region' => 'auto',
             'bucket' => 'invalid-bucket',
+            'url' => 'https://cdn.example.test',
             'endpoint' => 'https://example.invalid',
             'use_path_style_endpoint' => true,
-            'throw' => false,
+            'throw' => true,
             'root' => 'skin',
         ],
     ]);
@@ -271,7 +276,10 @@ test('skin storage existence check does not throw when the disk fails', function
         ->and(SkinStorage::sizeLibrary('9f788b03-65d5-4420-90e8-d71e80f69fa7'))->toBeNull();
 });
 
-test('skin urls do not crash when the s3 bucket is missing', function () {
+test('unready library disk returns placeholder url and rejects writes', function () {
+    $playerRoot = storage_path('framework/testing-disks/player-unready');
+    File::ensureDirectoryExists($playerRoot);
+
     config([
         'filesystems.disks.s3' => [
             'driver' => 's3',
@@ -281,30 +289,43 @@ test('skin urls do not crash when the s3 bucket is missing', function () {
             'bucket' => null,
             'url' => null,
             'endpoint' => null,
-            'throw' => false,
+            'throw' => true,
         ],
         'filesystems.disks.skin' => [
             'driver' => 'scoped',
             'disk' => 's3',
             'prefix' => 'skin',
-            'throw' => false,
+            'throw' => true,
         ],
         'filesystems.disks.player' => [
-            'driver' => 'scoped',
-            'disk' => 's3',
-            'prefix' => 'player',
-            'throw' => false,
+            'driver' => 'local',
+            'root' => $playerRoot,
+            'url' => rtrim((string) config('app.url'), '/').'/player',
+            'throw' => true,
         ],
+        'skins.width' => 96,
+        'skins.height' => 128,
     ]);
 
     $uuid = '9f788b03-65d5-4420-90e8-d71e80f69fa7';
 
     expect(SkinStorage::urlLibrary($uuid, 123))
-        ->toContain('img/skin/'.$uuid.'.png')
+        ->toBe(SkinStorage::placeholderUrl())
+        ->and(SkinStorage::urlLibrary($uuid, 123))->not->toContain('/img/skin/')
         ->and(SkinStorage::existsLibrary($uuid))->toBeFalse();
+
+    expect(fn () => SkinStorage::storeLibrary(fakeSkinPng(), $uuid))
+        ->toThrow(RuntimeException::class);
+
+    SkinStorage::storePlayer(fakeSkinPng(), 42);
+    expect(SkinStorage::existsPlayer(42))->toBeTrue()
+        ->and(SkinStorage::urlPlayer(42, 1))->toContain('/player/42.png');
 });
 
-test('scoped skin disks build urls from the cloud parent disk url', function () {
+test('scoped skin disks build library urls from the cloud parent disk url', function () {
+    $playerRoot = storage_path('framework/testing-disks/player-cloud');
+    File::ensureDirectoryExists($playerRoot);
+
     config([
         'filesystems.disks.s3' => [
             'driver' => 's3',
@@ -314,24 +335,62 @@ test('scoped skin disks build urls from the cloud parent disk url', function () 
             'bucket' => 'bucket',
             'url' => 'https://cdn.example.test',
             'endpoint' => 'https://example.invalid',
-            'throw' => false,
+            'throw' => true,
         ],
         'filesystems.disks.skin' => [
             'driver' => 'scoped',
             'disk' => 's3',
             'prefix' => 'skin',
-            'throw' => false,
+            'throw' => true,
         ],
         'filesystems.disks.player' => [
-            'driver' => 'scoped',
-            'disk' => 's3',
-            'prefix' => 'player',
-            'throw' => false,
+            'driver' => 'local',
+            'root' => $playerRoot,
+            'url' => rtrim((string) config('app.url'), '/').'/player',
+            'throw' => true,
         ],
     ]);
 
     expect(SkinStorage::urlLibrary('abc', 1))
         ->toStartWith('https://cdn.example.test/skin/abc.png')
         ->and(SkinStorage::urlPlayer(42, 1))
-        ->toStartWith('https://cdn.example.test/player/42.png');
+        ->toContain('/player/42.png')
+        ->and(SkinStorage::urlPlayer(42, 1))
+        ->not->toContain('cdn.example.test');
+});
+
+test('import rejects skins with wrong dimensions', function () {
+    configureSkinDisk();
+    [$user, $gamejolt] = createVerifiedUserWithGamejolt();
+
+    $png = fakeSkinPng(64, 64)->get();
+
+    Http::fake([
+        '*' => Http::response($png, 200, ['Content-Type' => 'image/png']),
+    ]);
+
+    $this->actingAs($user)
+        ->post(route('import', $gamejolt->id))
+        ->assertRedirect(route('skin-home'))
+        ->assertSessionHas('error', 'Skin was not in a valid format!');
+
+    expect(SkinStorage::existsPlayer($gamejolt->id))->toBeFalse();
+});
+
+test('import accepts a valid png and writes the player disk', function () {
+    configureSkinDisk();
+    [$user, $gamejolt] = createVerifiedUserWithGamejolt();
+
+    $png = fakeSkinPng()->get();
+
+    Http::fake([
+        '*' => Http::response($png, 200, ['Content-Type' => 'image/png']),
+    ]);
+
+    $this->actingAs($user)
+        ->post(route('import', $gamejolt->id))
+        ->assertRedirect(route('skin-home'))
+        ->assertSessionHas('flash.bannerStyle', 'success');
+
+    expect(SkinStorage::existsPlayer($gamejolt->id))->toBeTrue();
 });

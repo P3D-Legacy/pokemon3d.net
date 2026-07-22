@@ -62,7 +62,11 @@ class ImportController extends Controller
             }
 
             $isPngType = str_contains($contentType, 'image/png') || $contentType === '';
-            if (! $isPngType || ! SkinStorage::isValidPng($contents)) {
+            if (
+                ! $isPngType
+                || ! SkinStorage::isValidPng($contents)
+                || ! SkinStorage::hasExactDimensions($contents)
+            ) {
                 session()->flash('flash.bannerStyle', 'danger');
                 session()->flash('flash.banner', 'Skin was not in a valid format!');
 

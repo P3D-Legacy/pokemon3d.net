@@ -3,6 +3,7 @@
 namespace App\Support;
 
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use League\Flysystem\UnableToCheckExistence;
 use League\Flysystem\UnableToReadFile;
@@ -12,6 +13,11 @@ use Throwable;
 
 class SkinStorage
 {
+    /**
+     * @var array<string, bool>
+     */
+    private static array $loggedUnhealthyDisks = [];
+
     public static function libraryPath(string $uuid): string
     {
         return "{$uuid}.png";
@@ -24,53 +30,29 @@ class SkinStorage
 
     public static function storeLibrary(UploadedFile $file, string $uuid): void
     {
-        self::ensureDiskReady('skin');
-
-        $path = self::libraryPath($uuid);
         $contents = $file->get();
 
         if ($contents === false || $contents === '') {
             throw new RuntimeException('Failed to read uploaded skin file.');
         }
 
-        try {
-            $stored = Storage::disk('skin')->put($path, $contents);
-        } catch (Throwable $exception) {
-            throw new RuntimeException('Failed to store library skin.', 0, $exception);
-        }
-
-        if ($stored === false) {
-            throw new RuntimeException('Failed to store library skin.');
-        }
+        self::putBytes('skin', self::libraryPath($uuid), $contents);
     }
 
     public static function storePlayer(UploadedFile $file, int|string $gamejoltId): void
     {
-        self::ensureDiskReady('player');
-
-        $path = self::playerPath($gamejoltId);
         $contents = $file->get();
 
         if ($contents === false || $contents === '') {
             throw new RuntimeException('Failed to read uploaded skin file.');
         }
 
-        try {
-            $stored = Storage::disk('player')->put($path, $contents);
-        } catch (Throwable $exception) {
-            throw new RuntimeException('Failed to store player skin.', 0, $exception);
-        }
-
-        if ($stored === false) {
-            throw new RuntimeException('Failed to store player skin.');
-        }
+        self::putBytes('player', self::playerPath($gamejoltId), $contents);
     }
 
     public static function putPlayer(int|string $gamejoltId, string $contents): void
     {
-        self::ensureDiskReady('player');
-
-        Storage::disk('player')->put(self::playerPath($gamejoltId), $contents);
+        self::putBytes('player', self::playerPath($gamejoltId), $contents);
     }
 
     public static function existsLibrary(string $uuid): bool
@@ -105,16 +87,22 @@ class SkinStorage
 
     public static function urlLibrary(string $uuid, ?int $cacheBust = null): string
     {
+        $base = self::libraryPublicUrlBase();
+
+        if ($base === null) {
+            return self::placeholderUrl();
+        }
+
         $bust = $cacheBust ?? now()->timestamp;
 
-        return self::publicUrl('skin', self::libraryPath($uuid)).'?r='.$bust;
+        return $base.'/'.self::libraryPath($uuid).'?r='.$bust;
     }
 
     public static function urlPlayer(int|string $gamejoltId, ?int $cacheBust = null): string
     {
         $bust = $cacheBust ?? now()->timestamp;
 
-        return self::publicUrl('player', self::playerPath($gamejoltId)).'?r='.$bust;
+        return asset('player/'.self::playerPath($gamejoltId)).'?r='.$bust;
     }
 
     public static function placeholderUrl(): string
@@ -124,30 +112,42 @@ class SkinStorage
 
     public static function copyLibraryToPlayer(string $uuid, int|string $gamejoltId): void
     {
-        self::ensureDiskReady('skin');
-        self::ensureDiskReady('player');
+        self::assertWritable('skin');
+        self::assertWritable('player');
 
         try {
             $contents = Storage::disk('skin')->get(self::libraryPath($uuid));
         } catch (UnableToReadFile $exception) {
-            throw $exception;
+            throw new RuntimeException('Failed to read library skin for apply.', 0, $exception);
+        } catch (Throwable $exception) {
+            throw new RuntimeException('Failed to read library skin for apply.', 0, $exception);
         }
 
-        Storage::disk('player')->put(self::playerPath($gamejoltId), $contents);
+        if (! is_string($contents) || $contents === '') {
+            throw new RuntimeException('Library skin file is empty.');
+        }
+
+        self::putBytes('player', self::playerPath($gamejoltId), $contents);
     }
 
     public static function copyPlayerToLibrary(int|string $gamejoltId, string $uuid): void
     {
-        self::ensureDiskReady('skin');
-        self::ensureDiskReady('player');
+        self::assertWritable('skin');
+        self::assertWritable('player');
 
         try {
             $contents = Storage::disk('player')->get(self::playerPath($gamejoltId));
         } catch (UnableToReadFile $exception) {
-            throw $exception;
+            throw new RuntimeException('Failed to read player skin for duplicate.', 0, $exception);
+        } catch (Throwable $exception) {
+            throw new RuntimeException('Failed to read player skin for duplicate.', 0, $exception);
         }
 
-        Storage::disk('skin')->put(self::libraryPath($uuid), $contents);
+        if (! is_string($contents) || $contents === '') {
+            throw new RuntimeException('Player skin file is empty.');
+        }
+
+        self::putBytes('skin', self::libraryPath($uuid), $contents);
     }
 
     /**
@@ -164,7 +164,9 @@ class SkinStorage
                 ->filter(fn (string $item): bool => str_ends_with(strtolower($item), '.png'))
                 ->values()
                 ->all();
-        } catch (Throwable) {
+        } catch (Throwable $exception) {
+            self::logUnhealthyDisk('player', $exception);
+
             return [];
         }
     }
@@ -200,6 +202,35 @@ class SkinStorage
         return str_starts_with($contents, "\x89PNG\r\n\x1a\n");
     }
 
+    public static function hasExactDimensions(string $contents): bool
+    {
+        $info = @getimagesizefromstring($contents);
+
+        if ($info === false) {
+            return false;
+        }
+
+        $width = (int) config('skins.width');
+        $height = (int) config('skins.height');
+
+        return (int) $info[0] === $width && (int) $info[1] === $height;
+    }
+
+    private static function putBytes(string $disk, string $path, string $contents): void
+    {
+        self::assertWritable($disk);
+
+        try {
+            $stored = Storage::disk($disk)->put($path, $contents);
+        } catch (Throwable $exception) {
+            throw new RuntimeException("Failed to store skin on disk [{$disk}].", 0, $exception);
+        }
+
+        if ($stored === false) {
+            throw new RuntimeException("Failed to store skin on disk [{$disk}].");
+        }
+    }
+
     private static function safeExists(string $disk, string $path): bool
     {
         if (! self::diskIsReady($disk)) {
@@ -208,9 +239,9 @@ class SkinStorage
 
         try {
             return Storage::disk($disk)->exists($path);
-        } catch (UnableToCheckExistence|Throwable) {
-            // Flysystem raises UnableToCheckFileExistence on S3/R2 auth/network
-            // errors; Laravel's exists() does not honour disks.*.throw = false.
+        } catch (UnableToCheckExistence|Throwable $exception) {
+            self::logUnhealthyDisk($disk, $exception);
+
             return false;
         }
     }
@@ -223,7 +254,9 @@ class SkinStorage
 
         try {
             return (int) Storage::disk($disk)->size($path);
-        } catch (UnableToRetrieveMetadata|UnableToCheckExistence|Throwable) {
+        } catch (UnableToRetrieveMetadata|UnableToCheckExistence|Throwable $exception) {
+            self::logUnhealthyDisk($disk, $exception);
+
             return null;
         }
     }
@@ -241,65 +274,37 @@ class SkinStorage
         } catch (UnableToCheckExistence|Throwable) {
             try {
                 Storage::disk($disk)->delete($path);
-            } catch (Throwable) {
-                // Best-effort cleanup when existence checks are unavailable.
+            } catch (Throwable $exception) {
+                self::logUnhealthyDisk($disk, $exception);
             }
         }
     }
 
-    /**
-     * Build a public object URL without constructing the S3 adapter when possible.
-     * Storage::disk()->url() requires a non-null bucket and crashes otherwise.
-     */
-    private static function publicUrl(string $disk, string $path): string
+    private static function libraryPublicUrlBase(): ?string
     {
-        $config = config("filesystems.disks.{$disk}", []);
+        $config = config('filesystems.disks.skin', []);
 
         if (($config['driver'] ?? null) === 'scoped') {
             $parent = (string) ($config['disk'] ?? '');
             $prefix = trim((string) ($config['prefix'] ?? ''), '/');
-            $parentConfig = config("filesystems.disks.{$parent}", []);
-            $base = $parentConfig['url'] ?? null;
-            $relative = $prefix !== '' ? "{$prefix}/{$path}" : $path;
+            $parentUrl = config("filesystems.disks.{$parent}.url");
 
-            if (is_string($base) && $base !== '') {
-                return rtrim($base, '/').'/'.$relative;
+            if (! is_string($parentUrl) || $parentUrl === '') {
+                return null;
             }
 
-            if (self::diskIsReady($disk)) {
-                try {
-                    return Storage::disk($disk)->url($path);
-                } catch (Throwable) {
-                    // Fall through to legacy public paths.
-                }
-            }
+            $base = rtrim($parentUrl, '/');
 
-            return match ($disk) {
-                'player' => asset('player/'.$path),
-                default => asset('img/skin/'.$path),
-            };
+            return $prefix !== '' ? $base.'/'.$prefix : $base;
         }
 
-        $base = $config['url'] ?? null;
-        $root = trim((string) ($config['root'] ?? ''), '/');
-        $relative = $root !== '' ? "{$root}/{$path}" : $path;
+        $url = $config['url'] ?? null;
 
-        if (is_string($base) && $base !== '') {
-            return rtrim($base, '/').'/'.$relative;
+        if (! is_string($url) || $url === '') {
+            return null;
         }
 
-        if (self::diskIsReady($disk)) {
-            try {
-                return Storage::disk($disk)->url($path);
-            } catch (Throwable) {
-                // Fall through to legacy public paths.
-            }
-        }
-
-        return match ($disk) {
-            'player' => asset('player/'.$path),
-            default => asset('img/skin/'.$path),
-        };
+        return rtrim($url, '/');
     }
 
     private static function diskIsReady(string $disk): bool
@@ -313,22 +318,97 @@ class SkinStorage
         $driver = $config['driver'] ?? null;
 
         if ($driver === 'scoped') {
-            return self::diskIsReady((string) ($config['disk'] ?? ''));
+            $parent = (string) ($config['disk'] ?? '');
+
+            return self::diskIsReady($parent) && self::libraryPublicUrlBase() !== null;
         }
 
         if ($driver === 's3') {
-            return filled($config['bucket'] ?? null);
+            return filled($config['bucket'] ?? null) && filled($config['url'] ?? null);
+        }
+
+        if ($driver === 'local') {
+            $root = $config['root'] ?? null;
+
+            return is_string($root) && $root !== '';
         }
 
         return filled($driver);
     }
 
-    private static function ensureDiskReady(string $disk): void
+    private static function assertWritable(string $disk): void
     {
-        if (self::diskIsReady($disk)) {
+        if ($disk === 'skin') {
+            if (self::libraryPublicUrlBase() === null || ! self::parentObjectDiskIsConfigured()) {
+                throw new RuntimeException('Filesystem disk [skin] is not configured.');
+            }
+
             return;
         }
 
-        throw new RuntimeException("Filesystem disk [{$disk}] is not configured.");
+        if ($disk === 'player') {
+            $root = config('filesystems.disks.player.root');
+
+            if (! is_string($root) || $root === '') {
+                throw new RuntimeException('Filesystem disk [player] is not configured.');
+            }
+
+            if (! is_dir($root) && ! mkdir($root, 0755, true) && ! is_dir($root)) {
+                throw new RuntimeException('Filesystem disk [player] is not writable.');
+            }
+
+            if (! is_writable($root)) {
+                throw new RuntimeException('Filesystem disk [player] is not writable.');
+            }
+
+            return;
+        }
+
+        if (! self::diskIsReady($disk)) {
+            throw new RuntimeException("Filesystem disk [{$disk}] is not configured.");
+        }
+    }
+
+    private static function parentObjectDiskIsConfigured(): bool
+    {
+        $config = config('filesystems.disks.skin', []);
+
+        if (($config['driver'] ?? null) !== 'scoped') {
+            return self::diskIsReady('skin');
+        }
+
+        $parent = (string) ($config['disk'] ?? '');
+        $parentConfig = config("filesystems.disks.{$parent}", []);
+
+        if (! is_array($parentConfig)) {
+            return false;
+        }
+
+        $driver = $parentConfig['driver'] ?? null;
+
+        if ($driver === 's3') {
+            return filled($parentConfig['bucket'] ?? null);
+        }
+
+        if ($driver === 'local') {
+            return filled($parentConfig['root'] ?? null);
+        }
+
+        return filled($driver);
+    }
+
+    private static function logUnhealthyDisk(string $disk, Throwable $exception): void
+    {
+        if (isset(self::$loggedUnhealthyDisks[$disk])) {
+            return;
+        }
+
+        self::$loggedUnhealthyDisks[$disk] = true;
+
+        Log::warning("Skin storage disk [{$disk}] check failed.", [
+            'disk' => $disk,
+            'exception' => $exception::class,
+            'message' => $exception->getMessage(),
+        ]);
     }
 }

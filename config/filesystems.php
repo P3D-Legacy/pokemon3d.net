@@ -26,9 +26,10 @@ return [
         | Object storage parent disk
         |--------------------------------------------------------------------------
         |
-        | Locally this is a plain local disk. On Laravel Cloud, create an object
-        | storage resource whose disk name matches SKINS_OBJECT_DISK (default
-        | "s3"). Cloud injects LARAVEL_CLOUD_DISK_CONFIG and overrides this entry.
+        | Used for library skins. Locally this is a plain local disk. On Laravel
+        | Cloud, create an object storage resource whose disk name matches
+        | SKINS_OBJECT_DISK (default "s3"). Cloud injects LARAVEL_CLOUD_DISK_CONFIG
+        | and overrides this entry.
         |
         */
         's3' => [
@@ -36,16 +37,16 @@ return [
             'root' => storage_path('app/object'),
             'url' => rtrim((string) env('APP_URL', 'http://localhost'), '/').'/storage/object',
             'visibility' => 'public',
-            'throw' => false,
+            'throw' => true,
         ],
 
         /*
         |--------------------------------------------------------------------------
-        | Skin / player disks
+        | Library skins (object storage)
         |--------------------------------------------------------------------------
         |
-        | Scoped prefixes on the object storage parent disk. Paths stay skin/ and
-        | player/ whether running locally or on Laravel Cloud.
+        | Scoped prefix on the object storage parent disk. Paths stay skin/{uuid}.png
+        | whether running locally or on Laravel Cloud.
         |
         */
         'skin' => [
@@ -53,17 +54,36 @@ return [
             'disk' => env('SKINS_OBJECT_DISK', 's3'),
             'prefix' => 'skin',
             'visibility' => 'public',
-            'throw' => false,
+            'throw' => true,
         ],
 
+        /*
+        |--------------------------------------------------------------------------
+        | Player / in-game skins (local public)
+        |--------------------------------------------------------------------------
+        |
+        | Classic game-facing path: public/player/{gamejoltId}.png served as
+        | /player/{gamejoltId}.png on the application domain.
+        |
+        */
         'player' => [
-            'driver' => 'scoped',
-            'disk' => env('SKINS_OBJECT_DISK', 's3'),
-            'prefix' => 'player',
+            'driver' => 'local',
+            'root' => public_path('player'),
+            'url' => rtrim((string) env('APP_URL', 'http://localhost'), '/').'/player',
             'visibility' => 'public',
-            'throw' => false,
+            'throw' => true,
         ],
 
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Symbolic Links
+    |--------------------------------------------------------------------------
+    */
+    'links' => [
+        public_path('storage') => storage_path('app/public'),
+        public_path('storage/object') => storage_path('app/object'),
     ],
 
 ];

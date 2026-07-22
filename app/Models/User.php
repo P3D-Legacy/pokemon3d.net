@@ -15,7 +15,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Facades\Storage;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
@@ -24,7 +23,6 @@ use Overtrue\LaravelLike\Traits\Liker;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Permission\Traits\HasRoles;
-use Throwable;
 
 class User extends Authenticatable implements FilamentUser, MustVerifyEmail
 {
@@ -139,15 +137,11 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
             $disk = $this->profilePhotoDisk();
             $baseUrl = config("filesystems.disks.{$disk}.url");
 
-            if (filled($baseUrl)) {
-                return rtrim($baseUrl, '/').'/'.ltrim($this->profile_photo_path, '/');
-            }
-
-            try {
-                return Storage::disk($disk)->url($this->profile_photo_path);
-            } catch (Throwable) {
+            if (! filled($baseUrl)) {
                 return $this->defaultProfilePhotoUrl();
             }
+
+            return rtrim($baseUrl, '/').'/'.ltrim($this->profile_photo_path, '/');
         });
     }
 

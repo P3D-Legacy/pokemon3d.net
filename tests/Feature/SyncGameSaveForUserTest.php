@@ -10,6 +10,13 @@ use App\Services\GameJoltDataStoreGateway;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Mockery\MockInterface;
 
+beforeEach(function () {
+    config([
+        'services.gamejolt.game_id' => '12345',
+        'services.gamejolt.private_key' => 'test-private-key',
+    ]);
+});
+
 it('skips missing datastore keys and still syncs later columns', function () {
     $user = User::factory()->create();
     $account = GamejoltAccount::factory()->create(['user_id' => $user->id]);

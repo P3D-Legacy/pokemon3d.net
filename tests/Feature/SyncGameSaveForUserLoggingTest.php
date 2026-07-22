@@ -5,6 +5,13 @@ use App\Models\GamejoltAccount;
 use App\Models\GameSave;
 use App\Models\User;
 
+beforeEach(function () {
+    config([
+        'services.gamejolt.game_id' => '12345',
+        'services.gamejolt.private_key' => 'test-private-key',
+    ]);
+});
+
 it('aborts without writing a game save when the user has no linked GameJolt account', function () {
     $user = User::factory()->create();
 

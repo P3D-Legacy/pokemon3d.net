@@ -53,6 +53,48 @@ it('skips missing datastore keys and still syncs later columns', function () {
         ->and($gameSave->apricorns)->toBe('');
 });
 
+it('skips unsuccessful datastore keys that are not known hard failures', function () {
+    $user = User::factory()->create();
+    $account = GamejoltAccount::factory()->create(['user_id' => $user->id]);
+
+    $this->mock(GameJoltDataStoreGateway::class, function (MockInterface $mock) {
+        $mock->shouldReceive('fetch')
+            ->andReturnUsing(function (string $key) {
+                if (str_ends_with($key, '|apricorns')) {
+                    return [
+                        'response' => [
+                            'success' => 'false',
+                            'message' => 'Unknown fatal error occurred.',
+                        ],
+                    ];
+                }
+
+                if (str_ends_with($key, '|player')) {
+                    return [
+                        'response' => [
+                            'success' => 'true',
+                            'data' => "Name|Ash\r\n",
+                        ],
+                    ];
+                }
+
+                return [
+                    'response' => [
+                        'success' => 'false',
+                    ],
+                ];
+            });
+    });
+
+    SyncGameSaveForUser::dispatchSync($user->fresh());
+
+    $gameSave = GameSave::where('user_id', $account->user_id)->first();
+
+    expect($gameSave)->not->toBeNull()
+        ->and($gameSave->player)->toBe("Name|Ash\r\n")
+        ->and($gameSave->apricorns)->toBe('');
+});
+
 it('throws on hard GameJolt datastore failures', function () {
     $user = User::factory()->create();
     GamejoltAccount::factory()->create(['user_id' => $user->id]);

@@ -123,38 +123,37 @@ class SyncGameSaveForUser implements ShouldBeUnique, ShouldQueue
                 continue;
             }
 
-            if ($this->isMissingKeyResponse($response)) {
-                $skippedColumns[] = $column;
+            $apiMessage = $this->responseMessage($response);
 
-                Log::debug('Game save datastore key missing; skipping column.', [
+            // Datastore keys are optional per player. Only known auth/config errors are hard failures.
+            if ($this->isHardFailureResponse($response)) {
+                Log::warning('Game save datastore fetch failed with a hard error.', [
                     'column' => $column,
                     'datastore_key' => $datastoreKey,
-                    'api_message' => $response['message'] ?? null,
+                    'api_success' => $response['success'] ?? null,
+                    'api_message' => $apiMessage,
+                    'raw_result' => $dsResult,
+                    'fetched_columns' => array_keys($result),
+                    'fetched_column_count' => count($result),
+                    'skipped_columns' => $skippedColumns,
                 ]);
 
-                continue;
+                throw new GameJoltDataStoreFetchException(
+                    "GameJolt datastore fetch failed for column [{$column}].",
+                    $column,
+                    $datastoreKey,
+                    $apiMessage,
+                );
             }
 
-            $apiMessage = isset($response['message']) && is_string($response['message'])
-                ? $response['message']
-                : null;
+            $skippedColumns[] = $column;
 
-            Log::warning('Game save datastore fetch failed with a hard error.', [
+            Log::debug('Game save datastore key unavailable; skipping column.', [
                 'column' => $column,
                 'datastore_key' => $datastoreKey,
-                'api_success' => $response['success'] ?? null,
                 'api_message' => $apiMessage,
-                'fetched_columns' => array_keys($result),
-                'fetched_column_count' => count($result),
-                'skipped_columns' => $skippedColumns,
+                'looks_like_missing_key' => $this->isMissingKeyResponse($response),
             ]);
-
-            throw new GameJoltDataStoreFetchException(
-                "GameJolt datastore fetch failed for column [{$column}].",
-                $column,
-                $datastoreKey,
-                $apiMessage,
-            );
         }
 
         if ($result === []) {
@@ -222,9 +221,62 @@ class SyncGameSaveForUser implements ShouldBeUnique, ShouldQueue
             return false;
         }
 
-        $message = strtolower((string) ($response['message'] ?? ''));
+        $message = strtolower($this->responseMessage($response) ?? '');
 
-        return str_contains($message, 'no item with that key could be found');
+        return str_contains($message, 'no item with that key')
+            || str_contains($message, 'key could not be found')
+            || str_contains($message, 'key couldn\'t be found');
+    }
+
+    /**
+     * @param  array<string, mixed>  $response
+     */
+    private function isHardFailureResponse(array $response): bool
+    {
+        if ($this->isSuccessfulResponse($response) || $this->isMissingKeyResponse($response)) {
+            return false;
+        }
+
+        $message = strtolower($this->responseMessage($response) ?? '');
+
+        if ($message === '') {
+            return false;
+        }
+
+        $hardFailureNeedles = [
+            'invalid user token',
+            'incorrect credentials',
+            'incorrect user credentials',
+            'the user could not be found',
+            'user could not be found',
+            'game id is invalid',
+            'no game found',
+            'must enter a valid',
+            'signature',
+            'forbidden',
+            'unauthorized',
+            'rate limit',
+        ];
+
+        foreach ($hardFailureNeedles as $needle) {
+            if (str_contains($message, $needle)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * @param  array<string, mixed>  $response
+     */
+    private function responseMessage(array $response): ?string
+    {
+        if (! isset($response['message']) || ! is_string($response['message'])) {
+            return null;
+        }
+
+        return $response['message'];
     }
 
     /**

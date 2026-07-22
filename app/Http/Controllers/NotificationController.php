@@ -2,31 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Inertia\Inertia;
-use Inertia\Response;
+use Illuminate\Notifications\DatabaseNotification;
 
 class NotificationController extends Controller
 {
     /**
-     * Display the user's notifications.
+     * Return the user's latest notifications as JSON.
      */
-    public function index(Request $request): Response
+    public function index(Request $request): JsonResponse
     {
         $notifications = $request->user()
             ->notifications()
-            ->paginate()
-            ->through(fn ($notification): array => [
-                'id' => $notification->id,
-                'message' => $notification->data['message'] ?? '',
-                'icon' => $notification->data['icon'] ?? null,
-                'url' => $notification->data['url'] ?? null,
-                'read_at' => $notification->read_at?->toIso8601String(),
-                'created_for_humans' => $notification->created_at->diffForHumans(),
-            ]);
+            ->latest()
+            ->limit(20)
+            ->get()
+            ->map(fn ($notification): array => $this->transform($notification))
+            ->values();
 
-        return Inertia::render('notifications/index', [
+        return response()->json([
             'notifications' => $notifications,
         ]);
     }
@@ -39,10 +35,10 @@ class NotificationController extends Controller
         $notification = $request->user()->notifications()->findOrFail($id);
         $notification->markAsRead();
 
-        $url = $notification->data['url'] ?? null;
+        $url = $this->safeRedirectUrl($notification->data['url'] ?? null);
 
-        if (! is_string($url) || ! str_starts_with($url, '/') || str_starts_with($url, '//')) {
-            return redirect()->route('notifications.index');
+        if ($url === null) {
+            return back();
         }
 
         return redirect()->to($url);
@@ -66,5 +62,48 @@ class NotificationController extends Controller
         $request->user()->unreadNotifications->markAsRead();
 
         return back();
+    }
+
+    /**
+     * @param  DatabaseNotification  $notification
+     * @return array<string, mixed>
+     */
+    private function transform(mixed $notification): array
+    {
+        return [
+            'id' => $notification->id,
+            'message' => strip_tags($notification->data['message'] ?? ''),
+            'icon' => $notification->data['icon'] ?? null,
+            'url' => $notification->data['url'] ?? null,
+            'read_at' => $notification->read_at?->toIso8601String(),
+            'created_for_humans' => $notification->created_at->diffForHumans(),
+        ];
+    }
+
+    private function safeRedirectUrl(mixed $url): ?string
+    {
+        if (! is_string($url) || $url === '') {
+            return null;
+        }
+
+        if (str_starts_with($url, '/') && ! str_starts_with($url, '//')) {
+            return $url;
+        }
+
+        $appHost = parse_url((string) config('app.url'), PHP_URL_HOST);
+        $targetHost = parse_url($url, PHP_URL_HOST);
+        $targetScheme = parse_url($url, PHP_URL_SCHEME);
+
+        if (
+            is_string($appHost)
+            && is_string($targetHost)
+            && is_string($targetScheme)
+            && in_array(strtolower($targetScheme), ['http', 'https'], true)
+            && strcasecmp($appHost, $targetHost) === 0
+        ) {
+            return $url;
+        }
+
+        return null;
     }
 }

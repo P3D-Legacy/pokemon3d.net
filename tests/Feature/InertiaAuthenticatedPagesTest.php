@@ -44,7 +44,7 @@ test('profile page is rendered with inertia', function () {
             ->has('features'));
 });
 
-test('notifications page is rendered with inertia', function () {
+test('notifications index returns latest notifications as json', function () {
     $user = User::factory()->create();
 
     DatabaseNotification::create([
@@ -53,18 +53,17 @@ test('notifications page is rendered with inertia', function () {
         'notifiable_type' => User::class,
         'notifiable_id' => $user->id,
         'data' => [
-            'message' => 'Hello trainer',
+            'message' => '<strong>Hello trainer</strong>',
             'url' => route('dashboard'),
         ],
     ]);
 
     $this->actingAs($user)
-        ->get(route('notifications.index'))
+        ->getJson(route('notifications.index'))
         ->assertOk()
-        ->assertInertia(fn (Assert $page) => $page
-            ->component('notifications/index')
-            ->has('notifications.data', 1)
-            ->where('notifications.data.0.message', 'Hello trainer'));
+        ->assertJsonCount(1, 'notifications')
+        ->assertJsonPath('notifications.0.message', 'Hello trainer')
+        ->assertJsonPath('notifications.0.url', route('dashboard'));
 });
 
 test('opening a notification rejects external redirect targets', function () {
@@ -82,8 +81,30 @@ test('opening a notification rejects external redirect targets', function () {
     ]);
 
     $this->actingAs($user)
+        ->from(route('dashboard'))
         ->post(route('notifications.open', $notification->id))
-        ->assertRedirect(route('notifications.index'));
+        ->assertRedirect(route('dashboard'));
+});
+
+test('opening a notification redirects to same-app absolute urls', function () {
+    $user = User::factory()->create();
+
+    $notification = DatabaseNotification::create([
+        'id' => (string) Str::uuid(),
+        'type' => 'App\\Notifications\\TestNotification',
+        'notifiable_type' => User::class,
+        'notifiable_id' => $user->id,
+        'data' => [
+            'message' => 'Go to dashboard',
+            'url' => route('dashboard'),
+        ],
+    ]);
+
+    $this->actingAs($user)
+        ->post(route('notifications.open', $notification->id))
+        ->assertRedirect(route('dashboard'));
+
+    expect($notification->fresh()->read_at)->not->toBeNull();
 });
 
 test('api tokens page is rendered with inertia', function () {

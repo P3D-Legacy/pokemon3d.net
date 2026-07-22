@@ -1,6 +1,5 @@
 import { Link, usePage } from '@inertiajs/react';
 import {
-    BellIcon,
     BookOpenIcon,
     BooksIcon,
     CaretUpDownIcon,
@@ -21,6 +20,7 @@ import {
 } from '@phosphor-icons/react';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 
+import { NotificationsNav } from '@/components/notifications-nav';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import {
@@ -53,7 +53,6 @@ import {
 import { index as apiTokensIndex } from '@/routes/api-tokens';
 import { index as blogIndex } from '@/routes/blog';
 import { index as memberIndex } from '@/routes/member';
-import { index as notificationsIndex } from '@/routes/notifications';
 import { show as profileShow } from '@/routes/profile';
 import { index as resourceIndex } from '@/routes/resource';
 import { index as serverIndex } from '@/routes/server';
@@ -147,11 +146,6 @@ const Navbar17 = ({ className, variant = 'dark' }: Navbar17Props) => {
                 label: 'API Tokens',
                 href: apiTokensIndex.url(),
                 icon: ShieldIcon,
-            },
-            {
-                label: 'Notifications',
-                href: notificationsIndex.url(),
-                icon: BellIcon,
             },
         ];
 
@@ -283,16 +277,18 @@ const Navbar17 = ({ className, variant = 'dark' }: Navbar17Props) => {
 
                 <div className="hidden items-center gap-2 lg:flex">
                     {auth.user ? (
-                        <NavUser
-                            user={{
-                                name: auth.user.name,
-                                email: auth.user.email,
-                                avatar: auth.user.profile_photo_url,
-                                unreadNotificationsCount: auth.user.unread_notifications_count,
-                            }}
-                            menuItems={userMenuItems}
-                            variant={variant}
-                        />
+                        <>
+                            <NotificationsNav variant={variant} />
+                            <NavUser
+                                user={{
+                                    name: auth.user.name,
+                                    email: auth.user.email,
+                                    avatar: auth.user.profile_photo_url,
+                                }}
+                                menuItems={userMenuItems}
+                                variant={variant}
+                            />
+                        </>
                     ) : (
                         <>
                             <Button
@@ -362,7 +358,6 @@ function NavUser({
         name: string;
         email: string;
         avatar?: string;
-        unreadNotificationsCount?: number;
     };
     menuItems: UserMenuItem[];
     variant: NavbarVariant;
@@ -383,11 +378,6 @@ function NavUser({
                         {user.avatar ? <AvatarImage src={user.avatar} alt={user.name} /> : null}
                         <AvatarFallback>{initials(user.name)}</AvatarFallback>
                     </Avatar>
-                    {(user.unreadNotificationsCount ?? 0) > 0 ? (
-                        <span className="rounded-full bg-primary px-2 py-0.5 text-xs text-primary-foreground">
-                            {user.unreadNotificationsCount}
-                        </span>
-                    ) : null}
                     <span className="hidden text-sm font-medium md:inline">{user.name}</span>
                     <CaretUpDownIcon className="hidden md:block" />
                 </Button>
@@ -465,7 +455,8 @@ const MobileNav = ({
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <div className="flex h-full items-center lg:hidden">
+        <div className="flex h-full items-center gap-1 lg:hidden">
+            {user ? <NotificationsNav variant={variant} /> : null}
             <Popover open={isOpen} onOpenChange={setIsOpen}>
                 <PopoverTrigger asChild>
                     <Button

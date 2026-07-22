@@ -13,19 +13,17 @@ type Login7Props = {
 
 const Login7 = ({ className, children, footer }: Login7Props) => {
     return (
-        <section className={cn('py-32', className)}>
-            <div className="container">
-                <div className="flex flex-col items-center gap-4">
-                    <Card className="mx-auto w-full max-w-[380px]">
-                        <CardHeader className="items-center justify-center">
-                            <Link href={home()} className="flex items-center justify-center">
-                                <img src="/img/pokemon3d_logo_sm.png" className="max-h-8" alt="Pokémon 3D" />
-                            </Link>
-                        </CardHeader>
-                        <CardContent>{children}</CardContent>
-                    </Card>
-                    {footer}
-                </div>
+        <section className={cn('flex min-h-svh flex-col items-center justify-center px-4 py-8', className)}>
+            <div className="flex w-full max-w-[380px] flex-col items-center gap-4">
+                <Card className="w-full">
+                    <CardHeader className="items-center justify-center">
+                        <Link href={home()} className="flex items-center justify-center">
+                            <img src="/img/pokemon3d_logo_sm.png" className="max-h-8" alt="Pokémon 3D" />
+                        </Link>
+                    </CardHeader>
+                    <CardContent>{children}</CardContent>
+                </Card>
+                {footer}
             </div>
         </section>
     );

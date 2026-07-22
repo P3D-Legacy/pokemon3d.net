@@ -54,12 +54,15 @@ return [
 
     'drivers' => [
         'local' => [
+            // Resolved relative to the package root (vendor/martian/spammailchecker), not the application.
             'path' => 'resources/config/emails.txt',
             'cache_key' => 'spammailchecker_'.base64_encode('resources/config/emails.txt'),
             'cache_ttl' => 60 * 60 * 24 * 7, // 1 week
             'whitelist' => [
-                // Email domains that should not be considered as spam, this excludes the domain from the spam check.
-                // Example: 'gmail.com', 'yahoo.com'
+                // Reserved documentation domains used in tests and examples (RFC 2606).
+                'example.com',
+                'example.net',
+                'example.org',
             ],
             'blacklist' => [
                 // Email domains that should be considered as spam, this includes the domain in the spam check.
@@ -69,6 +72,7 @@ return [
         'remote' => [
             'timeout' => 5,
             'check_dns' => true,
+            // SMTP probes are unreliable from most web hosts and can time out registration.
             'check_smtp' => false,
             'check_mx' => true,
         ],
@@ -127,5 +131,5 @@ return [
     |
     */
 
-    'error_message' => 'The :attribute is considered as a spam address.',
+    'error_message' => 'The :attribute appears to be invalid or from a known spam domain.',
 ];

@@ -3,6 +3,7 @@
 namespace App\Actions\Fortify;
 
 use App\Rules\OlderThan;
+use App\Rules\SpamMail;
 use App\Rules\YoungerThan;
 use Carbon\Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -22,7 +23,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
             'username' => ['required', 'string', 'max:255', 'alpha_dash:ascii', 'alpha_num:ascii', 'different:email', Rule::unique('users')->ignore($user->id)],
-            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user->id), 'indisposable', 'spam_mail'],
+            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user->id), 'indisposable', new SpamMail],
             'gender' => ['required', 'numeric'],
             'location' => ['nullable', 'max:255'],
             'about' => ['nullable', 'max:255'],

@@ -23,6 +23,7 @@
     <env name="QUEUE_CONNECTION" value="sync"/>
     <env name="SESSION_DRIVER" value="array"/>
     <env name="TELESCOPE_ENABLED" value="false"/>
+    <env name="SPAM_MAIL_CHECKER_DEFAULT_DRIVER" value="local"/>
   </php>
   <logging/>
   <source/>

@@ -118,6 +118,7 @@ return [
     'url' => ':Attribute debe ser una URL válida.',
     'uuid' => 'El campo :attribute debe ser un UUID válido.',
     'indisposable' => 'No se permiten direcciones de correo electrónico desechables.',
+    'spam_mail' => 'El campo :attribute parece no ser válido o proceder de un dominio de spam conocido.',
 
     'custom' => [],
 ];

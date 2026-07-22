@@ -118,6 +118,7 @@ return [
     'url' => 'Το πεδίο :attribute δεν είναι έγκυρη διεύθυνση URL.',
     'uuid' => 'Το πεδίο :attribute πρέπει να είναι έγκυρο UUID.',
     'indisposable' => 'Δεν επιτρέπονται οι προσωρινοί λογαριασμοί email.',
+    'spam_mail' => 'Το πεδίο :attribute φαίνεται μη έγκυρο ή προέρχεται από γνωστό spam domain.',
 
     'custom' => [
         'attribute-name' => [

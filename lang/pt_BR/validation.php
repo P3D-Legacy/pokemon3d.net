@@ -118,6 +118,7 @@ return [
     'url' => 'O formato da URL informada para o campo :attribute é inválido.',
     'uuid' => 'O campo :attribute deve ser um UUID válido.',
     'indisposable' => 'Endereços de e-mail descartáveis não são permitidos.',
+    'spam_mail' => 'O campo :attribute parece ser inválido ou de um domínio de spam conhecido.',
 
     'custom' => [
         'attribute-name' => [

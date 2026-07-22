@@ -118,6 +118,7 @@ return [
     'url' => ':attribute 格式不正确。',
     'uuid' => ':attribute 必须是有效的 UUID。',
     'indisposable' => '不允许使用一次性电子邮件地址。',
+    'spam_mail' => ':attribute 似乎无效或来自已知的垃圾邮件域名。',
 
     'custom' => [
         'attribute-name' => [

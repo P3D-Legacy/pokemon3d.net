@@ -118,6 +118,7 @@ return [
     'url' => ':Attribute moet een geldige URL zijn.',
     'uuid' => ':Attribute moet een geldige UUID zijn.',
     'indisposable' => 'Wegwerp-e-mailadressen zijn niet toegestaan.',
+    'spam_mail' => 'Het veld :attribute lijkt ongeldig of afkomstig van een bekend spamdomein.',
 
     'custom' => [
         'attribute-name' => [

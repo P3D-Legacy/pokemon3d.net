@@ -14,6 +14,7 @@ return [
     */
 
     'indisposable' => 'Disposable email addresses are not allowed.',
+    'spam_mail' => 'The :attribute appears to be invalid or from a known spam domain.',
 
     /*
     |--------------------------------------------------------------------------

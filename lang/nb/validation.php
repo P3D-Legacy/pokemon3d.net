@@ -118,6 +118,7 @@ return [
     'url' => 'Formatet på :attribute er ugyldig.',
     'uuid' => ':Attribute må være en gyldig UUID.',
     'indisposable' => 'Engangs-e-postadresser er ikke tillatt.',
+    'spam_mail' => 'Feltet :attribute ser ut til å være ugyldig eller fra et kjent spam-domene.',
 
     'custom' => [
         'attribute-name' => [

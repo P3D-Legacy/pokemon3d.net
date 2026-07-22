@@ -132,6 +132,42 @@ test('game save presenter returns trophy details including difficulty and image'
         ]);
 });
 
+test('game save presenter returns structured party members with sprite urls', function () {
+    $user = User::factory()->create();
+
+    GamejoltAccount::factory()->create([
+        'user_id' => $user->id,
+    ]);
+
+    GameSave::factory()->create([
+        'user_id' => $user->id,
+    ]);
+
+    $payload = GameSavePresenter::forUser($user->fresh());
+
+    expect($payload['party'])->toHaveCount(2)
+        ->and($payload['party'][0])->toMatchArray([
+            'id' => 25,
+            'name' => 'Pikachu',
+            'nickname' => 'Sparky',
+            'level' => 15,
+            'shiny' => false,
+            'is_egg' => false,
+            'sprite_url' => 'https://raw.githubusercontent.com/P3D-Legacy/P3D-Legacy/master/P3D/Content/Pokemon/Sprites/25.png',
+        ])
+        ->and($payload['party'][0])->not->toHaveKey('Image')
+        ->and($payload['party'][1])->toMatchArray([
+            'id' => 1,
+            'name' => 'Bulbasaur',
+            'nickname' => null,
+            'level' => 1,
+            'shiny' => true,
+            'is_egg' => true,
+            'sprite_url' => 'https://raw.githubusercontent.com/P3D-Legacy/P3D-Legacy/master/P3D/Content/Pokemon/Egg/Egg_front.png',
+        ])
+        ->and($payload['party'][1])->not->toHaveKey('Image');
+});
+
 test('game save presenter returns formatted statistics entries', function () {
     $user = User::factory()->create();
 

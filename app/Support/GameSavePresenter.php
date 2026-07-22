@@ -30,7 +30,7 @@ class GameSavePresenter
             'last_synced' => $gamesave->updated_at?->diffForHumans(),
             'caught_count' => $gamesave->getCaughtPokemonCount(),
             'seen_count' => $gamesave->getSeenPokemonCount(),
-            'party' => $gamesave->getParty(),
+            'party' => array_values($gamesave->getParty()),
             'details' => $gamesave->getPlayerDataDetails(),
             'pokedex' => array_values($gamesave->getPokedex()),
             'statistics' => array_values($gamesave->getStatistics()),

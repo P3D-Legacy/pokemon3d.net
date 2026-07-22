@@ -31,7 +31,10 @@ class GameSaveFactory extends Factory
             'items' => '',
             'npc' => '',
             'options' => '',
-            'party' => '',
+            'party' => implode("\r\n", [
+                '{"Pokemon"[25]}{"Experience"[1000.00]}{"Gender"[0]}{"EggSteps"[0]}{"Item"[0]}{"NickName"[Sparky]}{"Level"[15]}{"OT"[12345]}{"Ability"[9]}{"Status"[]}{"Nature"[0]}{"CatchLocation"[Route 1]}{"CatchTrainer"[Red]}{"CatchBall"[5]}{"CatchMethod"[caught at]}{"Friendship"[70]}{"isShiny"[0]}',
+                '{"Pokemon"[1]}{"Experience"[100.00]}{"Gender"[1]}{"EggSteps"[14]}{"Item"[0]}{"NickName"[]}{"Level"[1]}{"OT"[12345]}{"Ability"[65]}{"Status"[]}{"Nature"[1]}{"CatchLocation"[Pokemon Center]}{"CatchTrainer"[Red]}{"CatchBall"[5]}{"CatchMethod"[obtained at]}{"Friendship"[70]}{"isShiny"[1]}',
+            ]),
             'player' => implode("\r\n", [
                 'Name|Red',
                 'RivalName|Blue',

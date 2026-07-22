@@ -2,6 +2,7 @@ import { Head, usePage } from '@inertiajs/react';
 import { useState } from 'react';
 
 import { DetailsPanel, type PlayerDetails } from '@/components/details-panel';
+import { PartyPanel, type PartyMember } from '@/components/party-panel';
 import { PokedexPanel, type PokedexEntry } from '@/components/pokedex-panel';
 import { StatisticsPanel, type StatisticItem } from '@/components/statistics-panel';
 import { TrophiesPanel, type TrophyItem } from '@/components/trophies-panel';
@@ -37,7 +38,7 @@ type Props = {
             last_synced?: string;
             caught_count?: number;
             seen_count?: number;
-            party?: unknown;
+            party?: PartyMember[];
             details?: PlayerDetails;
             pokedex?: PokedexEntry[];
             statistics?: StatisticItem[];
@@ -219,7 +220,7 @@ export default function MembersShow({ member }: Props) {
                                     ))}
                                 </div>
                                 <div className="mt-4 min-w-0 w-full overflow-x-auto text-sm text-slate-700 dark:text-slate-200">
-                                    {saveTab === 'party' && <JsonBlock value={member.gameSave.party} />}
+                                    {saveTab === 'party' && <PartyPanel party={member.gameSave.party ?? []} />}
                                     {saveTab === 'details' && <DetailsPanel details={member.gameSave.details ?? {}} />}
                                     {saveTab === 'pokedex' && (
                                         <PokedexPanel
@@ -259,41 +260,4 @@ function Detail({ title, value }: { title: string; value?: string | null }) {
             <dd className="break-words">{value}</dd>
         </div>
     );
-}
-
-function JsonBlock({ value }: { value: unknown }) {
-    if (value == null) {
-        return <p className="text-slate-500">No data</p>;
-    }
-
-    if (Array.isArray(value)) {
-        return (
-            <ul className="flex w-full min-w-0 flex-col gap-2">
-                {value.map((item, index) => (
-                    <li key={index} className="min-w-0 rounded border border-slate-200 p-2 dark:border-slate-700">
-                        <pre className="overflow-x-auto whitespace-pre-wrap break-words text-xs">
-                            {typeof item === 'string' ? item : JSON.stringify(item, null, 2)}
-                        </pre>
-                    </li>
-                ))}
-            </ul>
-        );
-    }
-
-    if (typeof value === 'object') {
-        return (
-            <dl className="grid w-full min-w-0 gap-2 sm:grid-cols-2">
-                {Object.entries(value as Record<string, unknown>).map(([key, entry]) => (
-                    <div key={key} className="min-w-0 rounded border border-slate-200 p-2 dark:border-slate-700">
-                        <dt className="text-xs uppercase text-slate-500">{key}</dt>
-                        <dd className="break-words text-sm">
-                            {typeof entry === 'string' || typeof entry === 'number' ? String(entry) : JSON.stringify(entry)}
-                        </dd>
-                    </div>
-                ))}
-            </dl>
-        );
-    }
-
-    return <p className="break-words">{String(value)}</p>;
 }

@@ -238,67 +238,91 @@ class GameSave extends Model
         }
     }
 
-    // Get pokemon in party
+    /**
+     * @return array<int, array<string, mixed>>
+     */
     public function getParty(): array
     {
         try {
-            $party = $this->party;
-            $party = explode("\r\n", $party);
-            // Split values for party entry into an array
-            $party = array_map(function ($item) {
-                return explode('}{', $item);
-            }, $party);
-            // For each party entry; get the properties and add it to the pokemon in array
-            $party = array_map(function ($item) {
-                $pokemon = [];
-                $private_keys = ['IDValue'];
-                foreach ($item as $property) {
-                    $property = explode('"[', $property);
-                    $key = str_replace('{', '', str_replace('"', '', $property[0]));
-                    $value = str_replace(']', '', str_replace('}', '', $property[1]));
-                    if (in_array($key, $private_keys)) {
+            $spriteBase = 'https://raw.githubusercontent.com/P3D-Legacy/P3D-Legacy/master/P3D/Content/Pokemon/';
+            $lines = array_values(array_filter(explode("\r\n", (string) $this->party)));
+
+            return array_values(array_map(function (string $line) use ($spriteBase): array {
+                $properties = explode('}{', $line);
+                $raw = [];
+
+                foreach ($properties as $property) {
+                    $parts = explode('"[', $property, 2);
+
+                    if (count($parts) < 2) {
                         continue;
                     }
-                    if ($key == 'Experience') {
-                        $value = substr($value, 0, -3);
+
+                    $key = str_replace(['{', '"'], '', $parts[0]);
+                    $value = str_replace([']', '}'], '', $parts[1]);
+
+                    if ($key === '' || $key === 'IDValue') {
+                        continue;
                     }
-                    if ($key == 'Nature') {
-                        $value = $this->getNature($value);
-                    }
-                    if ($key == 'Ability') {
-                        $value = $this->getAbility($value);
-                    }
-                    if ($key == 'Pokemon') {
-                        $pokemon['PokemonName'] = $this->getPokemonName($value);
-                    }
-                    if ($key == 'Friendship') {
-                        $value = round($value / 255 * 100, 0).'%';
-                    }
-                    $pokemon[$key] = $value;
+
+                    $raw[$key] = $value;
                 }
-                $url = $pokemon['EggSteps'] > 0 ? 'https://raw.githubusercontent.com/P3D-Legacy/P3D-Legacy/master/P3D/Content/Pokemon/Egg/Egg_front.png' : 'https://raw.githubusercontent.com/P3D-Legacy/P3D-Legacy/master/P3D/Content/Pokemon/Sprites/'.$pokemon['Pokemon'].'.png';
-                $image = imagecrop(imagecreatefromstring(file_get_contents($url)), [
-                    'x' => 0,
-                    'y' => $pokemon['isShiny'] ? 96 : 0,
-                    'width' => 96,
-                    'height' => 96,
-                ]);
-                ob_start(); // Let's start output buffering
-                imagejpeg($image); // This will normally output the image, but because of ob_start(), it won't
-                $contents = ob_get_contents(); // Instead, output above is saved to $contents
-                ob_end_clean(); // End the output buffer
-                $pokemon['Image'] = 'data:image/png;base64,'.base64_encode($contents);
 
-                return $pokemon;
-            }, $party);
+                $pokemonId = (int) ($raw['Pokemon'] ?? 0);
+                $eggSteps = (int) ($raw['EggSteps'] ?? 0);
+                $isEgg = $eggSteps > 0;
+                $nickname = trim((string) ($raw['NickName'] ?? ''));
+                $status = trim((string) ($raw['Status'] ?? ''));
+                $experience = (string) ($raw['Experience'] ?? '0');
 
-            return $party;
+                if (str_ends_with($experience, '.00')) {
+                    $experience = substr($experience, 0, -3);
+                }
+
+                $friendshipRaw = $raw['Friendship'] ?? null;
+                $friendship = $friendshipRaw !== null && $friendshipRaw !== ''
+                    ? round(((float) $friendshipRaw) / 255 * 100, 0).'%'
+                    : null;
+
+                $shiny = filter_var($raw['isShiny'] ?? false, FILTER_VALIDATE_BOOLEAN);
+
+                return [
+                    'id' => $pokemonId,
+                    'name' => $this->getPokemonName($pokemonId),
+                    'nickname' => $nickname !== '' ? $nickname : null,
+                    'level' => (int) ($raw['Level'] ?? 0),
+                    'gender' => $this->getPartyGenderLabel($raw['Gender'] ?? null),
+                    'nature' => isset($raw['Nature']) ? $this->getNature($raw['Nature']) : null,
+                    'ability' => isset($raw['Ability']) ? $this->getAbility($raw['Ability']) : null,
+                    'friendship' => $friendship,
+                    'experience' => $experience,
+                    'status' => $status !== '' ? $status : null,
+                    'shiny' => $shiny,
+                    'is_egg' => $isEgg,
+                    'sprite_url' => $isEgg
+                        ? $spriteBase.'Egg/Egg_front.png'
+                        : $spriteBase.'Sprites/'.$pokemonId.'.png',
+                ];
+            }, $lines));
         } catch (Exception $e) {
-            // If there is an error, return an empty array and log the error
             Log::error($e->getMessage());
 
             return [];
         }
+    }
+
+    private function getPartyGenderLabel(mixed $gender): ?string
+    {
+        if ($gender === null || $gender === '') {
+            return null;
+        }
+
+        return match ((int) $gender) {
+            0 => __('Male'),
+            1 => __('Female'),
+            2 => __('Genderless'),
+            default => null,
+        };
     }
 
     // Get nature from int

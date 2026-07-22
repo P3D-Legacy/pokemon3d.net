@@ -73,7 +73,10 @@ test('review page is rendered with inertia', function () {
         ->assertInertia(fn (Assert $page) => $page
             ->component('review/index')
             ->has('reviews')
-            ->has('gameVersions'));
+            ->has('averageRating')
+            ->has('numberOfReviews')
+            ->has('gameVersions')
+            ->has('canCreate'));
 });
 
 test('servers index is rendered with inertia', function () {

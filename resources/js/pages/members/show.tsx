@@ -3,6 +3,7 @@ import { useState } from 'react';
 
 import { DetailsPanel, type PlayerDetails } from '@/components/details-panel';
 import { PokedexPanel, type PokedexEntry } from '@/components/pokedex-panel';
+import { StatisticsPanel, type StatisticItem } from '@/components/statistics-panel';
 import { TrophiesPanel, type TrophyItem } from '@/components/trophies-panel';
 import { Badge } from '@/components/ui/badge';
 import { UserProfile12 } from '@/components/user-profile12';
@@ -39,7 +40,7 @@ type Props = {
             party?: unknown;
             details?: PlayerDetails;
             pokedex?: PokedexEntry[];
-            statistics?: Record<string, unknown> | unknown[];
+            statistics?: StatisticItem[];
             trophies?: {
                 achieved: number;
                 total: number;
@@ -234,7 +235,9 @@ export default function MembersShow({ member }: Props) {
                                             totalCount={member.gameSave.trophies?.total ?? 0}
                                         />
                                     )}
-                                    {saveTab === 'statistics' && <JsonBlock value={member.gameSave.statistics} />}
+                                    {saveTab === 'statistics' && (
+                                        <StatisticsPanel statistics={member.gameSave.statistics ?? []} />
+                                    )}
                                 </div>
                             </>
                         )}

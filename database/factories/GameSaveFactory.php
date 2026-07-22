@@ -49,7 +49,12 @@ class GameSaveFactory extends Factory
             'register' => '',
             'roamingpokemon' => '',
             'secretbase' => '',
-            'statistics' => '',
+            'statistics' => implode("\r\n", [
+                '{Steps[0],12345.00',
+                '{BattlesWon[1],100.00',
+                '{PokemonCaught[2],50.00',
+                '{PlayTime[3],3600.00',
+            ]),
         ];
     }
 }

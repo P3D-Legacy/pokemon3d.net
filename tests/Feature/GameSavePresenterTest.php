@@ -132,6 +132,38 @@ test('game save presenter returns trophy details including difficulty and image'
         ]);
 });
 
+test('game save presenter returns formatted statistics entries', function () {
+    $user = User::factory()->create();
+
+    GamejoltAccount::factory()->create([
+        'user_id' => $user->id,
+    ]);
+
+    GameSave::factory()->create([
+        'user_id' => $user->id,
+    ]);
+
+    $payload = GameSavePresenter::forUser($user->fresh());
+
+    expect($payload['statistics'])->toHaveCount(4)
+        ->and($payload['statistics'][0])->toMatchArray([
+            'name' => 'Steps',
+            'value' => '12345',
+        ])
+        ->and($payload['statistics'][1])->toMatchArray([
+            'name' => 'BattlesWon',
+            'value' => '100',
+        ])
+        ->and($payload['statistics'][2])->toMatchArray([
+            'name' => 'PokemonCaught',
+            'value' => '50',
+        ])
+        ->and($payload['statistics'][3])->toMatchArray([
+            'name' => 'PlayTime',
+            'value' => '3600',
+        ]);
+});
+
 test('game save presenter returns structured player details', function () {
     $user = User::factory()->create();
 

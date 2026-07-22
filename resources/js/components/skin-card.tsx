@@ -130,7 +130,7 @@ export default function SkinCard({
                             <Button
                                 type="button"
                                 size="sm"
-                                variant={skin.liked ? 'secondary' : 'default'}
+                                variant={skin.liked ? 'like' : 'outline'}
                                 disabled={processing}
                                 onClick={() =>
                                     runAction(() =>

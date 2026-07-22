@@ -45,6 +45,35 @@ test('external redirect routes point off-site', function () {
     $this->get(route('discord'))->assertRedirect($invite);
 });
 
+test('external redirect routes work for inertia visits', function () {
+    $version = hash_file('xxh128', public_path('build/manifest.json'));
+
+    $headers = [
+        'X-Inertia' => 'true',
+        'X-Inertia-Version' => $version,
+        'X-Requested-With' => 'XMLHttpRequest',
+    ];
+
+    $wiki = $this->get(route('wiki'), $headers);
+    $wiki->assertStatus(409);
+    expect(str_contains((string) $wiki->headers->get('X-Inertia-Location'), 'wiki.pokemon3d.net'))->toBeTrue();
+
+    $forum = $this->get(route('forum'), $headers);
+    $forum->assertStatus(409);
+    expect(str_contains((string) $forum->headers->get('X-Inertia-Location'), 'forum.pokemon3d.net'))->toBeTrue();
+
+    $github = $this->get(route('github'), $headers);
+    $github->assertStatus(409);
+    expect(str_contains((string) $github->headers->get('X-Inertia-Location'), 'github.com'))->toBeTrue();
+
+    $invite = config('services.discord.invite_url');
+    expect($invite)->not->toBeEmpty();
+
+    $discord = $this->get(route('discord'), $headers);
+    $discord->assertStatus(409);
+    expect($discord->headers->get('X-Inertia-Location'))->toBe($invite);
+});
+
 test('blog index and show render', function () {
     $this->get(route('blog.index'))->assertOk();
 

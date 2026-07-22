@@ -25,6 +25,7 @@ use App\Http\Controllers\Skin\SkinHomeController;
 use App\Http\Controllers\Skin\UploadedSkinController;
 use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,19 +45,19 @@ if (config('app.debug')) {
 }
 Route::prefix('redirect')->group(function () {
     Route::get('/wiki', function () {
-        return redirect('https://wiki.pokemon3d.net/');
+        return Inertia::location('https://wiki.pokemon3d.net/');
     })->name('wiki');
 
     Route::get('/forum', function () {
-        return redirect('https://forum.pokemon3d.net/');
+        return Inertia::location('https://forum.pokemon3d.net/');
     })->name('forum');
 
     Route::get('/github', function () {
-        return redirect('https://github.com/P3D-Legacy');
+        return Inertia::location('https://github.com/P3D-Legacy');
     })->name('github');
 
     Route::get('/discord', function () {
-        return redirect(config('services.discord.invite_url'));
+        return Inertia::location(config('services.discord.invite_url'));
     })->name('discord');
 });
 

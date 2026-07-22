@@ -270,3 +270,68 @@ test('skin storage existence check does not throw when the disk fails', function
     expect(SkinStorage::existsLibrary('9f788b03-65d5-4420-90e8-d71e80f69fa7'))->toBeFalse()
         ->and(SkinStorage::sizeLibrary('9f788b03-65d5-4420-90e8-d71e80f69fa7'))->toBeNull();
 });
+
+test('skin urls do not crash when the s3 bucket is missing', function () {
+    config([
+        'filesystems.disks.s3' => [
+            'driver' => 's3',
+            'key' => null,
+            'secret' => null,
+            'region' => 'auto',
+            'bucket' => null,
+            'url' => null,
+            'endpoint' => null,
+            'throw' => false,
+        ],
+        'filesystems.disks.skin' => [
+            'driver' => 'scoped',
+            'disk' => 's3',
+            'prefix' => 'skin',
+            'throw' => false,
+        ],
+        'filesystems.disks.player' => [
+            'driver' => 'scoped',
+            'disk' => 's3',
+            'prefix' => 'player',
+            'throw' => false,
+        ],
+    ]);
+
+    $uuid = '9f788b03-65d5-4420-90e8-d71e80f69fa7';
+
+    expect(SkinStorage::urlLibrary($uuid, 123))
+        ->toContain('img/skin/'.$uuid.'.png')
+        ->and(SkinStorage::existsLibrary($uuid))->toBeFalse();
+});
+
+test('scoped skin disks build urls from the cloud parent disk url', function () {
+    config([
+        'filesystems.disks.s3' => [
+            'driver' => 's3',
+            'key' => 'key',
+            'secret' => 'secret',
+            'region' => 'auto',
+            'bucket' => 'bucket',
+            'url' => 'https://cdn.example.test',
+            'endpoint' => 'https://example.invalid',
+            'throw' => false,
+        ],
+        'filesystems.disks.skin' => [
+            'driver' => 'scoped',
+            'disk' => 's3',
+            'prefix' => 'skin',
+            'throw' => false,
+        ],
+        'filesystems.disks.player' => [
+            'driver' => 'scoped',
+            'disk' => 's3',
+            'prefix' => 'player',
+            'throw' => false,
+        ],
+    ]);
+
+    expect(SkinStorage::urlLibrary('abc', 1))
+        ->toStartWith('https://cdn.example.test/skin/abc.png')
+        ->and(SkinStorage::urlPlayer(42, 1))
+        ->toStartWith('https://cdn.example.test/player/42.png');
+});

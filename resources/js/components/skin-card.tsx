@@ -27,9 +27,16 @@ type Props = {
     mode?: 'default' | 'admin' | 'detail';
     authenticated?: boolean;
     className?: string;
+    hideImage?: boolean;
 };
 
-export default function SkinCard({ skin, mode = 'default', authenticated = false, className }: Props) {
+export default function SkinCard({
+    skin,
+    mode = 'default',
+    authenticated = false,
+    className,
+    hideImage = false,
+}: Props) {
     const [reason, setReason] = useState('');
     const [processing, setProcessing] = useState(false);
 
@@ -50,15 +57,17 @@ export default function SkinCard({ skin, mode = 'default', authenticated = false
                 className,
             )}
         >
-            <div className="flex shrink-0 items-start justify-center">
-                <SkinImage
-                    className={mode === 'detail' ? 'h-64 w-48' : 'h-32 w-24'}
-                    src={skin.image_url}
-                    alt={skin.name}
-                    width={mode === 'detail' ? 192 : 96}
-                    height={mode === 'detail' ? 256 : 128}
-                />
-            </div>
+            {! hideImage && (
+                <div className="flex shrink-0 items-start justify-center">
+                    <SkinImage
+                        className={mode === 'detail' ? 'h-64 w-48' : 'h-32 w-24'}
+                        src={skin.image_url}
+                        alt={skin.name}
+                        width={mode === 'detail' ? 192 : 96}
+                        height={mode === 'detail' ? 256 : 128}
+                    />
+                </div>
+            )}
             <div className="min-w-0 flex-1">
                 <h2 className="break-all text-lg font-semibold tracking-tight text-foreground">
                     {skin.public && skin.show_url ? (

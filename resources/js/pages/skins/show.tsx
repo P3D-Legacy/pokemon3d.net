@@ -1,6 +1,7 @@
 import { Head, Link, usePage } from '@inertiajs/react';
 import { ArrowLeftIcon, PaintBrushIcon } from '@phosphor-icons/react';
 
+import SkinAnimator from '@/components/skin-animator';
 import SkinCard from '@/components/skin-card';
 import { Button } from '@/components/ui/button';
 import { skinsNewest } from '@/routes';
@@ -38,7 +39,21 @@ export default function SkinsShow({ skin }: Props) {
                     </div>
                 </div>
 
-                <SkinCard skin={skin} mode="detail" authenticated={Boolean(auth.user)} />
+                <div className="flex flex-col gap-6 lg:flex-row lg:items-start">
+                    <div className="flex flex-col items-center gap-3 border border-border bg-card p-6">
+                        <SkinAnimator src={skin.image_url} alt={skin.name} scale={6} />
+                        <p className="text-center text-xs text-muted-foreground">
+                            Overworld walk cycle from the 96×128 sheet (32×32 frames).
+                        </p>
+                    </div>
+                    <SkinCard
+                        skin={skin}
+                        mode="detail"
+                        authenticated={Boolean(auth.user)}
+                        className="max-w-none flex-1"
+                        hideImage
+                    />
+                </div>
             </div>
         </>
     );

@@ -16,6 +16,8 @@ export type SharedPageProps = {
     flash: {
         status?: string | null;
         error?: string | null;
+        success?: string | null;
+        warning?: string | null;
         banner?: string | null;
         bannerStyle?: string | null;
         token?: string | null;

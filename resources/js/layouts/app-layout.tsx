@@ -1,5 +1,6 @@
 import type { PropsWithChildren } from 'react';
 
+import FlashBanner from '@/components/flash-banner';
 import { Navbar17 } from '@/components/navbar17';
 
 export default function AppLayout({ children, title }: PropsWithChildren<{ title?: string }>) {
@@ -8,6 +9,8 @@ export default function AppLayout({ children, title }: PropsWithChildren<{ title
             <div className="sticky top-0 z-50">
                 <Navbar17 variant="light" />
             </div>
+
+            <FlashBanner />
 
             {title ? (
                 <div className="border-b bg-background">

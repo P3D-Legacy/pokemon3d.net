@@ -24,7 +24,18 @@ class SkinStorage
 
     public static function storeLibrary(UploadedFile $file, string $uuid): void
     {
-        $stored = $file->storeAs(null, self::libraryPath($uuid), 'skin');
+        $path = self::libraryPath($uuid);
+        $contents = $file->get();
+
+        if ($contents === false || $contents === '') {
+            throw new RuntimeException('Failed to read uploaded skin file.');
+        }
+
+        try {
+            $stored = Storage::disk('skin')->put($path, $contents);
+        } catch (Throwable $exception) {
+            throw new RuntimeException('Failed to store library skin.', 0, $exception);
+        }
 
         if ($stored === false) {
             throw new RuntimeException('Failed to store library skin.');
@@ -33,7 +44,18 @@ class SkinStorage
 
     public static function storePlayer(UploadedFile $file, int|string $gamejoltId): void
     {
-        $stored = $file->storeAs(null, self::playerPath($gamejoltId), 'player');
+        $path = self::playerPath($gamejoltId);
+        $contents = $file->get();
+
+        if ($contents === false || $contents === '') {
+            throw new RuntimeException('Failed to read uploaded skin file.');
+        }
+
+        try {
+            $stored = Storage::disk('player')->put($path, $contents);
+        } catch (Throwable $exception) {
+            throw new RuntimeException('Failed to store player skin.', 0, $exception);
+        }
 
         if ($stored === false) {
             throw new RuntimeException('Failed to store player skin.');

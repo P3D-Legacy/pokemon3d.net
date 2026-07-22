@@ -1,4 +1,4 @@
-import { Form, Head, Link } from '@inertiajs/react';
+import { Form, Head, Link, usePage } from '@inertiajs/react';
 import { PaintBrushIcon, UploadSimpleIcon } from '@phosphor-icons/react';
 import { useState } from 'react';
 
@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import type { SharedPageProps } from '@/types';
 
 type Props = {
     slots: {
@@ -21,6 +22,7 @@ type Props = {
 
 export default function SkinsCreate({ slots, width, height }: Props) {
     const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+    const { flash } = usePage<SharedPageProps>().props;
 
     return (
         <>
@@ -37,6 +39,15 @@ export default function SkinsCreate({ slots, width, height }: Props) {
                         Upload a {width}×{height} PNG. Slots remaining: {Math.max(slots.max - slots.used, 0)}.
                     </p>
                 </div>
+
+                {(flash.error || flash.banner) && (
+                    <div
+                        role="alert"
+                        className="mb-4 border border-destructive/40 bg-destructive/10 px-4 py-3 text-sm text-destructive"
+                    >
+                        {flash.error || flash.banner}
+                    </div>
+                )}
 
                 <div className="border border-border bg-card p-6">
                     <Form {...store.form()} encType="multipart/form-data" className="space-y-5">

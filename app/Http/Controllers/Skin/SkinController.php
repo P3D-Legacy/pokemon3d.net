@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Notification;
 use Inertia\Inertia;
 use Inertia\Response;
 use League\Flysystem\UnableToReadFile;
-use RuntimeException;
+use Throwable;
 
 class SkinController extends Controller
 {
@@ -110,12 +110,15 @@ class SkinController extends Controller
 
         try {
             SkinStorage::storeLibrary($request->file('image'), $skin->uuid);
-        } catch (RuntimeException) {
+        } catch (Throwable $exception) {
+            report($exception);
             $skin->forceDelete();
 
             return redirect()
                 ->route('skin-create')
-                ->with('error', 'Could not store the skin file. Please try again.');
+                ->with('error', 'Could not store the skin file. Please try again.')
+                ->with('flash.banner', 'Could not store the skin file. Please try again.')
+                ->with('flash.bannerStyle', 'danger');
         }
 
         $webhook = config('skins.discord_webhook');

@@ -117,6 +117,8 @@ return [
     'uploaded' => ':attribute 上傳失敗。',
     'url' => ':attribute 的格式錯誤。',
     'uuid' => ':attribute 必須是有效的 UUID。',
+    'indisposable' => '不允許使用一次性電子郵件地址。',
+
     'custom' => [
         'attribute-name' => [
             'rule-name' => 'custom-message',

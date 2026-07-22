@@ -12,7 +12,6 @@ use Illuminate\Queue\Console\PruneBatchesCommand;
 use Illuminate\Queue\Console\PruneFailedJobsCommand;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Schedule;
-use Propaganistas\LaravelDisposableEmail\Console\UpdateDisposableDomainsCommand;
 
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
@@ -27,7 +26,7 @@ Schedule::command(DiscordRoleSync::class)->dailyAt('12:00');
 Schedule::command(DiscordUserRoleSync::class)->dailyAt('12:10');
 Schedule::command(SyncGameVersion::class)->dailyAt('00:00');
 Schedule::command(NotifyGameUpdate::class)->dailyAt('00:30');
+Schedule::command('disposable:update')->daily();
 // Weekly commands
 Schedule::command(PruneFailedJobsCommand::class)->weekly();
-Schedule::command(UpdateDisposableDomainsCommand::class)->weekly();
 Schedule::command(CleanUpActivity::class)->weekly();

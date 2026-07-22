@@ -117,6 +117,8 @@ return [
     'uploaded' => 'Het uploaden van :attribute is mislukt.',
     'url' => ':Attribute moet een geldige URL zijn.',
     'uuid' => ':Attribute moet een geldige UUID zijn.',
+    'indisposable' => 'Wegwerp-e-mailadressen zijn niet toegestaan.',
+
     'custom' => [
         'attribute-name' => [
             'rule-name' => 'custom-message',

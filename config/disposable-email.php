@@ -53,6 +53,34 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Whitelist Configuration
+    |--------------------------------------------------------------------------
+    |
+    | Here you may define a list of whitelist domains that should be allowed.
+    | These domains will be removed from the list of disposable domains.
+    |
+    | Insert as "mydomain.com", without the @ symbol.
+    |
+    */
+
+    'whitelist' => [],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Include Subdomains
+    |--------------------------------------------------------------------------
+    |
+    | Determines whether subdomains should be validated based on the disposability
+    | status of their parent domains. Enabling this will treat any subdomain of
+    | a disposable domain as disposable too (e.g., 'temp.abc.com' if 'abc.com'
+    | is disposable).
+    |
+    */
+
+    'include_subdomains' => true,
+
+    /*
+    |--------------------------------------------------------------------------
     | Cache Configuration
     |--------------------------------------------------------------------------
     |

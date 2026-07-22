@@ -117,6 +117,8 @@ return [
     'uploaded' => ':attribute 上传失败。',
     'url' => ':attribute 格式不正确。',
     'uuid' => ':attribute 必须是有效的 UUID。',
+    'indisposable' => '不允许使用一次性电子邮件地址。',
+
     'custom' => [
         'attribute-name' => [
             'rule-name' => 'custom-message',

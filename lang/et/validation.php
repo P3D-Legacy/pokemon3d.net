@@ -117,6 +117,8 @@ return [
     'uploaded' => ':attribute ei õnnestunud laadida.',
     'url' => ':attribute vorming on vigane.',
     'uuid' => ':attribute peab olema õige UUID',
+    'indisposable' => 'Ühekordsed e-posti aadressid ei ole lubatud.',
+
     'custom' => [
         'attribute-name' => [
             'rule-name' => 'kohandatud-teade',

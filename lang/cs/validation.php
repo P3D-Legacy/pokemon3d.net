@@ -117,6 +117,8 @@ return [
     'uploaded' => 'Nahrávání :attribute se nezdařilo.',
     'url' => 'Formát :attribute je neplatný.',
     'uuid' => ':attribute musí být validní UUID.',
+    'indisposable' => 'Jednorázové e-mailové adresy nejsou povoleny.',
+
     'custom' => [
         'attribute-name' => [
             'rule-name' => 'custom-message',

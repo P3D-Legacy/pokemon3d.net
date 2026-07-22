@@ -13,6 +13,8 @@ return [
     |
     */
 
+    'indisposable' => 'Disposable email addresses are not allowed.',
+
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines

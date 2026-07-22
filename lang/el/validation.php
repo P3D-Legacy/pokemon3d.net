@@ -117,6 +117,8 @@ return [
     'uploaded' => 'Η μεταφόρτωση του πεδίου :attribute απέτυχε.',
     'url' => 'Το πεδίο :attribute δεν είναι έγκυρη διεύθυνση URL.',
     'uuid' => 'Το πεδίο :attribute πρέπει να είναι έγκυρο UUID.',
+    'indisposable' => 'Δεν επιτρέπονται οι προσωρινοί λογαριασμοί email.',
+
     'custom' => [
         'attribute-name' => [
             'rule-name' => 'custom-message',

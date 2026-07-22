@@ -19,14 +19,20 @@ export type PokedexEntry = {
     caught: boolean;
 };
 
+export type PokedexDefinition = {
+    slug: string;
+    name: string;
+    caught_count: number;
+    seen_count: number;
+    entries: PokedexEntry[];
+};
+
 type PokedexFilter = 'all' | 'caught' | 'seen';
 type EntryStatus = 'caught' | 'seen' | 'unseen';
 type IconComponent = ComponentType<SVGProps<SVGSVGElement> & { weight?: 'regular' | 'fill' }>;
 
 type PokedexPanelProps = {
-    pokedex: PokedexEntry[];
-    caughtCount: number;
-    seenCount: number;
+    pokedexes: PokedexDefinition[];
 };
 
 const filters: Array<{ key: PokedexFilter; label: string; icon: IconComponent }> = [
@@ -42,6 +48,10 @@ const statusIcons: Record<EntryStatus, IconComponent> = {
 };
 
 function formatDexNumber(id: string): string {
+    if (id.includes('_') || id.includes(';')) {
+        return `#${id}`;
+    }
+
     const numericId = Number.parseInt(id, 10);
 
     if (Number.isNaN(numericId)) {
@@ -87,11 +97,23 @@ function statusLabel(status: EntryStatus): string {
     return 'Unseen';
 }
 
-export function PokedexPanel({ pokedex, caughtCount, seenCount }: PokedexPanelProps) {
+function defaultDexSlug(pokedexes: PokedexDefinition[]): string {
+    const national = pokedexes.find((dex) => dex.slug === 'pokedex_national');
+
+    return national?.slug ?? pokedexes[0]?.slug ?? '';
+}
+
+export function PokedexPanel({ pokedexes }: PokedexPanelProps) {
+    const [activeDex, setActiveDex] = useState(() => defaultDexSlug(pokedexes));
     const [filter, setFilter] = useState<PokedexFilter>('all');
+
+    const selectedDex = pokedexes.find((dex) => dex.slug === activeDex) ?? pokedexes[0] ?? null;
+
+    const caughtCount = selectedDex?.caught_count ?? 0;
+    const seenCount = selectedDex?.seen_count ?? 0;
     const progress = seenCount > 0 ? Math.min(100, Math.round((caughtCount / seenCount) * 100)) : 0;
 
-    const filtered = pokedex.filter((entry) => {
+    const filtered = (selectedDex?.entries ?? []).filter((entry) => {
         if (filter === 'caught') {
             return entry.caught;
         }
@@ -103,8 +125,38 @@ export function PokedexPanel({ pokedex, caughtCount, seenCount }: PokedexPanelPr
         return true;
     });
 
+    if (pokedexes.length === 0) {
+        return (
+            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                <MagnifyingGlassIcon className="size-4" />
+                No Pokédex definitions available yet
+            </div>
+        );
+    }
+
     return (
         <div className="flex w-full min-w-0 flex-col gap-4">
+            <div className="flex flex-wrap gap-3 border-b border-border text-sm">
+                {pokedexes.map((dex) => (
+                    <button
+                        key={dex.slug}
+                        type="button"
+                        className={cn(
+                            'pb-2',
+                            (selectedDex?.slug ?? '') === dex.slug
+                                ? 'border-b-2 border-primary text-primary'
+                                : 'text-muted-foreground',
+                        )}
+                        onClick={() => {
+                            setActiveDex(dex.slug);
+                            setFilter('all');
+                        }}
+                    >
+                        {dex.name}
+                    </button>
+                ))}
+            </div>
+
             <div className="flex flex-col gap-3">
                 <div className="flex flex-wrap items-end justify-between gap-3">
                     <div className="flex flex-wrap gap-4 text-sm">

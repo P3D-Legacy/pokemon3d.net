@@ -145,7 +145,7 @@ class GameSave extends Model
 
             return array_map(function ($item) {
                 $item = explode('|', $item);
-                $id = str_replace('{', '', $item[0]);
+                $id = str_replace(['{', '}'], '', $item[0]);
                 $status = (int) $item[1];
 
                 return [
@@ -157,6 +157,39 @@ class GameSave extends Model
             }, $pokedex);
         } catch (Exception $e) {
             // If there is an error, return an empty array and log the error
+            Log::error($e->getMessage());
+
+            return [];
+        }
+    }
+
+    /**
+     * Return Pokédex entries for the given IDs in definition order.
+     * Missing save rows are returned as unseen placeholders.
+     *
+     * @param  list<string>  $ids
+     * @return list<array{id: string, name: string, seen: bool, caught: bool}>
+     */
+    public function getPokedexByIds(array $ids): array
+    {
+        try {
+            $entriesById = collect($this->getPokedex())->keyBy('id');
+
+            return array_map(function (string $id) use ($entriesById): array {
+                $entry = $entriesById->get($id);
+
+                if (is_array($entry)) {
+                    return $entry;
+                }
+
+                return [
+                    'id' => $id,
+                    'name' => $this->getPokemonName($id),
+                    'seen' => false,
+                    'caught' => false,
+                ];
+            }, array_values($ids));
+        } catch (Exception $e) {
             Log::error($e->getMessage());
 
             return [];
@@ -288,7 +321,7 @@ class GameSave extends Model
 
                 return [
                     'id' => $pokemonId,
-                    'name' => $this->getPokemonName($pokemonId),
+                    'name' => $this->getPokemonName((string) $pokemonId),
                     'nickname' => $nickname !== '' ? $nickname : null,
                     'level' => (int) ($raw['Level'] ?? 0),
                     'gender' => $this->getPartyGenderLabel($raw['Gender'] ?? null),
@@ -558,25 +591,24 @@ class GameSave extends Model
     }
 
     // Get the pokemon name from id
-    public function getPokemonName($id): string
+    public function getPokemonName(string $id): string
     {
         try {
-            // convert string id to int id
-            $id = (int) $id;
-            // get the language file path
             $filepath = lang_path().'/pokemon_'.app()->getLocale().'.json';
-            // if the file doesn't exist, use the default language
+
             if (! file_exists($filepath)) {
                 $filepath = lang_path().'/pokemon_en.json';
             }
-            // load pokemon names from json file in the lang folder
-            $pokemon_names = json_decode(file_get_contents($filepath), true);
-            // get the pokemon name by the id key in json file
-            $pokemon_names = collect($pokemon_names);
 
-            return isset($pokemon_names->get($id - 1)['name']) ? $pokemon_names->get($id - 1)['name'] : '???';
+            $pokemonNames = collect(json_decode(file_get_contents($filepath), true));
+            $match = $pokemonNames->firstWhere('id', $id);
+
+            if (! is_array($match)) {
+                return '???';
+            }
+
+            return $match['name'] ?? '???';
         } catch (Exception $e) {
-            // If there is an error, return an empty array and log the error
             Log::error($e->getMessage());
 
             return '???';

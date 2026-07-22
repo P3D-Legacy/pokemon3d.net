@@ -32,7 +32,7 @@ class GameSavePresenter
             'seen_count' => $gamesave->getSeenPokemonCount(),
             'party' => $gamesave->getParty(),
             'details' => $gamesave->getPlayerDataDetails(),
-            'pokedex' => array_slice($gamesave->getPokedex(), 0, 60),
+            'pokedex' => array_values($gamesave->getPokedex()),
             'statistics' => $gamesave->getStatistics(),
             'trophies' => [
                 'achieved' => $trophies->where('achieved', true)->count(),

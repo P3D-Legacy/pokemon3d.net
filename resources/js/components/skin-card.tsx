@@ -6,7 +6,7 @@ import {
     PencilSimpleIcon,
     TrashIcon,
 } from '@phosphor-icons/react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import {
     apply,
@@ -16,6 +16,7 @@ import {
     show,
 } from '@/actions/App/Http/Controllers/Skin/SkinController';
 import { destroy as destroyUploaded } from '@/actions/App/Http/Controllers/Skin/UploadedSkinController';
+import SkinAnimator from '@/components/skin-animator';
 import SkinImage from '@/components/skin-image';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -28,6 +29,8 @@ type Props = {
     authenticated?: boolean;
     className?: string;
     hideImage?: boolean;
+    /** Show the overworld walk cycle instead of the full sheet image. */
+    animate?: boolean;
 };
 
 export default function SkinCard({
@@ -36,9 +39,17 @@ export default function SkinCard({
     authenticated = false,
     className,
     hideImage = false,
+    animate = false,
 }: Props) {
     const [reason, setReason] = useState('');
     const [processing, setProcessing] = useState(false);
+    const [animationAvailable, setAnimationAvailable] = useState(animate);
+
+    useEffect(() => {
+        if (animate) {
+            setAnimationAvailable(true);
+        }
+    }, [animate, skin.image_url]);
 
     const runAction = (action: () => void) => {
         if (processing) {
@@ -48,6 +59,8 @@ export default function SkinCard({
         setProcessing(true);
         action();
     };
+
+    const showAnimator = animate && animationAvailable;
 
     return (
         <div
@@ -59,13 +72,22 @@ export default function SkinCard({
         >
             {! hideImage && (
                 <div className="flex shrink-0 items-start justify-center">
-                    <SkinImage
-                        className={mode === 'detail' ? 'h-64 w-48' : 'h-32 w-24'}
-                        src={skin.image_url}
-                        alt={skin.name}
-                        width={mode === 'detail' ? 192 : 96}
-                        height={mode === 'detail' ? 256 : 128}
-                    />
+                    {showAnimator ? (
+                        <SkinAnimator
+                            src={skin.image_url}
+                            alt={skin.name}
+                            scale={mode === 'detail' ? 6 : 3}
+                            onUnavailable={() => setAnimationAvailable(false)}
+                        />
+                    ) : (
+                        <SkinImage
+                            className={mode === 'detail' ? 'h-64 w-48' : 'h-32 w-24'}
+                            src={skin.image_url}
+                            alt={skin.name}
+                            width={mode === 'detail' ? 192 : 96}
+                            height={mode === 'detail' ? 256 : 128}
+                        />
+                    )}
                 </div>
             )}
             <div className="min-w-0 flex-1">

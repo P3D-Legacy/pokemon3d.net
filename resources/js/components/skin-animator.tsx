@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { SKIN_FALLBACK_IMAGE } from '@/components/skin-image';
 import { cn } from '@/lib/utils';
@@ -17,20 +17,56 @@ type Props = {
     /** Display scale for each 32×32 frame (default 6 → 192px). */
     scale?: number;
     className?: string;
+    /** Called when the skin image cannot be loaded. */
+    onUnavailable?: () => void;
 };
 
-export default function SkinAnimator({ src, alt, scale = 6, className }: Props) {
-    const [currentSrc, setCurrentSrc] = useState(src || SKIN_FALLBACK_IMAGE);
+function isAnimatableSrc(src: string | null | undefined): src is string {
+    return Boolean(src) && src !== SKIN_FALLBACK_IMAGE && ! src.includes('/img/noskin.png');
+}
+
+export default function SkinAnimator({ src, alt, scale = 6, className, onUnavailable }: Props) {
+    const [currentSrc, setCurrentSrc] = useState(isAnimatableSrc(src) ? src : SKIN_FALLBACK_IMAGE);
+    const [imageReady, setImageReady] = useState(false);
     const [frameIndex, setFrameIndex] = useState(0);
     const [direction, setDirection] = useState(2);
     const [reducedMotion, setReducedMotion] = useState(false);
+    const imageRef = useRef<HTMLImageElement>(null);
+    const onUnavailableRef = useRef(onUnavailable);
+
+    onUnavailableRef.current = onUnavailable;
 
     const displaySize = FRAME_SIZE * scale;
-    const column = reducedMotion ? 0 : WALK_SEQUENCE[frameIndex % WALK_SEQUENCE.length];
+    const canAnimate = imageReady && ! reducedMotion && isAnimatableSrc(currentSrc);
+    const column = canAnimate ? WALK_SEQUENCE[frameIndex % WALK_SEQUENCE.length] : 0;
 
     useEffect(() => {
-        setCurrentSrc(src || SKIN_FALLBACK_IMAGE);
+        setFrameIndex(0);
+        setDirection(2);
+        setImageReady(false);
+
+        if (! isAnimatableSrc(src)) {
+            setCurrentSrc(SKIN_FALLBACK_IMAGE);
+            onUnavailableRef.current?.();
+
+            return;
+        }
+
+        setCurrentSrc(src);
     }, [src]);
+
+    useEffect(() => {
+        const image = imageRef.current;
+
+        if (! image || ! isAnimatableSrc(currentSrc)) {
+            return;
+        }
+
+        // Cached images often skip onLoad when the animator remounts.
+        if (image.complete && image.naturalWidth > 0) {
+            setImageReady(true);
+        }
+    }, [currentSrc]);
 
     useEffect(() => {
         const media = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -42,7 +78,7 @@ export default function SkinAnimator({ src, alt, scale = 6, className }: Props) 
     }, []);
 
     useEffect(() => {
-        if (reducedMotion || currentSrc === SKIN_FALLBACK_IMAGE) {
+        if (! canAnimate) {
             return;
         }
 
@@ -58,15 +94,16 @@ export default function SkinAnimator({ src, alt, scale = 6, className }: Props) 
             window.clearInterval(frameTimer);
             window.clearInterval(directionTimer);
         };
-    }, [reducedMotion, currentSrc]);
+    }, [canAnimate]);
 
     return (
         <div
             className={cn('relative overflow-hidden bg-muted/30', className)}
             style={{ width: displaySize, height: displaySize }}
-            aria-label={`${alt} animated preview`}
+            aria-label={canAnimate ? `${alt} animated preview` : `${alt} preview`}
         >
             <img
+                ref={imageRef}
                 src={currentSrc}
                 alt={alt}
                 width={FRAME_SIZE * COLUMNS * scale}
@@ -79,9 +116,17 @@ export default function SkinAnimator({ src, alt, scale = 6, className }: Props) 
                     imageRendering: 'pixelated',
                     transform: `translate(${-column * displaySize}px, ${-direction * displaySize}px)`,
                 }}
+                onLoad={(event) => {
+                    if (isAnimatableSrc(currentSrc) && event.currentTarget.naturalWidth > 0) {
+                        setImageReady(true);
+                    }
+                }}
                 onError={() => {
+                    setImageReady(false);
+
                     if (currentSrc !== SKIN_FALLBACK_IMAGE) {
                         setCurrentSrc(SKIN_FALLBACK_IMAGE);
+                        onUnavailableRef.current?.();
                     }
                 }}
             />

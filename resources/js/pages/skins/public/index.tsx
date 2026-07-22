@@ -1,11 +1,14 @@
 import { Head, Link, usePage } from '@inertiajs/react';
-import { ClockIcon, FireIcon, PaintBrushIcon } from '@phosphor-icons/react';
+import { ClockIcon, FireIcon, PaintBrushIcon, PersonSimpleWalkIcon } from '@phosphor-icons/react';
+import { useEffect, useState } from 'react';
 
 import SkinCard from '@/components/skin-card';
 import { Button } from '@/components/ui/button';
 import { cn, paginationLabel } from '@/lib/utils';
 import { skinsNewest, skinsPopular } from '@/routes';
 import type { Paginated, SharedPageProps, SkinCardData } from '@/types';
+
+const ANIMATE_STORAGE_KEY = 'skins.public.animate';
 
 type Props = {
     skins: Paginated<SkinCardData>;
@@ -15,6 +18,28 @@ type Props = {
 export default function SkinsPublicIndex({ skins, sort }: Props) {
     const { auth } = usePage<SharedPageProps>().props;
     const title = sort === 'popular' ? 'Most Popular Skins' : 'Newest Skins';
+    const [animate, setAnimate] = useState(true);
+    const [hydrateAnimate, setHydrateAnimate] = useState(false);
+
+    useEffect(() => {
+        const stored = window.localStorage.getItem(ANIMATE_STORAGE_KEY);
+
+        if (stored === '1' || stored === '0') {
+            setAnimate(stored === '1');
+        } else if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            setAnimate(false);
+        }
+
+        setHydrateAnimate(true);
+    }, []);
+
+    useEffect(() => {
+        if (! hydrateAnimate) {
+            return;
+        }
+
+        window.localStorage.setItem(ANIMATE_STORAGE_KEY, animate ? '1' : '0');
+    }, [animate, hydrateAnimate]);
 
     return (
         <>
@@ -32,7 +57,7 @@ export default function SkinsPublicIndex({ skins, sort }: Props) {
                     </p>
                 </div>
 
-                <div className="mb-6 flex items-center gap-2">
+                <div className="mb-6 flex flex-wrap items-center gap-2">
                     <Button variant={sort === 'newest' ? 'default' : 'outline'} size="sm" asChild>
                         <Link href={skinsNewest.url()}>
                             <ClockIcon data-icon="inline-start" weight="bold" />
@@ -44,6 +69,17 @@ export default function SkinsPublicIndex({ skins, sort }: Props) {
                             <FireIcon data-icon="inline-start" weight="fill" />
                             Most Popular
                         </Link>
+                    </Button>
+                    <Button
+                        type="button"
+                        className="ml-auto"
+                        variant={animate ? 'default' : 'outline'}
+                        size="sm"
+                        aria-pressed={animate}
+                        onClick={() => setAnimate((current) => ! current)}
+                    >
+                        <PersonSimpleWalkIcon data-icon="inline-start" weight="bold" />
+                        {animate ? 'Animation on' : 'Animation off'}
                     </Button>
                 </div>
 
@@ -58,7 +94,12 @@ export default function SkinsPublicIndex({ skins, sort }: Props) {
                 ) : (
                     <div className="grid auto-rows-max grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
                         {skins.data.map((skin) => (
-                            <SkinCard key={skin.uuid} skin={skin} authenticated={Boolean(auth.user)} />
+                            <SkinCard
+                                key={skin.uuid}
+                                skin={skin}
+                                authenticated={Boolean(auth.user)}
+                                animate={animate}
+                            />
                         ))}
                     </div>
                 )}

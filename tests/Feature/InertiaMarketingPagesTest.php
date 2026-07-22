@@ -15,6 +15,19 @@ test('home page is rendered with inertia', function () {
             ->has('copy'));
 });
 
+test('home page limits latest news posts to three', function () {
+    Post::factory()->count(5)->create([
+        'active' => true,
+        'published_at' => now()->subDay(),
+    ])->each(fn (Post $post) => $post->attachTag('Website'));
+
+    $this->get(route('home'))
+        ->assertOk()
+        ->assertInertia(fn (Assert $page) => $page
+            ->component('home')
+            ->has('posts', 3));
+});
+
 test('legal page is rendered with inertia', function () {
     $this->get(route('legal'))
         ->assertOk()

@@ -24,7 +24,7 @@ class HomeController extends Controller
             ->orderBy('published_at', 'desc')
             ->withAnyTags(['Website', 'Game'])
             ->with(['user', 'tags'])
-            ->take(4)
+            ->take(3)
             ->get()
             ->map(fn (Post $post): array => PostPresenter::card($post))
             ->values();

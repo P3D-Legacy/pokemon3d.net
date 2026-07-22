@@ -1,6 +1,20 @@
-import { Head, Link } from '@inertiajs/react';
-import { ArrowRightIcon, BooksIcon, HardDrivesIcon, ImageIcon, SmileyIcon } from '@phosphor-icons/react';
-import type { ReactNode } from 'react';
+import { Head, Link, usePage } from '@inertiajs/react';
+import {
+    ArrowRightIcon,
+    BooksIcon,
+    ChatCircleIcon,
+    DiscordLogoIcon,
+    DownloadSimpleIcon,
+    HouseIcon,
+    SmileyIcon,
+} from '@phosphor-icons/react';
+import type { ComponentType, SVGProps } from 'react';
+
+import { Button } from '@/components/ui/button';
+import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import type { SharedPageProps } from '@/types';
+
+type IconComponent = ComponentType<SVGProps<SVGSVGElement>>;
 
 type Props = {
     copy: {
@@ -9,6 +23,7 @@ type Props = {
         documentation: string;
         documentationBody: string;
         exploreWiki: string;
+        discord: string;
         discordBody: string;
         getDiscord: string;
         customSkin: string;
@@ -18,6 +33,7 @@ type Props = {
         forumBody: string;
         startBrowsing: string;
         downloadLabel: string;
+        exploreLabel: string;
     };
     links: {
         wiki: string;
@@ -26,102 +42,154 @@ type Props = {
         forum: string;
         download: string;
     };
+    author: {
+        name: string;
+        url: string;
+    };
 };
 
-export default function Dashboard({ copy, links }: Props) {
+function IntroParagraph({ text, author }: { text: string; author: Props['author'] }) {
+    const parts = text.split(author.name);
+
+    if (parts.length < 2) {
+        return <p>{text}</p>;
+    }
+
     return (
-        <>
-            <Head title="Dashboard" />
-
-            <div className="sm:py-12">
-                <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
-                    <div className="overflow-hidden border border-slate-200 shadow-xl sm:rounded-lg dark:border-slate-900">
-                        <div className="border-b border-slate-200 bg-spring p-6 sm:px-20 dark:border-slate-700 dark:bg-slate-900">
-                            <div className="mt-8 font-mono text-3xl font-bold tracking-tighter text-slate-50">
-                                {copy.welcome}
-                            </div>
-                            <div className="mt-6 space-y-3 text-slate-100">
-                                {copy.intro.map((paragraph) => (
-                                    <p key={paragraph.slice(0, 32)} dangerouslySetInnerHTML={{ __html: paragraph }} />
-                                ))}
-                            </div>
-                            <div className="mt-6">
-                                <a
-                                    href={links.download}
-                                    className="inline-flex items-center rounded-lg border border-green-300 bg-green-800 px-6 py-3 font-extrabold text-white shadow-lg transition hover:bg-green-600"
-                                >
-                                    {copy.downloadLabel}
-                                </a>
-                            </div>
-                        </div>
-
-                        <div className="grid grid-cols-1 bg-slate-200/25 md:grid-cols-2 dark:bg-slate-800">
-                            <FeatureCard
-                                icon={<BooksIcon className="size-8 text-slate-400" />}
-                                title={copy.documentation}
-                                body={copy.documentationBody}
-                                href={links.wiki}
-                                cta={copy.exploreWiki}
-                            />
-                            <FeatureCard
-                                icon={<HardDrivesIcon className="size-8 text-slate-400" />}
-                                title="Discord"
-                                body={copy.discordBody}
-                                href={links.discord}
-                                cta={copy.getDiscord}
-                                bordered
-                            />
-                            <FeatureCard
-                                icon={<SmileyIcon className="size-8 text-slate-400" />}
-                                title={copy.customSkin}
-                                body={copy.customSkinBody}
-                                href={links.skinHome}
-                                cta={copy.getCustomization}
-                            />
-                            <FeatureCard
-                                icon={<ImageIcon className="size-8 text-slate-400" />}
-                                title={copy.forum}
-                                body={copy.forumBody}
-                                href={links.forum}
-                                cta={copy.startBrowsing}
-                                bordered
-                            />
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </>
+        <p>
+            {parts[0]}
+            <a
+                href={author.url}
+                target="_blank"
+                rel="noreferrer"
+                className="font-medium text-primary underline-offset-4 hover:underline"
+            >
+                {author.name}
+            </a>
+            {parts.slice(1).join(author.name)}
+        </p>
     );
 }
 
 function FeatureCard({
-    icon,
+    icon: Icon,
     title,
     body,
     href,
     cta,
-    bordered = false,
 }: {
-    icon: ReactNode;
+    icon: IconComponent;
     title: string;
     body: string;
     href: string;
     cta: string;
-    bordered?: boolean;
 }) {
     return (
-        <div className={`p-6 ${bordered ? 'border-t border-slate-200 md:border-t-0 md:border-l dark:border-slate-900' : 'border-t border-slate-200 dark:border-slate-900 first:border-t-0 md:first:border-t'}`}>
-            <div className="flex items-center">
-                {icon}
-                <div className="ml-4 text-lg font-semibold leading-7 text-slate-600 dark:text-slate-300">{title}</div>
+        <Card className="h-full transition-colors hover:bg-muted/30">
+            <CardHeader className="flex flex-row items-start gap-3">
+                <div className="bg-primary/10 p-2.5 text-primary">
+                    <Icon className="size-5" weight="fill" />
+                </div>
+                <div className="min-w-0 flex-1">
+                    <CardTitle className="text-base font-semibold">{title}</CardTitle>
+                    <CardDescription className="mt-1.5 text-sm leading-relaxed">{body}</CardDescription>
+                </div>
+            </CardHeader>
+            <CardFooter className="mt-auto border-t-0 pt-0">
+                <Button variant="link" size="sm" className="h-auto px-0" asChild>
+                    <Link href={href} className="inline-flex items-center gap-1">
+                        {cta}
+                        <ArrowRightIcon className="size-3.5 transition-transform group-hover/card:translate-x-0.5" />
+                    </Link>
+                </Button>
+            </CardFooter>
+        </Card>
+    );
+}
+
+export default function Dashboard({ copy, links, author }: Props) {
+    const { auth } = usePage<SharedPageProps>().props;
+    const username = auth.user?.username;
+
+    const features: Array<{
+        icon: IconComponent;
+        title: string;
+        body: string;
+        href: string;
+        cta: string;
+    }> = [
+        {
+            icon: BooksIcon,
+            title: copy.documentation,
+            body: copy.documentationBody,
+            href: links.wiki,
+            cta: copy.exploreWiki,
+        },
+        {
+            icon: DiscordLogoIcon,
+            title: copy.discord,
+            body: copy.discordBody,
+            href: links.discord,
+            cta: copy.getDiscord,
+        },
+        {
+            icon: SmileyIcon,
+            title: copy.customSkin,
+            body: copy.customSkinBody,
+            href: links.skinHome,
+            cta: copy.getCustomization,
+        },
+        {
+            icon: ChatCircleIcon,
+            title: copy.forum,
+            body: copy.forumBody,
+            href: links.forum,
+            cta: copy.startBrowsing,
+        },
+    ];
+
+    return (
+        <>
+            <Head title="Dashboard" />
+
+            <div className="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+                <div className="mb-8 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+                    <div className="flex max-w-3xl flex-col gap-3">
+                        <div className="flex items-center gap-2 text-muted-foreground">
+                            <HouseIcon className="size-5" weight="fill" />
+                            <span className="text-sm">Dashboard</span>
+                        </div>
+                        <h1 className="text-3xl font-semibold tracking-tight">{copy.welcome}</h1>
+                        {username ? (
+                            <p className="text-sm text-muted-foreground">
+                                Signed in as <span className="font-medium text-foreground">{username}</span>
+                            </p>
+                        ) : null}
+                        <div className="flex flex-col gap-3 text-sm leading-relaxed text-muted-foreground">
+                            {copy.intro.map((paragraph) => (
+                                <IntroParagraph key={paragraph.slice(0, 48)} text={paragraph} author={author} />
+                            ))}
+                        </div>
+                    </div>
+
+                    <Button size="xl" asChild>
+                        <Link href={links.download}>
+                            <DownloadSimpleIcon data-icon="inline-start" weight="fill" />
+                            {copy.downloadLabel}
+                        </Link>
+                    </Button>
+                </div>
+
+                <div className="mb-4 flex items-center justify-between gap-3">
+                    <h2 className="text-sm font-medium text-muted-foreground">{copy.exploreLabel}</h2>
+                </div>
+
+                <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
+                    {features.map((feature) => (
+                        <FeatureCard key={feature.title} {...feature} />
+                    ))}
+                </div>
             </div>
-            <div className="ml-12">
-                <div className="mt-2 text-sm text-slate-500 dark:text-slate-300">{body}</div>
-                <Link href={href} className="mt-3 inline-flex items-center text-sm font-semibold text-green-700 dark:text-green-500">
-                    {cta}
-                    <ArrowRightIcon className="ml-1 size-4" />
-                </Link>
-            </div>
-        </div>
+        </>
     );
 }

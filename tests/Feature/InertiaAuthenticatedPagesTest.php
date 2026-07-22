@@ -14,8 +14,14 @@ test('dashboard is rendered with inertia for authenticated users', function () {
         ->assertOk()
         ->assertInertia(fn (Assert $page) => $page
             ->component('dashboard')
-            ->has('copy')
-            ->has('links'));
+            ->has('copy.welcome')
+            ->has('copy.intro')
+            ->has('copy.exploreLabel')
+            ->has('links.download')
+            ->has('links.wiki')
+            ->has('links.discord')
+            ->where('author.name', 'Nilllzz')
+            ->has('author.url'));
 });
 
 test('guests are redirected from the dashboard', function () {

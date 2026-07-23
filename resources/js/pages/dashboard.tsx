@@ -1,11 +1,11 @@
 import { Head, Link, usePage } from '@inertiajs/react';
 import {
     ArrowRightIcon,
-    BooksIcon,
-    ChatCircleIcon,
+    BookOpenIcon,
     DiscordLogoIcon,
     DownloadSimpleIcon,
     HouseIcon,
+    PackageIcon,
     SmileyIcon,
 } from '@phosphor-icons/react';
 import type { ComponentType, SVGProps } from 'react';
@@ -29,9 +29,9 @@ type Props = {
         customSkin: string;
         customSkinBody: string;
         getCustomization: string;
-        forum: string;
-        forumBody: string;
-        startBrowsing: string;
+        resources: string;
+        resourcesBody: string;
+        browseResources: string;
         downloadLabel: string;
         exploreLabel: string;
     };
@@ -39,7 +39,7 @@ type Props = {
         wiki: string;
         discord: string;
         skinHome: string;
-        forum: string;
+        resources: string;
         download: string;
     };
     author: {
@@ -119,7 +119,7 @@ export default function Dashboard({ copy, links, author }: Props) {
         cta: string;
     }> = [
         {
-            icon: BooksIcon,
+            icon: BookOpenIcon,
             title: copy.documentation,
             body: copy.documentationBody,
             href: links.wiki,
@@ -140,11 +140,11 @@ export default function Dashboard({ copy, links, author }: Props) {
             cta: copy.getCustomization,
         },
         {
-            icon: ChatCircleIcon,
-            title: copy.forum,
-            body: copy.forumBody,
-            href: links.forum,
-            cta: copy.startBrowsing,
+            icon: PackageIcon,
+            title: copy.resources,
+            body: copy.resourcesBody,
+            href: links.resources,
+            cta: copy.browseResources,
         },
     ];
 

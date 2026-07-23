@@ -20,6 +20,9 @@ test('dashboard is rendered with inertia for authenticated users', function () {
             ->has('links.download')
             ->has('links.wiki')
             ->has('links.discord')
+            ->has('links.resources')
+            ->missing('links.forum')
+            ->where('copy.resources', 'Resources')
             ->where('author.name', 'Nilllzz')
             ->has('author.url'));
 });

@@ -1,7 +1,6 @@
 import { Link, usePage } from '@inertiajs/react';
 import {
     BookOpenIcon,
-    BooksIcon,
     CaretUpDownIcon,
     ChartBarIcon,
     HardDrivesIcon,
@@ -9,6 +8,7 @@ import {
     LayoutIcon,
     ListIcon,
     NewspaperIcon,
+    PackageIcon,
     ShieldIcon,
     SignOutIcon,
     SmileyIcon,
@@ -101,7 +101,7 @@ function buildNavItems(path: string): NavItem[] {
         { name: 'Home', link: home.url(), icon: HouseIcon, isActive: path === '/' },
         { name: 'Blog', link: blogIndex.url(), icon: NewspaperIcon, isActive: path.startsWith('/blog') },
         { name: 'Skins', link: skinsPopular.url(), icon: SmileyIcon, isActive: path.startsWith('/skin') },
-        { name: 'Resources', link: resourceIndex.url(), icon: BooksIcon, isActive: path.startsWith('/resource') },
+        { name: 'Resources', link: resourceIndex.url(), icon: PackageIcon, isActive: path.startsWith('/resource') },
         { name: 'Servers', link: serverIndex.url(), icon: HardDrivesIcon, isActive: path.startsWith('/server') },
         { name: 'Members', link: memberIndex.url(), icon: UsersIcon, isActive: path.startsWith('/member') },
         { name: 'Review', link: review.url(), icon: StarIcon, isActive: path.startsWith('/review') },

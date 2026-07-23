@@ -170,14 +170,6 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
     }
 
     /**
-     * Get the twitter account associated with the user.
-     */
-    public function twitter(): HasOne
-    {
-        return $this->hasOne(TwitterAccount::class);
-    }
-
-    /**
      * Get the twitch account associated with the user.
      */
     public function twitch(): HasOne

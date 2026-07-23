@@ -23,12 +23,6 @@ return [
         'invite_url' => env('DISCORD_INVITE_URL', '#'),
     ],
 
-    'twitter' => [
-        'client_id' => env('TWITTER_CLIENT_ID'),
-        'client_secret' => env('TWITTER_CLIENT_SECRET'),
-        'redirect' => env('TWITTER_REDIRECT_URI', '/login/twitter/callback'),
-    ],
-
     'twitch' => [
         'client_id' => env('TWITCH_CLIENT_ID'),
         'client_secret' => env('TWITCH_CLIENT_SECRET'),

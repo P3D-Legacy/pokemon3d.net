@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e273a95d0b228de63d2c9b7bb2a50cf2",
+    "content-hash": "cf9bfef7303b08a5f9831e1f438df630",
     "packages": [
         {
             "name": "akaunting/laravel-language",
@@ -323,65 +323,6 @@
                 "source": "https://github.com/AnourValar/eloquent-serialize/tree/1.3.10"
             },
             "time": "2026-06-20T14:30:25+00:00"
-        },
-        {
-            "name": "assada/laravel-achievements",
-            "version": "v2.8.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/assada/laravel-achievements.git",
-                "reference": "b18678fedc86c57ece8cf6d9a072dcc001fc3ae0"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/assada/laravel-achievements/zipball/b18678fedc86c57ece8cf6d9a072dcc001fc3ae0",
-                "reference": "b18678fedc86c57ece8cf6d9a072dcc001fc3ae0",
-                "shasum": ""
-            },
-            "require": {
-                "ramsey/uuid": "^3 || ^4"
-            },
-            "require-dev": {
-                "laravel/laravel": "^6.0|^7.0|^8.0|^9.0|^10.0|^11.0|^12.0",
-                "phpunit/phpunit": "^8"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Assada\\Achievements\\AchievementsServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Assada\\Tests\\": "tests/",
-                    "Assada\\Achievements\\": "src/"
-                },
-                "classmap": [
-                    "src/Migrations"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Gabriel Simonetti",
-                    "email": "simonettigo@gmail.com"
-                },
-                {
-                    "name": "Alex Ilyenko",
-                    "email": "assada.ua@gmail.com"
-                }
-            ],
-            "description": "Achievements for Laravel 6+",
-            "support": {
-                "issues": "https://github.com/assada/laravel-achievements/issues",
-                "source": "https://github.com/assada/laravel-achievements/tree/v2.8.0"
-            },
-            "time": "2025-04-16T09:25:57+00:00"
         },
         {
             "name": "aws/aws-crt-php",

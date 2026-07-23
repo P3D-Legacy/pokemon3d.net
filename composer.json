@@ -31,7 +31,6 @@
         "alibayat/laravel-categorizable": "dev-laravel12",
         "alibayat/laravel-commentable": "dev-laravel12",
         "anlutro/l4-settings": "^1.4",
-        "assada/laravel-achievements": "^2.3",
         "betterapp/laravel-db-encrypter": "^5.0",
         "beyondcode/laravel-favicon": "^1.7",
         "blade-ui-kit/blade-ui-kit": "^0.7",

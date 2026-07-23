@@ -2,7 +2,6 @@
 
 namespace App\Actions\Profile;
 
-use App\Achievements\User\AssociatedGamejolt;
 use App\Models\GamejoltAccount;
 use App\Models\User;
 use Harrk\GameJoltApi\Exceptions\TimeOutException;
@@ -97,8 +96,6 @@ class LinkGamejoltAccount
         }
 
         Artisan::call('p3d:skinuserupdate');
-
-        $user->unlock(new AssociatedGamejolt);
 
         return $account->fresh();
     }

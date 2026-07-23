@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Achievements\User\AssociatedDiscord;
 use App\Http\Controllers\Controller;
 use App\Models\DiscordAccount;
 use GuzzleHttp\Exception\ClientException;
@@ -104,9 +103,6 @@ class DiscordController extends Controller
             $userProfile['user_id'] = auth()->id();
             $userProfile['verified_at'] = now();
             DiscordAccount::create($userProfile);
-            auth()
-                ->user()
-                ->unlock(new AssociatedDiscord);
 
             return redirect()->route('profile.show');
         } catch (InvalidStateException $e) {

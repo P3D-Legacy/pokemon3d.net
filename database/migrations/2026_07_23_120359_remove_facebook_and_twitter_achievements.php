@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
@@ -18,6 +19,10 @@ return new class extends Migration
      */
     public function up(): void
     {
+        if (! Schema::hasTable('achievement_details')) {
+            return;
+        }
+
         $achievementIds = DB::table('achievement_details')
             ->whereIn('name', $this->achievementNames)
             ->pluck('id');
@@ -26,9 +31,11 @@ return new class extends Migration
             return;
         }
 
-        DB::table('achievement_progress')
-            ->whereIn('achievement_id', $achievementIds)
-            ->delete();
+        if (Schema::hasTable('achievement_progress')) {
+            DB::table('achievement_progress')
+                ->whereIn('achievement_id', $achievementIds)
+                ->delete();
+        }
 
         DB::table('achievement_details')
             ->whereIn('id', $achievementIds)
@@ -40,6 +47,10 @@ return new class extends Migration
      */
     public function down(): void
     {
+        if (! Schema::hasTable('achievement_details')) {
+            return;
+        }
+
         $now = now();
 
         DB::table('achievement_details')->insert([

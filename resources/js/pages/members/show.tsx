@@ -6,7 +6,6 @@ import { PartyPanel, type PartyMember } from '@/components/party-panel';
 import { PokedexPanel, type PokedexDefinition } from '@/components/pokedex-panel';
 import { StatisticsPanel, type StatisticItem } from '@/components/statistics-panel';
 import { TrophiesPanel, type TrophyItem } from '@/components/trophies-panel';
-import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { UserProfile12 } from '@/components/user-profile12';
 import { show as profileShow } from '@/routes/profile';
@@ -17,7 +16,6 @@ type Props = {
         id: number;
         username: string;
         profile_photo_url: string;
-        achievements: Array<{ name: string; description?: string | null }>;
         about: {
             name: string | null;
             joined: string | null;
@@ -58,15 +56,12 @@ export default function MembersShow({ member }: Props) {
 
     const isOwnProfile = auth.user?.id === member.id;
     const displayName = member.about.name ?? member.username;
-    const stats = [
-        { label: 'Achievements', value: String(member.achievements.length) },
-        ...(member.gameSave.available
-            ? [
-                  { label: 'Caught', value: String(member.gameSave.caught_count ?? 0) },
-                  { label: 'Seen', value: String(member.gameSave.seen_count ?? 0) },
-              ]
-            : []),
-    ];
+    const stats = member.gameSave.available
+        ? [
+              { label: 'Caught', value: String(member.gameSave.caught_count ?? 0) },
+              { label: 'Seen', value: String(member.gameSave.seen_count ?? 0) },
+          ]
+        : [];
 
     return (
         <>
@@ -87,16 +82,6 @@ export default function MembersShow({ member }: Props) {
                         }}
                         stats={stats}
                     >
-                        {member.achievements.length > 0 ? (
-                            <div className="mt-5 flex flex-wrap gap-2">
-                                {member.achievements.map((achievement) => (
-                                    <Badge key={achievement.name} variant="secondary">
-                                        {achievement.name}
-                                    </Badge>
-                                ))}
-                            </div>
-                        ) : null}
-
                         <div className="mt-6 flex gap-4 border-b text-sm">
                             <button
                                 type="button"

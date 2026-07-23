@@ -42,11 +42,6 @@ class MemberPresenter
             'id' => $user->id,
             'username' => $user->username,
             'profile_photo_url' => $user->profile_photo_url,
-            'achievements' => collect($user->unlockedAchievements())->map(fn ($achievement): array => [
-                'name' => $achievement->details->name ?? $achievement->name ?? 'Achievement',
-                'description' => $achievement->details->description ?? null,
-                'icon' => null,
-            ])->values()->all(),
             'about' => [
                 'name' => $settings->get('name') ? $user->name : null,
                 'joined' => $user->created_at?->isoFormat('LL'),

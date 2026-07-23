@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Achievements\User\AssociatedTwitch;
 use App\Http\Controllers\Controller;
 use App\Models\TwitchAccount;
 use GuzzleHttp\Exception\ClientException;
@@ -94,9 +93,6 @@ class TwitchController extends Controller
             $userProfile['user_id'] = auth()->id();
             $userProfile['verified_at'] = now();
             TwitchAccount::create($userProfile);
-            auth()
-                ->user()
-                ->unlock(new AssociatedTwitch);
 
             return redirect()->route('profile.show');
         } catch (InvalidStateException $e) {

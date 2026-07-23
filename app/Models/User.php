@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Assada\Achievements\Achiever;
 use Carbon\Carbon;
 use DateTimeInterface;
 use Filament\Models\Contracts\FilamentUser;
@@ -26,7 +25,6 @@ use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements FilamentUser, MustVerifyEmail
 {
-    use Achiever;
     use GivesConsent;
     use HasApiTokens;
     use HasFactory;

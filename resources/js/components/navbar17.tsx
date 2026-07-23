@@ -3,6 +3,7 @@ import {
     BookOpenIcon,
     CaretUpDownIcon,
     ChartBarIcon,
+    GameControllerIcon,
     HardDrivesIcon,
     HouseIcon,
     LayoutIcon,
@@ -35,14 +36,17 @@ import {
 } from '@/components/ui/dropdown-menu';
 import {
     NavigationMenu,
+    NavigationMenuContent,
     NavigationMenuItem,
     NavigationMenuLink,
     NavigationMenuList,
+    NavigationMenuTrigger,
 } from '@/components/ui/navigation-menu';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { cn } from '@/lib/utils';
 import {
     dashboard,
+    forum,
     home,
     login,
     logout,
@@ -62,12 +66,24 @@ import type { SharedPageProps } from '@/types';
 
 type NavIcon = React.ComponentType<{ className?: string; weight?: 'regular' | 'fill' }>;
 
-type NavItem = {
+type NavLinkItem = {
+    type: 'link';
     name: string;
     link: string;
     isActive: boolean;
     icon: NavIcon;
+    separatorBefore?: boolean;
 };
+
+type NavGroupItem = {
+    type: 'group';
+    name: string;
+    isActive: boolean;
+    icon: NavIcon;
+    children: NavLinkItem[];
+};
+
+type NavItem = NavLinkItem | NavGroupItem;
 
 type NavbarVariant = 'dark' | 'light';
 
@@ -88,6 +104,9 @@ interface Navbar17Props {
 const navLinkClass =
     'bg-transparent p-0 text-sm font-medium hover:bg-transparent focus:bg-transparent focus-visible:ring-0 data-active:bg-transparent data-active:hover:bg-transparent data-active:focus:bg-transparent';
 
+const navTriggerClass =
+    'h-auto gap-1.5 bg-transparent p-0 text-sm font-medium hover:bg-transparent focus:bg-transparent focus-visible:ring-0 data-popup-open:bg-transparent data-open:bg-transparent data-popup-open:hover:bg-transparent data-open:hover:bg-transparent data-open:focus:bg-transparent';
+
 function initials(name: string): string {
     return name
         .split(' ')
@@ -98,16 +117,72 @@ function initials(name: string): string {
         .toUpperCase();
 }
 
-function buildNavItems(path: string): NavItem[] {
+function navItemColour(isActive: boolean, isLight: boolean): string {
+    if (isActive) {
+        return isLight ? 'text-foreground' : 'text-white';
+    }
+
+    return isLight ? 'text-muted-foreground hover:text-foreground' : 'text-white/70 hover:text-white';
+}
+
+function isMySkinsPath(path: string): boolean {
+    return (
+        path === '/skin' ||
+        path.startsWith('/skin/my') ||
+        path.startsWith('/skin/upload') ||
+        path.startsWith('/skin/import')
+    );
+}
+
+function buildNavItems(path: string, isAuthenticated: boolean): NavItem[] {
+    const gameChildren: NavLinkItem[] = [
+        {
+            type: 'link',
+            name: 'Skins',
+            link: skinsPopular.url(),
+            icon: SmileyIcon,
+            isActive: path.startsWith('/skin') && (! isAuthenticated || ! isMySkinsPath(path)),
+        },
+        {
+            type: 'link',
+            name: 'Resources',
+            link: resourceIndex.url(),
+            icon: PackageIcon,
+            isActive: path.startsWith('/resource'),
+        },
+        {
+            type: 'link',
+            name: 'Servers',
+            link: serverIndex.url(),
+            icon: HardDrivesIcon,
+            isActive: path.startsWith('/server'),
+        },
+    ];
+
+    if (isAuthenticated) {
+        gameChildren.push({
+            type: 'link',
+            name: 'My Skins',
+            link: skinHome.url(),
+            icon: SmileyIcon,
+            isActive: isMySkinsPath(path),
+            separatorBefore: true,
+        });
+    }
+
     return [
-        { name: 'Home', link: home.url(), icon: HouseIcon, isActive: path === '/' },
-        { name: 'Blog', link: blogIndex.url(), icon: NewspaperIcon, isActive: path.startsWith('/blog') },
-        { name: 'Skins', link: skinsPopular.url(), icon: SmileyIcon, isActive: path.startsWith('/skin') },
-        { name: 'Resources', link: resourceIndex.url(), icon: PackageIcon, isActive: path.startsWith('/resource') },
-        { name: 'Servers', link: serverIndex.url(), icon: HardDrivesIcon, isActive: path.startsWith('/server') },
-        { name: 'Members', link: memberIndex.url(), icon: UsersIcon, isActive: path.startsWith('/member') },
-        { name: 'Review', link: review.url(), icon: StarIcon, isActive: path.startsWith('/review') },
-        { name: 'Wiki', link: wiki.url(), icon: BookOpenIcon, isActive: false },
+        { type: 'link', name: 'Home', link: home.url(), icon: HouseIcon, isActive: path === '/' },
+        { type: 'link', name: 'Blog', link: blogIndex.url(), icon: NewspaperIcon, isActive: path.startsWith('/blog') },
+        {
+            type: 'group',
+            name: 'Game',
+            icon: GameControllerIcon,
+            isActive: path.startsWith('/skin') || path.startsWith('/resource') || path.startsWith('/server'),
+            children: gameChildren,
+        },
+        { type: 'link', name: 'Members', link: memberIndex.url(), icon: UsersIcon, isActive: path.startsWith('/member') },
+        { type: 'link', name: 'Review', link: review.url(), icon: StarIcon, isActive: path.startsWith('/review') },
+        { type: 'link', name: 'Wiki', link: wiki.url(), icon: BookOpenIcon, isActive: false },
     ];
 }
 
@@ -116,8 +191,9 @@ const Navbar17 = ({ className, variant = 'dark' }: Navbar17Props) => {
     const { auth } = page.props;
     const path = page.url.split('?')[0] ?? '';
     const isLight = variant === 'light';
+    const isAuthenticated = Boolean(auth.user);
 
-    const navItems = useMemo(() => buildNavItems(path), [path]);
+    const navItems = useMemo(() => buildNavItems(path, isAuthenticated), [path, isAuthenticated]);
     const activeItem = navItems.find((item) => item.isActive)?.name ?? '';
 
     const cta = auth.user
@@ -134,11 +210,6 @@ const Navbar17 = ({ className, variant = 'dark' }: Navbar17Props) => {
                 label: 'Dashboard',
                 href: dashboard.url(),
                 icon: LayoutIcon,
-            },
-            {
-                label: 'My Skins',
-                href: skinHome.url(),
-                icon: SmileyIcon,
             },
             {
                 label: 'Profile',
@@ -228,7 +299,7 @@ const Navbar17 = ({ className, variant = 'dark' }: Navbar17Props) => {
                     <img src="/img/pokemon3d_logo_sm.png" className="h-10 w-auto lg:h-12" alt="Pokémon 3D" />
                 </Link>
 
-                <NavigationMenu className="hidden lg:block">
+                <NavigationMenu className="hidden lg:block" viewport={false}>
                     <NavigationMenuList
                         ref={menuRef}
                         className="relative flex items-center gap-6 rounded-4xl px-8 py-3"
@@ -236,36 +307,81 @@ const Navbar17 = ({ className, variant = 'dark' }: Navbar17Props) => {
                         {navItems.map((item) => {
                             const Icon = item.icon;
 
-                            return (
-                                <React.Fragment key={item.name}>
-                                    <NavigationMenuItem>
-                                        <NavigationMenuLink asChild className={navLinkClass}>
-                                            <Link
-                                                href={item.link}
-                                                data-nav-item={item.name}
-                                                className={cn(
-                                                    'relative inline-flex items-center gap-1.5 cursor-pointer transition-colors',
-                                                    ! isLight && 'drop-shadow',
-                                                    item.isActive
-                                                        ? isLight
-                                                            ? 'text-foreground'
-                                                            : 'text-white'
-                                                        : isLight
-                                                          ? 'text-muted-foreground hover:text-foreground'
-                                                          : 'text-white/70 hover:text-white',
-                                                )}
-                                            >
-                                                <Icon className="size-4 shrink-0" />
-                                                {item.name}
-                                            </Link>
-                                        </NavigationMenuLink>
+                            if (item.type === 'group') {
+                                return (
+                                    <NavigationMenuItem key={item.name}>
+                                        <NavigationMenuTrigger
+                                            data-nav-item={item.name}
+                                            className={cn(
+                                                navTriggerClass,
+                                                'relative inline-flex cursor-pointer items-center transition-colors',
+                                                ! isLight && 'drop-shadow',
+                                                navItemColour(item.isActive, isLight),
+                                            )}
+                                        >
+                                            <Icon className="size-4 shrink-0" />
+                                            {item.name}
+                                        </NavigationMenuTrigger>
+                                        <NavigationMenuContent>
+                                            <ul className="flex min-w-48 flex-col gap-1 p-2">
+                                                {item.children.map((child) => {
+                                                    const ChildIcon = child.icon;
+
+                                                    return (
+                                                        <React.Fragment key={child.name}>
+                                                            {child.separatorBefore ? (
+                                                                <li
+                                                                    className="my-1 border-t border-border"
+                                                                    aria-hidden="true"
+                                                                />
+                                                            ) : null}
+                                                            <li>
+                                                                <NavigationMenuLink asChild>
+                                                                    <Link
+                                                                        href={child.link}
+                                                                        className={cn(
+                                                                            'flex items-center gap-2 rounded-none px-3 py-2 text-sm font-medium',
+                                                                            child.isActive
+                                                                                ? 'bg-muted text-foreground'
+                                                                                : 'text-muted-foreground hover:bg-muted hover:text-foreground',
+                                                                        )}
+                                                                    >
+                                                                        <ChildIcon className="size-4 shrink-0" />
+                                                                        {child.name}
+                                                                    </Link>
+                                                                </NavigationMenuLink>
+                                                            </li>
+                                                        </React.Fragment>
+                                                    );
+                                                })}
+                                            </ul>
+                                        </NavigationMenuContent>
                                     </NavigationMenuItem>
-                                </React.Fragment>
+                                );
+                            }
+
+                            return (
+                                <NavigationMenuItem key={item.name}>
+                                    <NavigationMenuLink asChild className={navLinkClass}>
+                                        <Link
+                                            href={item.link}
+                                            data-nav-item={item.name}
+                                            className={cn(
+                                                'relative inline-flex cursor-pointer items-center gap-1.5 transition-colors',
+                                                ! isLight && 'drop-shadow',
+                                                navItemColour(item.isActive, isLight),
+                                            )}
+                                        >
+                                            <Icon className="size-4 shrink-0" />
+                                            {item.name}
+                                        </Link>
+                                    </NavigationMenuLink>
+                                </NavigationMenuItem>
                             );
                         })}
                         <div
                             ref={indicatorRef}
-                            className="absolute bottom-2 flex h-1 items-center justify-center px-2 transition-all duration-300"
+                            className="absolute bottom-2 flex h-1 items-center justify-center transition-all duration-300"
                         >
                             <div
                                 className={cn(
@@ -278,7 +394,6 @@ const Navbar17 = ({ className, variant = 'dark' }: Navbar17Props) => {
                 </NavigationMenu>
 
                 <MobileNav
-                    activeItem={activeItem}
                     navItems={navItems}
                     cta={cta}
                     variant={variant}
@@ -457,14 +572,12 @@ function NavUser({
 }
 
 const MobileNav = ({
-    activeItem,
     navItems,
     cta,
     variant,
     user,
     userMenuItems,
 }: {
-    activeItem: string;
     navItems: NavItem[];
     cta: { label: string; href: string };
     variant: NavbarVariant;
@@ -498,6 +611,55 @@ const MobileNav = ({
                         {navItems.map((navItem) => {
                             const Icon = navItem.icon;
 
+                            if (navItem.type === 'group') {
+                                return (
+                                    <li key={navItem.name}>
+                                        <div
+                                            className={cn(
+                                                'flex items-center gap-2 border-l-[3px] px-6 py-3 text-xs font-semibold uppercase tracking-wide',
+                                                navItem.isActive
+                                                    ? 'border-foreground text-foreground'
+                                                    : 'border-transparent text-muted-foreground',
+                                            )}
+                                        >
+                                            <Icon className="size-4 shrink-0" />
+                                            {navItem.name}
+                                        </div>
+                                        <ul>
+                                            {navItem.children.map((child) => {
+                                                const ChildIcon = child.icon;
+
+                                                return (
+                                                    <React.Fragment key={child.name}>
+                                                        {child.separatorBefore ? (
+                                                            <li
+                                                                className="mx-12 my-2 border-t border-border"
+                                                                aria-hidden="true"
+                                                            />
+                                                        ) : null}
+                                                        <li>
+                                                            <Link
+                                                                href={child.link}
+                                                                onClick={() => setIsOpen(false)}
+                                                                className={cn(
+                                                                    'flex items-center gap-2 border-l-[3px] py-3 pr-6 pl-12 text-sm font-medium transition-all duration-75',
+                                                                    child.isActive
+                                                                        ? 'border-foreground text-foreground'
+                                                                        : 'border-transparent text-muted-foreground hover:text-foreground',
+                                                                )}
+                                                            >
+                                                                <ChildIcon className="size-4 shrink-0" />
+                                                                {child.name}
+                                                            </Link>
+                                                        </li>
+                                                    </React.Fragment>
+                                                );
+                                            })}
+                                        </ul>
+                                    </li>
+                                );
+                            }
+
                             return (
                                 <li key={navItem.name}>
                                     <Link
@@ -505,7 +667,7 @@ const MobileNav = ({
                                         onClick={() => setIsOpen(false)}
                                         className={cn(
                                             'flex items-center gap-2 border-l-[3px] px-6 py-4 text-sm font-medium transition-all duration-75',
-                                            activeItem === navItem.name
+                                            navItem.isActive
                                                 ? 'border-foreground text-foreground'
                                                 : 'border-transparent text-muted-foreground hover:text-foreground',
                                         )}

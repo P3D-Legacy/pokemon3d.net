@@ -89,12 +89,9 @@ const Footer59 = ({ className }: Footer59Props) => {
 
                     <div className="flex w-full flex-col items-center gap-3 text-xs font-medium text-muted-foreground lg:flex-row lg:justify-between">
                         <p className="max-w-xl text-center lg:text-left">
-                            {appName} is not affiliated with Nintendo, Creatures Inc. or GAME FREAK Inc. Owned and
-                            operated by{' '}
-                            <a href="https://kilobyte.no/" className="underline hover:text-primary">
-                                Kilobyte AS
-                            </a>
-                            .
+                            {appName} is not affiliated with Nintendo, Creatures Inc. or GAME FREAK Inc.<br/><br/>
+                            See the <Link href={legal.url()} className="underline hover:text-primary">legal page</Link> for more information.
+
                         </p>
                         <ul className="flex flex-wrap justify-center gap-x-4 gap-y-1 lg:justify-end">
                             {legalLinks.map((link) => (

@@ -47,7 +47,6 @@
     "Cancel": "取消",
     "Categories": "分类",
     "Category": "分类",
-    "Check for skin to import from the old site": "检查导入来自旧网址的皮肤",
     "Close": "关闭",
     "Code": "验证码",
     "Comment": "Comment",
@@ -121,7 +120,7 @@
     "Here you can choose what to share on your public profile.": "在这里您可以选择在账号简介中所想要公开的内容。",
     "History": "历史记录",
     "Home": "主页",
-    "Hostname\/IP Address": "主机名称\/IP 地址",
+    "Hostname/IP Address": "主机名称/IP 地址",
     "I Accept": "我接受",
     "I agree to the :terms and :privacy": "我同意 :terms and :privacy",
     "If necessary, you may log out of all of your other browser sessions across all of your devices. Some of your recent sessions are listed below; however, this list may not be exhaustive. If you feel your account has been compromised, you should also update your password.": "如有必要，您可以注销您其他设备上所有的浏览器会话。下面列出了您最近的一些会话，但是，这个列表可能并不详尽。如果您认为您的账户已被入侵，您还应该更新您的密码。",
@@ -173,7 +172,7 @@
     "Most Popular": "最受欢迎",
     "My Skins": "我的皮肤",
     "Name": "姓名",
-    "Need help to setup a own server? Check out <a href=\":url\" class=\"font-semibold underline\">this guide<\/a>.": "需要帮助来设置您的服务器？ 请前往 <a href=\":url\" class=\"font-semibold underline\">this guide<\/a>。",
+    "Need help to setup a own server? Check out <a href=\":url\" class=\"font-semibold underline\">this guide</a>.": "需要帮助来设置您的服务器？ 请前往 <a href=\":url\" class=\"font-semibold underline\">this guide</a>。",
     "New Password": "新的密码",
     "Newest": "最新",
     "No": "No",
@@ -337,7 +336,6 @@
     "Your browser does not support the video tag.": "您的浏览器并不支持视频标签。",
     "Your review of this game": "您对本游戏的评论",
     "Your review of this resource": "您对本资源的评论",
-    "Your slots are full. You cannot import from the old site unless you delete one of the slots.": "您的储存格已经满位。您无法将其从旧网站中导入除非您删除一个储存格。",
     "Your timezone": "Your timezone",
     "Your user was created at": "Your user was created at"
 }

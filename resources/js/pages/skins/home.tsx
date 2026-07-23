@@ -1,6 +1,5 @@
 import { Head, Link, router, usePage } from '@inertiajs/react';
 import {
-    DownloadSimpleIcon,
     FloppyDiskIcon,
     PaintBrushIcon,
     PlusIcon,
@@ -27,8 +26,6 @@ type Props = {
         used: number;
         max: number;
     };
-    canImport: boolean;
-    importUrl: string;
     templateUrl: string;
     deleteActivity: Array<{ created_at: string | null; reason: string | null }>;
     width: number;
@@ -39,8 +36,6 @@ export default function SkinsHome({
     skins,
     currentSkin,
     slots,
-    canImport,
-    importUrl,
     templateUrl,
     deleteActivity,
     width,
@@ -111,26 +106,9 @@ export default function SkinsHome({
                                     </div>
                                 </>
                             ) : (
-                                <>
-                                    <p className="text-sm text-muted-foreground">
-                                        No skins have been added to your account yet.
-                                    </p>
-                                    {! canImport ? (
-                                        <div className="mt-4 border border-border bg-muted/20 px-4 py-3 text-sm text-muted-foreground">
-                                            Your slots are full. You cannot import from the old site unless you delete one of the slots.
-                                        </div>
-                                    ) : (
-                                        <Button
-                                            type="button"
-                                            className="mt-3 w-full"
-                                            variant="secondary"
-                                            onClick={() => router.post(importUrl)}
-                                        >
-                                            <DownloadSimpleIcon data-icon="inline-start" weight="bold" />
-                                            Check for skin to import from the old site
-                                        </Button>
-                                    )}
-                                </>
+                                <p className="text-sm text-muted-foreground">
+                                    No skins have been added to your account yet.
+                                </p>
                             )}
                         </section>
 

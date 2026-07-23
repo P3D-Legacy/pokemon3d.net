@@ -58,8 +58,6 @@ class SkinHomeController extends Controller
                 'used' => $skinCount,
                 'max' => $maxUpload,
             ],
-            'canImport' => ! $hasCurrentSkin && $skinCount < $maxUpload,
-            'importUrl' => route('import', $gamejolt->id),
             'templateUrl' => asset('img/template.png'),
             'deleteActivity' => $deleteActivity,
             'width' => (int) config('skins.width'),

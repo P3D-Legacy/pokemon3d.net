@@ -47,7 +47,6 @@
     "Cancel": "Cancelar",
     "Categories": "Categorías",
     "Category": "Categoría",
-    "Check for skin to import from the old site": "Check for skin to import from the old site",
     "Close": "Cerrar",
     "Code": "Código",
     "Comment": "Comment",
@@ -121,7 +120,7 @@
     "Here you can choose what to share on your public profile.": "Aquí puedes elegir qué compartir en tu perfil público.",
     "History": "History",
     "Home": "Home",
-    "Hostname\/IP Address": "Nombre de host\/Dirección IP",
+    "Hostname/IP Address": "Nombre de host/Dirección IP",
     "I Accept": "Acepto",
     "I agree to the :terms and :privacy": "Acepto los :términos y la :privacidad",
     "If necessary, you may log out of all of your other browser sessions across all of your devices. Some of your recent sessions are listed below; however, this list may not be exhaustive. If you feel your account has been compromised, you should also update your password.": "Si es necesario, puede salir de todas las demás sesiones de otros navegadores en todos sus dispositivos. Algunas de sus sesiones recientes se enumeran a continuación; sin embargo, es posible que esta lista no sea exhaustiva. Si cree que su cuenta se ha visto comprometida, también debería actualizar su contraseña.",
@@ -173,7 +172,7 @@
     "Most Popular": "Más popular",
     "My Skins": "Mis Skins",
     "Name": "Nombre",
-    "Need help to setup a own server? Check out <a href=\":url\" class=\"font-semibold underline\">this guide<\/a>.": "¿Necesita ayuda para configurar un servidor propio? Consulte <a href=\":url\" class=\"font-semibold underline\">this guide<\/a>.",
+    "Need help to setup a own server? Check out <a href=\":url\" class=\"font-semibold underline\">this guide</a>.": "¿Necesita ayuda para configurar un servidor propio? Consulte <a href=\":url\" class=\"font-semibold underline\">this guide</a>.",
     "New Password": "Nueva Contraseña",
     "Newest": "Lo más nuevo",
     "No": "No",
@@ -337,7 +336,6 @@
     "Your browser does not support the video tag.": "Your browser does not support the video tag.",
     "Your review of this game": "Your review of this game",
     "Your review of this resource": "Your review of this resource",
-    "Your slots are full. You cannot import from the old site unless you delete one of the slots.": "Your slots are full. You cannot import from the old site unless you delete one of the slots.",
     "Your timezone": "Your timezone",
     "Your user was created at": "Your user was created at"
 }

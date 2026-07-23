@@ -47,7 +47,6 @@
     "Cancel": "Avbryt",
     "Categories": "Kategorier",
     "Category": "Kategori",
-    "Check for skin to import from the old site": "Se etter skinn som skal importeres fra det gamle nettstedet",
     "Close": "Lukk",
     "Code": "Kode",
     "Comment": "Kommenter",
@@ -121,7 +120,7 @@
     "Here you can choose what to share on your public profile.": "Her kan du velge hva du vil dele på din offentlige profil.",
     "History": "Historie",
     "Home": "Hjem",
-    "Hostname\/IP Address": "Vertsnavn\/IP-adresse",
+    "Hostname/IP Address": "Vertsnavn/IP-adresse",
     "I Accept": "Jeg aksepterer",
     "I agree to the :terms and :privacy": "Jeg godtar :terms og :privacy",
     "If necessary, you may log out of all of your other browser sessions across all of your devices. Some of your recent sessions are listed below; however, this list may not be exhaustive. If you feel your account has been compromised, you should also update your password.": "Hvis det er nødvendig, kan du logge av alle andre nettleserøkter på tvers av alle enhetene dine. Noen av de siste øktene dine er oppført nedenfor; denne listen kan imidlertid ikke være uttømmende. Hvis du føler at kontoen din er kompromittert, bør du også oppdatere passordet ditt.",
@@ -173,7 +172,7 @@
     "Most Popular": "Mest populær",
     "My Skins": "Mine skinn",
     "Name": "Navn",
-    "Need help to setup a own server? Check out <a href=\":url\" class=\"font-semibold underline\">this guide<\/a>.": "Trenger du hjelp til å sette opp en egen server? Sjekk ut <a href=\":url\" class=\"font-semibold underline\">denne guiden<\/a>.",
+    "Need help to setup a own server? Check out <a href=\":url\" class=\"font-semibold underline\">this guide</a>.": "Trenger du hjelp til å sette opp en egen server? Sjekk ut <a href=\":url\" class=\"font-semibold underline\">denne guiden</a>.",
     "New Password": "Nytt passord",
     "Newest": "Nyeste",
     "No": "Nei",
@@ -337,7 +336,6 @@
     "Your browser does not support the video tag.": "Nettleseren din støtter ikke video-taggen.",
     "Your review of this game": "Din anmeldelse av dette spillet",
     "Your review of this resource": "Din anmeldelse av denne ressursen",
-    "Your slots are full. You cannot import from the old site unless you delete one of the slots.": "Plassene dine er fulle. Du kan ikke importere fra den gamle siden med mindre du sletter en av plassene.",
     "Your timezone": "Din tidssone",
     "Your user was created at": "Din bruker ble opprettet"
 }

@@ -8,7 +8,6 @@ use App\Support\SkinStorage;
 use Database\Seeders\PermissionSeeder;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Http;
 use Inertia\Testing\AssertableInertia as Assert;
 
 function configureSkinDisk(): array
@@ -109,7 +108,6 @@ test('authenticated user with gamejolt can open skin home with inertia', functio
             ->has('currentSkin')
             ->has('slots')
             ->has('deleteActivity')
-            ->has('canImport')
             ->has('width')
             ->has('height'));
 });
@@ -359,38 +357,10 @@ test('scoped skin disks build library urls from the cloud parent disk url', func
         ->not->toContain('cdn.example.test');
 });
 
-test('import rejects skins with wrong dimensions', function () {
-    configureSkinDisk();
+test('legacy skin import route is removed', function () {
     [$user, $gamejolt] = createVerifiedUserWithGamejolt();
 
-    $png = fakeSkinPng(64, 64)->get();
-
-    Http::fake([
-        '*' => Http::response($png, 200, ['Content-Type' => 'image/png']),
-    ]);
-
     $this->actingAs($user)
-        ->post(route('import', $gamejolt->id))
-        ->assertRedirect(route('skin-home'))
-        ->assertSessionHas('error', 'Skin was not in a valid format!');
-
-    expect(SkinStorage::existsPlayer($gamejolt->id))->toBeFalse();
-});
-
-test('import accepts a valid png and writes the player disk', function () {
-    configureSkinDisk();
-    [$user, $gamejolt] = createVerifiedUserWithGamejolt();
-
-    $png = fakeSkinPng()->get();
-
-    Http::fake([
-        '*' => Http::response($png, 200, ['Content-Type' => 'image/png']),
-    ]);
-
-    $this->actingAs($user)
-        ->post(route('import', $gamejolt->id))
-        ->assertRedirect(route('skin-home'))
-        ->assertSessionHas('flash.bannerStyle', 'success');
-
-    expect(SkinStorage::existsPlayer($gamejolt->id))->toBeTrue();
+        ->post('/skin/import/'.$gamejolt->id)
+        ->assertNotFound();
 });

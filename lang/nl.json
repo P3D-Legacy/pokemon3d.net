@@ -47,7 +47,6 @@
     "Cancel": "Annuleren",
     "Categories": "Categorieën",
     "Category": "Categorie",
-    "Check for skin to import from the old site": "Controleren of er Karakterafbeeldingen van de oude site geïmporteerd kunnen worden",
     "Close": "Sluit",
     "Code": "Code",
     "Comment": "Opmerking",
@@ -121,7 +120,7 @@
     "Here you can choose what to share on your public profile.": "Hier kun je kiezen wat je wilt delen op je openbare profiel.",
     "History": "Geschiedenis",
     "Home": "Thuis",
-    "Hostname\/IP Address": "Hostnaam\/IP-adres",
+    "Hostname/IP Address": "Hostnaam/IP-adres",
     "I Accept": "Ik ga akkoord",
     "I agree to the :terms and :privacy": "Ik ga akkoord met :terms en :privacy",
     "If necessary, you may log out of all of your other browser sessions across all of your devices. Some of your recent sessions are listed below; however, this list may not be exhaustive. If you feel your account has been compromised, you should also update your password.": "Indien nodig, kunt u uitloggen bij al uw andere browsersessies op al uw apparaten. Sommige van uw recente sessies staan hieronder vermeld; deze lijst is echter mogelijk niet volledig. Als u denkt dat uw account is gecompromitteerd, moet u ook uw wachtwoord bij te werken.",
@@ -173,7 +172,7 @@
     "Most Popular": "Meest populair",
     "My Skins": "Mijn Karakterafbeeldingen",
     "Name": "Naam",
-    "Need help to setup a own server? Check out <a href=\":url\" class=\"font-semibold underline\">this guide<\/a>.": "Heb je hulp nodig met het opzetten van je eigen server? Bekijk dan <a href=\":url\" class=\"font-semibold underline\">deze gids<\/a>.",
+    "Need help to setup a own server? Check out <a href=\":url\" class=\"font-semibold underline\">this guide</a>.": "Heb je hulp nodig met het opzetten van je eigen server? Bekijk dan <a href=\":url\" class=\"font-semibold underline\">deze gids</a>.",
     "New Password": "Nieuw wachtwoord",
     "Newest": "Nieuwst",
     "No": "No",
@@ -337,7 +336,6 @@
     "Your browser does not support the video tag.": "Je browser ondersteunt het videolabel niet.",
     "Your review of this game": "Jouw beoordeling van dit spel",
     "Your review of this resource": "Jouw beoordeling van deze bron",
-    "Your slots are full. You cannot import from the old site unless you delete one of the slots.": "Er is geen plaats meer. Je kunt niet van de oude site importeren tenzij je een van de plaatsen vrij maakt.",
     "Your timezone": "Jouw tijdzone",
     "Your user was created at": "Jouw gebruiker is aangemaakt op"
 }

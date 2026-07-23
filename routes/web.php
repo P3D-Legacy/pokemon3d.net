@@ -18,7 +18,6 @@ use App\Http\Controllers\ResourceUpdateController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\Save\MySaveController;
 use App\Http\Controllers\ServerController;
-use App\Http\Controllers\Skin\ImportController;
 use App\Http\Controllers\Skin\PlayerSkinController;
 use App\Http\Controllers\Skin\SkinController;
 use App\Http\Controllers\Skin\SkinHomeController;
@@ -141,8 +140,6 @@ Route::prefix('skin')
             Route::get('/my', function () {
                 return redirect()->route('skin-home');
             })->name('skins-my');
-
-            Route::post('/import/{id}', [ImportController::class, 'import'])->name('import');
 
             Route::get('/player', [PlayerSkinController::class, 'index'])->name('player-skins');
             Route::post('/player/create', [PlayerSkinController::class, 'store'])->name('player-skin-store');

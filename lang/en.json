@@ -47,7 +47,6 @@
     "Cancel": "Cancel",
     "Categories": "Categories",
     "Category": "Category",
-    "Check for skin to import from the old site": "Check for skin to import from the old site",
     "Close": "Close",
     "Code": "Code",
     "Comment": "Comment",
@@ -121,7 +120,7 @@
     "Here you can choose what to share on your public profile.": "Here you can choose what to share on your public profile.",
     "History": "History",
     "Home": "Home",
-    "Hostname\/IP Address": "Hostname\/IP Address",
+    "Hostname/IP Address": "Hostname/IP Address",
     "I Accept": "I Accept",
     "I agree to the :terms and :privacy": "I agree to the :terms and :privacy",
     "If necessary, you may log out of all of your other browser sessions across all of your devices. Some of your recent sessions are listed below; however, this list may not be exhaustive. If you feel your account has been compromised, you should also update your password.": "If necessary, you may log out of all of your other browser sessions across all of your devices. Some of your recent sessions are listed below; however, this list may not be exhaustive. If you feel your account has been compromised, you should also update your password.",
@@ -173,7 +172,7 @@
     "Most Popular": "Most Popular",
     "My Skins": "My Skins",
     "Name": "Name",
-    "Need help to setup a own server? Check out <a href=\":url\" class=\"font-semibold underline\">this guide<\/a>.": "Need help to setup a own server? Check out <a href=\":url\" class=\"font-semibold underline\">this guide<\/a>.",
+    "Need help to setup a own server? Check out <a href=\":url\" class=\"font-semibold underline\">this guide</a>.": "Need help to setup a own server? Check out <a href=\":url\" class=\"font-semibold underline\">this guide</a>.",
     "New Password": "New Password",
     "Newest": "Newest",
     "No": "No",
@@ -337,7 +336,6 @@
     "Your browser does not support the video tag.": "Your browser does not support the video tag.",
     "Your review of this game": "Your review of this game",
     "Your review of this resource": "Your review of this resource",
-    "Your slots are full. You cannot import from the old site unless you delete one of the slots.": "Your slots are full. You cannot import from the old site unless you delete one of the slots.",
     "Your timezone": "Your timezone",
     "Your user was created at": "Your user was created at"
 }

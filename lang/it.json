@@ -1,6 +1,6 @@
 {
     "30 Days": "30 Giorni",
-    "365 Days": "365 Giorni", 
+    "365 Days": "365 Giorni",
     "60 Days": "60 Giorni",
     "90 Days": "90 Giorni",
     ":game focuses on the strong points of Pokémon Gold and Silver versions and their remakes, and gives players a taste as to how the once 2D world they knew was in 3D. They could even see through the eyes of their trainer.": ":game si concentra sui punti di forza delle versioni Pokémon Oro e Argento e dei loro remake, e dà ai giocatori un assaggio di come il mondo 2D che conoscevano sia ora in 3D. Possono persino vedere attraverso gli occhi del loro allenatore.",
@@ -47,7 +47,6 @@
     "Cancel": "Annulla",
     "Categories": "Categorie",
     "Category": "Categoria",
-    "Check for skin to import from the old site": "Controlla le skin da importare dal vecchio sito",
     "Close": "Chiudi",
     "Code": "Codice",
     "Comment": "Commento",
@@ -178,7 +177,7 @@
     "Newest": "Più recenti",
     "No": "No",
     "No comments yet": "Ancora nessun commento",
-    "No new notifications": "Nessuna nuova notifica", 
+    "No new notifications": "Nessuna nuova notifica",
     "No notifications": "Nessuna notifica",
     "No skins have been added to your account yet.": "Non hai ancora aggiunto skin al tuo account.",
     "No, do not delete": "No, non eliminare",
@@ -343,7 +342,6 @@
     "Your review of this game": "La tua recensione di questo gioco",
     "Your review of this resource": "La tua recensione di questa risorsa",
     "Your servers": "I tuoi server",
-    "Your slots are full. You cannot import from the old site unless you delete one of the slots.": "I tuoi slot sono pieni. Non puoi importare dal vecchio sito a meno che tu non elimini uno degli slot.",
     "Your timezone": "Il tuo fuso orario",
     "Your user was created at": "Il tuo utente è stato creato alle"
 }

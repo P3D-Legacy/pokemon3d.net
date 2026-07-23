@@ -47,7 +47,6 @@
     "Cancel": "Tühistama",
     "Categories": "Kategooriad",
     "Category": "Kategooria",
-    "Check for skin to import from the old site": "Kontrollige skin'i, et importida vanast saidist",
     "Close": "Lähedal",
     "Code": "Kood",
     "Comment": "Comment",
@@ -121,7 +120,7 @@
     "Here you can choose what to share on your public profile.": "Siin te saate valida, mida jagada oma avalikul profiilil.",
     "History": "Ajalugu",
     "Home": "Pealeht",
-    "Hostname\/IP Address": "Hostinimi\/IP Aadress",
+    "Hostname/IP Address": "Hostinimi/IP Aadress",
     "I Accept": "Olen nõus",
     "I agree to the :terms and :privacy": "Olen nõus :terms ja :privacy",
     "If necessary, you may log out of all of your other browser sessions across all of your devices. Some of your recent sessions are listed below; however, this list may not be exhaustive. If you feel your account has been compromised, you should also update your password.": "Vajadusel võite välja logida kõik oma teiste brauseri istungid kõigis oma seadmetes. Mõned teie hiljutised istungid on loetletud allpool; kuid see nimekiri ei pruugi olla ammendav. Kui tunnete, et teie konto on ohustatud, peaksite ka oma parooli uuendama.",
@@ -173,7 +172,7 @@
     "Most Popular": "Kõige populaarsem",
     "My Skins": "Minu skin'id",
     "Name": "Nimi",
-    "Need help to setup a own server? Check out <a href=\":url\" class=\"font-semibold underline\">this guide<\/a>.": "On vaja abi oma serveri seadistamisega? Vaadake üle <a href=\":url\" class=\"font-semibold underline\">this guide<\/a>.",
+    "Need help to setup a own server? Check out <a href=\":url\" class=\"font-semibold underline\">this guide</a>.": "On vaja abi oma serveri seadistamisega? Vaadake üle <a href=\":url\" class=\"font-semibold underline\">this guide</a>.",
     "New Password": "Uus Parool",
     "Newest": "Uusim",
     "No": "No",
@@ -337,7 +336,6 @@
     "Your browser does not support the video tag.": "Teie brauser ei toeta seda video märksõna.",
     "Your review of this game": "Teie arvustus selle mängu kohta",
     "Your review of this resource": "Teie arvustus selle ressursi kohta",
-    "Your slots are full. You cannot import from the old site unless you delete one of the slots.": "Teie kohad on täis. Te ei saa importida vanast saidist enne kui kustutate ühe neist kohtadest.",
     "Your timezone": "Your timezone",
     "Your user was created at": "Your user was created at"
 }

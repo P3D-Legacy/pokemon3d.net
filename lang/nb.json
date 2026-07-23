@@ -270,6 +270,8 @@
     "Store these recovery codes in a secure password manager. They can be used to recover access to your account if your two factor authentication device is lost.": "Lagre disse gjenopprettingskodene i en sikker passordbehandling. De kan brukes til å gjenopprette tilgang til kontoen din hvis tofaktorautentiseringsenheten din går tapt.",
     "summer": "sommer",
     "Switch Teams": "Bytt team",
+    "Switch to dark theme": "Bytt til mørkt tema",
+    "Switch to light theme": "Bytt til lyst tema",
     "Sync your registration date on the forum with this account": "Synkroniser registreringsdatoen din på forumet med denne kontoen",
     "Synchronize": "Synkroniser",
     "Tags": "Tagger",

@@ -270,6 +270,8 @@
     "Store these recovery codes in a secure password manager. They can be used to recover access to your account if your two factor authentication device is lost.": "Храните эти коды восстановления в безопасном месте. Их можно использовать для восстановления доступа к Вашей учётной записи, если Ваше устройство с двухфакторной аутентификацией потеряно.",
     "summer": "summer",
     "Switch Teams": "Сменить команды",
+    "Switch to dark theme": "Переключить на тёмную тему",
+    "Switch to light theme": "Переключить на светлую тему",
     "Sync your registration date on the forum with this account": "Sync your registration date on the forum with this account",
     "Synchronize": "Synchronize",
     "Tags": "Tags",

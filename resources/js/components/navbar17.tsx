@@ -21,6 +21,7 @@ import {
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 
 import { NotificationsNav } from '@/components/notifications-nav';
+import { ThemeToggle } from '@/components/theme-toggle';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import {
@@ -276,6 +277,7 @@ const Navbar17 = ({ className, variant = 'dark' }: Navbar17Props) => {
                 />
 
                 <div className="hidden items-center gap-2 lg:flex">
+                    <ThemeToggle overlay={! isLight} />
                     {auth.user ? (
                         <>
                             <NotificationsNav variant={variant} />
@@ -456,6 +458,7 @@ const MobileNav = ({
 
     return (
         <div className="flex h-full items-center gap-1 lg:hidden">
+            <ThemeToggle overlay={variant !== 'light'} />
             {user ? <NotificationsNav variant={variant} /> : null}
             <Popover open={isOpen} onOpenChange={setIsOpen}>
                 <PopoverTrigger asChild>

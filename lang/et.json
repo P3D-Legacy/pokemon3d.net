@@ -270,6 +270,8 @@
     "Store these recovery codes in a secure password manager. They can be used to recover access to your account if your two factor authentication device is lost.": "Salvestage need taastekoodid turvalises paroolihalduris. Neid saab kasutada teie kontole juurdepääsu taastamiseks, kui teie kahe teguri autentimisseade on kadunud.",
     "summer": "suvi",
     "Switch Teams": "Vahetusmeeskonnad",
+    "Switch to dark theme": "Lülitu tumedale teemale",
+    "Switch to light theme": "Lülitu heledale teemale",
     "Sync your registration date on the forum with this account": "Sync your registration date on the forum with this account",
     "Synchronize": "Synchronize",
     "Tags": "Märksõnad",

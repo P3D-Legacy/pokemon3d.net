@@ -270,6 +270,8 @@
     "Store these recovery codes in a secure password manager. They can be used to recover access to your account if your two factor authentication device is lost.": "将这些恢复码存储在一个安全的密码管理器中。如果您的双因素验证设备丢失，它们可以用来恢复对您账户的访问。",
     "summer": "夏天",
     "Switch Teams": "切换团队",
+    "Switch to dark theme": "切换到深色主题",
+    "Switch to light theme": "切换到浅色主题",
     "Sync your registration date on the forum with this account": "Sync your registration date on the forum with this account",
     "Synchronize": "Synchronize",
     "Tags": "标签",

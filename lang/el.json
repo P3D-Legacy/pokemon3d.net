@@ -270,6 +270,8 @@
     "Store these recovery codes in a secure password manager. They can be used to recover access to your account if your two factor authentication device is lost.": "Αποθηκεύστε αυτούς τους κωδικούς ανάκτησης σε έναν ασφαλή διαχειριστή κωδικών πρόσβασης. Μπορούν να χρησιμοποιηθούν για να ανακτήσει την πρόσβαση στο λογαριασμό σας, αν η συσκευή ελέγχου ταυτότητας δύο παραγόντων σας έχει χαθεί.",
     "summer": "καλοκαίρι",
     "Switch Teams": "Εναλλαγή Ομάδων",
+    "Switch to dark theme": "Μετάβαση σε σκούρο θέμα",
+    "Switch to light theme": "Μετάβαση σε φωτεινό θέμα",
     "Sync your registration date on the forum with this account": "Sync your registration date on the forum with this account",
     "Synchronize": "Synchronize",
     "Tags": "Ετικέτες",

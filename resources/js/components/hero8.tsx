@@ -40,7 +40,7 @@ const Hero8 = ({
                 className="absolute inset-0 size-full bg-repeat"
                 style={{ backgroundImage: `url(${backgroundImage})` }}
             />
-            <div className="absolute inset-0 bg-foreground/50" aria-hidden />
+            <div className="absolute inset-0 bg-foreground/50 dark:bg-secondary/60" aria-hidden />
 
             <div className="relative z-10">
                 {children}

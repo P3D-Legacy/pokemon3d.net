@@ -7,6 +7,7 @@ import { PokedexPanel, type PokedexDefinition } from '@/components/pokedex-panel
 import { StatisticsPanel, type StatisticItem } from '@/components/statistics-panel';
 import { TrophiesPanel, type TrophyItem } from '@/components/trophies-panel';
 import { Badge } from '@/components/ui/badge';
+import { Card, CardContent } from '@/components/ui/card';
 import { UserProfile12 } from '@/components/user-profile12';
 import { show as profileShow } from '@/routes/profile';
 import type { SharedPageProps } from '@/types';
@@ -193,51 +194,57 @@ export default function MembersShow({ member }: Props) {
                 </div>
 
                 <div className="min-w-0 w-full">
-                    <div className="h-full w-full border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900">
-                        <h2 className="text-3xl font-semibold text-slate-800 dark:text-slate-200">Game Save</h2>
-                        {!member.gameSave.available ? (
-                            <p className="mt-3 text-sm text-slate-500">{member.gameSave.message}</p>
-                        ) : (
-                            <>
-                                <p className="mt-2 text-sm text-slate-500">Last synced: {member.gameSave.last_synced}</p>
-                                <div className="mt-4 flex flex-wrap gap-3 border-b border-slate-100 text-sm dark:border-slate-800">
-                                    {[
-                                        ['party', 'Party'],
-                                        ['details', 'Details'],
-                                        ['pokedex', 'Pokédex'],
-                                        ['trophies', 'Trophies'],
-                                        ['statistics', 'Statistics'],
-                                    ].map(([key, label]) => (
-                                        <button
-                                            key={key}
-                                            type="button"
-                                            className={`pb-2 ${saveTab === key ? 'border-b-2 border-green-500 text-green-500' : 'text-slate-500'}`}
-                                            onClick={() => setSaveTab(key)}
-                                        >
-                                            {label}
-                                        </button>
-                                    ))}
-                                </div>
-                                <div className="mt-4 min-w-0 w-full overflow-x-auto text-sm text-slate-700 dark:text-slate-200">
-                                    {saveTab === 'party' && <PartyPanel party={member.gameSave.party ?? []} />}
-                                    {saveTab === 'details' && <DetailsPanel details={member.gameSave.details ?? {}} />}
-                                    {saveTab === 'pokedex' && (
-                                        <PokedexPanel pokedexes={member.gameSave.pokedexes ?? []} />
-                                    )}
-                                    {saveTab === 'trophies' && (
-                                        <TrophiesPanel
-                                            trophies={member.gameSave.trophies?.items ?? []}
-                                            achievedCount={member.gameSave.trophies?.achieved ?? 0}
-                                            totalCount={member.gameSave.trophies?.total ?? 0}
-                                        />
-                                    )}
-                                    {saveTab === 'statistics' && (
-                                        <StatisticsPanel statistics={member.gameSave.statistics ?? []} />
-                                    )}
-                                </div>
-                            </>
-                        )}
-                    </div>
+                    <Card className="h-full w-full py-0">
+                        <CardContent className="p-5">
+                            <h2 className="text-3xl font-semibold text-foreground">Game Save</h2>
+                            {!member.gameSave.available ? (
+                                <p className="mt-3 text-sm text-muted-foreground">{member.gameSave.message}</p>
+                            ) : (
+                                <>
+                                    <p className="mt-2 text-sm text-muted-foreground">
+                                        Last synced: {member.gameSave.last_synced}
+                                    </p>
+                                    <div className="mt-4 flex flex-wrap gap-3 border-b text-sm">
+                                        {[
+                                            ['party', 'Party'],
+                                            ['details', 'Details'],
+                                            ['pokedex', 'Pokédex'],
+                                            ['trophies', 'Trophies'],
+                                            ['statistics', 'Statistics'],
+                                        ].map(([key, label]) => (
+                                            <button
+                                                key={key}
+                                                type="button"
+                                                className={`pb-2 ${saveTab === key ? 'border-b-2 border-primary text-primary' : 'text-muted-foreground'}`}
+                                                onClick={() => setSaveTab(key)}
+                                            >
+                                                {label}
+                                            </button>
+                                        ))}
+                                    </div>
+                                    <div className="mt-4 min-w-0 w-full overflow-x-auto text-sm text-foreground">
+                                        {saveTab === 'party' && <PartyPanel party={member.gameSave.party ?? []} />}
+                                        {saveTab === 'details' && (
+                                            <DetailsPanel details={member.gameSave.details ?? {}} />
+                                        )}
+                                        {saveTab === 'pokedex' && (
+                                            <PokedexPanel pokedexes={member.gameSave.pokedexes ?? []} />
+                                        )}
+                                        {saveTab === 'trophies' && (
+                                            <TrophiesPanel
+                                                trophies={member.gameSave.trophies?.items ?? []}
+                                                achievedCount={member.gameSave.trophies?.achieved ?? 0}
+                                                totalCount={member.gameSave.trophies?.total ?? 0}
+                                            />
+                                        )}
+                                        {saveTab === 'statistics' && (
+                                            <StatisticsPanel statistics={member.gameSave.statistics ?? []} />
+                                        )}
+                                    </div>
+                                </>
+                            )}
+                        </CardContent>
+                    </Card>
                 </div>
             </div>
         </>

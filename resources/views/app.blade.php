@@ -12,6 +12,20 @@
 
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
+        {{-- Applies stored or system theme before paint to avoid a flash of the wrong mode. --}}
+        <script data-theme-boot>
+            (function () {
+                try {
+                    var stored = localStorage.getItem('theme');
+                    var theme = stored === 'light' || stored === 'dark'
+                        ? stored
+                        : (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+                    document.documentElement.classList.toggle('dark', theme === 'dark');
+                    document.documentElement.style.colorScheme = theme;
+                } catch (e) {}
+            })();
+        </script>
+
         @viteReactRefresh
         @vite(['resources/css/app.css', 'resources/js/app.tsx'])
         @inertiaHead

@@ -45,7 +45,7 @@ const Cta16 = ({
                 className="absolute inset-0 size-full bg-repeat"
                 style={{ backgroundImage: `url(${image.src})` }}
             />
-            <div className="absolute inset-0 bg-foreground/40" aria-hidden />
+            <div className="absolute inset-0 bg-foreground/40 dark:bg-secondary/60" aria-hidden />
             <div className="relative z-10 mx-auto flex w-full max-w-5xl flex-col gap-8 p-4 text-center text-white">
                 <h2 className="mx-auto max-w-3xl text-2xl font-semibold tracking-tight text-balance drop-shadow-md md:text-5xl">
                     {heading}

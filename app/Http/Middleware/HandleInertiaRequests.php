@@ -37,6 +37,11 @@ class HandleInertiaRequests extends Middleware
     {
         $user = $request->user();
 
+        $requiredConsent = config('app.required_consent');
+        $needsTermsAcceptance = $user
+            && is_string($requiredConsent)
+            && ! $user->hasGivenConsent($requiredConsent);
+
         return [
             ...parent::share($request),
             'auth' => [
@@ -48,6 +53,13 @@ class HandleInertiaRequests extends Middleware
                     ]
                     : null,
             ],
+            'termsAcceptance' => $needsTermsAcceptance
+                ? [
+                    'required' => true,
+                    'key' => $requiredConsent,
+                    'text' => config('app.consents.'.$requiredConsent),
+                ]
+                : null,
             'flash' => [
                 'status' => fn () => $request->session()->get('status'),
                 'error' => fn () => $request->session()->get('error'),

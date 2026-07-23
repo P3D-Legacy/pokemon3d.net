@@ -9,10 +9,17 @@ export type User = {
     is_admin?: boolean;
 };
 
+export type TermsAcceptance = {
+    required: boolean;
+    key: string;
+    text: string;
+};
+
 export type SharedPageProps = {
     auth: {
         user: User | null;
     };
+    termsAcceptance: TermsAcceptance | null;
     flash: {
         status?: string | null;
         error?: string | null;

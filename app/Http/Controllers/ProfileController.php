@@ -43,6 +43,7 @@ class ProfileController extends Controller
                     'key' => $key,
                     'text' => $text,
                     'given' => $user->hasGivenConsent($key),
+                    'required' => $key === config('app.required_consent'),
                 ])
                 ->values()
                 ->all(),

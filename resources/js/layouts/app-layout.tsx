@@ -3,6 +3,7 @@ import type { PropsWithChildren } from 'react';
 import FlashBanner from '@/components/flash-banner';
 import { Footer59 } from '@/components/footer59';
 import { Navbar17 } from '@/components/navbar17';
+import { TermsAcceptanceDialog } from '@/components/terms-acceptance-dialog';
 
 export default function AppLayout({ children, title }: PropsWithChildren<{ title?: string }>) {
     return (
@@ -12,6 +13,7 @@ export default function AppLayout({ children, title }: PropsWithChildren<{ title
             </div>
 
             <FlashBanner />
+            <TermsAcceptanceDialog />
 
             {title ? (
                 <div className="border-b bg-background">

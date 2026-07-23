@@ -17,6 +17,10 @@ Route::middleware(config('jetstream.middleware', ['web']))->group(function () {
         Route::get('/privacy', [LegalController::class, 'policy'])->name('policy.show');
     }
 
+    Route::middleware('auth')->group(function () {
+        Route::post('/user/consents/required', [ConsentController::class, 'acceptRequired'])->name('profile.consents.accept-required');
+    });
+
     Route::middleware('auth', 'verified')->group(function () {
         Route::get('/user/edit/profile', [ProfileController::class, 'show'])->name('profile.show');
 

@@ -47,7 +47,7 @@ type Props = {
         last_active: string;
     }>;
     preferences: Record<string, boolean>;
-    consents: Array<{ key: string; text: string; given: boolean }>;
+    consents: Array<{ key: string; text: string; given: boolean; required: boolean }>;
     socialAccounts: Record<
         string,
         {
@@ -321,10 +321,11 @@ export default function ProfileEdit({
                                     <input
                                         type="checkbox"
                                         checked={consent.given}
+                                        disabled={consent.required && consent.given}
                                         onChange={() =>
                                             router.patch(updateConsents.url(), { consent: consent.key }, { preserveScroll: true })
                                         }
-                                        className="mt-1 size-4 rounded border-slate-300 text-green-600"
+                                        className="mt-1 size-4 rounded border-slate-300 text-green-600 disabled:opacity-60"
                                     />
                                     <span className="text-sm" dangerouslySetInnerHTML={{ __html: consent.text }} />
                                 </label>

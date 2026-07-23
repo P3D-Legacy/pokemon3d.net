@@ -12,7 +12,7 @@ export default function SettingsSection({
                 <div className="mt-1 text-sm text-slate-600 dark:text-slate-400">{description}</div>
             </div>
             <div className="mt-5 md:col-span-2 md:mt-0">
-                <div className="bg-white px-4 py-5 shadow sm:rounded-md sm:p-6 dark:bg-slate-900">{children}</div>
+                <div className="bg-white px-4 py-5 border border-gray-200 sm:p-6 dark:bg-slate-900">{children}</div>
             </div>
         </div>
     );

@@ -17,7 +17,7 @@ class LegalController extends Controller
             markdown: 'terms.mdx',
             title: 'Terms and Conditions',
             category: 'Legal',
-            updatedAt: '2022-03-24',
+            updatedAt: '2026-07-23',
         ));
     }
 
@@ -30,7 +30,7 @@ class LegalController extends Controller
             markdown: 'policy.mdx',
             title: 'Privacy Policy',
             category: 'Legal',
-            updatedAt: '2022-03-24',
+            updatedAt: '2026-07-23',
         ));
     }
 

@@ -1,6 +1,7 @@
 import { usePage } from '@inertiajs/react';
 import type { PropsWithChildren, ReactNode } from 'react';
 
+import { Footer59 } from '@/components/footer59';
 import type { SharedPageProps } from '@/types';
 
 function EnvBanner() {
@@ -28,6 +29,7 @@ export default function GuestLayout({ children }: PropsWithChildren) {
         <div className="flex min-h-screen flex-col bg-spring bg-top bg-repeat font-sans leading-relaxed tracking-wide">
             <EnvBanner />
             <main className="flex-1">{children as ReactNode}</main>
+            <Footer59 />
         </div>
     );
 }

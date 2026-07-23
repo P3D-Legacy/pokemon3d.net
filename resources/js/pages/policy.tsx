@@ -1,7 +1,6 @@
 import { Head } from '@inertiajs/react';
 
 import { Blogpost10 } from '@/components/blogpost10';
-import { Footer59 } from '@/components/footer59';
 import { Navbar17 } from '@/components/navbar17';
 import PolicyContent from '@markdown/policy.mdx';
 
@@ -25,7 +24,6 @@ export default function Policy({ title, category, updatedAt, readTime }: Props) 
             >
                 <PolicyContent />
             </Blogpost10>
-            <Footer59 />
         </>
     );
 }

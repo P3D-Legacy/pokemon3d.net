@@ -5,7 +5,6 @@ import { useState } from 'react';
 import { Blog34 } from '@/components/blog34';
 import { Cta16 } from '@/components/cta16';
 import { Feature138 } from '@/components/feature138';
-import { Footer59 } from '@/components/footer59';
 import { Hero8 } from '@/components/hero8';
 import { HistorySection } from '@/components/history-section';
 import { Navbar17 } from '@/components/navbar17';
@@ -167,8 +166,6 @@ export default function Home({ posts, stats, screenshots, download: downloadInfo
                     requirementsLabel: copy.requirementsLabel,
                 }}
             />
-
-            <Footer59 />
         </>
     );
 }

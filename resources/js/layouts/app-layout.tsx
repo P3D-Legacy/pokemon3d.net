@@ -1,6 +1,7 @@
 import type { PropsWithChildren } from 'react';
 
 import FlashBanner from '@/components/flash-banner';
+import { Footer59 } from '@/components/footer59';
 import { Navbar17 } from '@/components/navbar17';
 
 export default function AppLayout({ children, title }: PropsWithChildren<{ title?: string }>) {
@@ -21,6 +22,7 @@ export default function AppLayout({ children, title }: PropsWithChildren<{ title
             ) : null}
 
             <main className="flex flex-1 flex-col">{children}</main>
+            <Footer59 />
         </div>
     );
 }

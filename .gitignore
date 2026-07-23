@@ -1,6 +1,7 @@
 /node_modules
 /public/hot
 !/public/build
+/bootstrap/ssr
 /public/storage
 /storage/*.key
 /storage/pail

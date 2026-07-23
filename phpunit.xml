@@ -24,6 +24,7 @@
     <env name="SESSION_DRIVER" value="array"/>
     <env name="TELESCOPE_ENABLED" value="false"/>
     <env name="SPAM_MAIL_CHECKER_DEFAULT_DRIVER" value="local"/>
+    <env name="INERTIA_SSR_ENABLED" value="false"/>
   </php>
   <logging/>
   <source/>

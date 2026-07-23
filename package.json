@@ -2,7 +2,8 @@
     "private": true,
     "scripts": {
         "dev": "vite",
-        "build": "vite build",
+        "build": "vite build && vite build --ssr",
+        "build:ssr": "vite build && vite build --ssr",
         "types:check": "tsc --noEmit"
     },
     "devDependencies": {

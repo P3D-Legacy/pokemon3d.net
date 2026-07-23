@@ -12,10 +12,16 @@ export default defineConfig({
     plugins: [
         laravel({
             input: ['resources/css/app.css', 'resources/js/app.tsx', 'resources/js/app.js'],
+            ssr: 'resources/js/app.tsx',
             refresh: true,
             detectTls: 'pokemon3d.net.test',
         }),
-        inertia(),
+        inertia({
+            ssr: {
+                entry: 'resources/js/app.tsx',
+                host: '127.0.0.1',
+            },
+        }),
         {
             enforce: 'pre',
             ...mdx({

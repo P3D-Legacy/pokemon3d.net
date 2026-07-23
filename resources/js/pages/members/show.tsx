@@ -31,7 +31,6 @@ type Props = {
             gamejolt: { username: string; url: string } | null;
             discord: { label: string; url: string } | null;
             twitch: { username: string; url: string } | null;
-            facebook: { name: string } | null;
         };
         gameSave: {
             available: boolean;
@@ -178,13 +177,9 @@ export default function MembersShow({ member }: Props) {
                                             </dd>
                                         </div>
                                     ) : null}
-                                    {member.accounts.facebook ? (
-                                        <Detail title="Facebook" value={member.accounts.facebook.name} />
-                                    ) : null}
                                     {!member.accounts.gamejolt &&
                                     !member.accounts.discord &&
-                                    !member.accounts.twitch &&
-                                    !member.accounts.facebook ? (
+                                    !member.accounts.twitch ? (
                                         <p className="text-muted-foreground">No connected accounts</p>
                                     ) : null}
                                 </>

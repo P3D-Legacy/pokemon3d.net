@@ -2,7 +2,6 @@ import { Form, Head, Link, usePage } from '@inertiajs/react';
 import {
     ChatCircleIcon,
     DiscordLogoIcon,
-    FacebookLogoIcon,
     GameControllerIcon,
     SignInIcon,
     TwitchLogoIcon,
@@ -29,7 +28,6 @@ import { Label } from '@/components/ui/label';
 import { cn } from '@/lib/utils';
 import { register } from '@/routes';
 import { login as discordLogin } from '@/routes/discord';
-import { login as facebookLogin } from '@/routes/facebook';
 import { login as forumLogin } from '@/routes/forum';
 import { login as gamejoltLogin } from '@/routes/gamejolt';
 import { request as passwordRequest } from '@/routes/password';
@@ -64,7 +62,6 @@ export default function Login({ canResetPassword, status }: Props) {
 
     const showSocial =
         socialLogin.discord ||
-        socialLogin.facebook ||
         socialLogin.twitch ||
         socialLogin.gamejolt ||
         socialLogin.xenforo;
@@ -153,12 +150,6 @@ export default function Login({ canResetPassword, status }: Props) {
                                     <SocialButton href={discordLogin.url()} className="bg-[#5865F2] hover:bg-[#4752C4]">
                                         <DiscordLogoIcon data-icon="inline-start" weight="fill" />
                                         Log in with Discord
-                                    </SocialButton>
-                                )}
-                                {socialLogin.facebook && (
-                                    <SocialButton href={facebookLogin.url()} className="bg-[#1877F2] hover:bg-[#0F5FCB]">
-                                        <FacebookLogoIcon data-icon="inline-start" weight="fill" />
-                                        Log in with Facebook
                                     </SocialButton>
                                 )}
                                 {socialLogin.twitch && (

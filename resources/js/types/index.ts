@@ -34,7 +34,6 @@ export type SharedPageProps = {
     env: string;
     socialLogin: {
         discord: boolean;
-        facebook: boolean;
         twitch: boolean;
         gamejolt: boolean;
         xenforo: boolean;

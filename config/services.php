@@ -29,12 +29,6 @@ return [
         'redirect' => env('TWITTER_REDIRECT_URI', '/login/twitter/callback'),
     ],
 
-    'facebook' => [
-        'client_id' => env('FACEBOOK_CLIENT_ID'),
-        'client_secret' => env('FACEBOOK_CLIENT_SECRET'),
-        'redirect' => env('FACEBOOK_REDIRECT_URI', '/login/facebook/callback'),
-    ],
-
     'twitch' => [
         'client_id' => env('TWITCH_CLIENT_ID'),
         'client_secret' => env('TWITCH_CLIENT_SECRET'),

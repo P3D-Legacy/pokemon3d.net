@@ -89,9 +89,6 @@ class MemberPresenter
                         'url' => 'https://twitch.tv/'.$user->twitch->username,
                     ]
                     : null,
-                'facebook' => $user->facebook
-                    ? ['name' => $user->facebook->name]
-                    : null,
             ],
             'gameSave' => GameSavePresenter::forUser($user),
         ];

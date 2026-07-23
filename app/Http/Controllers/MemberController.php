@@ -32,7 +32,7 @@ class MemberController extends Controller
         $user = User::query()
             ->where('username', $param)
             ->orWhere('id', $param)
-            ->with(['gamejolt.trophies', 'discord', 'twitch', 'facebook', 'gamesave'])
+            ->with(['gamejolt.trophies', 'discord', 'twitch', 'gamesave'])
             ->firstOrFail();
 
         return Inertia::render('members/show', [

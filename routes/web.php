@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\AnalyticsController;
 use App\Http\Controllers\Auth\DiscordController;
-use App\Http\Controllers\Auth\FacebookController;
 use App\Http\Controllers\Auth\GameJoltLoginController;
 use App\Http\Controllers\Auth\TwitchController;
 use App\Http\Controllers\Auth\XenforoLoginController;
@@ -69,8 +68,6 @@ Route::get('/download', [DownloadController::class, 'download'])->name('download
 Route::prefix('login')->group(function () {
     Route::get('/discord', [DiscordController::class, 'redirectToProvider'])->name('discord.login');
     Route::get('/discord/callback', [DiscordController::class, 'handleProviderCallback']);
-    Route::get('/facebook', [FacebookController::class, 'redirectToProvider'])->name('facebook.login');
-    Route::get('/facebook/callback', [FacebookController::class, 'handleProviderCallback']);
     Route::get('/twitch', [TwitchController::class, 'redirectToProvider'])->name('twitch.login');
     Route::get('/twitch/callback', [TwitchController::class, 'handleProviderCallback']);
 

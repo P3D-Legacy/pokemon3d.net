@@ -73,7 +73,6 @@
         "pxlrbt/filament-activity-log": "^1.1",
         "restcord/restcord": "dev-develop",
         "sentry/sentry-laravel": "^4.13",
-        "socialiteproviders/facebook": "^4.1",
         "socialiteproviders/twitch": "^5.3",
         "spatie/laravel-activitylog": "^4.10",
         "spatie/laravel-medialibrary": "^11.12",

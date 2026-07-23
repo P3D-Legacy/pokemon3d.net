@@ -35,7 +35,7 @@ class SocialAccountController extends Controller
     public function destroy(Request $request): RedirectResponse
     {
         $validated = $request->validate([
-            'provider' => ['required', Rule::in(['discord', 'facebook', 'twitch', 'gamejolt'])],
+            'provider' => ['required', Rule::in(['discord', 'twitch', 'gamejolt'])],
         ]);
 
         $user = $request->user();

@@ -178,15 +178,7 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
     }
 
     /**
-     * Get the facebook account associated with the user.
-     */
-    public function facebook(): HasOne
-    {
-        return $this->hasOne(FacebookAccount::class);
-    }
-
-    /**
-     * Get the facebook account associated with the user.
+     * Get the twitch account associated with the user.
      */
     public function twitch(): HasOne
     {

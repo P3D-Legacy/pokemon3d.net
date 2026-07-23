@@ -74,7 +74,6 @@ class HandleInertiaRequests extends Middleware
             'env' => config('app.env'),
             'socialLogin' => [
                 'discord' => filled(config('services.discord.client_id')) && filled(config('services.discord.client_secret')),
-                'facebook' => filled(config('services.facebook.client_id')) && filled(config('services.facebook.client_secret')),
                 'twitch' => filled(config('services.twitch.client_id')) && filled(config('services.twitch.client_secret')),
                 'gamejolt' => filled(config('services.gamejolt.private_key')),
                 'xenforo' => filled(config('services.xenforo.api_key')) && filled(config('services.xenforo.api_url')),

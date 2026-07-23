@@ -18,7 +18,7 @@ class ProfileController extends Controller
      */
     public function show(Request $request): Response
     {
-        $user = $request->user()->loadMissing(['discord', 'facebook', 'twitch', 'gamejolt']);
+        $user = $request->user()->loadMissing(['discord', 'twitch', 'gamejolt']);
 
         return Inertia::render('profile/edit', [
             'profile' => [
@@ -53,12 +53,6 @@ class ProfileController extends Controller
                     'connected' => (bool) $user->discord,
                     'label' => $user->discord?->username,
                     'connect_url' => route('discord.login'),
-                ],
-                'facebook' => [
-                    'enabled' => filled(config('services.facebook.client_id')) && filled(config('services.facebook.client_secret')),
-                    'connected' => (bool) $user->facebook,
-                    'label' => $user->facebook?->name,
-                    'connect_url' => route('facebook.login'),
                 ],
                 'twitch' => [
                     'enabled' => filled(config('services.twitch.client_id')) && filled(config('services.twitch.client_secret')),

@@ -9,6 +9,7 @@ import {
     ListIcon,
     NewspaperIcon,
     PackageIcon,
+    PencilSimpleIcon,
     ShieldIcon,
     SignOutIcon,
     SmileyIcon,
@@ -53,7 +54,7 @@ import {
 } from '@/routes';
 import { index as apiTokensIndex } from '@/routes/api-tokens';
 import { index as blogIndex } from '@/routes/blog';
-import { index as memberIndex } from '@/routes/member';
+import { index as memberIndex, show as memberShow } from '@/routes/member';
 import { show as profileShow } from '@/routes/profile';
 import { index as resourceIndex } from '@/routes/resource';
 import { index as serverIndex } from '@/routes/server';
@@ -76,6 +77,7 @@ type UserMenuItem = {
     icon: React.ComponentType<{ className?: string }>;
     external?: boolean;
     method?: 'get' | 'post';
+    separatorBefore?: boolean;
 };
 
 interface Navbar17Props {
@@ -140,8 +142,14 @@ const Navbar17 = ({ className, variant = 'dark' }: Navbar17Props) => {
             },
             {
                 label: 'Profile',
-                href: profileShow.url(),
+                href: memberShow.url(auth.user.username),
                 icon: UserIcon,
+                separatorBefore: true,
+            },
+            {
+                label: 'Edit profile',
+                href: profileShow.url(),
+                icon: PencilSimpleIcon,
             },
             {
                 label: 'API Tokens',
@@ -156,6 +164,7 @@ const Navbar17 = ({ className, variant = 'dark' }: Navbar17Props) => {
                     label: 'Tags',
                     href: '/mod/tags',
                     icon: TagIcon,
+                    separatorBefore: true,
                 },
                 {
                     label: 'Analytics',
@@ -176,6 +185,7 @@ const Navbar17 = ({ className, variant = 'dark' }: Navbar17Props) => {
             href: logout.url(),
             icon: SignOutIcon,
             method: 'post',
+            separatorBefore: true,
         });
 
         return items;
@@ -401,19 +411,19 @@ function NavUser({
                         </>
                     );
 
+                    let menuItem: React.ReactNode;
+
                     if (item.external) {
-                        return (
-                            <DropdownMenuItem key={item.label} asChild>
+                        menuItem = (
+                            <DropdownMenuItem asChild>
                                 <a href={item.href} className="flex items-center gap-2">
                                     {content}
                                 </a>
                             </DropdownMenuItem>
                         );
-                    }
-
-                    if (item.method === 'post') {
-                        return (
-                            <DropdownMenuItem key={item.label} asChild>
+                    } else if (item.method === 'post') {
+                        menuItem = (
+                            <DropdownMenuItem asChild>
                                 <Link
                                     href={item.href}
                                     method="post"
@@ -424,14 +434,21 @@ function NavUser({
                                 </Link>
                             </DropdownMenuItem>
                         );
+                    } else {
+                        menuItem = (
+                            <DropdownMenuItem asChild>
+                                <Link href={item.href} className="flex items-center gap-2">
+                                    {content}
+                                </Link>
+                            </DropdownMenuItem>
+                        );
                     }
 
                     return (
-                        <DropdownMenuItem key={item.label} asChild>
-                            <Link href={item.href} className="flex items-center gap-2">
-                                {content}
-                            </Link>
-                        </DropdownMenuItem>
+                        <React.Fragment key={item.label}>
+                            {item.separatorBefore ? <DropdownMenuSeparator /> : null}
+                            {menuItem}
+                        </React.Fragment>
                     );
                 })}
             </DropdownMenuContent>
@@ -501,33 +518,39 @@ const MobileNav = ({
                         })}
                         {user ? (
                             <>
+                                <li className="mx-6 my-2 border-t border-border" aria-hidden="true" />
                                 {userMenuItems.map((item) => {
                                     const Icon = item.icon;
 
                                     return (
-                                        <li key={item.label}>
-                                            {item.external ? (
-                                                <a
-                                                    href={item.href}
-                                                    onClick={() => setIsOpen(false)}
-                                                    className="flex items-center gap-2 border-l-[3px] border-transparent px-6 py-4 text-sm font-medium text-muted-foreground hover:text-foreground"
-                                                >
-                                                    <Icon className="size-4" />
-                                                    {item.label}
-                                                </a>
-                                            ) : (
-                                                <Link
-                                                    href={item.href}
-                                                    method={item.method}
-                                                    as={item.method === 'post' ? 'button' : undefined}
-                                                    onClick={() => setIsOpen(false)}
-                                                    className="flex w-full items-center gap-2 border-l-[3px] border-transparent px-6 py-4 text-sm font-medium text-muted-foreground hover:text-foreground"
-                                                >
-                                                    <Icon className="size-4" />
-                                                    {item.label}
-                                                </Link>
-                                            )}
-                                        </li>
+                                        <React.Fragment key={item.label}>
+                                            {item.separatorBefore ? (
+                                                <li className="mx-6 my-2 border-t border-border" aria-hidden="true" />
+                                            ) : null}
+                                            <li>
+                                                {item.external ? (
+                                                    <a
+                                                        href={item.href}
+                                                        onClick={() => setIsOpen(false)}
+                                                        className="flex items-center gap-2 border-l-[3px] border-transparent px-6 py-4 text-sm font-medium text-muted-foreground hover:text-foreground"
+                                                    >
+                                                        <Icon className="size-4" />
+                                                        {item.label}
+                                                    </a>
+                                                ) : (
+                                                    <Link
+                                                        href={item.href}
+                                                        method={item.method}
+                                                        as={item.method === 'post' ? 'button' : undefined}
+                                                        onClick={() => setIsOpen(false)}
+                                                        className="flex w-full items-center gap-2 border-l-[3px] border-transparent px-6 py-4 text-sm font-medium text-muted-foreground hover:text-foreground"
+                                                    >
+                                                        <Icon className="size-4" />
+                                                        {item.label}
+                                                    </Link>
+                                                )}
+                                            </li>
+                                        </React.Fragment>
                                     );
                                 })}
                             </>

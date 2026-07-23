@@ -14,6 +14,7 @@ test('dashboard is rendered with inertia for authenticated users', function () {
         ->assertOk()
         ->assertInertia(fn (Assert $page) => $page
             ->component('dashboard')
+            ->where('auth.user.username', $user->username)
             ->has('copy.welcome')
             ->has('copy.intro')
             ->has('copy.exploreLabel')

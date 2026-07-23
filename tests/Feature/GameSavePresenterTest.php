@@ -6,6 +6,7 @@ use App\Models\GameSave;
 use App\Models\Pokedex;
 use App\Models\User;
 use App\Support\GameSavePresenter;
+use Illuminate\Support\Facades\Http;
 use Inertia\Testing\AssertableInertia as Assert;
 
 test('game save presenter returns the full pokedexes shape', function () {
@@ -171,6 +172,7 @@ test('game save presenter returns structured party members with sprite urls', fu
             'level' => 15,
             'shiny' => false,
             'is_egg' => false,
+            'ability' => 'Static',
             'sprite_url' => 'https://raw.githubusercontent.com/P3D-Legacy/P3D-Legacy/master/P3D/Content/Pokemon/Sprites/25.png',
         ])
         ->and($payload['party'][0])->not->toHaveKey('Image')
@@ -181,9 +183,81 @@ test('game save presenter returns structured party members with sprite urls', fu
             'level' => 1,
             'shiny' => true,
             'is_egg' => true,
+            'ability' => 'Overgrow',
             'sprite_url' => 'https://raw.githubusercontent.com/P3D-Legacy/P3D-Legacy/master/P3D/Content/Pokemon/Egg/Egg_front.png',
         ])
         ->and($payload['party'][1])->not->toHaveKey('Image');
+});
+
+test('party ability letter slots resolve from species data without crashing', function () {
+    Http::fake([
+        'https://raw.githubusercontent.com/P3D-Legacy/P3D-Legacy/master/P3D/Content/Pokemon/Data/69.dat' => Http::response(
+            implode("\n", [
+                'Name|Bellsprout',
+                'Ability1|34',
+                'Ability2|Nothing',
+                'HiddenAbility|82',
+            ]),
+            200
+        ),
+        'https://raw.githubusercontent.com/P3D-Legacy/P3D-Legacy/master/P3D/Content/Pokemon/Data/95.dat' => Http::response(
+            implode("\n", [
+                'Name|Onix',
+                'Ability1|69',
+                'Ability2|5',
+                'HiddenAbility|133',
+            ]),
+            200
+        ),
+    ]);
+
+    $user = User::factory()->create();
+
+    GamejoltAccount::factory()->create([
+        'user_id' => $user->id,
+    ]);
+
+    GameSave::factory()->create([
+        'user_id' => $user->id,
+        'party' => implode("\r\n", [
+            '{"Pokemon"[69]}{"Experience"[6169]}{"Gender"[0]}{"EggSteps"[0]}{"NickName"[Breakfast]}{"Level"[20]}{"Ability"[A]}{"Nature"[10]}{"Friendship"[146]}{"isShiny"[0]}',
+            '{"Pokemon"[95]}{"Experience"[12161]}{"Gender"[0]}{"EggSteps"[0]}{"NickName"[Rocky]}{"Level"[22]}{"Ability"[B]}{"Nature"[22]}{"Friendship"[174]}{"isShiny"[0]}',
+        ]),
+    ]);
+
+    $payload = GameSavePresenter::forUser($user->fresh());
+
+    expect($payload['party'])->toHaveCount(2)
+        ->and($payload['party'][0])->toMatchArray([
+            'id' => 69,
+            'name' => 'Bellsprout',
+            'nickname' => 'Breakfast',
+            'ability' => 'Chlorophyll',
+            'nature' => 'Timid',
+        ])
+        ->and($payload['party'][1])->toMatchArray([
+            'id' => 95,
+            'name' => 'Onix',
+            'nickname' => 'Rocky',
+            'ability' => 'Sturdy',
+            'nature' => 'Sassy',
+        ]);
+});
+
+test('get ability falls back safely for unknown numeric and unresolved slots', function () {
+    Http::fake([
+        'https://raw.githubusercontent.com/P3D-Legacy/P3D-Legacy/master/P3D/Content/Pokemon/Data/69.dat' => Http::response(
+            "Name|Bellsprout\nAbility1|34\nAbility2|Nothing\nHiddenAbility|82\n",
+            200
+        ),
+    ]);
+
+    $gamesave = GameSave::factory()->create();
+
+    expect($gamesave->getAbility(9))->toBe('Static')
+        ->and($gamesave->getAbility(9999))->toBe('???')
+        ->and($gamesave->getAbility('B', 69))->toBe('B')
+        ->and($gamesave->getAbility('A', 69))->toBe('Chlorophyll');
 });
 
 test('game save presenter returns formatted statistics entries', function () {

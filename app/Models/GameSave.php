@@ -6,6 +6,8 @@ use Exception;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
@@ -326,7 +328,7 @@ class GameSave extends Model
                     'level' => (int) ($raw['Level'] ?? 0),
                     'gender' => $this->getPartyGenderLabel($raw['Gender'] ?? null),
                     'nature' => isset($raw['Nature']) ? $this->getNature($raw['Nature']) : null,
-                    'ability' => isset($raw['Ability']) ? $this->getAbility($raw['Ability']) : null,
+                    'ability' => isset($raw['Ability']) ? $this->getAbility($raw['Ability'], $pokemonId) : null,
                     'friendship' => $friendship,
                     'experience' => $experience,
                     'status' => $status !== '' ? $status : null,
@@ -359,7 +361,7 @@ class GameSave extends Model
     }
 
     // Get nature from int
-    public function getNature($natureInt): string
+    public function getNature(mixed $natureInt): string
     {
         $natures = [
             0 => 'Hardy',
@@ -389,12 +391,34 @@ class GameSave extends Model
             24 => 'Quirky',
         ];
 
-        return $natures[$natureInt];
+        return $natures[(int) $natureInt] ?? '???';
     }
 
-    // Get abilities from int
-    public function getAbility($abilityInt): string
+    /**
+     * Resolve an ability ID or slot letter (A/B/C/H from game 0.61+) to a name.
+     */
+    public function getAbility(mixed $ability, ?int $pokemonId = null): string
     {
+        if ($ability === null || $ability === '') {
+            return '???';
+        }
+
+        $ability = trim((string) $ability);
+
+        if (preg_match('/^[ABCH]$/i', $ability) === 1) {
+            $resolvedId = $this->resolveAbilityIdFromSlot($pokemonId, strtoupper($ability));
+
+            if ($resolvedId === null) {
+                return strtoupper($ability);
+            }
+
+            $ability = (string) $resolvedId;
+        }
+
+        if (! is_numeric($ability)) {
+            return $ability;
+        }
+
         $abilities = [
             0 => 'None',
             1 => 'Stench',
@@ -587,7 +611,77 @@ class GameSave extends Model
             188 => 'Desolate Land',
         ];
 
-        return $abilities[$abilityInt];
+        return $abilities[(int) $ability] ?? '???';
+    }
+
+    /**
+     * Map game ability slots (A/B/C/H) to ability IDs from the species data file.
+     */
+    public function resolveAbilityIdFromSlot(?int $pokemonId, string $slot): ?int
+    {
+        if ($pokemonId === null || $pokemonId <= 0) {
+            return null;
+        }
+
+        $slots = $this->getPokemonAbilitySlots($pokemonId);
+        $abilityValue = $slots[$slot] ?? null;
+
+        if ($abilityValue === null || $abilityValue === '' || strcasecmp($abilityValue, 'Nothing') === 0) {
+            return null;
+        }
+
+        if (! is_numeric($abilityValue)) {
+            return null;
+        }
+
+        return (int) $abilityValue;
+    }
+
+    /**
+     * @return array{A: ?string, B: ?string, C: ?string, H: ?string}
+     */
+    private function getPokemonAbilitySlots(int $pokemonId): array
+    {
+        return Cache::remember("p3d.pokemon.{$pokemonId}.ability_slots", now()->addDay(), function () use ($pokemonId): array {
+            $defaults = [
+                'A' => null,
+                'B' => null,
+                'C' => null,
+                'H' => null,
+            ];
+
+            try {
+                $response = Http::timeout(5)->get(
+                    "https://raw.githubusercontent.com/P3D-Legacy/P3D-Legacy/master/P3D/Content/Pokemon/Data/{$pokemonId}.dat"
+                );
+
+                if ($response->failed()) {
+                    return $defaults;
+                }
+
+                $fields = [];
+
+                foreach (preg_split("/\r\n|\n|\r/", $response->body()) ?: [] as $line) {
+                    if (! str_contains($line, '|')) {
+                        continue;
+                    }
+
+                    [$key, $value] = explode('|', $line, 2);
+                    $fields[trim($key)] = trim($value);
+                }
+
+                return [
+                    'A' => $fields['Ability1'] ?? null,
+                    'B' => $fields['Ability2'] ?? null,
+                    'C' => $fields['Ability3'] ?? null,
+                    'H' => $fields['HiddenAbility'] ?? null,
+                ];
+            } catch (Exception $e) {
+                Log::error($e->getMessage());
+
+                return $defaults;
+            }
+        });
     }
 
     // Get the pokemon name from id

@@ -43,9 +43,9 @@ const Hero8 = ({
             <div className="absolute inset-0 bg-foreground/50 dark:bg-secondary/60" aria-hidden />
 
             <div className="relative z-10">
-                {children}
+                {children ? <div className="relative z-20">{children}</div> : null}
 
-                <div className="container mx-auto max-w-7xl px-4 pt-8 md:pt-12">
+                <div className="relative z-0 container mx-auto max-w-7xl px-4 pt-8 md:pt-12">
                     <div className="mx-auto flex max-w-5xl flex-col items-center">
                         <div className="flex flex-col items-center gap-6 text-center">
                             <h1 className="mx-auto max-w-xl text-4xl font-semibold tracking-tight text-pretty drop-shadow-md md:text-5xl lg:max-w-3xl lg:text-6xl">

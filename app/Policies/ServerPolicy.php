@@ -28,7 +28,9 @@ class ServerPolicy
      */
     public function create(User $user): bool
     {
-        return true;
+        $user->loadMissing(['gamejolt', 'gamesave']);
+
+        return $user->gamejolt !== null && $user->gamesave !== null;
     }
 
     /**

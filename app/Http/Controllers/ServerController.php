@@ -28,6 +28,7 @@ class ServerController extends Controller implements HasMiddleware
     public function index(Request $request): Response
     {
         $user = $request->user();
+        $user?->loadMissing(['gamejolt', 'gamesave']);
 
         $serversQuery = Server::query()
             ->where('active', true)
@@ -44,7 +45,11 @@ class ServerController extends Controller implements HasMiddleware
             'myServers' => $user
                 ? Server::query()->where('user_id', $user->id)->get()->map(fn (Server $server): array => $this->present($server))->values()
                 : [],
-            'canCreate' => (bool) $user,
+            'canCreate' => $user?->can('create', Server::class) ?? false,
+            'createRequirements' => $user ? [
+                'has_gamejolt' => $user->gamejolt !== null,
+                'has_game_save' => $user->gamesave !== null,
+            ] : null,
         ]);
     }
 

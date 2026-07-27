@@ -1,5 +1,7 @@
 import { Head, Link, router, usePage } from '@inertiajs/react';
 import {
+    CheckCircleIcon,
+    CircleIcon,
     ClockIcon,
     HardDrivesIcon,
     PencilSimpleIcon,
@@ -15,6 +17,8 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
+import { show as profileShow } from '@/routes/profile';
+import { index as saveIndex } from '@/routes/save';
 import { create, destroy, edit, reactivate } from '@/routes/server';
 import type { SharedPageProps } from '@/types';
 
@@ -32,15 +36,22 @@ type ServerItem = {
     user_id: number;
 };
 
+type CreateRequirements = {
+    has_gamejolt: boolean;
+    has_game_save: boolean;
+};
+
 type Props = {
     servers: ServerItem[];
     myServers: ServerItem[];
     canCreate: boolean;
+    createRequirements: CreateRequirements | null;
 };
 
-export default function ServersIndex({ servers, myServers, canCreate }: Props) {
+export default function ServersIndex({ servers, myServers, canCreate, createRequirements }: Props) {
     const { auth } = usePage<SharedPageProps>().props;
     const activeCount = servers.length + myServers.filter((server) => server.active).length;
+    const showRequirements = Boolean(auth.user) && ! canCreate && createRequirements !== null;
 
     return (
         <>
@@ -68,6 +79,29 @@ export default function ServersIndex({ servers, myServers, canCreate }: Props) {
                         </Button>
                     ) : null}
                 </div>
+
+                {showRequirements && createRequirements ? (
+                    <div className="mb-8 border border-border bg-muted/20 px-5 py-5">
+                        <h2 className="text-base font-semibold tracking-tight">Before you can add a server</h2>
+                        <p className="mt-1 text-sm text-muted-foreground">
+                            Link your Game Jolt account and sync a game save (saves sync after linking and signing in).
+                        </p>
+                        <ul className="mt-4 flex flex-col gap-3">
+                            <RequirementItem
+                                complete={createRequirements.has_gamejolt}
+                                label="Connect your Game Jolt account"
+                                href={profileShow.url()}
+                                actionLabel="Open profile"
+                            />
+                            <RequirementItem
+                                complete={createRequirements.has_game_save}
+                                label="Sync a game save"
+                                href={saveIndex.url()}
+                                actionLabel="Open save"
+                            />
+                        </ul>
+                    </div>
+                ) : null}
 
                 <div className="mb-8 grid grid-cols-1 gap-3 sm:grid-cols-3">
                     <StatCard
@@ -155,6 +189,38 @@ export default function ServersIndex({ servers, myServers, canCreate }: Props) {
                 </section>
             </div>
         </>
+    );
+}
+
+function RequirementItem({
+    complete,
+    label,
+    href,
+    actionLabel,
+}: {
+    complete: boolean;
+    label: string;
+    href: string;
+    actionLabel: string;
+}) {
+    return (
+        <li className="flex flex-wrap items-center justify-between gap-3">
+            <div className="flex items-center gap-2">
+                {complete ? (
+                    <CheckCircleIcon className="size-5 text-primary" weight="fill" />
+                ) : (
+                    <CircleIcon className="size-5 text-muted-foreground" />
+                )}
+                <span className={cn('text-sm', complete ? 'text-muted-foreground line-through' : 'text-foreground')}>
+                    {label}
+                </span>
+            </div>
+            {! complete ? (
+                <Button asChild size="sm" variant="outline">
+                    <Link href={href}>{actionLabel}</Link>
+                </Button>
+            ) : null}
+        </li>
     );
 }
 

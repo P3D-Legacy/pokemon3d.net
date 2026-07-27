@@ -174,11 +174,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('/notifications/{id}/dismiss', [NotificationController::class, 'dismiss'])->name('notifications.dismiss');
     Route::post('/notifications/dismiss-all', [NotificationController::class, 'dismissAll'])->name('notifications.dismiss-all');
 
-    if (config('app.env') === 'staging' or config('app.env') === 'local') {
-        Route::prefix('save')->middleware('gj.association')->group(function () {
-            Route::get('/', [MySaveController::class, 'index'])->name('save.index');
-        });
-    }
+    Route::prefix('save')->middleware('gj.association')->group(function () {
+        Route::get('/', [MySaveController::class, 'index'])->name('save.index');
+    });
 
     Route::prefix('mod')
         ->middleware(['role:super-admin|admin'])

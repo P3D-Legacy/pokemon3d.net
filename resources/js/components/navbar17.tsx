@@ -3,6 +3,7 @@ import {
     BookOpenIcon,
     CaretUpDownIcon,
     ChartBarIcon,
+    FloppyDiskIcon,
     GameControllerIcon,
     HardDrivesIcon,
     HouseIcon,
@@ -61,6 +62,7 @@ import { index as blogIndex } from '@/routes/blog';
 import { index as memberIndex, show as memberShow } from '@/routes/member';
 import { show as profileShow } from '@/routes/profile';
 import { index as resourceIndex } from '@/routes/resource';
+import { index as saveIndex } from '@/routes/save';
 import { index as serverIndex } from '@/routes/server';
 import type { SharedPageProps } from '@/types';
 
@@ -168,6 +170,13 @@ function buildNavItems(path: string, isAuthenticated: boolean): NavItem[] {
             isActive: isMySkinsPath(path),
             separatorBefore: true,
         });
+        gameChildren.push({
+            type: 'link',
+            name: 'My Save',
+            link: saveIndex.url(),
+            icon: FloppyDiskIcon,
+            isActive: path.startsWith('/save'),
+        });
     }
 
     return [
@@ -177,7 +186,7 @@ function buildNavItems(path: string, isAuthenticated: boolean): NavItem[] {
             type: 'group',
             name: 'Game',
             icon: GameControllerIcon,
-            isActive: path.startsWith('/skin') || path.startsWith('/resource') || path.startsWith('/server'),
+            isActive: path.startsWith('/skin') || path.startsWith('/resource') || path.startsWith('/server') || path.startsWith('/save'),
             children: gameChildren,
         },
         { type: 'link', name: 'Members', link: memberIndex.url(), icon: UsersIcon, isActive: path.startsWith('/member') },

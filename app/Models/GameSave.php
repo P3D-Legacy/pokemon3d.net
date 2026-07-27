@@ -288,71 +288,523 @@ class GameSave extends Model
     public function getParty(): array
     {
         try {
-            $spriteBase = 'https://raw.githubusercontent.com/P3D-Legacy/P3D-Legacy/master/P3D/Content/Pokemon/';
-            $lines = array_values(array_filter(explode("\r\n", (string) $this->party)));
+            $lines = $this->splitSaveLines((string) $this->party);
 
-            return array_values(array_map(function (string $line) use ($spriteBase): array {
-                $properties = explode('}{', $line);
-                $raw = [];
-
-                foreach ($properties as $property) {
-                    $parts = explode('"[', $property, 2);
-
-                    if (count($parts) < 2) {
-                        continue;
-                    }
-
-                    $key = str_replace(['{', '"'], '', $parts[0]);
-                    $value = str_replace([']', '}'], '', $parts[1]);
-
-                    if ($key === '' || $key === 'IDValue') {
-                        continue;
-                    }
-
-                    $raw[$key] = $value;
-                }
-
-                $pokemonId = (int) ($raw['Pokemon'] ?? 0);
-                $eggSteps = (int) ($raw['EggSteps'] ?? 0);
-                $isEgg = $eggSteps > 0;
-                $nickname = trim((string) ($raw['NickName'] ?? ''));
-                $status = trim((string) ($raw['Status'] ?? ''));
-                $experience = (string) ($raw['Experience'] ?? '0');
-
-                if (str_ends_with($experience, '.00')) {
-                    $experience = substr($experience, 0, -3);
-                }
-
-                $friendshipRaw = $raw['Friendship'] ?? null;
-                $friendship = $friendshipRaw !== null && $friendshipRaw !== ''
-                    ? round(((float) $friendshipRaw) / 255 * 100, 0).'%'
-                    : null;
-
-                $shiny = filter_var($raw['isShiny'] ?? false, FILTER_VALIDATE_BOOLEAN);
-
-                return [
-                    'id' => $pokemonId,
-                    'name' => $this->getPokemonName((string) $pokemonId),
-                    'nickname' => $nickname !== '' ? $nickname : null,
-                    'level' => (int) ($raw['Level'] ?? 0),
-                    'gender' => $this->getPartyGenderLabel($raw['Gender'] ?? null),
-                    'nature' => isset($raw['Nature']) ? $this->getNature($raw['Nature']) : null,
-                    'ability' => isset($raw['Ability']) ? $this->getAbility($raw['Ability'], $pokemonId) : null,
-                    'friendship' => $friendship,
-                    'experience' => $experience,
-                    'status' => $status !== '' ? $status : null,
-                    'shiny' => $shiny,
-                    'is_egg' => $isEgg,
-                    'sprite_url' => $isEgg
-                        ? $spriteBase.'Egg/Egg_front.png'
-                        : $spriteBase.'Sprites/'.$pokemonId.'.png',
-                ];
-            }, $lines));
+            return array_values(array_filter(array_map(
+                fn (string $line): ?array => $this->parsePokemonCode($line),
+                $lines
+            )));
         } catch (Exception $e) {
             Log::error($e->getMessage());
 
             return [];
         }
+    }
+
+    /**
+     * Parse PC storage box lines: BoxIndex,BoxPosition,PokemonCode
+     *
+     * @return list<array{box_index: int, position: int, pokemon: array<string, mixed>}>
+     */
+    public function getBox(): array
+    {
+        try {
+            $entries = [];
+
+            foreach ($this->splitSaveLines((string) $this->box) as $line) {
+                $bracePos = strpos($line, '{');
+
+                if ($bracePos === false) {
+                    continue;
+                }
+
+                $prefix = rtrim(substr($line, 0, $bracePos), ',');
+                $parts = explode(',', $prefix);
+
+                if (count($parts) < 2) {
+                    continue;
+                }
+
+                $pokemon = $this->parsePokemonCode(substr($line, $bracePos));
+
+                if ($pokemon === null) {
+                    continue;
+                }
+
+                $entries[] = [
+                    'box_index' => (int) $parts[0],
+                    'position' => (int) $parts[1],
+                    'pokemon' => $pokemon,
+                ];
+            }
+
+            usort($entries, function (array $a, array $b): int {
+                return [$a['box_index'], $a['position']] <=> [$b['box_index'], $b['position']];
+            });
+
+            return $entries;
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
+
+            return [];
+        }
+    }
+
+    /**
+     * Parse bag inventory lines: {ItemID|Amount}
+     *
+     * @return list<array{id: string, name: string, amount: int}>
+     */
+    public function getItems(): array
+    {
+        try {
+            $items = [];
+
+            foreach ($this->splitSaveLines((string) $this->items) as $line) {
+                if (str_starts_with($line, 'Mail|')) {
+                    continue;
+                }
+
+                if (! str_starts_with($line, '{') || ! str_ends_with($line, '}') || ! str_contains($line, '|')) {
+                    continue;
+                }
+
+                $inner = substr($line, 1, -1);
+                [$itemId, $amount] = array_pad(explode('|', $inner, 2), 2, '0');
+
+                $items[] = [
+                    'id' => (string) $itemId,
+                    'name' => $this->getItemName((string) $itemId),
+                    'amount' => (int) $amount,
+                ];
+            }
+
+            return $items;
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
+
+            return [];
+        }
+    }
+
+    /**
+     * Parse daycare lines: DayCareID,Slot,PokemonCode or DayCareID,Egg,PokemonID
+     *
+     * @return list<array<string, mixed>>
+     */
+    public function getDaycare(): array
+    {
+        try {
+            $entries = [];
+            $spriteBase = 'https://raw.githubusercontent.com/P3D-Legacy/P3D-Legacy/master/P3D/Content/Pokemon/';
+
+            foreach ($this->splitSaveLines((string) $this->daycare) as $line) {
+                $bracePos = strpos($line, '{');
+
+                if ($bracePos !== false) {
+                    $prefix = rtrim(substr($line, 0, $bracePos), ',');
+                    $parts = explode(',', $prefix);
+
+                    if (count($parts) < 2) {
+                        continue;
+                    }
+
+                    $pokemon = $this->parsePokemonCode(substr($line, $bracePos));
+
+                    if ($pokemon === null) {
+                        continue;
+                    }
+
+                    $entries[] = [
+                        'daycare_id' => (int) $parts[0],
+                        'slot' => (int) $parts[1],
+                        'is_egg' => false,
+                        'pokemon' => $pokemon,
+                    ];
+
+                    continue;
+                }
+
+                $parts = explode(',', $line, 3);
+
+                if (count($parts) < 3 || strcasecmp($parts[1], 'Egg') !== 0) {
+                    continue;
+                }
+
+                $pokemonId = (string) $parts[2];
+                $numericId = (int) explode('_', $pokemonId)[0];
+
+                $entries[] = [
+                    'daycare_id' => (int) $parts[0],
+                    'slot' => 'Egg',
+                    'is_egg' => true,
+                    'pokemon' => [
+                        'id' => $numericId,
+                        'name' => $this->getPokemonName((string) $numericId),
+                        'nickname' => null,
+                        'level' => 1,
+                        'gender' => null,
+                        'nature' => null,
+                        'ability' => null,
+                        'friendship' => null,
+                        'experience' => '0',
+                        'status' => null,
+                        'shiny' => false,
+                        'is_egg' => true,
+                        'sprite_url' => $spriteBase.'Egg/Egg_front.png',
+                    ],
+                ];
+            }
+
+            return $entries;
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
+
+            return [];
+        }
+    }
+
+    /**
+     * Parse Hall of Fame entries.
+     *
+     * @return list<array{id: int, name: ?string, play_time: ?string, points: ?string, ot: ?string, skin: ?string, pokemon: list<array<string, mixed>>}>
+     */
+    public function getHallOfFame(): array
+    {
+        try {
+            /** @var array<int, array{id: int, name: ?string, play_time: ?string, points: ?string, ot: ?string, skin: ?string, pokemon: list<array<string, mixed>>}> $entries */
+            $entries = [];
+
+            foreach ($this->splitSaveLines((string) $this->halloffame) as $line) {
+                if (! preg_match('/^(\d+),(.*)$/', $line, $matches)) {
+                    continue;
+                }
+
+                $entryId = (int) $matches[1];
+                $payload = $matches[2];
+
+                if (! isset($entries[$entryId])) {
+                    $entries[$entryId] = [
+                        'id' => $entryId,
+                        'name' => null,
+                        'play_time' => null,
+                        'points' => null,
+                        'ot' => null,
+                        'skin' => null,
+                        'pokemon' => [],
+                    ];
+                }
+
+                if (str_starts_with($payload, '(') && str_ends_with($payload, ')')) {
+                    $playerData = explode('|', substr($payload, 1, -1));
+
+                    if (count($playerData) >= 5) {
+                        $entries[$entryId]['name'] = $playerData[0];
+                        $entries[$entryId]['play_time'] = $playerData[1];
+                        $entries[$entryId]['points'] = $playerData[2];
+                        $entries[$entryId]['ot'] = $playerData[3];
+                        $entries[$entryId]['skin'] = $playerData[4];
+                    } elseif (count($playerData) >= 4) {
+                        $entries[$entryId]['name'] = $playerData[0];
+                        $entries[$entryId]['play_time'] = $playerData[1];
+                        $entries[$entryId]['points'] = $playerData[2];
+                        $entries[$entryId]['ot'] = '00000';
+                        $entries[$entryId]['skin'] = $playerData[3];
+                    }
+
+                    continue;
+                }
+
+                if (str_starts_with($payload, '{')) {
+                    $pokemon = $this->parsePokemonCode($payload);
+
+                    if ($pokemon !== null) {
+                        $entries[$entryId]['pokemon'][] = $pokemon;
+                    }
+                }
+            }
+
+            ksort($entries);
+
+            return array_values($entries);
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
+
+            return [];
+        }
+    }
+
+    /**
+     * Parse roaming Pokémon lines.
+     *
+     * @return list<array{roamer_id: string, pokemon_id: string, level: int, world_id: int, level_file: string, music_loop: string, shiny: bool, pokemon: ?array<string, mixed>}>
+     */
+    public function getRoamingPokemon(): array
+    {
+        try {
+            $entries = [];
+
+            foreach ($this->splitSaveLines((string) $this->roamingpokemon) as $line) {
+                $parts = explode('|', $line);
+
+                if (count($parts) < 8) {
+                    continue;
+                }
+
+                $pokemon = $this->parsePokemonCode($parts[7]);
+
+                $entries[] = [
+                    'roamer_id' => $parts[0],
+                    'pokemon_id' => $parts[1],
+                    'level' => (int) $parts[2],
+                    'world_id' => (int) $parts[3],
+                    'level_file' => $parts[4],
+                    'music_loop' => $parts[5],
+                    'shiny' => filter_var($parts[6], FILTER_VALIDATE_BOOLEAN),
+                    'pokemon' => $pokemon,
+                ];
+            }
+
+            return $entries;
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
+
+            return [];
+        }
+    }
+
+    /**
+     * Parse apricorn tree / Kurt lines.
+     *
+     * @return list<array<string, mixed>>
+     */
+    public function getApricorns(): array
+    {
+        try {
+            $entries = [];
+
+            foreach ($this->splitSaveLines((string) $this->apricorns) as $line) {
+                if (! str_starts_with($line, '{') || ! str_ends_with($line, '}')) {
+                    continue;
+                }
+
+                $inner = substr($line, 1, -1);
+                $parts = explode('|', $inner);
+
+                if (count($parts) < 2) {
+                    continue;
+                }
+
+                if (strcasecmp($parts[0], 'Kurt') === 0) {
+                    $amounts = array_pad(explode(',', $parts[1] ?? ''), 7, '0');
+                    $entries[] = [
+                        'type' => 'kurt',
+                        'map_path' => null,
+                        'position' => null,
+                        'amounts' => [
+                            'red' => (int) $amounts[0],
+                            'blue' => (int) $amounts[1],
+                            'yellow' => (int) $amounts[2],
+                            'green' => (int) $amounts[3],
+                            'white' => (int) $amounts[4],
+                            'black' => (int) $amounts[5],
+                            'pink' => (int) $amounts[6],
+                        ],
+                        'timestamp' => $parts[2] ?? null,
+                    ];
+
+                    continue;
+                }
+
+                $entries[] = [
+                    'type' => 'tree',
+                    'map_path' => $parts[0],
+                    'position' => $parts[1] ?? null,
+                    'amounts' => null,
+                    'timestamp' => $parts[2] ?? null,
+                ];
+            }
+
+            return $entries;
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
+
+            return [];
+        }
+    }
+
+    /**
+     * Parse planted berry lines.
+     *
+     * @return list<array{map_path: string, position: ?string, berry_id: string, berry_name: string, berry_count: int, watered_stages: int, timestamp: ?string}>
+     */
+    public function getBerries(): array
+    {
+        try {
+            $entries = [];
+
+            foreach ($this->splitSaveLines((string) $this->berries) as $line) {
+                if (! str_starts_with($line, '{') || ! str_ends_with($line, '}')) {
+                    continue;
+                }
+
+                $inner = substr($line, 1, -1);
+                $parts = explode('|', $inner);
+
+                if (count($parts) < 3) {
+                    continue;
+                }
+
+                $berryParts = array_pad(explode(',', $parts[2]), 3, '0');
+                $berryId = (string) $berryParts[0];
+
+                $entries[] = [
+                    'map_path' => $parts[0],
+                    'position' => $parts[1] ?? null,
+                    'berry_id' => $berryId,
+                    'berry_name' => $this->getItemName($berryId),
+                    'berry_count' => (int) $berryParts[1],
+                    'watered_stages' => (int) $berryParts[2],
+                    'timestamp' => $parts[3] ?? null,
+                ];
+            }
+
+            return $entries;
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
+
+            return [];
+        }
+    }
+
+    /**
+     * Parse collected map item pickups: MapPath|ItemID (comma-separated).
+     *
+     * @return list<array{map_path: string, item_id: string, item_name: string}>
+     */
+    public function getItemData(): array
+    {
+        try {
+            $raw = trim((string) $this->itemdata);
+
+            if ($raw === '') {
+                return [];
+            }
+
+            $entries = [];
+
+            foreach (array_filter(explode(',', $raw)) as $chunk) {
+                $chunk = trim($chunk);
+
+                if ($chunk === '' || ! str_contains($chunk, '|')) {
+                    continue;
+                }
+
+                [$mapPath, $itemId] = array_pad(explode('|', $chunk, 2), 2, '');
+
+                if ($mapPath === '' || $itemId === '') {
+                    continue;
+                }
+
+                $entries[] = [
+                    'map_path' => $mapPath,
+                    'item_id' => $itemId,
+                    'item_name' => $this->getItemName($itemId),
+                ];
+            }
+
+            return $entries;
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
+
+            return [];
+        }
+    }
+
+    /**
+     * Parse a P3D Pokémon code blob into a display-friendly array.
+     *
+     * @return array<string, mixed>|null
+     */
+    public function parsePokemonCode(string $line): ?array
+    {
+        $line = trim($line);
+
+        if ($line === '' || ! str_contains($line, '{')) {
+            return null;
+        }
+
+        $spriteBase = 'https://raw.githubusercontent.com/P3D-Legacy/P3D-Legacy/master/P3D/Content/Pokemon/';
+        $properties = explode('}{', $line);
+        $raw = [];
+
+        foreach ($properties as $property) {
+            $parts = explode('"[', $property, 2);
+
+            if (count($parts) < 2) {
+                continue;
+            }
+
+            $key = str_replace(['{', '"'], '', $parts[0]);
+            $value = str_replace([']', '}'], '', $parts[1]);
+
+            if ($key === '' || $key === 'IDValue') {
+                continue;
+            }
+
+            $raw[$key] = $value;
+        }
+
+        if ($raw === []) {
+            return null;
+        }
+
+        $pokemonId = (int) ($raw['Pokemon'] ?? 0);
+        $eggSteps = (int) ($raw['EggSteps'] ?? 0);
+        $isEgg = $eggSteps > 0;
+        $nickname = trim((string) ($raw['NickName'] ?? ''));
+        $status = trim((string) ($raw['Status'] ?? ''));
+        $experience = (string) ($raw['Experience'] ?? '0');
+
+        if (str_ends_with($experience, '.00')) {
+            $experience = substr($experience, 0, -3);
+        }
+
+        $friendshipRaw = $raw['Friendship'] ?? null;
+        $friendship = $friendshipRaw !== null && $friendshipRaw !== ''
+            ? round(((float) $friendshipRaw) / 255 * 100, 0).'%'
+            : null;
+
+        $shiny = filter_var($raw['isShiny'] ?? false, FILTER_VALIDATE_BOOLEAN);
+
+        return [
+            'id' => $pokemonId,
+            'name' => $this->getPokemonName((string) $pokemonId),
+            'nickname' => $nickname !== '' ? $nickname : null,
+            'level' => (int) ($raw['Level'] ?? 0),
+            'gender' => $this->getPartyGenderLabel($raw['Gender'] ?? null),
+            'nature' => isset($raw['Nature']) ? $this->getNature($raw['Nature']) : null,
+            'ability' => isset($raw['Ability']) ? $this->getAbility($raw['Ability'], $pokemonId) : null,
+            'friendship' => $friendship,
+            'experience' => $experience,
+            'status' => $status !== '' ? $status : null,
+            'shiny' => $shiny,
+            'is_egg' => $isEgg,
+            'sprite_url' => $isEgg
+                ? $spriteBase.'Egg/Egg_front.png'
+                : $spriteBase.'Sprites/'.$pokemonId.'.png',
+        ];
+    }
+
+    /**
+     * @return list<string>
+     */
+    private function splitSaveLines(string $raw): array
+    {
+        return array_values(array_filter(
+            preg_split('/\r\n|\n|\r/', $raw) ?: [],
+            fn (string $line): bool => $line !== ''
+        ));
     }
 
     private function getPartyGenderLabel(mixed $gender): ?string
@@ -715,6 +1167,38 @@ class GameSave extends Model
             Log::error($e->getMessage());
 
             return '???';
+        }
+    }
+
+    public function getItemName(string $id): string
+    {
+        try {
+            if ($id === '' || $id === '0') {
+                return __('None');
+            }
+
+            $filepath = lang_path().'/items_'.app()->getLocale().'.json';
+
+            if (! file_exists($filepath)) {
+                $filepath = lang_path().'/items_en.json';
+            }
+
+            if (! file_exists($filepath)) {
+                return "Item #{$id}";
+            }
+
+            $itemNames = collect(json_decode((string) file_get_contents($filepath), true));
+            $match = $itemNames->firstWhere('id', $id);
+
+            if (! is_array($match)) {
+                return "Item #{$id}";
+            }
+
+            return $match['name'] ?? "Item #{$id}";
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
+
+            return "Item #{$id}";
         }
     }
 }

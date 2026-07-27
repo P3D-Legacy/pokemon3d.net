@@ -35,6 +35,8 @@ type IconComponent = ComponentType<SVGProps<SVGSVGElement> & { weight?: 'regular
 
 type PartyPanelProps = {
     party: PartyMember[];
+    title?: string;
+    showSummary?: boolean;
 };
 
 const FRAME_SIZE = 96;
@@ -110,22 +112,24 @@ function PartySprite({ member }: { member: PartyMember }) {
     );
 }
 
-export function PartyPanel({ party }: PartyPanelProps) {
+export function PartyPanel({ party, title = 'Party', showSummary = true }: PartyPanelProps) {
     if (party.length === 0) {
         return <p className="text-sm text-muted-foreground">No Pokémon in party</p>;
     }
 
     return (
         <div className="flex w-full min-w-0 flex-col gap-4">
-            <div className="flex flex-col gap-1">
-                <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
-                    <CirclesFourIcon className="size-4" weight="fill" />
-                    Party
+            {showSummary ? (
+                <div className="flex flex-col gap-1">
+                    <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
+                        <CirclesFourIcon className="size-4" weight="fill" />
+                        {title}
+                    </div>
+                    <div className="text-2xl font-bold">
+                        {title === 'Party' ? `${party.length} / 6` : party.length}
+                    </div>
                 </div>
-                <div className="text-2xl font-bold">
-                    {party.length} / 6
-                </div>
-            </div>
+            ) : null}
 
             <div className="grid w-full min-w-0 grid-cols-1 gap-3 sm:grid-cols-2">
                 {party.map((member, index) => {

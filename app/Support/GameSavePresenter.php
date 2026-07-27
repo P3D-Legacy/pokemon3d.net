@@ -8,9 +8,55 @@ use App\Models\User;
 class GameSavePresenter
 {
     /**
+     * Public member-profile payload (lighter shape).
+     *
      * @return array<string, mixed>
      */
     public static function forUser(User $user): array
+    {
+        return self::basePayload($user);
+    }
+
+    /**
+     * Authenticated owner payload including box, bag, daycare, and related fields.
+     *
+     * @return array<string, mixed>
+     */
+    public static function forOwner(User $user): array
+    {
+        $payload = self::basePayload($user);
+
+        if (! ($payload['available'] ?? false)) {
+            return $payload;
+        }
+
+        $gamesave = $user->gamesave;
+
+        if (! $gamesave) {
+            return $payload;
+        }
+
+        $itemData = $gamesave->getItemData();
+
+        return array_merge($payload, [
+            'box' => $gamesave->getBox(),
+            'items' => $gamesave->getItems(),
+            'daycare' => $gamesave->getDaycare(),
+            'hall_of_fame' => $gamesave->getHallOfFame(),
+            'roaming' => $gamesave->getRoamingPokemon(),
+            'apricorns' => $gamesave->getApricorns(),
+            'berries' => $gamesave->getBerries(),
+            'itemdata' => [
+                'count' => count($itemData),
+                'items' => $itemData,
+            ],
+        ]);
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    private static function basePayload(User $user): array
     {
         $user->loadMissing(['gamesave', 'gamejolt.trophies']);
 

@@ -5,6 +5,7 @@ use App\Console\Commands\DiscordRoleSync;
 use App\Console\Commands\DiscordUserRoleSync;
 use App\Console\Commands\NotifyGameUpdate;
 use App\Console\Commands\PingAllServers;
+use App\Console\Commands\PruneUnresponsiveServers;
 use App\Console\Commands\SkinUserUpdate;
 use App\Console\Commands\SyncGameVersion;
 use App\Console\Commands\SyncPokedexFromGame;
@@ -17,6 +18,7 @@ Schedule::command(PingAllServers::class)->hourly();
 Schedule::command(SkinUserUpdate::class)->hourlyAt(10);
 // Daily commands
 Schedule::command(PruneBatchesCommand::class)->daily();
+Schedule::command(PruneUnresponsiveServers::class)->daily();
 Schedule::command(DiscordRoleSync::class)->dailyAt('12:00');
 Schedule::command(DiscordUserRoleSync::class)->dailyAt('12:10');
 Schedule::command(SyncGameVersion::class)->dailyAt('00:00');

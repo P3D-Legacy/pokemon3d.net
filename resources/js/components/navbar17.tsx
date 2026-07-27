@@ -514,7 +514,6 @@ function NavUser({
                         {user.avatar ? <AvatarImage src={user.avatar} alt={user.name} /> : null}
                         <AvatarFallback>{initials(user.name)}</AvatarFallback>
                     </Avatar>
-                    <span className="hidden text-sm font-medium md:inline">{user.name}</span>
                     <CaretUpDownIcon className="hidden md:block" />
                 </Button>
             </DropdownMenuTrigger>

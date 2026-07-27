@@ -24,10 +24,11 @@
     --color-gamejolt-green: #ccff00;
     --color-gamejolt-dark-green: #2f7f6f;
 
-    --background-image-spring: url('/img/spring.png');
-    --background-image-summer: url('/img/summer.png');
-    --background-image-fall: url('/img/fall.png');
-    --background-image-winter: url('/img/winter.png');
+    /* Relative URLs so Vite rewrites them; absolute /img/... breaks under the Vite HMR origin. */
+    --background-image-spring: url('../images/spring.png');
+    --background-image-summer: url('../images/summer.png');
+    --background-image-fall: url('../images/fall.png');
+    --background-image-winter: url('../images/winter.png');
 
     --radius-lg: var(--radius);
     --radius-md: calc(var(--radius) - 2px);

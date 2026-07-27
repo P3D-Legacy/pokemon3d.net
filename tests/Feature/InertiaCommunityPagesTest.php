@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\GamejoltAccount;
+use App\Models\GameSave;
 use App\Models\Server;
 use App\Models\User;
 use App\Rules\IPHostnameARecord;
@@ -86,11 +88,81 @@ test('servers index is rendered with inertia', function () {
             ->component('servers/index')
             ->has('servers')
             ->has('myServers')
-            ->has('canCreate'));
+            ->where('canCreate', false)
+            ->where('createRequirements', null));
+});
+
+test('servers index shows create requirements when authenticated without gamejolt or save', function () {
+    $user = User::factory()->create();
+
+    $this->actingAs($user)
+        ->get(route('server.index'))
+        ->assertOk()
+        ->assertInertia(fn (Assert $page) => $page
+            ->component('servers/index')
+            ->where('canCreate', false)
+            ->where('createRequirements.has_gamejolt', false)
+            ->where('createRequirements.has_game_save', false));
+});
+
+test('servers index allows create when user has gamejolt and synced save', function () {
+    $user = User::factory()->create();
+    GamejoltAccount::factory()->create(['user_id' => $user->id]);
+    GameSave::factory()->create(['user_id' => $user->id]);
+
+    $this->actingAs($user)
+        ->get(route('server.index'))
+        ->assertOk()
+        ->assertInertia(fn (Assert $page) => $page
+            ->component('servers/index')
+            ->where('canCreate', true)
+            ->where('createRequirements.has_gamejolt', true)
+            ->where('createRequirements.has_game_save', true));
+});
+
+test('authenticated users without gamejolt cannot create a server', function () {
+    $user = User::factory()->create();
+
+    $this->actingAs($user)
+        ->get(route('server.create'))
+        ->assertForbidden();
+
+    $this->actingAs($user)
+        ->post(route('server.store'), [
+            'name' => 'Test Server',
+            'host' => '127.0.0.1',
+            'port' => 40000,
+            'description' => 'A test server',
+        ])
+        ->assertForbidden();
+
+    expect(Server::query()->where('name', 'Test Server')->exists())->toBeFalse();
+});
+
+test('authenticated users with gamejolt but no save cannot create a server', function () {
+    $user = User::factory()->create();
+    GamejoltAccount::factory()->create(['user_id' => $user->id]);
+
+    $this->actingAs($user)
+        ->get(route('server.create'))
+        ->assertForbidden();
+
+    $this->actingAs($user)
+        ->post(route('server.store'), [
+            'name' => 'Test Server',
+            'host' => '127.0.0.1',
+            'port' => 40000,
+            'description' => 'A test server',
+        ])
+        ->assertForbidden();
+
+    expect(Server::query()->where('name', 'Test Server')->exists())->toBeFalse();
 });
 
 test('authenticated users can create a server', function () {
     $user = User::factory()->create();
+    GamejoltAccount::factory()->create(['user_id' => $user->id]);
+    GameSave::factory()->create(['user_id' => $user->id]);
 
     $this->actingAs($user)
         ->post(route('server.store'), [

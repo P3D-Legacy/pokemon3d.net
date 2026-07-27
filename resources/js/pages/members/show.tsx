@@ -20,6 +20,7 @@ type Props = {
         about: {
             name: string | null;
             joined: string | null;
+            joined_for_humans: string | null;
             last_online: string | null;
             birthday: { date: string | null; age: string | null } | null;
             location: string | null;
@@ -105,7 +106,15 @@ export default function MembersShow({ member }: Props) {
                             {aboutTab === 'about' ? (
                                 <>
                                     <Detail title="Full name" value={member.about.name} />
-                                    <Detail title="Joined" value={member.about.joined} />
+                                    {member.about.joined ? (
+                                        <div className="min-w-0">
+                                            <dt className="text-muted-foreground">Joined</dt>
+                                            <dd className="break-words">{member.about.joined}</dd>
+                                            {member.about.joined_for_humans ? (
+                                                <dd className="break-words">{member.about.joined_for_humans}</dd>
+                                            ) : null}
+                                        </div>
+                                    ) : null}
                                     <Detail title="Last online" value={member.about.last_online} />
                                     {member.about.birthday ? (
                                         <div className="min-w-0">

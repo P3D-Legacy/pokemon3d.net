@@ -22,6 +22,7 @@ type Member = {
     profile_photo_url: string;
     location: string | null;
     joined: string | null;
+    joined_for_humans: string | null;
     last_online: string | null;
     has_game_save: boolean;
     has_gamejolt: boolean;
@@ -110,10 +111,12 @@ export default function MembersIndex({ members }: Props) {
                                             <span className="truncate">Last online {member.last_online}</span>
                                         </div>
                                     ) : null}
-                                    {member.joined ? (
+                                    {member.joined || member.joined_for_humans ? (
                                         <div className="flex min-w-0 items-center gap-1.5">
                                             <CalendarBlankIcon className="size-3.5 shrink-0" weight="fill" />
-                                            <span className="truncate">Joined {member.joined}</span>
+                                            <span className="truncate">
+                                                Joined {member.joined_for_humans ?? member.joined}
+                                            </span>
                                         </div>
                                     ) : null}
                                 </div>

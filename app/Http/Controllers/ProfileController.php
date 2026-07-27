@@ -33,6 +33,7 @@ class ProfileController extends Controller
                 'timezone' => $user->timezone,
                 'created_at_utc' => $user->created_at->setTimezone('UTC')->format('Y-m-d H:i:s'),
                 'created_at_local' => $user->created_at->setTimezone($user->timezone ?: 'UTC')->format('Y-m-d H:i:s'),
+                'created_at_for_humans' => $user->created_at->diffForHumans(),
                 'profile_photo_url' => $user->profile_photo_url,
                 'two_factor_enabled' => ! is_null($user->two_factor_secret),
                 'email_verified_at' => $user->email_verified_at,

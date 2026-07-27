@@ -33,7 +33,9 @@ test('guests are redirected from the dashboard', function () {
 });
 
 test('profile page is rendered with inertia', function () {
-    $user = User::factory()->create();
+    $user = User::factory()->create([
+        'created_at' => now()->subYears(2)->subMonths(3),
+    ]);
 
     $this->actingAs($user)
         ->get(route('profile.show'))
@@ -41,6 +43,9 @@ test('profile page is rendered with inertia', function () {
         ->assertInertia(fn (Assert $page) => $page
             ->component('profile/edit')
             ->where('profile.email', $user->email)
+            ->where('profile.created_at_for_humans', $user->created_at->diffForHumans())
+            ->has('profile.created_at_utc')
+            ->has('profile.created_at_local')
             ->has('sessions')
             ->has('preferences')
             ->has('consents')

@@ -45,6 +45,7 @@ type Props = {
         timezone: string | null;
         created_at_utc: string;
         created_at_local: string;
+        created_at_for_humans: string;
         profile_photo_url: string;
         two_factor_enabled: boolean;
         email_verified_at: string | null;
@@ -126,6 +127,8 @@ export default function ProfileEdit({
                                     <p>Update your account's profile information and email address.</p>
                                     <p className="mt-2">Your timezone: {profile.timezone}</p>
                                     <p className="mt-2">
+                                        Joined: {profile.created_at_for_humans}
+                                        <br />
                                         Created UTC: {profile.created_at_utc}
                                         <br />
                                         Local: {profile.created_at_local}

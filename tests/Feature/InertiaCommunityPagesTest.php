@@ -33,10 +33,11 @@ test('privacy policy page is rendered with inertia', function () {
 })->skip(fn () => ! Jetstream::hasTermsAndPrivacyPolicyFeature(), 'Privacy feature disabled.');
 
 test('members index is rendered with inertia', function () {
-    User::factory()->create([
+    $user = User::factory()->create([
         'username' => 'listedtrainer',
         'location' => 'Pallet Town',
         'last_active_at' => now()->subHour(),
+        'created_at' => now()->subYears(2),
     ]);
 
     $this->get(route('member.index'))
@@ -47,6 +48,7 @@ test('members index is rendered with inertia', function () {
             ->where('members.data.0.username', 'listedtrainer')
             ->where('members.data.0.location', 'Pallet Town')
             ->has('members.data.0.joined')
+            ->where('members.data.0.joined_for_humans', $user->created_at->diffForHumans())
             ->has('members.data.0.last_online')
             ->where('members.data.0.has_game_save', false)
             ->where('members.data.0.has_gamejolt', false)
@@ -59,6 +61,7 @@ test('members index is rendered with inertia', function () {
 test('members show is rendered with inertia', function () {
     $user = User::factory()->create([
         'username' => 'trainerone',
+        'created_at' => now()->subYears(3),
     ]);
 
     $this->get(route('member.show', $user->username))
@@ -66,6 +69,8 @@ test('members show is rendered with inertia', function () {
         ->assertInertia(fn (Assert $page) => $page
             ->component('members/show')
             ->where('member.username', 'trainerone')
+            ->where('member.about.joined_for_humans', $user->created_at->diffForHumans())
+            ->has('member.about.joined')
             ->has('member.gameSave'));
 });
 

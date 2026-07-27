@@ -20,6 +20,7 @@ class MemberPresenter
             'profile_photo_url' => $user->profile_photo_url,
             'location' => $user->location,
             'joined' => $user->created_at?->isoFormat('LL'),
+            'joined_for_humans' => $user->created_at?->diffForHumans(),
             'last_online' => $user->last_active_at
                 ? (now()->subDay()->greaterThan($user->last_active_at)
                     ? $user->last_active_at->isoFormat('LL')
@@ -46,6 +47,7 @@ class MemberPresenter
             'about' => [
                 'name' => $settings->get('name') ? $user->name : null,
                 'joined' => $user->created_at?->isoFormat('LL'),
+                'joined_for_humans' => $user->created_at?->diffForHumans(),
                 'last_online' => $user->last_active_at
                     ? (now()->subDay()->greaterThan($user->last_active_at)
                         ? $user->last_active_at->isoFormat('LL')

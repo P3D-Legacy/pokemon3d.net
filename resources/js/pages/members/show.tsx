@@ -16,6 +16,7 @@ type Props = {
         id: number;
         username: string;
         profile_photo_url: string;
+        cover_image: string | null;
         about: {
             name: string | null;
             joined: string | null;
@@ -71,13 +72,14 @@ export default function MembersShow({ member }: Props) {
                 <div className="min-w-0 w-full">
                     <UserProfile12
                         className="w-full max-w-none"
-                        coverClassName="bg-spring bg-primary"
+                        coverClassName={member.cover_image ? undefined : 'bg-spring bg-primary'}
                         editHref={isOwnProfile ? profileShow.url() : null}
                         showFollowActions={false}
                         user={{
                             name: displayName,
                             username: `@${member.username}`,
                             avatar: member.profile_photo_url,
+                            coverImage: member.cover_image ?? undefined,
                             bio: member.about.about ?? undefined,
                         }}
                         stats={stats}

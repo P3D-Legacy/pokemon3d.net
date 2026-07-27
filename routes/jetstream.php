@@ -6,6 +6,7 @@ use App\Http\Controllers\LegalController;
 use App\Http\Controllers\OtherBrowserSessionsController;
 use App\Http\Controllers\Profile\ConsentController;
 use App\Http\Controllers\Profile\PreferenceController;
+use App\Http\Controllers\Profile\ProfileBackgroundController;
 use App\Http\Controllers\Profile\SocialAccountController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -32,6 +33,7 @@ Route::middleware(config('jetstream.middleware', ['web']))->group(function () {
         }
 
         Route::patch('/user/preferences', [PreferenceController::class, 'update'])->name('profile.preferences.update');
+        Route::put('/user/profile-background', [ProfileBackgroundController::class, 'update'])->name('profile.background.update');
         Route::patch('/user/consents', [ConsentController::class, 'update'])->name('profile.consents.update');
         Route::post('/user/social-accounts/gamejolt', [SocialAccountController::class, 'store'])->name('profile.social.gamejolt.store');
         Route::delete('/user/social-accounts', [SocialAccountController::class, 'destroy'])->name('profile.social.destroy');

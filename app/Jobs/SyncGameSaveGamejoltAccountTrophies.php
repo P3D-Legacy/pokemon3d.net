@@ -88,17 +88,31 @@ class SyncGameSaveGamejoltAccountTrophies implements ShouldBeUnique, ShouldQueue
             $trophyRows = collect($trophies['response']['trophies'] ?? []);
 
             foreach ($trophyRows as $trophy) {
+                $attributes = [
+                    'title' => $trophy['title'],
+                    'difficulty' => $trophy['difficulty'],
+                    'description' => $trophy['description'],
+                    'image_url' => $trophy['image_url'],
+                ];
+
+                if (array_key_exists('achieved', $trophy)) {
+                    $achieved = $trophy['achieved'];
+                    $attributes['achieved'] = ! (
+                        $achieved === false
+                        || $achieved === null
+                        || $achieved === 0
+                        || $achieved === '0'
+                        || $achieved === ''
+                        || (is_string($achieved) && strtolower($achieved) === 'false')
+                    );
+                }
+
                 GamejoltAccountTrophy::updateOrCreate(
                     [
                         'gamejolt_account_id' => $gamejoltUserId,
                         'id' => $trophy['id'],
                     ],
-                    [
-                        'title' => $trophy['title'],
-                        'difficulty' => $trophy['difficulty'],
-                        'description' => $trophy['description'],
-                        'image_url' => $trophy['image_url'],
-                    ]
+                    $attributes
                 );
             }
         } else {

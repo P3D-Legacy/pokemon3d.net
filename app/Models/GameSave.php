@@ -75,11 +75,20 @@ class GameSave extends Model
     {
         try {
             // Explode the player data into an array on each return new line character
-            $playerDataLines = explode("\r\n", $this->player);
+            $playerDataLines = preg_split('/\r\n|\n|\r/', (string) $this->player) ?: [];
             $playerData = [];
             foreach ($playerDataLines as $line) {
-                $line = explode('|', $line);
-                $playerData[ucfirst($line[0])] = $line[1];
+                if ($line === '') {
+                    continue;
+                }
+
+                $parts = explode('|', $line, 2);
+
+                if (count($parts) < 2) {
+                    continue;
+                }
+
+                $playerData[ucfirst($parts[0])] = $parts[1];
             }
 
             return $playerData[$key_name] ?? $playerData;

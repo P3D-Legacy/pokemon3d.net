@@ -7,6 +7,7 @@ use App\Models\GamejoltAccount;
 use App\Models\GameSave;
 use App\Models\User;
 use App\Services\GameJoltDataStoreGateway;
+use App\Support\EmblemCatalogue;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -174,35 +175,35 @@ class SyncGameSaveForUser implements ShouldBeUnique, ShouldQueue
                 'gamejolt_user_id' => $gamejoltUserId,
                 'skipped_columns' => $skippedColumns,
             ]);
-
-            return;
-        }
-
-        $gameSave = GameSave::where(['user_id' => $gamejoltAccount->user_id])->first();
-
-        if ($gameSave) {
-            $gameSave->update($result);
-            $gameSave->touch();
-
-            Log::info('Updated existing game save.', [
-                'game_save_uuid' => $gameSave->uuid,
-                'user_id' => $gamejoltAccount->user_id,
-                'synced_columns' => array_keys($result),
-                'synced_column_count' => count($result),
-                'skipped_columns' => $skippedColumns,
-            ]);
         } else {
-            $payload = $this->payloadForCreate($result, $gamejoltAccount->user_id, $columnsToFetch);
-            $gameSave = GameSave::create($payload);
+            $gameSave = GameSave::where(['user_id' => $gamejoltAccount->user_id])->first();
 
-            Log::info('Created new game save.', [
-                'game_save_uuid' => $gameSave->uuid,
-                'user_id' => $gamejoltAccount->user_id,
-                'synced_columns' => array_keys($result),
-                'synced_column_count' => count($result),
-                'skipped_columns' => $skippedColumns,
-            ]);
+            if ($gameSave) {
+                $gameSave->update($result);
+                $gameSave->touch();
+
+                Log::info('Updated existing game save.', [
+                    'game_save_uuid' => $gameSave->uuid,
+                    'user_id' => $gamejoltAccount->user_id,
+                    'synced_columns' => array_keys($result),
+                    'synced_column_count' => count($result),
+                    'skipped_columns' => $skippedColumns,
+                ]);
+            } else {
+                $payload = $this->payloadForCreate($result, $gamejoltAccount->user_id, $columnsToFetch);
+                $gameSave = GameSave::create($payload);
+
+                Log::info('Created new game save.', [
+                    'game_save_uuid' => $gameSave->uuid,
+                    'user_id' => $gamejoltAccount->user_id,
+                    'synced_columns' => array_keys($result),
+                    'synced_column_count' => count($result),
+                    'skipped_columns' => $skippedColumns,
+                ]);
+            }
         }
+
+        $this->syncEmblemSelection($dataStore, $gamejoltAccount, $gamejoltUserId);
 
         Log::info('Finished game save sync.');
     }
@@ -338,5 +339,65 @@ class SyncGameSaveForUser implements ShouldBeUnique, ShouldQueue
         }
 
         return $payload;
+    }
+
+    private function syncEmblemSelection(
+        GameJoltDataStoreGateway $dataStore,
+        GamejoltAccount $gamejoltAccount,
+        int|string $gamejoltUserId,
+    ): void {
+        $datastoreKey = 'saveStorageV1|'.$gamejoltUserId.'|emblem';
+        $dsResult = $dataStore->fetch($datastoreKey, $gamejoltAccount->username, $gamejoltAccount->token);
+        $response = $dsResult['response'] ?? [];
+
+        if ($this->isCredentialFailureResponse($response)) {
+            Log::warning('Emblem sync aborted: stored GameJolt credentials were rejected.', [
+                'datastore_key' => $datastoreKey,
+                'gamejolt_user_id' => $gamejoltUserId,
+                'api_message' => $this->responseMessage($response),
+            ]);
+
+            return;
+        }
+
+        if ($this->isHardFailureResponse($response)) {
+            Log::warning('Emblem datastore fetch failed with a hard error.', [
+                'datastore_key' => $datastoreKey,
+                'api_message' => $this->responseMessage($response),
+            ]);
+
+            return;
+        }
+
+        $user = $this->user->fresh() ?? $this->user;
+
+        if (! $this->isSuccessfulResponse($response)) {
+            Log::debug('Emblem datastore key unavailable; leaving gamejolt_emblem unchanged.', [
+                'datastore_key' => $datastoreKey,
+                'api_message' => $this->responseMessage($response),
+            ]);
+
+            return;
+        }
+
+        $slug = EmblemCatalogue::normaliseSlug(
+            is_string($response['data'] ?? null) ? $response['data'] : null
+        );
+
+        if ($slug === null) {
+            Log::debug('Emblem datastore value was empty or unknown; leaving gamejolt_emblem unchanged.', [
+                'datastore_key' => $datastoreKey,
+                'raw_data' => $response['data'] ?? null,
+            ]);
+
+            return;
+        }
+
+        $user->forceFill(['gamejolt_emblem' => $slug])->save();
+
+        Log::info('Synced in-game emblem selection.', [
+            'user_id' => $user->id,
+            'gamejolt_emblem' => $slug,
+        ]);
     }
 }

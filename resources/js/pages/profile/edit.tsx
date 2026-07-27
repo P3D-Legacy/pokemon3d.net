@@ -16,13 +16,22 @@ import {
 } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { cn } from '@/lib/utils';
 import { destroy as destroyUser } from '@/routes/current-user';
 import { destroy as destroySessions } from '@/routes/other-browser-sessions';
+import { update as updateBackground } from '@/routes/profile/background';
 import { update as updateConsents } from '@/routes/profile/consents';
 import { update as updatePreferences } from '@/routes/profile/preferences';
 import { destroy as destroySocial } from '@/routes/profile/social';
 import { store as storeGamejoltSocial } from '@/routes/profile/social/gamejolt';
 import type { SharedPageProps } from '@/types';
+
+type EmblemOption = {
+    slug: string;
+    label: string;
+    image_url: string;
+    unlocked: boolean;
+};
 
 type Props = {
     profile: {
@@ -39,6 +48,14 @@ type Props = {
         profile_photo_url: string;
         two_factor_enabled: boolean;
         email_verified_at: string | null;
+    };
+    profileBackground: {
+        override: string | null;
+        gamejolt_emblem: string | null;
+        effective: string | null;
+        cover_image: string | null;
+        options: EmblemOption[];
+        requires_gamejolt: boolean;
     };
     sessions: Array<{
         agent: { is_desktop: boolean; platform: string; browser: string };
@@ -70,6 +87,7 @@ type Props = {
 
 export default function ProfileEdit({
     profile,
+    profileBackground,
     sessions,
     preferences,
     consents,
@@ -79,6 +97,14 @@ export default function ProfileEdit({
 }: Props) {
     const { flash } = usePage<SharedPageProps>().props;
     const [gamejoltOpen, setGamejoltOpen] = useState(false);
+
+    const selectBackground = (slug: string | null) => {
+        router.put(
+            updateBackground.url(),
+            { profile_background: slug },
+            { preserveScroll: true },
+        );
+    };
 
     return (
         <>
@@ -295,6 +321,75 @@ export default function ProfileEdit({
                             </Form>
                         </DialogContent>
                     </Dialog>
+
+                    <SettingsSection
+                        title="Profile Background"
+                        description="Choose an unlocked in-game emblem as your public profile cover. Leave unset to follow your in-game selection."
+                    >
+                        {profileBackground.requires_gamejolt ? (
+                            <p className="text-sm text-muted-foreground">
+                                Link a Game Jolt account to unlock and choose profile backgrounds.
+                            </p>
+                        ) : (
+                            <div className="space-y-4">
+                                <div className="flex flex-wrap items-center gap-3">
+                                    <Button
+                                        type="button"
+                                        variant="outline"
+                                        size="sm"
+                                        onClick={() => selectBackground(null)}
+                                        disabled={profileBackground.override === null}
+                                    >
+                                        Use in-game emblem
+                                    </Button>
+                                    <p className="text-sm text-muted-foreground">
+                                        {profileBackground.override
+                                            ? `Override: ${profileBackground.override}`
+                                            : profileBackground.gamejolt_emblem
+                                              ? `Following in-game: ${profileBackground.gamejolt_emblem}`
+                                              : 'No emblem selected yet; the default spring cover is shown.'}
+                                    </p>
+                                </div>
+
+                                <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
+                                    {profileBackground.options.map((option) => {
+                                        const isSelected =
+                                            profileBackground.effective === option.slug &&
+                                            (profileBackground.override !== null ||
+                                                profileBackground.gamejolt_emblem === option.slug);
+
+                                        return (
+                                            <button
+                                                key={option.slug}
+                                                type="button"
+                                                disabled={!option.unlocked}
+                                                onClick={() => selectBackground(option.slug)}
+                                                className={cn(
+                                                    'overflow-hidden rounded-md border text-left transition',
+                                                    option.unlocked
+                                                        ? 'hover:border-primary'
+                                                        : 'cursor-not-allowed opacity-40',
+                                                    isSelected
+                                                        ? 'border-primary ring-2 ring-primary/40'
+                                                        : 'border-slate-200 dark:border-slate-700',
+                                                )}
+                                            >
+                                                <img
+                                                    src={option.image_url}
+                                                    alt={option.label}
+                                                    className="aspect-[4/1] w-full object-cover"
+                                                />
+                                                <div className="px-2 py-1.5 text-xs font-medium">
+                                                    {option.label}
+                                                    {!option.unlocked ? ' (locked)' : null}
+                                                </div>
+                                            </button>
+                                        );
+                                    })}
+                                </div>
+                            </div>
+                        )}
+                    </SettingsSection>
 
                     <SettingsSection title="Preferences" description="Choose what to share on your public profile.">
                         <div className="space-y-3">

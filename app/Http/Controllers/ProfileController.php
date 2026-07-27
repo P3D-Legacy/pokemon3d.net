@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Support\EmblemCatalogue;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -18,7 +19,7 @@ class ProfileController extends Controller
      */
     public function show(Request $request): Response
     {
-        $user = $request->user()->loadMissing(['discord', 'twitch', 'gamejolt']);
+        $user = $request->user()->loadMissing(['discord', 'twitch', 'gamejolt.trophies', 'gamesave']);
 
         return Inertia::render('profile/edit', [
             'profile' => [
@@ -35,6 +36,14 @@ class ProfileController extends Controller
                 'profile_photo_url' => $user->profile_photo_url,
                 'two_factor_enabled' => ! is_null($user->two_factor_secret),
                 'email_verified_at' => $user->email_verified_at,
+            ],
+            'profileBackground' => [
+                'override' => $user->profile_background,
+                'gamejolt_emblem' => $user->gamejolt_emblem,
+                'effective' => EmblemCatalogue::effectiveSlug($user),
+                'cover_image' => EmblemCatalogue::coverImageUrl($user),
+                'options' => EmblemCatalogue::pickerOptionsFor($user),
+                'requires_gamejolt' => ! (bool) $user->gamejolt,
             ],
             'sessions' => $this->sessions($request),
             'preferences' => $user->settings()->all(),

@@ -52,6 +52,8 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
         'birthdate',
         'last_active_at',
         'timezone',
+        'gamejolt_emblem',
+        'profile_background',
         'created_at',
     ];
 

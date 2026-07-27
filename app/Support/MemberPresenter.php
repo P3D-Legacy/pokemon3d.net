@@ -42,6 +42,7 @@ class MemberPresenter
             'id' => $user->id,
             'username' => $user->username,
             'profile_photo_url' => $user->profile_photo_url,
+            'cover_image' => EmblemCatalogue::coverImageUrl($user),
             'about' => [
                 'name' => $settings->get('name') ? $user->name : null,
                 'joined' => $user->created_at?->isoFormat('LL'),

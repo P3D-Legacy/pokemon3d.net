@@ -7,6 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
+import { useTranslations } from '@/hooks/use-translations';
 import { index as resourceIndex, store } from '@/routes/resource';
 
 type Props = {
@@ -28,6 +29,8 @@ const selectClassName =
     'border-input h-8 w-full rounded-none border bg-transparent px-2.5 text-xs outline-none focus-visible:border-ring focus-visible:ring-1 focus-visible:ring-ring/50 dark:bg-input/30';
 
 export default function ResourceCreate({ categories, copy }: Props) {
+    const { t } = useTranslations();
+
     return (
         <>
             <Head title={copy.title} />
@@ -37,7 +40,7 @@ export default function ResourceCreate({ categories, copy }: Props) {
                     <Button variant="ghost" size="sm" className="w-fit px-0" asChild>
                         <Link href={resourceIndex.url()}>
                             <ArrowLeftIcon data-icon="inline-start" />
-                            Back to {copy.resources.toLowerCase()}
+                            {t('Back to :page', { page: copy.resources.toLowerCase() })}
                         </Link>
                     </Button>
                     <div className="flex flex-col gap-2">
@@ -47,16 +50,18 @@ export default function ResourceCreate({ categories, copy }: Props) {
                         </div>
                         <h1 className="text-3xl font-semibold tracking-tight">{copy.title}</h1>
                         <p className="text-sm text-muted-foreground">
-                            Share a mod, tool, or other resource with the community.
+                            {t('Share a mod, tool, or other resource with the community.')}
                         </p>
                     </div>
                 </div>
 
                 <Card>
                     <CardHeader>
-                        <CardTitle className="text-base font-semibold">Resource details</CardTitle>
+                        <CardTitle className="text-base font-semibold">{t('Resource details')}</CardTitle>
                         <CardDescription>
-                            Add a clear name, short summary, and full description so others know what to expect.
+                            {t(
+                                'Add a clear name, short summary, and full description so others know what to expect.',
+                            )}
                         </CardDescription>
                     </CardHeader>
                     <CardContent>
@@ -109,7 +114,7 @@ export default function ResourceCreate({ categories, copy }: Props) {
 
                                     <div className="flex flex-wrap justify-end gap-2">
                                         <Button type="button" variant="outline" asChild>
-                                            <Link href={resourceIndex.url()}>Cancel</Link>
+                                            <Link href={resourceIndex.url()}>{t('Cancel')}</Link>
                                         </Button>
                                         <Button type="submit" disabled={processing}>
                                             {copy.submit}

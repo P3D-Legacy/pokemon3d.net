@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { useTranslations } from '@/hooks/use-translations';
 
 type Props = {
     skin: {
@@ -19,18 +20,22 @@ type Props = {
 };
 
 export default function SkinsEdit({ skin }: Props) {
+    const { t } = useTranslations();
+
     return (
         <>
-            <Head title={`Edit: ${skin.name}`} />
+            <Head title={t('Edit: :name', { name: skin.name })} />
 
             <div className="mx-auto w-full max-w-3xl px-4 py-10 sm:px-6 lg:px-8">
                 <div className="mb-8 flex flex-col gap-2">
                     <div className="flex items-center gap-2 text-muted-foreground">
                         <PaintBrushIcon className="size-5" weight="fill" />
-                        <span className="text-sm">Skins</span>
+                        <span className="text-sm">{t('Skins')}</span>
                     </div>
-                    <h1 className="text-3xl font-semibold tracking-tight">Edit skin</h1>
-                    <p className="text-sm text-muted-foreground">Update the name or visibility for this skin.</p>
+                    <h1 className="text-3xl font-semibold tracking-tight">{t('Edit skin')}</h1>
+                    <p className="text-sm text-muted-foreground">
+                        {t('Update the name or visibility for this skin.')}
+                    </p>
                 </div>
 
                 <div className="border border-border bg-card p-6">
@@ -45,7 +50,7 @@ export default function SkinsEdit({ skin }: Props) {
                         {({ processing, errors }) => (
                             <>
                                 <div>
-                                    <Label htmlFor="name">Name</Label>
+                                    <Label htmlFor="name">{t('Name')}</Label>
                                     <Input
                                         id="name"
                                         name="name"
@@ -66,14 +71,14 @@ export default function SkinsEdit({ skin }: Props) {
                                         className="mt-0.5"
                                     />
                                     <label htmlFor="public" className="text-sm text-muted-foreground">
-                                        <span className="font-medium text-foreground">Public</span> Other users will be
-                                        able to see this skin
+                                        <span className="font-medium text-foreground">{t('Public')}</span>{' '}
+                                        {t('Other users will be able to see this skin')}
                                     </label>
                                 </div>
                                 <InputError message={errors.public} />
                                 <Button type="submit" variant="default" disabled={processing}>
                                     <FloppyDiskIcon data-icon="inline-start" weight="bold" />
-                                    Save
+                                    {t('Save')}
                                 </Button>
                             </>
                         )}

@@ -19,6 +19,7 @@ import {
     type BerryEntry,
     type ItemDataPayload,
 } from '@/components/world-panel';
+import { useTranslations } from '@/hooks/use-translations';
 
 type GameSavePayload = {
     available: boolean;
@@ -49,7 +50,7 @@ type Props = {
     gameSave: GameSavePayload;
 };
 
-const tabs: Array<[string, string]> = [
+const tabKeys = [
     ['party', 'Party'],
     ['details', 'Details'],
     ['box', 'Box'],
@@ -61,24 +62,25 @@ const tabs: Array<[string, string]> = [
     ['world', 'World'],
     ['trophies', 'Trophies'],
     ['statistics', 'Statistics'],
-];
+] as const;
 
 export default function SaveIndex({ gameSave }: Props) {
+    const { t } = useTranslations();
     const [saveTab, setSaveTab] = useState('party');
 
     return (
         <>
-            <Head title="My Save" />
+            <Head title={t('My Save')} />
 
             <div className="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
                 <div className="mb-8 flex flex-col gap-2">
                     <div className="flex items-center gap-2 text-muted-foreground">
                         <FloppyDiskIcon className="size-5" weight="fill" />
-                        <span className="text-sm">Game</span>
+                        <span className="text-sm">{t('Game')}</span>
                     </div>
-                    <h1 className="text-3xl font-semibold tracking-tight">My Save</h1>
+                    <h1 className="text-3xl font-semibold tracking-tight">{t('My Save')}</h1>
                     <p className="text-sm text-muted-foreground">
-                        Full details of your synced Pokémon 3D game save.
+                        {t('Full details of your synced Pokémon 3D game save.')}
                     </p>
                 </div>
 
@@ -86,25 +88,31 @@ export default function SaveIndex({ gameSave }: Props) {
                     <CardContent className="p-5">
                         {!gameSave.available ? (
                             <p className="text-sm text-muted-foreground">
-                                {gameSave.message ?? 'No game save is available yet.'}
+                                {gameSave.message ?? t('No game save is available yet.')}
                             </p>
                         ) : (
                             <>
                                 <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
-                                    <span>Last synced: {gameSave.last_synced}</span>
-                                    <span>Caught: {gameSave.caught_count ?? 0}</span>
-                                    <span>Seen: {gameSave.seen_count ?? 0}</span>
+                                    <span>
+                                        {t('Last synced:')} {gameSave.last_synced}
+                                    </span>
+                                    <span>
+                                        {t('Caught:')} {gameSave.caught_count ?? 0}
+                                    </span>
+                                    <span>
+                                        {t('Seen:')} {gameSave.seen_count ?? 0}
+                                    </span>
                                 </div>
 
                                 <div className="mt-4 flex flex-wrap gap-3 border-b text-sm">
-                                    {tabs.map(([key, label]) => (
+                                    {tabKeys.map(([key, label]) => (
                                         <button
                                             key={key}
                                             type="button"
                                             className={`pb-2 ${saveTab === key ? 'border-b-2 border-primary text-primary' : 'text-muted-foreground'}`}
                                             onClick={() => setSaveTab(key)}
                                         >
-                                            {label}
+                                            {t(label)}
                                         </button>
                                     ))}
                                 </div>

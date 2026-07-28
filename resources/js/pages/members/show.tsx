@@ -8,6 +8,7 @@ import { StatisticsPanel, type StatisticItem } from '@/components/statistics-pan
 import { TrophiesPanel, type TrophyItem } from '@/components/trophies-panel';
 import { Card, CardContent } from '@/components/ui/card';
 import { UserProfile12 } from '@/components/user-profile12';
+import { useTranslations } from '@/hooks/use-translations';
 import { show as profileShow } from '@/routes/profile';
 import type { SharedPageProps } from '@/types';
 
@@ -53,6 +54,7 @@ type Props = {
 
 export default function MembersShow({ member }: Props) {
     const { auth } = usePage<SharedPageProps>().props;
+    const { t } = useTranslations();
     const [aboutTab, setAboutTab] = useState<'about' | 'accounts'>('about');
     const [saveTab, setSaveTab] = useState('party');
 
@@ -60,8 +62,8 @@ export default function MembersShow({ member }: Props) {
     const displayName = member.about.name ?? member.username;
     const stats = member.gameSave.available
         ? [
-              { label: 'Caught', value: String(member.gameSave.caught_count ?? 0) },
-              { label: 'Seen', value: String(member.gameSave.seen_count ?? 0) },
+              { label: t('Caught'), value: String(member.gameSave.caught_count ?? 0) },
+              { label: t('Seen'), value: String(member.gameSave.seen_count ?? 0) },
           ]
         : [];
 
@@ -91,46 +93,46 @@ export default function MembersShow({ member }: Props) {
                                 className={`pb-2 ${aboutTab === 'about' ? 'border-b-2 border-primary text-primary' : 'text-muted-foreground'}`}
                                 onClick={() => setAboutTab('about')}
                             >
-                                About
+                                {t('About')}
                             </button>
                             <button
                                 type="button"
                                 className={`pb-2 ${aboutTab === 'accounts' ? 'border-b-2 border-primary text-primary' : 'text-muted-foreground'}`}
                                 onClick={() => setAboutTab('accounts')}
                             >
-                                Connected Accounts
+                                {t('Connected Accounts')}
                             </button>
                         </div>
 
                         <dl className="mt-4 flex min-w-0 flex-col gap-3 text-sm">
                             {aboutTab === 'about' ? (
                                 <>
-                                    <Detail title="Full name" value={member.about.name} />
+                                    <Detail title={t('Full name')} value={member.about.name} />
                                     {member.about.joined ? (
                                         <div className="min-w-0">
-                                            <dt className="text-muted-foreground">Joined</dt>
+                                            <dt className="text-muted-foreground">{t('Joined')}</dt>
                                             <dd className="break-words">{member.about.joined}</dd>
                                             {member.about.joined_for_humans ? (
                                                 <dd className="break-words">{member.about.joined_for_humans}</dd>
                                             ) : null}
                                         </div>
                                     ) : null}
-                                    <Detail title="Last online" value={member.about.last_online} />
+                                    <Detail title={t('Last online')} value={member.about.last_online} />
                                     {member.about.birthday ? (
                                         <div className="min-w-0">
-                                            <dt className="text-muted-foreground">Birthday</dt>
+                                            <dt className="text-muted-foreground">{t('Birthday')}</dt>
                                             <dd className="break-words">{member.about.birthday.date}</dd>
                                             <dd className="break-words">{member.about.birthday.age}</dd>
                                         </div>
                                     ) : null}
-                                    <Detail title="Location" value={member.about.location} />
-                                    <Detail title="Gender" value={member.about.gender} />
+                                    <Detail title={t('Location')} value={member.about.location} />
+                                    <Detail title={t('Gender')} value={member.about.gender} />
                                 </>
                             ) : (
                                 <>
                                     {member.accounts.gamejolt ? (
                                         <div className="min-w-0">
-                                            <dt className="text-muted-foreground">Game Jolt</dt>
+                                            <dt className="text-muted-foreground">{t('Game Jolt')}</dt>
                                             <dd className="break-words">
                                                 <a
                                                     href={member.accounts.gamejolt.url}
@@ -145,7 +147,7 @@ export default function MembersShow({ member }: Props) {
                                     ) : null}
                                     {member.accounts.discord ? (
                                         <div className="min-w-0">
-                                            <dt className="text-muted-foreground">Discord</dt>
+                                            <dt className="text-muted-foreground">{t('Discord')}</dt>
                                             <dd className="break-words">
                                                 <a
                                                     href={member.accounts.discord.url}
@@ -160,7 +162,7 @@ export default function MembersShow({ member }: Props) {
                                     ) : null}
                                     {member.accounts.twitch ? (
                                         <div className="min-w-0">
-                                            <dt className="text-muted-foreground">Twitch</dt>
+                                            <dt className="text-muted-foreground">{t('Twitch')}</dt>
                                             <dd className="break-words">
                                                 <a
                                                     href={member.accounts.twitch.url}
@@ -176,7 +178,7 @@ export default function MembersShow({ member }: Props) {
                                     {!member.accounts.gamejolt &&
                                     !member.accounts.discord &&
                                     !member.accounts.twitch ? (
-                                        <p className="text-muted-foreground">No connected accounts</p>
+                                        <p className="text-muted-foreground">{t('No connected accounts')}</p>
                                     ) : null}
                                 </>
                             )}
@@ -187,29 +189,31 @@ export default function MembersShow({ member }: Props) {
                 <div className="min-w-0 w-full">
                     <Card className="h-full w-full py-0">
                         <CardContent className="p-5">
-                            <h2 className="text-3xl font-semibold text-foreground">Game Save</h2>
+                            <h2 className="text-3xl font-semibold text-foreground">{t('Game Save')}</h2>
                             {!member.gameSave.available ? (
                                 <p className="mt-3 text-sm text-muted-foreground">{member.gameSave.message}</p>
                             ) : (
                                 <>
                                     <p className="mt-2 text-sm text-muted-foreground">
-                                        Last synced: {member.gameSave.last_synced}
+                                        {t('Last synced:')} {member.gameSave.last_synced}
                                     </p>
                                     <div className="mt-4 flex flex-wrap gap-3 border-b text-sm">
-                                        {[
-                                            ['party', 'Party'],
-                                            ['details', 'Details'],
-                                            ['pokedex', 'Pokédex'],
-                                            ['trophies', 'Trophies'],
-                                            ['statistics', 'Statistics'],
-                                        ].map(([key, label]) => (
+                                        {(
+                                            [
+                                                ['party', 'Party'],
+                                                ['details', 'Details'],
+                                                ['pokedex', 'Pokédex'],
+                                                ['trophies', 'Trophies'],
+                                                ['statistics', 'Statistics'],
+                                            ] as const
+                                        ).map(([key, label]) => (
                                             <button
                                                 key={key}
                                                 type="button"
                                                 className={`pb-2 ${saveTab === key ? 'border-b-2 border-primary text-primary' : 'text-muted-foreground'}`}
                                                 onClick={() => setSaveTab(key)}
                                             >
-                                                {label}
+                                                {t(label)}
                                             </button>
                                         ))}
                                     </div>

@@ -10,6 +10,7 @@ import { useState } from 'react';
 
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { useTranslations } from '@/hooks/use-translations';
 import { cn } from '@/lib/utils';
 
 export type PokedexEntry = {
@@ -35,10 +36,10 @@ type PokedexPanelProps = {
     pokedexes: PokedexDefinition[];
 };
 
-const filters: Array<{ key: PokedexFilter; label: string; icon: IconComponent }> = [
-    { key: 'all', label: 'All', icon: CirclesFourIcon },
-    { key: 'caught', label: 'Caught', icon: CheckCircleIcon },
-    { key: 'seen', label: 'Seen', icon: EyeIcon },
+const filterDefs: Array<{ key: PokedexFilter; labelKey: string; icon: IconComponent }> = [
+    { key: 'all', labelKey: 'All', icon: CirclesFourIcon },
+    { key: 'caught', labelKey: 'Caught', icon: CheckCircleIcon },
+    { key: 'seen', labelKey: 'Seen', icon: EyeIcon },
 ];
 
 const statusIcons: Record<EntryStatus, IconComponent> = {
@@ -85,18 +86,6 @@ function statusBadgeVariant(status: EntryStatus): 'default' | 'secondary' | 'out
     return 'outline';
 }
 
-function statusLabel(status: EntryStatus): string {
-    if (status === 'caught') {
-        return 'Caught';
-    }
-
-    if (status === 'seen') {
-        return 'Seen';
-    }
-
-    return 'Unseen';
-}
-
 function defaultDexSlug(pokedexes: PokedexDefinition[]): string {
     const national = pokedexes.find((dex) => dex.slug === 'pokedex_national');
 
@@ -104,6 +93,7 @@ function defaultDexSlug(pokedexes: PokedexDefinition[]): string {
 }
 
 export function PokedexPanel({ pokedexes }: PokedexPanelProps) {
+    const { t } = useTranslations();
     const [activeDex, setActiveDex] = useState(() => defaultDexSlug(pokedexes));
     const [filter, setFilter] = useState<PokedexFilter>('all');
 
@@ -125,11 +115,23 @@ export function PokedexPanel({ pokedexes }: PokedexPanelProps) {
         return true;
     });
 
+    const statusLabel = (status: EntryStatus): string => {
+        if (status === 'caught') {
+            return t('Caught');
+        }
+
+        if (status === 'seen') {
+            return t('Seen');
+        }
+
+        return t('Unseen');
+    };
+
     if (pokedexes.length === 0) {
         return (
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
                 <MagnifyingGlassIcon className="size-4" />
-                No Pokédex definitions available yet
+                {t('No Pokédex definitions available yet')}
             </div>
         );
     }
@@ -163,19 +165,21 @@ export function PokedexPanel({ pokedexes }: PokedexPanelProps) {
                         <div className="flex flex-col gap-1">
                             <div className="flex items-center gap-1.5 text-muted-foreground">
                                 <CheckCircleIcon className="size-4" weight="fill" />
-                                Caught
+                                {t('Caught')}
                             </div>
                             <div className="text-2xl font-bold">{caughtCount}</div>
                         </div>
                         <div className="flex flex-col gap-1">
                             <div className="flex items-center gap-1.5 text-muted-foreground">
                                 <EyeIcon className="size-4" weight="fill" />
-                                Seen
+                                {t('Seen')}
                             </div>
                             <div className="text-2xl font-bold">{seenCount}</div>
                         </div>
                     </div>
-                    <div className="text-sm text-muted-foreground">{progress}% caught of seen</div>
+                    <div className="text-sm text-muted-foreground">
+                        {t(':progress% caught of seen', { progress })}
+                    </div>
                 </div>
                 <div className="h-2 overflow-hidden bg-muted">
                     <div className="h-full bg-primary transition-all" style={{ width: `${progress}%` }} />
@@ -183,7 +187,7 @@ export function PokedexPanel({ pokedexes }: PokedexPanelProps) {
             </div>
 
             <div className="flex flex-wrap gap-2">
-                {filters.map((item) => {
+                {filterDefs.map((item) => {
                     const Icon = item.icon;
 
                     return (
@@ -195,7 +199,7 @@ export function PokedexPanel({ pokedexes }: PokedexPanelProps) {
                             onClick={() => setFilter(item.key)}
                         >
                             <Icon data-icon="inline-start" weight={filter === item.key ? 'fill' : 'regular'} />
-                            {item.label}
+                            {t(item.labelKey)}
                         </Button>
                     );
                 })}
@@ -204,7 +208,7 @@ export function PokedexPanel({ pokedexes }: PokedexPanelProps) {
             {filtered.length === 0 ? (
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
                     <MagnifyingGlassIcon className="size-4" />
-                    No Pokémon match this filter
+                    {t('No Pokémon match this filter')}
                 </div>
             ) : (
                 <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">

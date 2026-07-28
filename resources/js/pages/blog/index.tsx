@@ -3,6 +3,7 @@ import { NewspaperIcon } from '@phosphor-icons/react';
 
 import { BlogPostCard } from '@/components/blog-post-card';
 import { Button } from '@/components/ui/button';
+import { useTranslations } from '@/hooks/use-translations';
 import { cn, paginationLabel } from '@/lib/utils';
 import type { Paginated, PostCard } from '@/types';
 
@@ -19,6 +20,8 @@ type Props = {
 };
 
 export default function BlogIndex({ posts, copy }: Props) {
+    const { t } = useTranslations();
+
     return (
         <>
             <Head title={copy.title} />
@@ -27,7 +30,7 @@ export default function BlogIndex({ posts, copy }: Props) {
                 <div className="mb-8 flex flex-col gap-2">
                     <div className="flex items-center gap-2 text-muted-foreground">
                         <NewspaperIcon className="size-5" weight="fill" />
-                        <span className="text-sm">News</span>
+                        <span className="text-sm">{t('News')}</span>
                     </div>
                     <h1 className="text-3xl font-semibold tracking-tight">{copy.title}</h1>
                     <p className="max-w-2xl text-sm text-muted-foreground">{copy.subtitle}</p>

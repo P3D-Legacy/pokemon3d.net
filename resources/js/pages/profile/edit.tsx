@@ -16,6 +16,7 @@ import {
 } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { useTranslations } from '@/hooks/use-translations';
 import { cn } from '@/lib/utils';
 import { destroy as destroyUser } from '@/routes/current-user';
 import { destroy as destroySessions } from '@/routes/other-browser-sessions';
@@ -97,6 +98,7 @@ export default function ProfileEdit({
     status,
 }: Props) {
     const { flash } = usePage<SharedPageProps>().props;
+    const { t } = useTranslations();
     const [gamejoltOpen, setGamejoltOpen] = useState(false);
 
     const selectBackground = (slug: string | null) => {
@@ -107,9 +109,15 @@ export default function ProfileEdit({
         );
     };
 
+    const backgroundStatus = profileBackground.override
+        ? t('Override: :emblem', { emblem: profileBackground.override })
+        : profileBackground.gamejolt_emblem
+          ? t('Following in-game: :emblem', { emblem: profileBackground.gamejolt_emblem })
+          : t('No emblem selected yet; the default spring cover is shown.');
+
     return (
         <>
-            <Head title="Edit Profile" />
+            <Head title={t('Edit Profile')} />
 
             <div className="py-10">
                 <div className="mx-auto max-w-7xl space-y-10 sm:px-6 lg:px-8">
@@ -121,17 +129,19 @@ export default function ProfileEdit({
 
                     {features.canUpdateProfileInformation && (
                         <SettingsSection
-                            title="Profile Information"
+                            title={t('Profile Information')}
                             description={
                                 <>
-                                    <p>Update your account's profile information and email address.</p>
-                                    <p className="mt-2">Your timezone: {profile.timezone}</p>
+                                    <p>{t("Update your account's profile information and email address.")}</p>
                                     <p className="mt-2">
-                                        Joined: {profile.created_at_for_humans}
+                                        {t('Your timezone')}: {profile.timezone}
+                                    </p>
+                                    <p className="mt-2">
+                                        {t('Joined')}: {profile.created_at_for_humans}
                                         <br />
-                                        Created UTC: {profile.created_at_utc}
+                                        {t('Created UTC')}: {profile.created_at_utc}
                                         <br />
-                                        Local: {profile.created_at_local}
+                                        {t('Local')}: {profile.created_at_local}
                                     </p>
                                 </>
                             }
@@ -141,7 +151,7 @@ export default function ProfileEdit({
                                     <>
                                         {features.managesProfilePhotos && (
                                             <div className="grid gap-2">
-                                                <Label htmlFor="photo">Photo</Label>
+                                                <Label htmlFor="photo">{t('Photo')}</Label>
                                                 <img
                                                     src={profile.profile_photo_url}
                                                     alt={profile.name}
@@ -153,53 +163,53 @@ export default function ProfileEdit({
                                         )}
 
                                         <div className="grid gap-2">
-                                            <Label htmlFor="name">Name</Label>
+                                            <Label htmlFor="name">{t('Name')}</Label>
                                             <Input id="name" name="name" defaultValue={profile.name} required />
                                             <InputError message={errors.name} />
                                         </div>
 
                                         <div className="grid gap-2">
-                                            <Label htmlFor="username">Username</Label>
+                                            <Label htmlFor="username">{t('Username')}</Label>
                                             <Input id="username" name="username" defaultValue={profile.username} required />
                                             <InputError message={errors.username} />
                                         </div>
 
                                         <div className="grid gap-2">
-                                            <Label htmlFor="email">Email</Label>
+                                            <Label htmlFor="email">{t('Email')}</Label>
                                             <Input id="email" type="email" name="email" defaultValue={profile.email} required />
                                             <InputError message={errors.email} />
                                         </div>
 
                                         <div className="grid gap-2">
-                                            <Label htmlFor="gender">Gender</Label>
+                                            <Label htmlFor="gender">{t('Gender')}</Label>
                                             <select
                                                 id="gender"
                                                 name="gender"
                                                 defaultValue={profile.gender}
                                                 className="border-input h-9 w-full rounded-md border bg-transparent px-3 text-sm shadow-xs"
                                             >
-                                                <option value={0}>No selection</option>
-                                                <option value={1}>Male</option>
-                                                <option value={2}>Female</option>
-                                                <option value={3}>Genderless</option>
+                                                <option value={0}>{t('No selection')}</option>
+                                                <option value={1}>{t('Male')}</option>
+                                                <option value={2}>{t('Female')}</option>
+                                                <option value={3}>{t('Genderless')}</option>
                                             </select>
                                             <InputError message={errors.gender} />
                                         </div>
 
                                         <div className="grid gap-2">
-                                            <Label htmlFor="location">Location</Label>
+                                            <Label htmlFor="location">{t('Location')}</Label>
                                             <Input id="location" name="location" defaultValue={profile.location ?? ''} />
                                             <InputError message={errors.location} />
                                         </div>
 
                                         <div className="grid gap-2">
-                                            <Label htmlFor="about">About</Label>
+                                            <Label htmlFor="about">{t('About')}</Label>
                                             <Input id="about" name="about" defaultValue={profile.about ?? ''} />
                                             <InputError message={errors.about} />
                                         </div>
 
                                         <div className="grid gap-2">
-                                            <Label htmlFor="birthdate">Birthdate (dd-mm-yyyy)</Label>
+                                            <Label htmlFor="birthdate">{t('Birthdate (dd-mm-yyyy)')}</Label>
                                             <Input
                                                 id="birthdate"
                                                 name="birthdate"
@@ -212,7 +222,7 @@ export default function ProfileEdit({
 
                                         <div className="flex justify-end">
                                             <Button type="submit" variant="default" disabled={processing}>
-                                                Save
+                                                {t('Save')}
                                             </Button>
                                         </div>
                                     </>
@@ -221,7 +231,10 @@ export default function ProfileEdit({
                         </SettingsSection>
                     )}
 
-                    <SettingsSection title="Connected Accounts" description="Link or unlink social accounts associated with your profile.">
+                    <SettingsSection
+                        title={t('Connected Accounts')}
+                        description={t('Link or unlink social accounts associated with your profile.')}
+                    >
                         <div className="space-y-4">
                             {Object.entries(socialAccounts).map(([provider, account]) => {
                                 if (! account.enabled) {
@@ -233,7 +246,7 @@ export default function ProfileEdit({
                                         <div>
                                             <div className="font-medium capitalize">{provider}</div>
                                             <div className="text-sm text-slate-500">
-                                                {account.connected ? account.label || 'Connected' : 'Not connected'}
+                                                {account.connected ? account.label || t('Connected') : t('Not connected')}
                                             </div>
                                         </div>
                                         {account.connected ? (
@@ -247,16 +260,16 @@ export default function ProfileEdit({
                                                     })
                                                 }
                                             >
-                                                Disconnect
+                                                {t('Disconnect')}
                                             </Button>
                                         ) : account.uses_credentials ? (
                                             <Button type="button" variant="default" onClick={() => setGamejoltOpen(true)}>
-                                                Connect
+                                                {t('Connect')}
                                             </Button>
                                         ) : account.connect_url ? (
                                             <a href={account.connect_url}>
                                                 <Button type="button" variant="default">
-                                                    Connect
+                                                    {t('Connect')}
                                                 </Button>
                                             </a>
                                         ) : null}
@@ -269,16 +282,16 @@ export default function ProfileEdit({
                     <Dialog open={gamejoltOpen} onOpenChange={setGamejoltOpen}>
                         <DialogContent>
                             <DialogHeader>
-                                <DialogTitle>Connect Game Jolt</DialogTitle>
+                                <DialogTitle>{t('Connect Game Jolt')}</DialogTitle>
                                 <DialogDescription>
-                                    Link your Game Jolt username and token to this account.{' '}
+                                    {t('Link your Game Jolt username and token to this account.')}{' '}
                                     <a
                                         href="https://gamejolt.com/help/tokens"
                                         target="_blank"
                                         rel="noreferrer"
                                         className="underline"
                                     >
-                                        What&apos;s my token?
+                                        {t("What's my token?")}
                                     </a>
                                 </DialogDescription>
                             </DialogHeader>
@@ -292,7 +305,7 @@ export default function ProfileEdit({
                                 {({ processing, errors }) => (
                                     <>
                                         <div className="grid gap-2">
-                                            <Label htmlFor="profile-gamejolt-username">Username</Label>
+                                            <Label htmlFor="profile-gamejolt-username">{t('Username')}</Label>
                                             <Input
                                                 id="profile-gamejolt-username"
                                                 name="username"
@@ -303,7 +316,7 @@ export default function ProfileEdit({
                                             <InputError message={errors.username} />
                                         </div>
                                         <div className="grid gap-2">
-                                            <Label htmlFor="profile-gamejolt-token">Token</Label>
+                                            <Label htmlFor="profile-gamejolt-token">{t('Token')}</Label>
                                             <Input
                                                 id="profile-gamejolt-token"
                                                 name="token"
@@ -316,7 +329,7 @@ export default function ProfileEdit({
                                         {errors.error && <InputError message={errors.error} />}
                                         <DialogFooter>
                                             <Button type="submit" disabled={processing}>
-                                                Connect
+                                                {t('Connect')}
                                             </Button>
                                         </DialogFooter>
                                     </>
@@ -326,12 +339,14 @@ export default function ProfileEdit({
                     </Dialog>
 
                     <SettingsSection
-                        title="Profile Background"
-                        description="Choose an unlocked in-game emblem as your public profile cover. Leave unset to follow your in-game selection."
+                        title={t('Profile Background')}
+                        description={t(
+                            'Choose an unlocked in-game emblem as your public profile cover. Leave unset to follow your in-game selection.',
+                        )}
                     >
                         {profileBackground.requires_gamejolt ? (
                             <p className="text-sm text-muted-foreground">
-                                Link a Game Jolt account to unlock and choose profile backgrounds.
+                                {t('Link a Game Jolt account to unlock and choose profile backgrounds.')}
                             </p>
                         ) : (
                             <div className="space-y-4">
@@ -343,15 +358,9 @@ export default function ProfileEdit({
                                         onClick={() => selectBackground(null)}
                                         disabled={profileBackground.override === null}
                                     >
-                                        Use in-game emblem
+                                        {t('Use in-game emblem')}
                                     </Button>
-                                    <p className="text-sm text-muted-foreground">
-                                        {profileBackground.override
-                                            ? `Override: ${profileBackground.override}`
-                                            : profileBackground.gamejolt_emblem
-                                              ? `Following in-game: ${profileBackground.gamejolt_emblem}`
-                                              : 'No emblem selected yet; the default spring cover is shown.'}
-                                    </p>
+                                    <p className="text-sm text-muted-foreground">{backgroundStatus}</p>
                                 </div>
 
                                 <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4">
@@ -384,7 +393,7 @@ export default function ProfileEdit({
                                                 />
                                                 <div className="px-2 py-1.5 text-xs font-medium">
                                                     {option.label}
-                                                    {!option.unlocked ? ' (locked)' : null}
+                                                    {!option.unlocked ? ` ${t('(locked)')}` : null}
                                                 </div>
                                             </button>
                                         );
@@ -394,7 +403,10 @@ export default function ProfileEdit({
                         )}
                     </SettingsSection>
 
-                    <SettingsSection title="Preferences" description="Choose what to share on your public profile.">
+                    <SettingsSection
+                        title={t('Preferences')}
+                        description={t('Here you can choose what to share on your public profile.')}
+                    >
                         <div className="space-y-3">
                             {Object.entries(preferences).map(([setting, value]) => (
                                 <label key={setting} className="flex items-center gap-3">
@@ -406,13 +418,16 @@ export default function ProfileEdit({
                                         }
                                         className="size-4 rounded border-slate-300 text-green-600"
                                     />
-                                    <span className="text-sm capitalize">Show {setting}</span>
+                                    <span className="text-sm capitalize">{t('Show :setting', { setting })}</span>
                                 </label>
                             ))}
                         </div>
                     </SettingsSection>
 
-                    <SettingsSection title="Consents" description="Manage consents required for using this website.">
+                    <SettingsSection
+                        title={t('Consents')}
+                        description={t('Manage consents required for using this website.')}
+                    >
                         <div className="space-y-4">
                             {consents.map((consent) => (
                                 <label key={consent.key} className="flex items-start gap-3">
@@ -432,22 +447,25 @@ export default function ProfileEdit({
                     </SettingsSection>
 
                     {features.canUpdatePasswords && (
-                        <SettingsSection title="Update Password" description="Ensure your account is using a long, random password to stay secure.">
+                        <SettingsSection
+                            title={t('Update Password')}
+                            description={t('Ensure your account is using a long, random password to stay secure.')}
+                        >
                             <Form {...updatePassword.form()} options={{ preserveScroll: true }} resetOnSuccess className="space-y-4">
                                 {({ processing, errors }) => (
                                     <>
                                         <div className="grid gap-2">
-                                            <Label htmlFor="current_password">Current Password</Label>
+                                            <Label htmlFor="current_password">{t('Current Password')}</Label>
                                             <Input id="current_password" type="password" name="current_password" autoComplete="current-password" />
                                             <InputError message={errors.current_password} />
                                         </div>
                                         <div className="grid gap-2">
-                                            <Label htmlFor="password">New Password</Label>
+                                            <Label htmlFor="password">{t('New Password')}</Label>
                                             <Input id="password" type="password" name="password" autoComplete="new-password" />
                                             <InputError message={errors.password} />
                                         </div>
                                         <div className="grid gap-2">
-                                            <Label htmlFor="password_confirmation">Confirm Password</Label>
+                                            <Label htmlFor="password_confirmation">{t('Confirm Password')}</Label>
                                             <Input
                                                 id="password_confirmation"
                                                 type="password"
@@ -458,7 +476,7 @@ export default function ProfileEdit({
                                         </div>
                                         <div className="flex justify-end">
                                             <Button type="submit" variant="default" disabled={processing}>
-                                                Save
+                                                {t('Save')}
                                             </Button>
                                         </div>
                                     </>
@@ -469,27 +487,34 @@ export default function ProfileEdit({
 
                     {features.canManageTwoFactorAuthentication && (
                         <SettingsSection
-                            title="Two Factor Authentication"
-                            description="Add additional security to your account using two factor authentication."
+                            title={t('Two Factor Authentication')}
+                            description={t('Add additional security to your account using two factor authentication.')}
                         >
                             <p className="text-sm text-slate-600 dark:text-slate-300">
-                                Status:{' '}
-                                <strong>{profile.two_factor_enabled ? 'Enabled' : 'Disabled'}</strong>
+                                {t('Status')}:{' '}
+                                <strong>{profile.two_factor_enabled ? t('Enabled') : t('Disabled')}</strong>
                             </p>
                             <p className="mt-2 text-sm text-slate-500">
-                                Manage 2FA enablement from your account security settings. Challenge pages are already available via Fortify.
+                                {t(
+                                    'Manage 2FA enablement from your account security settings. Challenge pages are already available via Fortify.',
+                                )}
                             </p>
                             <div className="mt-4">
                                 <Link href="/user/confirm-password" className="text-sm text-green-700 underline dark:text-green-400">
-                                    Confirm password to manage secure settings
+                                    {t('Confirm password to manage secure settings')}
                                 </Link>
                             </div>
                         </SettingsSection>
                     )}
 
-                    <SettingsSection title="Browser Sessions" description="Manage and log out your active sessions on other browsers and devices.">
+                    <SettingsSection
+                        title={t('Browser Sessions')}
+                        description={t('Manage and log out your active sessions on other browsers and devices.')}
+                    >
                         <div className="space-y-3">
-                            {sessions.length === 0 && <p className="text-sm text-slate-500">No other sessions found.</p>}
+                            {sessions.length === 0 && (
+                                <p className="text-sm text-slate-500">{t('No other sessions found.')}</p>
+                            )}
                             {sessions.map((session) => (
                                 <div key={`${session.ip_address}-${session.last_active}`} className="rounded border border-slate-200 px-4 py-3 text-sm dark:border-slate-700">
                                     <div className="font-medium">
@@ -497,7 +522,7 @@ export default function ProfileEdit({
                                     </div>
                                     <div className="text-slate-500">
                                         {session.ip_address} · {session.last_active}
-                                        {session.is_current_device ? ' · This device' : ''}
+                                        {session.is_current_device ? ` · ${t('This device')}` : ''}
                                     </div>
                                 </div>
                             ))}
@@ -506,12 +531,12 @@ export default function ProfileEdit({
                             {({ processing, errors }) => (
                                 <>
                                     <div className="grid gap-2">
-                                        <Label htmlFor="session_password">Password</Label>
+                                        <Label htmlFor="session_password">{t('Password')}</Label>
                                         <Input id="session_password" type="password" name="password" required />
                                         <InputError message={errors.password} />
                                     </div>
                                     <Button type="submit" variant="outline" disabled={processing}>
-                                        Log out other browser sessions
+                                        {t('Log Out Other Browser Sessions')}
                                     </Button>
                                 </>
                             )}
@@ -519,20 +544,22 @@ export default function ProfileEdit({
                     </SettingsSection>
 
                     {features.hasAccountDeletionFeatures && (
-                        <SettingsSection title="Delete Account" description="Permanently delete your account.">
+                        <SettingsSection title={t('Delete Account')} description={t('Permanently delete your account.')}>
                             <Form {...destroyUser.form()} className="space-y-4">
                                 {({ processing, errors }) => (
                                     <>
                                         <p className="text-sm text-slate-500">
-                                            Once your account is deleted, all of its resources and data will be permanently deleted.
+                                            {t(
+                                                'Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.',
+                                            )}
                                         </p>
                                         <div className="grid gap-2">
-                                            <Label htmlFor="delete_password">Password</Label>
+                                            <Label htmlFor="delete_password">{t('Password')}</Label>
                                             <Input id="delete_password" type="password" name="password" required />
                                             <InputError message={errors.password} />
                                         </div>
                                         <Button type="submit" variant="destructive" disabled={processing}>
-                                            Delete Account
+                                            {t('Delete Account')}
                                         </Button>
                                     </>
                                 )}

@@ -2,6 +2,7 @@ import { CompassIcon, SparkleIcon } from '@phosphor-icons/react';
 
 import { PartyPanel, type PartyMember } from '@/components/party-panel';
 import { Badge } from '@/components/ui/badge';
+import { useTranslations } from '@/hooks/use-translations';
 
 export type RoamingEntry = {
     roamer_id: string;
@@ -19,8 +20,10 @@ type RoamingPanelProps = {
 };
 
 export function RoamingPanel({ roaming }: RoamingPanelProps) {
+    const { t } = useTranslations();
+
     if (roaming.length === 0) {
-        return <p className="text-sm text-muted-foreground">No roaming Pokémon</p>;
+        return <p className="text-sm text-muted-foreground">{t('No roaming Pokémon')}</p>;
     }
 
     return (
@@ -28,9 +31,9 @@ export function RoamingPanel({ roaming }: RoamingPanelProps) {
             <div className="flex flex-col gap-1">
                 <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
                     <CompassIcon className="size-4" weight="fill" />
-                    Roaming
+                    {t('Roaming')}
                 </div>
-                <div className="text-2xl font-bold">{roaming.length} active</div>
+                <div className="text-2xl font-bold">{t(':count active', { count: roaming.length })}</div>
             </div>
 
             {roaming.map((entry) => (
@@ -39,29 +42,29 @@ export function RoamingPanel({ roaming }: RoamingPanelProps) {
                     className="flex flex-col gap-3 border border-border bg-muted/10 p-4"
                 >
                     <div className="flex flex-wrap items-center gap-2">
-                        <Badge variant="secondary">World {entry.world_id}</Badge>
-                        <Badge variant="outline">Lv {entry.level}</Badge>
+                        <Badge variant="secondary">{t('World :id', { id: entry.world_id })}</Badge>
+                        <Badge variant="outline">{t('Lv :level', { level: entry.level })}</Badge>
                         {entry.shiny ? (
                             <Badge variant="default">
                                 <SparkleIcon data-icon="inline-start" weight="fill" />
-                                Shiny
+                                {t('Shiny')}
                             </Badge>
                         ) : null}
                     </div>
                     <dl className="grid gap-1 text-xs sm:grid-cols-2">
                         <div>
-                            <dt className="text-muted-foreground">Location</dt>
+                            <dt className="text-muted-foreground">{t('Location')}</dt>
                             <dd className="break-all font-medium">{entry.level_file}</dd>
                         </div>
                         <div>
-                            <dt className="text-muted-foreground">Roamer ID</dt>
+                            <dt className="text-muted-foreground">{t('Roamer ID')}</dt>
                             <dd className="font-medium">{entry.roamer_id}</dd>
                         </div>
                     </dl>
                     {entry.pokemon ? (
                         <PartyPanel party={[entry.pokemon]} showSummary={false} />
                     ) : (
-                        <p className="text-sm text-muted-foreground">Pokémon data unavailable</p>
+                        <p className="text-sm text-muted-foreground">{t('Pokémon data unavailable')}</p>
                     )}
                 </div>
             ))}

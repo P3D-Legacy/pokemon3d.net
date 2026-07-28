@@ -16,6 +16,7 @@ import {
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { useTranslations } from '@/hooks/use-translations';
 import { cn } from '@/lib/utils';
 import { show as profileShow } from '@/routes/profile';
 import { index as saveIndex } from '@/routes/save';
@@ -50,23 +51,24 @@ type Props = {
 
 export default function ServersIndex({ servers, myServers, canCreate, createRequirements }: Props) {
     const { auth } = usePage<SharedPageProps>().props;
+    const { t } = useTranslations();
     const activeCount = servers.length + myServers.filter((server) => server.active).length;
     const showRequirements = Boolean(auth.user) && ! canCreate && createRequirements !== null;
 
     return (
         <>
-            <Head title="Servers" />
+            <Head title={t('Servers')} />
 
             <div className="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
                 <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
                     <div className="flex flex-col gap-2">
                         <div className="flex items-center gap-2 text-muted-foreground">
                             <HardDrivesIcon className="size-5" weight="fill" />
-                            <span className="text-sm">Multiplayer</span>
+                            <span className="text-sm">{t('Multiplayer')}</span>
                         </div>
-                        <h1 className="text-3xl font-semibold tracking-tight">Servers</h1>
+                        <h1 className="text-3xl font-semibold tracking-tight">{t('Servers')}</h1>
                         <p className="text-sm text-muted-foreground">
-                            Browse community servers or manage the ones you host.
+                            {t('Browse community servers or manage the ones you host.')}
                         </p>
                     </div>
 
@@ -74,7 +76,7 @@ export default function ServersIndex({ servers, myServers, canCreate, createRequ
                         <Button asChild>
                             <Link href={create.url()}>
                                 <PlusIcon data-icon="inline-start" weight="bold" />
-                                Add server
+                                {t('Add server')}
                             </Link>
                         </Button>
                     ) : null}
@@ -82,22 +84,24 @@ export default function ServersIndex({ servers, myServers, canCreate, createRequ
 
                 {showRequirements && createRequirements ? (
                     <div className="mb-8 border border-border bg-muted/20 px-5 py-5">
-                        <h2 className="text-base font-semibold tracking-tight">Before you can add a server</h2>
+                        <h2 className="text-base font-semibold tracking-tight">{t('Before you can add a server')}</h2>
                         <p className="mt-1 text-sm text-muted-foreground">
-                            Link your Game Jolt account and sync a game save (saves sync after linking and signing in).
+                            {t(
+                                'Link your Game Jolt account and sync a game save (saves sync after linking and signing in).',
+                            )}
                         </p>
                         <ul className="mt-4 flex flex-col gap-3">
                             <RequirementItem
                                 complete={createRequirements.has_gamejolt}
-                                label="Connect your Game Jolt account"
+                                label={t('Connect your Game Jolt account')}
                                 href={profileShow.url()}
-                                actionLabel="Open profile"
+                                actionLabel={t('Open profile')}
                             />
                             <RequirementItem
                                 complete={createRequirements.has_game_save}
-                                label="Sync a game save"
+                                label={t('Sync a game save')}
                                 href={saveIndex.url()}
-                                actionLabel="Open save"
+                                actionLabel={t('Open save')}
                             />
                         </ul>
                     </div>
@@ -105,23 +109,23 @@ export default function ServersIndex({ servers, myServers, canCreate, createRequ
 
                 <div className="mb-8 grid grid-cols-1 gap-3 sm:grid-cols-3">
                     <StatCard
-                        title="Active servers"
+                        title={t('Active servers')}
                         value={String(activeCount)}
-                        hint="currently listed"
+                        hint={t('currently listed')}
                         icon={WifiHighIcon}
                     />
                     <StatCard
-                        title="Your servers"
+                        title={t('Your servers')}
                         value={String(myServers.length)}
-                        hint={myServers.length === 1 ? 'server you own' : 'servers you own'}
+                        hint={myServers.length === 1 ? t('server you own') : t('servers you own')}
                         icon={HardDrivesIcon}
                     />
                     <StatCard
-                        title="Official"
+                        title={t('Official')}
                         value={String(
                             [...servers, ...myServers].filter((server) => server.official).length,
                         )}
-                        hint="official listings"
+                        hint={t('official listings')}
                         icon={SealCheckIcon}
                     />
                 </div>
@@ -129,8 +133,8 @@ export default function ServersIndex({ servers, myServers, canCreate, createRequ
                 {myServers.length > 0 ? (
                     <section className="mb-10 flex flex-col gap-4">
                         <div className="flex flex-col gap-1">
-                            <h2 className="text-lg font-semibold tracking-tight">My servers</h2>
-                            <p className="text-sm text-muted-foreground">Servers you own and can manage.</p>
+                            <h2 className="text-lg font-semibold tracking-tight">{t('My servers')}</h2>
+                            <p className="text-sm text-muted-foreground">{t('Servers you own and can manage.')}</p>
                         </div>
                         <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
                             {myServers.map((server) => (
@@ -139,7 +143,11 @@ export default function ServersIndex({ servers, myServers, canCreate, createRequ
                                     server={server}
                                     owned
                                     onDelete={() => {
-                                        if (window.confirm(`Delete ${server.name}? This cannot be undone.`)) {
+                                        if (
+                                            window.confirm(
+                                                t('Delete :name? This cannot be undone.', { name: server.name }),
+                                            )
+                                        ) {
                                             router.delete(destroy.url(server.uuid), { preserveScroll: true });
                                         }
                                     }}
@@ -154,23 +162,25 @@ export default function ServersIndex({ servers, myServers, canCreate, createRequ
 
                 <section className="flex flex-col gap-4">
                     <div className="flex flex-col gap-1">
-                        <h2 className="text-lg font-semibold tracking-tight">Active servers</h2>
-                        <p className="text-sm text-muted-foreground">Public servers currently available to join.</p>
+                        <h2 className="text-lg font-semibold tracking-tight">{t('Active servers')}</h2>
+                        <p className="text-sm text-muted-foreground">
+                            {t('Public servers currently available to join.')}
+                        </p>
                     </div>
 
                     {servers.length === 0 ? (
                         <div className="flex flex-col items-center justify-center gap-3 border border-border bg-muted/20 px-6 py-16 text-center">
                             <HardDrivesIcon className="size-10 text-muted-foreground" weight="fill" />
-                            <div className="text-lg font-medium">No active servers</div>
+                            <div className="text-lg font-medium">{t('No active servers')}</div>
                             <p className="max-w-md text-sm text-muted-foreground">
-                                There are no public servers listed right now.
-                                {canCreate ? ' Add your own to get the community playing.' : ''}
+                                {t('There are no public servers listed right now.')}
+                                {canCreate ? ` ${t('Add your own to get the community playing.')}` : ''}
                             </p>
                             {canCreate ? (
                                 <Button asChild>
                                     <Link href={create.url()}>
                                         <PlusIcon data-icon="inline-start" weight="bold" />
-                                        Add server
+                                        {t('Add server')}
                                     </Link>
                                 </Button>
                             ) : null}
@@ -262,6 +272,8 @@ function ServerCard({
     onDelete?: () => void;
     onReactivate?: () => void;
 }) {
+    const { t } = useTranslations();
+
     return (
         <Card className="h-full">
             <CardHeader className="flex flex-row items-start justify-between gap-3">
@@ -271,7 +283,7 @@ function ServerCard({
                         {server.official ? (
                             <Badge variant="default">
                                 <SealCheckIcon data-icon="inline-start" weight="fill" />
-                                Official
+                                {t('Official')}
                             </Badge>
                         ) : null}
                         {owned ? (
@@ -279,12 +291,12 @@ function ServerCard({
                                 {server.active ? (
                                     <>
                                         <WifiHighIcon data-icon="inline-start" weight="fill" />
-                                        Active
+                                        {t('Active')}
                                     </>
                                 ) : (
                                     <>
                                         <WifiSlashIcon data-icon="inline-start" weight="fill" />
-                                        Inactive
+                                        {t('Inactive')}
                                     </>
                                 )}
                             </Badge>
@@ -300,20 +312,20 @@ function ServerCard({
                 {server.description ? (
                     <p className="text-sm leading-relaxed text-muted-foreground">{server.description}</p>
                 ) : (
-                    <p className="text-sm text-muted-foreground/70 italic">No description provided.</p>
+                    <p className="text-sm text-muted-foreground/70 italic">{t('No description provided.')}</p>
                 )}
 
                 <div className="flex flex-wrap gap-1.5">
                     {server.ping != null ? (
                         <Badge variant="outline">
                             <PulseIcon data-icon="inline-start" weight="fill" />
-                            Ping {server.ping} ms
+                            {t('Ping :ping ms', { ping: server.ping })}
                         </Badge>
                     ) : null}
                     {server.last_online_at ? (
                         <Badge variant="outline">
                             <ClockIcon data-icon="inline-start" weight="fill" />
-                            Last online {server.last_online_at}
+                            {t('Last online')} {server.last_online_at}
                         </Badge>
                     ) : null}
                 </div>
@@ -324,19 +336,19 @@ function ServerCard({
                     {! server.active && onReactivate ? (
                         <Button type="button" size="sm" variant="secondary" onClick={onReactivate}>
                             <WifiHighIcon data-icon="inline-start" weight="fill" />
-                            Reactivate
+                            {t('Reactivate')}
                         </Button>
                     ) : null}
                     <Button size="sm" variant="outline" asChild>
                         <Link href={edit.url(server.uuid)}>
                             <PencilSimpleIcon data-icon="inline-start" weight="fill" />
-                            Edit
+                            {t('Edit')}
                         </Link>
                     </Button>
                     {onDelete ? (
                         <Button type="button" size="sm" variant="destructive" onClick={onDelete}>
                             <TrashIcon data-icon="inline-start" weight="fill" />
-                            Delete
+                            {t('Delete')}
                         </Button>
                     ) : null}
                 </CardFooter>

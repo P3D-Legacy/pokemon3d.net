@@ -12,6 +12,7 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { useTranslations } from '@/hooks/use-translations';
 import { cn, paginationLabel } from '@/lib/utils';
 import type { Paginated } from '@/types';
 
@@ -46,34 +47,37 @@ function initials(name: string | null, username: string): string {
 }
 
 export default function MembersIndex({ members }: Props) {
+    const { t } = useTranslations();
     const total = members.total ?? members.meta?.total ?? members.data.length;
 
     return (
         <>
-            <Head title="Members" />
+            <Head title={t('Members')} />
 
             <div className="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
                 <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
                     <div className="flex flex-col gap-2">
                         <div className="flex items-center gap-2 text-muted-foreground">
                             <UsersIcon className="size-5" weight="fill" />
-                            <span className="text-sm">Community</span>
+                            <span className="text-sm">{t('Community')}</span>
                         </div>
-                        <h1 className="text-3xl font-semibold tracking-tight">Members</h1>
-                        <p className="text-sm text-muted-foreground">Browse verified trainers on Pokémon 3D.</p>
+                        <h1 className="text-3xl font-semibold tracking-tight">{t('Members')}</h1>
+                        <p className="text-sm text-muted-foreground">
+                            {t('Browse verified trainers on Pokémon 3D.')}
+                        </p>
                     </div>
                     <div className="text-sm text-muted-foreground">
                         <span className="text-2xl font-bold text-foreground">{total}</span>
-                        <span className="ml-2">{total === 1 ? 'member' : 'members'}</span>
+                        <span className="ml-2">{total === 1 ? t('member') : t('members')}</span>
                     </div>
                 </div>
 
                 {members.data.length === 0 ? (
                     <div className="flex flex-col items-center justify-center gap-3 border border-border bg-muted/20 px-6 py-16 text-center">
                         <UsersIcon className="size-10 text-muted-foreground" weight="fill" />
-                        <div className="text-lg font-medium">No members found</div>
+                        <div className="text-lg font-medium">{t('No members found')}</div>
                         <p className="max-w-md text-sm text-muted-foreground">
-                            There are no verified members to show yet.
+                            {t('There are no verified members to show yet.')}
                         </p>
                     </div>
                 ) : (
@@ -108,14 +112,16 @@ export default function MembersIndex({ members }: Props) {
                                     {member.last_online ? (
                                         <div className="flex min-w-0 items-center gap-1.5">
                                             <ClockIcon className="size-3.5 shrink-0" weight="fill" />
-                                            <span className="truncate">Last online {member.last_online}</span>
+                                            <span className="truncate">
+                                                {t('Last online')} {member.last_online}
+                                            </span>
                                         </div>
                                     ) : null}
                                     {member.joined || member.joined_for_humans ? (
                                         <div className="flex min-w-0 items-center gap-1.5">
                                             <CalendarBlankIcon className="size-3.5 shrink-0" weight="fill" />
                                             <span className="truncate">
-                                                Joined {member.joined_for_humans ?? member.joined}
+                                                {t('Joined')} {member.joined_for_humans ?? member.joined}
                                             </span>
                                         </div>
                                     ) : null}
@@ -126,13 +132,13 @@ export default function MembersIndex({ members }: Props) {
                                         {member.has_gamejolt ? (
                                             <Badge variant="secondary">
                                                 <GameControllerIcon data-icon="inline-start" weight="fill" />
-                                                Game Jolt
+                                                {t('Game Jolt')}
                                             </Badge>
                                         ) : null}
                                         {member.has_game_save ? (
                                             <Badge variant="outline">
                                                 <HardDrivesIcon data-icon="inline-start" weight="fill" />
-                                                Game Save
+                                                {t('Game Save')}
                                             </Badge>
                                         ) : null}
                                     </div>

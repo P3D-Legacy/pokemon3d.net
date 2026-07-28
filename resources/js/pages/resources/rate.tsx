@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
+import { useTranslations } from '@/hooks/use-translations';
 import { cn } from '@/lib/utils';
 import { uuid as resourceShow } from '@/routes/resource';
 import { store as storeRating } from '@/routes/resource/rate';
@@ -30,6 +31,7 @@ type Props = {
 };
 
 export default function ResourceRate({ resource, copy }: Props) {
+    const { t } = useTranslations();
     const [rating, setRating] = useState(0);
     const [body, setBody] = useState('');
 
@@ -42,7 +44,7 @@ export default function ResourceRate({ resource, copy }: Props) {
                     <Button variant="ghost" size="sm" className="w-fit px-0" asChild>
                         <Link href={resourceShow.url(resource.uuid)}>
                             <ArrowLeftIcon data-icon="inline-start" />
-                            Back to {resource.name}
+                            {t('Back to :name', { name: resource.name })}
                         </Link>
                     </Button>
                     <div className="flex flex-col gap-2">
@@ -52,15 +54,14 @@ export default function ResourceRate({ resource, copy }: Props) {
                         </div>
                         <h1 className="text-3xl font-semibold tracking-tight">{copy.title}</h1>
                         <p className="text-sm text-muted-foreground">
-                            Rate <span className="font-medium text-foreground">{resource.name}</span> and share a short
-                            review.
+                            {t('Rate :name and share a short review.', { name: resource.name })}
                         </p>
                     </div>
                 </div>
 
                 <Card>
                     <CardHeader>
-                        <CardTitle className="text-base font-semibold">Your rating</CardTitle>
+                        <CardTitle className="text-base font-semibold">{t('Your rating')}</CardTitle>
                         <CardDescription>{copy.clickToRate}</CardDescription>
                     </CardHeader>
                     <CardContent>

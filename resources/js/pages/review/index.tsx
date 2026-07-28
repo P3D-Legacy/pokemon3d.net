@@ -15,6 +15,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
+import { useTranslations } from '@/hooks/use-translations';
 import { cn } from '@/lib/utils';
 import { show as memberShow } from '@/routes/member';
 import { store } from '@/routes/review';
@@ -41,14 +42,6 @@ type Props = {
     canCreate: boolean;
 };
 
-const ratingLabels: Record<number, string> = {
-    1: 'Poor',
-    2: 'Fair',
-    3: 'Good',
-    4: 'Great',
-    5: 'Excellent',
-};
-
 function initials(name: string): string {
     return name
         .split(' ')
@@ -63,13 +56,15 @@ function Stars({
     count,
     className,
     size = 'size-4',
+    ariaLabel,
 }: {
     count: number;
     className?: string;
     size?: string;
+    ariaLabel: string;
 }) {
     return (
-        <span className={cn('inline-flex items-center gap-0.5', className)} aria-label={`${count} out of 5 stars`}>
+        <span className={cn('inline-flex items-center gap-0.5', className)} aria-label={ariaLabel}>
             {Array.from({ length: 5 }, (_, index) => (
                 <StarIcon
                     key={index}
@@ -89,24 +84,33 @@ export default function ReviewIndex({
     canCreate,
 }: Props) {
     const { auth } = usePage<SharedPageProps>().props;
+    const { t } = useTranslations();
     const [formOpen, setFormOpen] = useState(false);
     const [rating, setRating] = useState(0);
     const [body, setBody] = useState('');
 
+    const ratingLabels: Record<number, string> = {
+        1: t('Poor'),
+        2: t('Fair'),
+        3: t('Good'),
+        4: t('Great'),
+        5: t('Excellent'),
+    };
+
     return (
         <>
-            <Head title="Reviews" />
+            <Head title={t('Reviews')} />
 
             <div className="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
                 <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
                     <div className="flex flex-col gap-2">
                         <div className="flex items-center gap-2 text-muted-foreground">
                             <StarIcon className="size-5" weight="fill" />
-                            <span className="text-sm">Community</span>
+                            <span className="text-sm">{t('Community')}</span>
                         </div>
-                        <h1 className="text-3xl font-semibold tracking-tight">Game Reviews</h1>
+                        <h1 className="text-3xl font-semibold tracking-tight">{t('Game Reviews')}</h1>
                         <p className="text-sm text-muted-foreground">
-                            See what trainers think of recent Pokémon 3D releases.
+                            {t('See what trainers think of recent Pokémon 3D releases.')}
                         </p>
                     </div>
 
@@ -119,12 +123,12 @@ export default function ReviewIndex({
                             {formOpen ? (
                                 <>
                                     <XIcon data-icon="inline-start" />
-                                    Cancel
+                                    {t('Cancel')}
                                 </>
                             ) : (
                                 <>
                                     <PencilSimpleIcon data-icon="inline-start" weight="fill" />
-                                    Write a review
+                                    {t('Write a review')}
                                 </>
                             )}
                         </Button>
@@ -134,10 +138,11 @@ export default function ReviewIndex({
                 {formOpen && canCreate && auth.user ? (
                     <Card className="mb-8">
                         <CardHeader>
-                            <CardTitle className="text-base font-semibold">Write a review</CardTitle>
+                            <CardTitle className="text-base font-semibold">{t('Write a review')}</CardTitle>
                             <CardDescription>
-                                Share your experience with a recent game version. Reviews help other trainers decide
-                                what to try next.
+                                {t(
+                                    'Share your experience with a recent game version. Reviews help other trainers decide what to try next.',
+                                )}
                             </CardDescription>
                         </CardHeader>
                         <CardContent>
@@ -153,7 +158,7 @@ export default function ReviewIndex({
                                 {({ processing, errors }) => (
                                     <>
                                         <div className="flex flex-col gap-2">
-                                            <Label htmlFor="gameversion">Game version</Label>
+                                            <Label htmlFor="gameversion">{t('Game version')}</Label>
                                             <select
                                                 id="gameversion"
                                                 name="gameversion"
@@ -162,7 +167,7 @@ export default function ReviewIndex({
                                             >
                                                 {gameVersions.length === 0 ? (
                                                     <option value="" disabled>
-                                                        No versions available
+                                                        {t('No versions available')}
                                                     </option>
                                                 ) : (
                                                     gameVersions.map((version) => (
@@ -177,7 +182,7 @@ export default function ReviewIndex({
                                         </div>
 
                                         <div className="flex flex-col gap-2">
-                                            <Label>Rating</Label>
+                                            <Label>{t('Rating')}</Label>
                                             <div className="flex flex-wrap items-center gap-3">
                                                 <div className="flex items-center gap-1">
                                                     {[1, 2, 3, 4, 5].map((value) => (
@@ -198,7 +203,7 @@ export default function ReviewIndex({
                                                     ))}
                                                 </div>
                                                 <span className="text-sm text-muted-foreground">
-                                                    {rating > 0 ? ratingLabels[rating] : 'Select a rating'}
+                                                    {rating > 0 ? ratingLabels[rating] : t('Select a rating')}
                                                 </span>
                                             </div>
                                             <input type="hidden" name="rating" value={rating || ''} required />
@@ -206,20 +211,20 @@ export default function ReviewIndex({
                                         </div>
 
                                         <div className="flex flex-col gap-2">
-                                            <Label htmlFor="body">Review</Label>
+                                            <Label htmlFor="body">{t('Review')}</Label>
                                             <Textarea
                                                 id="body"
                                                 name="body"
                                                 required
                                                 minLength={10}
                                                 maxLength={255}
-                                                placeholder="What stood out in this version?"
+                                                placeholder={t('What stood out in this version?')}
                                                 value={body}
                                                 onChange={(event) => setBody(event.target.value)}
                                                 className="min-h-28"
                                             />
                                             <div className="flex justify-between gap-2 text-xs text-muted-foreground">
-                                                <span>10-255 characters</span>
+                                                <span>{t('10-255 characters')}</span>
                                                 <span>{body.length}/255</span>
                                             </div>
                                             <InputError message={errors.body} />
@@ -231,10 +236,10 @@ export default function ReviewIndex({
                                                 variant="outline"
                                                 onClick={() => setFormOpen(false)}
                                             >
-                                                Cancel
+                                                {t('Cancel')}
                                             </Button>
                                             <Button type="submit" disabled={processing || rating < 1}>
-                                                Submit review
+                                                {t('Submit review')}
                                             </Button>
                                         </div>
                                     </>
@@ -247,19 +252,26 @@ export default function ReviewIndex({
                 <div className="mb-8 grid grid-cols-1 gap-3 sm:grid-cols-3">
                     <Card>
                         <CardHeader className="flex flex-row items-center justify-between pb-2">
-                            <CardTitle className="text-sm font-medium text-muted-foreground">Average rating</CardTitle>
+                            <CardTitle className="text-sm font-medium text-muted-foreground">
+                                {t('Average rating')}
+                            </CardTitle>
                             <div className="bg-primary/10 p-2 text-primary">
                                 <StarIcon className="size-4" weight="fill" />
                             </div>
                         </CardHeader>
                         <CardContent className="flex flex-col gap-2">
                             <div className="text-3xl font-bold">{numberOfReviews > 0 ? averageRating.toFixed(1) : '—'}</div>
-                            <Stars count={Math.round(averageRating)} />
+                            <Stars
+                                count={Math.round(averageRating)}
+                                ariaLabel={t(':count out of 5 stars', { count: Math.round(averageRating) })}
+                            />
                         </CardContent>
                     </Card>
                     <Card>
                         <CardHeader className="flex flex-row items-center justify-between pb-2">
-                            <CardTitle className="text-sm font-medium text-muted-foreground">Total reviews</CardTitle>
+                            <CardTitle className="text-sm font-medium text-muted-foreground">
+                                {t('Total reviews')}
+                            </CardTitle>
                             <div className="bg-primary/10 p-2 text-primary">
                                 <ChatTextIcon className="size-4" weight="fill" />
                             </div>
@@ -267,13 +279,15 @@ export default function ReviewIndex({
                         <CardContent>
                             <div className="text-3xl font-bold">{numberOfReviews}</div>
                             <p className="mt-1 text-sm text-muted-foreground">
-                                {numberOfReviews === 1 ? 'review submitted' : 'reviews submitted'}
+                                {numberOfReviews === 1 ? t('review submitted') : t('reviews submitted')}
                             </p>
                         </CardContent>
                     </Card>
                     <Card>
                         <CardHeader className="flex flex-row items-center justify-between pb-2">
-                            <CardTitle className="text-sm font-medium text-muted-foreground">Versions covered</CardTitle>
+                            <CardTitle className="text-sm font-medium text-muted-foreground">
+                                {t('Versions covered')}
+                            </CardTitle>
                             <div className="bg-primary/10 p-2 text-primary">
                                 <PencilSimpleIcon className="size-4" weight="fill" />
                             </div>
@@ -282,7 +296,7 @@ export default function ReviewIndex({
                             <div className="text-3xl font-bold">
                                 {new Set(reviews.map((review) => review.version).filter(Boolean)).size}
                             </div>
-                            <p className="mt-1 text-sm text-muted-foreground">distinct game versions</p>
+                            <p className="mt-1 text-sm text-muted-foreground">{t('distinct game versions')}</p>
                         </CardContent>
                     </Card>
                 </div>
@@ -290,14 +304,14 @@ export default function ReviewIndex({
                 {reviews.length === 0 ? (
                     <div className="flex flex-col items-center justify-center gap-3 border border-border bg-muted/20 px-6 py-16 text-center">
                         <StarIcon className="size-10 text-muted-foreground" weight="fill" />
-                        <div className="text-lg font-medium">No reviews yet</div>
+                        <div className="text-lg font-medium">{t('No reviews yet')}</div>
                         <p className="max-w-md text-sm text-muted-foreground">
-                            Be the first to share your thoughts on a recent game version.
+                            {t('Be the first to share your thoughts on a recent game version.')}
                         </p>
                         {canCreate && auth.user ? (
                             <Button type="button" onClick={() => setFormOpen(true)}>
                                 <PencilSimpleIcon data-icon="inline-start" weight="fill" />
-                                Write a review
+                                {t('Write a review')}
                             </Button>
                         ) : null}
                     </div>
@@ -333,7 +347,10 @@ export default function ReviewIndex({
                                                 <div className="truncate text-sm font-medium">{displayName}</div>
                                             )}
                                             <div className="mt-1 flex flex-wrap items-center gap-2">
-                                                <Stars count={review.rating} />
+                                                <Stars
+                                                    count={review.rating}
+                                                    ariaLabel={t(':count out of 5 stars', { count: review.rating })}
+                                                />
                                                 {review.version ? (
                                                     <Badge variant="secondary">{review.version}</Badge>
                                                 ) : null}

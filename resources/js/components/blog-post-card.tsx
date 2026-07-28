@@ -3,6 +3,7 @@ import { CaretRightIcon, ChatCircleIcon, ClockIcon, PushPinIcon } from '@phospho
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
+import { useTranslations } from '@/hooks/use-translations';
 import type { PostCard } from '@/types';
 
 type Props = {
@@ -23,9 +24,13 @@ function initials(name: string): string {
 
 export function BlogPostCard({
     post,
-    publishedLabel = 'Published',
-    commentsLabel = 'comments',
+    publishedLabel,
+    commentsLabel,
 }: Props) {
+    const { t } = useTranslations();
+    const resolvedPublishedLabel = publishedLabel ?? t('Published');
+    const resolvedCommentsLabel = commentsLabel ?? t('comments');
+
     return (
         <Link
             href={post.url}
@@ -35,7 +40,7 @@ export function BlogPostCard({
                 {post.sticky ? (
                     <Badge variant="default">
                         <PushPinIcon data-icon="inline-start" weight="fill" />
-                        Sticky
+                        {t('Sticky')}
                     </Badge>
                 ) : null}
                 {post.tag ? <Badge variant="secondary">{post.tag}</Badge> : null}
@@ -58,7 +63,7 @@ export function BlogPostCard({
 
                 <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-muted-foreground">
                     <span>
-                        {publishedLabel} {post.published_for_humans}
+                        {resolvedPublishedLabel} {post.published_for_humans}
                     </span>
                     <span className="inline-flex items-center gap-1">
                         <ClockIcon className="size-3.5" weight="fill" />
@@ -66,7 +71,7 @@ export function BlogPostCard({
                     </span>
                     <span className="inline-flex items-center gap-1">
                         <ChatCircleIcon className="size-3.5" weight="fill" />
-                        {post.comment_count} {commentsLabel}
+                        {post.comment_count} {resolvedCommentsLabel}
                     </span>
                 </div>
             </div>

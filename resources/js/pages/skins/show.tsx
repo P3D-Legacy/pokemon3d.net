@@ -7,6 +7,7 @@ import SkinCard from '@/components/skin-card';
 import SkinImage from '@/components/skin-image';
 import { Button } from '@/components/ui/button';
 import { useSkinAnimationPreference } from '@/hooks/use-skin-animation-preference';
+import { useTranslations } from '@/hooks/use-translations';
 import { skinsNewest } from '@/routes';
 import type { SharedPageProps, SkinCardData } from '@/types';
 
@@ -16,13 +17,14 @@ type Props = {
 
 export default function SkinsShow({ skin }: Props) {
     const { auth } = usePage<SharedPageProps>().props;
+    const { t } = useTranslations();
     const [animate, setAnimate] = useSkinAnimationPreference();
     const [animationAvailable, setAnimationAvailable] = useState(true);
     const showAnimator = animate && animationAvailable;
 
     return (
         <>
-            <Head title={`Skin: ${skin.name}`} />
+            <Head title={t('Skin: :name', { name: skin.name })} />
 
             <div className="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
                 <div className="mb-8 flex flex-col gap-4">
@@ -30,7 +32,7 @@ export default function SkinsShow({ skin }: Props) {
                         <Button variant="ghost" size="sm" className="w-fit px-0" asChild>
                             <Link href={skinsNewest.url()}>
                                 <ArrowLeftIcon className="size-4" />
-                                Back to public skins
+                                {t('Back to public skins')}
                             </Link>
                         </Button>
                         <Button
@@ -52,18 +54,18 @@ export default function SkinsShow({ skin }: Props) {
                             }}
                         >
                             <PersonSimpleWalkIcon data-icon="inline-start" weight="bold" />
-                            {animate ? 'Animation on' : 'Animation off'}
+                            {animate ? t('Animation on') : t('Animation off')}
                         </Button>
                     </div>
                     <div className="flex flex-col gap-2">
                         <div className="flex items-center gap-2 text-muted-foreground">
                             <PaintBrushIcon className="size-5" weight="fill" />
-                            <span className="text-sm">Public skin</span>
+                            <span className="text-sm">{t('Public skin')}</span>
                         </div>
                         <h1 className="text-3xl font-semibold tracking-tight">{skin.name}</h1>
                         <p className="text-sm text-muted-foreground">
-                            Uploaded {skin.uploaded_at}
-                            {skin.publisher ? ` by ${skin.publisher.username}` : ''}
+                            {t('Uploaded')} {skin.uploaded_at}
+                            {skin.publisher ? ` ${t('by :username', { username: skin.publisher.username })}` : ''}
                         </p>
                     </div>
                 </div>
@@ -90,8 +92,8 @@ export default function SkinsShow({ skin }: Props) {
                         </div>
                         <p className="w-48 text-center text-xs text-muted-foreground">
                             {showAnimator
-                                ? 'Overworld walk cycle from the 96×128 sheet (32×32 frames).'
-                                : 'Full 96×128 skin sheet.'}
+                                ? t('Overworld walk cycle from the 96×128 sheet (32×32 frames).')
+                                : t('Full 96×128 skin sheet.')}
                         </p>
                     </div>
                     <SkinCard

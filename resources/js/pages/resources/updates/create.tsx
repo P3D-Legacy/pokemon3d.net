@@ -7,6 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
+import { useTranslations } from '@/hooks/use-translations';
 import { uuid as resourceShow } from '@/routes/resource';
 import { store as storeUpdate } from '@/routes/resource/updates';
 
@@ -33,6 +34,8 @@ const selectClassName =
     'border-input h-8 w-full rounded-none border bg-transparent px-2.5 text-xs outline-none focus-visible:border-ring focus-visible:ring-1 focus-visible:ring-ring/50 dark:bg-input/30';
 
 export default function ResourceUpdateCreate({ resource, gameVersions, copy }: Props) {
+    const { t } = useTranslations();
+
     return (
         <>
             <Head title={copy.title} />
@@ -42,7 +45,7 @@ export default function ResourceUpdateCreate({ resource, gameVersions, copy }: P
                     <Button variant="ghost" size="sm" className="w-fit px-0" asChild>
                         <Link href={resourceShow.url(resource.uuid)}>
                             <ArrowLeftIcon data-icon="inline-start" />
-                            Back to {resource.name}
+                            {t('Back to :name', { name: resource.name })}
                         </Link>
                     </Button>
                     <div className="flex flex-col gap-2">
@@ -52,17 +55,16 @@ export default function ResourceUpdateCreate({ resource, gameVersions, copy }: P
                         </div>
                         <h1 className="text-3xl font-semibold tracking-tight">{copy.title}</h1>
                         <p className="text-sm text-muted-foreground">
-                            Publish a new update for{' '}
-                            <span className="font-medium text-foreground">{resource.name}</span>.
+                            {t('Publish a new update for :name.', { name: resource.name })}
                         </p>
                     </div>
                 </div>
 
                 <Card>
                     <CardHeader>
-                        <CardTitle className="text-base font-semibold">Update details</CardTitle>
+                        <CardTitle className="text-base font-semibold">{t('Update details')}</CardTitle>
                         <CardDescription>
-                            Include a version number, compatible game version, changelog, and zip file.
+                            {t('Include a version number, compatible game version, changelog, and zip file.')}
                         </CardDescription>
                     </CardHeader>
                     <CardContent>

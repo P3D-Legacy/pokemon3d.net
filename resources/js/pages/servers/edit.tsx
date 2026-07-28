@@ -7,6 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
+import { useTranslations } from '@/hooks/use-translations';
 import { index, update } from '@/routes/server';
 
 type Props = {
@@ -20,35 +21,37 @@ type Props = {
 };
 
 export default function ServersEdit({ server }: Props) {
+    const { t } = useTranslations();
+
     return (
         <>
-            <Head title={`Edit ${server.name}`} />
+            <Head title={t('Edit :name', { name: server.name })} />
 
             <div className="mx-auto w-full max-w-2xl px-4 py-10 sm:px-6 lg:px-8">
                 <div className="mb-8 flex flex-col gap-3">
                     <Button variant="ghost" size="sm" className="w-fit px-0" asChild>
                         <Link href={index.url()}>
                             <ArrowLeftIcon data-icon="inline-start" />
-                            Back to servers
+                            {t('Back to servers')}
                         </Link>
                     </Button>
                     <div className="flex flex-col gap-2">
                         <div className="flex items-center gap-2 text-muted-foreground">
                             <HardDrivesIcon className="size-5" weight="fill" />
-                            <span className="text-sm">Multiplayer</span>
+                            <span className="text-sm">{t('Multiplayer')}</span>
                         </div>
-                        <h1 className="text-3xl font-semibold tracking-tight">Edit server</h1>
+                        <h1 className="text-3xl font-semibold tracking-tight">{t('Edit server')}</h1>
                         <p className="text-sm text-muted-foreground">
-                            Update the listing details for <span className="font-medium text-foreground">{server.name}</span>.
+                            {t('Update the listing details for :name.', { name: server.name })}
                         </p>
                     </div>
                 </div>
 
                 <Card>
                     <CardHeader>
-                        <CardTitle className="text-base font-semibold">Server details</CardTitle>
+                        <CardTitle className="text-base font-semibold">{t('Server details')}</CardTitle>
                         <CardDescription>
-                            Changes appear on the public servers list once saved.
+                            {t('Changes appear on the public servers list once saved.')}
                         </CardDescription>
                     </CardHeader>
                     <CardContent>
@@ -56,17 +59,17 @@ export default function ServersEdit({ server }: Props) {
                             {({ processing, errors }) => (
                                 <>
                                     <div className="flex flex-col gap-2">
-                                        <Label htmlFor="name">Name</Label>
+                                        <Label htmlFor="name">{t('Name')}</Label>
                                         <Input id="name" name="name" defaultValue={server.name} required />
                                         <InputError message={errors.name} />
                                     </div>
                                     <div className="flex flex-col gap-2">
-                                        <Label htmlFor="host">Host</Label>
+                                        <Label htmlFor="host">{t('Host')}</Label>
                                         <Input id="host" name="host" defaultValue={server.host} required />
                                         <InputError message={errors.host} />
                                     </div>
                                     <div className="flex flex-col gap-2">
-                                        <Label htmlFor="port">Port</Label>
+                                        <Label htmlFor="port">{t('Port')}</Label>
                                         <Input
                                             id="port"
                                             name="port"
@@ -77,7 +80,7 @@ export default function ServersEdit({ server }: Props) {
                                         <InputError message={errors.port} />
                                     </div>
                                     <div className="flex flex-col gap-2">
-                                        <Label htmlFor="description">Description</Label>
+                                        <Label htmlFor="description">{t('Description')}</Label>
                                         <Textarea
                                             id="description"
                                             name="description"
@@ -88,10 +91,10 @@ export default function ServersEdit({ server }: Props) {
                                     </div>
                                     <div className="flex flex-wrap justify-end gap-2">
                                         <Button type="button" variant="outline" asChild>
-                                            <Link href={index.url()}>Cancel</Link>
+                                            <Link href={index.url()}>{t('Cancel')}</Link>
                                         </Button>
                                         <Button type="submit" disabled={processing}>
-                                            Save changes
+                                            {t('Save changes')}
                                         </Button>
                                     </div>
                                 </>

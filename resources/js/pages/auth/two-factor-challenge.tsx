@@ -8,20 +8,26 @@ import { Login7 } from '@/components/login7';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { useTranslations } from '@/hooks/use-translations';
 
 export default function TwoFactorChallenge() {
+    const { t } = useTranslations();
     const [recovery, setRecovery] = useState(false);
 
     return (
         <>
-            <Head title="Two-factor confirmation" />
+            <Head title={t('Two-factor confirmation')} />
 
             <Login7>
                 <div className="grid gap-4">
                     <p className="text-sm text-muted-foreground">
                         {recovery
-                            ? 'Please confirm access to your account by entering one of your emergency recovery codes.'
-                            : 'Please confirm access to your account by entering the authentication code provided by your authenticator application.'}
+                            ? t(
+                                  'Please confirm access to your account by entering one of your emergency recovery codes.',
+                              )
+                            : t(
+                                  'Please confirm access to your account by entering the authentication code provided by your authenticator application.',
+                              )}
                     </p>
 
                     <Form {...store.form()} className="grid gap-4">
@@ -29,7 +35,7 @@ export default function TwoFactorChallenge() {
                             <>
                                 {recovery ? (
                                     <div className="grid gap-2">
-                                        <Label htmlFor="recovery_code">Recovery Code</Label>
+                                        <Label htmlFor="recovery_code">{t('Recovery Code')}</Label>
                                         <Input
                                             id="recovery_code"
                                             name="recovery_code"
@@ -40,7 +46,7 @@ export default function TwoFactorChallenge() {
                                     </div>
                                 ) : (
                                     <div className="grid gap-2">
-                                        <Label htmlFor="code">Code</Label>
+                                        <Label htmlFor="code">{t('Code')}</Label>
                                         <Input
                                             id="code"
                                             name="code"
@@ -54,7 +60,7 @@ export default function TwoFactorChallenge() {
 
                                 <Button type="submit" className="w-full" disabled={processing}>
                                     <SignInIcon data-icon="inline-start" />
-                                    Log in
+                                    {t('Log in')}
                                 </Button>
 
                                 <button
@@ -62,7 +68,7 @@ export default function TwoFactorChallenge() {
                                     className="text-center text-sm text-muted-foreground underline"
                                     onClick={() => setRecovery((value) => ! value)}
                                 >
-                                    {recovery ? 'Use an authentication code' : 'Use a recovery code'}
+                                    {recovery ? t('Use an authentication code') : t('Use a recovery code')}
                                 </button>
                             </>
                         )}

@@ -20,6 +20,7 @@ import SkinAnimator from '@/components/skin-animator';
 import SkinImage from '@/components/skin-image';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { useTranslations } from '@/hooks/use-translations';
 import { cn } from '@/lib/utils';
 import type { SkinCardData } from '@/types';
 
@@ -41,6 +42,7 @@ export default function SkinCard({
     hideImage = false,
     animate = false,
 }: Props) {
+    const { t } = useTranslations();
     const [reason, setReason] = useState('');
     const [processing, setProcessing] = useState(false);
     const [animationAvailable, setAnimationAvailable] = useState(animate);
@@ -106,20 +108,22 @@ export default function SkinCard({
                     )}
                 </h2>
                 <div className="mt-2 space-y-1 text-xs text-muted-foreground">
-                    {skin.is_owner && <p>Public: {skin.public ? 'Yes' : 'No'}</p>}
+                    {skin.is_owner && (
+                        <p>{t('Public: :value', { value: skin.public ? t('Yes') : t('No') })}</p>
+                    )}
                     {skin.publisher ? (
                         <p>
-                            Published by:{' '}
+                            {t('Published by:')}{' '}
                             <Link className="text-primary hover:underline" href={skin.publisher.url}>
                                 {skin.publisher.username}
                             </Link>
                         </p>
                     ) : (
-                        <p>Game Jolt ID: {skin.owner_id}</p>
+                        <p>{t('Game Jolt ID: :id', { id: skin.owner_id })}</p>
                     )}
-                    <p>Uploaded: {skin.uploaded_at}</p>
-                    <p>File size: {skin.file_size}</p>
-                    <p className="text-sm text-foreground">{skin.likes_count} likes</p>
+                    <p>{t('Uploaded: :date', { date: skin.uploaded_at })}</p>
+                    <p>{t('File size: :size', { size: skin.file_size })}</p>
+                    <p className="text-sm text-foreground">{t(':count likes', { count: skin.likes_count })}</p>
                 </div>
 
                 {mode === 'admin' ? (
@@ -127,18 +131,18 @@ export default function SkinCard({
                         {({ processing: formProcessing }) => (
                             <>
                                 <p className="mb-2 text-xs text-muted-foreground">
-                                    Users will be able to see the reason for the deletion.
+                                    {t('Users will be able to see the reason for the deletion.')}
                                 </p>
                                 <Input
                                     name="reason"
                                     value={reason}
                                     onChange={(event) => setReason(event.target.value)}
-                                    placeholder="Add a legit reason here"
+                                    placeholder={t('Add a legit reason here')}
                                     required
                                 />
                                 <Button type="submit" variant="destructive" size="sm" className="mt-2" disabled={formProcessing}>
                                     <TrashIcon data-icon="inline-start" weight="bold" />
-                                    Delete
+                                    {t('Delete')}
                                 </Button>
                             </>
                         )}
@@ -149,7 +153,7 @@ export default function SkinCard({
                             <Button variant="outline" size="sm" asChild>
                                 <Link href={show.url(skin.uuid)}>
                                     <EyeIcon data-icon="inline-start" weight="bold" />
-                                    Show
+                                    {t('Show')}
                                 </Link>
                             </Button>
                         )}
@@ -168,7 +172,7 @@ export default function SkinCard({
                                 }
                             >
                                 <HeartIcon data-icon="inline-start" weight="fill" />
-                                {skin.liked ? 'Liked' : 'Like'}
+                                {skin.liked ? t('Liked') : t('Like')}
                             </Button>
                         )}
                         {authenticated && skin.is_owner && (
@@ -176,7 +180,7 @@ export default function SkinCard({
                                 <Button variant="outline" size="sm" asChild>
                                     <Link href={edit.url(skin.uuid)}>
                                         <PencilSimpleIcon data-icon="inline-start" weight="bold" />
-                                        Edit
+                                        {t('Edit')}
                                     </Link>
                                 </Button>
                                 <Button
@@ -185,7 +189,7 @@ export default function SkinCard({
                                     variant="destructive"
                                     disabled={processing}
                                     onClick={() => {
-                                        if (confirm('Delete this skin?')) {
+                                        if (confirm(t('Delete this skin?'))) {
                                             runAction(() =>
                                                 router.delete(destroy.url(skin.uuid), {
                                                     onFinish: () => setProcessing(false),
@@ -195,7 +199,7 @@ export default function SkinCard({
                                     }}
                                 >
                                     <TrashIcon data-icon="inline-start" weight="bold" />
-                                    Delete
+                                    {t('Delete')}
                                 </Button>
                             </>
                         )}
@@ -214,7 +218,7 @@ export default function SkinCard({
                                 }
                             >
                                 <FloppyDiskIcon data-icon="inline-start" weight="bold" />
-                                Apply
+                                {t('Apply')}
                             </Button>
                         )}
                     </div>

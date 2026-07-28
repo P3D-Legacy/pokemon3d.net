@@ -1,6 +1,7 @@
 import { Form, Head, Link } from '@inertiajs/react';
 
 import { Button } from '@/components/ui/button';
+import { useTranslations } from '@/hooks/use-translations';
 import { create, destroy, edit, show } from '@/routes/tags';
 import type { Paginated } from '@/types';
 
@@ -9,15 +10,17 @@ type Props = {
 };
 
 export default function TagsIndex({ tags }: Props) {
+    const { t } = useTranslations();
+
     return (
         <>
-            <Head title="Tags" />
+            <Head title={t('Tags')} />
 
             <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
                 <div className="mb-6 flex items-center justify-between">
-                    <h1 className="text-xl font-semibold">Tags</h1>
+                    <h1 className="text-xl font-semibold">{t('Tags')}</h1>
                     <Link href={create.url()}>
-                        <Button variant="default">Create</Button>
+                        <Button variant="default">{t('Create')}</Button>
                     </Link>
                 </div>
 
@@ -25,8 +28,12 @@ export default function TagsIndex({ tags }: Props) {
                     <table className="min-w-full divide-y divide-slate-200 dark:divide-slate-800">
                         <thead className="bg-slate-50 dark:bg-slate-950">
                             <tr>
-                                <th className="px-6 py-3 text-left text-xs font-medium uppercase text-slate-500">ID</th>
-                                <th className="px-6 py-3 text-left text-xs font-medium uppercase text-slate-500">Name</th>
+                                <th className="px-6 py-3 text-left text-xs font-medium uppercase text-slate-500">
+                                    {t('ID')}
+                                </th>
+                                <th className="px-6 py-3 text-left text-xs font-medium uppercase text-slate-500">
+                                    {t('Name')}
+                                </th>
                                 <th className="px-6 py-3" />
                             </tr>
                         </thead>
@@ -37,10 +44,10 @@ export default function TagsIndex({ tags }: Props) {
                                     <td className="px-6 py-4 text-sm">{tag.name}</td>
                                     <td className="space-x-2 px-6 py-4 text-right text-sm">
                                         <Link href={show.url(tag.id)} className="text-blue-600 hover:underline">
-                                            View
+                                            {t('View')}
                                         </Link>
                                         <Link href={edit.url(tag.id)} className="text-yellow-600 hover:underline">
-                                            Edit
+                                            {t('Edit')}
                                         </Link>
                                         <Form {...destroy.form(tag.id)} className="inline">
                                             {({ processing }) => (
@@ -49,12 +56,12 @@ export default function TagsIndex({ tags }: Props) {
                                                     disabled={processing}
                                                     className="text-red-600 hover:underline"
                                                     onClick={(event) => {
-                                                        if (! confirm('Are you sure?')) {
+                                                        if (! confirm(t('Are you sure?'))) {
                                                             event.preventDefault();
                                                         }
                                                     }}
                                                 >
-                                                    Delete
+                                                    {t('Delete')}
                                                 </button>
                                             )}
                                         </Form>

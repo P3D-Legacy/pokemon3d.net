@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { useTranslations } from '@/hooks/use-translations';
 import type { SharedPageProps } from '@/types';
 
 type Props = {
@@ -23,20 +24,25 @@ type Props = {
 export default function SkinsCreate({ slots, width, height }: Props) {
     const [previewUrl, setPreviewUrl] = useState<string | null>(null);
     const { flash } = usePage<SharedPageProps>().props;
+    const { t } = useTranslations();
 
     return (
         <>
-            <Head title="Create Skin" />
+            <Head title={t('Create Skin')} />
 
             <div className="mx-auto w-full max-w-3xl px-4 py-10 sm:px-6 lg:px-8">
                 <div className="mb-8 flex flex-col gap-2">
                     <div className="flex items-center gap-2 text-muted-foreground">
                         <PaintBrushIcon className="size-5" weight="fill" />
-                        <span className="text-sm">Skins</span>
+                        <span className="text-sm">{t('Skins')}</span>
                     </div>
-                    <h1 className="text-3xl font-semibold tracking-tight">Create skin</h1>
+                    <h1 className="text-3xl font-semibold tracking-tight">{t('Create Skin')}</h1>
                     <p className="text-sm text-muted-foreground">
-                        Upload a {width}×{height} PNG. Slots remaining: {Math.max(slots.max - slots.used, 0)}.
+                        {t('Upload a :width×:height PNG. Slots remaining: :count.', {
+                            width,
+                            height,
+                            count: Math.max(slots.max - slots.used, 0),
+                        })}
                     </p>
                 </div>
 
@@ -54,12 +60,12 @@ export default function SkinsCreate({ slots, width, height }: Props) {
                         {({ processing, errors }) => (
                             <>
                                 <div>
-                                    <Label htmlFor="name">Name</Label>
+                                    <Label htmlFor="name">{t('Name')}</Label>
                                     <Input id="name" name="name" type="text" className="mt-1" autoComplete="name" required />
                                     <InputError message={errors.name} className="mt-2" />
                                 </div>
                                 <div>
-                                    <Label htmlFor="image">Select image file</Label>
+                                    <Label htmlFor="image">{t('Select image file')}</Label>
                                     <Input
                                         id="image"
                                         name="image"
@@ -82,7 +88,7 @@ export default function SkinsCreate({ slots, width, height }: Props) {
                                     {previewUrl && (
                                         <img
                                             src={previewUrl}
-                                            alt="Skin preview"
+                                            alt={t('Skin preview')}
                                             className="mt-4 h-32 w-24 object-contain"
                                             width={96}
                                             height={128}
@@ -92,8 +98,8 @@ export default function SkinsCreate({ slots, width, height }: Props) {
                                 <div className="flex items-start gap-2">
                                     <Checkbox id="public" name="public" value="1" className="mt-0.5" />
                                     <label htmlFor="public" className="text-sm text-muted-foreground">
-                                        <span className="font-medium text-foreground">Public</span> Other users will be
-                                        able to see this skin
+                                        <span className="font-medium text-foreground">{t('Public')}</span>{' '}
+                                        {t('Other users will be able to see this skin')}
                                     </label>
                                 </div>
                                 <InputError message={errors.public} />
@@ -101,11 +107,11 @@ export default function SkinsCreate({ slots, width, height }: Props) {
                                     <Checkbox id="rules" name="rules" value="1" required className="mt-0.5" />
                                     <label htmlFor="rules" className="text-sm text-muted-foreground">
                                         <span className="font-medium text-foreground">
-                                            I accept and understand the rules
+                                            {t('I accept and understand the rules')}
                                         </span>{' '}
-                                        for uploading a custom skin. Read the rules on the{' '}
+                                        {t('for uploading a custom skin. Read the rules on the')}{' '}
                                         <Link href={skinHome.url()} className="text-primary hover:underline">
-                                            skin home page
+                                            {t('skin home page')}
                                         </Link>
                                         .
                                     </label>
@@ -113,7 +119,7 @@ export default function SkinsCreate({ slots, width, height }: Props) {
                                 <InputError message={errors.rules} />
                                 <Button type="submit" variant="default" disabled={processing}>
                                     <UploadSimpleIcon data-icon="inline-start" weight="bold" />
-                                    Upload
+                                    {t('Upload')}
                                 </Button>
                             </>
                         )}

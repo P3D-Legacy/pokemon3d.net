@@ -1,6 +1,7 @@
 import { HandbagIcon } from '@phosphor-icons/react';
 
 import { Badge } from '@/components/ui/badge';
+import { useTranslations } from '@/hooks/use-translations';
 
 export type BagItem = {
     id: string;
@@ -13,8 +14,10 @@ type BagPanelProps = {
 };
 
 export function BagPanel({ items }: BagPanelProps) {
+    const { t } = useTranslations();
+
     if (items.length === 0) {
-        return <p className="text-sm text-muted-foreground">Bag is empty</p>;
+        return <p className="text-sm text-muted-foreground">{t('Bag is empty')}</p>;
     }
 
     return (
@@ -22,9 +25,9 @@ export function BagPanel({ items }: BagPanelProps) {
             <div className="flex flex-col gap-1">
                 <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
                     <HandbagIcon className="size-4" weight="fill" />
-                    Bag
+                    {t('Bag')}
                 </div>
-                <div className="text-2xl font-bold">{items.length} stacks</div>
+                <div className="text-2xl font-bold">{t(':count stacks', { count: items.length })}</div>
             </div>
 
             <div className="grid w-full min-w-0 grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3">
@@ -35,7 +38,9 @@ export function BagPanel({ items }: BagPanelProps) {
                     >
                         <div className="min-w-0">
                             <div className="truncate font-medium">{item.name}</div>
-                            <div className="truncate text-xs text-muted-foreground">ID {item.id}</div>
+                            <div className="truncate text-xs text-muted-foreground">
+                                {t('ID :id', { id: item.id })}
+                            </div>
                         </div>
                         <Badge variant="secondary" className="shrink-0">
                             ×{item.amount}

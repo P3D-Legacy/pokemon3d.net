@@ -14,6 +14,7 @@ import type { ComponentType, SVGProps } from 'react';
 import { useState } from 'react';
 
 import { Input } from '@/components/ui/input';
+import { useTranslations } from '@/hooks/use-translations';
 import { cn } from '@/lib/utils';
 
 export type StatisticItem = {
@@ -84,6 +85,7 @@ function iconForStat(name: string): IconComponent {
 }
 
 export function StatisticsPanel({ statistics }: StatisticsPanelProps) {
+    const { t } = useTranslations();
     const [query, setQuery] = useState('');
 
     const filtered = statistics.filter((stat) => {
@@ -97,7 +99,7 @@ export function StatisticsPanel({ statistics }: StatisticsPanelProps) {
     });
 
     if (statistics.length === 0) {
-        return <p className="text-sm text-muted-foreground">No statistics available</p>;
+        return <p className="text-sm text-muted-foreground">{t('No statistics available')}</p>;
     }
 
     return (
@@ -106,7 +108,7 @@ export function StatisticsPanel({ statistics }: StatisticsPanelProps) {
                 <div className="flex flex-col gap-1">
                     <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
                         <ChartBarIcon className="size-4" weight="fill" />
-                        Tracked
+                        {t('Tracked')}
                     </div>
                     <div className="text-2xl font-bold">{statistics.length}</div>
                 </div>
@@ -116,9 +118,9 @@ export function StatisticsPanel({ statistics }: StatisticsPanelProps) {
                     <Input
                         value={query}
                         onChange={(event) => setQuery(event.target.value)}
-                        placeholder="Search statistics"
+                        placeholder={t('Search statistics')}
                         className="pl-8"
-                        aria-label="Search statistics"
+                        aria-label={t('Search statistics')}
                     />
                 </div>
             </div>
@@ -126,13 +128,13 @@ export function StatisticsPanel({ statistics }: StatisticsPanelProps) {
             {filtered.length === 0 ? (
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
                     <MagnifyingGlassIcon className="size-4" />
-                    No statistics match this search
+                    {t('No statistics match this search')}
                 </div>
             ) : (
                 <div className="grid w-full min-w-0 grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
                     {filtered.map((stat, index) => {
                         const Icon = iconForStat(stat.name);
-                        const label = humaniseName(stat.name) || 'Statistic';
+                        const label = humaniseName(stat.name) || t('Statistic');
 
                         return (
                             <div

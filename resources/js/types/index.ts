@@ -32,6 +32,20 @@ export type SharedPageProps = {
     appName: string;
     locale: string;
     env: string;
+    languages: {
+        current: string;
+        current_name: string;
+        current_flag: string;
+        options: Array<{
+            code: string;
+            name: string;
+            flag: string;
+            url: string;
+        }>;
+        contribute_url: string;
+        contribute_label: string;
+    };
+    translations: Record<string, string>;
     socialLogin: {
         discord: boolean;
         twitch: boolean;

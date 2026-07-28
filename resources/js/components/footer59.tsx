@@ -2,6 +2,7 @@ import { Link, usePage } from '@inertiajs/react';
 import { DiscordLogoIcon, GithubLogoIcon } from '@phosphor-icons/react';
 import type { ReactNode } from 'react';
 
+import { useTranslations } from '@/hooks/use-translations';
 import { cn } from '@/lib/utils';
 import { contact, discord, github, home, legal } from '@/routes';
 import { index as blogIndex } from '@/routes/blog';
@@ -26,30 +27,34 @@ interface Footer59Props {
 
 const Footer59 = ({ className }: Footer59Props) => {
     const { appName } = usePage<SharedPageProps>().props;
+    const { t } = useTranslations();
 
     const quickLinks: FooterLink[] = [
-        { name: 'Blog', href: blogIndex.url() },
-        { name: 'Contact', href: contact.url() },
-        { name: 'Legal', href: legal.url() },
+        { name: t('Blog'), href: blogIndex.url() },
+        { name: t('Contact'), href: contact.url() },
+        { name: t('Legal'), href: legal.url() },
     ];
 
     const legalLinks: FooterLink[] = [
-        { name: 'Terms and Conditions', href: termsShow.url() },
-        { name: 'Privacy Policy', href: policyShow.url() },
+        { name: t('Terms and Conditions'), href: termsShow.url() },
+        { name: t('Privacy Policy'), href: policyShow.url() },
     ];
 
     const socialLinks: FooterSocialLink[] = [
         {
             icon: <DiscordLogoIcon weight="fill" />,
             href: discord.url(),
-            label: 'Discord',
+            label: t('Discord'),
         },
         {
             icon: <GithubLogoIcon weight="fill" />,
             href: github.url(),
-            label: 'GitHub',
+            label: t('GitHub'),
         },
     ];
+
+    const legalPageLabel = t('legal page');
+    const seeTheLinkParts = t('See the :link for more information.', { link: '__LINK__' }).split('__LINK__');
 
     return (
         <section className={cn('border-t bg-background py-8 lg:py-10', className)}>
@@ -61,7 +66,7 @@ const Footer59 = ({ className }: Footer59Props) => {
                         </Link>
 
                         <nav
-                            aria-label="Footer"
+                            aria-label={t('Footer')}
                             className="flex w-full flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm font-medium text-muted-foreground lg:flex-1 lg:justify-center"
                         >
                             {quickLinks.map((link) => (
@@ -89,9 +94,16 @@ const Footer59 = ({ className }: Footer59Props) => {
 
                     <div className="flex w-full flex-col items-center gap-3 text-xs font-medium text-muted-foreground lg:flex-row lg:justify-between">
                         <p className="max-w-xl text-center lg:text-left">
-                            {appName} is not affiliated with Nintendo, Creatures Inc. or GAME FREAK Inc.<br/><br/>
-                            See the <Link href={legal.url()} className="underline hover:text-primary">legal page</Link> for more information.
-
+                            {t(':app is not affiliated with Nintendo, Creatures Inc. or GAME FREAK Inc.', {
+                                app: appName,
+                            })}
+                            <br />
+                            <br />
+                            {seeTheLinkParts[0]}
+                            <Link href={legal.url()} className="underline hover:text-primary">
+                                {legalPageLabel}
+                            </Link>
+                            {seeTheLinkParts[1]}
                         </p>
                         <ul className="flex flex-wrap justify-center gap-x-4 gap-y-1 lg:justify-end">
                             {legalLinks.map((link) => (

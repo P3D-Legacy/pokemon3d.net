@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Support\JsonTranslations;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 
@@ -72,12 +73,51 @@ class HandleInertiaRequests extends Middleware
             'appName' => config('app.name'),
             'locale' => app()->getLocale(),
             'env' => config('app.env'),
+            'languages' => $this->sharedLanguages(),
+            'translations' => fn () => JsonTranslations::forLocale(),
             'socialLogin' => [
                 'discord' => filled(config('services.discord.client_id')) && filled(config('services.discord.client_secret')),
                 'twitch' => filled(config('services.twitch.client_id')) && filled(config('services.twitch.client_secret')),
                 'gamejolt' => filled(config('services.gamejolt.private_key')),
                 'xenforo' => filled(config('services.xenforo.api_key')) && filled(config('services.xenforo.api_url')),
             ],
+        ];
+    }
+
+    /**
+     * @return array{
+     *     current: string,
+     *     current_name: string,
+     *     current_flag: string,
+     *     options: list<array{code: string, name: string, flag: string, url: string}>,
+     *     contribute_url: string,
+     *     contribute_label: string
+     * }
+     */
+    private function sharedLanguages(): array
+    {
+        $locale = app()->getLocale();
+        $codes = config('app.env') === 'production'
+            ? config('language.done', [])
+            : config('language.allowed', []);
+
+        $options = collect($codes)
+            ->map(fn (string $code): array => [
+                'code' => $code,
+                'name' => language()->getName($code),
+                'flag' => language()->country($code),
+                'url' => language()->back($code),
+            ])
+            ->values()
+            ->all();
+
+        return [
+            'current' => $locale,
+            'current_name' => language()->getName($locale),
+            'current_flag' => language()->country($locale),
+            'options' => $options,
+            'contribute_url' => config('app.lang_contribution_url') ?: '#',
+            'contribute_label' => __('Contribute your language').'!',
         ];
     }
 }

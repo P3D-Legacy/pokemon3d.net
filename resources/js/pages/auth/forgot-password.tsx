@@ -7,6 +7,7 @@ import { Login7 } from '@/components/login7';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { useTranslations } from '@/hooks/use-translations';
 import { login } from '@/routes';
 
 type Props = {
@@ -14,23 +15,27 @@ type Props = {
 };
 
 export default function ForgotPassword({ status }: Props) {
+    const { t } = useTranslations();
+
     return (
         <>
-            <Head title="Forgot password" />
+            <Head title={t('Forgot your password?')} />
 
             <Login7
                 footer={
                     <div className="mx-auto flex gap-1 text-sm">
-                        <p>Remember your password?</p>
+                        <p>{t('Remember your password?')}</p>
                         <Link href={login()} className="underline">
-                            Log in
+                            {t('Log in')}
                         </Link>
                     </div>
                 }
             >
                 <div className="grid gap-4">
                     <p className="text-sm text-muted-foreground">
-                        Forgot your password? Enter your email and we will email you a password reset link.
+                        {t(
+                            'Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.',
+                        )}
                     </p>
 
                     {status && <div className="text-sm font-medium text-green-600">{status}</div>}
@@ -39,12 +44,12 @@ export default function ForgotPassword({ status }: Props) {
                         {({ processing, errors }) => (
                             <>
                                 <div className="grid gap-2">
-                                    <Label htmlFor="email">Email</Label>
+                                    <Label htmlFor="email">{t('Email')}</Label>
                                     <Input
                                         id="email"
                                         type="email"
                                         name="email"
-                                        placeholder="ash.ketchum@example.com"
+                                        placeholder={t('ash.ketchum@example.com')}
                                         required
                                         autoFocus
                                         autoComplete="email"
@@ -54,7 +59,7 @@ export default function ForgotPassword({ status }: Props) {
 
                                 <Button type="submit" className="w-full" disabled={processing}>
                                     <PaperPlaneTiltIcon data-icon="inline-start" />
-                                    Email password reset link
+                                    {t('Email Password Reset Link')}
                                 </Button>
                             </>
                         )}

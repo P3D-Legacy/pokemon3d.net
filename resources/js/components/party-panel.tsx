@@ -7,13 +7,13 @@ import {
     HeartIcon,
     ImageBrokenIcon,
     LightningIcon,
-    PawPrintIcon,
     SparkleIcon,
 } from '@phosphor-icons/react';
 import type { ComponentType, SVGProps } from 'react';
 import { useState } from 'react';
 
 import { Badge } from '@/components/ui/badge';
+import { useTranslations } from '@/hooks/use-translations';
 
 export type PartyMember = {
     id: number;
@@ -61,8 +61,9 @@ function genderIcon(gender?: string | null): IconComponent | null {
 }
 
 function PartySprite({ member }: { member: PartyMember }) {
+    const { t } = useTranslations();
     const [failed, setFailed] = useState(false);
-    const label = `${member.is_egg ? 'Egg' : member.nickname || member.name}${member.shiny ? ', shiny' : ''}`;
+    const label = `${member.is_egg ? t('Egg') : member.nickname || member.name}${member.shiny ? t(', shiny') : ''}`;
 
     if (failed || !member.sprite_url) {
         return (
@@ -76,10 +77,6 @@ function PartySprite({ member }: { member: PartyMember }) {
         );
     }
 
-    // Species sheets are 192x192 with four 96x96 frames:
-    // [front normal][back normal]
-    // [front shiny ][back shiny ]
-    // Eggs are a single image and use contain.
     if (member.is_egg) {
         return (
             <div className="flex size-24 shrink-0 items-center justify-center overflow-hidden border border-border bg-muted">
@@ -112,9 +109,12 @@ function PartySprite({ member }: { member: PartyMember }) {
     );
 }
 
-export function PartyPanel({ party, title = 'Party', showSummary = true }: PartyPanelProps) {
+export function PartyPanel({ party, title, showSummary = true }: PartyPanelProps) {
+    const { t } = useTranslations();
+    const resolvedTitle = title ?? t('Party');
+
     if (party.length === 0) {
-        return <p className="text-sm text-muted-foreground">No Pokémon in party</p>;
+        return <p className="text-sm text-muted-foreground">{t('No Pokémon in party')}</p>;
     }
 
     return (
@@ -123,10 +123,10 @@ export function PartyPanel({ party, title = 'Party', showSummary = true }: Party
                 <div className="flex flex-col gap-1">
                     <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
                         <CirclesFourIcon className="size-4" weight="fill" />
-                        {title}
+                        {resolvedTitle}
                     </div>
                     <div className="text-2xl font-bold">
-                        {title === 'Party' ? `${party.length} / 6` : party.length}
+                        {resolvedTitle === t('Party') ? `${party.length} / 6` : party.length}
                     </div>
                 </div>
             ) : null}
@@ -134,7 +134,7 @@ export function PartyPanel({ party, title = 'Party', showSummary = true }: Party
             <div className="grid w-full min-w-0 grid-cols-1 gap-3 sm:grid-cols-2">
                 {party.map((member, index) => {
                     const GenderIcon = genderIcon(member.gender);
-                    const displayName = member.is_egg ? 'Egg' : member.nickname || member.name;
+                    const displayName = member.is_egg ? t('Egg') : member.nickname || member.name;
                     const showSpecies = !member.is_egg && Boolean(member.nickname);
 
                     return (
@@ -157,7 +157,7 @@ export function PartyPanel({ party, title = 'Party', showSummary = true }: Party
                                     </div>
                                     {!member.is_egg ? (
                                         <Badge variant="secondary" className="shrink-0">
-                                            Lv {member.level}
+                                            {t('Lv :level', { level: member.level })}
                                         </Badge>
                                     ) : null}
                                 </div>
@@ -166,13 +166,13 @@ export function PartyPanel({ party, title = 'Party', showSummary = true }: Party
                                     {member.shiny ? (
                                         <Badge variant="default">
                                             <SparkleIcon data-icon="inline-start" weight="fill" />
-                                            Shiny
+                                            {t('Shiny')}
                                         </Badge>
                                     ) : null}
                                     {member.is_egg ? (
                                         <Badge variant="outline">
                                             <EggIcon data-icon="inline-start" weight="fill" />
-                                            Egg
+                                            {t('Egg')}
                                         </Badge>
                                     ) : null}
                                     {member.status ? <Badge variant="outline">{member.status}</Badge> : null}
@@ -181,7 +181,7 @@ export function PartyPanel({ party, title = 'Party', showSummary = true }: Party
                                 <dl className="grid min-w-0 gap-1 text-xs">
                                     {member.nature ? (
                                         <div className="flex min-w-0 justify-between gap-2">
-                                            <dt className="text-muted-foreground">Nature</dt>
+                                            <dt className="text-muted-foreground">{t('Nature')}</dt>
                                             <dd className="truncate font-medium">{member.nature}</dd>
                                         </div>
                                     ) : null}
@@ -189,7 +189,7 @@ export function PartyPanel({ party, title = 'Party', showSummary = true }: Party
                                         <div className="flex min-w-0 items-center justify-between gap-2">
                                             <dt className="flex items-center gap-1 text-muted-foreground">
                                                 <LightningIcon className="size-3" weight="fill" />
-                                                Ability
+                                                {t('Ability')}
                                             </dt>
                                             <dd className="truncate font-medium">{member.ability}</dd>
                                         </div>
@@ -198,7 +198,7 @@ export function PartyPanel({ party, title = 'Party', showSummary = true }: Party
                                         <div className="flex min-w-0 items-center justify-between gap-2">
                                             <dt className="flex items-center gap-1 text-muted-foreground">
                                                 <HeartIcon className="size-3" weight="fill" />
-                                                Friendship
+                                                {t('Friendship')}
                                             </dt>
                                             <dd className="truncate font-medium">{member.friendship}</dd>
                                         </div>

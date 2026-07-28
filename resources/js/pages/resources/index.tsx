@@ -13,6 +13,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { useTranslations } from '@/hooks/use-translations';
 import { cn } from '@/lib/utils';
 import { create, index as resourceIndex } from '@/routes/resource';
 import type { Paginated } from '@/types';
@@ -67,8 +68,10 @@ type Props = {
 };
 
 function Stars({ count }: { count: number }) {
+    const { t } = useTranslations();
+
     return (
-        <span className="inline-flex items-center gap-0.5" aria-label={`${count} out of 5 stars`}>
+        <span className="inline-flex items-center gap-0.5" aria-label={t(':count out of 5 stars', { count })}>
             {Array.from({ length: 5 }, (_, index) => (
                 <StarIcon
                     key={index}
@@ -100,6 +103,8 @@ function paginationLabel(label: string): string {
 }
 
 export default function ResourcesIndex({ resources, categories, selectedCategory, canCreate, copy }: Props) {
+    const { t } = useTranslations();
+
     return (
         <>
             <Head title={copy.title} />
@@ -109,13 +114,13 @@ export default function ResourcesIndex({ resources, categories, selectedCategory
                     <div className="flex flex-col gap-2">
                         <div className="flex items-center gap-2 text-muted-foreground">
                             <BooksIcon className="size-5" weight="fill" />
-                            <span className="text-sm">Community</span>
+                            <span className="text-sm">{t('Community')}</span>
                         </div>
                         <h1 className="text-3xl font-semibold tracking-tight">{copy.title}</h1>
                         <p className="text-sm text-muted-foreground">
                             {selectedCategory
-                                ? `Browsing ${selectedCategory.name}.`
-                                : 'Browse mods, tools, and other community resources.'}
+                                ? t('Browsing :name.', { name: selectedCategory.name })
+                                : t('Browse mods, tools, and other community resources.')}
                         </p>
                     </div>
                 </div>

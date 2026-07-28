@@ -12,6 +12,7 @@ import type { ComponentType, SVGProps } from 'react';
 
 import { Button } from '@/components/ui/button';
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { useTranslations } from '@/hooks/use-translations';
 import type { SharedPageProps } from '@/types';
 
 type IconComponent = ComponentType<SVGProps<SVGSVGElement>>;
@@ -109,6 +110,7 @@ function FeatureCard({
 
 export default function Dashboard({ copy, links, author }: Props) {
     const { auth } = usePage<SharedPageProps>().props;
+    const { t } = useTranslations();
     const username = auth.user?.username;
 
     const features: Array<{
@@ -150,19 +152,20 @@ export default function Dashboard({ copy, links, author }: Props) {
 
     return (
         <>
-            <Head title="Dashboard" />
+            <Head title={t('Dashboard')} />
 
             <div className="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
                 <div className="mb-8 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
                     <div className="flex max-w-3xl flex-col gap-3">
                         <div className="flex items-center gap-2 text-muted-foreground">
                             <HouseIcon className="size-5" weight="fill" />
-                            <span className="text-sm">Dashboard</span>
+                            <span className="text-sm">{t('Dashboard')}</span>
                         </div>
                         <h1 className="text-3xl font-semibold tracking-tight">{copy.welcome}</h1>
                         {username ? (
                             <p className="text-sm text-muted-foreground">
-                                Signed in as <span className="font-medium text-foreground">{username}</span>
+                                {t('Signed in as')}{' '}
+                                <span className="font-medium text-foreground">{username}</span>
                             </p>
                         ) : null}
                         <div className="flex flex-col gap-3 text-sm leading-relaxed text-muted-foreground">

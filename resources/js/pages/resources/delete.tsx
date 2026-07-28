@@ -3,6 +3,7 @@ import { ArrowLeftIcon, WarningIcon } from '@phosphor-icons/react';
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { useTranslations } from '@/hooks/use-translations';
 import { destroy, uuid as resourceShow } from '@/routes/resource';
 
 type Props = {
@@ -23,6 +24,8 @@ type Props = {
 };
 
 export default function ResourceDelete({ resource, copy }: Props) {
+    const { t } = useTranslations();
+
     return (
         <>
             <Head title={copy.title} />
@@ -32,7 +35,7 @@ export default function ResourceDelete({ resource, copy }: Props) {
                     <Button variant="ghost" size="sm" className="w-fit px-0" asChild>
                         <Link href={resourceShow.url(resource.uuid)}>
                             <ArrowLeftIcon data-icon="inline-start" />
-                            Back to {resource.name}
+                            {t('Back to :name', { name: resource.name })}
                         </Link>
                     </Button>
                     <div className="flex flex-col gap-2">

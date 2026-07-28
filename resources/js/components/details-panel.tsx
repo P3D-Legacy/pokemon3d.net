@@ -17,6 +17,7 @@ import {
 import type { ComponentType, ReactNode, SVGProps } from 'react';
 
 import { Badge } from '@/components/ui/badge';
+import { useTranslations } from '@/hooks/use-translations';
 import { cn } from '@/lib/utils';
 
 export type PlayerDetails = Record<string, string | number | boolean | null | undefined>;
@@ -25,22 +26,22 @@ type IconComponent = ComponentType<SVGProps<SVGSVGElement> & { weight?: 'regular
 
 type DetailField = {
     key: string;
-    label: string;
+    labelKey: string;
     icon: IconComponent;
 };
 
 const fields: DetailField[] = [
-    { key: 'Name', label: 'Name', icon: UserIcon },
-    { key: 'RivalName', label: 'Rival', icon: UsersIcon },
-    { key: 'Location', label: 'Location', icon: MapPinIcon },
-    { key: 'Money', label: 'Money', icon: CoinsIcon },
-    { key: 'Points', label: 'Points', icon: StarIcon },
-    { key: 'GTSStars', label: 'GTS Stars', icon: StarIcon },
-    { key: 'Gender', label: 'Gender', icon: GenderIntersexIcon },
-    { key: 'OT', label: 'OT', icon: IdentificationCardIcon },
-    { key: 'SaveCreated', label: 'Save created', icon: CalendarBlankIcon },
-    { key: 'HasPokedex', label: 'Pokédex', icon: BookOpenIcon },
-    { key: 'HasPokegear', label: 'Pokégear', icon: DeviceMobileIcon },
+    { key: 'Name', labelKey: 'Name', icon: UserIcon },
+    { key: 'RivalName', labelKey: 'Rival', icon: UsersIcon },
+    { key: 'Location', labelKey: 'Location', icon: MapPinIcon },
+    { key: 'Money', labelKey: 'Money', icon: CoinsIcon },
+    { key: 'Points', labelKey: 'Points', icon: StarIcon },
+    { key: 'GTSStars', labelKey: 'GTS Stars', icon: StarIcon },
+    { key: 'Gender', labelKey: 'Gender', icon: GenderIntersexIcon },
+    { key: 'OT', labelKey: 'OT', icon: IdentificationCardIcon },
+    { key: 'SaveCreated', labelKey: 'Save created', icon: CalendarBlankIcon },
+    { key: 'HasPokedex', labelKey: 'Pokédex', icon: BookOpenIcon },
+    { key: 'HasPokegear', labelKey: 'Pokégear', icon: DeviceMobileIcon },
 ];
 
 function genderIcon(value: string): IconComponent {
@@ -57,7 +58,9 @@ function genderIcon(value: string): IconComponent {
     return GenderIntersexIcon;
 }
 
-function formatValue(key: string, value: string): ReactNode {
+type Translate = (key: string, replace?: Record<string, string | number>) => string;
+
+function formatValue(key: string, value: string, t: Translate): ReactNode {
     if (key === 'HasPokedex' || key === 'HasPokegear') {
         const isYes = value.trim().toLowerCase() === 'yes' || value === '1';
 
@@ -68,7 +71,7 @@ function formatValue(key: string, value: string): ReactNode {
                 ) : (
                     <XCircleIcon data-icon="inline-start" weight="fill" />
                 )}
-                {isYes ? 'Yes' : 'No'}
+                {isYes ? t('Yes') : t('No')}
             </Badge>
         );
     }
@@ -86,11 +89,11 @@ function formatValue(key: string, value: string): ReactNode {
 
         if (!Number.isNaN(stars) && stars >= 0) {
             return (
-                <div className="flex items-center gap-1" aria-label={`${stars} stars`}>
+                <div className="flex items-center gap-1" aria-label={t(':stars stars', { stars })}>
                     {Array.from({ length: Math.min(stars, 5) }, (_, index) => (
                         <StarIcon key={index} className="size-4 text-yellow-500" weight="fill" />
                     ))}
-                    {stars === 0 ? <span className="text-muted-foreground">None</span> : null}
+                    {stars === 0 ? <span className="text-muted-foreground">{t('None')}</span> : null}
                 </div>
             );
         }
@@ -104,6 +107,8 @@ type DetailsPanelProps = {
 };
 
 export function DetailsPanel({ details }: DetailsPanelProps) {
+    const { t } = useTranslations();
+
     const rows = fields
         .map((field) => {
             const raw = details[field.key];
@@ -120,7 +125,7 @@ export function DetailsPanel({ details }: DetailsPanelProps) {
         .filter((row): row is DetailField & { value: string } => row !== null);
 
     if (rows.length === 0) {
-        return <p className="text-sm text-muted-foreground">No player details available</p>;
+        return <p className="text-sm text-muted-foreground">{t('No player details available')}</p>;
     }
 
     return (
@@ -134,9 +139,9 @@ export function DetailsPanel({ details }: DetailsPanelProps) {
                             <Icon className="size-5 text-muted-foreground" weight="fill" />
                         </div>
                         <div className="flex min-w-0 flex-1 flex-col gap-1">
-                            <div className="text-xs text-muted-foreground">{row.label}</div>
+                            <div className="text-xs text-muted-foreground">{t(row.labelKey)}</div>
                             <div className={cn('text-sm font-medium', row.key !== 'GTSStars' && 'truncate')}>
-                                {formatValue(row.key, row.value)}
+                                {formatValue(row.key, row.value, t)}
                             </div>
                         </div>
                     </div>

@@ -11,7 +11,11 @@ test('login screen is rendered with inertia', function () {
         ->assertInertia(fn (Assert $page) => $page
             ->component('auth/login')
             ->has('canResetPassword')
-            ->has('socialLogin'));
+            ->has('socialLogin')
+            ->has('translations')
+            ->where('translations.Log in', 'Log in')
+            ->where('translations.Register', 'Register')
+            ->where('translations.Email or Username', 'Email or Username'));
 });
 
 test('register screen is rendered with inertia', function () {

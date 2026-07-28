@@ -7,69 +7,82 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
+import { useTranslations } from '@/hooks/use-translations';
 import { index, store } from '@/routes/server';
 
 export default function ServersCreate() {
+    const { t } = useTranslations();
+
     return (
         <>
-            <Head title="Add Server" />
+            <Head title={t('Add server')} />
 
             <div className="mx-auto w-full max-w-2xl px-4 py-10 sm:px-6 lg:px-8">
                 <div className="mb-8 flex flex-col gap-3">
                     <Button variant="ghost" size="sm" className="w-fit px-0" asChild>
                         <Link href={index.url()}>
                             <ArrowLeftIcon data-icon="inline-start" />
-                            Back to servers
+                            {t('Back to servers')}
                         </Link>
                     </Button>
                     <div className="flex flex-col gap-2">
                         <div className="flex items-center gap-2 text-muted-foreground">
                             <HardDrivesIcon className="size-5" weight="fill" />
-                            <span className="text-sm">Multiplayer</span>
+                            <span className="text-sm">{t('Multiplayer')}</span>
                         </div>
-                        <h1 className="text-3xl font-semibold tracking-tight">Add server</h1>
+                        <h1 className="text-3xl font-semibold tracking-tight">{t('Add server')}</h1>
                         <p className="text-sm text-muted-foreground">
-                            List a community server so other trainers can find and join it.
+                            {t('List a community server so other trainers can find and join it.')}
                         </p>
                     </div>
                 </div>
 
                 <Card>
                     <CardHeader>
-                        <CardTitle className="text-base font-semibold">Server details</CardTitle>
+                        <CardTitle className="text-base font-semibold">{t('Server details')}</CardTitle>
                         <CardDescription>
-                            Use a public host and port that players can reach. Names cannot contain "official".
+                            {t('Use a public host and port that players can reach. Names cannot contain "official".')}
                         </CardDescription>
                     </CardHeader>
                     <CardContent>
                         <Form {...store.form()} className="flex flex-col gap-4">
                             {({ processing, errors }) => (
                                 <>
-                                    <Field id="name" label="Name" error={errors.name} placeholder="My adventure world" />
-                                    <Field id="host" label="Host" error={errors.host} placeholder="play.example.com" />
+                                    <Field
+                                        id="name"
+                                        label={t('Name')}
+                                        error={errors.name}
+                                        placeholder={t('My adventure world')}
+                                    />
+                                    <Field
+                                        id="host"
+                                        label={t('Host')}
+                                        error={errors.host}
+                                        placeholder="play.example.com"
+                                    />
                                     <Field
                                         id="port"
-                                        label="Port"
+                                        label={t('Port')}
                                         type="number"
                                         error={errors.port}
                                         placeholder="40000"
                                     />
                                     <div className="flex flex-col gap-2">
-                                        <Label htmlFor="description">Description</Label>
+                                        <Label htmlFor="description">{t('Description')}</Label>
                                         <Textarea
                                             id="description"
                                             name="description"
-                                            placeholder="What kind of experience can players expect?"
+                                            placeholder={t('What kind of experience can players expect?')}
                                             className="min-h-28"
                                         />
                                         <InputError message={errors.description} />
                                     </div>
                                     <div className="flex flex-wrap justify-end gap-2">
                                         <Button type="button" variant="outline" asChild>
-                                            <Link href={index.url()}>Cancel</Link>
+                                            <Link href={index.url()}>{t('Cancel')}</Link>
                                         </Button>
                                         <Button type="submit" disabled={processing}>
-                                            Create server
+                                            {t('Create server')}
                                         </Button>
                                     </div>
                                 </>

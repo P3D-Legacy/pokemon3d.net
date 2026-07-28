@@ -1,6 +1,7 @@
 import { PlantIcon, MapPinIcon, TreeEvergreenIcon } from '@phosphor-icons/react';
 
 import { Badge } from '@/components/ui/badge';
+import { useTranslations } from '@/hooks/use-translations';
 
 export type ApricornEntry = {
     type: 'tree' | 'kurt';
@@ -36,10 +37,11 @@ type WorldPanelProps = {
 };
 
 export function WorldPanel({ apricorns, berries, itemdata }: WorldPanelProps) {
+    const { t } = useTranslations();
     const hasContent = apricorns.length > 0 || berries.length > 0 || itemdata.count > 0;
 
     if (!hasContent) {
-        return <p className="text-sm text-muted-foreground">No world activity recorded</p>;
+        return <p className="text-sm text-muted-foreground">{t('No world activity recorded')}</p>;
     }
 
     return (
@@ -47,10 +49,10 @@ export function WorldPanel({ apricorns, berries, itemdata }: WorldPanelProps) {
             <section className="flex flex-col gap-3">
                 <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
                     <TreeEvergreenIcon className="size-4" weight="fill" />
-                    Apricorns
+                    {t('Apricorns')}
                 </div>
                 {apricorns.length === 0 ? (
-                    <p className="text-sm text-muted-foreground">No apricorn data</p>
+                    <p className="text-sm text-muted-foreground">{t('No apricorn data')}</p>
                 ) : (
                     <div className="grid gap-2 sm:grid-cols-2">
                         {apricorns.map((entry, index) => (
@@ -60,14 +62,16 @@ export function WorldPanel({ apricorns, berries, itemdata }: WorldPanelProps) {
                             >
                                 <div className="mb-2 flex items-center gap-2">
                                     <Badge variant={entry.type === 'kurt' ? 'default' : 'secondary'}>
-                                        {entry.type === 'kurt' ? 'Kurt' : 'Tree'}
+                                        {entry.type === 'kurt' ? t('Kurt') : t('Tree')}
                                     </Badge>
                                 </div>
                                 {entry.map_path ? (
                                     <p className="break-all text-xs text-muted-foreground">{entry.map_path}</p>
                                 ) : null}
                                 {entry.position ? (
-                                    <p className="text-xs text-muted-foreground">Pos {entry.position}</p>
+                                    <p className="text-xs text-muted-foreground">
+                                        {t('Pos :pos', { pos: entry.position })}
+                                    </p>
                                 ) : null}
                                 {entry.amounts ? (
                                     <div className="mt-2 flex flex-wrap gap-1">
@@ -89,10 +93,10 @@ export function WorldPanel({ apricorns, berries, itemdata }: WorldPanelProps) {
             <section className="flex flex-col gap-3">
                 <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
                     <PlantIcon className="size-4" weight="fill" />
-                    Planted berries
+                    {t('Planted berries')}
                 </div>
                 {berries.length === 0 ? (
-                    <p className="text-sm text-muted-foreground">No planted berries</p>
+                    <p className="text-sm text-muted-foreground">{t('No planted berries')}</p>
                 ) : (
                     <div className="grid gap-2 sm:grid-cols-2">
                         {berries.map((berry, index) => (
@@ -114,9 +118,11 @@ export function WorldPanel({ apricorns, berries, itemdata }: WorldPanelProps) {
             <section className="flex flex-col gap-3">
                 <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
                     <MapPinIcon className="size-4" weight="fill" />
-                    Collected map items
+                    {t('Collected map items')}
                 </div>
-                <div className="text-sm text-muted-foreground">{itemdata.count} pickups recorded</div>
+                <div className="text-sm text-muted-foreground">
+                    {t(':count pickups recorded', { count: itemdata.count })}
+                </div>
                 {itemdata.items.length > 0 ? (
                     <div className="grid max-h-80 gap-2 overflow-y-auto sm:grid-cols-2">
                         {itemdata.items.map((item, index) => (

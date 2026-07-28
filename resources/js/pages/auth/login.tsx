@@ -25,6 +25,7 @@ import {
 } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { useTranslations } from '@/hooks/use-translations';
 import { cn } from '@/lib/utils';
 import { register } from '@/routes';
 import { login as discordLogin } from '@/routes/discord';
@@ -57,6 +58,7 @@ function SocialButton({
 
 export default function Login({ canResetPassword, status }: Props) {
     const { flash, socialLogin } = usePage<SharedPageProps>().props;
+    const { t } = useTranslations();
     const [forumOpen, setForumOpen] = useState(false);
     const [gamejoltOpen, setGamejoltOpen] = useState(false);
 
@@ -68,14 +70,14 @@ export default function Login({ canResetPassword, status }: Props) {
 
     return (
         <>
-            <Head title="Log in" />
+            <Head title={t('Log in')} />
 
             <Login7
                 footer={
                     <div className="mx-auto flex gap-1 text-sm">
-                        <p>Don&apos;t have an account yet?</p>
+                        <p>{t("Don't have an account yet?")}</p>
                         <Link href={register()} className="underline">
-                            Register
+                            {t('Register')}
                         </Link>
                     </div>
                 }
@@ -91,12 +93,12 @@ export default function Login({ canResetPassword, status }: Props) {
                         {({ processing, errors }) => (
                             <>
                                 <div className="grid gap-2">
-                                    <Label htmlFor="username">Email or Username</Label>
+                                    <Label htmlFor="username">{t('Email or Username')}</Label>
                                     <Input
                                         id="username"
                                         name="username"
                                         type="text"
-                                        placeholder="ash.ketchum@example.com"
+                                        placeholder={t('ash.ketchum@example.com')}
                                         required
                                         autoFocus
                                         autoComplete="username"
@@ -106,10 +108,10 @@ export default function Login({ canResetPassword, status }: Props) {
 
                                 <div className="grid gap-2">
                                     <div className="flex items-center justify-between gap-2">
-                                        <Label htmlFor="password">Password</Label>
+                                        <Label htmlFor="password">{t('Password')}</Label>
                                         {canResetPassword && (
                                             <TextLink href={passwordRequest()} tabIndex={5} className="text-xs">
-                                                Forgot your password?
+                                                {t('Forgot your password?')}
                                             </TextLink>
                                         )}
                                     </div>
@@ -117,7 +119,7 @@ export default function Login({ canResetPassword, status }: Props) {
                                         id="password"
                                         name="password"
                                         type="password"
-                                        placeholder="Enter your password"
+                                        placeholder={t('Enter your password')}
                                         required
                                         autoComplete="current-password"
                                     />
@@ -126,12 +128,12 @@ export default function Login({ canResetPassword, status }: Props) {
 
                                 <div className="flex items-center gap-3">
                                     <Checkbox id="remember" name="remember" value="1" />
-                                    <Label htmlFor="remember">Remember me</Label>
+                                    <Label htmlFor="remember">{t('Remember me')}</Label>
                                 </div>
 
                                 <Button type="submit" className="w-full" disabled={processing}>
                                     <SignInIcon data-icon="inline-start" />
-                                    Log in
+                                    {t('Log in')}
                                 </Button>
                             </>
                         )}
@@ -141,7 +143,7 @@ export default function Login({ canResetPassword, status }: Props) {
                         <>
                             <div className="flex items-center gap-4">
                                 <span className="h-px w-full bg-input" />
-                                <span className="text-xs text-muted-foreground">OR</span>
+                                <span className="text-xs text-muted-foreground">{t('OR')}</span>
                                 <span className="h-px w-full bg-input" />
                             </div>
 
@@ -149,13 +151,13 @@ export default function Login({ canResetPassword, status }: Props) {
                                 {socialLogin.discord && (
                                     <SocialButton href={discordLogin.url()} className="bg-[#5865F2] hover:bg-[#4752C4]">
                                         <DiscordLogoIcon data-icon="inline-start" weight="fill" />
-                                        Log in with Discord
+                                        {t('Log in with Discord')}
                                     </SocialButton>
                                 )}
                                 {socialLogin.twitch && (
                                     <SocialButton href={twitchLogin.url()} className="bg-[#9146FF] hover:bg-[#772CE8]">
                                         <TwitchLogoIcon data-icon="inline-start" weight="fill" />
-                                        Log in with Twitch
+                                        {t('Log in with Twitch')}
                                     </SocialButton>
                                 )}
                                 {socialLogin.xenforo && (
@@ -166,7 +168,7 @@ export default function Login({ canResetPassword, status }: Props) {
                                         onClick={() => setForumOpen(true)}
                                     >
                                         <ChatCircleIcon data-icon="inline-start" weight="fill" />
-                                        Log in with Forum
+                                        {t('Log in with Forum')}
                                     </Button>
                                 )}
                                 {socialLogin.gamejolt && (
@@ -177,13 +179,15 @@ export default function Login({ canResetPassword, status }: Props) {
                                         onClick={() => setGamejoltOpen(true)}
                                     >
                                         <GameControllerIcon data-icon="inline-start" weight="fill" />
-                                        Log in with Game Jolt
+                                        {t('Log in with Game Jolt')}
                                     </Button>
                                 )}
                             </div>
 
                             <p className="text-center text-xs text-muted-foreground">
-                                These login methods require a P3D account associated with the social account.
+                                {t(
+                                    'These login methods requires you to have a P3D account with a association to the social account',
+                                )}
                             </p>
                         </>
                     )}
@@ -193,8 +197,10 @@ export default function Login({ canResetPassword, status }: Props) {
             <Dialog open={forumOpen} onOpenChange={setForumOpen}>
                 <DialogContent>
                     <DialogHeader>
-                        <DialogTitle>Forum Account</DialogTitle>
-                        <DialogDescription>Log in with your forum email or username and password.</DialogDescription>
+                        <DialogTitle>{t('Forum Account')}</DialogTitle>
+                        <DialogDescription>
+                            {t('Log in with your forum email or username and password.')}
+                        </DialogDescription>
                     </DialogHeader>
                     <Form
                         action={forumLogin.url()}
@@ -205,7 +211,7 @@ export default function Login({ canResetPassword, status }: Props) {
                         {({ processing, errors }) => (
                             <>
                                 <div className="grid gap-2">
-                                    <Label htmlFor="forum-username">Email or Username</Label>
+                                    <Label htmlFor="forum-username">{t('Email or Username')}</Label>
                                     <Input
                                         id="forum-username"
                                         name="username"
@@ -216,7 +222,7 @@ export default function Login({ canResetPassword, status }: Props) {
                                     <InputError message={errors.username} />
                                 </div>
                                 <div className="grid gap-2">
-                                    <Label htmlFor="forum-password">Password</Label>
+                                    <Label htmlFor="forum-password">{t('Password')}</Label>
                                     <Input
                                         id="forum-password"
                                         name="password"
@@ -230,7 +236,7 @@ export default function Login({ canResetPassword, status }: Props) {
                                 <DialogFooter>
                                     <Button type="submit" disabled={processing}>
                                         <SignInIcon data-icon="inline-start" />
-                                        Log in
+                                        {t('Log in')}
                                     </Button>
                                 </DialogFooter>
                             </>
@@ -242,16 +248,16 @@ export default function Login({ canResetPassword, status }: Props) {
             <Dialog open={gamejoltOpen} onOpenChange={setGamejoltOpen}>
                 <DialogContent>
                     <DialogHeader>
-                        <DialogTitle>Game Jolt Account</DialogTitle>
+                        <DialogTitle>{t('Game Jolt Account')}</DialogTitle>
                         <DialogDescription>
-                            Log in with your Game Jolt username and token.{' '}
+                            {t('Log in with your Game Jolt username and token.')}{' '}
                             <a
                                 href="https://gamejolt.com/help/tokens"
                                 target="_blank"
                                 rel="noreferrer"
                                 className="underline"
                             >
-                                What&apos;s my token?
+                                {t("What's my token?")}
                             </a>
                         </DialogDescription>
                     </DialogHeader>
@@ -264,7 +270,7 @@ export default function Login({ canResetPassword, status }: Props) {
                         {({ processing, errors }) => (
                             <>
                                 <div className="grid gap-2">
-                                    <Label htmlFor="gamejolt-username">Username</Label>
+                                    <Label htmlFor="gamejolt-username">{t('Username')}</Label>
                                     <Input
                                         id="gamejolt-username"
                                         name="username"
@@ -275,7 +281,7 @@ export default function Login({ canResetPassword, status }: Props) {
                                     <InputError message={errors.username} />
                                 </div>
                                 <div className="grid gap-2">
-                                    <Label htmlFor="gamejolt-token">Token</Label>
+                                    <Label htmlFor="gamejolt-token">{t('Token')}</Label>
                                     <Input
                                         id="gamejolt-token"
                                         name="token"
@@ -289,7 +295,7 @@ export default function Login({ canResetPassword, status }: Props) {
                                 <DialogFooter>
                                     <Button type="submit" disabled={processing}>
                                         <SignInIcon data-icon="inline-start" />
-                                        Log in
+                                        {t('Log in')}
                                     </Button>
                                 </DialogFooter>
                             </>

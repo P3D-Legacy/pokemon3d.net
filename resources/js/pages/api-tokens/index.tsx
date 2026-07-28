@@ -6,6 +6,7 @@ import SettingsSection from '@/components/settings-section';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { useTranslations } from '@/hooks/use-translations';
 import { destroy, store, update } from '@/routes/api-tokens';
 import type { SharedPageProps } from '@/types';
 
@@ -30,23 +31,29 @@ export default function ApiTokensIndex({
     plainTextToken,
 }: Props) {
     const { flash } = usePage<SharedPageProps>().props;
+    const { t } = useTranslations();
     const [selectedPermissions, setSelectedPermissions] = useState<string[]>(defaultPermissions);
     const tokenValue = plainTextToken || flash.token;
 
     return (
         <>
-            <Head title="API Tokens" />
+            <Head title={t('API Tokens')} />
 
             <div className="py-10">
                 <div className="mx-auto max-w-7xl space-y-10 sm:px-6 lg:px-8">
                     {tokenValue && (
                         <div className="rounded-md bg-green-50 px-4 py-3 text-sm text-green-700 dark:bg-green-900/40 dark:text-green-200">
-                            Please copy your new API token. For your security, it won't be shown again.
+                            {t("Please copy your new API token. For your security, it won't be shown again.")}
                             <code className="mt-2 block break-all rounded bg-white px-3 py-2 dark:bg-slate-950">{tokenValue}</code>
                         </div>
                     )}
 
-                    <SettingsSection title="Create API Token" description="API tokens allow third-party services to authenticate with our application on your behalf.">
+                    <SettingsSection
+                        title={t('Create API Token')}
+                        description={t(
+                            'API tokens allow third-party services to authenticate with our application on your behalf.',
+                        )}
+                    >
                         <Form
                             {...store.form()}
                             options={{ preserveScroll: true }}
@@ -57,13 +64,13 @@ export default function ApiTokensIndex({
                             {({ processing, errors }) => (
                                 <>
                                     <div className="grid gap-2">
-                                        <Label htmlFor="name">Token Name</Label>
+                                        <Label htmlFor="name">{t('Token Name')}</Label>
                                         <Input id="name" name="name" required />
                                         <InputError message={errors.name} />
                                     </div>
 
                                     <div className="space-y-2">
-                                        <Label>Permissions</Label>
+                                        <Label>{t('Permissions')}</Label>
                                         {availablePermissions.map((permission) => (
                                             <label key={permission} className="flex items-center gap-2 text-sm capitalize">
                                                 <input
@@ -87,7 +94,7 @@ export default function ApiTokensIndex({
 
                                     <div className="flex justify-end">
                                         <Button type="submit" variant="default" disabled={processing}>
-                                            Create
+                                            {t('Create')}
                                         </Button>
                                     </div>
                                 </>
@@ -96,7 +103,10 @@ export default function ApiTokensIndex({
                     </SettingsSection>
 
                     {tokens.length > 0 && (
-                        <SettingsSection title="Manage API Tokens" description="You may delete any of your existing tokens if they are no longer needed.">
+                        <SettingsSection
+                            title={t('Manage API Tokens')}
+                            description={t('You may delete any of your existing tokens if they are no longer needed.')}
+                        >
                             <div className="space-y-4">
                                 {tokens.map((token) => (
                                     <div key={token.id} className="rounded border border-slate-200 px-4 py-3 dark:border-slate-700">
@@ -104,7 +114,9 @@ export default function ApiTokensIndex({
                                             <div>
                                                 <div className="font-medium">{token.name}</div>
                                                 <div className="text-xs text-slate-500">
-                                                    {token.last_used_ago ? `Last used ${token.last_used_ago}` : 'Never used'}
+                                                    {token.last_used_ago
+                                                        ? `${t('Last used')} ${token.last_used_ago}`
+                                                        : t('Never used')}
                                                 </div>
                                                 <div className="mt-1 text-xs capitalize text-slate-500">
                                                     {token.abilities?.join(', ')}
@@ -121,7 +133,7 @@ export default function ApiTokensIndex({
                                                         })
                                                     }
                                                 >
-                                                    Refresh
+                                                    {t('Refresh')}
                                                 </Button>
                                                 <Button
                                                     type="button"
@@ -129,7 +141,7 @@ export default function ApiTokensIndex({
                                                     size="sm"
                                                     onClick={() => router.delete(destroy.url(token.id))}
                                                 >
-                                                    Delete
+                                                    {t('Delete')}
                                                 </Button>
                                             </div>
                                         </div>

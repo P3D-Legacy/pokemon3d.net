@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Field, FieldDescription, FieldGroup, FieldLabel } from '@/components/ui/field';
 import { Input } from '@/components/ui/input';
+import { useTranslations } from '@/hooks/use-translations';
 import { login } from '@/routes';
 import { show as policyShow } from '@/routes/policy';
 import { show as termsShow } from '@/routes/terms';
@@ -16,28 +17,31 @@ type Props = {
     hasTermsAndPrivacyPolicyFeature: boolean;
 };
 
-function RequiredMark() {
+function RequiredMark({ label }: { label: string }) {
     return (
         <>
             <span className="text-destructive" aria-hidden="true">
                 *
             </span>
-            <span className="sr-only">(required)</span>
+            <span className="sr-only">{label}</span>
         </>
     );
 }
 
 export default function Register({ hasTermsAndPrivacyPolicyFeature }: Props) {
+    const { t } = useTranslations();
+    const requiredLabel = t('(required)');
+
     return (
         <>
-            <Head title="Register" />
+            <Head title={t('Register')} />
 
             <Login7
                 footer={
                     <div className="mx-auto flex gap-1 text-sm">
-                        <p>Already have an account?</p>
+                        <p>{t('Already registered?')}</p>
                         <Link href={login()} className="underline">
-                            Log in
+                            {t('Log in')}
                         </Link>
                     </div>
                 }
@@ -45,19 +49,17 @@ export default function Register({ hasTermsAndPrivacyPolicyFeature }: Props) {
                 <Form {...store.form()} resetOnSuccess={['password', 'password_confirmation']}>
                     {({ processing, errors }) => (
                         <FieldGroup className="gap-4">
-                            <FieldDescription>
-                                Required fields are marked with <span className="text-destructive">*</span>.
-                            </FieldDescription>
+                            <FieldDescription>{t('Required fields are marked with *.')}</FieldDescription>
 
                             <Field data-invalid={errors.name ? true : undefined}>
                                 <FieldLabel htmlFor="name">
-                                    Name
-                                    <RequiredMark />
+                                    {t('Name')}
+                                    <RequiredMark label={requiredLabel} />
                                 </FieldLabel>
                                 <Input
                                     id="name"
                                     name="name"
-                                    placeholder="Your name"
+                                    placeholder={t('Your name')}
                                     required
                                     autoFocus
                                     autoComplete="name"
@@ -68,13 +70,13 @@ export default function Register({ hasTermsAndPrivacyPolicyFeature }: Props) {
 
                             <Field data-invalid={errors.username ? true : undefined}>
                                 <FieldLabel htmlFor="username">
-                                    Username
-                                    <RequiredMark />
+                                    {t('Username')}
+                                    <RequiredMark label={requiredLabel} />
                                 </FieldLabel>
                                 <Input
                                     id="username"
                                     name="username"
-                                    placeholder="Choose a username"
+                                    placeholder={t('Choose a username')}
                                     required
                                     autoComplete="username"
                                     aria-invalid={errors.username ? true : undefined}
@@ -84,14 +86,14 @@ export default function Register({ hasTermsAndPrivacyPolicyFeature }: Props) {
 
                             <Field data-invalid={errors.email ? true : undefined}>
                                 <FieldLabel htmlFor="email">
-                                    Email
-                                    <RequiredMark />
+                                    {t('Email')}
+                                    <RequiredMark label={requiredLabel} />
                                 </FieldLabel>
                                 <Input
                                     id="email"
                                     type="email"
                                     name="email"
-                                    placeholder="ash.ketchum@example.com"
+                                    placeholder={t('ash.ketchum@example.com')}
                                     required
                                     autoComplete="email"
                                     aria-invalid={errors.email ? true : undefined}
@@ -101,13 +103,13 @@ export default function Register({ hasTermsAndPrivacyPolicyFeature }: Props) {
 
                             <Field data-invalid={errors.password ? true : undefined}>
                                 <FieldLabel htmlFor="password">
-                                    Password
-                                    <RequiredMark />
+                                    {t('Password')}
+                                    <RequiredMark label={requiredLabel} />
                                 </FieldLabel>
                                 <PasswordInput
                                     id="password"
                                     name="password"
-                                    placeholder="Enter your password"
+                                    placeholder={t('Enter your password')}
                                     required
                                     autoComplete="new-password"
                                     aria-invalid={errors.password ? true : undefined}
@@ -117,13 +119,13 @@ export default function Register({ hasTermsAndPrivacyPolicyFeature }: Props) {
 
                             <Field data-invalid={errors.password_confirmation ? true : undefined}>
                                 <FieldLabel htmlFor="password_confirmation">
-                                    Confirm password
-                                    <RequiredMark />
+                                    {t('Confirm Password')}
+                                    <RequiredMark label={requiredLabel} />
                                 </FieldLabel>
                                 <PasswordInput
                                     id="password_confirmation"
                                     name="password_confirmation"
-                                    placeholder="Confirm your password"
+                                    placeholder={t('Confirm your password')}
                                     required
                                     autoComplete="new-password"
                                     aria-invalid={errors.password_confirmation ? true : undefined}
@@ -146,26 +148,43 @@ export default function Register({ hasTermsAndPrivacyPolicyFeature }: Props) {
                                             htmlFor="terms"
                                             className="block text-xs leading-5 text-muted-foreground select-none"
                                         >
-                                            I agree to the{' '}
-                                            <a
-                                                href={termsShow.url()}
-                                                target="_blank"
-                                                rel="noreferrer"
-                                                className="font-medium text-foreground underline underline-offset-4 hover:text-primary"
-                                            >
-                                                Terms and Conditions
-                                            </a>{' '}
-                                            and{' '}
-                                            <a
-                                                href={policyShow.url()}
-                                                target="_blank"
-                                                rel="noreferrer"
-                                                className="font-medium text-foreground underline underline-offset-4 hover:text-primary"
-                                            >
-                                                Privacy Policy
-                                            </a>
-                                            {' '}
-                                            <RequiredMark />
+                                            {t('I agree to the :terms and :privacy', {
+                                                terms: '__TERMS__',
+                                                privacy: '__PRIVACY__',
+                                            })
+                                                .split(/(__TERMS__|__PRIVACY__)/)
+                                                .map((part, index) => {
+                                                    if (part === '__TERMS__') {
+                                                        return (
+                                                            <a
+                                                                key={`terms-${index}`}
+                                                                href={termsShow.url()}
+                                                                target="_blank"
+                                                                rel="noreferrer"
+                                                                className="font-medium text-foreground underline underline-offset-4 hover:text-primary"
+                                                            >
+                                                                {t('Terms and Conditions')}
+                                                            </a>
+                                                        );
+                                                    }
+
+                                                    if (part === '__PRIVACY__') {
+                                                        return (
+                                                            <a
+                                                                key={`privacy-${index}`}
+                                                                href={policyShow.url()}
+                                                                target="_blank"
+                                                                rel="noreferrer"
+                                                                className="font-medium text-foreground underline underline-offset-4 hover:text-primary"
+                                                            >
+                                                                {t('Privacy Policy')}
+                                                            </a>
+                                                        );
+                                                    }
+
+                                                    return <span key={`text-${index}`}>{part}</span>;
+                                                })}{' '}
+                                            <RequiredMark label={requiredLabel} />
                                         </label>
                                         <InputError message={errors.terms} />
                                     </div>
@@ -173,7 +192,7 @@ export default function Register({ hasTermsAndPrivacyPolicyFeature }: Props) {
                             )}
 
                             <Button type="submit" className="w-full" disabled={processing}>
-                                Register
+                                {t('Register')}
                             </Button>
                         </FieldGroup>
                     )}

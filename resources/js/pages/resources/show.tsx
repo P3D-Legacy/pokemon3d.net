@@ -30,6 +30,7 @@ import {
     DropdownMenuItem,
     DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { useTranslations } from '@/hooks/use-translations';
 import { cn } from '@/lib/utils';
 import { deleteMethod, edit, like, rate, index as resourceIndex } from '@/routes/resource';
 import { create as createUpdate } from '@/routes/resource/updates';
@@ -98,8 +99,10 @@ type Props = {
 };
 
 function Stars({ count, size = 'size-3.5' }: { count: number; size?: string }) {
+    const { t } = useTranslations();
+
     return (
-        <span className="inline-flex items-center gap-0.5" aria-label={`${count} out of 5 stars`}>
+        <span className="inline-flex items-center gap-0.5" aria-label={t(':count out of 5 stars', { count })}>
             {Array.from({ length: 5 }, (_, index) => (
                 <StarIcon
                     key={index}
@@ -123,6 +126,7 @@ function initials(name: string): string {
 
 export default function ResourceShow({ resource, copy }: Props) {
     const { auth } = usePage<SharedPageProps>().props;
+    const { t } = useTranslations();
     const [activeUpdate, setActiveUpdate] = useState<(typeof resource.updates)[number] | null>(null);
     const latestUpdate =
         resource.updates.find((update) => update.id === resource.latest_update_id) ?? resource.updates[0];
@@ -201,7 +205,7 @@ export default function ResourceShow({ resource, copy }: Props) {
                         {auth.user && isOwner ? (
                             <DropdownMenu>
                                 <DropdownMenuTrigger asChild>
-                                    <Button type="button" variant="outline" size="icon-sm" aria-label="Manage resource">
+                                    <Button type="button" variant="outline" size="icon-sm" aria-label={t('Manage resource')}>
                                         <DotsThreeIcon weight="bold" />
                                     </Button>
                                 </DropdownMenuTrigger>
@@ -248,7 +252,7 @@ export default function ResourceShow({ resource, copy }: Props) {
 
                     <Card>
                         <CardHeader>
-                            <CardTitle className="text-sm font-medium text-muted-foreground">Details</CardTitle>
+                            <CardTitle className="text-sm font-medium text-muted-foreground">{t('Details')}</CardTitle>
                         </CardHeader>
                         <CardContent className="flex flex-col gap-3 text-sm">
                             <DetailRow label={copy.author}>
@@ -318,7 +322,7 @@ export default function ResourceShow({ resource, copy }: Props) {
                     ) : (
                         <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
                             {resource.reviews.map((review) => {
-                                const displayName = review.author.username || 'Anonymous';
+                                const displayName = review.author.username || t('Anonymous');
 
                                 return (
                                     <Card key={review.id}>

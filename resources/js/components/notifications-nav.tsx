@@ -5,6 +5,7 @@ import { useCallback, useState } from 'react';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { useTranslations } from '@/hooks/use-translations';
 import { cn } from '@/lib/utils';
 import { dismiss, dismissAll, index, open } from '@/routes/notifications';
 import type { SharedPageProps } from '@/types';
@@ -25,6 +26,7 @@ type Props = {
 
 export function NotificationsNav({ variant = 'light', className }: Props) {
     const { auth } = usePage<SharedPageProps>().props;
+    const { t } = useTranslations();
     const unreadCount = auth.user?.unread_notifications_count ?? 0;
     const isLight = variant === 'light';
 
@@ -47,18 +49,18 @@ export function NotificationsNav({ variant = 'light', className }: Props) {
             });
 
             if (! response.ok) {
-                throw new Error('Unable to load notifications.');
+                throw new Error(t('Unable to load notifications.'));
             }
 
             const payload = (await response.json()) as { notifications: NotificationItem[] };
             setItems(payload.notifications ?? []);
         } catch {
-            setError('Unable to load notifications.');
+            setError(t('Unable to load notifications.'));
             setItems([]);
         } finally {
             setLoading(false);
         }
-    }, []);
+    }, [t]);
 
     const handleOpenChange = (nextOpen: boolean) => {
         setIsOpen(nextOpen);
@@ -84,7 +86,7 @@ export function NotificationsNav({ variant = 'light', className }: Props) {
                         ! isLight && 'text-white hover:bg-white/10 hover:text-white',
                         className,
                     )}
-                    aria-label="Notifications"
+                    aria-label={t('Notifications')}
                 >
                     <BellIcon className="size-5" />
                     {unreadCount > 0 ? (
@@ -97,7 +99,7 @@ export function NotificationsNav({ variant = 'light', className }: Props) {
 
             <PopoverContent align="end" className="w-[min(100vw-2rem,22rem)] gap-0 p-0">
                 <div className="flex items-center justify-between gap-2 border-b border-border px-3 py-2.5">
-                    <div className="text-sm font-medium">Notifications</div>
+                    <div className="text-sm font-medium">{t('Notifications')}</div>
                     {unreadCount > 0 ? (
                         <Button
                             type="button"
@@ -110,14 +112,14 @@ export function NotificationsNav({ variant = 'light', className }: Props) {
                                 })
                             }
                         >
-                            Dismiss all
+                            {t('Dismiss all')}
                         </Button>
                     ) : null}
                 </div>
 
                 <div className="max-h-80 overflow-y-auto">
                     {loading ? (
-                        <div className="px-3 py-8 text-center text-sm text-muted-foreground">Loading…</div>
+                        <div className="px-3 py-8 text-center text-sm text-muted-foreground">{t('Loading…')}</div>
                     ) : null}
 
                     {! loading && error ? (
@@ -125,7 +127,7 @@ export function NotificationsNav({ variant = 'light', className }: Props) {
                     ) : null}
 
                     {! loading && ! error && items.length === 0 ? (
-                        <div className="px-3 py-8 text-center text-sm text-muted-foreground">No notifications</div>
+                        <div className="px-3 py-8 text-center text-sm text-muted-foreground">{t('No notifications')}</div>
                     ) : null}
 
                     {! loading && ! error
@@ -155,7 +157,7 @@ export function NotificationsNav({ variant = 'light', className }: Props) {
                                               }
                                           >
                                               <ArrowSquareOutIcon data-icon="inline-start" />
-                                              Open
+                                              {t('Open')}
                                           </Button>
                                       ) : null}
                                       {! notification.read_at ? (
@@ -171,7 +173,7 @@ export function NotificationsNav({ variant = 'light', className }: Props) {
                                               }
                                           >
                                               <EyeSlashIcon data-icon="inline-start" />
-                                              Dismiss
+                                              {t('Dismiss')}
                                           </Button>
                                       ) : null}
                                   </div>

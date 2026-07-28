@@ -15,8 +15,8 @@ class LegalController extends Controller
     {
         return Inertia::render('terms', $this->legalDocument(
             markdown: 'terms.mdx',
-            title: 'Terms and Conditions',
-            category: 'Legal',
+            title: __('Terms and Conditions'),
+            category: __('Legal'),
             updatedAt: '2026-07-23',
         ));
     }
@@ -28,8 +28,8 @@ class LegalController extends Controller
     {
         return Inertia::render('policy', $this->legalDocument(
             markdown: 'policy.mdx',
-            title: 'Privacy Policy',
-            category: 'Legal',
+            title: __('Privacy Policy'),
+            category: __('Legal'),
             updatedAt: '2026-07-23',
         ));
     }
@@ -41,8 +41,8 @@ class LegalController extends Controller
     {
         return Inertia::render('legal', $this->legalDocument(
             markdown: 'legal.mdx',
-            title: 'Legal',
-            category: 'Legal',
+            title: __('Legal'),
+            category: __('Legal'),
         ));
     }
 
@@ -53,8 +53,8 @@ class LegalController extends Controller
     {
         return Inertia::render('contact', $this->legalDocument(
             markdown: 'contact.mdx',
-            title: 'Contact',
-            category: 'Contact',
+            title: __('Contact'),
+            category: __('Contact'),
         ));
     }
 

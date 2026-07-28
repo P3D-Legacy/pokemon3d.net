@@ -7,6 +7,7 @@ import { Login7 } from '@/components/login7';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { useTranslations } from '@/hooks/use-translations';
 import { login } from '@/routes';
 
 type Props = {
@@ -15,22 +16,24 @@ type Props = {
 };
 
 export default function ResetPassword({ email, token }: Props) {
+    const { t } = useTranslations();
+
     return (
         <>
-            <Head title="Reset password" />
+            <Head title={t('Reset Password')} />
 
             <Login7
                 footer={
                     <div className="mx-auto flex gap-1 text-sm">
-                        <p>Remember your password?</p>
+                        <p>{t('Remember your password?')}</p>
                         <Link href={login()} className="underline">
-                            Log in
+                            {t('Log in')}
                         </Link>
                     </div>
                 }
             >
                 <div className="grid gap-4">
-                    <p className="text-sm text-muted-foreground">Choose a new password for your account.</p>
+                    <p className="text-sm text-muted-foreground">{t('Choose a new password for your account.')}</p>
 
                     <Form
                         {...store.form()}
@@ -42,7 +45,7 @@ export default function ResetPassword({ email, token }: Props) {
                                 <input type="hidden" name="token" value={token} />
 
                                 <div className="grid gap-2">
-                                    <Label htmlFor="email">Email</Label>
+                                    <Label htmlFor="email">{t('Email')}</Label>
                                     <Input
                                         id="email"
                                         type="email"
@@ -55,7 +58,7 @@ export default function ResetPassword({ email, token }: Props) {
                                 </div>
 
                                 <div className="grid gap-2">
-                                    <Label htmlFor="password">Password</Label>
+                                    <Label htmlFor="password">{t('Password')}</Label>
                                     <Input
                                         id="password"
                                         type="password"
@@ -68,7 +71,7 @@ export default function ResetPassword({ email, token }: Props) {
                                 </div>
 
                                 <div className="grid gap-2">
-                                    <Label htmlFor="password_confirmation">Confirm Password</Label>
+                                    <Label htmlFor="password_confirmation">{t('Confirm Password')}</Label>
                                     <Input
                                         id="password_confirmation"
                                         type="password"
@@ -81,7 +84,7 @@ export default function ResetPassword({ email, token }: Props) {
 
                                 <Button type="submit" className="w-full" disabled={processing}>
                                     <LockKeyIcon data-icon="inline-start" />
-                                    Reset password
+                                    {t('Reset Password')}
                                 </Button>
                             </>
                         )}

@@ -23,6 +23,7 @@ import {
 } from '@phosphor-icons/react';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 
+import { LanguageNav } from '@/components/language-nav';
 import { NotificationsNav } from '@/components/notifications-nav';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
@@ -44,10 +45,10 @@ import {
     NavigationMenuTrigger,
 } from '@/components/ui/navigation-menu';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { useTranslations } from '@/hooks/use-translations';
 import { cn } from '@/lib/utils';
 import {
     dashboard,
-    forum,
     home,
     login,
     logout,
@@ -68,9 +69,12 @@ import type { SharedPageProps } from '@/types';
 
 type NavIcon = React.ComponentType<{ className?: string; weight?: 'regular' | 'fill' }>;
 
+type TranslateFn = (key: string, replace?: Record<string, string | number>) => string;
+
 type NavLinkItem = {
     type: 'link';
-    name: string;
+    id: string;
+    label: string;
     link: string;
     isActive: boolean;
     icon: NavIcon;
@@ -79,7 +83,8 @@ type NavLinkItem = {
 
 type NavGroupItem = {
     type: 'group';
-    name: string;
+    id: string;
+    label: string;
     isActive: boolean;
     icon: NavIcon;
     children: NavLinkItem[];
@@ -90,6 +95,7 @@ type NavItem = NavLinkItem | NavGroupItem;
 type NavbarVariant = 'dark' | 'light';
 
 type UserMenuItem = {
+    id: string;
     label: string;
     href: string;
     icon: React.ComponentType<{ className?: string }>;
@@ -136,25 +142,28 @@ function isMySkinsPath(path: string): boolean {
     );
 }
 
-function buildNavItems(path: string, isAuthenticated: boolean): NavItem[] {
+function buildNavItems(path: string, isAuthenticated: boolean, t: TranslateFn): NavItem[] {
     const gameChildren: NavLinkItem[] = [
         {
             type: 'link',
-            name: 'Skins',
+            id: 'Skins',
+            label: t('Skins'),
             link: skinsPopular.url(),
             icon: SmileyIcon,
             isActive: path.startsWith('/skin') && (! isAuthenticated || ! isMySkinsPath(path)),
         },
         {
             type: 'link',
-            name: 'Resources',
+            id: 'Resources',
+            label: t('Resources'),
             link: resourceIndex.url(),
             icon: PackageIcon,
             isActive: path.startsWith('/resource'),
         },
         {
             type: 'link',
-            name: 'Servers',
+            id: 'Servers',
+            label: t('Servers'),
             link: serverIndex.url(),
             icon: HardDrivesIcon,
             isActive: path.startsWith('/server'),
@@ -164,7 +173,8 @@ function buildNavItems(path: string, isAuthenticated: boolean): NavItem[] {
     if (isAuthenticated) {
         gameChildren.push({
             type: 'link',
-            name: 'My Skins',
+            id: 'My Skins',
+            label: t('My Skins'),
             link: skinHome.url(),
             icon: SmileyIcon,
             isActive: isMySkinsPath(path),
@@ -172,7 +182,8 @@ function buildNavItems(path: string, isAuthenticated: boolean): NavItem[] {
         });
         gameChildren.push({
             type: 'link',
-            name: 'My Save',
+            id: 'My Save',
+            label: t('My Save'),
             link: saveIndex.url(),
             icon: FloppyDiskIcon,
             isActive: path.startsWith('/save'),
@@ -180,34 +191,61 @@ function buildNavItems(path: string, isAuthenticated: boolean): NavItem[] {
     }
 
     return [
-        { type: 'link', name: 'Home', link: home.url(), icon: HouseIcon, isActive: path === '/' },
-        { type: 'link', name: 'Blog', link: blogIndex.url(), icon: NewspaperIcon, isActive: path.startsWith('/blog') },
+        { type: 'link', id: 'Home', label: t('Home'), link: home.url(), icon: HouseIcon, isActive: path === '/' },
+        {
+            type: 'link',
+            id: 'Blog',
+            label: t('Blog'),
+            link: blogIndex.url(),
+            icon: NewspaperIcon,
+            isActive: path.startsWith('/blog'),
+        },
         {
             type: 'group',
-            name: 'Game',
+            id: 'Game',
+            label: t('Game'),
             icon: GameControllerIcon,
-            isActive: path.startsWith('/skin') || path.startsWith('/resource') || path.startsWith('/server') || path.startsWith('/save'),
+            isActive:
+                path.startsWith('/skin') ||
+                path.startsWith('/resource') ||
+                path.startsWith('/server') ||
+                path.startsWith('/save'),
             children: gameChildren,
         },
-        { type: 'link', name: 'Members', link: memberIndex.url(), icon: UsersIcon, isActive: path.startsWith('/member') },
-        { type: 'link', name: 'Review', link: review.url(), icon: StarIcon, isActive: path.startsWith('/review') },
-        { type: 'link', name: 'Wiki', link: wiki.url(), icon: BookOpenIcon, isActive: false },
+        {
+            type: 'link',
+            id: 'Members',
+            label: t('Members'),
+            link: memberIndex.url(),
+            icon: UsersIcon,
+            isActive: path.startsWith('/member'),
+        },
+        {
+            type: 'link',
+            id: 'Review',
+            label: t('Review'),
+            link: review.url(),
+            icon: StarIcon,
+            isActive: path.startsWith('/review'),
+        },
+        { type: 'link', id: 'Wiki', label: t('Wiki'), link: wiki.url(), icon: BookOpenIcon, isActive: false },
     ];
 }
 
 const Navbar17 = ({ className, variant = 'dark' }: Navbar17Props) => {
     const page = usePage<SharedPageProps>();
     const { auth } = page.props;
+    const { t } = useTranslations();
     const path = page.url.split('?')[0] ?? '';
     const isLight = variant === 'light';
     const isAuthenticated = Boolean(auth.user);
 
-    const navItems = useMemo(() => buildNavItems(path, isAuthenticated), [path, isAuthenticated]);
-    const activeItem = navItems.find((item) => item.isActive)?.name ?? '';
+    const navItems = useMemo(() => buildNavItems(path, isAuthenticated, t), [path, isAuthenticated, t]);
+    const activeItem = navItems.find((item) => item.isActive)?.id ?? '';
 
     const cta = auth.user
-        ? { label: 'Dashboard', href: dashboard.url() }
-        : { label: 'Sign up', href: register.url() };
+        ? { label: t('Dashboard'), href: dashboard.url() }
+        : { label: t('Sign up'), href: register.url() };
 
     const userMenuItems = useMemo(() => {
         if (! auth.user) {
@@ -216,23 +254,27 @@ const Navbar17 = ({ className, variant = 'dark' }: Navbar17Props) => {
 
         const items: UserMenuItem[] = [
             {
-                label: 'Dashboard',
+                id: 'Dashboard',
+                label: t('Dashboard'),
                 href: dashboard.url(),
                 icon: LayoutIcon,
             },
             {
-                label: 'Profile',
+                id: 'Profile',
+                label: t('Profile'),
                 href: memberShow.url(auth.user.username),
                 icon: UserIcon,
                 separatorBefore: true,
             },
             {
-                label: 'Edit profile',
+                id: 'Edit Profile',
+                label: t('Edit Profile'),
                 href: profileShow.url(),
                 icon: PencilSimpleIcon,
             },
             {
-                label: 'API Tokens',
+                id: 'API Tokens',
+                label: t('API Tokens'),
                 href: apiTokensIndex.url(),
                 icon: ShieldIcon,
             },
@@ -241,18 +283,21 @@ const Navbar17 = ({ className, variant = 'dark' }: Navbar17Props) => {
         if (auth.user.is_admin) {
             items.push(
                 {
-                    label: 'Tags',
+                    id: 'Tags',
+                    label: t('Tags'),
                     href: '/mod/tags',
                     icon: TagIcon,
                     separatorBefore: true,
                 },
                 {
-                    label: 'Analytics',
+                    id: 'Analytics',
+                    label: t('Analytics'),
                     href: '/mod/analytics',
                     icon: ChartBarIcon,
                 },
                 {
-                    label: 'Admin',
+                    id: 'Admin',
+                    label: t('Admin'),
                     href: '/filament',
                     icon: ShieldIcon,
                     external: true,
@@ -261,7 +306,8 @@ const Navbar17 = ({ className, variant = 'dark' }: Navbar17Props) => {
         }
 
         items.push({
-            label: 'Log out',
+            id: 'Log Out',
+            label: t('Log Out'),
             href: logout.url(),
             icon: SignOutIcon,
             method: 'post',
@@ -269,7 +315,7 @@ const Navbar17 = ({ className, variant = 'dark' }: Navbar17Props) => {
         });
 
         return items;
-    }, [auth.user]);
+    }, [auth.user, t]);
 
     const indicatorRef = useRef<HTMLDivElement>(null);
     const menuRef = useRef<HTMLUListElement>(null);
@@ -318,9 +364,9 @@ const Navbar17 = ({ className, variant = 'dark' }: Navbar17Props) => {
 
                             if (item.type === 'group') {
                                 return (
-                                    <NavigationMenuItem key={item.name}>
+                                    <NavigationMenuItem key={item.id}>
                                         <NavigationMenuTrigger
-                                            data-nav-item={item.name}
+                                            data-nav-item={item.id}
                                             className={cn(
                                                 navTriggerClass,
                                                 'relative inline-flex cursor-pointer items-center transition-colors',
@@ -329,7 +375,7 @@ const Navbar17 = ({ className, variant = 'dark' }: Navbar17Props) => {
                                             )}
                                         >
                                             <Icon className="size-4 shrink-0" />
-                                            {item.name}
+                                            {item.label}
                                         </NavigationMenuTrigger>
                                         <NavigationMenuContent>
                                             <ul className="flex min-w-48 flex-col gap-1 p-2">
@@ -337,7 +383,7 @@ const Navbar17 = ({ className, variant = 'dark' }: Navbar17Props) => {
                                                     const ChildIcon = child.icon;
 
                                                     return (
-                                                        <React.Fragment key={child.name}>
+                                                        <React.Fragment key={child.id}>
                                                             {child.separatorBefore ? (
                                                                 <li
                                                                     className="my-1 border-t border-border"
@@ -356,7 +402,7 @@ const Navbar17 = ({ className, variant = 'dark' }: Navbar17Props) => {
                                                                         )}
                                                                     >
                                                                         <ChildIcon className="size-4 shrink-0" />
-                                                                        {child.name}
+                                                                        {child.label}
                                                                     </Link>
                                                                 </NavigationMenuLink>
                                                             </li>
@@ -370,11 +416,11 @@ const Navbar17 = ({ className, variant = 'dark' }: Navbar17Props) => {
                             }
 
                             return (
-                                <NavigationMenuItem key={item.name}>
+                                <NavigationMenuItem key={item.id}>
                                     <NavigationMenuLink asChild className={navLinkClass}>
                                         <Link
                                             href={item.link}
-                                            data-nav-item={item.name}
+                                            data-nav-item={item.id}
                                             className={cn(
                                                 'relative inline-flex cursor-pointer items-center gap-1.5 transition-colors',
                                                 ! isLight && 'drop-shadow',
@@ -382,7 +428,7 @@ const Navbar17 = ({ className, variant = 'dark' }: Navbar17Props) => {
                                             )}
                                         >
                                             <Icon className="size-4 shrink-0" />
-                                            {item.name}
+                                            {item.label}
                                         </Link>
                                     </NavigationMenuLink>
                                 </NavigationMenuItem>
@@ -411,6 +457,7 @@ const Navbar17 = ({ className, variant = 'dark' }: Navbar17Props) => {
                 />
 
                 <div className="hidden items-center gap-2 lg:flex">
+                    <LanguageNav overlay={! isLight} />
                     <ThemeToggle overlay={! isLight} />
                     {auth.user ? (
                         <>
@@ -436,7 +483,7 @@ const Navbar17 = ({ className, variant = 'dark' }: Navbar17Props) => {
                                 )}
                                 asChild
                             >
-                                <Link href={login.url()}>Log in</Link>
+                                <Link href={login.url()}>{t('Log in')}</Link>
                             </Button>
                             <Button
                                 variant="outline"
@@ -568,7 +615,7 @@ function NavUser({
                     }
 
                     return (
-                        <React.Fragment key={item.label}>
+                        <React.Fragment key={item.id}>
                             {item.separatorBefore ? <DropdownMenuSeparator /> : null}
                             {menuItem}
                         </React.Fragment>
@@ -593,9 +640,11 @@ const MobileNav = ({
     userMenuItems: UserMenuItem[];
 }) => {
     const [isOpen, setIsOpen] = useState(false);
+    const { t } = useTranslations();
 
     return (
         <div className="flex h-full items-center gap-1 lg:hidden">
+            <LanguageNav overlay={variant !== 'light'} />
             <ThemeToggle overlay={variant !== 'light'} />
             {user ? <NotificationsNav variant={variant} /> : null}
             <Popover open={isOpen} onOpenChange={setIsOpen}>
@@ -621,7 +670,7 @@ const MobileNav = ({
 
                             if (navItem.type === 'group') {
                                 return (
-                                    <li key={navItem.name}>
+                                    <li key={navItem.id}>
                                         <div
                                             className={cn(
                                                 'flex items-center gap-2 border-l-[3px] px-6 py-3 text-xs font-semibold uppercase tracking-wide',
@@ -631,14 +680,14 @@ const MobileNav = ({
                                             )}
                                         >
                                             <Icon className="size-4 shrink-0" />
-                                            {navItem.name}
+                                            {navItem.label}
                                         </div>
                                         <ul>
                                             {navItem.children.map((child) => {
                                                 const ChildIcon = child.icon;
 
                                                 return (
-                                                    <React.Fragment key={child.name}>
+                                                    <React.Fragment key={child.id}>
                                                         {child.separatorBefore ? (
                                                             <li
                                                                 className="mx-12 my-2 border-t border-border"
@@ -657,7 +706,7 @@ const MobileNav = ({
                                                                 )}
                                                             >
                                                                 <ChildIcon className="size-4 shrink-0" />
-                                                                {child.name}
+                                                                {child.label}
                                                             </Link>
                                                         </li>
                                                     </React.Fragment>
@@ -669,7 +718,7 @@ const MobileNav = ({
                             }
 
                             return (
-                                <li key={navItem.name}>
+                                <li key={navItem.id}>
                                     <Link
                                         href={navItem.link}
                                         onClick={() => setIsOpen(false)}
@@ -681,7 +730,7 @@ const MobileNav = ({
                                         )}
                                     >
                                         <Icon className="size-4 shrink-0" />
-                                        {navItem.name}
+                                        {navItem.label}
                                     </Link>
                                 </li>
                             );
@@ -693,7 +742,7 @@ const MobileNav = ({
                                     const Icon = item.icon;
 
                                     return (
-                                        <React.Fragment key={item.label}>
+                                        <React.Fragment key={item.id}>
                                             {item.separatorBefore ? (
                                                 <li className="mx-6 my-2 border-t border-border" aria-hidden="true" />
                                             ) : null}
@@ -728,7 +777,7 @@ const MobileNav = ({
                             <li className="flex flex-col gap-2 px-7 py-2">
                                 <Button variant="ghost" asChild>
                                     <Link href={login.url()} onClick={() => setIsOpen(false)}>
-                                        Log in
+                                        {t('Log in')}
                                     </Link>
                                 </Button>
                                 <Button variant="outline" asChild>

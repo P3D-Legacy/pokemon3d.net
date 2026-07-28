@@ -10,6 +10,7 @@ import {
     DialogHeader,
     DialogTitle,
 } from '@/components/ui/dialog';
+import { useTranslations } from '@/hooks/use-translations';
 import { logout } from '@/routes';
 import { acceptRequired } from '@/routes/profile/consents';
 import { show as policyShow } from '@/routes/policy';
@@ -18,6 +19,7 @@ import type { SharedPageProps } from '@/types';
 
 export function TermsAcceptanceDialog() {
     const { termsAcceptance } = usePage<SharedPageProps>().props;
+    const { t } = useTranslations();
     const [processing, setProcessing] = useState(false);
 
     if (!termsAcceptance?.required) {
@@ -47,10 +49,11 @@ export function TermsAcceptanceDialog() {
                 onPointerDownOutside={(event) => event.preventDefault()}
             >
                 <DialogHeader>
-                    <DialogTitle>Updated terms required</DialogTitle>
+                    <DialogTitle>{t('Updated terms required')}</DialogTitle>
                     <DialogDescription>
-                        Please review and accept our updated Terms and Conditions and Privacy Policy to continue using the
-                        website.
+                        {t(
+                            'Please review and accept our updated Terms and Conditions and Privacy Policy to continue using the website.',
+                        )}
                     </DialogDescription>
                 </DialogHeader>
 
@@ -60,25 +63,42 @@ export function TermsAcceptanceDialog() {
                 />
 
                 <p className="text-sm text-muted-foreground">
-                    Read the{' '}
-                    <a
-                        href={termsShow.url()}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="underline underline-offset-3 hover:text-foreground"
-                    >
-                        Terms and Conditions
-                    </a>{' '}
-                    and{' '}
-                    <a
-                        href={policyShow.url()}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="underline underline-offset-3 hover:text-foreground"
-                    >
-                        Privacy Policy
-                    </a>
-                    .
+                    {t('Read the :terms and :policy.', {
+                        terms: '__TERMS__',
+                        policy: '__POLICY__',
+                    })
+                        .split(/(__TERMS__|__POLICY__)/)
+                        .map((part, index) => {
+                            if (part === '__TERMS__') {
+                                return (
+                                    <a
+                                        key={`terms-${index}`}
+                                        href={termsShow.url()}
+                                        target="_blank"
+                                        rel="noreferrer"
+                                        className="underline underline-offset-3 hover:text-foreground"
+                                    >
+                                        {t('Terms and Conditions')}
+                                    </a>
+                                );
+                            }
+
+                            if (part === '__POLICY__') {
+                                return (
+                                    <a
+                                        key={`policy-${index}`}
+                                        href={policyShow.url()}
+                                        target="_blank"
+                                        rel="noreferrer"
+                                        className="underline underline-offset-3 hover:text-foreground"
+                                    >
+                                        {t('Privacy Policy')}
+                                    </a>
+                                );
+                            }
+
+                            return <span key={`text-${index}`}>{part}</span>;
+                        })}
                 </p>
 
                 <DialogFooter className="sm:justify-between">
@@ -88,10 +108,10 @@ export function TermsAcceptanceDialog() {
                         as="button"
                         className="inline-flex h-8 items-center justify-center px-2.5 text-xs font-medium text-muted-foreground underline-offset-4 hover:underline"
                     >
-                        Log out
+                        {t('Log out')}
                     </Link>
                     <Button type="button" onClick={accept} disabled={processing}>
-                        {processing ? 'Saving…' : 'I accept'}
+                        {processing ? t('Saving…') : t('I accept')}
                     </Button>
                 </DialogFooter>
             </DialogContent>

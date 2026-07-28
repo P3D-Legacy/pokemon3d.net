@@ -7,23 +7,26 @@ import { Login7 } from '@/components/login7';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { useTranslations } from '@/hooks/use-translations';
 
 export default function ConfirmPassword() {
+    const { t } = useTranslations();
+
     return (
         <>
-            <Head title="Confirm password" />
+            <Head title={t('Confirm Password')} />
 
             <Login7>
                 <div className="grid gap-4">
                     <p className="text-sm text-muted-foreground">
-                        This is a secure area of the application. Please confirm your password before continuing.
+                        {t('This is a secure area of the application. Please confirm your password before continuing.')}
                     </p>
 
                     <Form {...store.form()} resetOnSuccess={['password']} className="grid gap-4">
                         {({ processing, errors }) => (
                             <>
                                 <div className="grid gap-2">
-                                    <Label htmlFor="password">Password</Label>
+                                    <Label htmlFor="password">{t('Password')}</Label>
                                     <Input
                                         id="password"
                                         type="password"
@@ -37,7 +40,7 @@ export default function ConfirmPassword() {
 
                                 <Button type="submit" className="w-full" disabled={processing}>
                                     <LockIcon data-icon="inline-start" />
-                                    Confirm
+                                    {t('Confirm')}
                                 </Button>
                             </>
                         )}

@@ -10,6 +10,7 @@ import { useState } from 'react';
 
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import { useTranslations } from '@/hooks/use-translations';
 import { cn } from '@/lib/utils';
 
 export type TrophyItem = {
@@ -31,10 +32,10 @@ type TrophiesPanelProps = {
     totalCount: number;
 };
 
-const filters: Array<{ key: TrophyFilter; label: string; icon: IconComponent }> = [
-    { key: 'all', label: 'All', icon: CirclesFourIcon },
-    { key: 'achieved', label: 'Achieved', icon: TrophyIcon },
-    { key: 'locked', label: 'Locked', icon: LockSimpleIcon },
+const filterDefs: Array<{ key: TrophyFilter; labelKey: string; icon: IconComponent }> = [
+    { key: 'all', labelKey: 'All', icon: CirclesFourIcon },
+    { key: 'achieved', labelKey: 'Achieved', icon: TrophyIcon },
+    { key: 'locked', labelKey: 'Locked', icon: LockSimpleIcon },
 ];
 
 const difficultyStyles: Record<TrophyDifficulty, string> = {
@@ -65,6 +66,7 @@ function difficultyClassName(difficulty?: string | null): string {
 }
 
 export function TrophiesPanel({ trophies, achievedCount, totalCount }: TrophiesPanelProps) {
+    const { t } = useTranslations();
     const [filter, setFilter] = useState<TrophyFilter>('all');
     const progress = totalCount > 0 ? Math.min(100, Math.round((achievedCount / totalCount) * 100)) : 0;
 
@@ -88,19 +90,19 @@ export function TrophiesPanel({ trophies, achievedCount, totalCount }: TrophiesP
                         <div className="flex flex-col gap-1">
                             <div className="flex items-center gap-1.5 text-muted-foreground">
                                 <TrophyIcon className="size-4" weight="fill" />
-                                Achieved
+                                {t('Achieved')}
                             </div>
                             <div className="text-2xl font-bold">{achievedCount}</div>
                         </div>
                         <div className="flex flex-col gap-1">
                             <div className="flex items-center gap-1.5 text-muted-foreground">
                                 <CirclesFourIcon className="size-4" weight="fill" />
-                                Total
+                                {t('Total')}
                             </div>
                             <div className="text-2xl font-bold">{totalCount}</div>
                         </div>
                     </div>
-                    <div className="text-sm text-muted-foreground">{progress}% complete</div>
+                    <div className="text-sm text-muted-foreground">{t(':progress% complete', { progress })}</div>
                 </div>
                 <div className="h-2 overflow-hidden bg-muted">
                     <div className="h-full bg-primary transition-all" style={{ width: `${progress}%` }} />
@@ -108,7 +110,7 @@ export function TrophiesPanel({ trophies, achievedCount, totalCount }: TrophiesP
             </div>
 
             <div className="flex flex-wrap gap-2">
-                {filters.map((item) => {
+                {filterDefs.map((item) => {
                     const Icon = item.icon;
 
                     return (
@@ -120,7 +122,7 @@ export function TrophiesPanel({ trophies, achievedCount, totalCount }: TrophiesP
                             onClick={() => setFilter(item.key)}
                         >
                             <Icon data-icon="inline-start" weight={filter === item.key ? 'fill' : 'regular'} />
-                            {item.label}
+                            {t(item.labelKey)}
                         </Button>
                     );
                 })}
@@ -129,7 +131,7 @@ export function TrophiesPanel({ trophies, achievedCount, totalCount }: TrophiesP
             {filtered.length === 0 ? (
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
                     <MagnifyingGlassIcon className="size-4" />
-                    No trophies match this filter
+                    {t('No trophies match this filter')}
                 </div>
             ) : (
                 <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
@@ -168,7 +170,7 @@ export function TrophiesPanel({ trophies, achievedCount, totalCount }: TrophiesP
                                         ) : (
                                             <LockSimpleIcon data-icon="inline-start" weight="fill" />
                                         )}
-                                        {trophy.achieved ? 'Achieved' : 'Locked'}
+                                        {trophy.achieved ? t('Achieved') : t('Locked')}
                                     </Badge>
                                 </div>
 

@@ -996,21 +996,21 @@ class GameSave extends Model
             }
 
             if (! file_exists($filepath)) {
-                return "???";
+                return '???';
             }
 
             $abilityNames = collect(json_decode((string) file_get_contents($filepath), true));
             $match = $abilityNames->firstWhere('id', $id);
 
             if (! is_array($match)) {
-                return "???";
+                return '???';
             }
 
-            return $match['name'] ?? "???";
+            return $match['name'] ?? '???';
         } catch (Exception $e) {
             Log::error($e->getMessage());
 
-            return "???";
+            return '???';
         }
     }
 

@@ -824,7 +824,7 @@ class GameSave extends Model
     // Get nature from int
     public function getNature(mixed $natureInt): string
     {
-        return getNatureName((string) $natureInt) ?? '???';
+        return $this->getNatureName((string) $natureInt) ?? '???';
     }
 
     /**
@@ -851,8 +851,8 @@ class GameSave extends Model
         if (! is_numeric($ability)) {
             return $ability;
         }
-		
-        return getAbilityName((string) $ability) ?? '???';
+        
+        return $this->getAbilityName((string) $ability) ?? '???';
     }
 
     /**
@@ -981,66 +981,67 @@ class GameSave extends Model
             return "Item #{$id}";
         }
     }
-	
-	public function getAbilityName(string $id): string
+    
+    public function getAbilityName(string $id): string
     {
         try {
             if ($id === '' || $id === '0') {
                 return __('None');
             }
-
+            
             $filepath = lang_path().'/abilities_'.app()->getLocale().'.json';
-
+            
             if (! file_exists($filepath)) {
                 $filepath = lang_path().'/abilities_en.json';
             }
-
+            
             if (! file_exists($filepath)) {
                 return "Ability #{$id}";
             }
-
+            
             $abilityNames = collect(json_decode((string) file_get_contents($filepath), true));
             $match = $abilityNames->firstWhere('id', $id);
-
+            
             if (! is_array($match)) {
                 return "Ability #{$id}";
             }
-
+            
             return $match['name'] ?? "Ability #{$id}";
         } catch (Exception $e) {
             Log::error($e->getMessage());
-
+            
             return "Ability #{$id}";
         }
     }
-	public function getNatureName(string $id): string
+    
+    public function getNatureName(string $id): string
     {
         try {
             if ($id === '' || $id === '0') {
                 return __('None');
             }
-
+            
             $filepath = lang_path().'/natures_'.app()->getLocale().'.json';
-
+            
             if (! file_exists($filepath)) {
                 $filepath = lang_path().'/natures_en.json';
             }
-
+            
             if (! file_exists($filepath)) {
                 return "Nature #{$id}";
             }
-
+            
             $natureNames = collect(json_decode((string) file_get_contents($filepath), true));
             $match = $natureNames->firstWhere('id', $id);
-
+            
             if (! is_array($match)) {
                 return "Nature #{$id}";
             }
-
+            
             return $match['name'] ?? "Nature #{$id}";
         } catch (Exception $e) {
             Log::error($e->getMessage());
-
+            
             return "Nature #{$id}";
         }
     }

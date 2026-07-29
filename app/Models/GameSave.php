@@ -985,7 +985,7 @@ class GameSave extends Model
     public function getAbilityName(string $id): string
     {
         try {
-            if ($id === '' || $id === '0') {
+            if ($id === '') {
                 return __('None');
             }
 
@@ -996,28 +996,28 @@ class GameSave extends Model
             }
 
             if (! file_exists($filepath)) {
-                return "Ability #{$id}";
+                return "???";
             }
 
             $abilityNames = collect(json_decode((string) file_get_contents($filepath), true));
             $match = $abilityNames->firstWhere('id', $id);
 
             if (! is_array($match)) {
-                return "Ability #{$id}";
+                return "???";
             }
 
-            return $match['name'] ?? "Ability #{$id}";
+            return $match['name'] ?? "???";
         } catch (Exception $e) {
             Log::error($e->getMessage());
 
-            return "Ability #{$id}";
+            return "???";
         }
     }
 
     public function getNatureName(string $id): string
     {
         try {
-            if ($id === '' || $id === '0') {
+            if ($id === '') {
                 return __('None');
             }
 

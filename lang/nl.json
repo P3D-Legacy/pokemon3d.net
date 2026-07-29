@@ -650,5 +650,6 @@
     "comments": "opmerkingen",
     "Publish a new update for :name.": "Publiceer een nieuwe versie voor :name.",
     "Update details": "Werk details bij",
-    "Include a version number, compatible game version, changelog, and zip file.": "Vermeld het versienummer, de ondersteunde spelversie, en een lijst met wijzigingen en voeg een zip-bestand toe."
+    "Include a version number, compatible game version, changelog, and zip file.": "Vermeld het versienummer, de ondersteunde spelversie, en een lijst met wijzigingen en voeg een zip-bestand toe.",
+    "years old": "jaar oud"
 }

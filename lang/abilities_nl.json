@@ -1,0 +1,802 @@
+[
+  {
+    "id": "0",
+    "name": "Niets"
+  },
+  {
+    "id": "1",
+    "name": "Stank"
+  },
+  {
+    "id": "2",
+    "name": "Motregen"
+  },
+  {
+    "id": "3",
+    "name": "Snelheidsboost"
+  },
+  {
+    "id": "4",
+    "name": "Gevechtspantser"
+  },
+  {
+    "id": "5",
+    "name": "Stug"
+  },
+  {
+    "id": "6",
+    "name": "Vochtig"
+  },
+  {
+    "id": "7",
+    "name": "Lenig"
+  },
+  {
+    "id": "8",
+    "name": "Zandsluier"
+  },
+  {
+    "id": "9",
+    "name": "Statisch"
+  },
+  {
+    "id": "10",
+    "name": "Voltabsorptie"
+  },
+  {
+    "id": "11",
+    "name": "Waterabsorptie"
+  },
+  {
+    "id": "12",
+    "name": "Onwetend"
+  },
+  {
+    "id": "13",
+    "name": "Wolkbreuk"
+  },
+  {
+    "id": "14",
+    "name": "Combinatieogen"
+  },
+  {
+    "id": "15",
+    "name": "Slapeloos"
+  },
+  {
+    "id": "16",
+    "name": "Kleurverandering"
+  },
+  {
+    "id": "17",
+    "name": "Immuniteit"
+  },
+  {
+    "id": "18",
+    "name": "Flitsvuur"
+  },
+  {
+    "id": "19",
+    "name": "Schildstof"
+  },
+  {
+    "id": "20",
+    "name": "Eigen Tempo"
+  },
+  {
+    "id": "21",
+    "name": "Zuignappen"
+  },
+  {
+    "id": "22",
+    "name": "Intimidatie"
+  },
+  {
+    "id": "23",
+    "name": "Schaduwgrip"
+  },
+  {
+    "id": "24",
+    "name": "Ruwe Huid"
+  },
+  {
+    "id": "25",
+    "name": "Wonderwacht"
+  },
+  {
+    "id": "26",
+    "name": "Levitatie"
+  },
+  {
+    "id": "27",
+    "name": "Effectspoor"
+  },
+  {
+    "id": "28",
+    "name": "Synchronisatie"
+  },
+  {
+    "id": "29",
+    "name": "Helder Lichaam"
+  },
+  {
+    "id": "30",
+    "name": "Natuurlijke Genezing"
+  },
+  {
+    "id": "31",
+    "name": "Bliksemafleider"
+  },
+  {
+    "id": "32",
+    "name": "Serene Gratie"
+  },
+  {
+    "id": "33",
+    "name": "Snelle Zwemmer"
+  },
+  {
+    "id": "34",
+    "name": "Chlorofyl"
+  },
+  {
+    "id": "35",
+    "name": "Verlichten"
+  },
+  {
+    "id": "36",
+    "name": "Opsporen"
+  },
+  {
+    "id": "37",
+    "name": "Enorme Kracht"
+  },
+  {
+    "id": "38",
+    "name": "Gifpunt"
+  },
+  {
+    "id": "39",
+    "name": "Innerlijke Focus"
+  },
+  {
+    "id": "40",
+    "name": "Magmapantser"
+  },
+  {
+    "id": "41",
+    "name": "Watersluier"
+  },
+  {
+    "id": "42",
+    "name": "Magneettrekker"
+  },
+  {
+    "id": "43",
+    "name": "Geluidsdicht"
+  },
+  {
+    "id": "44",
+    "name": "Regenschotel"
+  },
+  {
+    "id": "45",
+    "name": "Zandstroom"
+  },
+  {
+    "id": "46",
+    "name": "Druk"
+  },
+  {
+    "id": "47",
+    "name": "Dikke Vetlaag"
+  },
+  {
+    "id": "48",
+    "name": "Vroege Vogel"
+  },
+  {
+    "id": "49",
+    "name": "Vlamlichaam"
+  },
+  {
+    "id": "50",
+    "name": "Wegloper"
+  },
+  {
+    "id": "51",
+    "name": "Scherp Oog"
+  },
+  {
+    "id": "52",
+    "name": "Hyperknipper"
+  },
+  {
+    "id": "53",
+    "name": "Oppakken"
+  },
+  {
+    "id": "54",
+    "name": "Lui"
+  },
+  {
+    "id": "55",
+    "name": "Haast"
+  },
+  {
+    "id": "56",
+    "name": "Schattige Charme"
+  },
+  {
+    "id": "57",
+    "name": "Plus"
+  },
+  {
+    "id": "58",
+    "name": "Min"
+  },
+  {
+    "id": "59",
+    "name": "Weersvoorspelling"
+  },
+  {
+    "id": "60",
+    "name": "Kleverig"
+  },
+  {
+    "id": "61",
+    "name": "Vervellen"
+  },
+  {
+    "id": "62",
+    "name": "Doorzetter"
+  },
+  {
+    "id": "63",
+    "name": "Wonderschaal"
+  },
+  {
+    "id": "64",
+    "name": "Vloeibare Smurrie"
+  },
+  {
+    "id": "65",
+    "name": "Overgroei"
+  },
+  {
+    "id": "66",
+    "name": "Vuurzee"
+  },
+  {
+    "id": "67",
+    "name": "Stroomversnelling"
+  },
+  {
+    "id": "68",
+    "name": "Zwerm"
+  },
+  {
+    "id": "69",
+    "name": "Steenkop"
+  },
+  {
+    "id": "70",
+    "name": "Droogte"
+  },
+  {
+    "id": "71",
+    "name": "Arenaval"
+  },
+  {
+    "id": "72",
+    "name": "Levensgeest"
+  },
+  {
+    "id": "73",
+    "name": "Witte Rook"
+  },
+  {
+    "id": "74",
+    "name": "Pure Kracht"
+  },
+  {
+    "id": "75",
+    "name": "Schelppantser"
+  },
+  {
+    "id": "76",
+    "name": "Luchtvergrendeling"
+  },
+  {
+    "id": "77",
+    "name": "Verstrikte Voeten"
+  },
+  {
+    "id": "78",
+    "name": "Motoraandrijving"
+  },
+  {
+    "id": "79",
+    "name": "Rivaliteit"
+  },
+  {
+    "id": "80",
+    "name": "Standvastig"
+  },
+  {
+    "id": "81",
+    "name": "Sneeuwmantel"
+  },
+  {
+    "id": "82",
+    "name": "Vraatzucht"
+  },
+  {
+    "id": "83",
+    "name": "Woedepunt"
+  },
+  {
+    "id": "84",
+    "name": "Onbelast"
+  },
+  {
+    "id": "85",
+    "name": "Hittebestendig"
+  },
+  {
+    "id": "86",
+    "name": "Eenvoud"
+  },
+  {
+    "id": "87",
+    "name": "Droge Huid"
+  },
+  {
+    "id": "88",
+    "name": "Download"
+  },
+  {
+    "id": "89",
+    "name": "IJzeren Vuist"
+  },
+  {
+    "id": "90",
+    "name": "Gifgenezing"
+  },
+  {
+    "id": "91",
+    "name": "Aanpassingsvermogen"
+  },
+  {
+    "id": "92",
+    "name": "Vaardigheidslink"
+  },
+  {
+    "id": "93",
+    "name": "Hydratatie"
+  },
+  {
+    "id": "94",
+    "name": "Zonne-energie"
+  },
+  {
+    "id": "95",
+    "name": "Snelle Voeten"
+  },
+  {
+    "id": "96",
+    "name": "Normaliseren"
+  },
+  {
+    "id": "97",
+    "name": "Scherpschutter"
+  },
+  {
+    "id": "98",
+    "name": "Magische Wacht"
+  },
+  {
+    "id": "99",
+    "name": "Geen Wacht"
+  },
+  {
+    "id": "100",
+    "name": "Rek"
+  },
+  {
+    "id": "101",
+    "name": "Technicus"
+  },
+  {
+    "id": "102",
+    "name": "Bladwacht"
+  },
+  {
+    "id": "103",
+    "name": "Klungel"
+  },
+  {
+    "id": "104",
+    "name": "Vormbreker"
+  },
+  {
+    "id": "105",
+    "name": "Supergeluk"
+  },
+  {
+    "id": "106",
+    "name": "Nawerking"
+  },
+  {
+    "id": "107",
+    "name": "Voorgevoel"
+  },
+  {
+    "id": "108",
+    "name": "Voorspeller"
+  },
+  {
+    "id": "109",
+    "name": "Onbewust"
+  },
+  {
+    "id": "110",
+    "name": "Getinte Lens"
+  },
+  {
+    "id": "111",
+    "name": "Filter"
+  },
+  {
+    "id": "112",
+    "name": "Langzame Start"
+  },
+  {
+    "id": "113",
+    "name": "Stoer"
+  },
+  {
+    "id": "114",
+    "name": "Stormafvoer"
+  },
+  {
+    "id": "115",
+    "name": "IJslichaam"
+  },
+  {
+    "id": "116",
+    "name": "Massief Gesteente"
+  },
+  {
+    "id": "117",
+    "name": "Sneeuwaanval"
+  },
+  {
+    "id": "118",
+    "name": "Honingzoeker"
+  },
+  {
+    "id": "119",
+    "name": "Doorzoeken"
+  },
+  {
+    "id": "120",
+    "name": "Roekeloos"
+  },
+  {
+    "id": "121",
+    "name": "Meervoudig Type"
+  },
+  {
+    "id": "122",
+    "name": "Bloemgeschenk"
+  },
+  {
+    "id": "123",
+    "name": "Slechte Dromen"
+  },
+  {
+    "id": "124",
+    "name": "Zakkenroller"
+  },
+  {
+    "id": "125",
+    "name": "Pure Kracht"
+  },
+  {
+    "id": "126",
+    "name": "Tegendraads"
+  },
+  {
+    "id": "127",
+    "name": "Zenuwachtig"
+  },
+  {
+    "id": "128",
+    "name": "Trotser"
+  },
+  {
+    "id": "129",
+    "name": "Defaitistisch"
+  },
+  {
+    "id": "130",
+    "name": "Vervloekt Lichaam"
+  },
+  {
+    "id": "131",
+    "name": "Genezer"
+  },
+  {
+    "id": "132",
+    "name": "Vriendwacht"
+  },
+  {
+    "id": "133",
+    "name": "Zwak Pantser"
+  },
+  {
+    "id": "134",
+    "name": "Zwaar Metaal"
+  },
+  {
+    "id": "135",
+    "name": "Licht Metaal"
+  },
+  {
+    "id": "136",
+    "name": "Multischaal"
+  },
+  {
+    "id": "137",
+    "name": "Gifboost"
+  },
+  {
+    "id": "138",
+    "name": "Vlamboost"
+  },
+  {
+    "id": "139",
+    "name": "Oogst"
+  },
+  {
+    "id": "140",
+    "name": "Telepathie"
+  },
+  {
+    "id": "141",
+    "name": "Stemmingswissel"
+  },
+  {
+    "id": "142",
+    "name": "Overjas"
+  },
+  {
+    "id": "143",
+    "name": "Gifaanraking"
+  },
+  {
+    "id": "144",
+    "name": "Regenerator"
+  },
+  {
+    "id": "145",
+    "name": "Grote Bek"
+  },
+  {
+    "id": "146",
+    "name": "Zandstorm"
+  },
+  {
+    "id": "147",
+    "name": "Wonderhuid"
+  },
+  {
+    "id": "148",
+    "name": "Analyticus"
+  },
+  {
+    "id": "149",
+    "name": "Illusie"
+  },
+  {
+    "id": "150",
+    "name": "Bedrieger"
+  },
+  {
+    "id": "151",
+    "name": "Infiltrant"
+  },
+  {
+    "id": "152",
+    "name": "Mummie"
+  },
+  {
+    "id": "153",
+    "name": "Overmoedig"
+  },
+  {
+    "id": "154",
+    "name": "Gerechtvaardigd"
+  },
+  {
+    "id": "155",
+    "name": "Schrikachtig"
+  },
+  {
+    "id": "156",
+    "name": "Magische Stuiter"
+  },
+  {
+    "id": "157",
+    "name": "Sapzuiger"
+  },
+  {
+    "id": "158",
+    "name": "Grappenmaker"
+  },
+  {
+    "id": "159",
+    "name": "Zandkracht"
+  },
+  {
+    "id": "160",
+    "name": "IJzeren Stekels"
+  },
+  {
+    "id": "161",
+    "name": "Zenmodus"
+  },
+  {
+    "id": "162",
+    "name": "Overwinningsster"
+  },
+  {
+    "id": "163",
+    "name": "Turbovlam"
+  },
+  {
+    "id": "164",
+    "name": "Teravolt"
+  },
+  {
+    "id": "165",
+    "name": "Aromasluier"
+  },
+  {
+    "id": "166",
+    "name": "Bloemensluier"
+  },
+  {
+    "id": "167",
+    "name": "Wangenzak"
+  },
+  {
+    "id": "168",
+    "name": "Veelzijdig"
+  },
+  {
+    "id": "169",
+    "name": "Bontjas"
+  },
+  {
+    "id": "170",
+    "name": "Magiër"
+  },
+  {
+    "id": "171",
+    "name": "Kogelvrij"
+  },
+  {
+    "id": "172",
+    "name": "Competitief"
+  },
+  {
+    "id": "173",
+    "name": "Sterke Kaak"
+  },
+  {
+    "id": "174",
+    "name": "Afkoelen"
+  },
+  {
+    "id": "175",
+    "name": "Zoete Sluier"
+  },
+  {
+    "id": "176",
+    "name": "Houdingsverandering"
+  },
+  {
+    "id": "177",
+    "name": "Windvleugels"
+  },
+  {
+    "id": "178",
+    "name": "Megalanceerder"
+  },
+  {
+    "id": "179",
+    "name": "Grasvacht"
+  },
+  {
+    "id": "180",
+    "name": "Symbiose"
+  },
+  {
+    "id": "181",
+    "name": "Scherpe Klauwen"
+  },
+  {
+    "id": "182",
+    "name": "Pixilatie"
+  },
+  {
+    "id": "183",
+    "name": "Plakkerig"
+  },
+  {
+    "id": "184",
+    "name": "Aerilatie"
+  },
+  {
+    "id": "185",
+    "name": "Ouderlijke Band"
+  },
+  {
+    "id": "186",
+    "name": "Donkeraura"
+  },
+  {
+    "id": "187",
+    "name": "Feeënaura"
+  },
+  {
+    "id": "188",
+    "name": "Aurabreuk"
+  },
+  {
+    "id": "202",
+    "name": "Sneeuwstorm"
+  },
+  {
+    "id": "206",
+    "name": "Galvaniseren"
+  },
+  {
+    "id": "207",
+    "name": "Stroomgolfsurfer"
+  },
+  {
+    "id": "221",
+    "name": "Verstrikkend Haar"
+  },
+  {
+    "id": "223",
+    "name": "Alchemiekracht"
+  },
+  {
+    "id": "226",
+    "name": "Elektrische Golf"
+  },
+  {
+    "id": "227",
+    "name": "Psychische Golf"
+  },
+  {
+    "id": "228",
+    "name": "Mistige Golf"
+  },
+  {
+    "id": "229",
+    "name": "Grasgolf"
+  },
+  {
+    "id": "243",
+    "name": "Stoommotor"
+  },
+  {
+    "id": "291",
+    "name": "Herkauwer"
+  }
+]

@@ -1,123 +1,123 @@
 [
   {
     "id": "1",
-    "name": "Masterball"
+    "name": "MeesterBal"
   },
   {
     "id": "2",
-    "name": "Ultra Ball"
+    "name": "UltraBal"
   },
   {
     "id": "3",
-    "name": "Premier Ball"
+    "name": "PremierBal"
   },
   {
     "id": "4",
-    "name": "Great Ball"
+    "name": "BeterBal"
   },
   {
     "id": "5",
-    "name": "Pokéball"
+    "name": "PokéBal"
   },
   {
     "id": "6",
-    "name": "Bicycle"
+    "name": "Fiets"
   },
   {
     "id": "7",
-    "name": "Lava Cookie"
+    "name": "Lavakoekje"
   },
   {
     "id": "8",
-    "name": "Moon Stone"
+    "name": "Maansteen"
   },
   {
     "id": "9",
-    "name": "Antidote"
+    "name": "Tegengif"
   },
   {
     "id": "10",
-    "name": "Burn Heal"
+    "name": "Brandmedicijn"
   },
   {
     "id": "11",
-    "name": "Ice Heal"
+    "name": "Vriesmedicijn"
   },
   {
     "id": "12",
-    "name": "Awakening"
+    "name": "Ontwaker"
   },
   {
     "id": "13",
-    "name": "Paralyze Heal"
+    "name": "Verlammedicijn"
   },
   {
     "id": "14",
-    "name": "Full Restore"
+    "name": "Volledig Herstel"
   },
   {
     "id": "15",
-    "name": "Max Potion"
+    "name": "Max-Drankje"
   },
   {
     "id": "16",
-    "name": "Hyper Potion"
+    "name": "Hyper-Drankje"
   },
   {
     "id": "17",
-    "name": "Super Potion"
+    "name": "Super-Drankje"
   },
   {
     "id": "18",
-    "name": "Potion"
+    "name": "Drankje"
   },
   {
     "id": "19",
-    "name": "Escape Rope"
+    "name": "Ontsnappingstouw"
   },
   {
     "id": "20",
-    "name": "Repel"
+    "name": "Afweerder"
   },
   {
     "id": "21",
-    "name": "Max Elixir"
+    "name": "Max-Elixer"
   },
   {
     "id": "22",
-    "name": "Fire Stone"
+    "name": "Vuursteen"
   },
   {
     "id": "23",
-    "name": "Thunder Stone"
+    "name": "Dondersteen"
   },
   {
     "id": "24",
-    "name": "Water Stone"
+    "name": "Watersteen"
   },
   {
     "id": "25",
-    "name": "Zinc"
+    "name": "Zink"
   },
   {
     "id": "26",
-    "name": "HP Up"
+    "name": "LP-Plus"
   },
   {
     "id": "27",
-    "name": "Protein"
+    "name": "Proteïne"
   },
   {
     "id": "28",
-    "name": "Iron"
+    "name": "Ijzer"
   },
   {
     "id": "29",
-    "name": "Carbos"
+    "name": "Koolhydraat"
   },
   {
     "id": "30",
-    "name": "Lucky Punch"
+    "name": "Geluksklap"
   },
   {
     "id": "31",
@@ -125,127 +125,127 @@
   },
   {
     "id": "32",
-    "name": "Rare Candy"
+    "name": "Zeldzaam Snoepje"
   },
   {
     "id": "33",
-    "name": "X Accuracy"
+    "name": "X-Nauwkeurigheid"
   },
   {
     "id": "34",
-    "name": "Leaf Stone"
+    "name": "Bladsteen"
   },
   {
     "id": "35",
-    "name": "Metal Powder"
+    "name": "Metaalpoeder"
   },
   {
     "id": "36",
-    "name": "Nugget"
+    "name": "Goudklompje"
   },
   {
     "id": "37",
-    "name": "Poké Doll"
+    "name": "Poké-Pop"
   },
   {
     "id": "38",
-    "name": "Full Heal"
+    "name": "Multimedicijn"
   },
   {
     "id": "39",
-    "name": "Revive"
+    "name": "Opwekker"
   },
   {
     "id": "40",
-    "name": "Max Revive"
+    "name": "Max-Opwekker"
   },
   {
     "id": "41",
-    "name": "S.S. Ticket"
+    "name": "Stoombootkaartje"
   },
   {
     "id": "42",
-    "name": "Super Repel"
+    "name": "Superafweerder"
   },
   {
     "id": "43",
-    "name": "Max Repel"
+    "name": "Maximale Afweerder"
   },
   {
     "id": "44",
-    "name": "Dire Hit"
+    "name": "Harde Treffer"
   },
   {
     "id": "45",
-    "name": "Cherish Ball"
+    "name": "KoesterBal"
   },
   {
     "id": "46",
-    "name": "Fresh Water"
+    "name": "Vers Water"
   },
   {
     "id": "47",
-    "name": "Soda Pop"
+    "name": "Frisdrank"
   },
   {
     "id": "48",
-    "name": "Lemonade"
+    "name": "Limonade"
   },
   {
     "id": "49",
-    "name": "X Attack"
+    "name": "X-Aanval"
   },
   {
     "id": "50",
-    "name": "X Sp. Def"
+    "name": "X-Sp. Weerstand"
   },
   {
     "id": "51",
-    "name": "X Defense"
+    "name": "X-Weerstand"
   },
   {
     "id": "52",
-    "name": "X Speed"
+    "name": "X-Snelheid"
   },
   {
     "id": "53",
-    "name": "X Sp. Atk."
+    "name": "X-Sp. Aanval"
   },
   {
     "id": "54",
-    "name": "Coin Case"
+    "name": "Muntenkist"
   },
   {
     "id": "55",
-    "name": "Itemfinder"
+    "name": "Detector"
   },
   {
     "id": "56",
-    "name": "Crystal Wing"
+    "name": "Kristalvleugel"
   },
   {
     "id": "57",
-    "name": "Exp. Share"
+    "name": "Ervaringsdeler"
   },
   {
     "id": "58",
-    "name": "Old Rod"
+    "name": "Oude Hengel"
   },
   {
     "id": "59",
-    "name": "Good Rod"
+    "name": "Goede Hengel"
   },
   {
     "id": "60",
-    "name": "Silver Leaf"
+    "name": "Zilverblad"
   },
   {
     "id": "61",
-    "name": "Super Rod"
+    "name": "Super Hengel"
   },
   {
     "id": "62",
-    "name": "PP Up"
+    "name": "AP-Plus"
   },
   {
     "id": "63",
@@ -253,511 +253,511 @@
   },
   {
     "id": "64",
-    "name": "Max Ether"
+    "name": "Max-Ether"
   },
   {
     "id": "65",
-    "name": "Elixir"
+    "name": "Elixer"
   },
   {
     "id": "66",
-    "name": "Red Scale"
+    "name": "Rode Schub"
   },
   {
     "id": "67",
-    "name": "SecretPotion"
+    "name": "Geheim Drankje"
   },
   {
     "id": "68",
-    "name": "Guard Spec."
+    "name": "Blokkeerder"
   },
   {
     "id": "69",
-    "name": "Mystery Egg"
+    "name": "Mysterieus Ei"
   },
   {
     "id": "70",
-    "name": "Sticky Barb"
+    "name": "Plakkerige Weerhaak"
   },
   {
     "id": "71",
-    "name": "Silver Wing"
+    "name": "Zilvervleugel"
   },
   {
     "id": "72",
-    "name": "Moomoo Milk"
+    "name": "Moo Moo Melk"
   },
   {
     "id": "73",
-    "name": "Quick Claw"
+    "name": "Snelle Klauw"
   },
   {
     "id": "74",
-    "name": "Zoom Lens"
+    "name": "Vergrootglas"
   },
   {
     "id": "75",
-    "name": "Gold Leaf"
+    "name": "Goudblad"
   },
   {
     "id": "76",
-    "name": "Soft Sand"
+    "name": "Zacht Zand"
   },
   {
     "id": "77",
-    "name": "Sharp Beak"
+    "name": "Scherpe Bek"
   },
   {
     "id": "78",
-    "name": "Running Shoes"
+    "name": "Hardloopschoenen"
   },
   {
     "id": "79",
-    "name": "Dive Ball"
+    "name": "DuikBal"
   },
   {
     "id": "80",
-    "name": "Net Ball"
+    "name": "NetBal"
   },
   {
     "id": "81",
-    "name": "Poison Barb"
+    "name": "Gifweerhaak"
   },
   {
     "id": "82",
-    "name": "King's Rock"
+    "name": "Koningsteen"
   },
   {
     "id": "83",
-    "name": "Prism Scale"
+    "name": "Prisma-Schub"
   },
   {
     "id": "84",
-    "name": "Reaper Cloth"
+    "name": "Doodskleed"
   },
   {
     "id": "85",
-    "name": "Red Apricorn"
+    "name": "Rode Apricorn"
   },
   {
     "id": "86",
-    "name": "Tiny Mushroom"
+    "name": "Kleine Paddenstoel"
   },
   {
     "id": "87",
-    "name": "Big Mushroom"
+    "name": "Grote Paddenstoel"
   },
   {
     "id": "88",
-    "name": "SilverPowder"
+    "name": "Zilverpoeder"
   },
   {
     "id": "89",
-    "name": "Blue Apricorn"
+    "name": "Blauwe Apricorn"
   },
   {
     "id": "90",
-    "name": "Silk Scarf"
+    "name": "Zijden Sjaal"
   },
   {
     "id": "91",
-    "name": "Amulet Coin"
+    "name": "Amuletmunt"
   },
   {
     "id": "92",
-    "name": "Yellow Apricorn"
+    "name": "Gele Apricorn"
   },
   {
     "id": "93",
-    "name": "Green Apricorn"
+    "name": "Groene Apricorn"
   },
   {
     "id": "94",
-    "name": "CleanseTag"
+    "name": "Reinigingslabel"
   },
   {
     "id": "95",
-    "name": "Mystic Water"
+    "name": "Mystiek Water"
   },
   {
     "id": "96",
-    "name": "Twisted Spoon"
+    "name": "Verbogen Lepel"
   },
   {
     "id": "97",
-    "name": "White Apricorn"
+    "name": "Witte Apricorn"
   },
   {
     "id": "98",
-    "name": "Black Belt"
+    "name": "Zwarte Band"
   },
   {
     "id": "99",
-    "name": "Black Apricorn"
+    "name": "Zwarte Apricorn"
   },
   {
     "id": "100",
-    "name": "Magmarizer"
+    "name": "Magmariseerder"
   },
   {
     "id": "101",
-    "name": "Pink Apricorn"
+    "name": "Roze Apricorn"
   },
   {
     "id": "102",
-    "name": "Black Glasses"
+    "name": "Zwarte Bril"
   },
   {
     "id": "103",
-    "name": "Slowpoketail"
+    "name": "Slowpokestaart"
   },
   {
     "id": "104",
-    "name": "Pink Bow"
+    "name": "Roze Strik"
   },
   {
     "id": "105",
-    "name": "Leek"
+    "name": "Stok"
   },
   {
     "id": "106",
-    "name": "Smoke Ball"
+    "name": "Rookbal"
   },
   {
     "id": "107",
-    "name": "Never-Melt Ice"
+    "name": "Smeltnooit-IJs"
   },
   {
     "id": "108",
-    "name": "Magnet"
+    "name": "Magneet"
   },
   {
     "id": "109",
-    "name": "Rare Bone"
+    "name": "Zeldzaam Bot"
   },
   {
     "id": "110",
-    "name": "Pearl"
+    "name": "Parel"
   },
   {
     "id": "111",
-    "name": "Big Pearl"
+    "name": "Grote Parel"
   },
   {
     "id": "112",
-    "name": "Everstone"
+    "name": "Eeuwigsteen"
   },
   {
     "id": "113",
-    "name": "Spell Tag"
+    "name": "Spreuk-Label"
   },
   {
     "id": "114",
-    "name": "Rage Candy Bar"
+    "name": "Woede-Energiereep"
   },
   {
     "id": "115",
-    "name": "GS Ball"
+    "name": "GS-Bal"
   },
   {
     "id": "116",
-    "name": "Blue Card"
+    "name": "Blauwe Kaart"
   },
   {
     "id": "117",
-    "name": "Miracle Seed"
+    "name": "Mirakel Zaadje"
   },
   {
     "id": "118",
-    "name": "Thick Club"
+    "name": "Dikke Knots"
   },
   {
     "id": "119",
-    "name": "Focus Band"
+    "name": "Focusband"
   },
   {
     "id": "120",
-    "name": "Electirizer"
+    "name": "Elektriseerder"
   },
   {
     "id": "121",
-    "name": "Energy Powder"
+    "name": "Energiepoeder"
   },
   {
     "id": "122",
-    "name": "Energy Root"
+    "name": "Energiewortel"
   },
   {
     "id": "123",
-    "name": "Heal Powder"
+    "name": "Geneespoeder"
   },
   {
     "id": "124",
-    "name": "Revival Herb"
+    "name": "Opwekkingskruiden"
   },
   {
     "id": "125",
-    "name": "HardStone"
+    "name": "Harde Steen"
   },
   {
     "id": "126",
-    "name": "Lucky Egg"
+    "name": "Geluksei"
   },
   {
     "id": "127",
-    "name": "Card Key"
+    "name": "Sleutelkaart"
   },
   {
     "id": "128",
-    "name": "Machine Part"
+    "name": "Machineonderdeel"
   },
   {
     "id": "129",
-    "name": "Quick Ball"
+    "name": "VlugBal"
   },
   {
     "id": "130",
-    "name": "Lost Item"
+    "name": "Verloren Voorwerp"
   },
   {
     "id": "131",
-    "name": "Stardust"
+    "name": "Sterrenstof"
   },
   {
     "id": "132",
-    "name": "Star Piece"
+    "name": "Stuk Ster"
   },
   {
     "id": "133",
-    "name": "Basement Key"
+    "name": "Keldersleutel"
   },
   {
     "id": "134",
-    "name": "Pass"
+    "name": "Pas"
   },
   {
     "id": "135",
-    "name": "Shiny Stone"
+    "name": "Glimmende Steen"
   },
   {
     "id": "136",
-    "name": "Dusk Stone"
+    "name": "Schemersteen"
   },
   {
     "id": "137",
-    "name": "Dawn Stone"
+    "name": "Dageraadsteen"
   },
   {
     "id": "138",
-    "name": "Charcoal"
+    "name": "Houtskool"
   },
   {
     "id": "139",
-    "name": "Berry Juice"
+    "name": "Bessensap"
   },
   {
     "id": "140",
-    "name": "Scope Lens"
+    "name": "Kijkglas"
   },
   {
     "id": "141",
-    "name": "Protector"
+    "name": "Beschermer"
   },
   {
     "id": "142",
-    "name": "Lagging Tail"
+    "name": "Trage Staart"
   },
   {
     "id": "143",
-    "name": "Metal Coat"
+    "name": "Metalen Laag"
   },
   {
     "id": "144",
-    "name": "Dragon Fang"
+    "name": "Drakentand"
   },
   {
     "id": "145",
-    "name": "Wave Incense"
+    "name": "Golfwierrook"
   },
   {
     "id": "146",
-    "name": "Leftovers"
+    "name": "Kliekjes"
   },
   {
     "id": "147",
-    "name": "White Flute"
+    "name": "Witte Fluit"
   },
   {
     "id": "148",
-    "name": "Soothe Bell"
+    "name": "Kalmeerbel"
   },
   {
     "id": "149",
-    "name": "Comet Shard"
+    "name": "Komeetscherf"
   },
   {
     "id": "150",
-    "name": "Timer Ball"
+    "name": "TimerBal"
   },
   {
     "id": "151",
-    "name": "Dragon Scale"
+    "name": "Drakenschaal"
   },
   {
     "id": "152",
-    "name": "Pewter Crunchies"
+    "name": "Pewter Krokantjes"
   },
   {
     "id": "153",
-    "name": "Balm Mushroom"
+    "name": "Balsempaddenstoel"
   },
   {
     "id": "154",
-    "name": "Shed Shell"
+    "name": "Schuilschelp"
   },
   {
     "id": "155",
-    "name": "Quick Powder"
+    "name": "Snelheidspoeder"
   },
   {
     "id": "156",
-    "name": "Sacred Ash"
+    "name": "Heilige As"
   },
   {
     "id": "157",
-    "name": "Heavy Ball"
+    "name": "GewichtsBal"
   },
   {
     "id": "158",
-    "name": "Dusk Ball"
+    "name": "SchemerBal"
   },
   {
     "id": "159",
-    "name": "Level Ball"
+    "name": "NiveauBal"
   },
   {
     "id": "160",
-    "name": "Lure Ball"
+    "name": "LokaasBal"
   },
   {
     "id": "161",
-    "name": "Fast Ball"
+    "name": "SnelBal"
   },
   {
     "id": "162",
-    "name": "DeepSeaScale"
+    "name": "Diepzeeschub"
   },
   {
     "id": "163",
-    "name": "Light Ball"
+    "name": "Lichtbal"
   },
   {
     "id": "164",
-    "name": "Friend Ball"
+    "name": "VriendBal"
   },
   {
     "id": "165",
-    "name": "Moon Ball"
+    "name": "MaanBal"
   },
   {
     "id": "166",
-    "name": "Love Ball"
+    "name": "LiefdesBal"
   },
   {
     "id": "167",
-    "name": "DeepSeaTooth"
+    "name": "Diepzeetand"
   },
   {
     "id": "168",
-    "name": "Repeat Ball"
+    "name": "HerhaalBal"
   },
   {
     "id": "169",
-    "name": "Sun Stone"
+    "name": "Zonnesteen"
   },
   {
     "id": "170",
-    "name": "Berserk Gene"
+    "name": "Berserk-Gen"
   },
   {
     "id": "171",
-    "name": "Wide Lens"
+    "name": "Groothoeklens"
   },
   {
     "id": "172",
-    "name": "Up-Grade"
+    "name": "Upgrade"
   },
   {
     "id": "173",
-    "name": "Pearl String"
+    "name": "Parelsnoer"
   },
   {
     "id": "174",
-    "name": "Luxury Ball"
+    "name": "LuxeBal"
   },
   {
     "id": "175",
-    "name": "SquirtBottle"
+    "name": "Waterspuitfles"
   },
   {
     "id": "176",
-    "name": "Grip Claw"
+    "name": "Gripklauw"
   },
   {
     "id": "177",
-    "name": "Sport Ball"
+    "name": "SportBal"
   },
   {
     "id": "178",
-    "name": "Rainbow Wing"
+    "name": "Regenboogvleugel"
   },
   {
     "id": "179",
-    "name": "Oval Stone"
+    "name": "Ovale Steen"
   },
   {
     "id": "180",
-    "name": "Brick Piece"
+    "name": "Baksteenstuk"
   },
   {
     "id": "181",
-    "name": "Safari Ball"
+    "name": "SafariBal"
   },
   {
     "id": "182",
-    "name": "Black Sludge"
+    "name": "Zwarte Slib"
   },
   {
     "id": "183",
-    "name": "Razor Fang"
+    "name": "Scheermestand"
   },
   {
     "id": "184",
-    "name": "Razor Claw"
+    "name": "Scheermesklauw"
   },
   {
     "id": "185",
-    "name": "Dubious Disc"
+    "name": "Dubieuze Schijf"
   },
   {
     "id": "186",
-    "name": "Heal Ball"
+    "name": "GeneesBal"
   },
   {
     "id": "187",
-    "name": "Ability Capsule"
+    "name": "Vaardigheidscapsule"
   },
   {
     "id": "188",
-    "name": "Nest Ball"
+    "name": "NestBal"
   },
   {
     "id": "189",
-    "name": "Big Nugget"
+    "name": "Groot Goudklompje"
   },
   {
     "id": "190",
-    "name": "Heart Scale"
+    "name": "Hartschub"
   },
   {
     "id": "191",
@@ -961,103 +961,103 @@
   },
   {
     "id": "241",
-    "name": "Oval Charm"
+    "name": "Ovale Bedel"
   },
   {
     "id": "242",
-    "name": "Shiny Charm"
+    "name": "Schitterende Bedel"
   },
   {
     "id": "243",
-    "name": "HM 05"
+    "name": "VM 05"
   },
   {
     "id": "244",
-    "name": "HM 02"
+    "name": "VM 02"
   },
   {
     "id": "245",
-    "name": "HM 03"
+    "name": "VM 03"
   },
   {
     "id": "246",
-    "name": "HM 04"
+    "name": "VM 04"
   },
   {
     "id": "247",
-    "name": "HM 01"
+    "name": "VM 01"
   },
   {
     "id": "248",
-    "name": "HM 06"
+    "name": "VM 06"
   },
   {
     "id": "249",
-    "name": "HM 07"
+    "name": "VM 07"
   },
   {
     "id": "250",
-    "name": "HM 08"
+    "name": "VM 08"
   },
   {
     "id": "251",
-    "name": "HM 09"
+    "name": "VM 09"
   },
   {
     "id": "252",
-    "name": "HM 10"
+    "name": "VM 10"
   },
   {
     "id": "253",
-    "name": "Honey"
+    "name": "Honing"
   },
   {
     "id": "254",
-    "name": "Health Wing"
+    "name": "Gezondheid-Vleugel"
   },
   {
     "id": "255",
-    "name": "Muscle Wing"
+    "name": "Gespierdheid-Vleugel"
   },
   {
     "id": "256",
-    "name": "Resist Wing"
+    "name": "Weerstand-Vleugel"
   },
   {
     "id": "257",
-    "name": "Genius Wing"
+    "name": "Genialiteit-Vleugel"
   },
   {
     "id": "258",
-    "name": "Clever Wing"
+    "name": "Handigheid-Vleugel"
   },
   {
     "id": "259",
-    "name": "Swift Wing"
+    "name": "Vlugheid-Vleugel"
   },
   {
     "id": "260",
-    "name": "Pretty Wing"
+    "name": "Schoonheid-Vleugel"
   },
   {
     "id": "261",
-    "name": "Sticky Wing"
+    "name": "Plakkerigheid-Vleugel"
   },
   {
     "id": "262",
-    "name": "Sticky Rock"
+    "name": "Plakkerige Rots"
   },
   {
     "id": "263",
-    "name": "Odd Incense"
+    "name": "Vreemde Wierrook"
   },
   {
     "id": "264",
-    "name": "Sea Incense"
+    "name": "Zeeluchtwierrook"
   },
   {
     "id": "265",
-    "name": "Tri-Pass"
+    "name": "Tri-Pas"
   },
   {
     "id": "266",
@@ -1065,283 +1065,283 @@
   },
   {
     "id": "267",
-    "name": "Draco Plate"
+    "name": "Drakenplaat"
   },
   {
     "id": "268",
-    "name": "Dread Plate"
+    "name": "Vreesplaat"
   },
   {
     "id": "269",
-    "name": "Earth Plate"
+    "name": "Aardeplaat"
   },
   {
     "id": "270",
-    "name": "Fist Plate"
+    "name": "Vuistplaat"
   },
   {
     "id": "271",
-    "name": "Flame Plate"
+    "name": "Vlammenplaat"
   },
   {
     "id": "272",
-    "name": "Icicle Plate"
+    "name": "IJspegelplaat"
   },
   {
     "id": "273",
-    "name": "Insect Plate"
+    "name": "Insectenplaat"
   },
   {
     "id": "274",
-    "name": "Iron Plate"
+    "name": "Ijzerplaat"
   },
   {
     "id": "275",
-    "name": "Meadow Plate"
+    "name": "Weideplaat"
   },
   {
     "id": "276",
-    "name": "Mind Plate"
+    "name": "Geestplaat"
   },
   {
     "id": "277",
-    "name": "Pixie Plate"
+    "name": "Elfjesplaat"
   },
   {
     "id": "278",
-    "name": "Sky Plate"
+    "name": "Luchtplaat"
   },
   {
     "id": "279",
-    "name": "Splash Plate"
+    "name": "Plonsplaat"
   },
   {
     "id": "280",
-    "name": "Spooky Plate"
+    "name": "Spokenplaat"
   },
   {
     "id": "281",
-    "name": "Stone Plate"
+    "name": "Steenplaat"
   },
   {
     "id": "282",
-    "name": "Toxic Plate"
+    "name": "Gifplaat"
   },
   {
     "id": "283",
-    "name": "Zap Plate"
+    "name": "Schokplaat"
   },
   {
     "id": "284",
-    "name": "Rainbow Pass"
+    "name": "Regenboogpas"
   },
   {
     "id": "285",
-    "name": "Old Sea Map"
+    "name": "Oude Zeekaart"
   },
   {
     "id": "286",
-    "name": "Ancient Shard"
+    "name": "Oeroude Scherf"
   },
   {
     "id": "287",
-    "name": "Rose Incense"
+    "name": "Rozenwierrook"
   },
   {
     "id": "288",
-    "name": "Full Incense"
+    "name": "Volledige Wierrook"
   },
   {
     "id": "289",
-    "name": "Lax Incense"
+    "name": "Ontspanningswierrook"
   },
   {
     "id": "290",
-    "name": "Luck Incense"
+    "name": "Gelukswierrook"
   },
   {
     "id": "291",
-    "name": "Pure Incense"
+    "name": "Pure Wierrook"
   },
   {
     "id": "292",
-    "name": "Empty Sea Map"
+    "name": "Lege Zeekaart"
   },
   {
     "id": "293",
-    "name": "Damp Rock"
+    "name": "Vochtrots"
   },
   {
     "id": "294",
-    "name": "Heat Rock"
+    "name": "Hitterots"
   },
   {
     "id": "295",
-    "name": "Smooth Rock"
+    "name": "Gladde Rots"
   },
   {
     "id": "296",
-    "name": "Icy Rock"
+    "name": "Ijzige Rots"
   },
   {
     "id": "297",
-    "name": "Light Clay"
+    "name": "Lichte Klei"
   },
   {
     "id": "298",
-    "name": "Eviolite"
+    "name": "Evioliet"
   },
   {
     "id": "299",
-    "name": "Rock Incense"
+    "name": "Rotswierrook"
   },
   {
     "id": "300",
-    "name": "Grass Mail"
+    "name": "Grasbrief"
   },
   {
     "id": "301",
-    "name": "Bead Mail"
+    "name": "Kralenbrief"
   },
   {
     "id": "302",
-    "name": "Dream Mail"
+    "name": "Droombrief"
   },
   {
     "id": "303",
-    "name": "Fab Mail"
+    "name": "Prachtbrief"
   },
   {
     "id": "304",
-    "name": "Glitter Mail"
+    "name": "Glitterbrief"
   },
   {
     "id": "305",
-    "name": "Harbor Mail"
+    "name": "Havenbrief"
   },
   {
     "id": "306",
-    "name": "Mech Mail"
+    "name": "Mechaniekbrief"
   },
   {
     "id": "307",
-    "name": "Orange Mail"
+    "name": "Oranjebrief"
   },
   {
     "id": "308",
-    "name": "Retro Mail"
+    "name": "Retrobrief"
   },
   {
     "id": "309",
-    "name": "Shadow Mail"
+    "name": "Schaduwbrief"
   },
   {
     "id": "310",
-    "name": "Tropic Mail"
+    "name": "Tropenbrief"
   },
   {
     "id": "311",
-    "name": "Wave Mail"
+    "name": "Golfbrief"
   },
   {
     "id": "312",
-    "name": "Wood Mail"
+    "name": "Houtbrief"
   },
   {
     "id": "313",
-    "name": "Air Mail"
+    "name": "Luchtbrief"
   },
   {
     "id": "314",
-    "name": "Bloom Mail"
+    "name": "Bloeibrief"
   },
   {
     "id": "315",
-    "name": "Brick Mail"
+    "name": "Baksteenbrief"
   },
   {
     "id": "316",
-    "name": "Bubble Mail"
+    "name": "Bubbelbrief"
   },
   {
     "id": "317",
-    "name": "Flame Mail"
+    "name": "Vlammenbrief"
   },
   {
     "id": "318",
-    "name": "Heart Mail"
+    "name": "Hartenbrief"
   },
   {
     "id": "319",
-    "name": "Mosaic Mail"
+    "name": "Mozaïekbrief"
   },
   {
     "id": "320",
-    "name": "Snow Mail"
+    "name": "Sneeuwbrief"
   },
   {
     "id": "321",
-    "name": "Space Mail"
+    "name": "Ruimtebrief"
   },
   {
     "id": "322",
-    "name": "Steel Mail"
+    "name": "Staalbrief"
   },
   {
     "id": "323",
-    "name": "Tunnel Mail"
+    "name": "Tunnelbrief"
   },
   {
     "id": "324",
-    "name": "BridgeMail T"
+    "name": "Hoogspanningsbrugbrief"
   },
   {
     "id": "325",
-    "name": "BridgeMail D"
+    "name": "Ophaalbrugbrief"
   },
   {
     "id": "326",
-    "name": "BridgeMail S"
+    "name": "Torenhoge Brugbrief"
   },
   {
     "id": "327",
-    "name": "BridgeMail V"
+    "name": "Klassieke Brugbrief"
   },
   {
     "id": "328",
-    "name": "BridgeMail M"
+    "name": "Majesteuze Brugbrief"
   },
   {
     "id": "329",
-    "name": "Favored Mail"
+    "name": "Favorietbrief"
   },
   {
     "id": "330",
-    "name": "Thanks Mail"
+    "name": "Dankbrief"
   },
   {
     "id": "331",
-    "name": "Inquiry Mail"
+    "name": "Inlichtingsbrief"
   },
   {
     "id": "332",
-    "name": "Greet Mail"
+    "name": "Groetbrief"
   },
   {
     "id": "333",
-    "name": "RSVP Mail"
+    "name": "Verzoekbrief"
   },
   {
     "id": "334",
-    "name": "Like Mail"
+    "name": "Waardeerbrief"
   },
   {
     "id": "335",
-    "name": "Reply Mail"
+    "name": "Antwoordbrief"
   },
   {
     "id": "336",
-    "name": "Kolben Mail"
+    "name": "Kolben-brief"
   },
   {
     "id": "351",
@@ -1869,499 +1869,499 @@
   },
   {
     "id": "501",
-    "name": "Shiny Candy"
+    "name": "Schitterend Snoepje"
   },
   {
     "id": "502",
-    "name": "PP Max"
+    "name": "AP-Max"
   },
   {
     "id": "503",
-    "name": "Sachet"
+    "name": "Zakje"
   },
   {
     "id": "504",
-    "name": "Whipped Dream"
+    "name": "Geklopte Droom"
   },
   {
     "id": "505",
-    "name": "Toxic Orb"
+    "name": "Gifbol"
   },
   {
     "id": "506",
-    "name": "Life Orb"
+    "name": "Levensbol"
   },
   {
     "id": "507",
-    "name": "Abomasite"
+    "name": "Abomasiet"
   },
   {
     "id": "508",
-    "name": "Absolite"
+    "name": "Absoliet"
   },
   {
     "id": "509",
-    "name": "Aerodactylite"
+    "name": "Aerodactyliet"
   },
   {
     "id": "510",
-    "name": "Aggronite"
+    "name": "Aggroniet"
   },
   {
     "id": "511",
-    "name": "Alakazite"
+    "name": "Alakaziet"
   },
   {
     "id": "512",
-    "name": "Ampharosite"
+    "name": "Ampharosiet"
   },
   {
     "id": "513",
-    "name": "Banettite"
+    "name": "Banettiet"
   },
   {
     "id": "514",
-    "name": "Blastoisinite"
+    "name": "Blastoisiniet"
   },
   {
     "id": "515",
-    "name": "Blazikenite"
+    "name": "Blazikeniet"
   },
   {
     "id": "516",
-    "name": "Charizardite X"
+    "name": "Charizardiet X"
   },
   {
     "id": "517",
-    "name": "Charizardite Y"
+    "name": "Charizardiet Y"
   },
   {
     "id": "518",
-    "name": "Garchompite"
+    "name": "Garchompiet"
   },
   {
     "id": "519",
-    "name": "Gardevoirite"
+    "name": "Gardevoiriet"
   },
   {
     "id": "520",
-    "name": "Gengarite"
+    "name": "Gengariet"
   },
   {
     "id": "521",
-    "name": "Gyaradosite"
+    "name": "Gyaradosiet"
   },
   {
     "id": "522",
-    "name": "Heracronite"
+    "name": "Heracroniet"
   },
   {
     "id": "523",
-    "name": "Houndoominite"
+    "name": "Houndoominiet"
   },
   {
     "id": "524",
-    "name": "Kangaskhanite"
+    "name": "Kangaskhaniet"
   },
   {
     "id": "525",
-    "name": "Lucarionite"
+    "name": "Lucarioniet"
   },
   {
     "id": "526",
-    "name": "Manectite"
+    "name": "Manectiet"
   },
   {
     "id": "527",
-    "name": "Mawilite"
+    "name": "Mawiliet"
   },
   {
     "id": "528",
-    "name": "Medichamite"
+    "name": "Medichamiet"
   },
   {
     "id": "529",
-    "name": "Mewtwonite X"
+    "name": "Mewtwoniet X"
   },
   {
     "id": "530",
-    "name": "Mewtwonite Y"
+    "name": "Mewtwoniet Y"
   },
   {
     "id": "531",
-    "name": "Pinsirite"
+    "name": "Pinsiriet"
   },
   {
     "id": "532",
-    "name": "Scizorite"
+    "name": "Scizoriet"
   },
   {
     "id": "533",
-    "name": "Tyranitarite"
+    "name": "Tyranitariet"
   },
   {
     "id": "534",
-    "name": "Venusaurite"
+    "name": "Venusauriet"
   },
   {
     "id": "535",
-    "name": "Altarianite"
+    "name": "Altarianiet"
   },
   {
     "id": "536",
-    "name": "Audinite"
+    "name": "Audiniet"
   },
   {
     "id": "537",
-    "name": "Beedrillite"
+    "name": "Beedrilliet"
   },
   {
     "id": "538",
-    "name": "Cameruptite"
+    "name": "Cameruptiet"
   },
   {
     "id": "539",
-    "name": "Diancite"
+    "name": "Dianciet"
   },
   {
     "id": "540",
-    "name": "Galladite"
+    "name": "Galladiet"
   },
   {
     "id": "541",
-    "name": "Glalitite"
+    "name": "Glalitiet"
   },
   {
     "id": "542",
-    "name": "Latiasite"
+    "name": "Latiasiet"
   },
   {
     "id": "543",
-    "name": "Latiosite"
+    "name": "Latiosiet"
   },
   {
     "id": "544",
-    "name": "Lopunnite"
+    "name": "Lopunniet"
   },
   {
     "id": "545",
-    "name": "Metagrossite"
+    "name": "Metagrossiet"
   },
   {
     "id": "546",
-    "name": "Pidgeotite"
+    "name": "Pidgeotiet"
   },
   {
     "id": "547",
-    "name": "Sablenite"
+    "name": "Sableniet"
   },
   {
     "id": "548",
-    "name": "Salamencite"
+    "name": "Salamenciet"
   },
   {
     "id": "549",
-    "name": "Sceptilite"
+    "name": "Sceptiliet"
   },
   {
     "id": "550",
-    "name": "Sharpedonite"
+    "name": "Sharpedoniet"
   },
   {
     "id": "551",
-    "name": "Slowbronite"
+    "name": "Slowbroniet"
   },
   {
     "id": "552",
-    "name": "Steelixite"
+    "name": "Steelixiet"
   },
   {
     "id": "553",
-    "name": "Swampertite"
+    "name": "Swampertiet"
   },
   {
     "id": "576",
-    "name": "Mega Bracelet"
+    "name": "Mega-Armband"
   },
   {
     "id": "577",
-    "name": "Flame Orb"
+    "name": "Vlammenbol"
   },
   {
     "id": "578",
-    "name": "Choice Band"
+    "name": "Keuzeband"
   },
   {
     "id": "579",
-    "name": "Choice Scarf"
+    "name": "Keuzesjaal"
   },
   {
     "id": "580",
-    "name": "Choice Specs"
+    "name": "Keuzebril"
   },
   {
     "id": "581",
-    "name": "Macho Brace"
+    "name": "Macho-Armband"
   },
   {
     "id": "582",
-    "name": "Power Weight"
+    "name": "Krachtgewicht"
   },
   {
     "id": "583",
-    "name": "Power Bracer"
+    "name": "Krachtbeugel"
   },
   {
     "id": "584",
-    "name": "Power Belt"
+    "name": "Krachtriem"
   },
   {
     "id": "585",
-    "name": "Power Lens"
+    "name": "Krachtlens"
   },
   {
     "id": "586",
-    "name": "Power Band"
+    "name": "Krachtband"
   },
   {
     "id": "587",
-    "name": "Power Anklet"
+    "name": "Krachtenkelband"
   },
   {
     "id": "591",
-    "name": "Expert Belt"
+    "name": "Expertband"
   },
   {
     "id": "592",
-    "name": "Liberty Sea Map"
+    "name": "Vrijheid-Zeekaart"
   },
   {
     "id": "593",
-    "name": "Ice Stone"
+    "name": "IJssteen"
   },
   {
     "id": "594",
-    "name": "Snowball"
+    "name": "Sneeuwbal"
   },
   {
     "id": "595",
-    "name": "Cell Battery"
+    "name": "Batterijcel"
   },
   {
     "id": "596",
-    "name": "Electric Seed"
+    "name": "Electrisch Zaadje"
   },
   {
     "id": "597",
-    "name": "Grassy Seed"
+    "name": "Grassig Zaadje"
   },
   {
     "id": "598",
-    "name": "Misty Seed"
+    "name": "Mistig Zaadje"
   },
   {
     "id": "599",
-    "name": "Psychic Seed"
+    "name": "Psychisch Zaadje"
   },
   {
     "id": "600",
-    "name": "Terrain Extender"
+    "name": "Terreinuitbreider"
   },
   {
     "id": "601",
-    "name": "Helix Fossil"
+    "name": "Schroeffossiel"
   },
   {
     "id": "602",
-    "name": "Dome Fossil"
+    "name": "Koepelfossiel"
   },
   {
     "id": "603",
-    "name": "Old Amber"
+    "name": "Oud Amber"
   },
   {
     "id": "604",
-    "name": "Root Fossil"
+    "name": "Wortelfossiel"
   },
   {
     "id": "605",
-    "name": "Claw Fossil"
+    "name": "Klauwfossiel"
   },
   {
     "id": "606",
-    "name": "Skull Fossil"
+    "name": "Schedelfossiel"
   },
   {
     "id": "607",
-    "name": "Armor Fossil"
+    "name": "Pantserfossiel"
   },
   {
     "id": "608",
-    "name": "Cover Fossil"
+    "name": "Schuilfossiel"
   },
   {
     "id": "609",
-    "name": "Plume Fossil"
+    "name": "Pluimfossiel"
   },
   {
     "id": "610",
-    "name": "Jaw Fossil"
+    "name": "Kaakfossiel"
   },
   {
     "id": "611",
-    "name": "Sail Fossil"
+    "name": "Zeilfossiel"
   },
   {
     "id": "612",
-    "name": "Fossilized Bird"
+    "name": "Versteende Vogel"
   },
   {
     "id": "613",
-    "name": "Fossilized Fish"
+    "name": "Versteende Vis"
   },
   {
     "id": "614",
-    "name": "Fossilized Drake"
+    "name": "Versteende Draak"
   },
   {
     "id": "615",
-    "name": "Fossilized Dino"
+    "name": "Versteende~Dinosaurus"
   },
   {
     "id": "630",
-    "name": "Fire Gem"
+    "name": "Vuurjuweel"
   },
   {
     "id": "631",
-    "name": "Water Gem"
+    "name": "Waterjuweel"
   },
   {
     "id": "632",
-    "name": "Electric Gem"
+    "name": "Electrisch juweel"
   },
   {
     "id": "633",
-    "name": "Grass Gem"
+    "name": "Grasjuweel"
   },
   {
     "id": "634",
-    "name": "Ice Gem"
+    "name": "IJsjuweel"
   },
   {
     "id": "635",
-    "name": "Fighting Gem"
+    "name": "Vechtjuweel"
   },
   {
     "id": "636",
-    "name": "Poison Gem"
+    "name": "Gifjuweel"
   },
   {
     "id": "637",
-    "name": "Ground Gem"
+    "name": "Grondjuweel"
   },
   {
     "id": "638",
-    "name": "Flying Gem"
+    "name": "Vliegjuweel"
   },
   {
     "id": "639",
-    "name": "Psychic Gem"
+    "name": "Psychischjuweel"
   },
   {
     "id": "640",
-    "name": "Bug Gem"
+    "name": "Insectjuweel"
   },
   {
     "id": "641",
-    "name": "Rock Gem"
+    "name": "Rotsjuweel"
   },
   {
     "id": "642",
-    "name": "Ghost Gem"
+    "name": "Geestjuweel"
   },
   {
     "id": "643",
-    "name": "Dragon Gem"
+    "name": "Draakjuweel"
   },
   {
     "id": "644",
-    "name": "Dark Gem"
+    "name": "Duisterjuweel"
   },
   {
     "id": "645",
-    "name": "Steel Gem"
-  },
-  {
-    "id": "648",
-    "name": "Poké Toy"
-  },
-  {
-    "id": "649",
-    "name": "Fluffy Tail"
-  },
-  {
-    "id": "650",
-    "name": "Bright Powder"
+    "name": "Staaljuweel"
   },
   {
     "id": "646",
-    "name": "Normal Gem"
+    "name": "Normaaljuweel"
   },
   {
     "id": "647",
-    "name": "Fairy Gem"
+    "name": "Feejuweel"
+  },
+  {
+    "id": "648",
+    "name": "Poké-Speelgoed"
+  },
+  {
+    "id": "649",
+    "name": "Pluizige Staart"
+  },
+  {
+    "id": "650",
+    "name": "Fel Poeder"
   },
   {
     "id": "651",
-    "name": "Light Stone"
+    "name": "Lichtsteen"
   },
   {
     "id": "652",
-    "name": "Dark Stone"
+    "name": "Duistersteen"
   },
   {
     "id": "653",
-    "name": "Black Augurite"
+    "name": "Zwart Auguriet"
   },
   {
     "id": "654",
-    "name": "Peat Block"
+    "name": "Turfblok"
   },
   {
     "id": "655",
-    "name": "Sea Plane Ticket"
+    "name": "Watervliegtuig-kaartje"
   },
   {
     "id": "656",
-    "name": "Exp. Charm"
+    "name": "Ervaringsbedel"
   },
   {
     "id": "657",
-    "name": "Catching Charm"
+    "name": "Vangbedel"
   },
   {
     "id": "658",
-    "name": "Exp. All"
+    "name": "Team-ervaringsdeler"
   },
   {
     "id": "677",
-    "name": "Destiny Knot"
+    "name": "Lotknoop"
   },
   {
     "id": "1996",
-    "name": "Burn Drive"
+    "name": "Brandschijf"
   },
   {
     "id": "1997",
-    "name": "Chill Drive"
+    "name": "Kalmteschijf"
   },
   {
     "id": "1998",
-    "name": "Douse Drive"
+    "name": "Blusschijf"
   },
   {
     "id": "1999",
-    "name": "Shock Drive"
+    "name": "Shokschijf"
   },
   {
     "id": "2000",

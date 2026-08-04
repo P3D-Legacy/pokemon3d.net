@@ -661,5 +661,6 @@
     "comments": "comments",
     "Publish a new update for :name.": "Publish a new update for :name.",
     "Update details": "Update details",
-    "Include a version number, compatible game version, changelog, and zip file.": "Include a version number, compatible game version, changelog, and zip file."
+    "Include a version number, compatible game version, changelog, and zip file.": "Include a version number, compatible game version, changelog, and zip file.",
+    "years old": "years old"
 }

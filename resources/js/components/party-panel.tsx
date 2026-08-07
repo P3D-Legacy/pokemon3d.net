@@ -179,13 +179,13 @@ export function PartyPanel({ party, title, showSummary = true }: PartyPanelProps
                                 </div>
 
                                 <dl className="grid min-w-0 gap-1 text-xs">
-                                    {member.nature ? (
+                                    {!member.is_egg && member.nature ? (
                                         <div className="flex min-w-0 justify-between gap-2">
                                             <dt className="text-muted-foreground">{t('Nature')}</dt>
                                             <dd className="truncate font-medium">{member.nature}</dd>
                                         </div>
                                     ) : null}
-                                    {member.ability ? (
+                                    {!member.is_egg && member.ability ? (
                                         <div className="flex min-w-0 items-center justify-between gap-2">
                                             <dt className="flex items-center gap-1 text-muted-foreground">
                                                 <LightningIcon className="size-3" weight="fill" />

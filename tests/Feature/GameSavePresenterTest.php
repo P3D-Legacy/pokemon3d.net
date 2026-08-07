@@ -183,7 +183,8 @@ test('game save presenter returns structured party members with sprite urls', fu
             'level' => 1,
             'shiny' => true,
             'is_egg' => true,
-            'ability' => 'Overgrow',
+            'nature' => null,
+            'ability' => null,
             'sprite_url' => 'https://raw.githubusercontent.com/P3D-Legacy/P3D-Legacy/master/P3D/Content/Pokemon/Egg/Egg_front.png',
         ])
         ->and($payload['party'][1])->not->toHaveKey('Image');

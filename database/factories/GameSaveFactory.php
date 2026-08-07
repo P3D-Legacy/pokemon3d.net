@@ -31,7 +31,7 @@ class GameSaveFactory extends Factory
                 '{johto\routes\route29.dat|10,0,5|2024,1,15,12,0,0}',
                 '{Kurt|2,1,0,0,0,0,1|2024,1,16,8,30,0}',
             ]),
-            'berries' => '{johto\routes\route29.dat|12,0,8|2000,2,1|2024,2,1,10,0,0}',
+            'berries' => '{johto\routes\route29.dat|12,0,8|0|2|0,0,0,0|2024,2,1,10,0,0|0}',
             'box' => implode("\r\n", [
                 '0,0,'.$bulbasaur,
                 '0,1,'.$pikachu,

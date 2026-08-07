@@ -636,6 +636,9 @@ class GameSave extends Model
     /**
      * Parse planted berry lines.
      *
+     * P3D format: {map|x,y,z|berryIndex|amount|watered|timestamp|fullGrown}
+     * Berry item IDs are berryIndex + 2000.
+     *
      * @return list<array{map_path: string, position: ?string, berry_id: string, berry_name: string, berry_count: int, watered_stages: int, timestamp: ?string}>
      */
     public function getBerries(): array
@@ -651,21 +654,24 @@ class GameSave extends Model
                 $inner = substr($line, 1, -1);
                 $parts = explode('|', $inner);
 
-                if (count($parts) < 3) {
+                if (count($parts) < 4) {
                     continue;
                 }
 
-                $berryParts = array_pad(explode(',', $parts[2]), 3, '0');
-                $berryId = (string) $berryParts[0];
+                $berryId = (string) (((int) $parts[2]) + 2000);
+                $wateredStages = count(array_filter(
+                    explode(',', $parts[4] ?? '0'),
+                    fn (string $flag): bool => $flag === '1'
+                ));
 
                 $entries[] = [
                     'map_path' => $parts[0],
                     'position' => $parts[1] ?? null,
                     'berry_id' => $berryId,
                     'berry_name' => $this->getItemName($berryId),
-                    'berry_count' => (int) $berryParts[1],
-                    'watered_stages' => (int) $berryParts[2],
-                    'timestamp' => $parts[3] ?? null,
+                    'berry_count' => (int) $parts[3],
+                    'watered_stages' => $wateredStages,
+                    'timestamp' => $parts[5] ?? null,
                 ];
             }
 

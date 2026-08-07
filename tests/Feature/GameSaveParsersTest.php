@@ -57,7 +57,30 @@ test('game save parsers extract box items daycare hall of fame and roaming', fun
     $berries = $gamesave->getBerries();
     expect($berries)->toHaveCount(1)
         ->and($berries[0]['berry_id'])->toBe('2000')
-        ->and($berries[0]['berry_count'])->toBe(2);
+        ->and($berries[0]['berry_name'])->toBe('Cheri')
+        ->and($berries[0]['berry_count'])->toBe(2)
+        ->and($berries[0]['watered_stages'])->toBe(0)
+        ->and($berries[0]['map_path'])->toBe('johto\routes\route29.dat');
+
+    $legacyBerries = GameSave::factory()->make([
+        'berries' => "{route39.dat|8,0,2|9|1|0|2012,9,21,4,0,0|1}\r\n{route38.dat|13,0,12|16|2|1,0,0,0|2012,9,21,4,0,0|1}",
+    ])->getBerries();
+
+    expect($legacyBerries)->toHaveCount(2)
+        ->and($legacyBerries[0])->toMatchArray([
+            'berry_id' => '2009',
+            'berry_name' => 'Sitrus',
+            'berry_count' => 1,
+            'watered_stages' => 0,
+            'map_path' => 'route39.dat',
+        ])
+        ->and($legacyBerries[1])->toMatchArray([
+            'berry_id' => '2016',
+            'berry_name' => 'Bluk',
+            'berry_count' => 2,
+            'watered_stages' => 1,
+            'map_path' => 'route38.dat',
+        ]);
 
     $itemData = $gamesave->getItemData();
     expect($itemData)->toHaveCount(2)

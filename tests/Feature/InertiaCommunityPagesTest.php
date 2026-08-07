@@ -44,6 +44,10 @@ test('members index is rendered with inertia', function () {
         ->assertOk()
         ->assertInertia(fn (Assert $page) => $page
             ->component('members/index')
+            ->where('filters.search', '')
+            ->where('filters.sort', 'last_active')
+            ->where('filters.gamejolt', false)
+            ->where('filters.gamesave', false)
             ->has('members.data', 1)
             ->where('members.data.0.username', 'listedtrainer')
             ->where('members.data.0.location', 'Pallet Town')

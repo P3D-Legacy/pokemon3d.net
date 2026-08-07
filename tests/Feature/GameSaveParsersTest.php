@@ -4,8 +4,15 @@ use App\Models\GamejoltAccount;
 use App\Models\GameSave;
 use App\Models\User;
 use App\Support\GameSavePresenter;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Http;
 
 test('game save parsers extract box items daycare hall of fame and roaming', function () {
+    Cache::flush();
+    Http::fake([
+        'https://raw.githubusercontent.com/P3D-Legacy/P3D-Legacy/master/P3D/Content/Data/Scripts/worldmap/*' => Http::response('', 500),
+    ]);
+
     $gamesave = GameSave::factory()->create();
 
     $box = $gamesave->getBox();
@@ -60,7 +67,8 @@ test('game save parsers extract box items daycare hall of fame and roaming', fun
         ->and($berries[0]['berry_name'])->toBe('Cheri')
         ->and($berries[0]['berry_count'])->toBe(2)
         ->and($berries[0]['watered_stages'])->toBe(0)
-        ->and($berries[0]['map_path'])->toBe('johto\routes\route29.dat');
+        ->and($berries[0]['map_path'])->toBe('johto\routes\route29.dat')
+        ->and($berries[0]['map_name'])->toBe('Route 29');
 
     $legacyBerries = GameSave::factory()->make([
         'berries' => "{route39.dat|8,0,2|9|1|0|2012,9,21,4,0,0|1}\r\n{route38.dat|13,0,12|16|2|1,0,0,0|2012,9,21,4,0,0|1}",
@@ -73,6 +81,7 @@ test('game save parsers extract box items daycare hall of fame and roaming', fun
             'berry_count' => 1,
             'watered_stages' => 0,
             'map_path' => 'route39.dat',
+            'map_name' => 'Route 39',
         ])
         ->and($legacyBerries[1])->toMatchArray([
             'berry_id' => '2016',
@@ -80,6 +89,7 @@ test('game save parsers extract box items daycare hall of fame and roaming', fun
             'berry_count' => 2,
             'watered_stages' => 1,
             'map_path' => 'route38.dat',
+            'map_name' => 'Route 38',
         ]);
 
     $itemData = $gamesave->getItemData();

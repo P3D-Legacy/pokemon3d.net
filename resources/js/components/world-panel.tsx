@@ -6,6 +6,7 @@ import { useTranslations } from '@/hooks/use-translations';
 export type ApricornEntry = {
     type: 'tree' | 'kurt';
     map_path?: string | null;
+    map_name?: string | null;
     position?: string | null;
     amounts?: Record<string, number> | null;
     timestamp?: string | null;
@@ -13,6 +14,7 @@ export type ApricornEntry = {
 
 export type BerryEntry = {
     map_path: string;
+    map_name: string;
     position?: string | null;
     berry_id: string;
     berry_name: string;
@@ -25,6 +27,7 @@ export type ItemDataPayload = {
     count: number;
     items: Array<{
         map_path: string;
+        map_name: string;
         item_id: string;
         item_name: string;
     }>;
@@ -65,8 +68,8 @@ export function WorldPanel({ apricorns, berries, itemdata }: WorldPanelProps) {
                                         {entry.type === 'kurt' ? t('Kurt') : t('Tree')}
                                     </Badge>
                                 </div>
-                                {entry.map_path ? (
-                                    <p className="break-all text-xs text-muted-foreground">{entry.map_path}</p>
+                                {entry.map_name || entry.map_path ? (
+                                    <p className="text-xs text-muted-foreground">{t(entry.map_name || entry.map_path || '')}</p>
                                 ) : null}
                                 {entry.position ? (
                                     <p className="text-xs text-muted-foreground">
@@ -106,7 +109,7 @@ export function WorldPanel({ apricorns, berries, itemdata }: WorldPanelProps) {
                             >
                                 <div className="min-w-0">
                                     <div className="font-medium">{berry.berry_name}</div>
-                                    <p className="break-all text-xs text-muted-foreground">{berry.map_path}</p>
+                                    <p className="text-xs text-muted-foreground">{t(berry.map_name)}</p>
                                 </div>
                                 <Badge variant="secondary">×{berry.berry_count}</Badge>
                             </div>
@@ -131,7 +134,7 @@ export function WorldPanel({ apricorns, berries, itemdata }: WorldPanelProps) {
                                 className="border border-border bg-muted/20 p-3 text-sm"
                             >
                                 <div className="font-medium">{item.item_name}</div>
-                                <p className="break-all text-xs text-muted-foreground">{item.map_path}</p>
+                                <p className="text-xs text-muted-foreground">{t(item.map_name)}</p>
                             </div>
                         ))}
                     </div>

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Support\MapNameCatalogue;
 use Exception;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -600,6 +601,7 @@ class GameSave extends Model
                     $entries[] = [
                         'type' => 'kurt',
                         'map_path' => null,
+                        'map_name' => null,
                         'position' => null,
                         'amounts' => [
                             'red' => (int) $amounts[0],
@@ -619,6 +621,7 @@ class GameSave extends Model
                 $entries[] = [
                     'type' => 'tree',
                     'map_path' => $parts[0],
+                    'map_name' => MapNameCatalogue::name($parts[0]),
                     'position' => $parts[1] ?? null,
                     'amounts' => null,
                     'timestamp' => $parts[2] ?? null,
@@ -639,7 +642,7 @@ class GameSave extends Model
      * P3D format: {map|x,y,z|berryIndex|amount|watered|timestamp|fullGrown}
      * Berry item IDs are berryIndex + 2000.
      *
-     * @return list<array{map_path: string, position: ?string, berry_id: string, berry_name: string, berry_count: int, watered_stages: int, timestamp: ?string}>
+     * @return list<array{map_path: string, map_name: string, position: ?string, berry_id: string, berry_name: string, berry_count: int, watered_stages: int, timestamp: ?string}>
      */
     public function getBerries(): array
     {
@@ -666,6 +669,7 @@ class GameSave extends Model
 
                 $entries[] = [
                     'map_path' => $parts[0],
+                    'map_name' => MapNameCatalogue::name($parts[0]),
                     'position' => $parts[1] ?? null,
                     'berry_id' => $berryId,
                     'berry_name' => $this->getItemName($berryId),
@@ -686,7 +690,7 @@ class GameSave extends Model
     /**
      * Parse collected map item pickups: MapPath|ItemID (comma-separated).
      *
-     * @return list<array{map_path: string, item_id: string, item_name: string}>
+     * @return list<array{map_path: string, map_name: string, item_id: string, item_name: string}>
      */
     public function getItemData(): array
     {
@@ -714,6 +718,7 @@ class GameSave extends Model
 
                 $entries[] = [
                     'map_path' => $mapPath,
+                    'map_name' => MapNameCatalogue::name($mapPath),
                     'item_id' => $itemId,
                     'item_name' => $this->getItemName($itemId),
                 ];

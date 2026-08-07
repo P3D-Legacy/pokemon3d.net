@@ -64,6 +64,7 @@ class Server extends BaseModel
     {
         return [
             'last_check_at' => 'datetime',
+            'last_online_at' => 'datetime',
         ];
     }
 

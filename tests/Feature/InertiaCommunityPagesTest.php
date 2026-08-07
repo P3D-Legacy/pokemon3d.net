@@ -101,6 +101,20 @@ test('servers index is rendered with inertia', function () {
             ->where('createRequirements', null));
 });
 
+test('servers index presents last online as a human readable string', function () {
+    Server::factory()->create([
+        'active' => true,
+        'last_online_at' => now()->subHour(),
+    ]);
+
+    $this->get(route('server.index'))
+        ->assertOk()
+        ->assertInertia(fn (Assert $page) => $page
+            ->component('servers/index')
+            ->has('servers', 1)
+            ->where('servers.0.last_online_at', fn ($value) => is_string($value) && $value !== ''));
+});
+
 test('servers index shows create requirements when authenticated without gamejolt or save', function () {
     $user = User::factory()->create();
 

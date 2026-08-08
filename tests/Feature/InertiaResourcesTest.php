@@ -218,6 +218,58 @@ test('resource update download redirects to external url and increments download
     expect($update->fresh()->downloads)->toBe(4);
 });
 
+test('resource update download streams uploaded file from the media disk and increments downloads', function () {
+    Storage::fake('public');
+
+    $resource = Resource::factory()->create(['name' => 'Cool Pack']);
+    $update = ResourceUpdate::factory()->create([
+        'resource_id' => $resource->id,
+        'title' => '1.0.0',
+        'downloads' => 2,
+        'external_download_url' => null,
+    ]);
+
+    $update
+        ->addMedia(UploadedFile::fake()->create('pack.zip', 100, 'application/zip'))
+        ->usingName('cool-pack-1.0.0.zip')
+        ->toMediaCollection('resource_update_file');
+
+    $response = $this->get(route('resource.updates.download', [
+        'uuid' => $resource->uuid,
+        'update' => $update->id,
+    ]));
+
+    $response->assertOk();
+    expect($response->headers->get('content-disposition'))->toContain('cool-pack-1.0.0.zip')
+        ->and($update->fresh()->downloads)->toBe(3);
+});
+
+test('resource update download flashes when media record exists but file is missing on disk', function () {
+    Storage::fake('public');
+
+    $resource = Resource::factory()->create();
+    $update = ResourceUpdate::factory()->create([
+        'resource_id' => $resource->id,
+        'external_download_url' => null,
+    ]);
+
+    $update
+        ->addMedia(UploadedFile::fake()->create('pack.zip', 100, 'application/zip'))
+        ->toMediaCollection('resource_update_file');
+
+    $media = $update->getFirstMedia('resource_update_file');
+    Storage::disk($media->disk)->delete($media->getPathRelativeToRoot());
+
+    $this->get(route('resource.updates.download', [
+        'uuid' => $resource->uuid,
+        'update' => $update->id,
+    ]))
+        ->assertRedirect(route('resource.uuid', $resource->uuid))
+        ->assertSessionHas('flash.banner', __('File not found on server!'));
+
+    expect($update->fresh()->downloads)->toBe($update->downloads);
+});
+
 test('resource update store requires either a zip file or an external download url', function () {
     $owner = User::factory()->create();
     $resource = Resource::factory()->create(['user_id' => $owner->id]);

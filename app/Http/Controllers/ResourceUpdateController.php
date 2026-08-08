@@ -9,11 +9,11 @@ use App\Models\ResourceUpdate;
 use App\Notifications\Resource\UpdateNotification;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Inertia\Inertia;
 use Inertia\Response;
-use Symfony\Component\HttpFoundation\BinaryFileResponse;
-use Symfony\Component\HttpFoundation\File\Exception\FileNotFoundException;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class ResourceUpdateController extends Controller
 {
@@ -90,7 +90,7 @@ class ResourceUpdateController extends Controller
         return redirect()->route('resource.uuid', $resource->uuid);
     }
 
-    public function download(string $uuid, ResourceUpdate $update): BinaryFileResponse|RedirectResponse
+    public function download(string $uuid, ResourceUpdate $update): StreamedResponse|RedirectResponse
     {
         $resource = $this->findResource($uuid);
 
@@ -113,16 +113,19 @@ class ResourceUpdateController extends Controller
             return redirect()->route('resource.uuid', $resource->uuid);
         }
 
-        $update->incrementDownload();
+        $disk = Storage::disk($mediaItem->disk);
+        $path = $mediaItem->getPathRelativeToRoot();
 
-        try {
-            return response()->download($mediaItem->getPath(), $mediaItem->name);
-        } catch (FileNotFoundException) {
+        if (! $disk->exists($path)) {
             session()->flash('flash.banner', trans('File not found on server!'));
             session()->flash('flash.bannerStyle', 'danger');
 
             return redirect()->route('resource.uuid', $resource->uuid);
         }
+
+        $update->incrementDownload();
+
+        return $disk->download($path, $mediaItem->name);
     }
 
     protected function findResource(string $uuid): Resource

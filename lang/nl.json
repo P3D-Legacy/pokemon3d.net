@@ -651,5 +651,14 @@
     "Publish a new update for :name.": "Publiceer een nieuwe versie voor :name.",
     "Update details": "Werk details bij",
     "Include a version number, compatible game version, changelog, and zip file.": "Vermeld het versienummer, de ondersteunde spelversie, en een lijst met wijzigingen en voeg een zip-bestand toe.",
-    "years old": "jaar oud"
+    "years old": "jaar oud",
+    "Clear filters": "Filters wissen",
+    "Newest joined": "Nieuwst aangesloten",
+    "No members match your search": "Geen leden komen overeen met je zoekopdracht",
+    "Oldest joined": "Oudst aangesloten",
+    "Search members": "Zoek leden",
+    "Sort by": "Sorteren op",
+    "Unknown location": "Onbekende locatie",
+    "Username A–Z": "Gebruikersnaam A–Z",
+    "Username Z–A": "Gebruikersnaam Z–A"
 }

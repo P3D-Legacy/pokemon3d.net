@@ -3,6 +3,7 @@
 use AliBayat\LaravelCategorizable\Category;
 use App\Models\GameVersion;
 use App\Models\Resource;
+use App\Models\ResourceUpdate;
 use App\Models\User;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
@@ -59,7 +60,10 @@ test('resource show is rendered with inertia', function () {
             ->component('resources/show')
             ->where('resource.name', $resource->name)
             ->where('resource.uuid', $resource->uuid)
-            ->has('copy'));
+            ->has('copy.downloadDisclaimerTitle')
+            ->has('copy.downloadDisclaimerBody')
+            ->has('copy.downloadDisclaimerCancel')
+            ->has('copy.downloadDisclaimerConfirm'));
 });
 
 test('guests are redirected from resource create', function () {
@@ -155,7 +159,10 @@ test('owner can post a resource update with zip file', function () {
     $this->actingAs($owner)
         ->get(route('resource.updates.create', $resource->uuid))
         ->assertOk()
-        ->assertInertia(fn (Assert $page) => $page->component('resources/updates/create'));
+        ->assertInertia(fn (Assert $page) => $page
+            ->component('resources/updates/create')
+            ->has('copy.externalDownloadUrl')
+            ->has('copy.fileOrUrlHelp'));
 
     $this->actingAs($owner)
         ->post(route('resource.updates.store', $resource->uuid), [
@@ -167,6 +174,83 @@ test('owner can post a resource update with zip file', function () {
         ->assertRedirect(route('resource.uuid', $resource->uuid));
 
     expect($resource->updates()->count())->toBe(1);
+    expect($resource->updates()->first()->external_download_url)->toBeNull();
+});
+
+test('owner can post a resource update with an external download url', function () {
+    $owner = User::factory()->create();
+    $resource = Resource::factory()->create(['user_id' => $owner->id]);
+    $gameVersion = GameVersion::factory()->create();
+    $externalUrl = 'https://example.com/packs/large-mode.zip';
+
+    $this->actingAs($owner)
+        ->post(route('resource.updates.store', $resource->uuid), [
+            'version' => '2.0.0',
+            'description' => 'Large pack hosted externally',
+            'gameversion' => $gameVersion->id,
+            'external_download_url' => $externalUrl,
+        ])
+        ->assertRedirect(route('resource.uuid', $resource->uuid));
+
+    $update = $resource->updates()->first();
+
+    expect($update)->not->toBeNull()
+        ->and($update->external_download_url)->toBe($externalUrl)
+        ->and($update->getFirstMedia('resource_update_file'))->toBeNull();
+});
+
+test('resource update download redirects to external url and increments downloads', function () {
+    $resource = Resource::factory()->create();
+    $update = ResourceUpdate::factory()->create([
+        'resource_id' => $resource->id,
+        'downloads' => 3,
+        'external_download_url' => 'https://example.com/packs/large-mode.zip',
+    ]);
+
+    $this->get(route('resource.updates.download', [
+        'uuid' => $resource->uuid,
+        'update' => $update->id,
+    ]))
+        ->assertRedirect('https://example.com/packs/large-mode.zip');
+
+    expect($update->fresh()->downloads)->toBe(4);
+});
+
+test('resource update store requires either a zip file or an external download url', function () {
+    $owner = User::factory()->create();
+    $resource = Resource::factory()->create(['user_id' => $owner->id]);
+    $gameVersion = GameVersion::factory()->create();
+
+    $this->actingAs($owner)
+        ->post(route('resource.updates.store', $resource->uuid), [
+            'version' => '1.0.0',
+            'description' => 'Missing download source',
+            'gameversion' => $gameVersion->id,
+        ])
+        ->assertSessionHasErrors(['file', 'external_download_url']);
+
+    expect($resource->updates()->count())->toBe(0);
+});
+
+test('resource update store rejects both a zip file and an external download url', function () {
+    Storage::fake('public');
+
+    $owner = User::factory()->create();
+    $resource = Resource::factory()->create(['user_id' => $owner->id]);
+    $gameVersion = GameVersion::factory()->create();
+    $file = UploadedFile::fake()->create('pack.zip', 100, 'application/zip');
+
+    $this->actingAs($owner)
+        ->post(route('resource.updates.store', $resource->uuid), [
+            'version' => '1.0.0',
+            'description' => 'Both sources provided',
+            'gameversion' => $gameVersion->id,
+            'file' => $file,
+            'external_download_url' => 'https://example.com/packs/large-mode.zip',
+        ])
+        ->assertSessionHasErrors(['file', 'external_download_url']);
+
+    expect($resource->updates()->count())->toBe(0);
 });
 
 test('non owner can rate a resource and owner cannot', function () {

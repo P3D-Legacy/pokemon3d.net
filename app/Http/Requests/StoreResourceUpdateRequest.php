@@ -22,7 +22,22 @@ class StoreResourceUpdateRequest extends FormRequest
         return [
             'version' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string', 'max:5120'],
-            'file' => ['required', 'file', 'mimes:zip', 'max:100000'],
+            'file' => [
+                'required_without:external_download_url',
+                'prohibits:external_download_url',
+                'nullable',
+                'file',
+                'mimes:zip',
+                'max:100000',
+            ],
+            'external_download_url' => [
+                'required_without:file',
+                'prohibits:file',
+                'nullable',
+                'url',
+                'starts_with:https',
+                'max:2048',
+            ],
             'gameversion' => ['required', 'exists:game_versions,id'],
         ];
     }

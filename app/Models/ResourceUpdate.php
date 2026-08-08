@@ -29,7 +29,7 @@ class ResourceUpdate extends BaseModel implements HasMedia
      *
      * @var array
      */
-    protected $fillable = ['title', 'description', 'resource_id', 'game_version_id', 'downloads'];
+    protected $fillable = ['title', 'description', 'resource_id', 'game_version_id', 'downloads', 'external_download_url'];
 
     /**
      * The attributes that should be logged for the user.

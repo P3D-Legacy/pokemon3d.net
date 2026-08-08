@@ -42,6 +42,8 @@ class ResourceUpdateController extends Controller
                 'selectGameVersion' => __('Select a game version'),
                 'description' => __('Description'),
                 'file' => __('Resource File (ZIP)'),
+                'externalDownloadUrl' => __('External download URL'),
+                'fileOrUrlHelp' => __('Upload a ZIP file or provide an HTTPS download link. Do not submit both.'),
                 'cancel' => __('Cancel'),
                 'submit' => __('Post Update'),
             ],
@@ -60,16 +62,19 @@ class ResourceUpdateController extends Controller
             'description' => $validated['description'],
             'resource_id' => $resource->id,
             'game_version_id' => $validated['gameversion'],
+            'external_download_url' => $validated['external_download_url'] ?? null,
         ]);
 
-        $file = $request->file('file');
-        $fileName = Str::slug($resource->name).'-'.$resourceUpdate->title.'.'.$file->extension();
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+            $fileName = Str::slug($resource->name).'-'.$resourceUpdate->title.'.'.$file->extension();
 
-        $resourceUpdate->clearMediaCollection('resource_update_file');
-        $resourceUpdate
-            ->addMedia($file)
-            ->usingName($fileName)
-            ->toMediaCollection('resource_update_file');
+            $resourceUpdate->clearMediaCollection('resource_update_file');
+            $resourceUpdate
+                ->addMedia($file)
+                ->usingName($fileName)
+                ->toMediaCollection('resource_update_file');
+        }
 
         session()->flash('flash.bannerStyle', 'success');
         session()->flash('flash.banner', __('Update posted successfully!'));
@@ -83,6 +88,12 @@ class ResourceUpdateController extends Controller
 
         if ((int) $update->resource_id !== (int) $resource->id) {
             abort(404);
+        }
+
+        if (filled($update->external_download_url)) {
+            $update->incrementDownload();
+
+            return redirect()->away($update->external_download_url);
         }
 
         $mediaItem = $update->getFirstMedia('resource_update_file');

@@ -164,6 +164,10 @@ class ResourceController extends Controller
                 'nothingFound' => __('Nothing found.'),
                 'like' => __('Like'),
                 'unlike' => __('Unlike'),
+                'downloadDisclaimerTitle' => __('Download community content'),
+                'downloadDisclaimerBody' => __('The Pokémon3D team is not responsible for community Resource Pack content, whether hosted on this site or downloaded from an external link. Download and use at your own risk.'),
+                'downloadDisclaimerCancel' => __('Cancel'),
+                'downloadDisclaimerConfirm' => __('Continue download'),
             ],
         ]);
     }

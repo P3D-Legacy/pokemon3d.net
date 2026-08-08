@@ -95,6 +95,10 @@ type Props = {
         nothingFound: string;
         like: string;
         unlike: string;
+        downloadDisclaimerTitle: string;
+        downloadDisclaimerBody: string;
+        downloadDisclaimerCancel: string;
+        downloadDisclaimerConfirm: string;
     };
 };
 
@@ -128,10 +132,19 @@ export default function ResourceShow({ resource, copy }: Props) {
     const { auth } = usePage<SharedPageProps>().props;
     const { t } = useTranslations();
     const [activeUpdate, setActiveUpdate] = useState<(typeof resource.updates)[number] | null>(null);
+    const [pendingDownloadUrl, setPendingDownloadUrl] = useState<string | null>(null);
     const latestUpdate =
         resource.updates.find((update) => update.id === resource.latest_update_id) ?? resource.updates[0];
     const isOwner =
         resource.permissions.can_update || resource.permissions.can_delete || resource.permissions.can_post_update;
+
+    const confirmDownload = () => {
+        if (! pendingDownloadUrl) {
+            return;
+        }
+
+        window.location.href = pendingDownloadUrl;
+    };
 
     return (
         <>
@@ -195,11 +208,13 @@ export default function ResourceShow({ resource, copy }: Props) {
                             </Button>
                         ) : null}
                         {latestUpdate ? (
-                            <Button size="sm" asChild>
-                                <a href={latestUpdate.download_url}>
-                                    <DownloadSimpleIcon data-icon="inline-start" weight="fill" />
-                                    {copy.download}
-                                </a>
+                            <Button
+                                size="sm"
+                                type="button"
+                                onClick={() => setPendingDownloadUrl(latestUpdate.download_url)}
+                            >
+                                <DownloadSimpleIcon data-icon="inline-start" weight="fill" />
+                                {copy.download}
                             </Button>
                         ) : null}
                         {auth.user && isOwner ? (
@@ -377,15 +392,37 @@ export default function ResourceShow({ resource, copy }: Props) {
                                 dangerouslySetInnerHTML={{ __html: activeUpdate.description_html }}
                             />
                             <DialogFooter>
-                                <Button asChild>
-                                    <a href={activeUpdate.download_url}>
-                                        <DownloadSimpleIcon data-icon="inline-start" weight="fill" />
-                                        {copy.download}
-                                    </a>
+                                <Button
+                                    type="button"
+                                    onClick={() => setPendingDownloadUrl(activeUpdate.download_url)}
+                                >
+                                    <DownloadSimpleIcon data-icon="inline-start" weight="fill" />
+                                    {copy.download}
                                 </Button>
                             </DialogFooter>
                         </>
                     ) : null}
+                </DialogContent>
+            </Dialog>
+
+            <Dialog
+                open={pendingDownloadUrl !== null}
+                onOpenChange={(open) => ! open && setPendingDownloadUrl(null)}
+            >
+                <DialogContent className="sm:max-w-md" showCloseButton>
+                    <DialogHeader>
+                        <DialogTitle>{copy.downloadDisclaimerTitle}</DialogTitle>
+                        <DialogDescription>{copy.downloadDisclaimerBody}</DialogDescription>
+                    </DialogHeader>
+                    <DialogFooter>
+                        <Button type="button" variant="outline" onClick={() => setPendingDownloadUrl(null)}>
+                            {copy.downloadDisclaimerCancel}
+                        </Button>
+                        <Button type="button" onClick={confirmDownload}>
+                            <DownloadSimpleIcon data-icon="inline-start" weight="fill" />
+                            {copy.downloadDisclaimerConfirm}
+                        </Button>
+                    </DialogFooter>
                 </DialogContent>
             </Dialog>
         </>

@@ -25,6 +25,8 @@ type Props = {
         selectGameVersion: string;
         description: string;
         file: string;
+        externalDownloadUrl: string;
+        fileOrUrlHelp: string;
         cancel: string;
         submit: string;
     };
@@ -64,7 +66,9 @@ export default function ResourceUpdateCreate({ resource, gameVersions, copy }: P
                     <CardHeader>
                         <CardTitle className="text-base font-semibold">{t('Update details')}</CardTitle>
                         <CardDescription>
-                            {t('Include a version number, compatible game version, changelog, and zip file.')}
+                            {t(
+                                'Include a version number, compatible game version, changelog, and either a zip file or an external download link.',
+                            )}
                         </CardDescription>
                     </CardHeader>
                     <CardContent>
@@ -120,15 +124,27 @@ export default function ResourceUpdateCreate({ resource, gameVersions, copy }: P
                                     </div>
 
                                     <div className="flex flex-col gap-2">
+                                        <p className="text-sm text-muted-foreground">{copy.fileOrUrlHelp}</p>
                                         <Label htmlFor="file">{copy.file}</Label>
                                         <Input
                                             id="file"
                                             name="file"
                                             type="file"
                                             accept=".zip,application/zip"
-                                            required
                                         />
                                         <InputError message={errors.file} />
+                                    </div>
+
+                                    <div className="flex flex-col gap-2">
+                                        <Label htmlFor="external_download_url">{copy.externalDownloadUrl}</Label>
+                                        <Input
+                                            id="external_download_url"
+                                            name="external_download_url"
+                                            type="url"
+                                            inputMode="url"
+                                            placeholder="https://"
+                                        />
+                                        <InputError message={errors.external_download_url} />
                                     </div>
 
                                     <div className="flex flex-wrap justify-end gap-2">

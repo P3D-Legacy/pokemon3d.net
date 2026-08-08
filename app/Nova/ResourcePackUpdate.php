@@ -44,6 +44,9 @@ class ResourcePackUpdate extends Resource
             Textarea::make('description'),
             BelongsTo::make('Resource', 'resource', ResourcePack::class),
             BelongsTo::make('Game Version', 'game_version', GameVersion::class),
+            Text::make('External Download URL', 'external_download_url')
+                ->nullable()
+                ->rules('nullable', 'url', 'starts_with:https', 'max:2048'),
             Text::make('Downloads')->readonly(),
         ];
     }

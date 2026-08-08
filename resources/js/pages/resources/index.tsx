@@ -15,7 +15,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useTranslations } from '@/hooks/use-translations';
 import { cn } from '@/lib/utils';
-import { create, index as resourceIndex } from '@/routes/resource';
+import { create, following, index as resourceIndex } from '@/routes/resource';
 import type { Paginated } from '@/types';
 
 type ResourceCard = {
@@ -53,12 +53,14 @@ type Props = {
     categories: CategoryItem[];
     selectedCategory: { name: string; slug: string } | null;
     canCreate: boolean;
+    canViewFollowing: boolean;
     copy: {
         title: string;
         categories: string;
         allCategories: string;
         wantToAdd: string;
         create: string;
+        following: string;
         rating: string;
         likes: string;
         downloads: string;
@@ -102,7 +104,14 @@ function paginationLabel(label: string): string {
         .trim();
 }
 
-export default function ResourcesIndex({ resources, categories, selectedCategory, canCreate, copy }: Props) {
+export default function ResourcesIndex({
+    resources,
+    categories,
+    selectedCategory,
+    canCreate,
+    canViewFollowing,
+    copy,
+}: Props) {
     const { t } = useTranslations();
 
     return (
@@ -123,6 +132,11 @@ export default function ResourcesIndex({ resources, categories, selectedCategory
                                 : t('Browse mods, tools, and other community resources.')}
                         </p>
                     </div>
+                    {canViewFollowing ? (
+                        <Button size="sm" variant="outline" asChild>
+                            <Link href={following.url()}>{copy.following}</Link>
+                        </Button>
+                    ) : null}
                 </div>
 
                 <div className="grid grid-cols-1 gap-6 lg:grid-cols-4">

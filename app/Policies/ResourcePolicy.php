@@ -46,4 +46,9 @@ class ResourcePolicy
     {
         return (int) $resource->user_id !== (int) $user->id || (bool) config('app.debug');
     }
+
+    public function follow(User $user, Resource $resource): bool
+    {
+        return (int) $resource->user_id !== (int) $user->id || (bool) config('app.debug');
+    }
 }

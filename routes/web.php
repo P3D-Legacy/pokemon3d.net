@@ -98,6 +98,7 @@ Route::prefix('resource')->group(function () {
     Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         Route::get('/create', [ResourceController::class, 'create'])->name('resource.create');
         Route::post('/', [ResourceController::class, 'store'])->name('resource.store');
+        Route::get('/following', [ResourceController::class, 'following'])->name('resource.following');
 
         Route::get('/{uuid}/edit', [ResourceController::class, 'edit'])->name('resource.edit');
         Route::put('/{uuid}', [ResourceController::class, 'update'])->name('resource.update');
@@ -113,6 +114,7 @@ Route::prefix('resource')->group(function () {
         Route::post('/{uuid}/rate', [ResourceController::class, 'storeRating'])->name('resource.rate.store');
 
         Route::post('/{uuid}/like', [ResourceController::class, 'like'])->name('resource.like');
+        Route::post('/{uuid}/follow', [ResourceController::class, 'follow'])->name('resource.follow');
     });
 
     Route::get('/{uuid}/updates/{update}/download', [ResourceUpdateController::class, 'download'])

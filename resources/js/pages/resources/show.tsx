@@ -1,5 +1,6 @@
 import { Form, Head, Link, usePage } from '@inertiajs/react';
 import {
+    BookmarkSimpleIcon,
     BooksIcon,
     DownloadSimpleIcon,
     DotsThreeIcon,
@@ -32,7 +33,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { useTranslations } from '@/hooks/use-translations';
 import { cn } from '@/lib/utils';
-import { deleteMethod, edit, like, rate, index as resourceIndex } from '@/routes/resource';
+import { deleteMethod, edit, follow, like, rate, index as resourceIndex } from '@/routes/resource';
 import { create as createUpdate } from '@/routes/resource/updates';
 import type { SharedPageProps } from '@/types';
 
@@ -46,6 +47,7 @@ type Props = {
         category: { name: string; slug: string; url: string } | null;
         rating: { average: number; stars: number; count: number };
         likes: { count: number; liked: boolean };
+        follows: { count: number; followed: boolean };
         downloads: number;
         views: string;
         created_at: string;
@@ -75,6 +77,7 @@ type Props = {
             can_post_update: boolean;
             can_rate: boolean;
             can_like: boolean;
+            can_follow: boolean;
         };
     };
     copy: {
@@ -95,6 +98,8 @@ type Props = {
         nothingFound: string;
         like: string;
         unlike: string;
+        follow: string;
+        unfollow: string;
         downloadDisclaimerTitle: string;
         downloadDisclaimerBody: string;
         downloadDisclaimerCancel: string;
@@ -199,6 +204,25 @@ export default function ResourceShow({ resource, copy }: Props) {
                                             weight={resource.likes.liked ? 'fill' : 'regular'}
                                         />
                                         {resource.likes.liked ? copy.unlike : copy.like} ({resource.likes.count})
+                                    </Button>
+                                )}
+                            </Form>
+                        ) : null}
+                        {auth.user && resource.permissions.can_follow ? (
+                            <Form {...follow.form(resource.uuid)}>
+                                {({ processing }) => (
+                                    <Button
+                                        type="submit"
+                                        variant={resource.follows.followed ? 'secondary' : 'outline'}
+                                        size="sm"
+                                        disabled={processing}
+                                    >
+                                        <BookmarkSimpleIcon
+                                            data-icon="inline-start"
+                                            weight={resource.follows.followed ? 'fill' : 'regular'}
+                                        />
+                                        {resource.follows.followed ? copy.unfollow : copy.follow} (
+                                        {resource.follows.count})
                                     </Button>
                                 )}
                             </Form>

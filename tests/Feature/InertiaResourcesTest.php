@@ -5,7 +5,9 @@ use App\Models\GameVersion;
 use App\Models\Resource;
 use App\Models\ResourceUpdate;
 use App\Models\User;
+use App\Notifications\Resource\UpdateNotification;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Testing\AssertableInertia as Assert;
 
@@ -287,6 +289,108 @@ test('authenticated users can toggle likes', function () {
         ->assertRedirect();
 
     expect($resource->fresh()->isLikedBy($liker))->toBeTrue();
+});
+
+test('guests cannot follow resources or view following', function () {
+    $resource = Resource::factory()->create();
+
+    $this->post(route('resource.follow', $resource->uuid))->assertRedirect(route('login'));
+    $this->get(route('resource.following'))->assertRedirect(route('login'));
+});
+
+test('authenticated users can toggle resource follows', function () {
+    $owner = User::factory()->create();
+    $follower = User::factory()->create();
+    $resource = Resource::factory()->create(['user_id' => $owner->id]);
+
+    $this->actingAs($follower)
+        ->post(route('resource.follow', $resource->uuid))
+        ->assertRedirect();
+
+    expect($resource->fresh()->isFollowedBy($follower))->toBeTrue();
+    $this->assertDatabaseHas('resource_followers', [
+        'user_id' => $follower->id,
+        'resource_id' => $resource->id,
+    ]);
+
+    $this->actingAs($follower)
+        ->post(route('resource.follow', $resource->uuid))
+        ->assertRedirect();
+
+    expect($resource->fresh()->isFollowedBy($follower))->toBeFalse();
+    $this->assertDatabaseMissing('resource_followers', [
+        'user_id' => $follower->id,
+        'resource_id' => $resource->id,
+    ]);
+});
+
+test('resource owners cannot follow their own resource when debug is disabled', function () {
+    config(['app.debug' => false]);
+
+    $owner = User::factory()->create();
+    $resource = Resource::factory()->create(['user_id' => $owner->id]);
+
+    $this->actingAs($owner)
+        ->post(route('resource.follow', $resource->uuid))
+        ->assertForbidden();
+});
+
+test('following page lists only followed resources', function () {
+    $owner = User::factory()->create();
+    $follower = User::factory()->create();
+    $followed = Resource::factory()->create(['user_id' => $owner->id, 'name' => 'Followed Pack']);
+    $other = Resource::factory()->create(['user_id' => $owner->id, 'name' => 'Other Pack']);
+
+    $followed->followers()->attach($follower->id);
+
+    $this->actingAs($follower)
+        ->get(route('resource.following'))
+        ->assertOk()
+        ->assertInertia(fn (Assert $page) => $page
+            ->component('resources/following')
+            ->has('resources.data', 1)
+            ->where('resources.data.0.uuid', $followed->uuid)
+            ->where('resources.data.0.name', $followed->name)
+            ->missing('resources.data.1'));
+
+    expect($other->isFollowedBy($follower))->toBeFalse();
+});
+
+test('posting a resource update notifies followers but not the author', function () {
+    Notification::fake();
+
+    $owner = User::factory()->create();
+    $follower = User::factory()->create();
+    $resource = Resource::factory()->create(['user_id' => $owner->id]);
+    $gameVersion = GameVersion::factory()->create();
+
+    $resource->followers()->attach($follower->id);
+
+    $this->actingAs($owner)
+        ->post(route('resource.updates.store', $resource->uuid), [
+            'version' => '1.2.0',
+            'description' => 'Follower-facing update',
+            'gameversion' => $gameVersion->id,
+            'external_download_url' => 'https://example.com/packs/update.zip',
+        ])
+        ->assertRedirect(route('resource.uuid', $resource->uuid));
+
+    Notification::assertSentTo($follower, UpdateNotification::class);
+    Notification::assertNotSentTo($owner, UpdateNotification::class);
+});
+
+test('resource update notification uses mail when email notifications consent is given', function () {
+    $follower = User::factory()->create();
+    $resource = Resource::factory()->create();
+    $update = ResourceUpdate::factory()->create(['resource_id' => $resource->id]);
+
+    $notification = new UpdateNotification($resource, $update);
+
+    expect($notification->via($follower))->toBe(['database']);
+
+    $follower->giveConsentTo('email.notifications');
+
+    expect($notification->via($follower->fresh()))->toBe(['mail', 'database']);
 });
 
 test('owner can delete their resource', function () {

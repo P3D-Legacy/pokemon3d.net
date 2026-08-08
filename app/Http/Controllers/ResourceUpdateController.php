@@ -6,7 +6,9 @@ use App\Http\Requests\StoreResourceUpdateRequest;
 use App\Models\GameVersion;
 use App\Models\Resource;
 use App\Models\ResourceUpdate;
+use App\Notifications\Resource\UpdateNotification;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Str;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -75,6 +77,12 @@ class ResourceUpdateController extends Controller
                 ->usingName($fileName)
                 ->toMediaCollection('resource_update_file');
         }
+
+        $followers = $resource->followers()
+            ->where('users.id', '!=', $request->user()->id)
+            ->get();
+
+        Notification::send($followers, new UpdateNotification($resource, $resourceUpdate));
 
         session()->flash('flash.bannerStyle', 'success');
         session()->flash('flash.banner', __('Update posted successfully!'));

@@ -72,6 +72,10 @@ class ResourcePresenter
                 'count' => $resource->likers()->count(),
                 'liked' => $viewer ? $resource->isLikedBy($viewer) : false,
             ],
+            'follows' => [
+                'count' => $resource->followers()->count(),
+                'followed' => $viewer ? $resource->isFollowedBy($viewer) : false,
+            ],
             'downloads' => (int) $resource->downloads,
             'views' => (string) NumberHelper::nearestK(views($resource)->count()),
             'created_at' => $resource->created_at?->diffForHumans(),
@@ -103,6 +107,7 @@ class ResourcePresenter
                 'can_post_update' => $viewer ? $viewer->can('postUpdate', $resource) : false,
                 'can_rate' => $viewer ? $viewer->can('rate', $resource) : false,
                 'can_like' => $viewer ? $viewer->can('like', $resource) : false,
+                'can_follow' => $viewer ? $viewer->can('follow', $resource) : false,
             ],
         ];
     }

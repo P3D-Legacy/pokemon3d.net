@@ -76,17 +76,45 @@ class ResourceController extends Controller
                 ]
                 : null,
             'canCreate' => (bool) request()->user(),
+            'canViewFollowing' => (bool) request()->user(),
             'copy' => [
                 'title' => __('Resources'),
                 'categories' => __('Categories'),
                 'allCategories' => __('All categories'),
                 'wantToAdd' => __('Want to add a resource?'),
                 'create' => __('Create'),
+                'following' => __('Following'),
                 'rating' => __('Rating'),
                 'likes' => __('Likes'),
                 'downloads' => __('Downloads'),
                 'updated' => __('Updated'),
                 'nothingFound' => __('Nothing found.'),
+            ],
+        ]);
+    }
+
+    public function following(Request $request): Response
+    {
+        $resources = $request->user()
+            ->followedResources()
+            ->with(['user', 'categories', 'updates', 'reviews'])
+            ->withCount('likers')
+            ->orderByDesc('resource_followers.created_at')
+            ->paginate(15)
+            ->withQueryString()
+            ->through(fn (Resource $resource): array => ResourcePresenter::card($resource));
+
+        return Inertia::render('resources/following', [
+            'resources' => $resources,
+            'copy' => [
+                'title' => __('Following'),
+                'resources' => __('Resources'),
+                'description' => __('Resources you follow for update notifications.'),
+                'rating' => __('Rating'),
+                'likes' => __('Likes'),
+                'downloads' => __('Downloads'),
+                'updated' => __('Updated'),
+                'nothingFound' => __('You are not following any resources yet.'),
             ],
         ]);
     }
@@ -164,6 +192,8 @@ class ResourceController extends Controller
                 'nothingFound' => __('Nothing found.'),
                 'like' => __('Like'),
                 'unlike' => __('Unlike'),
+                'follow' => __('Follow'),
+                'unfollow' => __('Unfollow'),
                 'downloadDisclaimerTitle' => __('Download community content'),
                 'downloadDisclaimerBody' => __('The Pokémon3D team is not responsible for community Resource Pack content, whether hosted on this site or downloaded from an external link. Download and use at your own risk.'),
                 'downloadDisclaimerCancel' => __('Cancel'),
@@ -311,6 +341,16 @@ class ResourceController extends Controller
         if ($resource->isLikedBy($user)) {
             Notification::send($resource->user, new LikeNotification($resource, $user));
         }
+
+        return back();
+    }
+
+    public function follow(Request $request, string $uuid): RedirectResponse
+    {
+        $resource = $this->findResource($uuid);
+        $this->authorize('follow', $resource);
+
+        $resource->toggleFollow($request->user());
 
         return back();
     }

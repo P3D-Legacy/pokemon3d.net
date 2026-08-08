@@ -143,7 +143,11 @@ export default function ResourceShow({ resource, copy }: Props) {
             return;
         }
 
-        window.location.href = pendingDownloadUrl;
+        const downloadUrl = pendingDownloadUrl;
+
+        setPendingDownloadUrl(null);
+        setActiveUpdate(null);
+        window.location.assign(downloadUrl);
     };
 
     return (

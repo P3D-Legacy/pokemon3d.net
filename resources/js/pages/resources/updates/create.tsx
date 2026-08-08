@@ -1,5 +1,6 @@
 import { Form, Head, Link } from '@inertiajs/react';
 import { ArrowLeftIcon, BooksIcon } from '@phosphor-icons/react';
+import { useState, type ChangeEvent } from 'react';
 
 import InputError from '@/components/input-error';
 import { Button } from '@/components/ui/button';
@@ -37,6 +38,30 @@ const selectClassName =
 
 export default function ResourceUpdateCreate({ resource, gameVersions, copy }: Props) {
     const { t } = useTranslations();
+    const [hasFile, setHasFile] = useState(false);
+    const [externalUrl, setExternalUrl] = useState('');
+    const [fileInputKey, setFileInputKey] = useState(0);
+
+    const hasExternalUrl = externalUrl.trim() !== '';
+
+    const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
+        const selected = (event.target.files?.length ?? 0) > 0;
+        setHasFile(selected);
+
+        if (selected) {
+            setExternalUrl('');
+        }
+    };
+
+    const handleExternalUrlChange = (event: ChangeEvent<HTMLInputElement>) => {
+        const value = event.target.value;
+        setExternalUrl(value);
+
+        if (value.trim() !== '') {
+            setHasFile(false);
+            setFileInputKey((key) => key + 1);
+        }
+    };
 
     return (
         <>
@@ -127,10 +152,13 @@ export default function ResourceUpdateCreate({ resource, gameVersions, copy }: P
                                         <p className="text-sm text-muted-foreground">{copy.fileOrUrlHelp}</p>
                                         <Label htmlFor="file">{copy.file}</Label>
                                         <Input
+                                            key={fileInputKey}
                                             id="file"
                                             name="file"
                                             type="file"
                                             accept=".zip,application/zip"
+                                            disabled={hasExternalUrl}
+                                            onChange={handleFileChange}
                                         />
                                         <InputError message={errors.file} />
                                     </div>
@@ -143,6 +171,9 @@ export default function ResourceUpdateCreate({ resource, gameVersions, copy }: P
                                             type="url"
                                             inputMode="url"
                                             placeholder="https://"
+                                            value={externalUrl}
+                                            disabled={hasFile}
+                                            onChange={handleExternalUrlChange}
                                         />
                                         <InputError message={errors.external_download_url} />
                                     </div>

@@ -1,6 +1,6 @@
 import { Head, Link } from '@inertiajs/react';
 import {
-    BooksIcon,
+    PackageIcon,
     CaretRightIcon,
     DownloadSimpleIcon,
     HeartIcon,
@@ -95,7 +95,7 @@ export default function ResourcesFollowing({ resources, copy }: Props) {
 
                 <div className="mb-8 flex flex-col gap-2">
                     <div className="flex items-center gap-2 text-muted-foreground">
-                        <BooksIcon className="size-5" weight="fill" />
+                        <PackageIcon className="size-5" weight="fill" />
                         <span className="text-sm">{copy.resources}</span>
                     </div>
                     <h1 className="text-3xl font-semibold tracking-tight">{copy.title}</h1>
@@ -104,7 +104,7 @@ export default function ResourcesFollowing({ resources, copy }: Props) {
 
                 {resources.data.length === 0 ? (
                     <div className="flex flex-col items-center justify-center gap-3 border border-border bg-muted/20 px-6 py-16 text-center">
-                        <BooksIcon className="size-10 text-muted-foreground" weight="fill" />
+                        <PackageIcon className="size-10 text-muted-foreground" weight="fill" />
                         <div className="text-lg font-medium">{copy.nothingFound}</div>
                         <Button size="sm" asChild>
                             <Link href={resourceIndex.url()}>{copy.resources}</Link>

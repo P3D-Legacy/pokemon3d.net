@@ -1,5 +1,5 @@
 import { Form, Head, Link } from '@inertiajs/react';
-import { ArrowLeftIcon, BooksIcon, StarIcon } from '@phosphor-icons/react';
+import { ArrowLeftIcon, PackageIcon, StarIcon } from '@phosphor-icons/react';
 import { useState } from 'react';
 
 import InputError from '@/components/input-error';
@@ -49,7 +49,7 @@ export default function ResourceRate({ resource, copy }: Props) {
                     </Button>
                     <div className="flex flex-col gap-2">
                         <div className="flex items-center gap-2 text-muted-foreground">
-                            <BooksIcon className="size-5" weight="fill" />
+                            <PackageIcon className="size-5" weight="fill" />
                             <span className="text-sm">{copy.resources}</span>
                         </div>
                         <h1 className="text-3xl font-semibold tracking-tight">{copy.title}</h1>

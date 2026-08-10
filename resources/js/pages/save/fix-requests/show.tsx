@@ -118,7 +118,7 @@ export default function SaveFixRequestShow({ fixRequest, consentText }: Props) {
                                                 value="1"
                                                 defaultChecked={fixRequest.notify_database}
                                             />
-                                            <span>{t('In-app notifications')}</span>
+                                            <span>{t('Web notifications')}</span>
                                         </label>
                                         <label className="flex items-center gap-2 text-sm">
                                             <input

@@ -4,6 +4,7 @@ use App\Console\Commands\CleanUpActivity;
 use App\Console\Commands\DiscordRoleSync;
 use App\Console\Commands\DiscordUserRoleSync;
 use App\Console\Commands\NotifyGameUpdate;
+use App\Console\Commands\NotifyStaleGameSaveFixRequests;
 use App\Console\Commands\PingAllServers;
 use App\Console\Commands\PruneUnresponsiveServers;
 use App\Console\Commands\SkinUserUpdate;
@@ -23,6 +24,7 @@ Schedule::command(DiscordRoleSync::class)->dailyAt('12:00');
 Schedule::command(DiscordUserRoleSync::class)->dailyAt('12:10');
 Schedule::command(SyncGameVersion::class)->dailyAt('00:00');
 Schedule::command(NotifyGameUpdate::class)->dailyAt('00:30');
+Schedule::command(NotifyStaleGameSaveFixRequests::class)->dailyAt('01:00');
 Schedule::command('disposable:update')->daily();
 // Weekly commands
 Schedule::command(PruneFailedJobsCommand::class)->weekly();

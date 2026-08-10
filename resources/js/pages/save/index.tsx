@@ -1,4 +1,4 @@
-import { Head } from '@inertiajs/react';
+import { Head, Link } from '@inertiajs/react';
 import { FloppyDiskIcon } from '@phosphor-icons/react';
 import { useState } from 'react';
 
@@ -12,6 +12,7 @@ import { PokedexPanel, type PokedexDefinition } from '@/components/pokedex-panel
 import { RoamingPanel, type RoamingEntry } from '@/components/roaming-panel';
 import { StatisticsPanel, type StatisticItem } from '@/components/statistics-panel';
 import { TrophiesPanel, type TrophyItem } from '@/components/trophies-panel';
+import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import {
     WorldPanel,
@@ -20,6 +21,7 @@ import {
     type ItemDataPayload,
 } from '@/components/world-panel';
 import { useTranslations } from '@/hooks/use-translations';
+import { index as fixRequestsIndex } from '@/routes/save/fix-requests';
 
 type GameSavePayload = {
     available: boolean;
@@ -73,15 +75,20 @@ export default function SaveIndex({ gameSave }: Props) {
             <Head title={t('My Save')} />
 
             <div className="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-                <div className="mb-8 flex flex-col gap-2">
-                    <div className="flex items-center gap-2 text-muted-foreground">
-                        <FloppyDiskIcon className="size-5" weight="fill" />
-                        <span className="text-sm">{t('Game')}</span>
+                <div className="mb-8 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+                    <div className="flex flex-col gap-2">
+                        <div className="flex items-center gap-2 text-muted-foreground">
+                            <FloppyDiskIcon className="size-5" weight="fill" />
+                            <span className="text-sm">{t('Game')}</span>
+                        </div>
+                        <h1 className="text-3xl font-semibold tracking-tight">{t('My Save')}</h1>
+                        <p className="text-sm text-muted-foreground">
+                            {t('Full details of your synced Pokémon 3D game save.')}
+                        </p>
                     </div>
-                    <h1 className="text-3xl font-semibold tracking-tight">{t('My Save')}</h1>
-                    <p className="text-sm text-muted-foreground">
-                        {t('Full details of your synced Pokémon 3D game save.')}
-                    </p>
+                    <Button variant="outline" asChild>
+                        <Link href={fixRequestsIndex.url()}>{t('Save fix requests')}</Link>
+                    </Button>
                 </div>
 
                 <Card className="w-full py-0">

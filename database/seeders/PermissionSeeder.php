@@ -51,6 +51,9 @@ class PermissionSeeder extends Seeder
 
         Permission::firstOrCreate(['name' => 'gamejolt_account.show']);
 
+        Permission::firstOrCreate(['name' => 'game_save_fix.show']);
+        Permission::firstOrCreate(['name' => 'game_save_fix.update']);
+
         Permission::firstOrCreate(['name' => 'discord_bot_setting.show']);
         Permission::firstOrCreate(['name' => 'discord_bot_setting.update']);
 

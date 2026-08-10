@@ -15,6 +15,7 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ResourceController;
 use App\Http\Controllers\ResourceUpdateController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\Save\GameSaveFixRequestController;
 use App\Http\Controllers\Save\MySaveController;
 use App\Http\Controllers\ServerController;
 use App\Http\Controllers\Skin\PlayerSkinController;
@@ -178,6 +179,18 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::prefix('save')->middleware('gj.association')->group(function () {
         Route::get('/', [MySaveController::class, 'index'])->name('save.index');
+        Route::get('/fix-requests', [GameSaveFixRequestController::class, 'index'])
+            ->name('save.fix-requests.index');
+        Route::get('/fix-requests/create', [GameSaveFixRequestController::class, 'create'])
+            ->name('save.fix-requests.create');
+        Route::post('/fix-requests', [GameSaveFixRequestController::class, 'store'])
+            ->name('save.fix-requests.store');
+        Route::get('/fix-requests/{fix_request}', [GameSaveFixRequestController::class, 'show'])
+            ->name('save.fix-requests.show');
+        Route::patch('/fix-requests/{fix_request}/notifications', [GameSaveFixRequestController::class, 'updateNotifications'])
+            ->name('save.fix-requests.notifications');
+        Route::post('/fix-requests/{fix_request}/cancel', [GameSaveFixRequestController::class, 'cancel'])
+            ->name('save.fix-requests.cancel');
     });
 
     Route::prefix('mod')

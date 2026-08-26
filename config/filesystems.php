@@ -40,7 +40,7 @@ return [
         |
         | Used for library skins. Locally this is a plain local disk. On Laravel
         | Cloud, LARAVEL_CLOUD_DISK_CONFIG overwrites the injected disk name and
-        | CloudObjectStorage retargets the skin and resource scoped disks to it.
+        | CloudObjectStorage retargets skins, resources, and profile photos to it.
         |
         */
         's3' => [

@@ -137,7 +137,8 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
             }
 
             $disk = $this->profilePhotoDisk();
-            $baseUrl = config("filesystems.disks.{$disk}.url");
+            $baseUrl = config("filesystems.disks.{$disk}.url")
+                ?: config('filesystems.object_public_url');
 
             if (! filled($baseUrl)) {
                 return $this->defaultProfilePhotoUrl();

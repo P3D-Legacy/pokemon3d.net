@@ -23,6 +23,7 @@ class CloudObjectStorage
         config([
             'filesystems.disks.skin.disk' => $diskName,
             'filesystems.disks.resource.disk' => $diskName,
+            'jetstream.profile_photo_disk' => $diskName,
         ]);
     }
 

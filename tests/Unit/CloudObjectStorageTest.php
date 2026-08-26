@@ -16,13 +16,15 @@ test('configure does nothing when laravel cloud disk config is missing', functio
     config([
         'filesystems.disks.skin.disk' => 's3',
         'filesystems.disks.resource.disk' => 's3',
+        'jetstream.profile_photo_disk' => 's3',
     ]);
 
     CloudObjectStorage::configure();
 
     expect(CloudObjectStorage::injectedDiskName())->toBeNull()
         ->and(config('filesystems.disks.skin.disk'))->toBe('s3')
-        ->and(config('filesystems.disks.resource.disk'))->toBe('s3');
+        ->and(config('filesystems.disks.resource.disk'))->toBe('s3')
+        ->and(config('jetstream.profile_photo_disk'))->toBe('s3');
 });
 
 test('configure retargets scoped disks to the injected laravel cloud disk', function () {
@@ -64,12 +66,14 @@ test('configure retargets scoped disks to the injected laravel cloud disk', func
             'disk' => 's3',
             'prefix' => 'resource',
         ],
+        'jetstream.profile_photo_disk' => 's3',
     ]);
 
     CloudObjectStorage::configure();
 
     expect(config('filesystems.disks.skin.disk'))->toBe('cloud')
         ->and(config('filesystems.disks.resource.disk'))->toBe('cloud')
+        ->and(config('jetstream.profile_photo_disk'))->toBe('cloud')
         ->and(SkinStorage::urlLibrary('abc', 1))
         ->toStartWith('https://fls.example.laravel.cloud/skin/abc.png')
         ->and(SkinStorage::urlLibrary('abc', 1))

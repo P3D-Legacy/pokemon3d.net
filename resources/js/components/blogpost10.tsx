@@ -41,7 +41,7 @@ const Blogpost10 = ({ className, title, category, pubDate, readTime, children, h
                 </div>
             </div>
 
-            <div className="container py-16 md:py-24">
+            <div className="container mx-auto px-4 py-16 md:py-24">
                 <div className="mx-auto max-w-xl">
                     {category ? (
                         <p className="text-xs font-medium tracking-widest text-muted-foreground uppercase">{category}</p>

@@ -4,6 +4,125 @@ All notable changes to this project will be documented in this file.
 
 <a name="0.4.0"></a>
 
+## 5.0.0 - 2026-08-26
+
+### What's Changed
+
+* Laravel 10.x Shift by @dsbilling in https://github.com/P3D-Legacy/pokemon3d.net/pull/300
+* Added spam mail checking by @dsbilling in https://github.com/P3D-Legacy/pokemon3d.net/pull/303
+* Bump aglipanci/laravel-pint-action from 2.3.0 to 2.3.1 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/304
+* Bump follow-redirects from 1.15.2 to 1.15.4 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/305
+* Bump actions/cache from 3.3.2 to 3.3.3 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/306
+* Bump vite from 4.4.12 to 4.5.2 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/307
+* Bump actions/cache from 3.3.3 to 4.0.0 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/308
+* Bump axios from 1.4.0 to 1.6.0 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/309
+* Bump actions/cache from 4.0.0 to 4.0.1 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/310
+* Bump follow-redirects from 1.15.4 to 1.15.6 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/311
+* Bump actions/cache from 4.0.1 to 4.0.2 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/313
+* Bump dependabot/fetch-metadata from 1.6.0 to 2.0.0 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/312
+* Bump vite from 4.5.2 to 4.5.3 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/314
+* Bump aglipanci/laravel-pint-action from 2.3.1 to 2.4 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/315
+* Bump dependabot/fetch-metadata from 2.0.0 to 2.1.0 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/316
+* Bump spatie/image-optimizer from 1.7.2 to 1.7.4 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/317
+* Bump braces from 3.0.2 to 3.0.3 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/319
+* Bump dependabot/fetch-metadata from 2.1.0 to 2.2.0 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/320
+* Bump axios from 1.6.0 to 1.7.4 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/321
+* Bump micromatch from 4.0.5 to 4.0.8 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/322
+* Bump vite from 4.5.3 to 4.5.5 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/323
+* Bump postcss from 8.4.28 to 8.4.47 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/324
+* Bump rollup from 3.28.0 to 3.29.5 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/325
+* Bump actions/cache from 4.0.2 to 4.1.0 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/326
+* Bump livewire/livewire from 2.12.6 to 2.12.7 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/327
+* Bump actions/cache from 4.1.0 to 4.1.1 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/328
+* Bump actions/cache from 4.1.1 to 4.1.2 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/329
+* Bump symfony/http-client from 6.4.0 to 6.4.14 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/330
+* Bump symfony/process from 6.4.12 to 6.4.14 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/331
+* Bump symfony/http-foundation from 6.4.12 to 6.4.14 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/332
+* Laravel 11.x Shift by @dsbilling in https://github.com/P3D-Legacy/pokemon3d.net/pull/318
+* Bump laravel/framework from 9.52.16 to 9.52.17 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/333
+* Bump symfony/http-client from 6.4.14 to 6.4.15 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/334
+* Bump actions/cache from 4.1.2 to 4.2.0 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/335
+* Bump league/commonmark from 2.5.3 to 2.6.0 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/336
+* Bump nanoid from 3.3.7 to 3.3.8 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/337
+* Bump packages and add italian language by @dsbilling in https://github.com/P3D-Legacy/pokemon3d.net/pull/338
+* Update it.json by @Matt-code-d in https://github.com/P3D-Legacy/pokemon3d.net/pull/342
+* Bump dependabot/fetch-metadata from 2.2.0 to 2.3.0 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/343
+* Bump vite from 4.5.5 to 4.5.9 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/344
+* Bump aglipanci/laravel-pint-action from 2.4 to 2.5 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/345
+* Bump getsentry/action-release from 1 to 2 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/346
+* Bump actions/cache from 4.2.0 to 4.2.1 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/347
+* Bump actions/cache from 4.2.1 to 4.2.2 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/348
+* Bump getsentry/action-release from 2 to 3 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/349
+* Bump actions/cache from 4.2.2 to 4.2.3 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/350
+* Bump axios from 1.7.4 to 1.8.2 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/351
+* Bump esbuild, laravel-vite-plugin and vite by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/352
+* Bump vite from 6.2.3 to 6.2.4 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/353
+* Bump vite from 6.2.4 to 6.2.5 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/354
+* Bump vite from 6.2.5 to 6.2.6 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/356
+* Bump vite from 6.2.6 to 6.3.4 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/357
+* Bump dependabot/fetch-metadata from 2.3.0 to 2.4.0 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/358
+* Bump stefanzweifel/git-auto-commit-action from 5 to 6 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/359
+* Bump form-data from 4.0.0 to 4.0.4 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/360
+* Bump aglipanci/laravel-pint-action from 2.5 to 2.6 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/361
+* Bump actions/cache from 4.2.3 to 4.2.4 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/363
+* Bump actions/checkout from 4 to 5 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/362
+* Bump vite from 6.3.5 to 6.3.6 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/364
+* Bump actions/cache from 4.2.4 to 4.3.0 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/365
+* Bump stefanzweifel/git-auto-commit-action from 6 to 7 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/366
+* Bump vite from 6.3.6 to 6.4.1 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/367
+* Bump glob from 10.4.5 to 10.5.0 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/368
+* Bump symfony/http-foundation from 7.3.3 to 7.3.7 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/369
+* Bump actions/checkout from 5 to 6 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/370
+* Bump actions/cache from 4.3.0 to 5.0.1 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/371
+* Bump aws/aws-sdk-php from 3.356.8 to 3.368.2 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/372
+* Bump dependabot/fetch-metadata from 2.4.0 to 2.5.0 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/373
+* Bump actions/cache from 5.0.1 to 5.0.2 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/374
+* Bump lodash from 4.17.21 to 4.17.23 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/375
+* Bump symfony/process from 7.4.0 to 7.4.5 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/376
+* Bump psy/psysh from 0.12.10 to 0.12.19 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/377
+* Bump actions/cache from 5.0.2 to 5.0.3 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/378
+* Bump rollup from 4.49.0 to 4.59.0 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/379
+* Bump minimatch from 9.0.5 to 9.0.9 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/380
+* Bump league/commonmark from 2.7.1 to 2.8.1 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/381
+* Bump phpseclib/phpseclib from 3.0.46 to 3.0.50 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/382
+* Bump league/commonmark from 2.8.1 to 2.8.2 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/383
+* Bump actions/cache from 5.0.3 to 5.0.4 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/384
+* Bump picomatch by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/385
+* Bump aws/aws-sdk-php from 3.368.2 to 3.374.2 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/386
+* Bump dependabot/fetch-metadata from 2.5.0 to 3.0.0 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/387
+* Bump lodash from 4.17.23 to 4.18.1 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/388
+* Bump vite from 6.4.1 to 6.4.2 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/389
+* Bump phpseclib/phpseclib from 3.0.50 to 3.0.51 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/390
+* Bump axios from 1.11.0 to 1.15.0 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/391
+* Bump actions/cache from 5.0.4 to 5.0.5 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/392
+* Bump follow-redirects from 1.15.11 to 1.16.0 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/393
+* Laravel 12.x Shift by @dsbilling in https://github.com/P3D-Legacy/pokemon3d.net/pull/355
+* Bump dependabot/fetch-metadata from 3.0.0 to 3.1.0 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/394
+* Bump axios from 1.15.0 to 1.15.2 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/395
+* Bump postcss from 8.5.6 to 8.5.14 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/396
+* Bump axios from 1.15.2 to 1.16.0 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/397
+* Bump form-data from 4.0.5 to 4.0.6 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/399
+* Bump actions/checkout from 6 to 7 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/400
+* Bump actions/cache from 5.0.5 to 6.1.0 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/401
+* Bump esbuild, laravel-vite-plugin and vite by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/398
+* Bump shell-quote and concurrently by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/402
+* Bump axios from 1.16.0 to 1.18.1 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/403
+* Add support for multiple pokedex entries by @dsbilling in https://github.com/P3D-Legacy/pokemon3d.net/pull/404
+* Bump postcss from 8.5.15 to 8.5.23 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/405
+* Bump ip-address from 10.2.0 to 10.4.0 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/407
+* Bump fast-uri from 3.1.4 to 3.1.5 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/408
+* Bump undici from 7.28.0 to 7.29.0 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/409
+* Translated new website tokens, items, abilities and natures into Dutch and added missing English items by @JappaWakka in https://github.com/P3D-Legacy/pokemon3d.net/pull/406
+* Bump hono from 4.12.31 to 4.13.1 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/410
+* Bump js-yaml from 4.3.0 to 4.3.1 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/411
+* Bump @hono/node-server from 1.19.14 to 1.19.17 by @dependabot[bot] in https://github.com/P3D-Legacy/pokemon3d.net/pull/412
+
+### New Contributors
+
+* @Matt-code-d made their first contribution in https://github.com/P3D-Legacy/pokemon3d.net/pull/342
+
+**Full Changelog**: https://github.com/P3D-Legacy/pokemon3d.net/compare/4.5.1...5.0.0
+
 ## 4.5.1 - 2023-12-15
 
 ### What's Changed

@@ -7,6 +7,7 @@ use App\Models\ResourceUpdate;
 use App\Models\User;
 use App\Notifications\Resource\UpdateNotification;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Testing\AssertableInertia as Assert;
@@ -151,7 +152,7 @@ test('owner can update resource metadata', function () {
 });
 
 test('owner can post a resource update with zip file', function () {
-    Storage::fake('public');
+    Storage::fake('resource');
 
     $owner = User::factory()->create();
     $resource = Resource::factory()->create(['user_id' => $owner->id]);
@@ -175,8 +176,12 @@ test('owner can post a resource update with zip file', function () {
         ])
         ->assertRedirect(route('resource.uuid', $resource->uuid));
 
-    expect($resource->updates()->count())->toBe(1);
-    expect($resource->updates()->first()->external_download_url)->toBeNull();
+    $update = $resource->updates()->first();
+    $media = $update->getFirstMedia('resource_update_file');
+
+    expect($update->external_download_url)->toBeNull()
+        ->and($media)->not->toBeNull()
+        ->and($media->disk)->toBe('resource');
 });
 
 test('owner can post a resource update with an external download url', function () {
@@ -218,8 +223,46 @@ test('resource update download redirects to external url and increments download
     expect($update->fresh()->downloads)->toBe(4);
 });
 
+test('resource update files are stored under the resource prefix on the object disk', function () {
+    $objectRoot = storage_path('framework/testing-disks/object-resource');
+    File::deleteDirectory($objectRoot);
+    File::ensureDirectoryExists($objectRoot);
+
+    config([
+        'filesystems.disks.s3' => [
+            'driver' => 'local',
+            'root' => $objectRoot,
+            'throw' => true,
+        ],
+        'filesystems.disks.resource' => [
+            'driver' => 'scoped',
+            'disk' => 's3',
+            'prefix' => 'resource',
+            'throw' => true,
+        ],
+    ]);
+
+    Storage::forgetDisk(['s3', 'resource']);
+
+    $update = ResourceUpdate::factory()->create([
+        'external_download_url' => null,
+    ]);
+
+    $update
+        ->addMedia(UploadedFile::fake()->create('pack.zip', 100, 'application/zip'))
+        ->usingName('cool-pack.zip')
+        ->toMediaCollection('resource_update_file');
+
+    $media = $update->getFirstMedia('resource_update_file');
+
+    expect($media)->not->toBeNull()
+        ->and($media->disk)->toBe('resource')
+        ->and($media->getPathRelativeToRoot())->toBe($media->id.'/'.$media->file_name)
+        ->and(File::exists($objectRoot.'/resource/'.$media->id.'/'.$media->file_name))->toBeTrue();
+});
+
 test('resource update download streams uploaded file from the media disk and increments downloads', function () {
-    Storage::fake('public');
+    Storage::fake('resource');
 
     $resource = Resource::factory()->create(['name' => 'Cool Pack']);
     $update = ResourceUpdate::factory()->create([
@@ -245,7 +288,7 @@ test('resource update download streams uploaded file from the media disk and inc
 });
 
 test('resource update download flashes when media record exists but file is missing on disk', function () {
-    Storage::fake('public');
+    Storage::fake('resource');
 
     $resource = Resource::factory()->create();
     $update = ResourceUpdate::factory()->create([
@@ -287,7 +330,7 @@ test('resource update store requires either a zip file or an external download u
 });
 
 test('resource update store rejects both a zip file and an external download url', function () {
-    Storage::fake('public');
+    Storage::fake('resource');
 
     $owner = User::factory()->create();
     $resource = Resource::factory()->create(['user_id' => $owner->id]);

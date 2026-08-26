@@ -48,7 +48,9 @@ class ResourceUpdate extends BaseModel implements HasMedia
 
     public function registerMediaCollections(?Media $media = null): void
     {
-        $this->addMediaCollection('resource_update_file')->singleFile();
+        $this->addMediaCollection('resource_update_file')
+            ->useDisk('resource')
+            ->singleFile();
     }
 
     public function incrementDownload()

@@ -59,6 +59,22 @@ return [
 
         /*
         |--------------------------------------------------------------------------
+        | Resource update files (object storage)
+        |--------------------------------------------------------------------------
+        |
+        | Scoped prefix on the object storage parent disk. Media Library paths
+        | stay resource/{mediaId}/{fileName} locally and on Laravel Cloud.
+        |
+        */
+        'resource' => [
+            'driver' => 'scoped',
+            'disk' => env('RESOURCES_OBJECT_DISK', 's3'),
+            'prefix' => 'resource',
+            'throw' => true,
+        ],
+
+        /*
+        |--------------------------------------------------------------------------
         | Player / in-game skins (local public)
         |--------------------------------------------------------------------------
         |

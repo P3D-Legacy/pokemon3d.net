@@ -1,0 +1,23 @@
+{
+    "agents": [
+        "cursor"
+    ],
+    "guidelines": true,
+    "mcp": true,
+    "nightwatch_mcp": false,
+    "packages": [
+        "filament/filament",
+        "spatie/laravel-medialibrary",
+        "spatie/boost-spatie-guidelines"
+    ],
+    "sail": false,
+    "skills": [
+        "fortify-development",
+        "laravel-best-practices",
+        "socialite-development",
+        "livewire-development",
+        "tailwindcss-development",
+        "medialibrary-development",
+        "spatie-laravel-php-standards"
+    ]
+}

@@ -5,18 +5,23 @@ namespace App\Http\Controllers\API\v1;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\API\v1\GamejoltAccountResource;
 use App\Models\GamejoltAccount;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
 /**
  * @group Game Jolt Account
  *
  * APIs for getting Game Jolt Accounts.
  */
-class GamejoltAccountController extends Controller
+class GamejoltAccountController extends Controller implements HasMiddleware
 {
-    public function __construct()
+    public static function middleware(): array
     {
-        $this->middleware('permission:gamejolt_account.show')->only(['show']);
+        return [
+            new Middleware('permission:gamejolt_account.show', only: ['show']),
+        ];
     }
 
     /**
@@ -28,7 +33,7 @@ class GamejoltAccountController extends Controller
      *
      * @apiResourceModel App\Models\GamejoltAccount
      */
-    public function show(Request $request, $id): \Illuminate\Http\JsonResponse|GamejoltAccountResource
+    public function show(Request $request, $id): JsonResponse|GamejoltAccountResource
     {
         $gja = GamejoltAccount::with(['user.roles.permissions', 'bans', 'user.discord'])
             ->where('id', $id)

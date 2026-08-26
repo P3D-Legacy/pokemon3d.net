@@ -4,109 +4,63 @@ namespace App\Http\Controllers\Skin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Skin;
+use App\Support\SkinPresenter;
+use App\Support\SkinStorage;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
+use Inertia\Inertia;
+use Inertia\Response;
 
-class UploadedSkinController extends Controller
+class UploadedSkinController extends Controller implements HasMiddleware
 {
-    public function __construct()
+    public static function middleware(): array
     {
-        $this->middleware(['permission:skin-player-destroy']);
+        return [
+            new Middleware('permission:skin-player-destroy'),
+        ];
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function index(Request $request): Response
     {
-        $skins = Skin::all();
+        $user = $request->user();
+        $skins = Skin::query()
+            ->with('user')
+            ->withCount('likers')
+            ->latest()
+            ->paginate(24);
 
-        return view('skin.uploaded.index')->with('skins', $skins);
+        if ($user) {
+            $user->attachLikeStatus($skins);
+        }
+
+        return Inertia::render('skins/uploaded', [
+            'skins' => $skins->through(fn (Skin $skin): array => SkinPresenter::card($skin, $user)),
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Request $request, $uuid)
+    public function destroy(Request $request, string $id): RedirectResponse
     {
         $request->validate([
             'reason' => ['required', 'string'],
         ]);
-        $skin = Skin::where('uuid', $uuid)->first();
-        if (! Storage::disk('skin')->exists($skin->path())) {
-            return redirect()
-                ->route('uploaded-skins')
-                ->with('error', 'Skin was not found!');
-        }
+
+        $skin = Skin::query()->where('uuid', $id)->first();
+        abort_unless($skin, 404);
+
         activity()
             ->causedBy(Auth::user()->gamejolt)
             ->withProperties([
                 'filename' => $skin->path(),
-                'gjid' => $skin->user->id,
-                'reason' => $request->reason,
+                'gjid' => $skin->owner_id,
+                'reason' => $request->string('reason')->toString(),
             ])
             ->log('deleted');
+
+        SkinStorage::deleteLibrary($skin->uuid);
         $skin->delete();
-        Storage::disk('skin')->delete($skin->path());
 
         return redirect()
             ->route('uploaded-skins')

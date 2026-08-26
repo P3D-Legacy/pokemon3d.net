@@ -10,9 +10,9 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Kalnoy\Nestedset\NestedSet;
 
-class CreateCommentsTable extends Migration
+return new class extends Migration
 {
-    public function up()
+    public function up(): void
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->increments('id');
@@ -26,8 +26,8 @@ class CreateCommentsTable extends Migration
         });
     }
 
-    public function down()
+    public function down(): void
     {
         Schema::dropIfExists('comments');
     }
-}
+};

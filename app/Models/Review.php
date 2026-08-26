@@ -12,8 +12,6 @@ class Review extends ModelsReview
 
     /**
      * The attributes that should be logged for the user.
-     *
-     * @return array
      */
     public function getActivitylogOptions(): LogOptions
     {

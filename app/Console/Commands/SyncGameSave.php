@@ -24,10 +24,8 @@ class SyncGameSave extends Command
 
     /**
      * Execute the console command.
-     *
-     * @return int
      */
-    public function handle()
+    public function handle(): int
     {
         $game_id = config('services.gamejolt.game_id');
         $private_key = config('services.gamejolt.private_key');
@@ -47,12 +45,23 @@ class SyncGameSave extends Command
 
         if ($gamejolt_user_id == 'all') {
             $gamejolt_accounts = GamejoltAccount::all();
+            $this->info("Dispatching game save sync for {$gamejolt_accounts->count()} GameJolt account(s).");
+
             foreach ($gamejolt_accounts as $gamejolt_account) {
                 SyncGameSaveForUser::dispatch($gamejolt_account->user);
+                $this->line("Queued sync for GameJolt user {$gamejolt_account->id} (user_id: {$gamejolt_account->user_id}).");
             }
         } else {
-            $gamejolt_account = GamejoltAccount::firstWhere('gamejolt_user_id', $gamejolt_user_id);
+            $gamejolt_account = GamejoltAccount::firstWhere('id', $gamejolt_user_id);
+
+            if (! $gamejolt_account) {
+                $this->error("GameJolt account [{$gamejolt_user_id}] not found.");
+
+                return Command::FAILURE;
+            }
+
             SyncGameSaveForUser::dispatch($gamejolt_account->user);
+            $this->info("Queued sync for GameJolt user {$gamejolt_account->id} (user_id: {$gamejolt_account->user_id}).");
         }
 
         $this->info('Done.');

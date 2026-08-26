@@ -117,6 +117,9 @@ return [
     'uploaded' => ':Attribute kunde inte laddas upp.',
     'url' => ':Attribute har ett ogiltigt format.',
     'uuid' => ':Attribute måste vara ett giltigt UUID.',
+    'indisposable' => 'Engångs-e-postadresser är inte tillåtna.',
+    'spam_mail' => 'Fältet :attribute verkar ogiltigt eller kommer från en känd spamdomän.',
+
     'custom' => [
         'attribute-name' => [
             'rule-name' => 'custom-message',

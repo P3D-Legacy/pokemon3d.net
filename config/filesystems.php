@@ -1,36 +1,28 @@
 <?php
 
 return [
-    /*
-    |--------------------------------------------------------------------------
-    | Default Filesystem Disk
-    |--------------------------------------------------------------------------
-    |
-    | Here you may specify the default filesystem disk that should be used
-    | by the framework. The "local" disk, as well as a variety of cloud
-    | based disks are available to your application. Just store away!
-    |
-    */
 
     'default' => env('FILESYSTEM_DISK', 'local'),
 
     /*
     |--------------------------------------------------------------------------
-    | Filesystem Disks
+    | Public object storage URL
     |--------------------------------------------------------------------------
     |
-    | Here you may configure as many filesystem "disks" as you wish, and you
-    | may even configure multiple disks of the same driver. Defaults have
-    | been setup for each driver as an example of the required options.
-    |
-    | Supported Drivers: "local", "ftp", "sftp", "s3"
+    | Laravel Cloud injects disk credentials via LARAVEL_CLOUD_DISK_CONFIG.
+    | Public buckets still omit AWS_URL. Use this when the injected disk
+    | has no public URL.
     |
     */
+    'object_public_url' => env('AWS_URL'),
 
     'disks' => [
+
         'local' => [
             'driver' => 'local',
-            'root' => storage_path('app'),
+            'root' => storage_path('app/private'),
+            'serve' => true,
+            'throw' => false,
         ],
 
         'public' => [
@@ -38,42 +30,87 @@ return [
             'root' => storage_path('app/public'),
             'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
+            'throw' => false,
         ],
 
+        /*
+        |--------------------------------------------------------------------------
+        | Object storage parent disk
+        |--------------------------------------------------------------------------
+        |
+        | Used for library skins. Locally this is a plain local disk. On Laravel
+        | Cloud, LARAVEL_CLOUD_DISK_CONFIG overwrites the injected disk name and
+        | CloudObjectStorage retargets skins, resources, and profile photos to it.
+        |
+        */
+        's3' => [
+            'driver' => 'local',
+            'root' => storage_path('app/object'),
+            'url' => rtrim((string) env('APP_URL', 'http://localhost'), '/').'/storage/object',
+            'visibility' => 'public',
+            'throw' => true,
+        ],
+
+        /*
+        |--------------------------------------------------------------------------
+        | Library skins (object storage)
+        |--------------------------------------------------------------------------
+        |
+        | Scoped prefix on the object storage parent disk. Paths stay skin/{uuid}.png
+        | whether running locally or on Laravel Cloud.
+        |
+        */
+        'skin' => [
+            'driver' => 'scoped',
+            'disk' => env('SKINS_OBJECT_DISK', 's3'),
+            'prefix' => 'skin',
+            'visibility' => 'public',
+            'throw' => true,
+        ],
+
+        /*
+        |--------------------------------------------------------------------------
+        | Resource update files (object storage)
+        |--------------------------------------------------------------------------
+        |
+        | Scoped prefix on the object storage parent disk. Media Library paths
+        | stay resource/{mediaId}/{fileName} locally and on Laravel Cloud.
+        |
+        */
+        'resource' => [
+            'driver' => 'scoped',
+            'disk' => env('RESOURCES_OBJECT_DISK', 's3'),
+            'prefix' => 'resource',
+            'throw' => true,
+        ],
+
+        /*
+        |--------------------------------------------------------------------------
+        | Player / in-game skins (local public)
+        |--------------------------------------------------------------------------
+        |
+        | Classic game-facing path: public/player/{gamejoltId}.png served as
+        | /player/{gamejoltId}.png on the application domain.
+        |
+        */
         'player' => [
             'driver' => 'local',
-            'root' => public_path().'/player',
+            'root' => public_path('player'),
+            'url' => rtrim((string) env('APP_URL', 'http://localhost'), '/').'/player',
+            'visibility' => 'public',
+            'throw' => true,
         ],
 
-        'skin' => [
-            'driver' => 'local',
-            'root' => public_path().'/img/skin',
-        ],
-
-        's3' => [
-            'driver' => 's3',
-            'key' => env('AWS_ACCESS_KEY_ID'),
-            'secret' => env('AWS_SECRET_ACCESS_KEY'),
-            'region' => env('AWS_DEFAULT_REGION'),
-            'bucket' => env('AWS_BUCKET'),
-            'url' => env('AWS_URL'),
-            'endpoint' => env('AWS_ENDPOINT'),
-            'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
-        ],
     ],
 
     /*
     |--------------------------------------------------------------------------
     | Symbolic Links
     |--------------------------------------------------------------------------
-    |
-    | Here you may configure the symbolic links that will be created when the
-    | `storage:link` Artisan command is executed. The array keys should be
-    | the locations of the links and the values should be their targets.
-    |
     */
-
     'links' => [
         public_path('storage') => storage_path('app/public'),
+        public_path('storage/object') => storage_path('app/object'),
     ],
+
 ];

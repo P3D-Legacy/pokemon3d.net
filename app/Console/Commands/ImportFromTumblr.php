@@ -7,6 +7,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 use League\HTMLToMarkdown\HtmlConverter;
+use Tumblr\API\Client;
 
 class ImportFromTumblr extends Command
 {
@@ -43,7 +44,7 @@ class ImportFromTumblr extends Command
         }
 
         try {
-            $client = new \Tumblr\API\Client(
+            $client = new Client(
                 env('TUMBLR_CONSUMER_KEY'),
                 env('TUMBLR_CONSUMER_SECRET'),
                 env('TUMBLR_OAUTH_TOKEN'),
@@ -89,6 +90,6 @@ class ImportFromTumblr extends Command
             $this->error($e->getMessage());
         }
 
-        return 0;
+        return Command::SUCCESS;
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Actions\Fortify;
 
 use App\Rules\OlderThan;
+use App\Rules\SpamMail;
 use App\Rules\YoungerThan;
 use Carbon\Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -16,14 +17,13 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
      * Validate and update the given user's profile information.
      *
      * @param  mixed  $user
-     * @return void
      */
-    public function update($user, array $input)
+    public function update($user, array $input): void
     {
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
             'username' => ['required', 'string', 'max:255', 'alpha_dash:ascii', 'alpha_num:ascii', 'different:email', Rule::unique('users')->ignore($user->id)],
-            'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
+            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user->id), 'indisposable', new SpamMail],
             'gender' => ['required', 'numeric'],
             'location' => ['nullable', 'max:255'],
             'about' => ['nullable', 'max:255'],
@@ -41,7 +41,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             $user
                 ->forceFill([
                     'name' => $input['name'],
-                    //'username' => $input['username'],
+                    // 'username' => $input['username'],
                     'gender' => $input['gender'],
                     'location' => $input['location'],
                     'about' => $input['about'],
@@ -56,9 +56,8 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
      * Update the given verified user's profile information.
      *
      * @param  mixed  $user
-     * @return void
      */
-    protected function updateVerifiedUser($user, array $input)
+    protected function updateVerifiedUser($user, array $input): void
     {
         $user
             ->forceFill([

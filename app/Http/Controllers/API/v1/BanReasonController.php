@@ -5,18 +5,24 @@ namespace App\Http\Controllers\API\v1;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\API\v1\BanReasonResource;
 use App\Models\BanReason;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
 /**
  * @group Ban Reason
  *
  * APIs for getting ban reasons.
  */
-class BanReasonController extends Controller
+class BanReasonController extends Controller implements HasMiddleware
 {
-    public function __construct()
+    public static function middleware(): array
     {
-        $this->middleware('permission:ban_reason.show')->only(['index', 'show']);
+        return [
+            new Middleware('permission:ban_reason.show', only: ['index', 'show']),
+        ];
     }
 
     /**
@@ -26,7 +32,7 @@ class BanReasonController extends Controller
      *
      * @apiResourceModel App\Models\BanReason
      */
-    public function index(Request $request): \Illuminate\Http\JsonResponse|\Illuminate\Http\Resources\Json\AnonymousResourceCollection
+    public function index(Request $request): JsonResponse|AnonymousResourceCollection
     {
         $resources = BanReason::all();
 
@@ -42,7 +48,7 @@ class BanReasonController extends Controller
      *
      * @apiResourceModel App\Models\BanReason
      */
-    public function show(Request $request, $id): BanReasonResource|\Illuminate\Http\JsonResponse
+    public function show(Request $request, $id): BanReasonResource|JsonResponse
     {
         $resource = BanReason::findOrFail($id);
 

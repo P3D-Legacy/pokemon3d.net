@@ -8,6 +8,9 @@ use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Digikraaft\ReviewRating\Traits\HasReviewRating;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
 use Overtrue\LaravelLike\Traits\Likeable;
@@ -64,8 +67,6 @@ class Resource extends BaseModel implements Viewable
 
     /**
      * The attributes that should be logged for the user.
-     *
-     * @return array
      */
     public function getActivitylogOptions(): LogOptions
     {
@@ -77,7 +78,7 @@ class Resource extends BaseModel implements Viewable
     /**
      * Get the user that made this post.
      */
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
@@ -85,9 +86,35 @@ class Resource extends BaseModel implements Viewable
     /**
      * Get the updates related to this resource.
      */
-    public function updates()
+    public function updates(): HasMany
     {
         return $this->hasMany(ResourceUpdate::class)->orderBy('created_at', 'desc');
+    }
+
+    /**
+     * Get the users following this resource.
+     */
+    public function followers(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'resource_followers')->withTimestamps();
+    }
+
+    public function isFollowedBy(User $user): bool
+    {
+        return $this->followers()->where('user_id', $user->id)->exists();
+    }
+
+    public function toggleFollow(User $user): bool
+    {
+        if ($this->isFollowedBy($user)) {
+            $this->followers()->detach($user->id);
+
+            return false;
+        }
+
+        $this->followers()->attach($user->id);
+
+        return true;
     }
 
     public function getDownloadsAttribute()

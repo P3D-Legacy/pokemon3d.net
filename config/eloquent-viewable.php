@@ -30,7 +30,7 @@ return [
         /*
          * Here you may define the cache store that should be used.
          */
-        'store' => env('CACHE_DRIVER', 'file'),
+        'store' => env('CACHE_STORE', 'file'),
     ],
 
     /*

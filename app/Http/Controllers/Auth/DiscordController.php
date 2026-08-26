@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Achievements\User\AssociatedDiscord;
 use App\Http\Controllers\Controller;
 use App\Models\DiscordAccount;
 use GuzzleHttp\Exception\ClientException;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 use Laravel\Socialite\Two\InvalidStateException;
@@ -15,7 +16,7 @@ class DiscordController extends Controller
     /**
      * Redirect the user to the Discord authentication page.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function redirectToProvider()
     {
@@ -24,10 +25,8 @@ class DiscordController extends Controller
 
     /**
      * Obtain the user information from Discord.
-     *
-     * @return \Illuminate\Http\RedirectResponse
      */
-    public function handleProviderCallback()
+    public function handleProviderCallback(): RedirectResponse
     {
         try {
             $discordUser = Socialite::driver('discord')->user();
@@ -104,9 +103,6 @@ class DiscordController extends Controller
             $userProfile['user_id'] = auth()->id();
             $userProfile['verified_at'] = now();
             DiscordAccount::create($userProfile);
-            auth()
-                ->user()
-                ->unlock(new AssociatedDiscord);
 
             return redirect()->route('profile.show');
         } catch (InvalidStateException $e) {

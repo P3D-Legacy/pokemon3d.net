@@ -35,10 +35,8 @@ class SkinUserUpdate extends Command
 
     /**
      * Execute the console command.
-     *
-     * @return int
      */
-    public function handle()
+    public function handle(): int
     {
         $skins = Skin::where('user_id', null)->get();
         foreach ($skins as $skin) {
@@ -53,5 +51,8 @@ class SkinUserUpdate extends Command
                 }
             }
         }
+        $this->info('All done!');
+
+        return Command::SUCCESS;
     }
 }

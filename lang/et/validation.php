@@ -117,6 +117,9 @@ return [
     'uploaded' => ':attribute ei õnnestunud laadida.',
     'url' => ':attribute vorming on vigane.',
     'uuid' => ':attribute peab olema õige UUID',
+    'indisposable' => 'Ühekordsed e-posti aadressid ei ole lubatud.',
+    'spam_mail' => 'Väli :attribute tundub olevat kehtetu või pärineb tuntud rämpsposti domeenilt.',
+
     'custom' => [
         'attribute-name' => [
             'rule-name' => 'kohandatud-teade',

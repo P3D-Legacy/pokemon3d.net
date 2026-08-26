@@ -1,19 +1,32 @@
 <?php
 
-use Illuminate\Foundation\Inspiring;
-use Illuminate\Support\Facades\Artisan;
+use App\Console\Commands\CleanUpActivity;
+use App\Console\Commands\DiscordRoleSync;
+use App\Console\Commands\DiscordUserRoleSync;
+use App\Console\Commands\NotifyGameUpdate;
+use App\Console\Commands\NotifyStaleGameSaveFixRequests;
+use App\Console\Commands\PingServer;
+use App\Console\Commands\PruneUnresponsiveServers;
+use App\Console\Commands\SkinUserUpdate;
+use App\Console\Commands\SyncGameVersion;
+use App\Console\Commands\SyncPokedexFromGame;
+use Illuminate\Queue\Console\PruneBatchesCommand;
+use Illuminate\Queue\Console\PruneFailedJobsCommand;
+use Illuminate\Support\Facades\Schedule;
 
-/*
-|--------------------------------------------------------------------------
-| Console Routes
-|--------------------------------------------------------------------------
-|
-| This file is where you may define all of your Closure based console
-| commands. Each Closure is bound to a command instance allowing a
-| simple approach to interacting with each command's IO methods.
-|
-*/
-
-Artisan::command('inspire', function () {
-    $this->comment(Inspiring::quote());
-})->purpose('Display an inspiring quote');
+// Often commands
+Schedule::command(PingServer::class)->hourly()->withoutOverlapping();
+Schedule::command(SkinUserUpdate::class)->hourlyAt(10);
+// Daily commands
+Schedule::command(PruneBatchesCommand::class)->daily();
+Schedule::command(PruneUnresponsiveServers::class)->daily();
+Schedule::command(DiscordRoleSync::class)->dailyAt('12:00');
+Schedule::command(DiscordUserRoleSync::class)->dailyAt('12:10');
+Schedule::command(SyncGameVersion::class)->dailyAt('00:00');
+Schedule::command(NotifyGameUpdate::class)->dailyAt('00:30');
+Schedule::command(NotifyStaleGameSaveFixRequests::class)->dailyAt('01:00');
+Schedule::command('disposable:update')->daily();
+// Weekly commands
+Schedule::command(PruneFailedJobsCommand::class)->weekly();
+Schedule::command(CleanUpActivity::class)->weekly();
+Schedule::command(SyncPokedexFromGame::class)->weekly();

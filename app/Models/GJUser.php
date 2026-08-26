@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Overtrue\LaravelLike\Traits\Liker;
 use Spatie\Activitylog\LogOptions;
@@ -41,8 +42,6 @@ class GJUser extends BaseModel
 
     /**
      * The attributes that should be logged for the user.
-     *
-     * @return array
      */
     public function getActivitylogOptions(): LogOptions
     {
@@ -54,7 +53,7 @@ class GJUser extends BaseModel
     /**
      * Get the skins that the user owns.
      */
-    public function skins()
+    public function skins(): HasMany
     {
         return $this->hasMany(Skin::class, 'owner_id', 'gjid');
     }
@@ -62,7 +61,7 @@ class GJUser extends BaseModel
     /**
      * Get the skins that the user owns.
      */
-    public function publicSkins()
+    public function publicSkins(): HasMany
     {
         return $this->hasMany(Skin::class, 'owner_id', 'gjid')->isPublic();
     }

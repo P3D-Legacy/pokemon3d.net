@@ -11,10 +11,8 @@ class BanReasonResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
-     *
-     * @param  Request  $request
      */
-    public function toArray($request): array|JsonSerializable|Arrayable
+    public function toArray(Request $request): array|JsonSerializable|Arrayable
     {
         return parent::toArray($request);
     }

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Digikraaft\ReviewRating\Traits\HasReviewRating;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
 
@@ -15,14 +16,15 @@ class GameVersion extends BaseModel
 
     protected $fillable = ['version', 'title', 'release_date', 'page_url', 'download_url', 'post_id'];
 
-    protected $casts = [
-        'release_date' => 'datetime',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'release_date' => 'datetime',
+        ];
+    }
 
     /**
      * The attributes that should be logged for the user.
-     *
-     * @return array
      */
     public function getActivitylogOptions(): LogOptions
     {
@@ -38,8 +40,8 @@ class GameVersion extends BaseModel
             ->first();
     }
 
-    public function post(): \Illuminate\Database\Eloquent\Relations\HasOne
+    public function post(): BelongsTo
     {
-        return $this->hasOne(Post::class, 'id', 'post_id');
+        return $this->belongsTo(Post::class);
     }
 }

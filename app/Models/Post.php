@@ -6,6 +6,7 @@ use AliBayat\LaravelCommentable\Commentable;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
 use Overtrue\LaravelLike\Traits\Likeable;
@@ -59,18 +60,19 @@ class Post extends BaseModel implements Viewable
     protected $fillable = ['title', 'slug', 'body', 'active', 'sticky', 'published_at', 'user_id'];
 
     /**
-     * The attributes that should be cast to native types.
+     * Get the attributes that should be cast.
      *
-     * @var array
+     * @return array<string, string>
      */
-    protected $casts = [
-        'published_at' => 'datetime',
-    ];
+    protected function casts(): array
+    {
+        return [
+            'published_at' => 'datetime',
+        ];
+    }
 
     /**
      * The attributes that should be logged for the user.
-     *
-     * @return array
      */
     public function getActivitylogOptions(): LogOptions
     {
@@ -82,7 +84,7 @@ class Post extends BaseModel implements Viewable
     /**
      * Get the user that made this post.
      */
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }

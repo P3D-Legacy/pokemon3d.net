@@ -1,8 +1,10 @@
 /node_modules
 /public/hot
 !/public/build
+/bootstrap/ssr
 /public/storage
 /storage/*.key
+/storage/pail
 /vendor
 .env
 .env.backup
@@ -24,3 +26,7 @@ auth.json
 .DS_Store
 /.phpunit.cache
 /storage/framework/testing-disks
+/resources/js/actions
+/resources/js/routes
+/resources/js/wayfinder
+

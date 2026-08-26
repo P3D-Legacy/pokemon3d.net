@@ -12,10 +12,8 @@ class PermissionSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
-     * @return void
      */
-    public function run()
+    public function run(): void
     {
         $super_admin = Role::firstOrCreate(['name' => 'super-admin']);
         $admin = Role::firstOrCreate(['name' => 'admin']);
@@ -53,13 +51,20 @@ class PermissionSeeder extends Seeder
 
         Permission::firstOrCreate(['name' => 'gamejolt_account.show']);
 
+        Permission::firstOrCreate(['name' => 'game_save_fix.show']);
+        Permission::firstOrCreate(['name' => 'game_save_fix.update']);
+
         Permission::firstOrCreate(['name' => 'discord_bot_setting.show']);
         Permission::firstOrCreate(['name' => 'discord_bot_setting.update']);
+
+        Permission::firstOrCreate(['name' => 'discord_account.show']);
 
         Permission::firstOrCreate(['name' => 'user.show']);
 
         Permission::firstOrCreate(['name' => 'stats']);
         Permission::firstOrCreate(['name' => 'analytics']);
+
+        Permission::firstOrCreate(['name' => 'skin-player-destroy']);
 
         // Get all permissions
         $all_permissions = Permission::all();

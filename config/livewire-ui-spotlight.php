@@ -1,5 +1,12 @@
 <?php
 
+use App\Spotlight\BlogSearch;
+use App\Spotlight\Logout;
+use App\Spotlight\ResourceSearch;
+use App\Spotlight\SkinSearch;
+use App\Spotlight\UserSearch;
+use App\Spotlight\WikiSearch;
+
 return [
     /*
     |--------------------------------------------------------------------------
@@ -25,12 +32,12 @@ return [
     */
 
     'commands' => [
-        \App\Spotlight\Logout::class,
-        \App\Spotlight\UserSearch::class,
-        \App\Spotlight\SkinSearch::class,
-        \App\Spotlight\ResourceSearch::class,
-        \App\Spotlight\WikiSearch::class,
-        \App\Spotlight\BlogSearch::class,
+        Logout::class,
+        UserSearch::class,
+        SkinSearch::class,
+        ResourceSearch::class,
+        WikiSearch::class,
+        BlogSearch::class,
     ],
 
     /*

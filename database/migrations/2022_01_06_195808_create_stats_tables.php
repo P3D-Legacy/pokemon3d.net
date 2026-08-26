@@ -4,9 +4,9 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateStatsTables extends Migration
+return new class extends Migration
 {
-    public function up()
+    public function up(): void
     {
         Schema::create('stats_events', function (Blueprint $table) {
             $table->id();
@@ -18,4 +18,4 @@ class CreateStatsTables extends Migration
             $table->timestamps();
         });
     }
-}
+};

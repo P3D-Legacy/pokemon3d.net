@@ -1,0 +1,2634 @@
+[
+  {
+    "id": "1",
+    "name": "MeesterBal"
+  },
+  {
+    "id": "2",
+    "name": "UltraBal"
+  },
+  {
+    "id": "3",
+    "name": "PremierBal"
+  },
+  {
+    "id": "4",
+    "name": "BeterBal"
+  },
+  {
+    "id": "5",
+    "name": "PokéBal"
+  },
+  {
+    "id": "6",
+    "name": "Fiets"
+  },
+  {
+    "id": "7",
+    "name": "Lavakoekje"
+  },
+  {
+    "id": "8",
+    "name": "Maansteen"
+  },
+  {
+    "id": "9",
+    "name": "Tegengif"
+  },
+  {
+    "id": "10",
+    "name": "Brandmedicijn"
+  },
+  {
+    "id": "11",
+    "name": "Vriesmedicijn"
+  },
+  {
+    "id": "12",
+    "name": "Ontwaker"
+  },
+  {
+    "id": "13",
+    "name": "Verlammedicijn"
+  },
+  {
+    "id": "14",
+    "name": "Volledig Herstel"
+  },
+  {
+    "id": "15",
+    "name": "Max-Drankje"
+  },
+  {
+    "id": "16",
+    "name": "Hyper-Drankje"
+  },
+  {
+    "id": "17",
+    "name": "Super-Drankje"
+  },
+  {
+    "id": "18",
+    "name": "Drankje"
+  },
+  {
+    "id": "19",
+    "name": "Ontsnappingstouw"
+  },
+  {
+    "id": "20",
+    "name": "Afweerder"
+  },
+  {
+    "id": "21",
+    "name": "Max-Elixer"
+  },
+  {
+    "id": "22",
+    "name": "Vuursteen"
+  },
+  {
+    "id": "23",
+    "name": "Dondersteen"
+  },
+  {
+    "id": "24",
+    "name": "Watersteen"
+  },
+  {
+    "id": "25",
+    "name": "Zink"
+  },
+  {
+    "id": "26",
+    "name": "LP-Plus"
+  },
+  {
+    "id": "27",
+    "name": "Proteïne"
+  },
+  {
+    "id": "28",
+    "name": "Ijzer"
+  },
+  {
+    "id": "29",
+    "name": "Koolhydraat"
+  },
+  {
+    "id": "30",
+    "name": "Geluksklap"
+  },
+  {
+    "id": "31",
+    "name": "Calcium"
+  },
+  {
+    "id": "32",
+    "name": "Zeldzaam Snoepje"
+  },
+  {
+    "id": "33",
+    "name": "X-Nauwkeurigheid"
+  },
+  {
+    "id": "34",
+    "name": "Bladsteen"
+  },
+  {
+    "id": "35",
+    "name": "Metaalpoeder"
+  },
+  {
+    "id": "36",
+    "name": "Goudklompje"
+  },
+  {
+    "id": "37",
+    "name": "Poké-Pop"
+  },
+  {
+    "id": "38",
+    "name": "Multimedicijn"
+  },
+  {
+    "id": "39",
+    "name": "Opwekker"
+  },
+  {
+    "id": "40",
+    "name": "Max-Opwekker"
+  },
+  {
+    "id": "41",
+    "name": "Stoombootkaartje"
+  },
+  {
+    "id": "42",
+    "name": "Superafweerder"
+  },
+  {
+    "id": "43",
+    "name": "Maximale Afweerder"
+  },
+  {
+    "id": "44",
+    "name": "Harde Treffer"
+  },
+  {
+    "id": "45",
+    "name": "KoesterBal"
+  },
+  {
+    "id": "46",
+    "name": "Vers Water"
+  },
+  {
+    "id": "47",
+    "name": "Frisdrank"
+  },
+  {
+    "id": "48",
+    "name": "Limonade"
+  },
+  {
+    "id": "49",
+    "name": "X-Aanval"
+  },
+  {
+    "id": "50",
+    "name": "X-Sp. Weerstand"
+  },
+  {
+    "id": "51",
+    "name": "X-Weerstand"
+  },
+  {
+    "id": "52",
+    "name": "X-Snelheid"
+  },
+  {
+    "id": "53",
+    "name": "X-Sp. Aanval"
+  },
+  {
+    "id": "54",
+    "name": "Muntenkist"
+  },
+  {
+    "id": "55",
+    "name": "Detector"
+  },
+  {
+    "id": "56",
+    "name": "Kristalvleugel"
+  },
+  {
+    "id": "57",
+    "name": "Ervaringsdeler"
+  },
+  {
+    "id": "58",
+    "name": "Oude Hengel"
+  },
+  {
+    "id": "59",
+    "name": "Goede Hengel"
+  },
+  {
+    "id": "60",
+    "name": "Zilverblad"
+  },
+  {
+    "id": "61",
+    "name": "Super Hengel"
+  },
+  {
+    "id": "62",
+    "name": "AP-Plus"
+  },
+  {
+    "id": "63",
+    "name": "Ether"
+  },
+  {
+    "id": "64",
+    "name": "Max-Ether"
+  },
+  {
+    "id": "65",
+    "name": "Elixer"
+  },
+  {
+    "id": "66",
+    "name": "Rode Schub"
+  },
+  {
+    "id": "67",
+    "name": "Geheim Drankje"
+  },
+  {
+    "id": "68",
+    "name": "Blokkeerder"
+  },
+  {
+    "id": "69",
+    "name": "Mysterieus Ei"
+  },
+  {
+    "id": "70",
+    "name": "Plakkerige Weerhaak"
+  },
+  {
+    "id": "71",
+    "name": "Zilvervleugel"
+  },
+  {
+    "id": "72",
+    "name": "Moo Moo Melk"
+  },
+  {
+    "id": "73",
+    "name": "Snelle Klauw"
+  },
+  {
+    "id": "74",
+    "name": "Vergrootglas"
+  },
+  {
+    "id": "75",
+    "name": "Goudblad"
+  },
+  {
+    "id": "76",
+    "name": "Zacht Zand"
+  },
+  {
+    "id": "77",
+    "name": "Scherpe Bek"
+  },
+  {
+    "id": "78",
+    "name": "Hardloopschoenen"
+  },
+  {
+    "id": "79",
+    "name": "DuikBal"
+  },
+  {
+    "id": "80",
+    "name": "NetBal"
+  },
+  {
+    "id": "81",
+    "name": "Gifweerhaak"
+  },
+  {
+    "id": "82",
+    "name": "Koningsteen"
+  },
+  {
+    "id": "83",
+    "name": "Prisma-Schub"
+  },
+  {
+    "id": "84",
+    "name": "Doodskleed"
+  },
+  {
+    "id": "85",
+    "name": "Rode Apricorn"
+  },
+  {
+    "id": "86",
+    "name": "Kleine Paddenstoel"
+  },
+  {
+    "id": "87",
+    "name": "Grote Paddenstoel"
+  },
+  {
+    "id": "88",
+    "name": "Zilverpoeder"
+  },
+  {
+    "id": "89",
+    "name": "Blauwe Apricorn"
+  },
+  {
+    "id": "90",
+    "name": "Zijden Sjaal"
+  },
+  {
+    "id": "91",
+    "name": "Amuletmunt"
+  },
+  {
+    "id": "92",
+    "name": "Gele Apricorn"
+  },
+  {
+    "id": "93",
+    "name": "Groene Apricorn"
+  },
+  {
+    "id": "94",
+    "name": "Reinigingslabel"
+  },
+  {
+    "id": "95",
+    "name": "Mystiek Water"
+  },
+  {
+    "id": "96",
+    "name": "Verbogen Lepel"
+  },
+  {
+    "id": "97",
+    "name": "Witte Apricorn"
+  },
+  {
+    "id": "98",
+    "name": "Zwarte Band"
+  },
+  {
+    "id": "99",
+    "name": "Zwarte Apricorn"
+  },
+  {
+    "id": "100",
+    "name": "Magmariseerder"
+  },
+  {
+    "id": "101",
+    "name": "Roze Apricorn"
+  },
+  {
+    "id": "102",
+    "name": "Zwarte Bril"
+  },
+  {
+    "id": "103",
+    "name": "Slowpokestaart"
+  },
+  {
+    "id": "104",
+    "name": "Roze Strik"
+  },
+  {
+    "id": "105",
+    "name": "Stok"
+  },
+  {
+    "id": "106",
+    "name": "Rookbal"
+  },
+  {
+    "id": "107",
+    "name": "Smeltnooit-IJs"
+  },
+  {
+    "id": "108",
+    "name": "Magneet"
+  },
+  {
+    "id": "109",
+    "name": "Zeldzaam Bot"
+  },
+  {
+    "id": "110",
+    "name": "Parel"
+  },
+  {
+    "id": "111",
+    "name": "Grote Parel"
+  },
+  {
+    "id": "112",
+    "name": "Eeuwigsteen"
+  },
+  {
+    "id": "113",
+    "name": "Spreuk-Label"
+  },
+  {
+    "id": "114",
+    "name": "Woede-Energiereep"
+  },
+  {
+    "id": "115",
+    "name": "GS-Bal"
+  },
+  {
+    "id": "116",
+    "name": "Blauwe Kaart"
+  },
+  {
+    "id": "117",
+    "name": "Mirakel Zaadje"
+  },
+  {
+    "id": "118",
+    "name": "Dikke Knots"
+  },
+  {
+    "id": "119",
+    "name": "Focusband"
+  },
+  {
+    "id": "120",
+    "name": "Elektriseerder"
+  },
+  {
+    "id": "121",
+    "name": "Energiepoeder"
+  },
+  {
+    "id": "122",
+    "name": "Energiewortel"
+  },
+  {
+    "id": "123",
+    "name": "Geneespoeder"
+  },
+  {
+    "id": "124",
+    "name": "Opwekkingskruiden"
+  },
+  {
+    "id": "125",
+    "name": "Harde Steen"
+  },
+  {
+    "id": "126",
+    "name": "Geluksei"
+  },
+  {
+    "id": "127",
+    "name": "Sleutelkaart"
+  },
+  {
+    "id": "128",
+    "name": "Machineonderdeel"
+  },
+  {
+    "id": "129",
+    "name": "VlugBal"
+  },
+  {
+    "id": "130",
+    "name": "Verloren Voorwerp"
+  },
+  {
+    "id": "131",
+    "name": "Sterrenstof"
+  },
+  {
+    "id": "132",
+    "name": "Stuk Ster"
+  },
+  {
+    "id": "133",
+    "name": "Keldersleutel"
+  },
+  {
+    "id": "134",
+    "name": "Pas"
+  },
+  {
+    "id": "135",
+    "name": "Glimmende Steen"
+  },
+  {
+    "id": "136",
+    "name": "Schemersteen"
+  },
+  {
+    "id": "137",
+    "name": "Dageraadsteen"
+  },
+  {
+    "id": "138",
+    "name": "Houtskool"
+  },
+  {
+    "id": "139",
+    "name": "Bessensap"
+  },
+  {
+    "id": "140",
+    "name": "Kijkglas"
+  },
+  {
+    "id": "141",
+    "name": "Beschermer"
+  },
+  {
+    "id": "142",
+    "name": "Trage Staart"
+  },
+  {
+    "id": "143",
+    "name": "Metalen Laag"
+  },
+  {
+    "id": "144",
+    "name": "Drakentand"
+  },
+  {
+    "id": "145",
+    "name": "Golfwierrook"
+  },
+  {
+    "id": "146",
+    "name": "Kliekjes"
+  },
+  {
+    "id": "147",
+    "name": "Witte Fluit"
+  },
+  {
+    "id": "148",
+    "name": "Kalmeerbel"
+  },
+  {
+    "id": "149",
+    "name": "Komeetscherf"
+  },
+  {
+    "id": "150",
+    "name": "TimerBal"
+  },
+  {
+    "id": "151",
+    "name": "Drakenschaal"
+  },
+  {
+    "id": "152",
+    "name": "Pewter Krokantjes"
+  },
+  {
+    "id": "153",
+    "name": "Balsempaddenstoel"
+  },
+  {
+    "id": "154",
+    "name": "Schuilschelp"
+  },
+  {
+    "id": "155",
+    "name": "Snelheidspoeder"
+  },
+  {
+    "id": "156",
+    "name": "Heilige As"
+  },
+  {
+    "id": "157",
+    "name": "GewichtsBal"
+  },
+  {
+    "id": "158",
+    "name": "SchemerBal"
+  },
+  {
+    "id": "159",
+    "name": "NiveauBal"
+  },
+  {
+    "id": "160",
+    "name": "LokaasBal"
+  },
+  {
+    "id": "161",
+    "name": "SnelBal"
+  },
+  {
+    "id": "162",
+    "name": "Diepzeeschub"
+  },
+  {
+    "id": "163",
+    "name": "Lichtbal"
+  },
+  {
+    "id": "164",
+    "name": "VriendBal"
+  },
+  {
+    "id": "165",
+    "name": "MaanBal"
+  },
+  {
+    "id": "166",
+    "name": "LiefdesBal"
+  },
+  {
+    "id": "167",
+    "name": "Diepzeetand"
+  },
+  {
+    "id": "168",
+    "name": "HerhaalBal"
+  },
+  {
+    "id": "169",
+    "name": "Zonnesteen"
+  },
+  {
+    "id": "170",
+    "name": "Berserk-Gen"
+  },
+  {
+    "id": "171",
+    "name": "Groothoeklens"
+  },
+  {
+    "id": "172",
+    "name": "Upgrade"
+  },
+  {
+    "id": "173",
+    "name": "Parelsnoer"
+  },
+  {
+    "id": "174",
+    "name": "LuxeBal"
+  },
+  {
+    "id": "175",
+    "name": "Waterspuitfles"
+  },
+  {
+    "id": "176",
+    "name": "Gripklauw"
+  },
+  {
+    "id": "177",
+    "name": "SportBal"
+  },
+  {
+    "id": "178",
+    "name": "Regenboogvleugel"
+  },
+  {
+    "id": "179",
+    "name": "Ovale Steen"
+  },
+  {
+    "id": "180",
+    "name": "Baksteenstuk"
+  },
+  {
+    "id": "181",
+    "name": "SafariBal"
+  },
+  {
+    "id": "182",
+    "name": "Zwarte Slib"
+  },
+  {
+    "id": "183",
+    "name": "Scheermestand"
+  },
+  {
+    "id": "184",
+    "name": "Scheermesklauw"
+  },
+  {
+    "id": "185",
+    "name": "Dubieuze Schijf"
+  },
+  {
+    "id": "186",
+    "name": "GeneesBal"
+  },
+  {
+    "id": "187",
+    "name": "Vaardigheidscapsule"
+  },
+  {
+    "id": "188",
+    "name": "NestBal"
+  },
+  {
+    "id": "189",
+    "name": "Groot Goudklompje"
+  },
+  {
+    "id": "190",
+    "name": "Hartschub"
+  },
+  {
+    "id": "191",
+    "name": "TM 01"
+  },
+  {
+    "id": "192",
+    "name": "TM 02"
+  },
+  {
+    "id": "193",
+    "name": "TM 03"
+  },
+  {
+    "id": "194",
+    "name": "TM 04"
+  },
+  {
+    "id": "195",
+    "name": "TM 05"
+  },
+  {
+    "id": "196",
+    "name": "TM 06"
+  },
+  {
+    "id": "197",
+    "name": "TM 07"
+  },
+  {
+    "id": "198",
+    "name": "TM 08"
+  },
+  {
+    "id": "199",
+    "name": "TM 09"
+  },
+  {
+    "id": "200",
+    "name": "TM 10"
+  },
+  {
+    "id": "201",
+    "name": "TM 11"
+  },
+  {
+    "id": "202",
+    "name": "TM 12"
+  },
+  {
+    "id": "203",
+    "name": "TM 13"
+  },
+  {
+    "id": "204",
+    "name": "TM 14"
+  },
+  {
+    "id": "205",
+    "name": "TM 15"
+  },
+  {
+    "id": "206",
+    "name": "TM 16"
+  },
+  {
+    "id": "207",
+    "name": "TM 17"
+  },
+  {
+    "id": "208",
+    "name": "TM 18"
+  },
+  {
+    "id": "209",
+    "name": "TM 19"
+  },
+  {
+    "id": "210",
+    "name": "TM 20"
+  },
+  {
+    "id": "211",
+    "name": "TM 21"
+  },
+  {
+    "id": "212",
+    "name": "TM 22"
+  },
+  {
+    "id": "213",
+    "name": "TM 23"
+  },
+  {
+    "id": "214",
+    "name": "TM 24"
+  },
+  {
+    "id": "215",
+    "name": "TM 25"
+  },
+  {
+    "id": "216",
+    "name": "TM 26"
+  },
+  {
+    "id": "217",
+    "name": "TM 27"
+  },
+  {
+    "id": "218",
+    "name": "TM 28"
+  },
+  {
+    "id": "219",
+    "name": "TM 29"
+  },
+  {
+    "id": "220",
+    "name": "TM 30"
+  },
+  {
+    "id": "221",
+    "name": "TM 31"
+  },
+  {
+    "id": "222",
+    "name": "TM 32"
+  },
+  {
+    "id": "223",
+    "name": "TM 33"
+  },
+  {
+    "id": "224",
+    "name": "TM 34"
+  },
+  {
+    "id": "225",
+    "name": "TM 35"
+  },
+  {
+    "id": "226",
+    "name": "TM 36"
+  },
+  {
+    "id": "227",
+    "name": "TM 37"
+  },
+  {
+    "id": "228",
+    "name": "TM 38"
+  },
+  {
+    "id": "229",
+    "name": "TM 39"
+  },
+  {
+    "id": "230",
+    "name": "TM 40"
+  },
+  {
+    "id": "231",
+    "name": "TM 41"
+  },
+  {
+    "id": "232",
+    "name": "TM 42"
+  },
+  {
+    "id": "233",
+    "name": "TM 43"
+  },
+  {
+    "id": "234",
+    "name": "TM 44"
+  },
+  {
+    "id": "235",
+    "name": "TM 45"
+  },
+  {
+    "id": "236",
+    "name": "TM 46"
+  },
+  {
+    "id": "237",
+    "name": "TM 47"
+  },
+  {
+    "id": "238",
+    "name": "TM 48"
+  },
+  {
+    "id": "239",
+    "name": "TM 49"
+  },
+  {
+    "id": "240",
+    "name": "TM 50"
+  },
+  {
+    "id": "241",
+    "name": "Ovale Bedel"
+  },
+  {
+    "id": "242",
+    "name": "Schitterende Bedel"
+  },
+  {
+    "id": "243",
+    "name": "VM 05"
+  },
+  {
+    "id": "244",
+    "name": "VM 02"
+  },
+  {
+    "id": "245",
+    "name": "VM 03"
+  },
+  {
+    "id": "246",
+    "name": "VM 04"
+  },
+  {
+    "id": "247",
+    "name": "VM 01"
+  },
+  {
+    "id": "248",
+    "name": "VM 06"
+  },
+  {
+    "id": "249",
+    "name": "VM 07"
+  },
+  {
+    "id": "250",
+    "name": "VM 08"
+  },
+  {
+    "id": "251",
+    "name": "VM 09"
+  },
+  {
+    "id": "252",
+    "name": "VM 10"
+  },
+  {
+    "id": "253",
+    "name": "Honing"
+  },
+  {
+    "id": "254",
+    "name": "Gezondheid-Vleugel"
+  },
+  {
+    "id": "255",
+    "name": "Gespierdheid-Vleugel"
+  },
+  {
+    "id": "256",
+    "name": "Weerstand-Vleugel"
+  },
+  {
+    "id": "257",
+    "name": "Genialiteit-Vleugel"
+  },
+  {
+    "id": "258",
+    "name": "Handigheid-Vleugel"
+  },
+  {
+    "id": "259",
+    "name": "Vlugheid-Vleugel"
+  },
+  {
+    "id": "260",
+    "name": "Schoonheid-Vleugel"
+  },
+  {
+    "id": "261",
+    "name": "Plakkerigheid-Vleugel"
+  },
+  {
+    "id": "262",
+    "name": "Plakkerige Rots"
+  },
+  {
+    "id": "263",
+    "name": "Vreemde Wierrook"
+  },
+  {
+    "id": "264",
+    "name": "Zeeluchtwierrook"
+  },
+  {
+    "id": "265",
+    "name": "Tri-Pas"
+  },
+  {
+    "id": "266",
+    "name": "Fanta"
+  },
+  {
+    "id": "267",
+    "name": "Drakenplaat"
+  },
+  {
+    "id": "268",
+    "name": "Vreesplaat"
+  },
+  {
+    "id": "269",
+    "name": "Aardeplaat"
+  },
+  {
+    "id": "270",
+    "name": "Vuistplaat"
+  },
+  {
+    "id": "271",
+    "name": "Vlammenplaat"
+  },
+  {
+    "id": "272",
+    "name": "IJspegelplaat"
+  },
+  {
+    "id": "273",
+    "name": "Insectenplaat"
+  },
+  {
+    "id": "274",
+    "name": "Ijzerplaat"
+  },
+  {
+    "id": "275",
+    "name": "Weideplaat"
+  },
+  {
+    "id": "276",
+    "name": "Geestplaat"
+  },
+  {
+    "id": "277",
+    "name": "Elfjesplaat"
+  },
+  {
+    "id": "278",
+    "name": "Luchtplaat"
+  },
+  {
+    "id": "279",
+    "name": "Plonsplaat"
+  },
+  {
+    "id": "280",
+    "name": "Spokenplaat"
+  },
+  {
+    "id": "281",
+    "name": "Steenplaat"
+  },
+  {
+    "id": "282",
+    "name": "Gifplaat"
+  },
+  {
+    "id": "283",
+    "name": "Schokplaat"
+  },
+  {
+    "id": "284",
+    "name": "Regenboogpas"
+  },
+  {
+    "id": "285",
+    "name": "Oude Zeekaart"
+  },
+  {
+    "id": "286",
+    "name": "Oeroude Scherf"
+  },
+  {
+    "id": "287",
+    "name": "Rozenwierrook"
+  },
+  {
+    "id": "288",
+    "name": "Volledige Wierrook"
+  },
+  {
+    "id": "289",
+    "name": "Ontspanningswierrook"
+  },
+  {
+    "id": "290",
+    "name": "Gelukswierrook"
+  },
+  {
+    "id": "291",
+    "name": "Pure Wierrook"
+  },
+  {
+    "id": "292",
+    "name": "Lege Zeekaart"
+  },
+  {
+    "id": "293",
+    "name": "Vochtrots"
+  },
+  {
+    "id": "294",
+    "name": "Hitterots"
+  },
+  {
+    "id": "295",
+    "name": "Gladde Rots"
+  },
+  {
+    "id": "296",
+    "name": "Ijzige Rots"
+  },
+  {
+    "id": "297",
+    "name": "Lichte Klei"
+  },
+  {
+    "id": "298",
+    "name": "Evioliet"
+  },
+  {
+    "id": "299",
+    "name": "Rotswierrook"
+  },
+  {
+    "id": "300",
+    "name": "Grasbrief"
+  },
+  {
+    "id": "301",
+    "name": "Kralenbrief"
+  },
+  {
+    "id": "302",
+    "name": "Droombrief"
+  },
+  {
+    "id": "303",
+    "name": "Prachtbrief"
+  },
+  {
+    "id": "304",
+    "name": "Glitterbrief"
+  },
+  {
+    "id": "305",
+    "name": "Havenbrief"
+  },
+  {
+    "id": "306",
+    "name": "Mechaniekbrief"
+  },
+  {
+    "id": "307",
+    "name": "Oranjebrief"
+  },
+  {
+    "id": "308",
+    "name": "Retrobrief"
+  },
+  {
+    "id": "309",
+    "name": "Schaduwbrief"
+  },
+  {
+    "id": "310",
+    "name": "Tropenbrief"
+  },
+  {
+    "id": "311",
+    "name": "Golfbrief"
+  },
+  {
+    "id": "312",
+    "name": "Houtbrief"
+  },
+  {
+    "id": "313",
+    "name": "Luchtbrief"
+  },
+  {
+    "id": "314",
+    "name": "Bloeibrief"
+  },
+  {
+    "id": "315",
+    "name": "Baksteenbrief"
+  },
+  {
+    "id": "316",
+    "name": "Bubbelbrief"
+  },
+  {
+    "id": "317",
+    "name": "Vlammenbrief"
+  },
+  {
+    "id": "318",
+    "name": "Hartenbrief"
+  },
+  {
+    "id": "319",
+    "name": "Mozaïekbrief"
+  },
+  {
+    "id": "320",
+    "name": "Sneeuwbrief"
+  },
+  {
+    "id": "321",
+    "name": "Ruimtebrief"
+  },
+  {
+    "id": "322",
+    "name": "Staalbrief"
+  },
+  {
+    "id": "323",
+    "name": "Tunnelbrief"
+  },
+  {
+    "id": "324",
+    "name": "Hoogspanningsbrugbrief"
+  },
+  {
+    "id": "325",
+    "name": "Ophaalbrugbrief"
+  },
+  {
+    "id": "326",
+    "name": "Torenhoge Brugbrief"
+  },
+  {
+    "id": "327",
+    "name": "Klassieke Brugbrief"
+  },
+  {
+    "id": "328",
+    "name": "Majesteuze Brugbrief"
+  },
+  {
+    "id": "329",
+    "name": "Favorietbrief"
+  },
+  {
+    "id": "330",
+    "name": "Dankbrief"
+  },
+  {
+    "id": "331",
+    "name": "Inlichtingsbrief"
+  },
+  {
+    "id": "332",
+    "name": "Groetbrief"
+  },
+  {
+    "id": "333",
+    "name": "Verzoekbrief"
+  },
+  {
+    "id": "334",
+    "name": "Waardeerbrief"
+  },
+  {
+    "id": "335",
+    "name": "Antwoordbrief"
+  },
+  {
+    "id": "336",
+    "name": "Kolben-brief"
+  },
+  {
+    "id": "351",
+    "name": "TM 51"
+  },
+  {
+    "id": "352",
+    "name": "TM 52"
+  },
+  {
+    "id": "353",
+    "name": "TM 53"
+  },
+  {
+    "id": "354",
+    "name": "TM 54"
+  },
+  {
+    "id": "355",
+    "name": "TM 55"
+  },
+  {
+    "id": "356",
+    "name": "TM 56"
+  },
+  {
+    "id": "357",
+    "name": "TM 57"
+  },
+  {
+    "id": "358",
+    "name": "TM 58"
+  },
+  {
+    "id": "359",
+    "name": "TM 59"
+  },
+  {
+    "id": "360",
+    "name": "TM 60"
+  },
+  {
+    "id": "361",
+    "name": "TM 61"
+  },
+  {
+    "id": "362",
+    "name": "TM 62"
+  },
+  {
+    "id": "363",
+    "name": "TM 63"
+  },
+  {
+    "id": "364",
+    "name": "TM 64"
+  },
+  {
+    "id": "365",
+    "name": "TM 65"
+  },
+  {
+    "id": "366",
+    "name": "TM 66"
+  },
+  {
+    "id": "367",
+    "name": "TM 67"
+  },
+  {
+    "id": "368",
+    "name": "TM 68"
+  },
+  {
+    "id": "369",
+    "name": "TM 69"
+  },
+  {
+    "id": "370",
+    "name": "TM 70"
+  },
+  {
+    "id": "371",
+    "name": "TM 71"
+  },
+  {
+    "id": "372",
+    "name": "TM 72"
+  },
+  {
+    "id": "373",
+    "name": "TM 73"
+  },
+  {
+    "id": "374",
+    "name": "TM 74"
+  },
+  {
+    "id": "375",
+    "name": "TM 75"
+  },
+  {
+    "id": "376",
+    "name": "TM 76"
+  },
+  {
+    "id": "377",
+    "name": "TM 77"
+  },
+  {
+    "id": "378",
+    "name": "TM 78"
+  },
+  {
+    "id": "379",
+    "name": "TM 79"
+  },
+  {
+    "id": "380",
+    "name": "TM 80"
+  },
+  {
+    "id": "381",
+    "name": "TM 81"
+  },
+  {
+    "id": "382",
+    "name": "TM 82"
+  },
+  {
+    "id": "383",
+    "name": "TM 83"
+  },
+  {
+    "id": "384",
+    "name": "TM 84"
+  },
+  {
+    "id": "385",
+    "name": "TM 85"
+  },
+  {
+    "id": "386",
+    "name": "TM 86"
+  },
+  {
+    "id": "387",
+    "name": "TM 87"
+  },
+  {
+    "id": "388",
+    "name": "TM 88"
+  },
+  {
+    "id": "389",
+    "name": "TM 89"
+  },
+  {
+    "id": "390",
+    "name": "TM 90"
+  },
+  {
+    "id": "391",
+    "name": "TM 91"
+  },
+  {
+    "id": "392",
+    "name": "TM 92"
+  },
+  {
+    "id": "393",
+    "name": "TM 93"
+  },
+  {
+    "id": "394",
+    "name": "TM 94"
+  },
+  {
+    "id": "395",
+    "name": "TM 95"
+  },
+  {
+    "id": "396",
+    "name": "TM 96"
+  },
+  {
+    "id": "397",
+    "name": "TM 97"
+  },
+  {
+    "id": "398",
+    "name": "TM 98"
+  },
+  {
+    "id": "399",
+    "name": "TM 99"
+  },
+  {
+    "id": "400",
+    "name": "TM 100"
+  },
+  {
+    "id": "401",
+    "name": "TM 101"
+  },
+  {
+    "id": "402",
+    "name": "TM 102"
+  },
+  {
+    "id": "403",
+    "name": "TM 103"
+  },
+  {
+    "id": "404",
+    "name": "TM 104"
+  },
+  {
+    "id": "405",
+    "name": "TM 105"
+  },
+  {
+    "id": "406",
+    "name": "TM 106"
+  },
+  {
+    "id": "407",
+    "name": "TM 107"
+  },
+  {
+    "id": "408",
+    "name": "TM 108"
+  },
+  {
+    "id": "409",
+    "name": "TM 109"
+  },
+  {
+    "id": "410",
+    "name": "TM 110"
+  },
+  {
+    "id": "411",
+    "name": "TM 111"
+  },
+  {
+    "id": "412",
+    "name": "TM 112"
+  },
+  {
+    "id": "413",
+    "name": "TM 113"
+  },
+  {
+    "id": "414",
+    "name": "TM 114"
+  },
+  {
+    "id": "415",
+    "name": "TM 115"
+  },
+  {
+    "id": "416",
+    "name": "TM 116"
+  },
+  {
+    "id": "417",
+    "name": "TM 117"
+  },
+  {
+    "id": "418",
+    "name": "TM 118"
+  },
+  {
+    "id": "419",
+    "name": "TM 119"
+  },
+  {
+    "id": "420",
+    "name": "TM 120"
+  },
+  {
+    "id": "421",
+    "name": "TM 121"
+  },
+  {
+    "id": "422",
+    "name": "TM 122"
+  },
+  {
+    "id": "423",
+    "name": "TM 123"
+  },
+  {
+    "id": "424",
+    "name": "TM 124"
+  },
+  {
+    "id": "425",
+    "name": "TM 125"
+  },
+  {
+    "id": "426",
+    "name": "TM 126"
+  },
+  {
+    "id": "427",
+    "name": "TM 127"
+  },
+  {
+    "id": "428",
+    "name": "TM 128"
+  },
+  {
+    "id": "429",
+    "name": "TM 129"
+  },
+  {
+    "id": "430",
+    "name": "TM 130"
+  },
+  {
+    "id": "431",
+    "name": "TM 131"
+  },
+  {
+    "id": "432",
+    "name": "TM 132"
+  },
+  {
+    "id": "433",
+    "name": "TM 133"
+  },
+  {
+    "id": "434",
+    "name": "TM 134"
+  },
+  {
+    "id": "435",
+    "name": "TM 135"
+  },
+  {
+    "id": "436",
+    "name": "TM 136"
+  },
+  {
+    "id": "437",
+    "name": "TM 137"
+  },
+  {
+    "id": "438",
+    "name": "TM 138"
+  },
+  {
+    "id": "439",
+    "name": "TM 139"
+  },
+  {
+    "id": "440",
+    "name": "TM 140"
+  },
+  {
+    "id": "441",
+    "name": "TM 141"
+  },
+  {
+    "id": "442",
+    "name": "TM 142"
+  },
+  {
+    "id": "443",
+    "name": "TM 143"
+  },
+  {
+    "id": "444",
+    "name": "TM 144"
+  },
+  {
+    "id": "445",
+    "name": "TM 145"
+  },
+  {
+    "id": "446",
+    "name": "TM 146"
+  },
+  {
+    "id": "447",
+    "name": "TM 147"
+  },
+  {
+    "id": "448",
+    "name": "TM 148"
+  },
+  {
+    "id": "449",
+    "name": "TM 149"
+  },
+  {
+    "id": "450",
+    "name": "TM 150"
+  },
+  {
+    "id": "451",
+    "name": "TM 151"
+  },
+  {
+    "id": "452",
+    "name": "TM 152"
+  },
+  {
+    "id": "453",
+    "name": "TM 153"
+  },
+  {
+    "id": "454",
+    "name": "TM 154"
+  },
+  {
+    "id": "455",
+    "name": "TM 155"
+  },
+  {
+    "id": "456",
+    "name": "TM 156"
+  },
+  {
+    "id": "457",
+    "name": "TM 157"
+  },
+  {
+    "id": "458",
+    "name": "TM 158"
+  },
+  {
+    "id": "459",
+    "name": "TM 159"
+  },
+  {
+    "id": "460",
+    "name": "TM 160"
+  },
+  {
+    "id": "461",
+    "name": "TM 161"
+  },
+  {
+    "id": "462",
+    "name": "TM 162"
+  },
+  {
+    "id": "463",
+    "name": "TM 163"
+  },
+  {
+    "id": "464",
+    "name": "TM 164"
+  },
+  {
+    "id": "465",
+    "name": "TM 165"
+  },
+  {
+    "id": "466",
+    "name": "TM 166"
+  },
+  {
+    "id": "467",
+    "name": "TM 167"
+  },
+  {
+    "id": "468",
+    "name": "TM 168"
+  },
+  {
+    "id": "469",
+    "name": "TM 169"
+  },
+  {
+    "id": "470",
+    "name": "TM 170"
+  },
+  {
+    "id": "471",
+    "name": "TM 171"
+  },
+  {
+    "id": "472",
+    "name": "TM 172"
+  },
+  {
+    "id": "473",
+    "name": "TM 173"
+  },
+  {
+    "id": "474",
+    "name": "TM 174"
+  },
+  {
+    "id": "475",
+    "name": "TM 175"
+  },
+  {
+    "id": "476",
+    "name": "TM 176"
+  },
+  {
+    "id": "477",
+    "name": "TM 177"
+  },
+  {
+    "id": "478",
+    "name": "TM 178"
+  },
+  {
+    "id": "479",
+    "name": "TM 179"
+  },
+  {
+    "id": "480",
+    "name": "TM 180"
+  },
+  {
+    "id": "481",
+    "name": "TM 181"
+  },
+  {
+    "id": "501",
+    "name": "Schitterend Snoepje"
+  },
+  {
+    "id": "502",
+    "name": "AP-Max"
+  },
+  {
+    "id": "503",
+    "name": "Zakje"
+  },
+  {
+    "id": "504",
+    "name": "Geklopte Droom"
+  },
+  {
+    "id": "505",
+    "name": "Gifbol"
+  },
+  {
+    "id": "506",
+    "name": "Levensbol"
+  },
+  {
+    "id": "507",
+    "name": "Abomasiet"
+  },
+  {
+    "id": "508",
+    "name": "Absoliet"
+  },
+  {
+    "id": "509",
+    "name": "Aerodactyliet"
+  },
+  {
+    "id": "510",
+    "name": "Aggroniet"
+  },
+  {
+    "id": "511",
+    "name": "Alakaziet"
+  },
+  {
+    "id": "512",
+    "name": "Ampharosiet"
+  },
+  {
+    "id": "513",
+    "name": "Banettiet"
+  },
+  {
+    "id": "514",
+    "name": "Blastoisiniet"
+  },
+  {
+    "id": "515",
+    "name": "Blazikeniet"
+  },
+  {
+    "id": "516",
+    "name": "Charizardiet X"
+  },
+  {
+    "id": "517",
+    "name": "Charizardiet Y"
+  },
+  {
+    "id": "518",
+    "name": "Garchompiet"
+  },
+  {
+    "id": "519",
+    "name": "Gardevoiriet"
+  },
+  {
+    "id": "520",
+    "name": "Gengariet"
+  },
+  {
+    "id": "521",
+    "name": "Gyaradosiet"
+  },
+  {
+    "id": "522",
+    "name": "Heracroniet"
+  },
+  {
+    "id": "523",
+    "name": "Houndoominiet"
+  },
+  {
+    "id": "524",
+    "name": "Kangaskhaniet"
+  },
+  {
+    "id": "525",
+    "name": "Lucarioniet"
+  },
+  {
+    "id": "526",
+    "name": "Manectiet"
+  },
+  {
+    "id": "527",
+    "name": "Mawiliet"
+  },
+  {
+    "id": "528",
+    "name": "Medichamiet"
+  },
+  {
+    "id": "529",
+    "name": "Mewtwoniet X"
+  },
+  {
+    "id": "530",
+    "name": "Mewtwoniet Y"
+  },
+  {
+    "id": "531",
+    "name": "Pinsiriet"
+  },
+  {
+    "id": "532",
+    "name": "Scizoriet"
+  },
+  {
+    "id": "533",
+    "name": "Tyranitariet"
+  },
+  {
+    "id": "534",
+    "name": "Venusauriet"
+  },
+  {
+    "id": "535",
+    "name": "Altarianiet"
+  },
+  {
+    "id": "536",
+    "name": "Audiniet"
+  },
+  {
+    "id": "537",
+    "name": "Beedrilliet"
+  },
+  {
+    "id": "538",
+    "name": "Cameruptiet"
+  },
+  {
+    "id": "539",
+    "name": "Dianciet"
+  },
+  {
+    "id": "540",
+    "name": "Galladiet"
+  },
+  {
+    "id": "541",
+    "name": "Glalitiet"
+  },
+  {
+    "id": "542",
+    "name": "Latiasiet"
+  },
+  {
+    "id": "543",
+    "name": "Latiosiet"
+  },
+  {
+    "id": "544",
+    "name": "Lopunniet"
+  },
+  {
+    "id": "545",
+    "name": "Metagrossiet"
+  },
+  {
+    "id": "546",
+    "name": "Pidgeotiet"
+  },
+  {
+    "id": "547",
+    "name": "Sableniet"
+  },
+  {
+    "id": "548",
+    "name": "Salamenciet"
+  },
+  {
+    "id": "549",
+    "name": "Sceptiliet"
+  },
+  {
+    "id": "550",
+    "name": "Sharpedoniet"
+  },
+  {
+    "id": "551",
+    "name": "Slowbroniet"
+  },
+  {
+    "id": "552",
+    "name": "Steelixiet"
+  },
+  {
+    "id": "553",
+    "name": "Swampertiet"
+  },
+  {
+    "id": "576",
+    "name": "Mega-Armband"
+  },
+  {
+    "id": "577",
+    "name": "Vlammenbol"
+  },
+  {
+    "id": "578",
+    "name": "Keuzeband"
+  },
+  {
+    "id": "579",
+    "name": "Keuzesjaal"
+  },
+  {
+    "id": "580",
+    "name": "Keuzebril"
+  },
+  {
+    "id": "581",
+    "name": "Macho-Armband"
+  },
+  {
+    "id": "582",
+    "name": "Krachtgewicht"
+  },
+  {
+    "id": "583",
+    "name": "Krachtbeugel"
+  },
+  {
+    "id": "584",
+    "name": "Krachtriem"
+  },
+  {
+    "id": "585",
+    "name": "Krachtlens"
+  },
+  {
+    "id": "586",
+    "name": "Krachtband"
+  },
+  {
+    "id": "587",
+    "name": "Krachtenkelband"
+  },
+  {
+    "id": "591",
+    "name": "Expertband"
+  },
+  {
+    "id": "592",
+    "name": "Vrijheid-Zeekaart"
+  },
+  {
+    "id": "593",
+    "name": "IJssteen"
+  },
+  {
+    "id": "594",
+    "name": "Sneeuwbal"
+  },
+  {
+    "id": "595",
+    "name": "Batterijcel"
+  },
+  {
+    "id": "596",
+    "name": "Electrisch Zaadje"
+  },
+  {
+    "id": "597",
+    "name": "Grassig Zaadje"
+  },
+  {
+    "id": "598",
+    "name": "Mistig Zaadje"
+  },
+  {
+    "id": "599",
+    "name": "Psychisch Zaadje"
+  },
+  {
+    "id": "600",
+    "name": "Terreinuitbreider"
+  },
+  {
+    "id": "601",
+    "name": "Schroeffossiel"
+  },
+  {
+    "id": "602",
+    "name": "Koepelfossiel"
+  },
+  {
+    "id": "603",
+    "name": "Oud Amber"
+  },
+  {
+    "id": "604",
+    "name": "Wortelfossiel"
+  },
+  {
+    "id": "605",
+    "name": "Klauwfossiel"
+  },
+  {
+    "id": "606",
+    "name": "Schedelfossiel"
+  },
+  {
+    "id": "607",
+    "name": "Pantserfossiel"
+  },
+  {
+    "id": "608",
+    "name": "Schuilfossiel"
+  },
+  {
+    "id": "609",
+    "name": "Pluimfossiel"
+  },
+  {
+    "id": "610",
+    "name": "Kaakfossiel"
+  },
+  {
+    "id": "611",
+    "name": "Zeilfossiel"
+  },
+  {
+    "id": "612",
+    "name": "Versteende Vogel"
+  },
+  {
+    "id": "613",
+    "name": "Versteende Vis"
+  },
+  {
+    "id": "614",
+    "name": "Versteende Draak"
+  },
+  {
+    "id": "615",
+    "name": "Versteende~Dinosaurus"
+  },
+  {
+    "id": "630",
+    "name": "Vuurjuweel"
+  },
+  {
+    "id": "631",
+    "name": "Waterjuweel"
+  },
+  {
+    "id": "632",
+    "name": "Electrisch juweel"
+  },
+  {
+    "id": "633",
+    "name": "Grasjuweel"
+  },
+  {
+    "id": "634",
+    "name": "IJsjuweel"
+  },
+  {
+    "id": "635",
+    "name": "Vechtjuweel"
+  },
+  {
+    "id": "636",
+    "name": "Gifjuweel"
+  },
+  {
+    "id": "637",
+    "name": "Grondjuweel"
+  },
+  {
+    "id": "638",
+    "name": "Vliegjuweel"
+  },
+  {
+    "id": "639",
+    "name": "Psychischjuweel"
+  },
+  {
+    "id": "640",
+    "name": "Insectjuweel"
+  },
+  {
+    "id": "641",
+    "name": "Rotsjuweel"
+  },
+  {
+    "id": "642",
+    "name": "Geestjuweel"
+  },
+  {
+    "id": "643",
+    "name": "Draakjuweel"
+  },
+  {
+    "id": "644",
+    "name": "Duisterjuweel"
+  },
+  {
+    "id": "645",
+    "name": "Staaljuweel"
+  },
+  {
+    "id": "646",
+    "name": "Normaaljuweel"
+  },
+  {
+    "id": "647",
+    "name": "Feejuweel"
+  },
+  {
+    "id": "648",
+    "name": "Poké-Speelgoed"
+  },
+  {
+    "id": "649",
+    "name": "Pluizige Staart"
+  },
+  {
+    "id": "650",
+    "name": "Fel Poeder"
+  },
+  {
+    "id": "651",
+    "name": "Lichtsteen"
+  },
+  {
+    "id": "652",
+    "name": "Duistersteen"
+  },
+  {
+    "id": "653",
+    "name": "Zwart Auguriet"
+  },
+  {
+    "id": "654",
+    "name": "Turfblok"
+  },
+  {
+    "id": "655",
+    "name": "Watervliegtuig-kaartje"
+  },
+  {
+    "id": "656",
+    "name": "Ervaringsbedel"
+  },
+  {
+    "id": "657",
+    "name": "Vangbedel"
+  },
+  {
+    "id": "658",
+    "name": "Team-ervaringsdeler"
+  },
+  {
+    "id": "677",
+    "name": "Lotknoop"
+  },
+  {
+    "id": "1996",
+    "name": "Brandschijf"
+  },
+  {
+    "id": "1997",
+    "name": "Kalmteschijf"
+  },
+  {
+    "id": "1998",
+    "name": "Blusschijf"
+  },
+  {
+    "id": "1999",
+    "name": "Shokschijf"
+  },
+  {
+    "id": "2000",
+    "name": "Cheri"
+  },
+  {
+    "id": "2001",
+    "name": "Chesto"
+  },
+  {
+    "id": "2002",
+    "name": "Pecha"
+  },
+  {
+    "id": "2003",
+    "name": "Rawst"
+  },
+  {
+    "id": "2004",
+    "name": "Aspear"
+  },
+  {
+    "id": "2005",
+    "name": "Leppa"
+  },
+  {
+    "id": "2006",
+    "name": "Oran"
+  },
+  {
+    "id": "2007",
+    "name": "Persim"
+  },
+  {
+    "id": "2008",
+    "name": "Lum"
+  },
+  {
+    "id": "2009",
+    "name": "Sitrus"
+  },
+  {
+    "id": "2010",
+    "name": "Figy"
+  },
+  {
+    "id": "2011",
+    "name": "Wiki"
+  },
+  {
+    "id": "2012",
+    "name": "Mago"
+  },
+  {
+    "id": "2013",
+    "name": "Aguav"
+  },
+  {
+    "id": "2014",
+    "name": "Iapapa"
+  },
+  {
+    "id": "2015",
+    "name": "Razz"
+  },
+  {
+    "id": "2016",
+    "name": "Bluk"
+  },
+  {
+    "id": "2017",
+    "name": "Nanab"
+  },
+  {
+    "id": "2018",
+    "name": "Wepear"
+  },
+  {
+    "id": "2019",
+    "name": "Pinap"
+  },
+  {
+    "id": "2020",
+    "name": "Pomeg"
+  },
+  {
+    "id": "2021",
+    "name": "Kelpsy"
+  },
+  {
+    "id": "2022",
+    "name": "Qualot"
+  },
+  {
+    "id": "2023",
+    "name": "Hondew"
+  },
+  {
+    "id": "2024",
+    "name": "Grepa"
+  },
+  {
+    "id": "2025",
+    "name": "Tamato"
+  },
+  {
+    "id": "2026",
+    "name": "Cornn"
+  },
+  {
+    "id": "2027",
+    "name": "Magost"
+  },
+  {
+    "id": "2028",
+    "name": "Rabuta"
+  },
+  {
+    "id": "2029",
+    "name": "Nomel"
+  },
+  {
+    "id": "2030",
+    "name": "Spelon"
+  },
+  {
+    "id": "2031",
+    "name": "Pamtre"
+  },
+  {
+    "id": "2032",
+    "name": "Watmel"
+  },
+  {
+    "id": "2033",
+    "name": "Durin"
+  },
+  {
+    "id": "2034",
+    "name": "Belue"
+  },
+  {
+    "id": "2035",
+    "name": "Occa"
+  },
+  {
+    "id": "2036",
+    "name": "Passho"
+  },
+  {
+    "id": "2037",
+    "name": "Wacan"
+  },
+  {
+    "id": "2038",
+    "name": "Rindo"
+  },
+  {
+    "id": "2039",
+    "name": "Yache"
+  },
+  {
+    "id": "2040",
+    "name": "Chople"
+  },
+  {
+    "id": "2041",
+    "name": "Kebia"
+  },
+  {
+    "id": "2042",
+    "name": "Shuca"
+  },
+  {
+    "id": "2043",
+    "name": "Coba"
+  },
+  {
+    "id": "2044",
+    "name": "Payapa"
+  },
+  {
+    "id": "2045",
+    "name": "Tanga"
+  },
+  {
+    "id": "2046",
+    "name": "Charti"
+  },
+  {
+    "id": "2047",
+    "name": "Kasib"
+  },
+  {
+    "id": "2048",
+    "name": "Haban"
+  },
+  {
+    "id": "2049",
+    "name": "Colbur"
+  },
+  {
+    "id": "2050",
+    "name": "Babiri"
+  },
+  {
+    "id": "2051",
+    "name": "Chilan"
+  },
+  {
+    "id": "2052",
+    "name": "Liechi"
+  },
+  {
+    "id": "2053",
+    "name": "Ganlon"
+  },
+  {
+    "id": "2054",
+    "name": "Salac"
+  },
+  {
+    "id": "2055",
+    "name": "Petaya"
+  },
+  {
+    "id": "2056",
+    "name": "Apicot"
+  },
+  {
+    "id": "2057",
+    "name": "Lansat"
+  },
+  {
+    "id": "2058",
+    "name": "Starf"
+  },
+  {
+    "id": "2059",
+    "name": "Enigma"
+  },
+  {
+    "id": "2060",
+    "name": "Micle"
+  },
+  {
+    "id": "2061",
+    "name": "Custap"
+  },
+  {
+    "id": "2062",
+    "name": "Jaboca"
+  },
+  {
+    "id": "2063",
+    "name": "Rowap"
+  },
+  {
+    "id": "2064",
+    "name": "Roseli"
+  },
+  {
+    "id": "2065",
+    "name": "Kee"
+  },
+  {
+    "id": "2066",
+    "name": "Maranga"
+  }
+]

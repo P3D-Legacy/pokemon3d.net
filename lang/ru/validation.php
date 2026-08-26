@@ -117,6 +117,9 @@ return [
     'uploaded' => 'Загрузка поля :attribute не удалась.',
     'url' => 'Значение поля :attribute имеет ошибочный формат URL.',
     'uuid' => 'Значение поля :attribute должно быть корректным UUID.',
+    'indisposable' => 'Одноразовые адреса электронной почты не допускаются.',
+    'spam_mail' => 'Поле :attribute выглядит недействительным или принадлежит известному спам-домену.',
+
     'custom' => [
         'attribute-name' => [
             'rule-name' => 'custom-message',

@@ -2,10 +2,12 @@
 
 namespace Database\Factories;
 
+use App\Models\DiscordAccount;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\DiscordAccount>
+ * @extends Factory<DiscordAccount>
  */
 class DiscordAccountFactory extends Factory
 {
@@ -14,16 +16,16 @@ class DiscordAccountFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    public function definition()
+    public function definition(): array
     {
         return [
-            'id' => $this->faker->uuid,
-            'username' => $this->faker->userName,
-            'email' => $this->faker->email,
+            'id' => $this->faker->unique()->numberBetween(10_000_000_000_000_000, 9_999_999_999_999_999),
+            'username' => $this->faker->userName(),
+            'email' => $this->faker->email(),
             'avatar' => $this->faker->imageUrl(),
             'discriminator' => $this->faker->randomNumber(4),
             'verified_at' => $this->faker->dateTime(),
-            'user_id' => \App\Models\User::factory(),
+            'user_id' => User::factory(),
         ];
     }
 }

@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Tag;
+
 return [
     /*
      * The given function generates a URL friendly "slug" from the tag name property before saving it.
@@ -10,5 +12,5 @@ return [
     /*
      * The fully qualified class name of the tag model.
      */
-    'tag_model' => \App\Models\Tag::class,
+    'tag_model' => Tag::class,
 ];

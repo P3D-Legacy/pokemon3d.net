@@ -2,26 +2,20 @@
 
 namespace Database\Factories;
 
+use App\Models\GameVersion;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\GameVersion>
+ * @extends Factory<GameVersion>
  */
 class GameVersionFactory extends Factory
 {
-    /**
-     * The name of the factory's corresponding model.
-     *
-     * @var string
-     */
-    protected $model = \App\Models\GameVersion::class;
-
     /**
      * Define the model's default state.
      *
      * @return array<string, mixed>
      */
-    public function definition()
+    public function definition(): array
     {
         $version =
             $this->faker->numberBetween(0, 2).

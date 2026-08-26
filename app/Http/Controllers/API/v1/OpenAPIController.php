@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API\v1;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\JsonResponse;
 
 /**
  * @group OpenAPI
@@ -19,7 +20,7 @@ class OpenAPIController extends Controller
      * @unauthenticated
      *
      **/
-    public function index(): \Illuminate\Http\JsonResponse
+    public function index(): JsonResponse
     {
         // Get and return JSON from storage
         $file_path = storage_path('app/scribe/openapi.json');

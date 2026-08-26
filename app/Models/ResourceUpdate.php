@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\MediaLibrary\HasMedia;
@@ -27,12 +29,10 @@ class ResourceUpdate extends BaseModel implements HasMedia
      *
      * @var array
      */
-    protected $fillable = ['title', 'description', 'resource_id', 'game_version_id', 'downloads'];
+    protected $fillable = ['title', 'description', 'resource_id', 'game_version_id', 'downloads', 'external_download_url'];
 
     /**
      * The attributes that should be logged for the user.
-     *
-     * @return array
      */
     public function getActivitylogOptions(): LogOptions
     {
@@ -41,14 +41,16 @@ class ResourceUpdate extends BaseModel implements HasMedia
             ->logOnlyDirty();
     }
 
-    public function resource()
+    public function resource(): BelongsTo
     {
         return $this->belongsTo(Resource::class);
     }
 
     public function registerMediaCollections(?Media $media = null): void
     {
-        $this->addMediaCollection('resource_update_file')->singleFile();
+        $this->addMediaCollection('resource_update_file')
+            ->useDisk('resource')
+            ->singleFile();
     }
 
     public function incrementDownload()
@@ -60,7 +62,7 @@ class ResourceUpdate extends BaseModel implements HasMedia
     /**
      * Get the game_version related to this resource.
      */
-    public function game_version()
+    public function game_version(): HasOne
     {
         return $this->hasOne(GameVersion::class, 'id', 'game_version_id');
     }

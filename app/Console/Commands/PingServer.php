@@ -2,77 +2,71 @@
 
 namespace App\Console\Commands;
 
+use App\Actions\Server\PingServer as PingServerAction;
 use App\Models\Server;
 use Illuminate\Console\Command;
 
 class PingServer extends Command
 {
-    /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
-    protected $signature = 'server:ping {uuid} {reactivate=false}';
+    protected $signature = 'server:ping {uuid?} {--reactivate : Skip auto-deactivation and keep the server listable}';
 
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Ping selected server and save response to model.';
+    protected $description = 'Ping a server, or all servers, and store the result.';
 
-    /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    protected $aliases = ['server:pingall'];
+
+    public function handle(PingServerAction $pingServer): int
     {
-        parent::__construct();
+        $uuid = $this->argument('uuid');
+        $reactivate = (bool) $this->option('reactivate');
+
+        if (is_string($uuid) && $uuid !== '') {
+            return $this->pingOne($pingServer, $uuid, $reactivate);
+        }
+
+        return $this->pingAll($pingServer, $reactivate);
     }
 
-    /**
-     * Execute the console command.
-     *
-     * @return int
-     */
-    public function handle()
+    private function pingOne(PingServerAction $pingServer, string $uuid, bool $reactivate): int
     {
-        $server_uuid = $this->argument('uuid');
-        $reactivate = $this->argument('reactivate');
+        $server = Server::query()->where('uuid', $uuid)->first();
 
-        $server = Server::where('uuid', $server_uuid)->first();
         if (! $server) {
             $this->error('Server not found.');
 
-            return 0;
+            return self::FAILURE;
         }
 
-        $starttime = microtime(true);
-        // supress error messages with @
-        $connection = @fsockopen($server->host, $server->port, $errno, $errstr, 2);
-        $stoptime = microtime(true);
-        $ping = 0;
+        $ping = $pingServer->execute($server, $reactivate);
+        $this->info($this->formatResult($server, $ping));
 
-        if (! $connection) {
-            $ping = null; // Site is down
-        } else {
-            fclose($connection);
-            $time = ($stoptime - $starttime) * 1000;
-            $ping = floor($time);
-        }
-        $server->ping = $ping;
-        $server->last_check_at = now();
-        if ($ping) {
-            $server->last_online_at = now();
-            $server->active = true;
-        }
-        if (! $reactivate && ! $ping && ! $server->official && $server->last_online_at < now()->subHours(24)) {
-            $server->active = false;
-        }
-        $server->save();
-        $this->info('Name: '.$server->name.' - Ping: '.$ping.'ms');
+        return self::SUCCESS;
+    }
 
-        return 0;
+    private function pingAll(PingServerAction $pingServer, bool $reactivate): int
+    {
+        $checked = 0;
+        $reachable = 0;
+
+        Server::query()
+            ->orderBy('id')
+            ->eachById(function (Server $server) use ($pingServer, $reactivate, &$checked, &$reachable): void {
+                $ping = $pingServer->execute($server, $reactivate);
+                $checked++;
+
+                if ($ping !== null) {
+                    $reachable++;
+                }
+            });
+
+        $this->info("Pinged {$checked} server(s). {$reachable} reachable.");
+
+        return self::SUCCESS;
+    }
+
+    private function formatResult(Server $server, ?int $ping): string
+    {
+        $latency = $ping === null ? 'unreachable' : "{$ping}ms";
+
+        return "Name: {$server->name} - Ping: {$latency}";
     }
 }

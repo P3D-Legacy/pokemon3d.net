@@ -5,13 +5,16 @@ return [
     'directories' => ['app', 'resources'],
 
     // File Patterns to search for.
-    'patterns' => ['*.php', '*.js'],
+    'patterns' => ['*.php', '*.js', '*.ts', '*.tsx', '*.jsx', '*.vue'],
 
     // Indicates whether new lines are allowed in translations.
     'allow-newlines' => false,
 
     // Translation function names.
     // If your function name contains $ escape it using \$ .
+    // Do not include bare `t` here: the exporter matches it as a suffix of
+    // get()/post()/format() and pollutes JSON files. Frontend `t()` keys are
+    // merged by the p3d:lang command with a word-boundary aware scan.
     'functions' => ['__', '_t', '@lang'],
 
     // Indicates whether you need to sort the translations alphabetically
@@ -21,7 +24,7 @@ return [
 
     // Indicates whether keys from the persistent-strings file should be also added
     // to translation files automatically on export if they don't yet exist there.
-    'add-persistent-strings-to-translations' => false,
+    'add-persistent-strings-to-translations' => true,
 
     // Indicates whether it's necessary to exclude Laravel translation keys
     // from the resulting language file if they have corresponding translations

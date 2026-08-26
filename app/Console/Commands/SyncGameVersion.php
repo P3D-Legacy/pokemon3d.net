@@ -34,10 +34,8 @@ class SyncGameVersion extends Command
 
     /**
      * Execute the console command.
-     *
-     * @return int
      */
-    public function handle()
+    public function handle(): int
     {
         $api_url = env('GITHUB_API_REPO');
         if (! $api_url) {
@@ -68,5 +66,7 @@ class SyncGameVersion extends Command
             $this->info('Updated or created release: '.$version->version);
         }
         $this->info('Done.');
+
+        return Command::SUCCESS;
     }
 }

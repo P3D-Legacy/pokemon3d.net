@@ -135,8 +135,8 @@ return [
     | This options indicates the language allowed languages.
     |
     */
-    'allowed' => ['en', 'cn', 'cs', 'el', 'es', 'et', 'nb', 'nl', 'ru', 'sv', 'tw', 'pt-BR', 'it'],
-    'done' => ['en', 'cn', 'el', 'et', 'nb', 'nl', 'tw', 'pt-BR'],
+    'allowed' => ['en', 'en-GB', 'cn', 'cs', 'el', 'es', 'et', 'nb', 'nl', 'ru', 'sv', 'tw', 'pt-BR', 'it'],
+    'done' => ['en', 'en-GB', 'cn', 'el', 'et', 'nb', 'nl', 'tw', 'pt-BR', 'it'],
 
     /*
     |--------------------------------------------------------------------------
@@ -179,10 +179,10 @@ return [
             'direction' => 'ltr',
         ],
         [
-            'short' => 'en',
+            'short' => 'en-GB',
             'long' => 'en-GB',
-            'english' => 'English (GB)',
-            'native' => 'English (GB)',
+            'english' => 'British English',
+            'native' => 'British English',
             'direction' => 'ltr',
         ],
         [

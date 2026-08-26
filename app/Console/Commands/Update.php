@@ -75,14 +75,10 @@ class Update extends Command
                 'hide_events' => '{}',
             ]);
         }
-        $this->info('Publishing nova assets...');
-        Artisan::call('nova:publish');
         $this->info('Clear views...');
         Artisan::call('view:clear');
-        $this->info('Sync schedule monitor...');
-        $this->call('schedule-monitor:sync');
         $this->info('Done.');
 
-        return 0;
+        return Command::SUCCESS;
     }
 }

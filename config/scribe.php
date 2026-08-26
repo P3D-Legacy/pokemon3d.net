@@ -1,6 +1,10 @@
 <?php
 
+use Knuckles\Scribe\Config\Defaults;
 use Knuckles\Scribe\Extracting\Strategies;
+use Knuckles\Scribe\Matching\RouteMatcher;
+
+use function Knuckles\Scribe\Config\configureStrategy;
 
 return [
     'theme' => 'default',
@@ -319,31 +323,37 @@ INTRO
      * If you create or install a custom strategy, add it here.
      */
     'strategies' => [
-        'metadata' => [Strategies\Metadata\GetFromDocBlocks::class],
+        'metadata' => [
+            ...Defaults::METADATA_STRATEGIES,
+        ],
+        'headers' => [
+            ...Defaults::HEADERS_STRATEGIES,
+            Strategies\StaticData::withSettings(data: [
+                'Content-Type' => 'application/json',
+                'Accept' => 'application/json',
+            ]),
+        ],
         'urlParameters' => [
-            Strategies\UrlParameters\GetFromLaravelAPI::class,
-            Strategies\UrlParameters\GetFromLumenAPI::class,
-            Strategies\UrlParameters\GetFromUrlParamTag::class,
+            ...Defaults::URL_PARAMETERS_STRATEGIES,
         ],
         'queryParameters' => [
-            Strategies\QueryParameters\GetFromFormRequest::class,
-            Strategies\QueryParameters\GetFromInlineValidator::class,
-            Strategies\QueryParameters\GetFromQueryParamTag::class,
+            ...Defaults::QUERY_PARAMETERS_STRATEGIES,
         ],
-        'headers' => [Strategies\Headers\GetFromRouteRules::class, Strategies\Headers\GetFromHeaderTag::class],
         'bodyParameters' => [
-            Strategies\BodyParameters\GetFromFormRequest::class,
-            Strategies\BodyParameters\GetFromInlineValidator::class,
-            Strategies\BodyParameters\GetFromBodyParamTag::class,
+            ...Defaults::BODY_PARAMETERS_STRATEGIES,
         ],
-        'responses' => [
-            Strategies\Responses\UseTransformerTags::class,
-            Strategies\Responses\UseApiResourceTags::class,
-            Strategies\Responses\UseResponseTag::class,
-            Strategies\Responses\UseResponseFileTag::class,
-            Strategies\Responses\ResponseCalls::class,
+        'responses' => configureStrategy(
+            Defaults::RESPONSES_STRATEGIES,
+            Strategies\Responses\ResponseCalls::withSettings(
+                only: ['GET *'],
+                config: [
+                    'app.debug' => false,
+                ]
+            )
+        ),
+        'responseFields' => [
+            ...Defaults::RESPONSE_FIELDS_STRATEGIES,
         ],
-        'responseFields' => [Strategies\ResponseFields\GetFromResponseFieldTag::class],
     ],
 
     'fractal' => [
@@ -357,7 +367,7 @@ INTRO
      * [Advanced] Custom implementation of RouteMatcherInterface to customise how routes are matched
      *
      */
-    'routeMatcher' => \Knuckles\Scribe\Matching\RouteMatcher::class,
+    'routeMatcher' => RouteMatcher::class,
 
     /**
      * For response calls, API resource responses and transformer responses,

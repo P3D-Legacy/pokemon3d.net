@@ -4,6 +4,18 @@ return [
 
     'default' => env('FILESYSTEM_DISK', 'local'),
 
+    /*
+    |--------------------------------------------------------------------------
+    | Public object storage URL
+    |--------------------------------------------------------------------------
+    |
+    | Laravel Cloud injects disk credentials via LARAVEL_CLOUD_DISK_CONFIG.
+    | Public buckets still omit AWS_URL. Use this when the injected disk
+    | has no public URL.
+    |
+    */
+    'object_public_url' => env('AWS_URL'),
+
     'disks' => [
 
         'local' => [
@@ -27,9 +39,8 @@ return [
         |--------------------------------------------------------------------------
         |
         | Used for library skins. Locally this is a plain local disk. On Laravel
-        | Cloud, create an object storage resource whose disk name matches
-        | SKINS_OBJECT_DISK (default "s3"). Cloud injects LARAVEL_CLOUD_DISK_CONFIG
-        | and overrides this entry.
+        | Cloud, LARAVEL_CLOUD_DISK_CONFIG overwrites the injected disk name and
+        | CloudObjectStorage retargets the skin and resource scoped disks to it.
         |
         */
         's3' => [

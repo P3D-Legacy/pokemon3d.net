@@ -287,24 +287,36 @@ class SkinStorage
         if (($config['driver'] ?? null) === 'scoped') {
             $parent = (string) ($config['disk'] ?? '');
             $prefix = trim((string) ($config['prefix'] ?? ''), '/');
-            $parentUrl = config("filesystems.disks.{$parent}.url");
+            $base = self::firstPublicUrl([
+                config("filesystems.disks.{$parent}.url"),
+                config('filesystems.object_public_url'),
+            ]);
 
-            if (! is_string($parentUrl) || $parentUrl === '') {
+            if ($base === null) {
                 return null;
             }
-
-            $base = rtrim($parentUrl, '/');
 
             return $prefix !== '' ? $base.'/'.$prefix : $base;
         }
 
-        $url = $config['url'] ?? null;
+        return self::firstPublicUrl([
+            $config['url'] ?? null,
+            config('filesystems.object_public_url'),
+        ]);
+    }
 
-        if (! is_string($url) || $url === '') {
-            return null;
+    /**
+     * @param  list<mixed>  $candidates
+     */
+    private static function firstPublicUrl(array $candidates): ?string
+    {
+        foreach ($candidates as $url) {
+            if (is_string($url) && $url !== '') {
+                return rtrim($url, '/');
+            }
         }
 
-        return rtrim($url, '/');
+        return null;
     }
 
     private static function diskIsReady(string $disk): bool

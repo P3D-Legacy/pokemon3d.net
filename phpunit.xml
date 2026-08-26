@@ -26,6 +26,7 @@
     <env name="SPAM_MAIL_CHECKER_DEFAULT_DRIVER" value="local"/>
     <env name="INERTIA_SSR_ENABLED" value="false"/>
     <env name="MEDIA_DISK" value="resource"/>
+    <env name="AWS_URL" value=""/>
   </php>
   <logging/>
   <source/>

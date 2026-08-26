@@ -279,6 +279,7 @@ test('unready library disk returns placeholder url and rejects writes', function
     File::ensureDirectoryExists($playerRoot);
 
     config([
+        'filesystems.object_public_url' => null,
         'filesystems.disks.s3' => [
             'driver' => 's3',
             'key' => null,
@@ -325,6 +326,7 @@ test('scoped skin disks build library urls from the cloud parent disk url', func
     File::ensureDirectoryExists($playerRoot);
 
     config([
+        'filesystems.object_public_url' => null,
         'filesystems.disks.s3' => [
             'driver' => 's3',
             'key' => 'key',

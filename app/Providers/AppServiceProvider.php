@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Support\CloudObjectStorage;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
@@ -25,7 +26,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        CloudObjectStorage::configure();
     }
 
     /**

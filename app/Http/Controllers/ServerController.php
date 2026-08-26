@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\Server\PingServer;
 use App\Models\Server;
 use App\Rules\IPHostnameARecord;
 use App\Rules\StrNotContain;
@@ -9,7 +10,6 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
-use Illuminate\Support\Facades\Artisan;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -119,11 +119,11 @@ class ServerController extends Controller implements HasMiddleware
     /**
      * Reactivate an inactive server by pinging it.
      */
-    public function reactivate(Request $request, Server $server): RedirectResponse
+    public function reactivate(Request $request, Server $server, PingServer $pingServer): RedirectResponse
     {
         $this->authorize('reactivate', $server);
 
-        Artisan::call('server:ping '.$server->uuid.' true');
+        $pingServer->execute($server, reactivate: true);
         $server->forceFill(['active' => true])->save();
 
         return back();

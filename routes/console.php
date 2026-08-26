@@ -5,7 +5,7 @@ use App\Console\Commands\DiscordRoleSync;
 use App\Console\Commands\DiscordUserRoleSync;
 use App\Console\Commands\NotifyGameUpdate;
 use App\Console\Commands\NotifyStaleGameSaveFixRequests;
-use App\Console\Commands\PingAllServers;
+use App\Console\Commands\PingServer;
 use App\Console\Commands\PruneUnresponsiveServers;
 use App\Console\Commands\SkinUserUpdate;
 use App\Console\Commands\SyncGameVersion;
@@ -15,7 +15,7 @@ use Illuminate\Queue\Console\PruneFailedJobsCommand;
 use Illuminate\Support\Facades\Schedule;
 
 // Often commands
-Schedule::command(PingAllServers::class)->hourly();
+Schedule::command(PingServer::class)->hourly()->withoutOverlapping();
 Schedule::command(SkinUserUpdate::class)->hourlyAt(10);
 // Daily commands
 Schedule::command(PruneBatchesCommand::class)->daily();

@@ -3,8 +3,10 @@
 namespace App\Actions\Fortify;
 
 use App\Models\User;
+use App\Rules\PokemonCaptchaAnswers;
 use App\Rules\SpamMail;
 use App\Stats\UserRegistrationStats;
+use App\Support\PokemonCaptcha;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
@@ -25,7 +27,11 @@ class CreateNewUser implements CreatesNewUsers
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users', 'indisposable', new SpamMail],
             'password' => $this->passwordRules(),
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['required', 'accepted'] : '',
+            'pokemon_captcha' => ['required', 'array', 'size:'.PokemonCaptcha::QUESTION_COUNT, new PokemonCaptchaAnswers],
+            'pokemon_captcha.*' => ['required', 'string'],
         ])->validate();
+
+        PokemonCaptcha::forget();
 
         $user = User::create([
             'name' => $input['name'],

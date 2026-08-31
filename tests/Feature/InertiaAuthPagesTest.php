@@ -23,7 +23,8 @@ test('register screen is rendered with inertia', function () {
         ->assertOk()
         ->assertInertia(fn (Assert $page) => $page
             ->component('auth/register')
-            ->has('hasTermsAndPrivacyPolicyFeature'));
+            ->has('hasTermsAndPrivacyPolicyFeature')
+            ->has('pokemonCaptcha', 3));
 })->skip(fn () => ! Features::enabled(Features::registration()), 'Registration support is not enabled.');
 
 test('users can authenticate using the login screen', function () {

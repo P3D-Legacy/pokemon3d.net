@@ -12,6 +12,7 @@ test('registration rejects disposable email addresses', function () {
         'password' => 'SuperSecretPassword123!',
         'password_confirmation' => 'SuperSecretPassword123!',
         'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature(),
+        'pokemon_captcha' => pokemonCaptchaAnswers(),
     ])->assertSessionHasErrors('email');
 
     $this->assertGuest();
@@ -26,6 +27,7 @@ test('registration rejects disposable email subdomains', function () {
         'password' => 'SuperSecretPassword123!',
         'password_confirmation' => 'SuperSecretPassword123!',
         'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature(),
+        'pokemon_captcha' => pokemonCaptchaAnswers(),
     ])->assertSessionHasErrors('email');
 
     $this->assertGuest();

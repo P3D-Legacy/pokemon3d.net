@@ -30,6 +30,7 @@ Route::middleware(config('fortify.middleware', ['web']))->group(function () {
 
     $limiter = config('fortify.limiters.login');
     $twoFactorLimiter = config('fortify.limiters.two-factor');
+    $registerLimiter = config('fortify.limiters.register');
 
     Route::post('/login', [AuthenticatedSessionController::class, 'store'])->middleware(
         array_filter(['guest:'.config('fortify.guard'), $limiter ? 'throttle:'.$limiter : null])
@@ -66,9 +67,10 @@ Route::middleware(config('fortify.middleware', ['web']))->group(function () {
                 ->name('register');
         }
 
-        Route::post('/register', [RegisteredUserController::class, 'store'])->middleware([
+        Route::post('/register', [RegisteredUserController::class, 'store'])->middleware(array_filter([
             'guest:'.config('fortify.guard'),
-        ]);
+            $registerLimiter ? 'throttle:'.$registerLimiter : null,
+        ]));
     }
 
     // Email Verification...

@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 <a name="0.4.0"></a>
 
+## 5.0.1 - 2026-08-31
+
+**Full Changelog**: https://github.com/P3D-Legacy/pokemon3d.net/compare/5.0.0...5.0.1
+
 ## 5.0.0 - 2026-08-26
 
 ### What's Changed

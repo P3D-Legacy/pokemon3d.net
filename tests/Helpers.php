@@ -1,9 +1,25 @@
 <?php
 
 use App\Models\User;
+use App\Support\PokemonCaptcha;
 use Database\Seeders\PermissionSeeder;
 use Illuminate\Support\Facades\File;
 use Laravel\Sanctum\Sanctum;
+
+/**
+ * @return array<string, string>
+ */
+function pokemonCaptchaAnswers(): array
+{
+    test()->get('/register')->assertOk();
+
+    $answers = session(PokemonCaptcha::SESSION_KEY);
+
+    expect($answers)->toBeArray()->toHaveCount(PokemonCaptcha::QUESTION_COUNT);
+
+    /** @var array<string, string> $answers */
+    return $answers;
+}
 
 function seedPermissions(): void
 {

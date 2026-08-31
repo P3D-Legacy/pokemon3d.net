@@ -43,6 +43,7 @@ test('registration rejects spam email domains', function () {
         'password' => 'SuperSecretPassword123!',
         'password_confirmation' => 'SuperSecretPassword123!',
         'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature(),
+        'pokemon_captcha' => pokemonCaptchaAnswers(),
     ])->assertSessionHasErrors('email');
 
     $this->assertGuest();

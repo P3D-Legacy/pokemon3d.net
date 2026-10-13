@@ -106,7 +106,5 @@ class TwitchController extends Controller
 
             return redirect()->route('home');
         }
-
-        return redirect()->route('dashboard');
     }
 }

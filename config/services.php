@@ -2,6 +2,17 @@
 
 return [
 
+    'github' => [
+        'repository_api' => env('GITHUB_API_REPO'),
+    ],
+
+    'tumblr' => [
+        'consumer_key' => env('TUMBLR_CONSUMER_KEY'),
+        'consumer_secret' => env('TUMBLR_CONSUMER_SECRET'),
+        'oauth_token' => env('TUMBLR_OAUTH_TOKEN'),
+        'oauth_token_secret' => env('TUMBLR_OAUTH_TOKEN_SECRET'),
+    ],
+
     'mailgun' => [
         'domain' => env('MAILGUN_DOMAIN'),
         'secret' => env('MAILGUN_SECRET'),

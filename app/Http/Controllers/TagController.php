@@ -57,7 +57,7 @@ class TagController extends Controller implements HasMiddleware
 
         $tag = Tag::create($validated);
 
-        foreach (config('language.allowed') as $lang) {
+        foreach ((array) config('language.allowed', []) as $lang) {
             $tag->setTranslation('name', $lang, $request->input('name'));
         }
 
@@ -106,7 +106,7 @@ class TagController extends Controller implements HasMiddleware
 
         $tag->update($validated);
 
-        foreach (config('language.allowed') as $lang) {
+        foreach ((array) config('language.allowed', []) as $lang) {
             $tag->setTranslation('name', $lang, $request->input('name'));
         }
 

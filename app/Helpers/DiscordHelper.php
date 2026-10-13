@@ -41,7 +41,7 @@ class DiscordHelper
         }
     }
 
-    public static function getServerRoles(): \Exception|array
+    public static function getServerRoles(): array
     {
         $client = new self;
         try {
@@ -51,7 +51,7 @@ class DiscordHelper
         } catch (\Exception $exception) {
             logger()->error($exception->getMessage());
 
-            return $exception;
+            return [];
         }
     }
 

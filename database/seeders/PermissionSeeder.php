@@ -66,6 +66,19 @@ class PermissionSeeder extends Seeder
 
         Permission::firstOrCreate(['name' => 'skin-player-destroy']);
 
+        Permission::firstOrCreate(['name' => 'wiki.show']);
+        Permission::firstOrCreate(['name' => 'wiki.create']);
+        Permission::firstOrCreate(['name' => 'wiki.update']);
+        Permission::firstOrCreate(['name' => 'wiki.destroy']);
+
+        $wiki_editor = Role::firstOrCreate(['name' => 'wiki-editor']);
+        $wiki_editor->givePermissionTo([
+            'wiki.show',
+            'wiki.create',
+            'wiki.update',
+            'wiki.destroy',
+        ]);
+
         // Get all permissions
         $all_permissions = Permission::all();
 

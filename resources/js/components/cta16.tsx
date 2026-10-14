@@ -65,7 +65,7 @@ const Cta16 = ({
                         </span>
                         <span className="px-2">&mdash;</span>
                         <a
-                            href="https://wiki.pokemon3d.net/index.php/Pok%C3%A9mon_3D#Requirements"
+                            href="/wiki/requirements"
                             className="hover:text-white"
                         >
                             <sup>&dagger;</sup> {downloadMeta.requirementsLabel}

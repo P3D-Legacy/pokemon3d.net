@@ -23,6 +23,7 @@ use App\Http\Controllers\Skin\SkinController;
 use App\Http\Controllers\Skin\SkinHomeController;
 use App\Http\Controllers\Skin\UploadedSkinController;
 use App\Http\Controllers\TagController;
+use App\Http\Controllers\WikiController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -43,10 +44,6 @@ if (config('app.debug')) {
     });
 }
 Route::prefix('redirect')->group(function () {
-    Route::get('/wiki', function () {
-        return Inertia::location('https://wiki.pokemon3d.net/');
-    })->name('wiki');
-
     Route::get('/forum', function () {
         return Inertia::location('https://forum.pokemon3d.net/');
     })->name('forum');
@@ -59,6 +56,17 @@ Route::prefix('redirect')->group(function () {
         return Inertia::location(config('services.discord.invite_url'));
     })->name('discord');
 });
+
+Route::get('/wiki', [WikiController::class, 'index'])->name('wiki');
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+    Route::get('/wiki/create', [WikiController::class, 'create'])->name('wiki.create');
+    Route::post('/wiki', [WikiController::class, 'store'])->name('wiki.store');
+    Route::get('/wiki/{slug}/edit', [WikiController::class, 'edit'])->name('wiki.edit');
+    Route::put('/wiki/{slug}', [WikiController::class, 'update'])->name('wiki.update');
+});
+Route::get('/wiki/{slug}/history', [WikiController::class, 'history'])->name('wiki.history');
+Route::get('/wiki/{slug}/history/{revision}', [WikiController::class, 'revision'])->name('wiki.revision');
+Route::get('/wiki/{slug}', [WikiController::class, 'show'])->name('wiki.show');
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/legal', [LegalController::class, 'legal'])->name('legal');

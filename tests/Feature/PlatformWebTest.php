@@ -18,6 +18,7 @@ test('public pages respond successfully', function () {
         route('member.index'),
         route('server.index'),
         route('review'),
+        route('wiki'),
         route('skins-newest'),
         route('skins-popular'),
     ] as $url) {
@@ -28,10 +29,6 @@ test('public pages respond successfully', function () {
 });
 
 test('external redirect routes point off-site', function () {
-    $wiki = $this->get(route('wiki'));
-    $wiki->assertRedirect();
-    expect(str_contains((string) $wiki->headers->get('Location'), 'wiki.pokemon3d.net'))->toBeTrue();
-
     $forum = $this->get(route('forum'));
     $forum->assertRedirect();
     expect(str_contains((string) $forum->headers->get('Location'), 'forum.pokemon3d.net'))->toBeTrue();
@@ -53,10 +50,6 @@ test('external redirect routes work for inertia visits', function () {
         'X-Inertia-Version' => $version,
         'X-Requested-With' => 'XMLHttpRequest',
     ];
-
-    $wiki = $this->get(route('wiki'), $headers);
-    $wiki->assertStatus(409);
-    expect(str_contains((string) $wiki->headers->get('X-Inertia-Location'), 'wiki.pokemon3d.net'))->toBeTrue();
 
     $forum = $this->get(route('forum'), $headers);
     $forum->assertStatus(409);

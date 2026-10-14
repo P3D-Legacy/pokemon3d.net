@@ -132,14 +132,22 @@ test('discord bot settings index and update', function () {
         'chat_id' => 20,
         'events_id' => 30,
         'hide_events' => json_encode(['a' => 1]),
+        'id' => 99,
     ])
         ->assertOk()
-        ->assertJsonPath('category_id', 10);
+        ->assertJsonPath('category_id', 10)
+        ->assertJsonPath('id', 1);
+
+    $setting = DiscordBotSetting::query()->first();
+
+    expect($setting)->not->toBeNull()
+        ->and($setting->chat_id)->toBe(20)
+        ->and($setting->events_id)->toBe(30);
 });
 
 test('post store creates post when permitted', function () {
-    $author = User::factory()->create();
-    createApiUserWithPermissions(['post.create']);
+    $other = User::factory()->create();
+    $caller = createApiUserWithPermissions(['post.create']);
 
     $this->postJson('/api/v1/post', [
         'title' => 'API Post',
@@ -147,10 +155,15 @@ test('post store creates post when permitted', function () {
         'active' => true,
         'sticky' => false,
         'published_at' => now()->toDateString(),
-        'user_id' => $author->id,
+        'user_id' => $other->id,
+        'slug' => 'injected-slug',
     ])
         ->assertCreated()
         ->assertJsonPath('data.title', 'API Post');
 
-    expect(Post::query()->where('title', 'API Post')->exists())->toBeTrue();
+    $post = Post::query()->where('title', 'API Post')->first();
+
+    expect($post)->not->toBeNull()
+        ->and($post->user_id)->toBe($caller->id)
+        ->and($post->slug)->toBe('api-post');
 });

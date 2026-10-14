@@ -22,25 +22,28 @@ class GiveSuperAdmin extends Command
     protected $description = 'Gives Super-Admin rights to the user specifed in the env file.';
 
     /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    /**
      * Execute the console command.
      */
     public function handle(): int
     {
-        $user = User::where('email', getenv('SUPER_ADMIN_EMAIL'))->first();
-        if ($user) {
-            $user->assignRole('super-admin');
-            $this->info('Super-Admin rights granted to '.$user->email);
+        $email = config('services.super_admin.email');
+
+        if (! is_string($email) || $email === '') {
+            $this->error('Super admin email is not set.');
+
+            return Command::FAILURE;
         }
+
+        $user = User::where('email', $email)->first();
+
+        if (! $user) {
+            $this->error('No user found for the configured super admin email.');
+
+            return Command::FAILURE;
+        }
+
+        $user->assignRole('super-admin');
+        $this->info('Super-Admin rights granted to '.$user->email);
 
         return Command::SUCCESS;
     }

@@ -5,10 +5,11 @@ namespace App\Notifications\Skin;
 use App\Models\Skin;
 use App\Models\User;
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class LikeNotification extends Notification
+class LikeNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 

@@ -32,23 +32,28 @@ class ImportFromTumblr extends Command
     {
         $blogName = $this->argument('blogname');
 
-        if (
-            env('TUMBLR_CONSUMER_KEY') == null ||
-            env('TUMBLR_CONSUMER_SECRET') == null ||
-            env('TUMBLR_OAUTH_TOKEN') == null ||
-            env('TUMBLR_OAUTH_TOKEN_SECRET') == null
-        ) {
-            $this->error('Please set the tumblr environment variables.');
+        $consumerKey = config('services.tumblr.consumer_key');
+        $consumerSecret = config('services.tumblr.consumer_secret');
+        $oauthToken = config('services.tumblr.oauth_token');
+        $oauthTokenSecret = config('services.tumblr.oauth_token_secret');
 
-            return 1;
+        if (
+            ! is_string($consumerKey) || $consumerKey === ''
+            || ! is_string($consumerSecret) || $consumerSecret === ''
+            || ! is_string($oauthToken) || $oauthToken === ''
+            || ! is_string($oauthTokenSecret) || $oauthTokenSecret === ''
+        ) {
+            $this->error('Please set the Tumblr credentials.');
+
+            return Command::FAILURE;
         }
 
         try {
             $client = new Client(
-                env('TUMBLR_CONSUMER_KEY'),
-                env('TUMBLR_CONSUMER_SECRET'),
-                env('TUMBLR_OAUTH_TOKEN'),
-                env('TUMBLR_OAUTH_TOKEN_SECRET')
+                $consumerKey,
+                $consumerSecret,
+                $oauthToken,
+                $oauthTokenSecret
             );
 
             $posts = $client->getBlogPosts($blogName);

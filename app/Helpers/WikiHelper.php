@@ -13,9 +13,10 @@ class WikiHelper
             return 'Wiki API URL is not set';
         }
         $url = config('services.wiki.api_url').'?'.$endpoint;
-        $response = Http::withHeaders([
-            'Accept' => 'application/json',
-        ])
+        $response = Http::timeout(5)
+            ->withHeaders([
+                'Accept' => 'application/json',
+            ])
             ->get($url)
             ->body();
 

@@ -73,14 +73,14 @@ class DiscordBotSettingController extends Controller implements HasMiddleware
                 'error' => 'Invalid ID!',
             ]);
         }
-        $request->validate([
-            'category_id' => 'required|integer',
-            'chat_id' => 'required|integer',
-            'events_id' => 'required|integer',
-            'hide_events' => 'json|nullable',
+        $validated = $request->validate([
+            'category_id' => ['required', 'integer'],
+            'chat_id' => ['required', 'integer'],
+            'events_id' => ['required', 'integer'],
+            'hide_events' => ['json', 'nullable'],
         ]);
         $discordBotSetting = DiscordBotSetting::findOrFail($id);
-        $discordBotSetting->update($request->all());
+        $discordBotSetting->update($validated);
 
         return response()->json($discordBotSetting);
     }

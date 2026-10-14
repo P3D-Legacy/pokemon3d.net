@@ -5,11 +5,12 @@ namespace App\Notifications\Save;
 use App\Filament\Resources\GameSaveFixRequestResource;
 use App\Models\GameSaveFixRequest;
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Str;
 
-class GameSaveFixRequestAssignedNotification extends Notification
+class GameSaveFixRequestAssignedNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 

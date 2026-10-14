@@ -45,4 +45,19 @@ return [
         'api_url' => env('WIKI_BASE_URL').'/api.php',
     ],
 
+    'github' => [
+        'api_repo' => env('GITHUB_API_REPO'),
+    ],
+
+    'tumblr' => [
+        'consumer_key' => env('TUMBLR_CONSUMER_KEY'),
+        'consumer_secret' => env('TUMBLR_CONSUMER_SECRET'),
+        'oauth_token' => env('TUMBLR_OAUTH_TOKEN'),
+        'oauth_token_secret' => env('TUMBLR_OAUTH_TOKEN_SECRET'),
+    ],
+
+    'super_admin' => [
+        'email' => env('SUPER_ADMIN_EMAIL'),
+    ],
+
 ];

@@ -1,1 +1,1 @@
-<img class="h-8 w-8" src="{{ asset('img/TreeLogoSmall.png') }}" alt="{{ env('APP_NAME') }}"/>
+<img class="h-8 w-8" src="{{ asset('img/TreeLogoSmall.png') }}" alt="{{ config('app.name') }}"/>

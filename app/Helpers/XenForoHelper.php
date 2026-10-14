@@ -26,7 +26,7 @@ class XenForoHelper
         }
         $url = config('services.xenforo.api_url').$endpoint;
         try {
-            $response = Http::withHeaders([
+            $response = Http::timeout(5)->withHeaders([
                 'XF-Api-Key' => config('services.xenforo.api_key'),
             ])->$method($url, $data);
         } catch (ConnectException|ConnectionException $e) {
@@ -61,6 +61,8 @@ class XenForoHelper
 
         $client = new Client([
             'base_uri' => config('services.xenforo.api_url'),
+            'timeout' => 5,
+            'connect_timeout' => 5,
         ]);
 
         try {

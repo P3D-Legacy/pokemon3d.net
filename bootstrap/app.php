@@ -9,11 +9,15 @@ use App\Providers\AppServiceProvider;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
+use Illuminate\Http\Request;
 use Laravel\Jetstream\Http\Middleware\AuthenticateSession;
 use Sentry\Laravel\Integration;
+use Spatie\Permission\Exceptions\UnauthorizedException;
 use Spatie\Permission\Middleware\PermissionMiddleware;
 use Spatie\Permission\Middleware\RoleMiddleware;
 use Spatie\Permission\Middleware\RoleOrPermissionMiddleware;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withProviders()
@@ -56,4 +60,24 @@ return Application::configure(basePath: dirname(__DIR__))
     })
     ->withExceptions(function (Exceptions $exceptions) {
         Integration::handles($exceptions);
+
+        $exceptions->render(function (NotFoundHttpException $exception, Request $request) {
+            if ($request->is('api/*')) {
+                return response()->json([
+                    'message' => 'No records found.',
+                ], 404);
+            }
+        });
+
+        $exceptions->render(function (AccessDeniedHttpException $exception, Request $request) {
+            if ($request->expectsJson()) {
+                return response()->json(['error' => 'Unauthorized'], 403);
+            }
+        });
+
+        $exceptions->render(function (UnauthorizedException $exception, Request $request) {
+            if ($request->expectsJson()) {
+                return response()->json(['error' => 'Unauthorized'], 403);
+            }
+        });
     })->create();

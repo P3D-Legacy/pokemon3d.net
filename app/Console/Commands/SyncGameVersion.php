@@ -23,37 +23,41 @@ class SyncGameVersion extends Command
     protected $description = 'Sync the latest release from GitHub';
 
     /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    /**
      * Execute the console command.
      */
     public function handle(): int
     {
-        $api_url = env('GITHUB_API_REPO');
-        if (! $api_url) {
+        $apiUrl = config('services.github.api_repo');
+        if (! is_string($apiUrl) || $apiUrl === '') {
             $this->error('GitHub API URL is not set.');
 
-            return 1;
+            return Command::FAILURE;
         }
-        $release_url = env('GITHUB_API_REPO').'/releases';
+        $releaseUrl = $apiUrl.'/releases';
         try {
-            $response = Http::get($release_url)->json();
+            $response = Http::timeout(5)->get($releaseUrl);
         } catch (\Exception $exception) {
             $this->error('Error getting latest release from GitHub.');
             $this->error($exception->getMessage());
 
-            return 1;
+            return Command::FAILURE;
         }
 
-        foreach ($response as $release) {
+        if ($response->failed()) {
+            $this->error('Error getting latest release from GitHub.');
+
+            return Command::FAILURE;
+        }
+
+        $releases = $response->json();
+
+        if (! is_array($releases)) {
+            $this->error('Error getting latest release from GitHub.');
+
+            return Command::FAILURE;
+        }
+
+        foreach ($releases as $release) {
             $date = new \DateTime($release['published_at']);
             $data = [
                 'version' => $release['tag_name'],

@@ -30,8 +30,7 @@ class PostController extends Controller implements HasMiddleware
      * @bodyParam body string required The content of the post. Example: This is a post.
      * @bodyParam active boolean required Whether the post is active or not. Example: true
      * @bodyParam sticky boolean required Whether the post is sticky or not. Example: false
-     * @bodyParam user_id int required The ID of the user. Example: 1
-     * @bodyParam published_at string optional The date the post was published. Example: 2021-01-01
+     * @bodyParam published_at string required The date the post was published. Example: 2021-01-01
      *
      * @apiResourceModel App\Models\Post
      *
@@ -40,15 +39,18 @@ class PostController extends Controller implements HasMiddleware
      **/
     public function store(Request $request): PostResource
     {
-        $request->validate([
-            'title' => 'required|string',
-            'body' => 'required|string',
-            'active' => 'required|boolean',
-            'sticky' => 'required|boolean',
-            'published_at' => 'required|date',
-            'user_id' => 'required|integer',
+        $validated = $request->validate([
+            'title' => ['required', 'string'],
+            'body' => ['required', 'string'],
+            'active' => ['required', 'boolean'],
+            'sticky' => ['required', 'boolean'],
+            'published_at' => ['required', 'date'],
         ]);
-        $post = Post::create($request->all());
+
+        $post = Post::create([
+            ...$validated,
+            'user_id' => $request->user()->id,
+        ]);
 
         return new PostResource($post);
     }

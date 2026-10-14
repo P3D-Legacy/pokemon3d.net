@@ -16,14 +16,14 @@ use Illuminate\Support\Facades\Schedule;
 
 // Often commands
 Schedule::command(PingServer::class)->hourly()->withoutOverlapping();
-Schedule::command(SkinUserUpdate::class)->hourlyAt(10);
+Schedule::command(SkinUserUpdate::class)->hourlyAt(10)->withoutOverlapping();
 // Daily commands
 Schedule::command(PruneBatchesCommand::class)->daily();
 Schedule::command(PruneUnresponsiveServers::class)->daily();
-Schedule::command(DiscordRoleSync::class)->dailyAt('12:00');
-Schedule::command(DiscordUserRoleSync::class)->dailyAt('12:10');
-Schedule::command(SyncGameVersion::class)->dailyAt('00:00');
-Schedule::command(NotifyGameUpdate::class)->dailyAt('00:30');
+Schedule::command(DiscordRoleSync::class)->dailyAt('12:00')->withoutOverlapping();
+Schedule::command(DiscordUserRoleSync::class)->dailyAt('12:10')->withoutOverlapping();
+Schedule::command(SyncGameVersion::class)->dailyAt('00:00')->withoutOverlapping();
+Schedule::command(NotifyGameUpdate::class)->dailyAt('00:30')->withoutOverlapping();
 Schedule::command(NotifyStaleGameSaveFixRequests::class)->dailyAt('01:00');
 Schedule::command('disposable:update')->daily();
 // Weekly commands

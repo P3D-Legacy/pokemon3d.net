@@ -5,10 +5,11 @@ namespace App\Notifications\Save;
 use App\Enums\GameSaveFixRequestStatus;
 use App\Models\GameSaveFixRequest;
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class GameSaveFixRequestStatusNotification extends Notification
+class GameSaveFixRequestStatusNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 

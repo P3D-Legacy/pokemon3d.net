@@ -4,10 +4,11 @@ namespace App\Notifications;
 
 use App\Models\GameVersion;
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class NewGameUpdateNotification extends Notification
+class NewGameUpdateNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 

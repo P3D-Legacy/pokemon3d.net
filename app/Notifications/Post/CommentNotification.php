@@ -4,10 +4,11 @@ namespace App\Notifications\Post;
 
 use App\Models\Comment;
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class CommentNotification extends Notification
+class CommentNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 

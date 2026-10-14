@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Models\Pokedex;
 use Illuminate\Console\Command;
+use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Support\Facades\Http;
 
 class SyncPokedexFromGame extends Command
@@ -33,7 +34,14 @@ class SyncPokedexFromGame extends Command
     {
         $this->info('Syncing Pokédex definitions from game...');
 
-        $response = Http::get(self::POKEDEX_DAT_URL);
+        try {
+            $response = Http::timeout(5)->get(self::POKEDEX_DAT_URL);
+        } catch (ConnectionException $exception) {
+            $this->error('Failed to fetch pokedex.dat from the game repository.');
+            $this->error($exception->getMessage());
+
+            return self::FAILURE;
+        }
 
         if ($response->failed()) {
             $this->error('Failed to fetch pokedex.dat from the game repository.');

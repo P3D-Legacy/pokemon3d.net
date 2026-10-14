@@ -69,6 +69,30 @@ test('resource show is rendered with inertia', function () {
             ->has('copy.downloadDisclaimerConfirm'));
 });
 
+test('resource show strips unsafe html from descriptions', function () {
+    $category = createResourceCategory();
+    $resource = Resource::factory()->create([
+        'description' => "**Safe**\n\n<img src=x onerror=alert(1)>\n\n[click](javascript:alert(1))",
+    ]);
+    $resource->syncCategories($category);
+    $update = ResourceUpdate::factory()->create([
+        'resource_id' => $resource->id,
+        'description' => '<svg onload=alert(1)></svg>',
+    ]);
+
+    $this->get(route('resource.uuid', $resource->uuid))
+        ->assertOk()
+        ->assertInertia(fn (Assert $page) => $page
+            ->component('resources/show')
+            ->where('resource.description_html', fn (string $html): bool => str_contains($html, '<strong>Safe</strong>')
+                && ! str_contains($html, 'onerror')
+                && ! str_contains($html, 'javascript:')
+                && ! str_contains($html, '<img'))
+            ->where('resource.updates.0.id', $update->id)
+            ->where('resource.updates.0.description_html', fn (string $html): bool => ! str_contains($html, 'onload')
+                && ! str_contains($html, '<svg')));
+});
+
 test('guests are redirected from resource create', function () {
     $this->get(route('resource.create'))->assertRedirect(route('login'));
 });

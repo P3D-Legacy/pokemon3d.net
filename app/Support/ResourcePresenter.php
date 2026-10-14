@@ -54,7 +54,7 @@ class ResourcePresenter
             'uuid' => $resource->uuid,
             'name' => $resource->name,
             'brief' => $resource->brief,
-            'description_html' => (string) Str::of($resource->description)->markdown(),
+            'description_html' => SafeMarkdown::html($resource->description),
             'version' => $latestUpdate?->title ?? __('Unreleased'),
             'category' => $category
                 ? [
@@ -136,8 +136,8 @@ class ResourcePresenter
         return [
             'id' => $update->id,
             'title' => $update->title,
-            'description_excerpt' => strip_tags((string) Str::of(Str::limit($update->description, 80))->markdown()),
-            'description_html' => (string) Str::of($update->description)->markdown(),
+            'description_excerpt' => strip_tags(SafeMarkdown::html(Str::limit($update->description, 80))),
+            'description_html' => SafeMarkdown::html($update->description),
             'game_version' => $update->game_version?->version,
             'downloads' => (int) $update->downloads,
             'created_at' => $update->created_at?->diffForHumans(),

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use AliBayat\LaravelCommentable\Commentable;
+use App\Support\SafeMarkdown;
 use CyrildeWit\EloquentViewable\Contracts\Viewable;
 use CyrildeWit\EloquentViewable\InteractsWithViews;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -94,6 +95,6 @@ class Post extends BaseModel implements Viewable
      */
     public function getExcerptAttribute(): string
     {
-        return Str::limit(strip_tags(Str::of($this->body)->markdown()), 175);
+        return Str::limit(strip_tags(SafeMarkdown::html($this->body)), 175);
     }
 }

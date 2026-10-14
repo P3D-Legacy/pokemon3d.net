@@ -190,7 +190,7 @@ test('authenticated users can create a server', function () {
     $this->actingAs($user)
         ->post(route('server.store'), [
             'name' => 'Test Server',
-            'host' => '127.0.0.1',
+            'host' => '1.1.1.1',
             'port' => 40000,
             'description' => 'A test server',
         ])
@@ -198,6 +198,30 @@ test('authenticated users can create a server', function () {
 
     expect(Server::query()->where('name', 'Test Server')->exists())->toBeTrue();
 })->skip(fn () => ! class_exists(IPHostnameARecord::class), 'Server validation unavailable.');
+
+test('authenticated users cannot register an internal server address', function (string $host) {
+    $user = User::factory()->create();
+    GamejoltAccount::factory()->create(['user_id' => $user->id]);
+    GameSave::factory()->create(['user_id' => $user->id]);
+
+    $this->actingAs($user)
+        ->from(route('server.create'))
+        ->post(route('server.store'), [
+            'name' => 'Internal Server',
+            'host' => $host,
+            'port' => 40000,
+            'description' => 'Should not be stored',
+        ])
+        ->assertRedirect(route('server.create'))
+        ->assertSessionHasErrors('host');
+
+    expect(Server::query()->where('name', 'Internal Server')->exists())->toBeFalse();
+})->with([
+    '127.0.0.1',
+    '10.0.0.5',
+    '169.254.169.254',
+    'localhost',
+]);
 
 test('server owner can edit their server page', function () {
     $user = User::factory()->create();

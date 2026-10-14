@@ -2,33 +2,27 @@
 
 namespace App\Services;
 
+use App\Support\PublicHost;
+
 class ServerPinger
 {
+    public function __construct(
+        private PublicHost $hosts,
+        private StreamSocketConnector $connector,
+    ) {}
+
     public function ping(string $host, int $port, float $timeout = 2.0): ?int
     {
-        $start = hrtime(true);
-
-        set_error_handler(static fn (): bool => true);
-
-        try {
-            $connection = stream_socket_client(
-                sprintf('tcp://%s:%d', $host, $port),
-                $errno,
-                $errstr,
-                $timeout,
-            );
-        } finally {
-            restore_error_handler();
-        }
-
-        $elapsedMs = (int) floor((hrtime(true) - $start) / 1_000_000);
-
-        if ($connection === false) {
+        if ($port < 1 || $port > 65535) {
             return null;
         }
 
-        fclose($connection);
+        $address = $this->hosts->connectAddress($host);
 
-        return $elapsedMs;
+        if ($address === null) {
+            return null;
+        }
+
+        return $this->connector->connect($address, $port, $timeout);
     }
 }

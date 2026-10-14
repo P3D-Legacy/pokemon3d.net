@@ -137,7 +137,7 @@ class ServerController extends Controller implements HasMiddleware
         return $request->validate([
             'name' => ['required', 'string', new StrNotContain('official'), 'ascii'],
             'host' => ['required', new StrNotContain('pokemon3d.net'), new IPHostnameARecord, 'lowercase'],
-            'port' => ['required', 'integer', 'min:10', 'max:99999'],
+            'port' => ['required', 'integer', 'min:10', 'max:65535'],
             'description' => ['nullable', 'string'],
         ]);
     }

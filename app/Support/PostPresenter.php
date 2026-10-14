@@ -4,7 +4,6 @@ namespace App\Support;
 
 use App\Helpers\NumberHelper;
 use App\Models\Post;
-use Illuminate\Support\Str;
 
 class PostPresenter
 {
@@ -44,7 +43,7 @@ class PostPresenter
             'uuid' => $post->uuid,
             'title' => $post->title,
             'sticky' => (bool) $post->sticky,
-            'body_html' => (string) Str::of($post->body)->markdown(),
+            'body_html' => SafeMarkdown::html($post->body),
             'published_at' => $post->published_at->isoFormat('LLLL'),
             'updated_at' => $post->updated_at?->isoFormat('LLLL'),
             'likes' => (string) NumberHelper::nearestK($post->likers->count()),

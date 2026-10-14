@@ -135,11 +135,11 @@ return [
     |
     | This option specifies whether to allow risky image URLs and links.
     |
-    | Default: true
+    | Default: false
     |
     */
 
-    'allow_unsafe_links' => true,
+    'allow_unsafe_links' => false,
 
     /*
     |--------------------------------------------------------------------------

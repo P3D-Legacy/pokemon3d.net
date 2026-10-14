@@ -37,15 +37,15 @@ class SyncGameVersion extends Command
      */
     public function handle(): int
     {
-        $api_url = env('GITHUB_API_REPO');
+        $api_url = config('services.github.repository_api');
         if (! $api_url) {
             $this->error('GitHub API URL is not set.');
 
             return 1;
         }
-        $release_url = env('GITHUB_API_REPO').'/releases';
+        $release_url = $api_url.'/releases';
         try {
-            $response = Http::get($release_url)->json();
+            $response = Http::get($release_url)->throw()->json();
         } catch (\Exception $exception) {
             $this->error('Error getting latest release from GitHub.');
             $this->error($exception->getMessage());
@@ -53,7 +53,16 @@ class SyncGameVersion extends Command
             return 1;
         }
 
+        if (! is_array($response)) {
+            $this->error('GitHub returned an invalid releases response.');
+
+            return 1;
+        }
+
         foreach ($response as $release) {
+            if (! is_array($release)) {
+                continue;
+            }
             $date = new \DateTime($release['published_at']);
             $data = [
                 'version' => $release['tag_name'],

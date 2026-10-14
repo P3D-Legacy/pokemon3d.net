@@ -32,12 +32,9 @@ class ImportFromTumblr extends Command
     {
         $blogName = $this->argument('blogname');
 
-        if (
-            env('TUMBLR_CONSUMER_KEY') == null ||
-            env('TUMBLR_CONSUMER_SECRET') == null ||
-            env('TUMBLR_OAUTH_TOKEN') == null ||
-            env('TUMBLR_OAUTH_TOKEN_SECRET') == null
-        ) {
+        $credentials = config('services.tumblr');
+
+        if (! $this->hasValidCredentials($credentials)) {
             $this->error('Please set the tumblr environment variables.');
 
             return 1;
@@ -45,13 +42,19 @@ class ImportFromTumblr extends Command
 
         try {
             $client = new Client(
-                env('TUMBLR_CONSUMER_KEY'),
-                env('TUMBLR_CONSUMER_SECRET'),
-                env('TUMBLR_OAUTH_TOKEN'),
-                env('TUMBLR_OAUTH_TOKEN_SECRET')
+                $credentials['consumer_key'],
+                $credentials['consumer_secret'],
+                $credentials['oauth_token'],
+                $credentials['oauth_token_secret']
             );
 
             $posts = $client->getBlogPosts($blogName);
+
+            if (! is_iterable($posts->posts ?? null)) {
+                $this->error('Tumblr returned an invalid posts response.');
+
+                return Command::FAILURE;
+            }
 
             foreach ($posts->posts as $post) {
                 $body = preg_replace("/\r|\n/", '', trim(strip_tags($post->body))); // Clean up the body
@@ -91,5 +94,20 @@ class ImportFromTumblr extends Command
         }
 
         return Command::SUCCESS;
+    }
+
+    private function hasValidCredentials(mixed $credentials): bool
+    {
+        if (! is_array($credentials)) {
+            return false;
+        }
+
+        foreach (['consumer_key', 'consumer_secret', 'oauth_token', 'oauth_token_secret'] as $key) {
+            if (! isset($credentials[$key]) || ! is_string($credentials[$key]) || trim($credentials[$key]) === '') {
+                return false;
+            }
+        }
+
+        return true;
     }
 }

@@ -40,7 +40,7 @@ class PostController extends Controller implements HasMiddleware
      **/
     public function store(Request $request): PostResource
     {
-        $request->validate([
+        $validated = $request->validate([
             'title' => 'required|string',
             'body' => 'required|string',
             'active' => 'required|boolean',
@@ -48,7 +48,7 @@ class PostController extends Controller implements HasMiddleware
             'published_at' => 'required|date',
             'user_id' => 'required|integer',
         ]);
-        $post = Post::create($request->all());
+        $post = Post::create($validated);
 
         return new PostResource($post);
     }

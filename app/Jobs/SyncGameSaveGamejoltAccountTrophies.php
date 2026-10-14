@@ -129,6 +129,7 @@ class SyncGameSaveGamejoltAccountTrophies implements ShouldBeUnique, ShouldQueue
         $userTrophies = $this->user->gamejolt?->trophies;
 
         if ($gameSave && $userTrophies) {
+            /** @var array<int, string> $gameSaveAchievements */
             $gameSaveAchievements = $gameSave->getAchievements();
 
             foreach ($gameSaveAchievements as $gameSaveAchievement) {

@@ -13,8 +13,11 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Actions\Action;
+use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\TernaryFilter;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
 
@@ -89,24 +92,66 @@ class UserResource extends Resource
                     ->sortable(),
                 TextColumn::make('email')
                     ->searchable()
-                    ->sortable(),
+                    ->sortable()
+                    ->copyable()
+                    ->copyMessage('Email address copied'),
                 TextColumn::make('roles.name')
                     ->badge()
                     ->searchable(),
+                IconColumn::make('gamejolt_exists')
+                    ->label('GameJolt')
+                    ->boolean(),
                 TextColumn::make('email_verified_at')
+                    ->label('Email verified')
                     ->dateTime()
+                    ->placeholder('Unverified')
                     ->sortable(),
                 TextColumn::make('created_at')
                     ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
+                    ->sortable(),
                 TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
+            ->defaultSort('created_at', 'desc')
+            ->filters([
+                TernaryFilter::make('email_verified_at')
+                    ->label('Email verification')
+                    ->nullable()
+                    ->placeholder('All users')
+                    ->trueLabel('Verified')
+                    ->falseLabel('Unverified'),
+                TernaryFilter::make('gamejolt')
+                    ->label('GameJolt account')
+                    ->placeholder('All users')
+                    ->trueLabel('With GameJolt')
+                    ->falseLabel('Without GameJolt')
+                    ->queries(
+                        true: fn (Builder $query): Builder => $query->whereHas('gamejolt'),
+                        false: fn (Builder $query): Builder => $query->whereDoesntHave('gamejolt'),
+                    ),
+            ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Action::make('verificationLink')
+                    ->label('Verification link')
+                    ->icon('heroicon-o-link')
+                    ->visible(fn (User $record): bool => ! $record->hasVerifiedEmail())
+                    ->modalHeading('Email verification link')
+                    ->modalDescription(fn (): string => 'This temporary signed link expires after '.(int) config('auth.verification.expire', 60).' minutes. Copy it and send it to the user if their mail host is blocking website email.')
+                    ->form([
+                        TextInput::make('url')
+                            ->label('Link')
+                            ->readOnly()
+                            ->dehydrated(false)
+                            ->extraInputAttributes(['onclick' => 'this.select()']),
+                    ])
+                    ->fillForm(fn (User $record): array => [
+                        'url' => $record->emailVerificationUrl(),
+                    ])
+                    ->modalSubmitAction(false)
+                    ->modalCancelActionLabel('Close'),
                 Action::make('activities')
                     ->url(fn (User $record): string => UserResource::getUrl('activities', ['record' => $record])),
             ])
@@ -115,6 +160,13 @@ class UserResource extends Resource
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ]);
+    }
+
+    public static function getEloquentQuery(): Builder
+    {
+        return parent::getEloquentQuery()
+            ->with('roles')
+            ->withExists('gamejolt');
     }
 
     public static function getPages(): array
